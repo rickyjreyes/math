@@ -2,7 +2,7 @@
 
 **Richard J. Reyes · Independent Researcher**
 
-A collection of **15 research manuscripts in 11 result families**, organized for independent mathematical inspection. Inspired in navigation by [openai/math](https://github.com/openai/math), with independent authorship and separate verification claims.
+A collection of **16 research manuscripts in 12 result families**, organized for independent mathematical inspection. Inspired in navigation by [openai/math](https://github.com/openai/math), with independent authorship and separate verification claims.
 
 ## Navigate
 
@@ -22,13 +22,14 @@ A collection of **15 research manuscripts in 11 result families**, organized for
 | **F04** | Instantaneous finite Fourier-mode leakage | Unprojected cubic–quintic torus dynamics |
 | **F11** | E62 spectral energy concentration bound | Normalized Fourier energy in a measurable band; nonzero L² fields |
 | **F11** | Band-pass negative gradient flow and exact dissipation | Periodic Swift–Hohenberg amplitude model with sufficiently regular solutions |
+| **F12** | E26: conditional regularized-curvature $L^2$ estimate | Uniform denominator separation required; counterexample without it |
 
 For F01, prior single-power work: Fernández, Jeanjean, Mandel and Mariş, *Journal of Differential Equations* **330** (2022), DOI [10.1016/j.jde.2022.04.037](https://doi.org/10.1016/j.jde.2022.04.037). An independent Hamiltonian model is **not** a derivation from a physically healthy parent, and D4 in this corpus is square symmetry in two spatial dimensions.
 
 ## Reproducibility
 
 ```bash
-# Compile all 15 PDFs and overview.pdf
+# Compile all 16 PDFs and overview.pdf
 bash scripts/build_pdfs.sh
 
 # Compile the explicit Lean supporting theorems
