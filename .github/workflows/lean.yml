@@ -25,6 +25,6 @@ jobs:
           lake exe cache get
       - name: Reject unfinished proof markers
         run: |
-          if grep -nE '^[[:space:]]*(sorry|admit)([[:space:]]|$)' MathProofs/Elementary.lean; then exit 1; fi
+          if grep -rnE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' MathProofs; then exit 1; fi
       - name: Kernel check maintained declarations
         run: lake build
