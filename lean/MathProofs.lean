@@ -14,3 +14,7 @@ import MathProofs.ScalarGradientFields
 import MathProofs.SchwartzShell
 import MathProofs.ChartedScalarMetric
 import MathProofs.MetricQuadratic
+import MathProofs.ContinuousPhaseIntegral
+import MathProofs.DispersionCriticalPoint
+import MathProofs.ContinuousPhaseOptimizer
+import MathProofs.PhysicalDispersionMinimum

@@ -12,10 +12,10 @@ formalization obligation.
 
 namespace ReyesMath
 
-private def radicand (s G B q : ℝ) : ℝ :=
+def radicand (s G B q : ℝ) : ℝ :=
   s ^ 2 + 2 * G * q - B * q ^ 2
 
-private noncomputable def lowerBranch (K s G B a q : ℝ) : ℝ :=
+noncomputable def lowerBranch (K s G B a q : ℝ) : ℝ :=
   (1 + a * q - Real.sqrt (radicand s G B q)) / (2 * K)
 
 /-- Exact discriminant identity underlying a strict supporting tangent. -/

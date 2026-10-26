@@ -3,7 +3,7 @@ source: rickyjreyes/math
 lean_release: v4.23.0
 mathlib_release: v4.23.0
 scope: >
-  Local finite-dimensional, measure-theoretic, and polynomial-algebra cores are encoded
+  Local finite-dimensional, continuous integral variational, measure-theoretic, and polynomial-algebra results are encoded
   in Lean. Continuous PDE, dynamics, Gaussian variational constructions,
   and other analytic main results are NOT thereby kernel-checked.
 proof_policy:
@@ -33,12 +33,12 @@ families:
     declarations: []
   F06:
     main_theorem_formalized: false
-    covered: "Exact discriminant, supporting-tangent square identity, and strict global uniqueness of a given admissible stationary minimum are formalized; original parameter hypotheses and existence/explicit critical point remain."
-    declarations: [ReyesMath.dispersion_discriminant_identity, ReyesMath.dispersion_tangent_square_identity, ReyesMath.dispersion_unique_minimum_at_stationary]
+    covered: "The explicit positive stationary wavenumber, its tangent sign, and unique global squared-frequency minimum on the entire nonnegative real-domain are formalized, including the original physical K,T,G,m specialization. The PDF additionally claims strict second-derivative convexity, exact real-domain endpoint, and positivity of both squared-frequency roots; those stronger corollaries are not yet formalized."
+    declarations: [ReyesMath.dispersion_discriminant_identity, ReyesMath.dispersion_tangent_square_identity, ReyesMath.dispersion_unique_minimum_at_stationary, ReyesMath.finite_scale_positive_stationary_exists, ReyesMath.finite_scale_explicit_global_minimum, ReyesMath.finite_scale_physical_unique_global_minimum]
   F07:
     main_theorem_formalized: false
-    covered: "Finite weighted bound, exact gap/completion-of-square identity, and sharp lower bound; not the continuous closed-loop theorem or equality characterization."
-    declarations: [ReyesMath.squaredMismatch_nonnegative, ReyesMath.finite_weighted_phase_bound, ReyesMath.finite_weighted_phase_remainder, ReyesMath.finite_weighted_phase_exact_gap, ReyesMath.finite_weighted_phase_sharp_bound]
+    covered: "The continuous measure-theoretic weighted square completion, exact fixed-integral gap, sharp lower bound, explicit attaining mismatch, and a.e. equality-case uniqueness are formalized. Remaining: the H¹ real phase lift on a closed interval, exact winding endpoint condition, and phase uniqueness modulo constants."
+    declarations: [ReyesMath.squaredMismatch_nonnegative, ReyesMath.finite_weighted_phase_bound, ReyesMath.finite_weighted_phase_remainder, ReyesMath.finite_weighted_phase_exact_gap, ReyesMath.finite_weighted_phase_sharp_bound, ReyesMath.continuous_phase_square_pointwise, ReyesMath.continuous_phase_square_integral, ReyesMath.continuous_phase_exact_gap, ReyesMath.continuous_phase_lower_bound, ReyesMath.continuous_phase_optimal_mismatch_exists, ReyesMath.continuous_phase_minimizer_ae_unique]
   F08:
     main_theorem_formalized: false
     algebraic_no_go_core_formalized: true
