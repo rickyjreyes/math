@@ -1,7 +1,7 @@
 # Lean 4 formalization status
 
-This Mathlib v4.23.0 project contains 33 formal theorem declarations
-(28 previously verified and 5 additional declarations) in ten imported modules. On any revision,
+This Mathlib v4.23.0 project contains 38 formal theorem declarations
+(28 previously verified and 10 additional declarations) in twelve imported modules. On any revision,
 regard them as kernel-checked only after that exact revision's Lean CI passes:
 
 - [Elementary](MathProofs/Elementary.lean) — original elementary algebra.
@@ -27,6 +27,10 @@ regard them as kernel-checked only after that exact revision's Lean CI passes:
 - [LocalIdentifiability](MathProofs/LocalIdentifiability.lean) —
   local derivative-nullity obstruction for arbitrary differentiable
   maps from 31 to 11 real coordinates.
+- [ComplexMetric](MathProofs/ComplexMetric.lean) — exact complex
+  gradient tensor-to-Gram identity and 4D rank bound.
+- [SphereNull](MathProofs/SphereNull.lean) — null Fourier shell and
+  zero-a.e. Fourier representative in arbitrary positive Euclidean dimension.
 
 For precise statements and manuscript coverage, see
 [formalization.yaml](formalization.yaml).
@@ -55,11 +59,12 @@ proofs. The higher-derivative constraint count and ultraviolet Sobolev evolution
 spectral/phase integral identities (F03, F07), full multidimensional
 nonlinear Fourier-mode theorem (F04), curvature nonattainment (F05),
 dispersion existence/explicit-minimum theorem under the manuscript assumptions (F06), numerical Jacobian rank claims (F09),
-and a null-sphere/Plancherel proof in arbitrary dimension (F10) are
+and the Plancherel/inverse-transform bridge (F10) are
 likewise not fully formalized.
 
 The algebraic core of the scalar-gradient rank/signature obstruction
-(F08) **is formalized** in finite dimensions, now for arbitrary carrier
+(F08) **is formalized** in finite dimensions and tied to the exact complex
+product formula, now for arbitrary carrier
 counts and nonnegative carrier weights. The generic local matrix
 nullity core of F09 is formalized but is not a certification of the
 11-parameter-observable physical model, its computed Jacobian, or its
