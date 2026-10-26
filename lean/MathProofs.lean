@@ -3,3 +3,4 @@ import MathProofs.Structural
 import MathProofs.PhaseLocking
 import MathProofs.FourierSupport
 import MathProofs.PhaseMinimizer
+import MathProofs.StructuralExtensions
