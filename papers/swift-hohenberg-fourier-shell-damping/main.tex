@@ -1,0 +1,449 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\geometry{margin=1in}
+\setlist[enumerate]{leftmargin=*,itemsep=3pt,topsep=3pt}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\sS}{\mathcal{S}}
+\newcommand{\sA}{\mathcal{A}}
+\newcommand{\sE}{\mathcal{E}}
+\newcommand{\sF}{\mathcal{F}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\inner}[2]{\left\langle #1,#2\right\rangle}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\esssup}{ess\,sup}
+
+\title{Fourier-Shell Symbol and Off-Shell Damping\\
+for the Swift--Hohenberg Operator}
+\author{M3 + E57 \quad | \quad Manuscript 1\\[2pt]
+\small Self-contained mathematical proof}
+\date{October 26, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We show that the Swift--Hohenberg shell operator
+$\sA=(\Delta+k_\star^2)^2$ has the exact Fourier multiplier
+$p(\xi)=(\abs{\xi}^2-k_\star^2)^2$.  For the dissipative linear equation
+$\partial_tu=-a\sA u$, $a>0$, its $L^2$ solution is given by the multiplier
+$e^{-atp(\xi)}$, and all frequencies separated from the preferred shell
+$\abs{\xi}=k_\star$ decay at a uniform exponential rate.  We prove
+self-adjointness, an energy identity, whole-space strong decay, and the
+periodic-domain analogue.  We distinguish shell selection from nonlinear
+pattern selection and localized bound-state existence.
+\end{abstract}
+
+\section{Definitions and main theorem}
+
+Fix a dimension $d\ge 1$, a preferred wavenumber $k_\star>0$, and a
+dissipation coefficient $a>0$.  We use the unitary Fourier transform
+\begin{equation}\label{eq:fourier-convention}
+\widehat u(\xi)=\sF u(\xi)
+=(2\pi)^{-d/2}\int_{\R^d}e^{-\ii x\cdot\xi}u(x)\,dx,
+\end{equation}
+first for $u\in\sS(\R^d)$ and then on $L^2(\R^d)$ by Plancherel.
+Define
+\begin{equation}\label{eq:A-def}
+\sA=(\Delta+k_\star^2)^2,
+\qquad
+p(\xi)=(\abs{\xi}^2-k_\star^2)^2.
+\end{equation}
+
+\begin{theorem}[M3 + E57: exact spectral shell damping]\label{thm:main}
+For every $u_0\in L^2(\R^d)$, the initial-value problem
+\begin{equation}\label{eq:flow}
+\partial_tu=-a(\Delta+k_\star^2)^2u,
+\qquad u(0)=u_0,
+\end{equation}
+has a unique $L^2$ mild solution $u\in C([0,\infty);L^2(\R^d))$.
+The following statements hold:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The natural $L^2$ realization of $\sA$ is a nonnegative
+self-adjoint operator with domain $H^4(\R^d)$, and
+\begin{equation}\label{eq:symbol}
+\boxed{\widehat{\sA u}(\xi)
+=(\abs{\xi}^2-k_\star^2)^2\widehat u(\xi).}
+\end{equation}
+\item The solution satisfies, for almost every $\xi\in\R^d$,
+\begin{equation}\label{eq:semigroup}
+\boxed{\widehat u(t,\xi)
+=e^{-at(\abs{\xi}^2-k_\star^2)^2}\widehat u_0(\xi).}
+\end{equation}
+\item For $\delta>0$, let $P_\delta$ be the orthogonal Fourier projection
+with multiplier $\mathbf 1_{\Omega_\delta}$, where
+\begin{equation}\label{eq:omega}
+\Omega_\delta
+=\{\xi\in\R^d:\abs{\abs{\xi}^2-k_\star^2}\ge\delta\}.
+\end{equation}
+Then
+\begin{equation}\label{eq:off-shell}
+\boxed{\norm{P_\delta u(t)}_{L^2}
+\le e^{-a\delta^2t}\norm{P_\delta u_0}_{L^2}}
+\qquad (t\ge0).
+\end{equation}
+\item Every $L^2$ solution converges strongly to zero:
+\begin{equation}\label{eq:strong-decay}
+\lim_{t\to\infty}\norm{u(t)}_{L^2}=0.
+\end{equation}
+Nevertheless, for every finite $t\ge0$, the evolution operator
+$S(t)u_0=u(t)$ satisfies
+\begin{equation}\label{eq:operator-norm}
+\norm{S(t)}_{L^2\to L^2}=1.
+\end{equation}
+Thus decay on the whole space has no uniform exponential rate.
+\end{enumerate}
+\end{theorem}
+
+\section{Fourier symbol, positivity, and the operator domain}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}(i)]
+For $u\in\sS(\R^d)$ and every coordinate $j$,
+\begin{equation}
+\widehat{\partial_j u}(\xi)=\ii\xi_j\widehat u(\xi),
+\qquad
+\widehat{\partial_j^2u}(\xi)=-\xi_j^2\widehat u(\xi).
+\end{equation}
+Summing over $j$ gives
+\begin{equation}
+\widehat{\Delta u}(\xi)=-\abs{\xi}^2\widehat u(\xi).
+\end{equation}
+Hence
+\begin{align}
+\widehat{(\Delta+k_\star^2)u}(\xi)
+&=(k_\star^2-\abs{\xi}^2)\widehat u(\xi),\\
+\widehat{(\Delta+k_\star^2)^2u}(\xi)
+&=(k_\star^2-\abs{\xi}^2)^2\widehat u(\xi)\\
+&=(\abs{\xi}^2-k_\star^2)^2\widehat u(\xi),
+\end{align}
+which establishes the asserted Fourier symbol on Schwartz functions.
+
+Under the unitary Fourier transform, the maximal multiplication operator
+$M_p:f\mapsto pf$ is self-adjoint because $p$ is real-valued, with domain
+\begin{equation}\label{eq:operator-domain}
+D(M_p)=\{f\in L^2(\R^d):pf\in L^2(\R^d)\}.
+\end{equation}
+Since $p(\xi)\ge0$, this operator is nonnegative.  Moreover,
+\begin{equation}\label{eq:equivalence}
+1+p(\xi)^2\asymp(1+\abs{\xi}^2)^4
+\qquad\text{for all }\xi\in\R^d,
+\end{equation}
+where $f\asymp g$ means that $c g\le f\le Cg$ for constants
+$0<c\le C<\infty$ depending only on $k_\star$.
+To see this, the ratio of the two continuous, strictly positive
+functions tends to $1$ as $\abs{\xi}\to\infty$ and is bounded above and
+away from zero on any compact set.  Therefore
+\begin{equation}
+\sF^{-1}D(M_p)=H^4(\R^d).
+\end{equation}
+The operator $\sA=\sF^{-1}M_p\sF$ is thus self-adjoint and
+nonnegative on $H^4$; density extends the Fourier identity from
+$\sS$ to this domain.
+
+Finally, for $u\in H^4(\R^d)$, Plancherel yields
+\begin{align}
+\inner{u}{\sA u}_{L^2}
+&=\int_{\R^d}p(\xi)\abs{\widehat u(\xi)}^2\,d\xi\\
+&=\norm{(\Delta+k_\star^2)u}_{L^2}^2\ge0.
+\end{align}
+The associated quadratic form has the larger form domain $H^2(\R^d)$.
+\end{proof}
+
+\section{The exact dissipative evolution}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}(ii)]
+For $t\ge0$ define the Fourier multiplier
+\begin{equation}\label{eq:S}
+S(t)=\sF^{-1}M_{e^{-atp}}\sF.
+\end{equation}
+Because $0<e^{-atp(\xi)}\le1$,
+\begin{equation}
+\norm{S(t)u_0}_2\le\norm{u_0}_2.
+\end{equation}
+The identity $S(t+s)=S(t)S(s)$ follows directly from multiplication
+of the scalar exponential multipliers.  Since
+$e^{-atp(\xi)}\to1$ as $t\downarrow0$, dominated convergence and
+Plancherel imply
+\begin{equation}
+\norm{S(t)u_0-u_0}_2\longrightarrow0.
+\end{equation}
+Thus $(S(t))_{t\ge0}$ is a strongly continuous contraction semigroup.
+Its generator is $-a\sA$, which gives existence and uniqueness of the
+mild solution to~\eqref{eq:flow}.  Explicitly,
+\begin{equation}
+\widehat u(t,\xi)=e^{-atp(\xi)}\widehat u_0(\xi)
+\end{equation}
+for almost every $\xi$.
+
+For $t>0$, the functions $p(\xi)^j e^{-atp(\xi)}$ are bounded for
+every nonnegative integer $j$.  Accordingly the solution belongs to the
+operator domain at positive time and satisfies the differential equation
+strongly there.  In particular, high spatial frequencies are smoothed.
+\end{proof}
+
+\begin{remark}[Meaning of a Fourier mode]
+For general $L^2$ data, Fourier transforms are equivalence classes
+defined almost everywhere.  The multiplier identity gives an exact
+decay factor for almost every frequency; a plane wave of exactly fixed
+frequency is a generalized eigenfunction, not an element of
+$L^2(\R^d)$.
+\end{remark}
+
+\section{Uniform damping away from the shell}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}(iii)]
+On $\Omega_\delta$ as defined in~\eqref{eq:omega},
+\begin{equation}
+p(\xi)=(\abs{\xi}^2-k_\star^2)^2\ge\delta^2.
+\end{equation}
+Therefore, for $t\ge0$,
+\begin{equation}
+e^{-2atp(\xi)}\le e^{-2a\delta^2t}
+\qquad(\xi\in\Omega_\delta).
+\end{equation}
+By Plancherel and~\eqref{eq:semigroup},
+\begin{align}
+\norm{P_\delta u(t)}_2^2
+&=\int_{\Omega_\delta}
+ e^{-2atp(\xi)}\abs{\widehat u_0(\xi)}^2\,d\xi\\
+&\le e^{-2a\delta^2t}
+ \int_{\Omega_\delta}\abs{\widehat u_0(\xi)}^2\,d\xi\\
+&=e^{-2a\delta^2t}\norm{P_\delta u_0}_2^2.
+\end{align}
+Taking square roots proves~\eqref{eq:off-shell}.
+\end{proof}
+
+\begin{corollary}[Exact preferred shell and near-shell expansion]
+The damping exponent
+\begin{equation}\label{eq:lambda}
+\lambda(\xi)=-a(\abs{\xi}^2-k_\star^2)^2
+\end{equation}
+is nonpositive everywhere, with $\lambda(\xi)=0$ exactly when
+$\abs{\xi}=k_\star$.  Writing $\abs{\xi}=k_\star+h$ yields
+\begin{equation}
+p(\xi)=(2k_\star h+h^2)^2
+=4k_\star^2h^2+4k_\star h^3+h^4.
+\end{equation}
+Thus the leading damping rate near the selected shell is quadratic in
+the radial deviation $h$.
+\end{corollary}
+
+\section{Whole-space decay, but no uniform exponential gap}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}(iv)]
+The zero set of the symbol is
+\begin{equation}\label{eq:shell}
+\Sigma_\star=\{\xi\in\R^d:\abs{\xi}=k_\star\}.
+\end{equation}
+For $d=1$ it consists of two points, and for $d\ge2$ it is a
+codimension-one sphere.  In each case it has $d$-dimensional Lebesgue
+measure zero.  Hence $p(\xi)>0$ for almost every $\xi$ and
+\begin{equation}
+e^{-2atp(\xi)}\longrightarrow0
+\qquad(t\to\infty)
+\end{equation}
+for almost every $\xi$.  As
+$0\le e^{-2atp(\xi)}\abs{\widehat u_0(\xi)}^2
+\le\abs{\widehat u_0(\xi)}^2$ and $\widehat u_0\in L^2$, dominated
+convergence gives
+\begin{equation}
+\norm{S(t)u_0}_2^2
+=\int_{\R^d}e^{-2atp(\xi)}\abs{\widehat u_0(\xi)}^2\,d\xi
+\longrightarrow0.
+\end{equation}
+
+On the other hand, the norm of a bounded Fourier multiplier on $L^2$
+is the essential supremum of its absolute value, so
+\begin{equation}
+\norm{S(t)}_{L^2\to L^2}
+=\esssup_{\xi\in\R^d}e^{-atp(\xi)}=1.
+\end{equation}
+Indeed, every open neighborhood of the nonempty sphere $\Sigma_\star$
+has positive Lebesgue measure and contains values of $p$ arbitrarily
+close to zero.  No bound
+$\norm{S(t)}_{L^2\to L^2}\le C e^{-ct}$ with fixed $c>0$ can therefore
+hold for all $t\ge0$.  This proves the claimed distinction between
+strong decay of each $L^2$ solution and uniform decay of the semigroup.
+\end{proof}
+
+\begin{corollary}[No nonzero exact-shell $L^2$ state]
+If $u\in L^2(\R^d)$ and
+$\supp\widehat u\subseteq\Sigma_\star$ in the essential-support sense,
+then $u=0$ almost everywhere.
+\end{corollary}
+\begin{proof}
+An $L^2$ Fourier transform supported on a Lebesgue-null set must
+vanish almost everywhere.  Apply Plancherel.
+\end{proof}
+
+\section{Energy-dissipation identities}
+
+\begin{proposition}[Monotone quadratic energy]\label{prop:energy}
+Let $u(t)=S(t)u_0$ with $u_0\in L^2(\R^d)$.  Define, for $t>0$,
+\begin{equation}\label{eq:energy}
+\sE[u(t)]=\frac12\norm{(\Delta+k_\star^2)u(t)}_2^2.
+\end{equation}
+Then, for every $t>0$,
+\begin{align}
+\frac{d}{dt}\sE[u(t)]
+&=-a\norm{(\Delta+k_\star^2)^2u(t)}_2^2\le0,
+\label{eq:energy-identity}\\
+\frac12\frac{d}{dt}\norm{u(t)}_2^2
+&=-a\norm{(\Delta+k_\star^2)u(t)}_2^2\le0.
+\label{eq:mass-identity}
+\end{align}
+\end{proposition}
+\begin{proof}
+Write $L=\Delta+k_\star^2$, so $\sA=L^2$.  At every positive
+time the semigroup regularizes sufficiently for the following
+differentiations and integrations by parts.  Since $L$ and $\sA$ are
+self-adjoint and $u_t=-a\sA u$,
+\begin{align}
+\frac{d}{dt}\frac12\norm{Lu}_2^2
+&=\operatorname{Re}\inner{Lu}{Lu_t}_{L^2}\\
+&=\operatorname{Re}\inner{L^2u}{u_t}_{L^2}\\
+&=-a\norm{\sA u}_2^2.
+\end{align}
+Similarly,
+\begin{align}
+\frac12\frac{d}{dt}\norm{u}_2^2
+&=\operatorname{Re}\inner{u}{u_t}_{L^2}\\
+&=-a\inner{u}{\sA u}_{L^2}\\
+&=-a\norm{Lu}_2^2.
+\end{align}
+This proves both identities.  If $u_0\in H^4$, they are also valid
+at $t=0$; otherwise they hold for $t>0$ and have the corresponding
+integrated formulations.
+\end{proof}
+
+\begin{remark}[Gradient-flow convention]
+Using the \emph{real} Hilbert-space inner product
+$(u,v)_{\R}=\operatorname{Re}\inner{u}{v}_{L^2}$, the gradient of
+$\sE[u]=\frac12\norm{Lu}_2^2$ is $\nabla_{\R}\sE[u]=\sA u$.
+Thus $u_t=-a\nabla_{\R}\sE[u]$ is precisely a negative gradient flow.
+This avoids possible factors of two from differing conventions for
+complex Wirtinger derivatives.
+\end{remark}
+
+\section{Periodic-domain counterpart}
+
+\begin{proposition}[Discrete Fourier shells on a flat torus]
+Consider a flat torus $\T_L^d=(\R/L\mathbb Z)^d$.  Its Fourier
+frequencies are $\xi_n=2\pi n/L$, $n\in\mathbb Z^d$.  Let $\Pi_0$
+denote orthogonal projection onto the resonant span
+\begin{equation}
+\{e^{\ii\xi_n\cdot x}:\abs{\xi_n}=k_\star\},
+\end{equation}
+with $\Pi_0=0$ if that span is trivial.  Then for a constant $g_L>0$,
+\begin{equation}\label{eq:periodic-gap}
+\norm{u(t)-\Pi_0u_0}_2
+\le e^{-ag_Lt}\norm{u_0-\Pi_0u_0}_2,
+\end{equation}
+where
+\begin{equation}
+g_L=\min\{(\abs{\xi_n}^2-k_\star^2)^2:
+ n\in\mathbb Z^d,\ \abs{\xi_n}\ne k_\star\}>0.
+\end{equation}
+In particular, $u(t)\to\Pi_0u_0$ exponentially in $L^2$.
+\end{proposition}
+\begin{proof}
+Fourier coefficients solve the decoupled equations
+\begin{equation}
+\widehat u_n(t)
+=e^{-at(\abs{\xi_n}^2-k_\star^2)^2}\widehat u_n(0).
+\end{equation}
+There are finitely many lattice frequencies in each bounded ball, and
+$(\abs{\xi_n}^2-k_\star^2)^2\to\infty$ as $\abs n\to\infty$.
+Consequently, the nonzero values of the discrete symbol have a strictly
+positive minimum $g_L$.  Parseval's identity gives
+\begin{align}
+\norm{u(t)-\Pi_0u_0}_2^2
+&=\sum_{\abs{\xi_n}\ne k_\star}
+ e^{-2at(\abs{\xi_n}^2-k_\star^2)^2}
+ \abs{\widehat u_n(0)}^2\\
+&\le e^{-2ag_Lt}\norm{u_0-\Pi_0u_0}_2^2,
+\end{align}
+where the coefficient normalization is chosen so that Parseval holds.
+Taking square roots proves the claim.
+\end{proof}
+
+\section{Linear control parameter and limits of the claim}
+
+\begin{proposition}[Linear Swift--Hohenberg threshold]
+For the parameterized linear equation
+\begin{equation}\label{eq:r-flow}
+\partial_tu=ru-a(\Delta+k_\star^2)^2u,
+\qquad r\in\R,
+\end{equation}
+the Fourier growth exponent is
+\begin{equation}\label{eq:r-growth}
+\lambda_r(\xi)=r-a(\abs{\xi}^2-k_\star^2)^2.
+\end{equation}
+On the continuum, the spectral bound is $r$.  Thus the linear
+instability threshold in this centered parameterization is $r_c=0$;
+when $r>0$, the growing frequency band is exactly
+\begin{equation}\label{eq:unstable-band}
+\abs{\abs{\xi}^2-k_\star^2}<\sqrt{r/a}.
+\end{equation}
+On $\T_L^d$, the first growing mode instead occurs when
+$r>a\min_{n\in\mathbb Z^d}(\abs{\xi_n}^2-k_\star^2)^2$.
+\end{proposition}
+\begin{proof}
+Applying $\sF$ to~\eqref{eq:r-flow} gives
+$\partial_t\widehat u=\lambda_r(\xi)\widehat u$.
+Since $p\ge0$ and its minimum is zero on the continuum shell,
+$\sup_\xi\lambda_r(\xi)=r$; the strict positivity condition
+$\lambda_r(\xi)>0$ is equivalent to~\eqref{eq:unstable-band}.
+For a torus, take the maximum over its discrete Fourier frequencies.
+\end{proof}
+
+\begin{remark}[Scope: linear damping versus nonlinear persistence]
+The exact coefficientwise decay formula~\eqref{eq:semigroup} concerns
+the \emph{linear dissipative} evolution with the negative sign in front
+of the shell operator.  Nonlinearities such as $-g\abs{u}^2u$ couple
+Fourier frequencies and do not obey independent multiplier decay.
+The shell symbol alone proves neither nonzero whole-space $L^2$ bound
+states nor the existence, uniqueness, or nonlinear stability of
+localized patterns.  In particular, changing the sign to
+$+a(\Delta+k_\star^2)^2$ reverses the damping and creates
+high-frequency growth.
+\end{remark}
+
+\section*{Conclusion and classification}
+
+The principal identities are
+\begin{equation*}
+\boxed{\begin{gathered}
+\widehat{(\Delta+k_\star^2)^2u}(\xi)
+=(\abs{\xi}^2-k_\star^2)^2\widehat u(\xi),\\[4pt]
+\widehat u(t,\xi)
+=e^{-at(\abs{\xi}^2-k_\star^2)^2}\widehat u_0(\xi),\\[4pt]
+\norm{P_\delta u(t)}_2
+\le e^{-a\delta^2t}\norm{P_\delta u_0}_2.
+\end{gathered}}
+\end{equation*}
+Accordingly, \textbf{M3 (shell Fourier symbol) is proved}, and
+\textbf{E57 (off-shell spectral damping) is proved} for the stated
+negative-generator linear flow.  Extensions to nonlinear persistence,
+physical mode confinement, or an independently specified WCT equation
+require additional hypotheses and independent theorems.
+
+\end{document}
