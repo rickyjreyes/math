@@ -16,3 +16,4 @@ import MathProofs.ChartedScalarMetric
 import MathProofs.MetricQuadratic
 import MathProofs.ContinuousPhaseIntegral
 import MathProofs.DispersionCriticalPoint
+import MathProofs.ContinuousPhaseOptimizer
