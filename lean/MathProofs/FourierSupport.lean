@@ -33,7 +33,8 @@ theorem oneDimensional_shell_ae_zero
     (hf : ∀ x, x ∉ ({k, -k} : Set ℝ) → f x = 0) :
     f =ᵐ[volume] (fun _ => 0) := by
   apply zero_ae_of_null_support volume {k, -k}
-  · simp
+  · have hfin : ({k, -k} : Set ℝ).Finite := by simp
+    exact hfin.measure_zero volume
   · exact hf
 
 end ReyesMath
