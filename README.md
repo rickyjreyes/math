@@ -105,3 +105,25 @@ In four dimensions its rank is at most two, so it cannot be a Lorentzian metric.
 **Scope:** This is an exact algebraic obstruction to the specified positive-sign construction, not a no-go theorem for all emergent-metric models or a derivation of gravitational dynamics.
 
 **Supporting analysis:** [Foundational Stage 2 — tensor/tetrad emergence](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/FOUNDATIONAL_STAGE2_2026-10-14.md).
+
+### Orbital stability of the complete minimizing set for a fourth-order cubic–quintic Schrödinger equation
+
+[LaTeX source](papers/orbital-stability-fourth-order-cubic-quintic/main.tex)
+
+For $u\in H^2(\mathbb R^2;\mathbb C)$, consider the globally well-posed flow
+$i\partial_t u=(\Delta+k^2)^2u-\beta|u|^2u+\gamma|u|^4u$.
+Let $\mathcal G_m=\{u:\|u\|_2^2=m,\ H(u)=I(m)\}$.
+For $\beta,\gamma,k>0$ and $0<m\le m_B$ (defined above), the manuscript proves
+$\mathcal G_m$ is nonempty and orbitally stable in $H^2$, including under
+small perturbations that change the mass. The complete argument provides
+negative constrained energy, strict binding, compactness modulo translations,
+global $H^2$ well-posedness, and conservation laws.
+
+**Build:** Run `pdflatex -interaction=nonstopmode main.tex` twice from
+`papers/orbital-stability-fourth-order-cubic-quintic/`.
+
+**Scope:** Stability of the entire minimizing set, not uniqueness, attraction,
+spectral nondegeneracy, stability of every stationary branch, or any result
+on four-spatial-dimensional confinement.
+
+**Related supporting note:** [Orbital stability analysis](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/d4_binding/D4_ORBITAL_STABILITY_STATUS.md).
