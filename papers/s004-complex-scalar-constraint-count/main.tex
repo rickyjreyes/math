@@ -1,0 +1,339 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref}
+\usepackage{microtype}
+
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\bX}{\mathbf{X}}
+\newcommand{\bV}{\mathbf{V}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\bb}{\mathbf{b}}
+\newcommand{\bl}{\boldsymbol{\lambda}}
+\newcommand{\bp}{\mathbf{p}}
+\newcommand{\cQ}{\mathcal{Q}}
+
+\title{A Complete Constraint Count for the Regular Higher-Derivative S004 Complex Scalar}
+\author{Richard J. Reyes}
+\date{October 26, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For the specified nonzero-field, fixed-flat-background sector of the corrected
+S004 complex-scalar action, the Hessian with respect to the two real
+accelerations is $-2\kappa F I_2$, with nonzero determinant
+$4\kappa^2F^2$. An explicit first-order Dirac reduction produces four
+second-class primary constraints and no secondary or first-class scalar
+constraints. Starting from twelve first-order canonical variables, the
+reduced phase space therefore has eight real dimensions per spatial point,
+corresponding to four real configuration degrees of freedom. Two degrees
+are additional to those of an ordinary complex scalar. The conserved
+global $U(1)$ charge is not a local gauge constraint. The result applies
+only to the specified regular fixed-background sector; it does not
+analyze an unspecified metric or gauge completion or the degenerate vacuum.
+\end{abstract}
+
+\section{Hypotheses and action}
+
+Use the rescaled time coordinate $\tau=c_0t$ and the flat metric of
+signature $(-,+,\ldots,+)$. Write
+\begin{equation}
+\psi=X_1+iX_2,\qquad \bX=(X_1,X_2),\qquad
+\rho=|\psi|^2=|\bX|^2.
+\end{equation}
+Define
+\begin{equation}
+D(\rho)=\rho+\varepsilon^2e^{-2\alpha\rho},\qquad
+F(\rho)=\frac{\rho}{D(\rho)^2}.
+\end{equation}
+Assume
+\begin{equation}\label{eq:hyp}
+\varepsilon>0,\qquad \kappa>0,\qquad\theta>0,
+\qquad\gamma^2<4\kappa\theta,
+\end{equation}
+and restrict the canonical analysis to a smooth field-space patch
+$\rho>0$ (bounded away from zero when uniform regularity is required).
+Then $F(\rho)>0$. The scalar background metric and foliation are fixed;
+no independent metric, connection, or gauge field is included.
+
+The original S004 scalar density is
+\begin{equation}\label{eq:original}
+\cL_{\mathrm{orig}}=
+\partial_\mu\bar\psi\,\partial^\mu\psi-V(\rho)
++F(\rho)\left[
+\kappa|\Box\psi|^2+\theta|\Delta\psi|^2
++\gamma\operatorname{Re}(\Box\psi\,\overline{\Delta\psi})
+\right].
+\end{equation}
+We use $\cL_{\mathrm{phys}}=-\cL_{\mathrm{orig}}$, which
+orients the ordinary two-derivative kinetic term positively. An overall
+sign reversal does not alter the constraint count.
+
+Put
+\begin{equation}
+\bV=\partial_\tau\bX,\quad
+\ba=\partial_\tau^2\bX,\quad
+\bb=\Delta\bX,\quad
+A=2\kappa+\gamma,\quad C=\kappa+\theta+\gamma.
+\end{equation}
+Because $\Box\psi=-\ba+\bb$ in real components,
+\begin{align}
+|\Box\psi|^2&=|\ba|^2-2\ba\cdot\bb+|\bb|^2,\\
+\operatorname{Re}(\Box\psi\,\overline{\Delta\psi})
+&=-\ba\cdot\bb+|\bb|^2.
+\end{align}
+It follows that
+\begin{equation}\label{eq:realL}
+\boxed{\cL_{\mathrm{phys}}=|\bV|^2-|\nabla\bX|^2+V(\rho)
+-F(\rho)\left(\kappa|\ba|^2-A\ba\cdot\bb+C|\bb|^2\right).}
+\end{equation}
+We assume boundary conditions sufficient to justify the integrations by
+parts and the Hamiltonian manipulations below (e.g., periodic spatial data
+or suitably decaying variations with vanishing boundary flux).
+
+\section{The acceleration Legendre map}
+
+\begin{lemma}[Regular acceleration Hessian]\label{lem:hessian}
+On the patch $\rho>0$, the real two-by-two acceleration Hessian obeys
+\begin{equation}\label{eq:hessian}
+H_{\mathrm{acc}}=
+\left(\frac{\partial^2\cL_{\mathrm{phys}}}
+{\partial a_i\partial a_j}\right)_{i,j=1}^{2}
+=-2\kappa F(\rho)I_2,
+\qquad \det H_{\mathrm{acc}}=4\kappa^2F(\rho)^2>0.
+\end{equation}
+Thus the higher-time Legendre map is pointwise invertible.
+\end{lemma}
+\begin{proof}
+Differentiating equation~\eqref{eq:realL} with $\bX$, $\bV$,
+and $\bb$ fixed gives
+\begin{equation}
+\frac{\partial\cL_{\mathrm{phys}}}{\partial a_i}
+=-F(2\kappa a_i-Ab_i).
+\end{equation}
+Since $F$ depends on $\bX$, not on $\ba$, one more derivative gives
+$\partial^2\cL_{\mathrm{phys}}/\partial a_i\partial a_j
+=-2\kappa F\delta_{ij}$. The determinant is positive under
+\eqref{eq:hyp} and $\rho>0$.
+\end{proof}
+
+\section{First-order Dirac reduction}
+
+Introduce $\bV$ as an independent configuration variable and a
+real two-component multiplier $\bl$ imposing $\dot\bX=\bV$:
+\begin{equation}\label{eq:auxL}
+\cL_1=\cL_{\mathrm{phys}}(\bX,\bV,\dot\bV,\Delta\bX)
++\bl\cdot(\dot\bX-\bV).
+\end{equation}
+The six real first-order configuration coordinates are
+$(\bX,\bV,\bl)$, with conjugate momenta $(\bp_X,\bp_V,\bp_\lambda)$.
+The momentum equations are
+\begin{equation}\label{eq:momenta}
+\bp_X=\bl,\qquad
+\bp_\lambda=0,\qquad
+\bp_V=-F(2\kappa\dot\bV-A\bb).
+\end{equation}
+By Lemma~\ref{lem:hessian}, the final relation is solvable:
+\begin{equation}\label{eq:invert}
+\dot\bV=\frac{A}{2\kappa}\bb-\frac{\bp_V}{2\kappa F}.
+\end{equation}
+Hence no primary constraint arises from $\bp_V$. The multiplier sector
+provides exactly four primary constraints,
+\begin{equation}\label{eq:constraints}
+\Phi_i=p_{X_i}-\lambda_i\approx0,\qquad
+\Xi_i=p_{\lambda_i}\approx0,\qquad i=1,2.
+\end{equation}
+
+\begin{lemma}[All four primary constraints are second class]
+The Dirac matrix of the four constraints in \eqref{eq:constraints}
+has rank four. In particular, no nonzero first-class linear combination
+of these primary constraints exists.
+\end{lemma}
+\begin{proof}
+The equal-time canonical brackets are
+\begin{equation}
+\{X_i(\mathbf y),p_{X_j}(\mathbf z)\}
+=\{V_i(\mathbf y),p_{V_j}(\mathbf z)\}
+=\{\lambda_i(\mathbf y),p_{\lambda_j}(\mathbf z)\}
+=\delta_{ij}\delta(\mathbf y-\mathbf z).
+\end{equation}
+The nonzero brackets among the constraints are
+\begin{equation}
+\{\Phi_i(\mathbf y),\Xi_j(\mathbf z)\}
+=-\delta_{ij}\delta(\mathbf y-\mathbf z).
+\end{equation}
+Suppressing the common spatial delta distribution, the matrix in the
+order $(\Phi_1,\Phi_2,\Xi_1,\Xi_2)$ is
+\begin{equation}\label{eq:diracmatrix}
+\mathcal C=\begin{pmatrix}
+0&-I_2\\ I_2&0
+\end{pmatrix},\qquad\det\mathcal C=1.
+\end{equation}
+Thus all four constraints are second class.
+\end{proof}
+
+\section{Preservation and termination of the Dirac algorithm}
+
+The partial Legendre transform in the acceleration variable, using
+\eqref{eq:invert}, gives
+\begin{equation}\label{eq:H0}
+\boxed{
+\cH_0=-|\bV|^2+|\nabla\bX|^2-V(\rho)
+-\frac{|\bp_V|^2}{4\kappa F}
++\frac{A}{2\kappa}\bp_V\cdot\bb
++B_\perp F|\bb|^2,}
+\end{equation}
+where
+\begin{equation}
+B_\perp=C-\frac{A^2}{4\kappa}
+=\theta-\frac{\gamma^2}{4\kappa}>0.
+\end{equation}
+The total Hamiltonian takes the form
+\begin{equation}\label{eq:HT}
+H_T=\int\left[\cH_0+\bl\cdot\bV
++\mathbf u\cdot\boldsymbol\Phi
++\mathbf w\cdot\boldsymbol\Xi\right]\dd^d\mathbf y.
+\end{equation}
+For each $i=1,2$, preservation of $\Xi_i$ yields
+\begin{equation}
+\dot\Xi_i=\{\Xi_i,H_T\}=u_i-V_i\approx0,
+\qquad\Longrightarrow\qquad u_i=V_i.
+\end{equation}
+Preservation of $\Phi_i$ yields
+\begin{equation}
+\dot\Phi_i=\{\Phi_i,H_T\}
+=-\frac{\delta H_0}{\delta X_i}-w_i\approx0,
+\qquad\Longrightarrow\qquad
+w_i=-\frac{\delta H_0}{\delta X_i},
+\end{equation}
+with $H_0=\int\cH_0\dd^d\mathbf y$. The functional derivative
+includes all spatial-derivative terms.
+Both preservation conditions fix Lagrange multipliers; neither imposes
+a new condition on $(\bX,\bV,\bp_X,\bp_V)$. There are therefore
+no secondary constraints, and the Dirac algorithm terminates.
+
+\section{Degree-of-freedom theorem}
+
+\begin{theorem}[Four regular real configuration degrees of freedom]
+\label{thm:main}
+Under the hypotheses in Section~1, the fixed-background corrected S004
+complex-scalar sector has four local real configuration degrees of freedom
+per spatial point. Two are additional higher-time degrees relative to an
+ordinary complex scalar. There are four second-class scalar constraints,
+no first-class scalar constraints, and no secondary scalar constraints.
+\end{theorem}
+\begin{proof}
+The auxiliary first-order formulation contains six real configuration
+coordinates, hence twelve real canonical phase-space dimensions per spatial
+point. The invertible acceleration Hessian introduces no extra primary
+constraint; equations~\eqref{eq:constraints}--\eqref{eq:diracmatrix}
+give four second-class constraints. The preservation equations above show
+that no secondary constraints arise and that there are no first-class
+scalar constraints. Dirac's counting formula therefore gives
+\begin{equation}
+N_{\mathrm{conf}}=
+\frac{N_{\mathrm{phase}}-2N_{\mathrm{first}}-N_{\mathrm{second}}}{2}
+=\frac{12-2(0)-4}{2}=4.
+\end{equation}
+Equivalently, eliminating $(\bl,\bp_\lambda)$ leaves four
+unconstrained canonical pairs,
+\begin{equation}
+(X_1,p_{X_1}),\quad (X_2,p_{X_2}),\quad
+(V_1,p_{V_1}),\quad (V_2,p_{V_2}),
+\end{equation}
+so the reduced phase space has eight real dimensions per spatial point.
+The two $\bV$ components constitute two additional local higher-time
+configuration degrees of freedom.
+\end{proof}
+
+\section{Canonical energy and global phase charge}
+
+On the reduced phase space, the exact canonical Hamiltonian is
+\begin{equation}\label{eq:Hphys}
+\boxed{\begin{aligned}
+H_{\mathrm{phys}}=\int\Bigg[
+&\bp_X\cdot\bV-|\bV|^2+|\nabla\bX|^2-V(\rho)\\
+&-\frac{|\bp_V|^2}{4\kappa F}
++\frac{A}{2\kappa}\bp_V\cdot\Delta\bX
++B_\perp F|\Delta\bX|^2
+\Bigg]\dd^d\mathbf y.
+\end{aligned}}
+\end{equation}
+The term $\bp_X\cdot\bV$ is linear in an unconstrained momentum;
+moreover, $-|\bp_V|^2/(4\kappa F)$ is negative for nonzero $\bp_V$.
+These are explicit manifestations of the unbounded-energy obstruction
+in this nondegenerate higher-time sector. This energy observation is
+separate from, and not required for, the counting theorem.
+
+Let $J=\begin{psmallmatrix}0&-1\\1&0\end{psmallmatrix}$.
+The constant phase transformation $\psi\mapsto e^{i\eta}\psi$
+acts as $\delta\bX=\eta J\bX$ and $\delta\bV=\eta J\bV$.
+Its canonical generator is the conserved global charge
+\begin{equation}\label{eq:charge}
+\boxed{\cQ=\int\left(\bp_X\cdot J\bX
++\bp_V\cdot J\bV\right)\dd^d\mathbf y.}
+\end{equation}
+Conservation presupposes sufficient solution regularity, integrability,
+and vanishing boundary flux. Importantly, a \emph{constant} $U(1)$
+parameter is not a free spacetime-dependent gauge parameter. The charge
+\eqref{eq:charge} is not a local first-class constraint, and fixing its
+value does not eliminate the two extra local degrees of freedom.
+
+\section{Limitations}
+
+\begin{remark}[Degenerate vacuum]
+At $\psi=0$ one has $F(0)=0$, so the acceleration Hessian loses rank.
+The regular-sector Legendre map is then inapplicable. A separate singular
+constraint analysis is required at that point; it cannot be used to
+eliminate modes throughout neighboring regular nonzero-field patches.
+\end{remark}
+
+\begin{remark}[Different theories and completions]
+The theorem concerns the literal corrected S004 scalar sector with
+fixed flat metric and fixed foliation. It does not supply or count
+constraints of an unspecified dynamical-metric, connection, or gauge
+completion. The $\kappa=0$ case likewise requires a separate analysis.
+For global infinite-domain solutions, one must additionally control
+the behavior of $F$ and appropriate canonical function spaces; the
+count above is a local regular-sector count.
+\end{remark}
+
+\section*{Conclusion}
+
+For $\kappa>0$ and $F(\rho)>0$,
+\begin{equation}
+\boxed{H_{\mathrm{acc}}=-2\kappa F I_2,\quad
+\det H_{\mathrm{acc}}=4\kappa^2F^2>0,\quad
+N_{\mathrm{phase,red}}=12-4=8,\quad
+N_{\mathrm{conf}}=4.}
+\end{equation}
+The two extra real higher-time configuration degrees of freedom survive
+all scalar constraints of the specified fixed-background system. A
+global $U(1)$ charge does not remove them.
+
+\begin{thebibliography}{9}
+\bibitem{S004audit}
+R.~J. Reyes, \`\`S004 physical-health audit: constraints, ghost and
+ultraviolet obstruction,'' October 20, 2026,
+\url{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/foundational/GHOST_AND_CONSTRAINT_ANALYSIS.md}.
+
+\bibitem{Woodard}
+R.~P. Woodard, \`\`The Theorem of Ostrogradsky,''
+\emph{Scholarpedia} \textbf{10}(8), 32243 (2015),
+\url{https://arxiv.org/abs/1506.02210}.
+\end{thebibliography}
+
+\end{document}
