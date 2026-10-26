@@ -10,3 +10,4 @@ import MathProofs.UVDispersion
 import MathProofs.LocalIdentifiability
 import MathProofs.ComplexMetric
 import MathProofs.SphereNull
+import MathProofs.ScalarGradientFields
