@@ -26,7 +26,9 @@ jobs:
         run: bash scripts/build_pdfs.sh
       - name: Verify PDFs
         run: |
-          test "$(find preprints -name paper.pdf | wc -l)" -eq 15
+          expected="$(find papers -mindepth 2 -maxdepth 2 -name main.tex | wc -l)"
+          actual="$(find preprints -mindepth 2 -maxdepth 2 -name paper.pdf | wc -l)"
+          test "$actual" -eq "$expected"
           test -s overview.pdf
       - name: Upload PDFs
         uses: actions/upload-artifact@v4
