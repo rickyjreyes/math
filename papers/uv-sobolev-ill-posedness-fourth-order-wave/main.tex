@@ -1,0 +1,289 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\F}{\mathcal{F}}
+
+\title{Ultraviolet Sobolev Ill-Posedness for a Fourth-Order Wave Equation}
+\author{Richard J. Reyes}
+\date{October 26, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove that the constant-coefficient fourth-order wave equation
+\(
+(\Box-\Box^2-\Delta^2)u=0
+\), with \(\Box=-\partial_t^2+\Delta\), has no bounded positive-time evolution operator on any finite-order Sobolev four-jet space, even with arbitrary fixed finite loss of spatial derivatives. The proof derives the exact temporal roots from the dispersion relation \(D(z,q)=(z-q)-(z-q)^2-q^2\), establishes high-frequency growth \(\operatorname{Re}s(k)=\sqrt{(\sqrt2-1)/2}\,|k|+O(|k|^{-1})\), and constructs exact solution sequences on both a flat torus and the whole space. We also state the extension to the strict positive-curvature coefficient regime of the homogeneous S004 linearization. These are linear, constant-background conclusions, not nonlinear norm-inflation or finite-lifetime theorems.
+\end{abstract}
+
+\section{Equation and precise statement}
+
+Let \(d\ge 1\), and let \(M=\TT^d\) or \(M=\RR^d\), where \(\TT^d=(\RR/2\pi\mathbb{Z})^d\). Define
+\begin{equation}\label{eq:operator}
+  \Box=-\partial_t^2+\Delta,
+  \qquad (\Box-\Box^2-\Delta^2)u=0.
+\end{equation}
+Expanding gives the real-coefficient equation
+\begin{equation}\label{eq:expanded}
+  \partial_t^4u+(1-2\Delta)\partial_t^2u-\Delta u+2\Delta^2u=0.
+\end{equation}
+For \(r\in\RR\), introduce the four-jet Sobolev space
+\begin{equation}\label{eq:space}
+  X_r(M)=H^{r+3}(M)\times H^{r+2}(M)
+   \times H^{r+1}(M)\times H^r(M),
+  \qquad
+  \norm{U}_{X_r}^2=\sum_{j=0}^3\norm{\partial_t^j u}_{H^{r+3-j}}^2,
+\end{equation}
+where \(U(t)=(u,\partial_tu,\partial_t^2u,\partial_t^3u)(t)\).
+
+\begin{theorem}[Unbounded positive-time Sobolev evolution]\label{thm:main}
+For every \(r\in\RR\), every fixed finite \(\ell\ge0\), and every \(t_0>0\), classical evolution for \eqref{eq:expanded}, defined on the smooth Fourier-mode or Fourier-packet data constructed below, admits no bounded linear extension
+\[
+   S(t_0):X_{r+\ell}(M)\longrightarrow X_r(M).
+\]
+Indeed, there exist smooth exact solutions \(u_n\) such that
+\[
+  \norm{U_n(0)}_{X_{r+\ell}}\longrightarrow 0,
+  \qquad
+  \norm{U_n(t_0)}_{X_r}=1.
+\]
+In particular, standard Sobolev continuity fails even if a fixed finite number of spatial derivatives is lost.
+\end{theorem}
+
+\section{Exact characteristic roots}
+
+For \(u=e^{i(k\cdot x-\omega t)}\), set \(z=\omega^2\) and \(q=|k|^2\). Then \(\Box u=(z-q)u\) and \(\Delta^2u=q^2u\), so \eqref{eq:operator} yields
+\begin{equation}\label{eq:dispersion}
+  D(z,q)=(z-q)-(z-q)^2-q^2=0.
+\end{equation}
+Expanding and changing the overall sign,
+\[
+  z^2-(1+2q)z+q+2q^2=0.
+\]
+Its discriminant is exactly
+\[
+  (1+2q)^2-4(q+2q^2)=1-4q^2.
+\]
+Therefore
+\begin{equation}\label{eq:zroots}
+  z_\pm(q)=q+\frac{1\pm\sqrt{1-4q^2}}{2}.
+\end{equation}
+For \(q>\tfrac12\), the roots are nonreal conjugates:
+\begin{equation}\label{eq:zcomplex}
+  z_\pm(q)=q+\frac12\pm\frac{i}{2}\sqrt{4q^2-1}.
+\end{equation}
+
+\section{Growing temporal roots and asymptotics}
+
+Write \(z_+(q)=A(q)+iB(q)\), where
+\[
+  A(q)=q+\frac12,
+  \qquad B(q)=\frac12\sqrt{4q^2-1}>0.
+\]
+Choose its square root \(\omega_+(q)=\alpha(q)+i\sigma(q)\), with \(\alpha,\sigma>0\). By taking real and imaginary parts of \(\omega_+^2=z_+\),
+\[
+  \alpha^2-\sigma^2=A,
+  \qquad 2\alpha\sigma=B,
+  \qquad \alpha^2+\sigma^2=\sqrt{A^2+B^2}.
+\]
+Thus
+\begin{equation}\label{eq:sigma-exact}
+  \sigma(q)=\sqrt{\frac{\sqrt{A(q)^2+B(q)^2}-A(q)}{2}}
+   =\sqrt{\frac{\sqrt{2q^2+q}-q-\tfrac12}{2}}.
+\end{equation}
+The exponent \(s(q)=-i\omega_+(q)=\sigma(q)-i\alpha(q)\) satisfies \(\operatorname{Re}s(q)=\sigma(q)>0\), since \(e^{-i\omega_+t}=e^{s(q)t}\).
+
+As \(q\to\infty\),
+\[
+  \sqrt{2q^2+q}=\sqrt2\,q+\frac{\sqrt2}{4}+O(q^{-1}),
+\]
+whence
+\begin{align}
+  \sigma(q)^2
+    &=\frac{\sqrt2-1}{2}\,q
+       +\left(\frac{\sqrt2}{8}-\frac14\right)+O(q^{-1}),\\
+  \sigma(q)
+    &=\sqrt{\frac{\sqrt2-1}{2}}\,\sqrt q+O(q^{-1/2}).
+\end{align}
+Since \(q=|k|^2\),
+\begin{equation}\label{eq:uv-growth}
+  \boxed{\operatorname{Re}s(k)
+  =c_{\mathrm{UV}}|k|+O(|k|^{-1}),\qquad
+  c_{\mathrm{UV}}=\sqrt{\frac{\sqrt2-1}{2}}
+      =0.455089860562227\ldots>0.}
+\end{equation}
+Consequently, for any \(0<c_*<c_{\mathrm{UV}}\) there exists \(R>0\) such that \(\operatorname{Re}s(k)\ge c_*|k|\) whenever \(|k|\ge R\). Moreover \(|s(k)|\asymp |k|\) at high frequency.
+
+\section{Proof on the flat torus}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main} for \(M=\TT^d\)]
+Choose nonzero \(k_n\in\mathbb{Z}^d\) with \(|k_n|\to\infty\), and take the growing root \(s_n=s(k_n)=\sigma_n+i\nu_n\), where \(\sigma_n>0\). For each real \(a_n>0\), the function
+\begin{equation}\label{eq:torus-solution}
+  u_n(t,x)=a_n\operatorname{Re}(e^{s_nt+ik_n\cdot x})
+       =a_ne^{\sigma_nt}\cos(k_n\cdot x+\nu_nt)
+\end{equation}
+is an exact, real-valued, smooth solution of \eqref{eq:expanded}. Differentiation gives
+\[
+  \partial_t^j u_n
+    =a_n\operatorname{Re}\bigl(s_n^j e^{s_nt+ik_n\cdot x}\bigr),
+  \qquad j=0,1,2,3.
+\]
+Let \(C_{\TT}=\norm{\cos(k_n\cdot x)}_{L^2(\TT^d)}^2>0\), which is independent of the nonzero integer vector \(k_n\). For any real \(p\), phase invariance of a single Fourier mode yields
+\[
+ \norm{\operatorname{Re}(s_n^j e^{ik_n\cdot x})}_{H^p}^2
+  =C_{\TT}|s_n|^{2j}(1+|k_n|^2)^p.
+\]
+Set
+\begin{equation}\label{eq:Nnr}
+  N_{n,r}^2=C_{\TT}\sum_{j=0}^3
+   |s_n|^{2j}(1+|k_n|^2)^{r+3-j}>0.
+\end{equation}
+Then, exactly,
+\begin{equation}\label{eq:norm-at-t}
+  \norm{U_n(t)}_{X_r}=a_ne^{\sigma_nt}N_{n,r}.
+\end{equation}
+Fix \(t_0>0\) and choose
+\[
+  a_n=\frac{e^{-\sigma_nt_0}}{N_{n,r}}.
+\]
+It follows that
+\begin{equation}\label{eq:outnorm}
+  \norm{U_n(t_0)}_{X_r}=1.
+\end{equation}
+For any \(\ell\ge0\), each Sobolev component in \eqref{eq:Nnr} gains the same factor \((1+|k_n|^2)^\ell\) at the level of squared norms. Therefore
+\[
+  N_{n,r+\ell}=(1+|k_n|^2)^{\ell/2}N_{n,r},
+\]
+and hence
+\begin{equation}\label{eq:innorm}
+  \norm{U_n(0)}_{X_{r+\ell}}
+    =e^{-\sigma_nt_0}(1+|k_n|^2)^{\ell/2}
+    \longrightarrow0,
+\end{equation}
+because \(\sigma_n\ge c_*|k_n|\) for all sufficiently large \(n\), and an exponential dominates every fixed polynomial.
+
+If a bounded extension \(S(t_0):X_{r+\ell}\to X_r\) existed, \eqref{eq:outnorm}--\eqref{eq:innorm} would imply
+\[
+  1=\norm{S(t_0)U_n(0)}_{X_r}
+    \le \norm{S(t_0)}\,\norm{U_n(0)}_{X_{r+\ell}}
+    \longrightarrow0,
+\]
+a contradiction.
+\end{proof}
+
+\section{Proof on the whole space}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main} for \(M=\RR^d\)]
+The plane waves above are not in \(L^2(\RR^d)\), so replace them by Fourier packets. Let \(e_1\) be the first coordinate vector, set \(k_n=ne_1\), and choose a nonzero real-valued \(\phi\in C_c^\infty(B(0,1))\). For large \(n\), the growing characteristic root \(s(\xi)\) is smooth in \(B(k_n,1)\), and
+\[
+  \operatorname{Re}s(\xi)\ge c_*|\xi|
+  \qquad (\xi\in B(k_n,1)).
+\]
+Define the exact complex solution \(v_n\) by
+\[
+  \widehat v_n(t,\xi)=\phi(\xi-k_n)e^{s(\xi)t},
+\]
+and take its real part \(u_n=\operatorname{Re}v_n\). The reflected Fourier supports contributing to \(u_n\) are disjoint for large \(n\). Consequently, Plancherel's theorem and the uniform pointwise bound on \(\operatorname{Re}s\) give
+\begin{equation}\label{eq:packet-growth}
+  \norm{U_n(t_0)}_{X_r}
+  \ge e^{c_*(n-1)t_0}\norm{U_n(0)}_{X_r}.
+\end{equation}
+On the same frequency supports, \(|\xi|\le n+1\). Thus
+\begin{equation}\label{eq:packet-loss}
+  \norm{U_n(0)}_{X_{r+\ell}}
+    \le (1+(n+1)^2)^{\ell/2}\norm{U_n(0)}_{X_r}.
+\end{equation}
+Combining \eqref{eq:packet-growth} and \eqref{eq:packet-loss},
+\[
+  \frac{\norm{U_n(t_0)}_{X_r}}
+       {\norm{U_n(0)}_{X_{r+\ell}}}
+  \ge\frac{e^{c_*(n-1)t_0}}{(1+(n+1)^2)^{\ell/2}}
+  \longrightarrow\infty.
+\]
+Rescale the solutions so that the numerator is exactly \(1\). Their initial \(X_{r+\ell}\)-norms then tend to zero, contradicting any bounded extension from \(X_{r+\ell}(\RR^d)\) to \(X_r(\RR^d)\).
+\end{proof}
+
+\section{General homogeneous-sector coefficient extension}
+
+The same mechanism extends to the dispersion polynomial
+\begin{equation}\label{eq:general-D}
+  \mathcal D(z,q)=(z-q)-m^2-K(z-q)^2
+                       +Gq(z-q)-Tq^2,
+\end{equation}
+under the conditions
+\begin{equation}\label{eq:general-hypotheses}
+  K>0,\qquad T>0,\qquad B:=4KT-G^2>0,
+  \qquad m^2\in\RR\ \text{fixed}.
+\end{equation}
+
+\begin{proposition}[Strict-coefficient ultraviolet growth]\label{prop:general}
+For \eqref{eq:general-D}--\eqref{eq:general-hypotheses}, the growing temporal root obeys
+\begin{equation}\label{eq:general-growth}
+ \operatorname{Re}s(k)=c_{\mathrm{UV}}(K,G,T)|k|+O(|k|^{-1}),
+\end{equation}
+where
+\begin{equation}\label{eq:general-c}
+  a=\frac{2K+G}{2K},\qquad
+  b=\frac{\sqrt{4KT-G^2}}{2K}>0,\qquad
+  c_{\mathrm{UV}}(K,G,T)
+     =\sqrt{\frac{\sqrt{a^2+b^2}-a}{2}}>0.
+\end{equation}
+Accordingly, the conclusion of Theorem~\ref{thm:main} applies to each scalar constant-coefficient sector governed by \eqref{eq:general-D}.
+\end{proposition}
+
+\begin{proof}
+With \(y=z-q\), solving the quadratic equation in \(y\) yields
+\[
+  z_\pm(q)=q+\frac{1+Gq\pm
+           \sqrt{1-4Km^2+2Gq-Bq^2}}{2K}.
+\]
+Since \(B>0\), as \(q\to\infty\) the square root is
+\[
+  \sqrt{1-4Km^2+2Gq-Bq^2}=i\sqrt B\,q+O(1)
+\]
+on the branch with positive imaginary part. It follows that
+\[
+  z_\pm(q)=q(a\pm ib)+O(1).
+\]
+The square root of \(a+ib\), with \(b>0\), has positive imaginary part
+\(
+\sqrt{(\sqrt{a^2+b^2}-a)/2}
+\). Taking \(\omega^2=z_+\) and \(s=-i\omega\) therefore proves \eqref{eq:general-growth}. Positivity is strict because \(b>0\) implies \(\sqrt{a^2+b^2}>|a|\ge a\). The growing eigenmodes have \(|s(k)|\asymp|k|\); the torus and packet arguments above then apply verbatim.
+\end{proof}
+
+\section{Scope of the conclusion}
+
+\begin{remark}[Linearization and nonlinear evolution]
+The theorem is a linear, constant-coefficient result. In the corrected S004 analysis, \eqref{eq:general-D} describes scalar blocks obtained by linearizing about a nonzero static homogeneous on-shell background with the stated coefficient conditions. Such a background on \(\RR^d\) need not have finite total energy. The unbounded linear maps also preclude a nonlinear flow having a bounded Fr\'echet derivative at that background equal to this linearization. No independent nonlinear norm-inflation theorem follows from the present argument.
+\end{remark}
+
+\begin{remark}[Exceptional or modified regimes]
+The strict condition \(4KT-G^2>0\) is essential for Proposition~\ref{prop:general}; degenerate symbols, zero backgrounds, inhomogeneous backgrounds, modified principal terms, and constrained completions require separate analyses. Band-limited or analytic-data evolution may have different hypotheses. The theorem assigns no numerical decay time or physical confinement lifetime.
+\end{remark}
+
+\section*{Source and reproducibility}
+This exposition expands the high-frequency argument in Theorem H4 of the foundational audit:
+\begin{quote}
+R. J. Reyes, \emph{S004 physical-health audit: constraints, ghost and ultraviolet obstruction} (2026),
+\href{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/foundational/GHOST_AND_CONSTRAINT_ANALYSIS.md}{Foundational audit and proof source}.
+\end{quote}
+A symbolic/numerical verification record is available at
+\href{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/audit/foundational/verification.json}{Verification record}.
+Those checks are supplementary: the obstruction above follows directly from the analytic Fourier solutions.
+
+\end{document}
