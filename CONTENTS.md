@@ -93,3 +93,9 @@ For `r>0, a≥0`, proves `0<G(k)≤1/r`, shell equality, sharp continuum `L²` r
 ## E61 — Linear Swift--Hohenberg spectral threshold
 
 **Exact continuum pattern-formation threshold** — [PDF](preprints/e61-pattern-formation-threshold/paper.pdf) · [LaTeX source](papers/e61-pattern-formation-threshold/main.tex) · [Notes](preprints/e61-pattern-formation-threshold/README.md)
+
+## M6B — Nonlinear curvature closure and stationary inverse nonuniqueness
+
+**M6B: Two exact nonlinear-curvature nonuniqueness counterexamples** — [PDF](preprints/m6b-nonlinear-curvature-nonuniqueness/paper.pdf) · [LaTeX source](papers/m6b-nonlinear-curvature-nonuniqueness/main.tex) · [Notes](preprints/m6b-nonlinear-curvature-nonuniqueness/README.md)
+
+Analytical counterexamples show (i) the standard node-safe, phase-invariant, unregularized-limit properties do not determine a unique closure; and (ii) even with fixed mass and Dirichlet data the canonical map is not injective modulo global phase. Neither result demonstrates nonuniqueness of an M7 initial-value evolution.
