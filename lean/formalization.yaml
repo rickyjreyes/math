@@ -42,8 +42,8 @@ families:
   F08:
     main_theorem_formalized: false
     algebraic_no_go_core_formalized: true
-    covered: "Positive-sign two-gradient Gram tensor PSD/rank at most 2, generalized to arbitrary nonnegative weighted gradients and rank at most carrier count; manifold-level geometric theorem not formalized."
-    declarations: [ReyesMath.scalarGradientGram_nonnegative, ReyesMath.scalarGradientGram_psd, ReyesMath.scalarGradientGram_no_timelike, ReyesMath.scalarGradientCarrier_gram_entry, ReyesMath.scalarGradientCarrier_rank_le_two, ReyesMath.positive_weighted_gradient_family_psd, ReyesMath.gradient_gram_rank_le_carriers]
+    covered: "Exact Re(conjugate complex gradient × complex gradient) entry identity, 4×4 tensor equality to the Gram carrier and rank bound, arbitrary weighted PSD and rank at most carrier count; manifold-level differentiable-field formulation not formalized."
+    declarations: [ReyesMath.scalarGradientGram_nonnegative, ReyesMath.scalarGradientGram_psd, ReyesMath.scalarGradientGram_no_timelike, ReyesMath.scalarGradientCarrier_gram_entry, ReyesMath.scalarGradientCarrier_rank_le_two, ReyesMath.positive_weighted_gradient_family_psd, ReyesMath.gradient_gram_rank_le_carriers, ReyesMath.complex_gradient_real_identity, ReyesMath.complex_gradient_tensor_eq_gram, ReyesMath.complex_gradient_tensor_rank_le_two]
   F09:
     main_theorem_formalized: false
     matrix_nullity_core_formalized: true
