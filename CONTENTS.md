@@ -4,6 +4,12 @@
 
 A PDF here is an analytic manuscript, **not** a claim of peer review or Lean kernel certification.
 
+## Compendium — Reference mathematics (separate from F-series)
+
+**Volume I: Elementary Mathematical Foundations of Wave Confinement Theory** — [PDF](compendium/wct-elementary-mathematics/paper.pdf) · [LaTeX source](compendium/wct-elementary-mathematics/main.tex) · [Notes](compendium/wct-elementary-mathematics/README.md) · [Index](compendium/README.md)
+
+Twenty-five corrected WCT registry IDs: Sobolev embeddings, entropy and counting, operator identities, variational calculus, gradient-flow dissipation, and torus eigenmodes. Includes a cross-reference table and explicit limitations. These are standard or elementary results and conditional implications; not a claim of new mathematics, physical closure, or full Lean formalization.
+
 ## F01 — Fourth-order cubic–quintic variational PDE
 
 **Strict binding for a fourth-order cubic–quintic Hamiltonian** — [PDF](preprints/strict-subadditivity-fourth-order-cubic-quintic/paper.pdf) · [LaTeX source](papers/strict-subadditivity-fourth-order-cubic-quintic/main.tex) · [Notes](preprints/strict-subadditivity-fourth-order-cubic-quintic/README.md)
