@@ -16,7 +16,6 @@ theorem complex_gradient_real_identity (a b c d : ℝ) :
     (star (Complex.mk a b) * Complex.mk c d).re =
       a * c + b * d := by
   simp [Complex.mul_re]
-  ring
 
 private def pointwiseComplexGradientTensor
     (da db : Fin 4 → ℝ) : Matrix (Fin 4) (Fin 4) ℝ :=
