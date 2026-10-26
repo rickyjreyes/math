@@ -1,3 +1,4 @@
 import MathProofs.Elementary
 import MathProofs.Structural
 import MathProofs.PhaseLocking
+import MathProofs.FourierSupport
