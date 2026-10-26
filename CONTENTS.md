@@ -108,3 +108,9 @@ Analytical counterexamples show (i) the standard node-safe, phase-invariant, unr
 **Fourier symbol and quantitative off-shell damping** — [PDF](preprints/swift-hohenberg-fourier-shell-damping/paper.pdf) · [LaTeX source](papers/swift-hohenberg-fourier-shell-damping/main.tex) · [Notes](preprints/swift-hohenberg-fourier-shell-damping/README.md)
 
 The linear dissipative spectral estimate does not establish nonlinear WCT confinement or physical pattern persistence.
+
+## WCT E68 — Localized gradient-energy estimate
+
+**E68: Counterexamples and corrected local energy estimate** — [PDF](preprints/localized-gradient-energy-e68/paper.pdf) · [LaTeX source](papers/localized-gradient-energy-e68/main.tex) · [Notes](preprints/localized-gradient-energy-e68/README.md)
+
+Unrestricted \(H^1\) estimate refuted for \(n>2\); the corrected \(R^{n-2}\) bound follows if \(\nabla\psi\in L^n\). Includes an \(H^2\) result for spatial dimensions three and four and counterexamples beyond four. Analytic proof, not Lean formalization or a PDE stability claim.
