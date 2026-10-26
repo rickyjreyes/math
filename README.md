@@ -22,7 +22,7 @@ A growing collection of **research manuscripts organized by result family**, org
 | **F03** | Spectral–phase identity and 4/5 counterexample | Declared periodic spectral operator |
 | **F04** | Instantaneous finite Fourier-mode leakage | Unprojected cubic–quintic torus dynamics |
 | **F11** | E62 Fourier energy concentration and E13/E14 negative gradient flow | Measurable Fourier bands and the periodic Swift–Hohenberg amplitude model |
-| **F12** | E26: conditional regularized-curvature $L^2$ estimate | Uniform denominator separation required; counterexample without it |
+| **F12** | E26: conditional historical curvature $L^2$ estimate | Additive-denominator version requires uniform separation; corrected M2/E17 operator is different |
 
 For F01, prior single-power work: Fernández, Jeanjean, Mandel and Mariş, *Journal of Differential Equations* **330** (2022), DOI [10.1016/j.jde.2022.04.037](https://doi.org/10.1016/j.jde.2022.04.037). An independent Hamiltonian model is **not** a derivation from a physically healthy parent, and D4 in this corpus is square symmetry in two spatial dimensions.
 
