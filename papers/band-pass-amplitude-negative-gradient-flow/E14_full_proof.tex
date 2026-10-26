@@ -1,0 +1,391 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{hyperref}
+
+\numberwithin{equation}{section}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newcommand{\E}{\mathcal E}
+\newcommand{\Om}{\Omega}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\Ltwo}{L^2(\Om)}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+
+\title{E14: The Band-Pass Lyapunov Functional Generates the E13 Flow\\
+\large A Complete Variational and Energy-Dissipation Proof}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove that the band-pass energy
+\[
+\E[A]=\int_\Om\left(
+-r|A|^2-a|\nabla A|^2+b|\Delta A|^2
++\frac{\beta}{2}|A|^4
+\right)\dd x
+\]
+generates the nonlinear band-pass amplitude equation
+\[
+\partial_tA=(r-a\Delta-b\Delta^2)A-\beta|A|^2A
+\]
+as its negative complex $L^2$ gradient flow. Along every sufficiently
+regular solution, the exact identity
+\[
+\frac{\dd}{\dd t}\E[A(t)]=-2\norm{\partial_t A(t)}_{L^2}^2
+\]
+holds. We establish the exact equivalence with the centered
+Swift--Hohenberg energy, identify the linear band-pass symbol, and
+state the conditions for lower boundedness. The theorem concerns the
+declared dissipative amplitude model; it does not derive that model
+from a separate higher-time physical action.
+\end{abstract}
+
+\section{Setting and conventions}
+
+Let $\Om=\mathbb T^d$ be a flat $d$-dimensional torus with periodic
+boundary conditions, where $1\le d\le 3$. Suppose
+\[
+r\in\mathbb R,\qquad a,b>0,\qquad \beta\ge0.
+\]
+Let $A:\Om\to\mathbb C$. The energy functional is
+\begin{equation}\label{eq:E14}
+\boxed{\displaystyle
+\E[A]=\int_\Om\left[
+-r|A|^2-a|\nabla A|^2+b|\Delta A|^2
++\frac{\beta}{2}|A|^4
+\right]\dd x.}
+\end{equation}
+The expression is well defined on $H^2(\Om;\mathbb C)$, since in
+dimensions $d\le3$ the embedding
+$H^2(\Om)\hookrightarrow L^\infty(\Om)$ holds.
+
+We define the variational derivative with respect to $\overline A$ by
+the convention
+\begin{equation}\label{eq:convention}
+D\E[A](h)=2\operatorname{Re}\int_\Om
+\frac{\delta\E}{\delta\overline A}\,\overline h\dd x
+\end{equation}
+for smooth complex variations $h$. Thus the negative complex
+$L^2$ gradient flow is
+\[
+\partial_t A=-\frac{\delta\E}{\delta\overline A}.
+\]
+With the alternative \emph{real} Hilbert-space convention
+$(u,v)_{\mathbb R}=\operatorname{Re}\int_\Om
+u\overline v\dd x$, the real gradient is
+$2\,\delta\E/\delta\overline A$; the same evolution is the
+negative real gradient flow of $\E/2$.
+
+\begin{theorem}[E14 gradient-flow identity]\label{thm:main}
+For every smooth $A$ and every smooth variation $h$,
+\begin{equation}\label{eq:var}
+\boxed{\displaystyle
+\frac{\delta\E}{\delta\overline A}
+=-rA+a\Delta A+b\Delta^2A+\beta|A|^2A.}
+\end{equation}
+Consequently the negative complex $L^2$ gradient flow of
+$\E$ is exactly
+\begin{equation}\label{eq:E13}
+\boxed{\displaystyle
+\partial_t A=(r-a\Delta-b\Delta^2)A-\beta|A|^2A.}
+\end{equation}
+If $A\in C^1([0,T];H^4(\Om;\mathbb C))$ satisfies
+\eqref{eq:E13}, then
+\begin{equation}\label{eq:diss}
+\boxed{\displaystyle
+\frac{\dd}{\dd t}\E[A(t)]
+=-2\norm{\partial_t A(t)}_{L^2}^2\le0.}
+\end{equation}
+In particular, for $0\le t_1\le t_2\le T$,
+\begin{equation}\label{eq:integrated}
+\boxed{\displaystyle
+\E[A(t_2)]+2\int_{t_1}^{t_2}
+\norm{\partial_t A(t)}_{L^2}^2\dd t
+=\E[A(t_1)].}
+\end{equation}
+At any time where the solution is differentiable,
+the energy derivative vanishes if and only if
+$\partial_t A=0$ in $L^2(\Om)$.
+\end{theorem}
+
+\begin{proof}
+Fix a smooth complex perturbation $h$, let
+$A_\varepsilon=A+\varepsilon h$, and differentiate
+with respect to the \emph{real} parameter $\varepsilon$
+at $\varepsilon=0$.
+
+First,
+\begin{equation}\label{eq:var1}
+\left.\frac{\dd}{\dd\varepsilon}\right|_0
+\bigl(-r|A_\varepsilon|^2\bigr)
+=-2r\operatorname{Re}(A\overline h).
+\end{equation}
+Second,
+\begin{equation}\label{eq:var2}
+\left.\frac{\dd}{\dd\varepsilon}\right|_0
+\bigl(-a|\nabla A_\varepsilon|^2\bigr)
+=-2a\operatorname{Re}
+(\nabla A\cdot\nabla\overline h).
+\end{equation}
+Third,
+\begin{equation}\label{eq:var3}
+\left.\frac{\dd}{\dd\varepsilon}\right|_0
+\bigl(b|\Delta A_\varepsilon|^2\bigr)
+=2b\operatorname{Re}(\Delta A\,\Delta\overline h).
+\end{equation}
+Finally, since
+\[
+\left.\frac{\dd}{\dd\varepsilon}\right|_0
+|A+\varepsilon h|^4
+=4|A|^2\operatorname{Re}(A\overline h),
+\]
+we have
+\begin{equation}\label{eq:var4}
+\left.\frac{\dd}{\dd\varepsilon}\right|_0
+\frac{\beta}{2}|A_\varepsilon|^4
+=2\beta|A|^2\operatorname{Re}(A\overline h).
+\end{equation}
+Summing these variations,
+\begin{align}
+D\E[A](h)
+=2\operatorname{Re}\int_\Om\bigl[
+&-rA\overline h
+-a\nabla A\cdot\nabla\overline h \notag\\
+&+b\Delta A\,\Delta\overline h
++\beta|A|^2A\overline h\bigr]\dd x.
+\label{eq:firstvariation}
+\end{align}
+
+Periodicity eliminates all boundary terms. In particular,
+\begin{align*}
+\int_\Om\nabla A\cdot\nabla\overline h\dd x
+&=-\int_\Om\Delta A\,\overline h\dd x,\\
+\int_\Om\Delta A\,\Delta\overline h\dd x
+&=\int_\Om\Delta^2 A\,\overline h\dd x.
+\end{align*}
+It follows that
+\begin{equation}\label{eq:variationfinal}
+D\E[A](h)=2\operatorname{Re}\int_\Om
+\left[-rA+a\Delta A+b\Delta^2 A
++\beta|A|^2 A\right]\overline h\dd x.
+\end{equation}
+By \eqref{eq:convention} and arbitrariness of $h$,
+this proves \eqref{eq:var}. Its negative is
+\[
+-\frac{\delta\E}{\delta\overline A}
+=rA-a\Delta A-b\Delta^2A-\beta|A|^2A,
+\]
+which proves \eqref{eq:E13}.
+
+Now let $A(t)$ be a solution with the stated regularity.
+The chain rule and \eqref{eq:variationfinal} yield
+\begin{align*}
+\frac{\dd}{\dd t}\E[A(t)]
+&=D\E[A(t)](\partial_t A)\\
+&=2\operatorname{Re}\int_\Om
+\frac{\delta\E}{\delta\overline A}
+\,\overline{\partial_t A}\dd x\\
+&=-2\operatorname{Re}\int_\Om
+\partial_t A\,\overline{\partial_t A}\dd x\\
+&=-2\norm{\partial_t A}_{L^2}^2.
+\end{align*}
+This establishes \eqref{eq:diss}.
+Integration in time gives \eqref{eq:integrated}.
+Because the integrand in the squared norm is nonnegative,
+equality in \eqref{eq:diss} occurs exactly when
+$\partial_t A=0$ almost everywhere in space.
+\end{proof}
+
+\section{Centered Swift--Hohenberg representation}
+
+\begin{proposition}[Exact complete-square equivalence]
+Let
+\begin{equation}\label{eq:centerparams}
+k_\star^2=\frac{a}{2b},
+\qquad
+\mu=r+\frac{a^2}{4b},
+\qquad
+L=\Delta+k_\star^2.
+\end{equation}
+Then \eqref{eq:E14} equals the centered energy
+\begin{equation}\label{eq:centerE}
+\boxed{\displaystyle
+\E[A]=\int_\Om\left[
+-\mu|A|^2+b|LA|^2+\frac{\beta}{2}|A|^4
+\right]\dd x.}
+\end{equation}
+Its negative complex gradient flow is equivalently
+\begin{equation}\label{eq:centerflow}
+\boxed{\displaystyle
+\partial_tA=\mu A-b(\Delta+k_\star^2)^2A
+-\beta|A|^2A.}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Expanding the squared differential expression,
+\[
+|LA|^2=|\Delta A|^2+
+2k_\star^2\operatorname{Re}(\Delta A\,\overline A)
++k_\star^4|A|^2.
+\]
+Periodic integration by parts gives
+\[
+\operatorname{Re}\int_\Om
+\Delta A\,\overline A\dd x
+=-\int_\Om|\nabla A|^2\dd x.
+\]
+Consequently, the right-hand side of \eqref{eq:centerE}
+is
+\begin{align*}
+\int_\Om\bigl[
+&b|\Delta A|^2-2bk_\star^2|\nabla A|^2\\
+&+(bk_\star^4-\mu)|A|^2
++\tfrac{\beta}{2}|A|^4\bigr]\dd x.
+\end{align*}
+By \eqref{eq:centerparams},
+\[
+2bk_\star^2=a,
+\qquad
+bk_\star^4-\mu
+=\frac{a^2}{4b}
+-\left(r+\frac{a^2}{4b}\right)=-r.
+\]
+This is exactly \eqref{eq:E14}. Since $L$ is self-adjoint,
+\[
+\frac{\delta\E}{\delta\overline A}
+=-\mu A+bL^2A+\beta|A|^2A.
+\]
+Taking the negative yields \eqref{eq:centerflow}.
+Expanding $L^2$ and using \eqref{eq:centerparams}
+recovers \eqref{eq:E13}.
+\end{proof}
+
+\section{Linear spectral band selection}
+
+Linearizing \eqref{eq:E13} at $A=0$ gives
+\[
+\partial_tA=(r-a\Delta-b\Delta^2)A.
+\]
+For a Fourier mode with spatial frequency $k$,
+$\widehat{\Delta A}(k)=-|k|^2\widehat A(k)$, so
+\begin{equation}\label{eq:lambda}
+\partial_t\widehat A(k)
+=\lambda(k)\widehat A(k),\qquad
+\lambda(k)=r+a|k|^2-b|k|^4.
+\end{equation}
+Completing the square,
+\begin{equation}\label{eq:bandshell}
+\boxed{\displaystyle
+\lambda(k)=\mu-b(|k|^2-k_\star^2)^2.}
+\end{equation}
+Since $b>0$, the continuous symbol is maximized on the
+shell $|k|=k_\star$. On a finite torus, the permitted
+frequencies are discrete, so an exact mode on that
+shell need not exist. As $|k|\to\infty$,
+$\lambda(k)\to-\infty$, establishing ultraviolet linear
+damping for the \emph{negative} fourth-order sign.
+
+\section{Lower bound and finite total dissipation}
+
+\begin{proposition}[Energy lower bound]
+Suppose $\beta>0$, and put $\mu_+=\max\{\mu,0\}$.
+For all $A\in H^2(\Om;\mathbb C)$,
+\begin{equation}\label{eq:lower}
+\boxed{\displaystyle
+\E[A]\ge
+-\frac{\mu_+^2}{2\beta}|\Om|.}
+\end{equation}
+If a sufficiently regular solution exists for all $t\ge0$,
+then
+\begin{equation}\label{eq:infinite}
+\boxed{\displaystyle
+\int_0^\infty\norm{\partial_tA(t)}_{L^2}^2\dd t
+\le\frac12\left[
+\E[A(0)]
++\frac{\mu_+^2}{2\beta}|\Om|
+\right].}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The centered representation gives
+\[
+\E[A]=b\norm{LA}_{L^2}^2+
+\int_\Om\left[
+\frac{\beta}{2}|A|^4-\mu|A|^2
+\right]\dd x.
+\]
+For $s\ge0$, we have
+\[
+\frac{\beta}{2}s^2-\mu s
+\ge\frac{\beta}{2}s^2-\mu_+s
+=\frac{\beta}{2}
+\left(s-\frac{\mu_+}{\beta}\right)^2
+-\frac{\mu_+^2}{2\beta}
+\ge-\frac{\mu_+^2}{2\beta}.
+\]
+Using $s=|A|^2$ and $b\norm{LA}_{L^2}^2\ge0$
+proves \eqref{eq:lower}. Combining it with
+\eqref{eq:integrated}, taking $t_1=0$, and then
+sending $t_2\to\infty$ proves \eqref{eq:infinite}.
+\end{proof}
+
+\begin{remark}[Meaning of strict dissipation]
+Any periodic-in-time classical solution must be stationary:
+over a complete temporal period, the left-hand side of
+\eqref{eq:integrated} has equal endpoint energies, forcing
+$\partial_t A=0$ throughout the period. Nevertheless,
+finite total dissipation does \emph{not} by itself prove
+convergence to a unique equilibrium.
+\end{remark}
+
+\section{Scope and limitations}
+
+\begin{enumerate}
+\item The first-variation and dissipation identities are
+exact for the declared E13 evolution. Their algebraic
+validity does not require $\beta\ge0$, although the
+lower-bound proposition requires $\beta>0$.
+\item Periodicity ensures the integration-by-parts boundary
+terms vanish. Analogous identities hold on $\mathbb R^d$
+for fields with adequate decay and regularity, and on bounded
+domains under suitably compatible boundary conditions.
+\item The regularity in Theorem~\ref{thm:main} is a convenient
+sufficient assumption for classical differentiation; extending
+the identity to weaker solutions requires the corresponding
+chain-rule or approximation argument.
+\item A Lyapunov structure for an \emph{assumed dissipative}
+effective amplitude equation does not prove that this
+equation, its damping coefficient, or its nonlinear saturation
+is derived from a separate Lorentzian higher-derivative action.
+\item The opposite sign $+b(\Delta+k_\star^2)^2A$ with $b>0$
+would grow high-frequency modes and is incompatible with
+the damping assertion in \eqref{eq:bandshell}.
+\end{enumerate}
+
+\section{Conclusion}
+
+The E14 functional generates the E13 flow exactly:
+\[
+\boxed{\quad
+\partial_t A=-\frac{\delta\E}{\delta\overline A},
+\qquad
+\frac{\dd}{\dd t}\E[A(t)]
+=-2\norm{\partial_t A(t)}_{L^2}^2\le0.
+\quad}
+\]
+Thus E14 is proved as a Lyapunov functional for the specified
+periodic band-pass gradient-flow model, with its interpretation
+and limitations explicitly stated.
+
+\end{document}
