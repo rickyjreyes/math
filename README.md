@@ -4,6 +4,18 @@ Standalone mathematical proofs and research notes by Richard J. Reyes.
 
 ## Papers
 
+### Structural local identifiability obstruction in the 31-coefficient v18 spectral model
+
+[LaTeX source](papers/sm-v18-local-identifiability-obstruction/main.tex)
+
+An 11-observable spectral model with 31 nominal coefficients has an 11-by-31 sensitivity matrix. By rank--nullity, its Jacobian has rank at most 11 and at least 20 first-order null directions wherever the forward map is differentiable. The v18 all-coefficient finite-difference audit reports numerical row rank 11; the manuscript separates this diagnostic from the exact structural theorem and from the conditional smooth level-set conclusion.
+
+**Build:** Run `pdflatex -halt-on-error -interaction=nonstopmode main.tex` twice from the manuscript directory.
+
+**Scope:** Local linearized identifiability of the audited in-sample spectral parameterization; not a global identifiability theorem or physical particle-spectrum prediction. Research manuscript, not independently peer-reviewed.
+
+**Reproduction:** [v18 all-coefficient sensitivity audit](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/SM_Spectrum/audit_v18_identifiability.py) and [spectral bridge audit](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/SM_V18_SPECTRAL_BRIDGE_AUDIT.md).
+
 ### Regular S004 complex scalar: four configuration degrees of freedom
 
 [LaTeX source](papers/s004-complex-scalar-constraint-count/main.tex)
