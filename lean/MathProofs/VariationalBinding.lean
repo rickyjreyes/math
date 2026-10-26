@@ -18,9 +18,7 @@ theorem cubic_quintic_potential_square
     -(β / 2) * r ^ 2 + (γ / 3) * r ^ 3 =
       (γ / 3) * r * (r - 3 * β / (4 * γ)) ^ 2 -
         (3 * β ^ 2 / (16 * γ)) * r := by
-  field_simp
-  · ring
-  · exact hγ
+  field_simp [hγ] <;> ring
 
 /-- The uniform negative mass-density bound underlying constrained
 coercivity, at every nonnegative density. -/
