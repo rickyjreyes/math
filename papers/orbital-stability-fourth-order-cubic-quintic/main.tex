@@ -1,0 +1,491 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{enumitem}
+\setlist{nosep}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\DeclareMathOperator{\dist}{dist}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\HH}{H^2(\RR^2;\CC)}
+\newcommand{\nm}[2]{\lVert #1\rVert_{#2}}
+\newcommand{\GG}{\mathcal G}
+\title{Orbital Stability of the Complete Minimizing Set\\for a Fourth-Order Cubic--Quintic Schr\"odinger Equation}
+\author{Richard J. Reyes}
+\date{October 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For the Hamiltonian flow
+\(i\partial_tu=(\Delta+k^2)^2u-\beta |u|^2u+\gamma |u|^4u\)
+on \(\RR^2\), with \(\beta,\gamma,k>0\), we give a complete
+variational proof that the full mass-constrained minimizing set is orbitally
+stable in \(H^2\) for \(0<m\le m_B\), where
+\(m_B=3\beta/[\gamma\sqrt{k^4+3\beta^2/(32\gamma)}]\).
+The argument proves negativity of the infimum, strict binding, compactness
+modulo translations, and global well-posedness, then applies conservation
+of mass and energy. Perturbations are not required to preserve mass exactly.
+This concerns the entire minimizing set, without uniqueness, attraction,
+or spectral nondegeneracy.
+\end{abstract}
+
+\section{Statement and notation}
+Write \(X=\HH\), \(A=\Delta+k^2\), and
+\begin{align*}
+M(u)&=\nm{u}{2}^2,&D(u)&=\nm{\Delta u}{2}^2,&K(u)&=\nm{\nabla u}{2}^2,\\
+T(u)&=\nm{Au}{2}^2=D(u)-2k^2K(u)+k^4M(u),&
+Q(u)&=\nm{u}{4}^4,&S(u)&=\nm{u}{6}^6.
+\end{align*}
+Set
+\[
+\begin{aligned}
+H(u)&=T(u)-\frac{\beta}{2}Q(u)+\frac{\gamma}{3}S(u),\qquad
+I(m)=\inf_{M(u)=m}H(u),\\
+\GG_m&=\{u\in X:M(u)=m,\ H(u)=I(m)\}.
+\end{aligned}
+\]
+Let
+\[
+\rho=k^4+\frac{3\beta^2}{32\gamma},\qquad
+\sigma=\sqrt\rho,\qquad m_B=\frac{3\beta}{\gamma\sigma}.
+\]
+For a nonempty subset \(E\subset X\), define
+\(\dist_X(v,E)=\inf_{g\in E}\nm{v-g}{H^2}\).
+
+\begin{theorem}[Existence, compactness, and full-set orbital stability]\label{thm:main}
+For each \(0<m\le m_B\):
+\begin{enumerate}[label=(\roman*)]
+\item \(-\infty<I(m)<0\), and \(I(m)<I(a)+I(m-a)\) for all \(0<a<m\);
+\item \(\GG_m\ne\varnothing\), and every mass-\(m\) minimizing sequence
+has a subsequence converging strongly in \(H^2\) after spatial translations
+to an element of \(\GG_m\);
+\item every datum in \(X\) generates a unique global solution
+\(u\in C(\RR;X)\), conserving both \(M\) and \(H\);
+\item for every \(\varepsilon>0\) there exists \(\delta>0\) such that
+\[
+\dist_X(u_0,\GG_m)<\delta\quad\Longrightarrow\quad
+\sup_{t\in\RR}\dist_X(u(t),\GG_m)<\varepsilon.
+\]
+\end{enumerate}
+The conclusion in (iv) permits initial data with \(M(u_0)\ne m\).
+\end{theorem}
+
+\section{Coercivity and strict negativity}
+\begin{lemma}[Coercivity at fixed mass]\label{lem:coercivity}
+With \(C_0=3\beta^2/(16\gamma)\), every \(u\in X\) satisfies
+\[
+H(u)\ge T(u)-C_0M(u),\qquad
+\nm{\Delta u}{2}\le \sqrt{H(u)+C_0M(u)}+k^2\sqrt{M(u)}.
+\]
+On a set of bounded mass and bounded-above energy, the \(H^2\) norm is
+uniformly bounded.
+\end{lemma}
+\begin{proof}
+For \(r\ge0\), completion of the square gives
+\[
+-\frac\beta2r^2+\frac\gamma3r^3
+=\frac\gamma3r\left(r-\frac{3\beta}{4\gamma}\right)^2
+-\frac{3\beta^2}{16\gamma}r.
+\]
+Integrating with \(r=|u|^2\) gives the first inequality. Since
+\(\Delta u=Au-k^2u\), the second follows from the triangle inequality.
+Finally \(\nm{\nabla u}{2}^2\le\nm{u}{2}\nm{\Delta u}{2}\)
+by Fourier Cauchy--Schwarz, so the \(L^2\) and Laplacian bounds control
+\(\nm{u}{H^2}\).
+\end{proof}
+
+\begin{lemma}[Strict negativity at every positive mass]\label{lem:negative}
+For every \(m>0\), \(-C_0m\le I(m)<0\).
+\end{lemma}
+\begin{proof}
+The lower bound is Lemma~\ref{lem:coercivity}. For \(a,b,R>0\), take
+\[
+f_{a,b}(x,y)=(\pi ab)^{-1/2}
+  \exp\left(-\frac{x^2}{2a^2}-\frac{y^2}{2b^2}\right),\qquad
+u_R(x,y)=\frac{\sqrt m}{R}f_{a,b}(x/R,y/R)e^{ikx}.
+\]
+Then \(M(u_R)=m\). A direct Gaussian calculation, using
+\(A(e^{ikx}f)=e^{ikx}(\Delta f+2ik\partial_xf)\), yields
+\[
+H(u_R)=\frac{c_2}{R^2}+\frac{c_4}{R^4},
+\]
+where
+\begin{align*}
+c_2&=\frac{2mk^2}{a^2}-\frac{\beta m^2}{4\pi ab},\\
+c_4&=m\left(\frac{3}{4a^4}+\frac{1}{2a^2b^2}
++\frac{3}{4b^4}\right)+\frac{\gamma m^3}{9\pi^2a^2b^2}>0.
+\end{align*}
+Choosing \(a/b>8\pi k^2/(\beta m)\) makes \(c_2<0\). The choice
+\(R^2=-2c_4/c_2\) then gives
+\(H(u_R)=-c_2^2/(4c_4)<0\). Thus \(I(m)<0\).
+\end{proof}
+
+\section{Energy per mass and strict binding}
+The dilation \(u_\lambda(x)=\lambda u(\lambda x)\) preserves mass
+\emph{in two dimensions}. Its energy is
+\begin{equation}\label{eq:dilation}
+H(u_\lambda)=\lambda^4\left(D(u)+\frac\gamma3S(u)\right)
+-\lambda^2\left(2k^2K(u)+\frac\beta2Q(u)\right)+k^4M(u).
+\end{equation}
+
+\begin{lemma}[Exact dilation adjustment]\label{lem:dilation}
+Any minimizing sequence \((u_n)\) at any mass \(a>0\) can be replaced
+by another minimizing sequence \((w_n)\) at the same mass such that
+\begin{equation}\label{eq:V}
+D(w_n)-k^2K(w_n)-\frac\beta4Q(w_n)
++\frac\gamma3S(w_n)=0
+\end{equation}
+for every \(n\).
+\end{lemma}
+\begin{proof}
+Put \(P=D(u)+\gamma S(u)/3>0\) and
+\(B=2k^2K(u)+\beta Q(u)/2>0\) for \(u\ne0\).
+Equation~\eqref{eq:dilation} is \(Pz^2-Bz+k^4a\)
+with \(z=\lambda^2>0\); its minimum occurs at
+\(z=B/(2P)>0\). Set \(w_n=(u_n)_{\lambda_n}\) with this
+minimizing scale. Then
+\(I(a)\le H(w_n)\le H(u_n)\to I(a)\).
+Differentiation of the exact polynomial at \(\lambda=1\), now applied
+to each adjusted profile, yields~\eqref{eq:V}.
+No differentiability of the map \(\lambda\mapsto u_\lambda\) in \(H^2\)
+is assumed.
+\end{proof}
+
+\begin{lemma}[Uniform nonlinear ratio at an adjusted profile]\label{lem:ratio}
+If \(w\in X\setminus\{0\}\) satisfies~\eqref{eq:V}, then
+\[
+D(w)\le\rho M(w),\qquad
+\frac{S(w)}{Q(w)}\le\frac{\sigma M(w)}4.
+\]
+\end{lemma}
+\begin{proof}
+Writing \(r=|w|^2\), substitution of~\eqref{eq:V} into the
+identity \(T=D-2k^2K+k^4M\) gives the exact equality
+\begin{equation}\label{eq:completed}
+D(w)+T(w)+\frac{2\gamma}{3}
+\int_{\RR^2}r\left(r-\frac{3\beta}{8\gamma}\right)^2dx
+=\left(k^4+\frac{3\beta^2}{32\gamma}\right)M(w)=\rho M(w).
+\end{equation}
+All three terms on the left are nonnegative, so \(D(w)\le\rho M(w)\).
+With the Fourier convention
+\(f(x)=(2\pi)^{-2}\int e^{ix\cdot\xi}\widehat f(\xi)\,d\xi\),
+Cauchy--Schwarz and polar integration show, for any \(\eta>0\),
+\[
+\nm{w}{\infty}^2\le
+\frac{D(w)+\eta M(w)}{8\sqrt\eta},\qquad
+\frac{1}{(2\pi)^2}\int_{\RR^2}\frac{d\xi}{|\xi|^4+\eta}
+=\frac1{8\sqrt\eta}.
+\]
+Here \(D(w)>0\) for nonzero \(w\in L^2\).
+Taking \(\eta=D(w)/M(w)\) yields
+\(\nm{w}{\infty}^2\le\sqrt{M(w)D(w)}/4
+\le\sigma M(w)/4\).
+Finally \(S(w)\le\nm{w}{\infty}^2Q(w)\), with \(Q(w)>0\).
+\end{proof}
+
+\begin{lemma}[Strictly decreasing specific energy]\label{lem:e}
+Let \(e(a)=I(a)/a\). If \(0<a<b\) and \(a+b<2m_B\), then
+\begin{equation}\label{eq:quantitative}
+e(b)\le\left[1+\frac{b-a}{a}
+\left(1-\frac{a+b}{2m_B}\right)\right]e(a)<e(a).
+\end{equation}
+Consequently \(e\) is strictly decreasing on \((0,m_B]\).
+\end{lemma}
+\begin{proof}
+Put \(t=b/a>1\), \(h=1-(a+b)/(2m_B)>0\), and choose
+an adjusted mass-\(a\) minimizing sequence \((w_n)\) from
+Lemma~\ref{lem:dilation}. Lemma~\ref{lem:ratio} gives
+\[
+\frac\gamma3(t+1)S(w_n)
+\le\frac{\gamma(t+1)\sigma a}{12}Q(w_n)
+=\frac\beta2\frac{a+b}{2m_B}Q(w_n).
+\]
+Since \(M(\sqrt t\,w_n)=b\), the amplitude-scaling identity yields
+\begin{align*}
+\frac{I(b)}t&\le\frac{H(\sqrt t\,w_n)}t\\
+&=H(w_n)-(t-1)\left(\frac\beta2Q(w_n)
+-\frac\gamma3(t+1)S(w_n)\right)\\
+&\le H(w_n)-(t-1)\frac{\beta h}{2}Q(w_n).
+\end{align*}
+Because \(T\ge0\) and \(S\ge0\), one has
+\(Q(w_n)\ge-2H(w_n)/\beta\). Therefore
+\[
+\frac{I(b)}t\le[1+(t-1)h]H(w_n).
+\]
+Taking \(n\to\infty\) and dividing by \(a\) proves the first
+inequality in~\eqref{eq:quantitative}. The second is strict because
+\(e(a)=I(a)/a<0\) by Lemma~\ref{lem:negative} and
+\((b-a)h/a>0\). If \(0<a<b\le m_B\), then
+\(a+b<2m_B\), so the last assertion follows.
+\end{proof}
+
+\begin{proposition}[Strict binding]\label{prop:binding}
+For every \(0<m\le m_B\) and every \(0<a<m\),
+\[
+I(m)<I(a)+I(m-a).
+\]
+\end{proposition}
+\begin{proof}
+By Lemma~\ref{lem:e}, \(e(a)>e(m)\) and
+\(e(m-a)>e(m)\). Multiplying by the positive masses and adding,
+\[
+I(a)+I(m-a)=ae(a)+(m-a)e(m-a)>me(m)=I(m).
+\]
+\end{proof}
+
+\section{Compactness modulo translations}
+\begin{proposition}[Strong compactness of minimizing sequences]\label{prop:compact}
+Fix \(0<m\le m_B\). If \(M(u_n)=m\) and \(H(u_n)\to I(m)\), then
+there exist a subsequence, translations \(y_n\in\RR^2\), and
+\(g\in\GG_m\) such that
+\(u_n(\cdot+y_n)\to g\) strongly in \(H^2(\RR^2)\).
+\end{proposition}
+\begin{proof}
+By Lemma~\ref{lem:coercivity}, \((u_n)\) is bounded in \(H^2\).
+We first rule out \emph{vanishing}, namely
+\[
+\sup_{y\in\RR^2}\int_{B(y,1)}|u_n|^2\,dx\longrightarrow0.
+\]
+Cover \(\RR^2\) by unit squares \(Q_j\) (each contained in a unit
+ball after translation). The local two-dimensional Gagliardo--Nirenberg
+estimate on a unit square states
+\[
+\int_{Q_j}|v|^4\,dx\le C
+\left(\int_{Q_j}|v|^2\,dx\right)
+\left(\int_{Q_j}(|\nabla v|^2+|v|^2)\,dx\right).
+\]
+Summation over \(j\) would give
+\(Q(u_n)\le C(\sup_j\nm{u_n}{L^2(Q_j)}^2)
+\nm{u_n}{H^1}^2\to0\).
+As \(H^2(\RR^2)\hookrightarrow L^\infty\), we also get
+\(S(u_n)\le\nm{u_n}{\infty}^2Q(u_n)\to0\). This would imply
+\(I(m)=\lim H(u_n)\ge0\), contrary to Lemma~\ref{lem:negative}.
+
+Thus suitable translations make \(v_n=u_n(\cdot+y_n)\) retain a
+uniformly positive \(L^2\) mass in a fixed ball. Passing to a subsequence,
+\(v_n\rightharpoonup v\) weakly in \(H^2\), strongly in
+\(L^p_{\rm loc}\) for all finite \(p\), and almost everywhere.
+The local mass lower bound implies \(v\ne0\). Put \(a=M(v)\in(0,m]\)
+and \(r_n=v_n-v\).
+Weak convergence in \(H^2\) and the Hilbert-space identities give
+\begin{equation}\label{eq:masssplit}
+M(r_n)=m-a+o(1),\qquad
+T(v_n)=T(v)+T(r_n)+o(1).
+\end{equation}
+The Brezis--Lieb lemma, applicable at powers \(4\) and \(6\) by boundedness
+and almost-everywhere convergence, gives
+\[
+Q(v_n)=Q(v)+Q(r_n)+o(1),\qquad
+S(v_n)=S(v)+S(r_n)+o(1).
+\]
+Hence
+\begin{equation}\label{eq:energysplit}
+H(v_n)=H(v)+H(r_n)+o(1).
+\end{equation}
+If \(a<m\), let \(b=m-a>0\) and
+\(\widetilde r_n=\sqrt{b/M(r_n)}\,r_n\). The multiplying factor
+converges to \(1\), and \((r_n)\) is uniformly bounded in \(H^2\).
+Since \(H\) is a continuous polynomial functional with locally bounded
+derivative on \(H^2\),
+\(H(\widetilde r_n)-H(r_n)\to0\). Thus
+\[
+I(m)=\lim H(v_n)=H(v)+\lim H(r_n)
+\ge I(a)+I(b),
+\]
+contradicting Proposition~\ref{prop:binding}.
+Therefore \(a=m\).
+
+Now \(M(r_n)\to0\). The uniform \(H^2\) bound implies
+\(Q(r_n)+S(r_n)\to0\), since
+\(Q(r_n)\le\nm{r_n}{\infty}^2M(r_n)\) and
+\(S(r_n)\le\nm{r_n}{\infty}^4M(r_n)\).
+Equation~\eqref{eq:energysplit} becomes
+\(I(m)=H(v)+\lim T(r_n)\), while \(H(v)\ge I(m)\) and
+\(T(r_n)\ge0\). It follows that \(H(v)=I(m)\) and \(T(r_n)\to0\).
+Finally,
+\[
+\nm{\Delta r_n}{2}\le \nm{Ar_n}{2}+k^2\nm{r_n}{2}\to0,
+\quad
+\nm{\nabla r_n}{2}^2\le\nm{r_n}{2}\nm{\Delta r_n}{2}\to0.
+\]
+Thus \(r_n\to0\) strongly in \(H^2\), and \(v\in\GG_m\).
+\end{proof}
+
+\begin{remark}
+The argument does not assume a radial, periodic, or real-valued class.
+Translations are essential: \(\GG_m\) is not generally compact in the
+original coordinates.
+\end{remark}
+
+\section{The global Hamiltonian flow}
+\begin{proposition}[Global well-posedness and conservation]\label{prop:global}
+For each \(u_0\in X\), the Cauchy problem
+\begin{equation}\label{eq:flow}
+i\partial_tu=A^2u-\beta |u|^2u+\gamma|u|^4u,
+\qquad u(0)=u_0
+\end{equation}
+has a unique \(u\in C(\RR;X)\), depends continuously on data on
+bounded time intervals, and satisfies
+\(M(u(t))=M(u_0)\) and \(H(u(t))=H(u_0)\)
+for all \(t\in\RR\).
+\end{proposition}
+\begin{proof}
+The symbol of \(A^2\) is the real function
+\((k^2-|\xi|^2)^2\). Therefore
+\(U(t)=e^{-itA^2}\) is a strongly continuous unitary group on every
+\(H^s\). In dimension two, \(H^2\hookrightarrow L^\infty\) and
+\(H^2\) is a Banach algebra. Consequently the map
+\(F(u)=-\beta|u|^2u+\gamma|u|^4u\) is locally Lipschitz
+\(X\to X\). The Duhamel equation
+\[
+u(t)=U(t)u_0-i\int_0^t U(t-s)F(u(s))\,ds
+\]
+has, by contraction on \(C([-\tau,\tau];X)\) for small enough
+\(\tau\), a unique maximal solution and the usual blow-up alternative:
+if a finite positive or negative endpoint of the lifespan exists,
+\(\nm{u(t)}{H^2}\) becomes unbounded there.
+
+For completeness, conservation is justified at the energy regularity.
+If \(u_0\in H^4\), the same contraction gives an \(H^4\) solution,
+and \(u_t\in L^2\). Pairing~\eqref{eq:flow} with \(u\) and taking real
+parts shows \(dM(u(t))/dt=0\), because \(A^2\) is self-adjoint and
+both nonlinear pairings are real. The real Fr\'echet derivative of \(H\)
+obeys
+\[
+DH(u)[h]=2\operatorname{Re}\int_{\RR^2}
+\overline{\big(A^2u-\beta|u|^2u+\gamma|u|^4u\big)}\,h\,dx.
+\]
+Thus \(dH(u(t))/dt=2\operatorname{Re}\langle i u_t,u_t\rangle=0\).
+(One may first use smoother data and pass to \(H^4\).)
+
+For general \(u_0\in X\), choose \(u_{0,j}\in H^4\) converging in
+\(H^2\). On any compact interval contained in the maximal \(H^2\)
+lifespan, the local continuous-dependence estimates imply convergence
+of the corresponding smooth solutions in \(C_tH^2_x\). Smooth solutions
+continue in \(H^4\) throughout such an interval: the standard tame
+product bound
+\(\nm{F(u)}{H^4}\le C(\nm{u}{H^2})\nm{u}{H^4}\)
+and Gronwall's inequality prevent an \(H^4\) blow-up while \(H^2\)
+is bounded. Since \(M\) and \(H\) are continuous on \(H^2\), their
+conservation passes to the limit.
+
+Finally, Lemma~\ref{lem:coercivity} and the conservation laws give
+\[
+\nm{Au(t)}{2}^2\le H(u_0)+C_0M(u_0),\qquad
+\nm{\Delta u(t)}{2}\le
+\sqrt{H(u_0)+C_0M(u_0)}+k^2\sqrt{M(u_0)}.
+\]
+Together with fixed \(L^2\) mass, these yield a time-independent
+\(H^2\) bound. The blow-up alternative excludes both finite-time
+endpoints; hence the solution exists for all \(t\in\RR\).
+\end{proof}
+
+\section{Orbital stability of the full minimizing set}
+\begin{proof}[Proof of Theorem~\ref{thm:main}(iv)]
+Fix \(m\in(0,m_B]\). The first two claims of the theorem were proved
+in Lemma~\ref{lem:negative}, Proposition~\ref{prop:binding}, and
+Proposition~\ref{prop:compact}; the third is Proposition~\ref{prop:global}.
+Moreover \(\GG_m\) is invariant under the global flow by conservation of
+mass and energy, and is invariant under spatial translations by the
+translation invariance of \(M\) and \(H\).
+
+First note that \(\GG_m\) is uniformly bounded in \(H^2\): for any
+\(g\in\GG_m\), Lemma~\ref{lem:coercivity} gives
+\(T(g)\le I(m)+C_0m\), so
+\(\nm{g}{H^2}\le C(m,\beta,\gamma,k)\).
+
+Suppose stability fails. There are \(\varepsilon_0>0\) and, for
+all sufficiently large \(n\), data \(u_{0,n}\in X\) for which
+\(\dist_X(u_{0,n},\GG_m)<1/n\) while the supremum of the
+distance along the flow is at least \(\varepsilon_0\).
+For each \(n\), select \(t_n\in\RR\) with distance at least
+\(\varepsilon_0/2\); this does not require the supremum to be attained. Then
+\begin{equation}\label{eq:counter}
+\dist_X(u_{0,n},\GG_m)\to0,\qquad
+\dist_X(u_n(t_n),\GG_m)\ge\varepsilon_0/2,
+\end{equation}
+where \(u_n(t)\) is the global solution launched from \(u_{0,n}\).
+Choose \(g_n\in\GG_m\) with
+\(\nm{u_{0,n}-g_n}{H^2}\to0\). By the uniform bound on \(g_n\),
+\((u_{0,n})\) is bounded in \(H^2\). Continuity of mass and energy,
+uniform on bounded \(H^2\) sets for these polynomial functionals, yields
+\begin{equation}\label{eq:near}
+M(u_{0,n})\to m,\qquad H(u_{0,n})\to I(m).
+\end{equation}
+
+Set \(v_n=u_n(t_n)\). Conservation transfers~\eqref{eq:near} to
+\(M(v_n)\to m\) and \(H(v_n)\to I(m)\).
+Lemma~\ref{lem:coercivity} ensures \((v_n)\) is bounded in \(H^2\).
+For large \(n\), define the \emph{mass-normalized} functions
+\[
+\alpha_n=\sqrt{\frac{m}{M(v_n)}},\qquad
+w_n=\alpha_n v_n.
+\]
+Then \(\alpha_n\to1\), \(M(w_n)=m\), and
+\[
+\nm{w_n-v_n}{H^2}
+=|\alpha_n-1|\nm{v_n}{H^2}\to0.
+\]
+The polynomial form of \(H\) and boundedness in \(H^2\) imply
+\(H(w_n)-H(v_n)\to0\), so
+\[
+M(w_n)=m,\qquad H(w_n)\to I(m).
+\]
+By Proposition~\ref{prop:compact}, after passing to a subsequence there
+exist \(y_n\in\RR^2\) and \(g\in\GG_m\) such that
+\(w_n(\cdot+y_n)\to g\) strongly in \(H^2\).
+Equivalently, \(\nm{w_n-g(\cdot-y_n)}{H^2}\to0\).
+As \(g(\cdot-y_n)\in\GG_m\), we obtain
+\[
+\dist_X(v_n,\GG_m)\le
+\nm{v_n-w_n}{H^2}
++\nm{w_n-g(\cdot-y_n)}{H^2}\longrightarrow0.
+\]
+This contradicts~\eqref{eq:counter}. Therefore orbital stability holds
+for every \(\varepsilon>0\), including mass-changing perturbations.
+\end{proof}
+
+\section{Interpretation and antecedents}
+The conclusion is \emph{Lyapunov stability of a set}. It does not imply
+convergence as \(|t|\to\infty\), uniqueness of the minimizing profile,
+stability of an arbitrary stationary solution outside \(\GG_m\), or
+spectral nondegeneracy. The proof is specifically for two spatial
+dimensions and does not classify four-spatial-dimensional lifetimes.
+
+The final conservation-plus-compactness step follows the classical
+Cazenave--Lions variational stability principle. Its application here
+requires the preceding specific binding and compactness estimates for the
+mixed cubic--quintic Hamiltonian. Closely related fourth-order single-power
+mixed-dispersion problems were treated in the papers listed below.
+
+\begin{thebibliography}{9}
+\bibitem{CL82}
+T. Cazenave and P.-L. Lions, ``Orbital stability of standing waves for some
+nonlinear Schr\"odinger equations,'' \emph{Communications in Mathematical
+Physics} \textbf{85} (1982), 549--561.
+\href{https://doi.org/10.1007/BF01403504}{doi:10.1007/BF01403504}.
+\bibitem{FJMM22}
+A. J. Fern\'andez, L. Jeanjean, R. Mandel and M. Mari\c{s},
+``Non-homogeneous Gagliardo--Nirenberg inequalities in
+\(\mathbb R^N\) and application to a biharmonic non-linear Schr\"odinger equation,''
+\emph{Journal of Differential Equations} \textbf{330} (2022), 1--65.
+\href{https://doi.org/10.1016/j.jde.2022.04.037}{doi:10.1016/j.jde.2022.04.037}.
+\bibitem{BCSN18}
+D. Bonheure, J.-B. Casteras, E. Moreira dos Santos and R. Nascimento,
+``Orbitally stable standing waves of a mixed dispersion nonlinear Schr\"odinger equation,''
+\emph{SIAM Journal on Mathematical Analysis} \textbf{50} (2018), 5027--5071.
+\href{https://doi.org/10.1137/17M1154138}{doi:10.1137/17M1154138}.
+\bibitem{repository}
+R. J. Reyes, ``Energy per mass,'' ``Strict subadditivity,'' ``Whole-space
+compactness,'' and ``Orbital stability status,'' in the
+\href{https://github.com/rickyjreyes/geometry_of_resonance/tree/main/docs/d4_binding}{geometry\_of\_resonance}
+repository, \texttt{docs/d4\_binding/}, accessed October 26, 2026.
+\end{thebibliography}
+\end{document}
