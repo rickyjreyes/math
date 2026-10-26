@@ -55,10 +55,5 @@ families:
     declarations: [ReyesMath.zero_ae_of_null_support, ReyesMath.oneDimensional_shell_ae_zero, ReyesMath.euclidean_frequency_shell_measure_zero, ReyesMath.euclidean_frequency_shell_ae_zero]
   F11:
     main_theorem_formalized: false
-    covered: "Band-pass negative gradient flow and dissipative identity proved analytically; no Lean formalization of the amplitude PDE."
-    declarations: []
-
-  F11:
-    main_theorem_formalized: false
-    covered: "E62 analytic normalization proof added to PDF catalogue; not formalized in this Lean project."
+    covered: "E13/E14 band-pass gradient-flow identity and E62 Fourier energy fraction proved analytically; neither main result is Lean-formalized."
     declarations: []
