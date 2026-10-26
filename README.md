@@ -4,6 +4,27 @@ Standalone mathematical proofs and research notes by Richard J. Reyes.
 
 ## Papers
 
+### Whole-space nonattainment and strict spreading for a positive curvature functional
+
+[LaTeX source](papers/positive-curvature-whole-space-nonattainment/main.tex)
+
+For $\psi\in H^2(\mathbb R^d;\mathbb C)$, consider
+
+$
+E(\psi)=c_1\|\nabla\psi\|_2^2+c_2\int_{\mathbb R^d}
+\frac{|\psi|^2}{(|\psi|^2+\varepsilon^2 e^{-2\alpha|\psi|^2})^2}
+|\Delta\psi|^2\,dx,
+\qquad c_1,c_2,\varepsilon>0,\quad\alpha\ge0.
+$
+
+For every positive mass $m$ and every finite spatial dimension $d\ge1$, the constrained infimum is zero but is not attained on $\mathbb R^d$. Moreover, for $1\le d\le4$, the energy strictly decreases under mass-preserving spreading, ruling out local constrained minimizers in $H^2$. These conclusions do not rule out stationary saddles, other interacting functionals, or imposed confinement.
+
+**Build:** Run `pdflatex -interaction=nonstopmode main.tex` twice in the manuscript directory.
+
+**Related proof audit:** [Localization and stability scope](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/foundational/LOCALIZED_STATE_EXISTENCE.md).
+
+**Status:** Research manuscript; not independently peer-reviewed.
+
 ### Strict subadditivity for a fourth-order cubic–quintic Hamiltonian in two dimensions
 
 [LaTeX source](papers/strict-subadditivity-fourth-order-cubic-quintic/main.tex)
