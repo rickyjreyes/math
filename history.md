@@ -1,5 +1,11 @@
 # Version history
 
+## 2026-10-26 — E61 continuum spectral threshold
+
+- Added the complete linear Swift--Hohenberg continuum threshold proof (E61), covering spectrum, semigroup stability, unstable annulus, periodic-domain correction and centered versus uncentered parameters.
+- Indexed the LaTeX source and PDF workflow in the catalogue, README and overview.
+- The result is analytic and not claimed as Lean-formalized or as a nonlinear pattern existence theorem.
+
 ## 2026-10-26 — E13/E14 band-pass gradient flow
 
 - Added the full periodic Swift--Hohenberg band-pass gradient-flow proof (family F11), including the exact Wirtinger/real-$L^2$ normalization, fourth-order integration by parts, energy dissipation, and Fourier-shell preference.
