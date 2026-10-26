@@ -24,7 +24,7 @@ $$
 
 one has $I(m)<I(\mu)+I(m-\mu)$ for every $0<\mu<m$. The proof uses mass-preserving dilation of minimizing sequences and a quantitative energy-per-mass gap; no minimizer is assumed. The mass threshold is sufficient, not asserted optimal.
 
-**Build:** Run \`pdflatex -interaction=nonstopmode main.tex\` twice from the paper directory. The manuscript is self-contained and uses standard LaTeX packages.
+**Build:** Run `pdflatex -interaction=nonstopmode main.tex` twice from the paper directory. The manuscript is self-contained and uses standard LaTeX packages.
 
 **Scope:** This is a two-spatial-dimensional whole-space variational result. It does not itself establish a physical confinement lifetime, uniqueness, spectral stability, or universal all-mass strict binding.
 
