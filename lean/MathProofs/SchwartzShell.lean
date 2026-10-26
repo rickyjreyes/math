@@ -16,6 +16,7 @@ Plancherel L² Fourier equivalence and is a distinct remaining obligation.
 namespace ReyesMath
 
 open MeasureTheory Metric
+open scoped SchwartzMap
 
 /-- A Schwartz-class state whose *actual Fourier transform* is supported on
 a single frequency sphere vanishes identically. No extra nonzero or decay
