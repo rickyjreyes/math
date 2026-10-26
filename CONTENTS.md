@@ -72,6 +72,9 @@ The corrected modulus-squared regularization is smooth and bounded for each ε >
 
 **E26: Conditional $L^2$ estimate for the historical additive-denominator curvature operator** — [PDF](preprints/regularized-curvature-l2-bound/paper.pdf) · [LaTeX source](papers/regularized-curvature-l2-bound/main.tex) · [Notes](preprints/regularized-curvature-l2-bound/README.md)
 
+This E26 manuscript analyzes the historical additive denominator; the corrected phase-covariant operator and its different fixed-$\varepsilon$ bound appear in M2/E17 above.
+
+
 ## WCT E18 — Corrected curvature-energy Lyapunov descent
 
 **E18: Exact Lyapunov descent for the corrected WCT curvature energy** — [PDF](preprints/wct-e18-exact-gradient-lyapunov/paper.pdf) · [LaTeX source](papers/wct-e18-exact-gradient-lyapunov/main.tex) · [Notes](preprints/wct-e18-exact-gradient-lyapunov/README.md)
@@ -99,8 +102,6 @@ For `r>0, a≥0`, proves `0<G(k)≤1/r`, shell equality, sharp continuum `L²` r
 **M6B: Two exact nonlinear-curvature nonuniqueness counterexamples** — [PDF](preprints/m6b-nonlinear-curvature-nonuniqueness/paper.pdf) · [LaTeX source](papers/m6b-nonlinear-curvature-nonuniqueness/main.tex) · [Notes](preprints/m6b-nonlinear-curvature-nonuniqueness/README.md)
 
 Analytical counterexamples show (i) the standard node-safe, phase-invariant, unregularized-limit properties do not determine a unique closure; and (ii) even with fixed mass and Dirichlet data the canonical map is not injective modulo global phase. Neither result demonstrates nonuniqueness of an M7 initial-value evolution.
-
-This E26 manuscript analyzes the historical additive denominator; the corrected phase-covariant operator and its different fixed-$\varepsilon$ bound appear in M2/E17 above.
 
 ## M3 + E57 — Swift--Hohenberg Fourier-shell operator
 
