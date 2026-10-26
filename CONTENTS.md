@@ -101,3 +101,9 @@ For `r>0, a≥0`, proves `0<G(k)≤1/r`, shell equality, sharp continuum `L²` r
 Analytical counterexamples show (i) the standard node-safe, phase-invariant, unregularized-limit properties do not determine a unique closure; and (ii) even with fixed mass and Dirichlet data the canonical map is not injective modulo global phase. Neither result demonstrates nonuniqueness of an M7 initial-value evolution.
 
 This E26 manuscript analyzes the historical additive denominator; the corrected phase-covariant operator and its different fixed-$\varepsilon$ bound appear in M2/E17 above.
+
+## M3 + E57 — Swift--Hohenberg Fourier-shell operator
+
+**Fourier symbol and quantitative off-shell damping** — [PDF](preprints/swift-hohenberg-fourier-shell-damping/paper.pdf) · [LaTeX source](papers/swift-hohenberg-fourier-shell-damping/main.tex) · [Notes](preprints/swift-hohenberg-fourier-shell-damping/README.md)
+
+The linear dissipative spectral estimate does not establish nonlinear WCT confinement or physical pattern persistence.
