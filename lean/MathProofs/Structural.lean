@@ -113,4 +113,29 @@ theorem finite_weighted_mean_square_bound {n : ℕ}
   rw [finite_weighted_variance_identity w σ hw] at hvariance
   linarith
 
+
+/-- A concrete n-by-2 carrier matrix built from the two real gradients. -/
+def scalarGradientCarrier {n : ℕ}
+    (a b : Fin n → ℝ) : Matrix (Fin n) (Fin 2) ℝ :=
+  fun i j => if j = 0 then a i else b i
+
+/-- Its Gram matrix is precisely the two-gradient tensor, entrywise. -/
+theorem scalarGradientCarrier_gram_entry {n : ℕ}
+    (a b : Fin n → ℝ) (i j : Fin n) :
+    ((scalarGradientCarrier a b) * (scalarGradientCarrier a b)ᵀ) i j =
+      a i * a j + b i * b j := by
+  simp [scalarGradientCarrier, Matrix.mul_apply, Fin.sum_univ_two,
+    Matrix.transpose_apply]
+
+/-- Unlike an elementary sum-of-squares bound, this is a genuine matrix
+    rank obstruction: the n-by-n Gram matrix has rank at most two. -/
+theorem scalarGradientCarrier_rank_le_two {n : ℕ}
+    (a b : Fin n → ℝ) :
+    ((scalarGradientCarrier a b) * (scalarGradientCarrier a b)ᵀ).rank ≤ 2 := by
+  calc
+    ((scalarGradientCarrier a b) * (scalarGradientCarrier a b)ᵀ).rank
+        ≤ (scalarGradientCarrier a b).rank :=
+          Matrix.rank_mul_le_left _ _
+    _ ≤ 2 := Matrix.rank_le_width _
+
 end ReyesMath
