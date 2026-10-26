@@ -38,7 +38,7 @@ lake build
 
 [PDF workflow](.github/workflows/pdfs.yml) builds and publishes the actual PDFs to the repository on a successful main-branch run; [Lean workflow](.github/workflows/lean.yml) checks the included Lean code.
 
-**Formalization status:** the Lean project currently includes *supporting elementary theorems only*. The principal strict-binding, concentration-compactness, orbital-stability, and four-jet ill-posedness theorems have **not** been encoded and verified by the Lean kernel. See [the exact manifest](lean/formalization.yaml). Separate WCT Lean work: [wct-lean](https://github.com/rickyjreyes/wct-lean).
+**Formalization status:** the Lean project includes kernel-checkable elementary theorems and substantive structural cores: the actual 11×31 matrix nullity bound, rank-two/positive-semidefinite scalar-gradient Gram obstruction, finite weighted variance and phase inequalities, 1D Fourier cutoff certificates, and null-support consequences. **The main nonlinear PDE and higher-derivative dynamics manuscripts remain unformalized.** A green Lean check does not certify all 14 PDFs. See [the per-family manifest](lean/formalization.yaml) and [the Lean guide](lean/README.md). Separate WCT Lean work: [wct-lean](https://github.com/rickyjreyes/wct-lean).
 
 Every manuscript is a research draft, not independently peer-reviewed. Mathematical correctness, priority, physical interpretation and external replication are separate questions.
 
