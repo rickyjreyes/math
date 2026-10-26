@@ -6,6 +6,7 @@ A growing collection of **research manuscripts organized by result family**, org
 
 ## Navigate
 
+- [Mathematical compendium — Volume I](compendium/wct-elementary-mathematics/paper.pdf) — 25 corrected WCT registry IDs: standard results, conditional bounds, assumptions and limitations ([source](compendium/wct-elementary-mathematics/main.tex), [compendium index](compendium/README.md)).
 - [Overview PDF](overview.pdf) — concise guide to all result families.
 - [Manuscript map](CONTENTS.md) — direct links to each **PDF**, LaTeX source, and notes.
 - [E16: spectral concentration and argmax proof](papers/e16-linear-spectral-concentration/main.tex) — linear Fourier selection with explicit hypotheses.
