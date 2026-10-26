@@ -1,7 +1,7 @@
 # Lean 4 formalization status
 
-This Mathlib v4.23.0 project contains 28 formal theorem declarations
-(18 original and 10 new) in seven imported modules. On any revision,
+This Mathlib v4.23.0 project contains 33 formal theorem declarations
+(28 previously verified and 5 additional declarations) in ten imported modules. On any revision,
 regard them as kernel-checked only after that exact revision's Lean CI passes:
 
 - [Elementary](MathProofs/Elementary.lean) — original elementary algebra.
@@ -20,6 +20,13 @@ regard them as kernel-checked only after that exact revision's Lean CI passes:
   and coordinatewise multimode frequency escape in ℤ^d.
 - [ModelAlgebra](MathProofs/ModelAlgebra.lean) — S004 acceleration Hessian
   determinant/nondegeneracy and exact dispersion discriminant identity.
+- [DispersionMinimizer](MathProofs/DispersionMinimizer.lean) — conditional
+  stationary-minimum uniqueness from a rigorous supporting-tangent identity.
+- [UVDispersion](MathProofs/UVDispersion.lean) — both exact complex
+  characteristic roots; no high-frequency Sobolev growth theorem.
+- [LocalIdentifiability](MathProofs/LocalIdentifiability.lean) —
+  local derivative-nullity obstruction for arbitrary differentiable
+  maps from 31 to 11 real coordinates.
 
 For precise statements and manuscript coverage, see
 [formalization.yaml](formalization.yaml).
@@ -44,10 +51,10 @@ is not yet committed.
 **No full infinite-dimensional PDE result in F01 is kernel-checked**:
 strict binding, whole-space minimizer existence, concentration–compactness,
 global continuation, and orbital stability remain conventional analytic
-proofs. The higher-derivative constraint count and ultraviolet evolution (F02), continuous
+proofs. The higher-derivative constraint count and ultraviolet Sobolev evolution (F02), continuous
 spectral/phase integral identities (F03, F07), full multidimensional
 nonlinear Fourier-mode theorem (F04), curvature nonattainment (F05),
-dispersion convexity/minimum (F06), numerical Jacobian rank claims (F09),
+dispersion existence/explicit-minimum theorem under the manuscript assumptions (F06), numerical Jacobian rank claims (F09),
 and a null-sphere/Plancherel proof in arbitrary dimension (F10) are
 likewise not fully formalized.
 
@@ -60,3 +67,12 @@ published numerical rank.
 
 Separate research-grade Lean work lives in [wct-lean](https://github.com/rickyjreyes/wct-lean);
 do not conflate its theorem count with this repository.
+
+## Completion criterion for each of the 14 tweets
+
+The boolean `families.Fxx.main_theorem_formalized` stays false until the
+**entire theorem as stated in its PDF** is a precise exported Lean declaration
+with no `sorry`, `admit`, new axioms, unproved assumptions, or finite surrogate
+used in place of the stated infinite-dimensional result. Supporting finite
+models, algebraic identities, and theorems with stronger extra assumptions
+never count as end-to-end certification of the manuscript.
