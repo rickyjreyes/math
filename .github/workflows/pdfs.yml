@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'papers/**'
+      - 'compendium/**'
       - 'overview.tex'
       - 'scripts/build_pdfs.sh'
       - '.github/workflows/pdfs.yml'
@@ -32,6 +33,9 @@ jobs:
           expected="$(find papers -mindepth 2 -maxdepth 2 -name main.tex | wc -l)"
           actual="$(find preprints -mindepth 2 -maxdepth 2 -name paper.pdf | wc -l)"
           test "$actual" -eq "$expected"
+          compendium_expected="$(find compendium -mindepth 2 -maxdepth 2 -name main.tex | wc -l)"
+          compendium_actual="$(find compendium -mindepth 2 -maxdepth 2 -name paper.pdf | wc -l)"
+          test "$compendium_actual" -eq "$compendium_expected"
           test -s overview.pdf
       - name: Upload PDFs
         uses: actions/upload-artifact@v4
@@ -40,13 +44,14 @@ jobs:
           path: |
             overview.pdf
             preprints/*/paper.pdf
+            compendium/*/paper.pdf
           if-no-files-found: error
       - name: Commit PDFs to main
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -f overview.pdf preprints/*/paper.pdf
+          git add -f overview.pdf preprints/*/paper.pdf compendium/*/paper.pdf
           if ! git diff --cached --quiet; then
             git commit -m 'build: publish manuscript PDFs [skip ci]'
             for attempt in 1 2 3 4 5; do
