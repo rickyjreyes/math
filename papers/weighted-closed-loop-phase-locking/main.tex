@@ -1,0 +1,325 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref}
+\usepackage{microtype}
+
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\GG}{\Gamma}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\mean}[1]{\overline{#1}}
+
+\title{An Exact Minimum for Weighted Closed-Loop Phase Locking}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For a prescribed closed loop, positive weight, geometric phase target, connection,
+and winding number, we determine the exact minimum of a weighted quadratic
+phase-mismatch functional.  A sharp Cauchy--Schwarz inequality, together with
+an explicit admissible phase, gives the minimum and a unique minimizing
+covariant phase gradient.  An exact remainder identity establishes strict
+minimality modulo constant-phase symmetry.  Comparison between different
+winding sectors is conditional on the locking functional accounting for all
+sector-dependent contributions and does not itself provide a transition
+mechanism.
+\end{abstract}
+
+\section{Setting and admissible phases}
+
+Let $\GG$ be an oriented closed loop of total arclength $S>0$, with coordinate
+$s\in[0,S]$ and its endpoints identified.  Fix integers $m,n\in\ZZ$.
+Let $w:[0,S]\to\RR$ be measurable, and suppose there are constants
+$0<w_-\leq w_+<\infty$ such that
+\begin{equation}
+  w_-\leq w(s)\leq w_+ \qquad\text{for almost every }s.
+  \label{eq:weight}
+\end{equation}
+Let $\Omega,\sigma\in L^2(0,S;\RR)$ be fixed.
+We use a fixed framing and endpoint convention in which an admissible real
+phase lift $\chi\in H^1(0,S;\RR)$ satisfies
+\begin{equation}
+  \chi(S)-\chi(0)=2\pi n.
+  \label{eq:winding}
+\end{equation}
+The phase $e^{i\chi}$ is therefore periodic.  Define
+\begin{equation}
+  q(s):=\chi'(s)-m\Omega(s),
+  \qquad
+  \E[\chi]:=\int_0^S w(s)\bigl(q(s)-\sigma(s)\bigr)^2\dd s.
+  \label{eq:functional}
+\end{equation}
+Introduce the fixed quantities
+\begin{equation}
+  \Phi:=\int_0^S\Omega(s)\dd s,
+  \qquad
+  J:=\int_0^S\sigma(s)\dd s,
+  \qquad
+  I:=\int_0^S\frac{\dd s}{w(s)}.
+  \label{eq:definitions}
+\end{equation}
+By \eqref{eq:weight}, $0<I<\infty$.  The admissible space in winding
+sector $n$ is
+\begin{equation}
+  \mathcal{A}_n:=\bigl\{\chi\in H^1(0,S;\RR):
+                 \chi(S)-\chi(0)=2\pi n\bigr\}.
+\end{equation}
+All geometric data, the framing, $m$, and $n$ are held fixed during
+minimization.
+
+\section{Exact minimum and sharp remainder}
+
+\begin{theorem}[Exact weighted phase-locking minimum]
+\label{thm:main}
+Under the assumptions above, set
+\begin{equation}
+  \Delta_n:=2\pi n-m\Phi-J.
+  \label{eq:delta}
+\end{equation}
+Then
+\begin{equation}
+  \boxed{\displaystyle
+  \min_{\chi\in\mathcal{A}_n}\E[\chi]
+  =\frac{\Delta_n^2}{I}
+  =\frac{(2\pi n-m\Phi-J)^2}{\displaystyle\int_0^S w^{-1}\dd s}.}
+  \label{eq:minimum}
+\end{equation}
+The minimizing covariant phase gradient is, uniquely up to equality almost
+everywhere,
+\begin{equation}
+  \boxed{\displaystyle
+  q_*(s)=\sigma(s)+\frac{\Delta_n}{I\,w(s)}.}
+  \label{eq:qstar}
+\end{equation}
+An admissible minimizing phase is
+\begin{equation}
+  \boxed{\displaystyle
+  \chi_*(s)=\chi_0+\int_0^s
+  \left[m\Omega(t)+\sigma(t)+\frac{\Delta_n}{I\,w(t)}\right]\dd t,}
+  \label{eq:chistar}
+\end{equation}
+where $\chi_0\in\RR$ is arbitrary.  Every minimizing phase differs from
+$\chi_*$ by an additive constant.  Furthermore, every
+$\chi\in\mathcal{A}_n$ satisfies the exact identity
+\begin{equation}
+  \boxed{\displaystyle
+  \E[\chi]
+  =\frac{\Delta_n^2}{I}
+   +\int_0^S w(s)\lvert q(s)-q_*(s)\rvert^2\dd s.}
+  \label{eq:remainder}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Integrating the definition of $q$ and using the winding constraint gives
+\begin{equation}
+  \int_0^S q\dd s
+  =\chi(S)-\chi(0)-m\int_0^S\Omega\dd s
+  =2\pi n-m\Phi.
+  \label{eq:qconstraint}
+\end{equation}
+Hence for the mismatch $f:=q-\sigma$,
+\begin{equation}
+  \int_0^S f\dd s=2\pi n-m\Phi-J=\Delta_n.
+  \label{eq:fconstraint}
+\end{equation}
+By the Cauchy--Schwarz inequality,
+\begin{align}
+  \Delta_n^2
+  &=\left(\int_0^S
+     \sqrt{w(s)}f(s)\frac{1}{\sqrt{w(s)}}\dd s\right)^2\\
+  &\leq\left(\int_0^S w(s)f(s)^2\dd s\right)
+          \left(\int_0^S\frac{\dd s}{w(s)}\right)
+   =I\E[\chi].
+\end{align}
+Because $I>0$, this yields
+\begin{equation}
+  \E[\chi]\geq\frac{\Delta_n^2}{I}.
+  \label{eq:lower}
+\end{equation}
+Cauchy--Schwarz is an equality precisely when
+$\sqrt{w}\,f=C/\sqrt{w}$ almost everywhere for some constant $C$.
+Thus $f=C/w$, and \eqref{eq:fconstraint} implies
+\begin{equation}
+  \Delta_n=C\int_0^S w^{-1}\dd s=CI,
+  \qquad C=\frac{\Delta_n}{I}.
+\end{equation}
+The only possible minimizing covariant gradient is consequently
+\eqref{eq:qstar}.
+
+To prove that the lower bound is attained, define $\chi_*$ by
+\eqref{eq:chistar}.  The stated regularity assumptions ensure
+$\chi_*\in H^1(0,S)$, and
+\begin{align}
+  \chi_*(S)-\chi_*(0)
+    &=m\Phi+J+\frac{\Delta_n}{I}
+      \int_0^S\frac{\dd s}{w(s)}\\
+    &=m\Phi+J+\Delta_n=2\pi n.
+\end{align}
+Thus $\chi_*\in\mathcal{A}_n$, and $q_*=\chi_*'-m\Omega$.
+Its energy is
+\begin{equation}
+  \E[\chi_*]
+  =\int_0^S w\left(\frac{\Delta_n}{Iw}\right)^2\dd s
+  =\frac{\Delta_n^2}{I^2}\int_0^S w^{-1}\dd s
+  =\frac{\Delta_n^2}{I}.
+\end{equation}
+This proves the exact minimum.
+
+For the remainder identity, let $h:=q-q_*$.  Since $\chi$ and $\chi_*$
+have the same winding number,
+\begin{equation}
+  \int_0^S h\dd s
+  =\int_0^S(\chi'-\chi_*')\dd s=0.
+  \label{eq:hzero}
+\end{equation}
+Also, $w(q_*-\sigma)=\Delta_n/I$.  Expanding the square yields
+\begin{align}
+ \E[\chi]
+ &=\int_0^S w\bigl[(q_*-\sigma)+h\bigr]^2\dd s\\
+ &=\E[\chi_*]
+   +\frac{2\Delta_n}{I}\int_0^S h\dd s
+   +\int_0^S wh^2\dd s\\
+ &=\frac{\Delta_n^2}{I}+\int_0^S w\lvert q-q_*\rvert^2\dd s.
+\end{align}
+Positivity of $w$ shows that equality holds only for $q=q_*$ almost
+everywhere.  In that case $(\chi-\chi_*)'=0$ almost everywhere,
+so $\chi-\chi_*$ is constant.  This proves the asserted uniqueness.
+\end{proof}
+
+\section{Consequences}
+
+\begin{corollary}[Criterion for an exact lock]
+\label{cor:lock}
+There exists an admissible phase with $q=\sigma$ almost everywhere if and
+only if
+\begin{equation}
+  \boxed{2\pi n=m\Phi+J.}
+\end{equation}
+Equivalently, $\min_{\mathcal{A}_n}\E=0$ if and only if $\Delta_n=0$.
+\end{corollary}
+\begin{proof}
+The conclusion follows from \eqref{eq:minimum}, or directly by integrating
+$q=\sigma$ in \eqref{eq:qconstraint}.
+\end{proof}
+
+\begin{corollary}[Strict phase-sector variational stability]
+\label{cor:stability}
+Let $\eta\in H^1(0,S;\RR)$ have periodic endpoint values
+$\eta(S)=\eta(0)$.  Then for every $\varepsilon\in\RR$,
+\begin{equation}
+  \E[\chi_*+\varepsilon\eta]
+  =\E[\chi_*]
+   +\varepsilon^2\int_0^S w(s)\lvert\eta'(s)\rvert^2\dd s.
+  \label{eq:perturb}
+\end{equation}
+In particular,
+\begin{equation}
+  \left.\frac{\dd^2}{\dd\varepsilon^2}
+      \E[\chi_*+\varepsilon\eta]\right|_{\varepsilon=0}
+  =2\int_0^S w\lvert\eta'\rvert^2\dd s\geq0,
+\end{equation}
+with equality if and only if $\eta$ is constant almost everywhere.
+\end{corollary}
+\begin{proof}
+The perturbation preserves the winding constraint, and its covariant
+gradient differs from $q_*$ by $\varepsilon\eta'$.  Apply
+\eqref{eq:remainder}.
+\end{proof}
+
+\begin{remark}[Meaning of stability]
+Corollary~\ref{cor:stability} is a statement about a fixed-geometry,
+phase-only variational functional.  It does not assert dynamical, orbital,
+or spectral stability for a full complex-field evolution.  In particular,
+it does not allow the winding number to change during the perturbation.
+\end{remark}
+
+\begin{proposition}[Conditional comparison of winding sectors]
+\label{prop:sectors}
+Suppose the geometric data $\GG,w,\sigma,\Omega$ and integer $m$ are fixed,
+all integer winding sectors are admissible, and the complete
+sector-dependent energy is $\E$ plus a term independent of $n$.
+If the system is allowed to compare the global minimum energies of these
+sectors, define
+\begin{equation}
+  \zeta:=\frac{m\Phi+J}{2\pi}.
+\end{equation}
+Then the integer sectors of least energy are exactly
+\begin{equation}
+  \boxed{\displaystyle
+  \mathcal{N}_{\min}
+    =\operatorname*{arg\,min}_{n\in\ZZ}|n-\zeta|.}
+\end{equation}
+There is one minimizing integer unless $\zeta\in\ZZ+\tfrac12$,
+when two adjacent integers are tied.
+\end{proposition}
+\begin{proof}
+Theorem~\ref{thm:main} gives
+\begin{equation}
+  \E_{\min}(n)
+  =\frac{(2\pi n-m\Phi-J)^2}{I}
+  =\frac{4\pi^2}{I}(n-\zeta)^2.
+\end{equation}
+The prefactor is positive and independent of $n$, so minimizing over
+integers is equivalent to selecting the integer(s) nearest to $\zeta$.
+\end{proof}
+
+\begin{remark}[Limits of inter-sector selection]
+Proposition~\ref{prop:sectors} compares minimum costs; it does not establish
+that the physical dynamics can change $n$.  With a continuous nonvanishing
+complex field on a fixed closed contour, winding is topologically conserved
+under continuous evolution.  A change of winding requires additional
+conditions or dynamics, for example a field zero (phase slip), altered
+boundary data, or a change of the contour topology.  Moreover, omitted
+$n$-dependent energies would change the sector comparison.
+\end{remark}
+
+\begin{remark}[Frame conventions]
+The constraint $\int q\dd s=2\pi n-m\Phi$ assumes the stated phase-lift
+and framing convention.  If the normal frame has a nontrivial seam
+identification, its transition phase must be incorporated consistently into
+the endpoint condition and holonomy.  The proof then applies with the
+correspondingly adjusted, gauge-consistent total closure mismatch.
+\end{remark}
+
+\section{Uniform-weight example}
+
+If $w(s)\equiv w_0>0$, $\Omega\equiv0$, and $\sigma(s)\equiv\sigma_0$,
+then $I=S/w_0$, $J=S\sigma_0$, and
+\begin{equation}
+  \E_{\min}(n)=\frac{w_0}{S}(2\pi n-S\sigma_0)^2,
+  \qquad
+  q_*(s)=\frac{2\pi n}{S}.
+\end{equation}
+Thus the optimal phase gradient is uniform, but it need not coincide with
+the preferred local rate $\sigma_0$.  Exact locking occurs precisely when
+$S\sigma_0=2\pi n$.
+
+\section*{Scope}
+The theorem is an exact result for the specified weighted phase-only
+functional, closed-loop geometry, winding sector, and framing.  Its proof
+uses the sharp weighted Cauchy--Schwarz inequality; it does not provide an
+independent physical derivation of the locking energy, a mechanism for
+transitions between winding sectors, or a prediction for geometry or
+spectral frequencies.
+
+\noindent\textbf{Supporting analysis:}
+\url{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/WINDING_SELECTION_ANALYSIS.md}
+
+\end{document}
