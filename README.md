@@ -4,6 +4,27 @@ Standalone mathematical proofs and research notes by Richard J. Reyes.
 
 ## Papers
 
+### Whole-space minimizer existence for a fourth-order cubic–quintic Hamiltonian
+
+[LaTeX source](papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex)
+
+For $u\in H^2(\mathbb R^2;\mathbb C)$ and $k,\beta,\gamma>0$, consider
+$
+H(u)=\|(\Delta+k^2)u\|_2^2-\frac{\beta}{2}\|u\|_4^4+\frac{\gamma}{3}\|u\|_6^6,
+\qquad I(m)=\inf_{\|u\|_2^2=m}H(u).
+$
+For every
+$
+0<m\le m_B=\frac{3\beta}{\gamma\sqrt{k^4+3\beta^2/(32\gamma)}},
+$
+the manuscript proves $I(m)<0$, strict subadditivity at every positive mass split, and strong $H^2$ precompactness of every minimizing sequence modulo translations; in particular, the whole-space constrained infimum is attained.
+
+**Build:** Run `pdflatex -interaction=nonstopmode main.tex` twice in the manuscript directory.
+
+**Scope:** Two spatial dimensions, with no cavity or radial restriction. This does not prove uniqueness, identify a computed periodic D4 solution with a minimizer, or address four-dimensional confinement lifetimes. Research manuscript, not independently peer-reviewed.
+
+**Related proof:** [Whole-space compactness audit](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/d4_binding/D4_WHOLE_SPACE_COMPACTNESS.md).
+
 ### Exact minimum for weighted closed-loop phase locking
 
 [LaTeX source](papers/weighted-closed-loop-phase-locking/main.tex)
