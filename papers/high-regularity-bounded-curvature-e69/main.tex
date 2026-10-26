@@ -1,0 +1,170 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Hs}[1]{H^{#1}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\Lpinf}{L^\infty}
+
+\title{E69: High-Regularity $L^\infty$ Bound for the\\Corrected Regularized Curvature Operator}
+\author{Richard J. Reyes}
+\date{October 26, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove that the corrected complex curvature operator is essentially bounded
+whenever its input lies in $H^s(\R^n)$ with $s>n/2+2$ and the regularization
+parameter $\eps$ is positive. The regularized reciprocal is bounded globally,
+including at zeros of the field. The estimate is explicit up to the Sobolev
+embedding constant and does not require the spatial dimension to be at most three.
+\end{abstract}
+
+\section{Statement}
+
+For $\eps>0$ and $\alpha\in\R$, define, for $z\in\C$,
+\begin{equation}\label{eq:reciprocal}
+ R_\eps(z)
+ := \frac{\overline z}{|z|^2+\eps^2\exp(-2\alpha|z|^2)},
+\end{equation}
+and, for a complex-valued field $\psi$,
+\begin{equation}\label{eq:curvature}
+ \Theta_\eps[\psi]
+ := - (\Delta\psi)\,R_\eps(\psi)
+ = -\Delta\psi\,
+ \frac{\overline\psi}{|\psi|^2+\eps^2\exp(-2\alpha|\psi|^2)}.
+\end{equation}
+
+\begin{theorem}[E69: bounded regularized curvature]\label{thm:e69}
+Let $n\ge1$, $\eps>0$, $\alpha\in\R$, and $s>n/2+2$.
+If $\psi\in H^s(\R^n;\C)$, then
+\[
+ \Theta_\eps[\psi]\in L^\infty(\R^n;\C).
+\]
+In fact, with $\alpha_+:=\max\{\alpha,0\}$ and
+\begin{equation}\label{eq:M}
+ M_{\eps,\alpha}
+ :=\max\left\{1,\frac{e^{2\alpha_+}}{\eps^2}\right\},
+\end{equation}
+there is a finite constant $C_{n,s}>0$ independent of
+$\psi,\eps,\alpha$ such that
+\begin{equation}\label{eq:main}
+ \boxed{\quad
+ \|\Theta_\eps[\psi]\|_{L^\infty(\R^n)}
+ \le C_{n,s}M_{\eps,\alpha}\|\psi\|_{H^s(\R^n)}.
+ \quad}
+\end{equation}
+\end{theorem}
+
+\section{Proof}
+\begin{proof}
+We first estimate the Laplacian. With the unitary Fourier transform,
+\[
+ \widehat{\Delta\psi}(\xi)=-|\xi|^2\widehat\psi(\xi).
+\]
+Consequently,
+\begin{align}
+ \|\Delta\psi\|_{H^{s-2}}^2
+ &=\int_{\R^n}(1+|\xi|^2)^{s-2}|\xi|^4
+             |\widehat\psi(\xi)|^2\,d\xi\\
+ &\le\int_{\R^n}(1+|\xi|^2)^s
+             |\widehat\psi(\xi)|^2\,d\xi
+  =\|\psi\|_{H^s}^2,
+\end{align}
+where we used $|\xi|^4\le(1+|\xi|^2)^2$. Thus
+\begin{equation}\label{eq:lap-hs}
+ \|\Delta\psi\|_{H^{s-2}}\le\|\psi\|_{H^s}.
+\end{equation}
+
+Since $s-2>n/2$, the Sobolev embedding
+$H^{s-2}(\R^n)\hookrightarrow L^\infty(\R^n)$ applies. Therefore
+\begin{equation}\label{eq:lap-linf}
+ \|\Delta\psi\|_{L^\infty}
+ \le C_{n,s}\|\Delta\psi\|_{H^{s-2}}
+ \le C_{n,s}\|\psi\|_{H^s}.
+\end{equation}
+For completeness, the embedding may be obtained by Cauchy--Schwarz:
+for $r=s-2>n/2$,
+\begin{align}
+ \|\widehat{\Delta\psi}\|_{L^1}
+ &\le\left(\int_{\R^n}(1+|\xi|^2)^{-r}\,d\xi\right)^{1/2}
+       \|\Delta\psi\|_{H^r},
+\end{align}
+and the integral is finite since its radial tail behaves as
+$\int_1^\infty\rho^{n-1-2r}\,d\rho$. Fourier inversion then yields
+\eqref{eq:lap-linf}.
+
+Next we bound the reciprocal \eqref{eq:reciprocal}. For any $z\in\C$, the
+denominator
+\[
+ D_\eps(z):=|z|^2+\eps^2e^{-2\alpha|z|^2}
+\]
+is strictly positive, because $\eps>0$. Put $t=|z|\ge0$.
+If $0\le t\le1$, then $e^{-2\alpha t^2}\ge e^{-2\alpha_+}$, so
+\[
+ |R_\eps(z)|
+ =\frac{t}{t^2+\eps^2e^{-2\alpha t^2}}
+ \le\frac{e^{2\alpha_+}}{\eps^2}.
+\]
+If $t\ge1$, the denominator is at least $t^2$, and hence
+\[
+ |R_\eps(z)|\le\frac{t}{t^2}=\frac1t\le1.
+\]
+Thus, uniformly in $z$,
+\begin{equation}\label{eq:rec-bound}
+ \sup_{z\in\C}|R_\eps(z)|\le M_{\eps,\alpha}<\infty.
+\end{equation}
+In particular, $R_\eps(0)=0$, so nodes of $\psi$ produce no
+singularity.
+
+Finally, by \eqref{eq:curvature}, \eqref{eq:lap-linf}, and
+\eqref{eq:rec-bound},
+\begin{align*}
+ \|\Theta_\eps[\psi]\|_{L^\infty}
+ &\le\|\Delta\psi\|_{L^\infty}
+       \|R_\eps(\psi)\|_{L^\infty}\\
+ &\le C_{n,s}\|\psi\|_{H^s} M_{\eps,\alpha}.
+\end{align*}
+This proves \eqref{eq:main} and the asserted $L^\infty$ membership.
+\end{proof}
+
+\section{Scope and limitations}
+
+\begin{remark}[Spatial dimensions]
+The sufficient requirement $s>n/2+2$ applies in every finite spatial
+dimension. It requires $s>5/2,3,7/2,4,9/2$ for $n=1,2,3,4,5$,
+respectively. By contrast, the embedding $H^2\hookrightarrow L^\infty$
+for $n\le3$ bounds $\psi$, not necessarily $\Delta\psi$;
+$H^2$ regularity alone does not yield Theorem~\ref{thm:e69}.
+\end{remark}
+
+\begin{remark}[Other domains]
+The same reasoning works on a flat torus, with the periodic Sobolev
+embedding, and on a bounded Lipschitz extension domain $\Omega$
+when an $H^s(\Omega)\to L^\infty(\Omega)$ embedding for second-order
+derivatives is available (for example, under the usual suitable extension
+and regularity hypotheses). In that case the constant depends on $\Omega$.
+\end{remark}
+
+\begin{remark}[Fixed regularization]
+The bound is for fixed $\eps>0$ and does not imply a uniform estimate
+as $\eps\downarrow0$. Nor does it establish existence, uniqueness, or
+stability of a PDE flow involving $\Theta_\eps$.
+\end{remark}
+
+\begin{remark}[Choice of regularizer]
+The claim uses the modulus-squared regularizer \eqref{eq:reciprocal}.
+It does not extend automatically to the older complex denominator
+$\psi+\eps e^{-\alpha|\psi|^2}$, which can vanish.
+\end{remark}
+
+\end{document}
