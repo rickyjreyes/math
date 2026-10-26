@@ -45,3 +45,26 @@ For the unprojected fourth-order cubic–quintic Schrödinger equation on a flat
 **Scope:** This is an exact Fourier-support obstruction, not a failure theorem for controlled Galerkin approximations or general nonlinear invariant manifolds. The argument applies for any real cubic coefficient and a nonzero quintic coefficient.
 
 **Related source:** [Nonlinear model bridge, C1](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/foundational_recovery/NONLINEAR_MODEL_BRIDGE.md).
+
+
+### Ultraviolet Sobolev ill-posedness for a fourth-order wave equation
+
+[LaTeX source](papers/uv-sobolev-ill-posedness-fourth-order-wave/main.tex)
+
+For the constant-coefficient equation
+\[
+(\Box-\Box^2-\Delta^2)u=0,\qquad \Box=-\partial_t^2+\Delta,
+\]
+the manuscript proves that every positive-time four-jet evolution map \(S(t):X_{r+\ell}\to X_r\) is unbounded for all finite \(\ell\ge0\). The exact dispersion roots lead to the growing high-frequency rate
+\[
+\operatorname{Re}s(k)=\sqrt{\frac{\sqrt2-1}{2}}\,|k|+O(|k|^{-1}).
+\]
+The proof constructs smooth real solutions on the torus and Fourier packets on the whole space, and extends the argument to the strict-coefficient homogeneous S004 symbol.
+
+**Build:** Run \`pdflatex -interaction=nonstopmode main.tex\` twice from the paper directory. Uses standard LaTeX packages.
+
+**Scope:** This is a linearized homogeneous-sector ill-posedness theorem, not a nonlinear norm-inflation proof or measured physical lifetime.
+
+**Related audit:** [S004 ghost and ultraviolet obstruction](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/foundational/GHOST_AND_CONSTRAINT_ANALYSIS.md).
+
+This manuscript is a research draft and has not undergone independent peer review.
