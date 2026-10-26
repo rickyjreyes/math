@@ -13,14 +13,14 @@ namespace ReyesMath
 
 /-- The complex-gradient product has precisely the real Gram entry. -/
 theorem complex_gradient_real_identity (a b c d : ℝ) :
-    (Complex.conj (Complex.mk a b) * Complex.mk c d).re =
+    (star (Complex.mk a b) * Complex.mk c d).re =
       a * c + b * d := by
-  simp [Complex.mul_re, Complex.conj_re, Complex.conj_im]
+  simp [Complex.mul_re]
   ring
 
 private def pointwiseComplexGradientTensor
     (da db : Fin 4 → ℝ) : Matrix (Fin 4) (Fin 4) ℝ :=
-  fun i j => (Complex.conj (Complex.mk (da i) (db i)) *
+  fun i j => (star (Complex.mk (da i) (db i)) *
       Complex.mk (da j) (db j)).re
 
 /-- The physical-looking Re(conjugate-gradient times gradient) 4×4 tensor
