@@ -172,3 +172,22 @@ exact-shell $L^2$ states, not a no-go theorem for nonlinear localized
 states, trapping, or bounded-domain eigenmodes.
 
 **Related supporting note:** [Localization and domain selection audit](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/cross_paper/LOCALIZATION_AND_DOMAIN_SELECTION.md).
+
+### Exact positive-wavenumber minimum in a higher-derivative dispersion relation
+
+[LaTeX source](papers/exact-positive-wavenumber-minimum/main.tex)
+
+For the lower real-frequency branch
+\[
+z_-(q)=\frac{1+(2K+G)q-\sqrt{s^2+2Gq-Bq^2}}{2K},
+\quad B=4KT-G^2>0,\quad s=\sqrt{1-4Km^2},
+\]
+the manuscript proves that under \(K,T>0\), \(0<4Km^2<1\), and \(G(1-s)/(2K)>s\), there is a unique positive interior minimum
+\[
+q_*=\frac{G-(2K+G)\sqrt{(G^2+Bs^2)/((2K+G)^2+B)}}{B}>0.
+\]
+It proves strict convexity, the sharp initial-slope criterion, and positivity of both squared-frequency branches on their real-pole interval. This is a parameter-dependent oscillatory-frequency minimum, **not** a cure for the higher-derivative ghost or high-wavenumber instability.
+
+**Build:** From the manuscript directory, run \`pdflatex -interaction=nonstopmode main.tex\` twice.
+
+**Supporting derivation:** [Finite-scale selection audit](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/cross_paper/FINITE_SCALE_SELECTION.md).
