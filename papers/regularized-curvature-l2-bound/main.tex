@@ -31,7 +31,8 @@ expression
 =-\frac{\Delta\psi}
 {\psi+\varepsilon e^{-\alpha|\psi|^2}}.
 \]
-We prove the $L^2$ bound asserted in lemma E26 under a precise,
+We prove the conditional $L^2$ bound for the historical
+additive-denominator version of E26 under a precise,
 uniform lower bound on the modulus of the denominator. We also establish
 two explicit sufficient conditions and exhibit a smooth counterexample
 to the unconditional version of the estimate. In particular,
@@ -204,6 +205,41 @@ Consequently, the E26 estimate is \emph{false} for unrestricted
 signed real fields (and hence for unrestricted complex fields) if
 one assumes only $\varepsilon>0$ and $\psi\in H^2$.
 \end{counterexample}
+
+\section{Relationship to the corrected WCT regularization}
+The operator in \eqref{eq:Theta} is the \emph{historical}
+additive-denominator regularization. It must not be identified with
+the phase-covariant modulus-squared regularization used in
+M2+E17, which instead has the form
+\[
+\widetilde\Theta_\varepsilon[\psi]
+=-(\Delta\psi)\,
+\frac{\overline\psi}{|\psi|^2+
+\varepsilon^2e^{-2\alpha|\psi|^2}}.
+\]
+For fixed $\varepsilon>0$ and $\alpha\geq0$, the corrected multiplier
+\[
+R_\varepsilon(z):=
+\frac{\overline z}{|z|^2+\varepsilon^2e^{-2\alpha|z|^2}}
+\]
+is bounded on $\mathbb C$. If $|z|\geq\varepsilon/2$, then
+$|R_\varepsilon(z)|\leq |z|^{-1}\leq2/\varepsilon$. Otherwise,
+\[
+|R_\varepsilon(z)|
+\leq\frac{|z|e^{2\alpha|z|^2}}{\varepsilon^2}
+\leq\frac{e^{\alpha\varepsilon^2/2}}{2\varepsilon}.
+\]
+Thus
+\[
+\|\widetilde\Theta_\varepsilon[\psi]\|_{L^2}
+\leq\frac{1}{\varepsilon}
+\max\left\{2,\frac{e^{\alpha\varepsilon^2/2}}{2}\right\}
+\|\Delta\psi\|_{L^2}
+\quad(\psi\in H^2(\Omega;\mathbb C)).
+\]
+This unconditional fixed-regularization estimate and E26
+for the historical operator are different assertions. Neither gives
+a uniform $\varepsilon\downarrow0$ bound without further hypotheses.
 
 \section{Scope and interpretation}
 Hypothesis~\eqref{eq:H} is a bound on the \emph{modulus of the full
