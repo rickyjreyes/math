@@ -5,3 +5,8 @@ import MathProofs.FourierSupport
 import MathProofs.PhaseMinimizer
 import MathProofs.StructuralExtensions
 import MathProofs.ModelAlgebra
+import MathProofs.DispersionMinimizer
+import MathProofs.UVDispersion
+import MathProofs.LocalIdentifiability
+import MathProofs.ComplexMetric
+import MathProofs.SphereNull

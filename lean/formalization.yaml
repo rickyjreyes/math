@@ -17,8 +17,8 @@ families:
     declarations: [ReyesMath.negativeEnergy_strictGap]
   F02:
     main_theorem_formalized: false
-    covered: "Acceleration Hessian determinant and positivity are formalized; four-jet ill-posedness and Dirac/Ostrogradsky constraint count are not."
-    declarations: [ReyesMath.s004_acceleration_hessian_det, ReyesMath.s004_acceleration_hessian_det_pos]
+    covered: "Acceleration Hessian determinant/positivity and both exact complex UV characteristic roots are formalized; four-jet ill-posedness, high-frequency growth, and Dirac/Ostrogradsky constraint count are not."
+    declarations: [ReyesMath.s004_acceleration_hessian_det, ReyesMath.s004_acceleration_hessian_det_pos, ReyesMath.ultraviolet_plus_root_exact, ReyesMath.ultraviolet_minus_root_exact]
   F03:
     main_theorem_formalized: false
     covered: "Finite weighted variance identity and nonnegative variance; not the continuous periodic spectral identity."
@@ -33,8 +33,8 @@ families:
     declarations: []
   F06:
     main_theorem_formalized: false
-    covered: "Exact polynomial discriminant identity formalized; real branches, convexity, critical point and exact minimum not formalized."
-    declarations: [ReyesMath.dispersion_discriminant_identity]
+    covered: "Exact discriminant, supporting-tangent square identity, and strict global uniqueness of a given admissible stationary minimum are formalized; original parameter hypotheses and existence/explicit critical point remain."
+    declarations: [ReyesMath.dispersion_discriminant_identity, ReyesMath.dispersion_tangent_square_identity, ReyesMath.dispersion_unique_minimum_at_stationary]
   F07:
     main_theorem_formalized: false
     covered: "Finite weighted bound, exact gap/completion-of-square identity, and sharp lower bound; not the continuous closed-loop theorem or equality characterization."
@@ -42,14 +42,14 @@ families:
   F08:
     main_theorem_formalized: false
     algebraic_no_go_core_formalized: true
-    covered: "Positive-sign two-gradient Gram tensor PSD/rank at most 2, generalized to arbitrary nonnegative weighted gradients and rank at most carrier count; manifold-level geometric theorem not formalized."
-    declarations: [ReyesMath.scalarGradientGram_nonnegative, ReyesMath.scalarGradientGram_psd, ReyesMath.scalarGradientGram_no_timelike, ReyesMath.scalarGradientCarrier_gram_entry, ReyesMath.scalarGradientCarrier_rank_le_two, ReyesMath.positive_weighted_gradient_family_psd, ReyesMath.gradient_gram_rank_le_carriers]
+    covered: "Exact Re(conjugate complex gradient × complex gradient) entry identity, 4×4 tensor equality to the Gram carrier and rank bound, arbitrary weighted PSD and rank at most carrier count; manifold-level differentiable-field formulation not formalized."
+    declarations: [ReyesMath.scalarGradientGram_nonnegative, ReyesMath.scalarGradientGram_psd, ReyesMath.scalarGradientGram_no_timelike, ReyesMath.scalarGradientCarrier_gram_entry, ReyesMath.scalarGradientCarrier_rank_le_two, ReyesMath.positive_weighted_gradient_family_psd, ReyesMath.gradient_gram_rank_le_carriers, ReyesMath.complex_gradient_real_identity, ReyesMath.complex_gradient_tensor_eq_gram, ReyesMath.complex_gradient_tensor_rank_le_two]
   F09:
     main_theorem_formalized: false
     matrix_nullity_core_formalized: true
-    covered: "Any real 11-by-31 matrix has at least 20 kernel dimensions, and general m-by-n matrix nullity lower bound; model-specific Jacobian and measured rank 11 are not formalized."
-    declarations: [ReyesMath.elevenByThirtyone_nullity_bound, ReyesMath.nullityBound_arithmetic, ReyesMath.elevenByThirtyOne_matrix_nullity, ReyesMath.rectangular_sensitivity_nullity]
+    covered: "Any real 11-by-31 matrix has at least 20 kernel dimensions; extended to the Fréchet derivative of any differentiable 31-to-11 map. Model-specific Jacobian and measured numerical rank 11 remain outside Lean."
+    declarations: [ReyesMath.elevenByThirtyone_nullity_bound, ReyesMath.nullityBound_arithmetic, ReyesMath.elevenByThirtyOne_matrix_nullity, ReyesMath.rectangular_sensitivity_nullity, ReyesMath.differential_local_identifiability_obstruction]
   F10:
     main_theorem_formalized: false
-    covered: "Abstract null-support a.e. zero lemma and exact one-dimensional two-point shell; multidimensional shell measure-zero and Plancherel steps remain."
-    declarations: [ReyesMath.zero_ae_of_null_support, ReyesMath.oneDimensional_shell_ae_zero]
+    covered: "Abstract null-support, 1D shell, and positive-dimensional Euclidean sphere measure-zero / Fourier-representative a.e.-zero proved for every finite dimension. The L² Fourier-Plancherel inversion bridge to the original physical field remains."
+    declarations: [ReyesMath.zero_ae_of_null_support, ReyesMath.oneDimensional_shell_ae_zero, ReyesMath.euclidean_frequency_shell_measure_zero, ReyesMath.euclidean_frequency_shell_ae_zero]
