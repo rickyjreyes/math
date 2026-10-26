@@ -1,0 +1,294 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1.1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\T}{\mathbb T}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\conv}{\operatorname{conv}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Span}{\operatorname{span}}
+
+\title[Non-invariance of finite Fourier coordinate subspaces]
+{Non-invariance of finite Fourier coordinate subspaces\\
+under cubic--quintic Schr\"odinger evolution}
+\date{October 26, 2026}
+
+\begin{document}
+\begin{abstract}
+For the unprojected fourth-order cubic--quintic Schr\"odinger flow on a flat
+periodic torus, we prove that no finite Fourier coordinate subspace with at
+least two frequencies is invariant.  In fact, every trigonometric polynomial
+with at least two nonzero Fourier coefficients has an initially absent Fourier
+mode with nonzero time derivative.  The proof isolates an extremal quintic
+interaction that cannot be canceled by the cubic nonlinearity or the diagonal
+linear propagator.  We also classify the invariant finite Fourier coordinate
+subspaces and distinguish the result from claims about approximate Galerkin
+models or general nonlinear invariant manifolds.
+\end{abstract}
+\maketitle
+
+\section{Equation and statement}
+
+Let $d\ge 1$ and $\T^d=(\R/2\pi\Z)^d$.  Consider
+\begin{equation}\label{eq:flow}
+ i\partial_t u=(\Delta+\kappa^2)^2u-\beta|u|^2u+\gamma|u|^4u,
+ \qquad (t,x)\in\R\times\T^d,
+\end{equation}
+where $\kappa>0$, $\beta\in\R$, and $\gamma\in\R\setminus\{0\}$.
+In particular, the claims apply to the focusing-cubic/defocusing-quintic
+case $\beta,\gamma>0$.
+
+For a finite set $S\subset\Z^d$, define its Fourier coordinate subspace
+\begin{equation}\label{eq:ES}
+ E_S:=\Span_{\C}\{e^{in\cdot x}:n\in S\}.
+\end{equation}
+Invariance means that the solution of \eqref{eq:flow} remains in $E_S$
+whenever its initial datum lies in $E_S$, for as long as that solution exists.
+
+\begin{theorem}[No finite multimode Fourier coordinate subspace is invariant]
+\label{thm:noninvariance}
+If $S\subset\Z^d$ is finite and $|S|\ge 2$, then $E_S$ is not
+invariant under \eqref{eq:flow}.  More precisely, there exist
+$u_0\in E_S$ and $r\in\Z^d\setminus S$ such that the corresponding
+smooth local solution satisfies
+\begin{equation}\label{eq:derivative-nonzero}
+ \widehat u(r,0)=0,
+ \qquad \partial_t\widehat u(r,0)\ne 0.
+\end{equation}
+Consequently, $u(t)\notin E_S$ for every sufficiently small $t\ne0$.
+\end{theorem}
+
+\begin{proof}
+Choose an extreme point $p$ of the compact polytope $\conv(S)$.
+Every extreme point of the convex hull of a finite set belongs to that set,
+so $p\in S$.  Choose $q\in S$ with $q\ne p$ and set
+\begin{equation}\label{eq:r}
+ r:=3p-2q\in\Z^d.
+\end{equation}
+If $r\in S$, then
+\[
+ p=\frac23q+\frac13r
+\]
+would express the extreme point $p$ as a nontrivial convex combination
+of two distinct elements of $\conv(S)$.  Therefore $r\notin S$.
+
+Take $a,b\in\C\setminus\{0\}$ and put
+\begin{equation}\label{eq:two-mode}
+ u_0(x):=a e^{ip\cdot x}+b e^{iq\cdot x}\in E_S.
+\end{equation}
+The linear operator $L:=(\Delta+\kappa^2)^2$ is diagonal in the
+Fourier basis:
+\[
+ L e^{in\cdot x}=(\kappa^2-|n|^2)^2e^{in\cdot x}.
+\]
+Thus $\widehat{Lu_0}(r)=0$.
+
+Next,
+\[
+ |u_0|^2u_0=u_0^2\overline{u_0}
+\]
+has Fourier support contained in
+$\{p,q,2p-q,2q-p\}$.  Since $p\ne q$, none of these
+frequencies equals $r=3p-2q$; hence
+\begin{equation}\label{eq:cubic-zero}
+ \widehat{|u_0|^2u_0}(r)=0.
+\end{equation}
+
+Finally,
+\[
+ |u_0|^4u_0=u_0^3\overline{u_0}^{\,2}.
+\]
+A term in this product has frequency
+\[
+ jp+(3-j)q-\ell p-(2-\ell)q
+   =(j-\ell)p+(1-j+\ell)q,
+\]
+where $j\in\{0,1,2,3\}$ and $\ell\in\{0,1,2\}$.
+To obtain $r=3p-2q$, we must have
+\[
+ (j-\ell-3)(p-q)=0.
+\]
+Because $p\ne q$, this implies $j-\ell=3$, whose only allowed
+solution is $(j,\ell)=(3,0)$.  Thus there is exactly one quintic
+contribution at frequency $r$, namely
+\begin{equation}\label{eq:quintic-coeff}
+ \widehat{|u_0|^4u_0}(r)=a^3\overline b^{\,2}\ne0.
+\end{equation}
+Taking the $r$-th Fourier coefficient of \eqref{eq:flow} at $t=0$
+and using \eqref{eq:cubic-zero}--\eqref{eq:quintic-coeff}, we get
+\begin{equation}\label{eq:exact-derivative}
+ \partial_t\widehat u(r,0)=-i\gamma a^3\overline b^{\,2}\ne0.
+\end{equation}
+Smooth trigonometric-polynomial data generate a smooth local solution
+of the polynomial semilinear Schr\"odinger equation; in particular,
+each Fourier coefficient is differentiable at $t=0$.  Since
+$\widehat u(r,0)=0$, equation \eqref{eq:exact-derivative} gives
+\[
+ \widehat u(r,t)=-i\gamma a^3\overline b^{\,2}t+o(t)
+ \qquad (t\to0).
+\]
+Its coefficient is nonzero for every sufficiently small $t\ne0$.
+As $r\notin S$, the solution has left $E_S$.
+\end{proof}
+
+\section{Leakage from every finite multimode initial support}
+
+The preceding theorem constructs a particular initial datum in each
+coordinate subspace.  The following stronger statement applies to
+\emph{every} finite Fourier superposition with at least two active modes.
+
+\begin{theorem}[Universal instantaneous leakage for trigonometric polynomials]
+\label{thm:all-data}
+Let
+\begin{equation}\label{eq:general-u}
+ u_0(x)=\sum_{n\in T}c_n e^{in\cdot x},
+ \qquad T\subset\Z^d\text{ finite},\quad |T|\ge2,
+ \quad c_n\ne0\ (n\in T).
+\end{equation}
+There is a frequency $r\notin T$ such that
+\[
+ \partial_t\widehat u(r,0)\ne0.
+\]
+Consequently, the solution leaves $E_T$ for all sufficiently small
+nonzero times.
+\end{theorem}
+
+\begin{proof}
+Choose a real linear functional $\ell:\R^d\to\R$ taking distinct
+values on $T$.  This is possible because one only needs to avoid the
+finitely many hyperplanes
+$\{v\in\R^d:v\cdot(n-m)=0\}$ for distinct $n,m\in T$.
+Let $p$ and $q$ be the unique maximum and minimum points of $\ell|_T$,
+respectively.  Then
+\[
+ \ell(p)>\ell(q),\qquad
+ \ell(q)\le\ell(n)\le\ell(p)\quad(n\in T),
+\]
+with the appropriate equality occurring only at the relevant endpoint.
+Set $r=3p-2q$.  Since
+\[
+ \ell(r)=3\ell(p)-2\ell(q)>\ell(p),
+\]
+we have $r\notin T$.
+
+The exact quintic Fourier convolution is
+\begin{equation}\label{eq:conv}
+ \widehat{|u_0|^4u_0}(r)
+ =\sum_{\substack{n_1,n_2,n_3,m_1,m_2\in T\\
+                n_1+n_2+n_3-m_1-m_2=r}}
+ c_{n_1}c_{n_2}c_{n_3}
+ \overline{c_{m_1}}\,\overline{c_{m_2}}.
+\end{equation}
+Every tuple in this sum obeys
+\[
+ \begin{aligned}
+ \ell(r)
+ &=\ell(n_1)+\ell(n_2)+\ell(n_3)-\ell(m_1)-\ell(m_2)\\
+ &\le 3\ell(p)-2\ell(q)=\ell(r).
+ \end{aligned}
+\]
+Equality forces $n_1=n_2=n_3=p$ and $m_1=m_2=q$, because the
+extrema of $\ell$ on $T$ are unique.  Hence the sum
+\eqref{eq:conv} contains exactly one term:
+\begin{equation}\label{eq:universal-quintic}
+ \widehat{|u_0|^4u_0}(r)=c_p^3\overline{c_q}^{\,2}\ne0.
+\end{equation}
+
+By contrast, every frequency $s$ in the cubic convolution
+$u_0^2\overline{u_0}$ satisfies
+\[
+ \ell(s)\le2\ell(p)-\ell(q)
+  <3\ell(p)-2\ell(q)=\ell(r).
+\]
+It follows that $\widehat{|u_0|^2u_0}(r)=0$.
+Since $L$ is diagonal and $r\notin T$, also
+$\widehat{Lu_0}(r)=0$.  Equation \eqref{eq:flow} now yields
+\begin{equation}\label{eq:universal-leakage}
+ \partial_t\widehat u(r,0)
+  =-i\gamma c_p^3\overline{c_q}^{\,2}\ne0.
+\end{equation}
+The local-in-time conclusion follows as in Theorem~\ref{thm:noninvariance}.
+\end{proof}
+
+\section{Classification and explicit example}
+
+\begin{corollary}[Complete classification of finite Fourier coordinate subspaces]
+\label{cor:classification}
+For every finite $S\subset\Z^d$,
+\[
+ \boxed{\ E_S\text{ is invariant under \eqref{eq:flow}}
+ \quad\Longleftrightarrow\quad |S|\le1.\ }
+\]
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:noninvariance} excludes $|S|\ge2$.
+The empty subspace $E_\varnothing=\{0\}$ is invariant.
+For $S=\{p\}$, substitute $u(t,x)=A(t)e^{ip\cdot x}$ into
+\eqref{eq:flow}.  The amplitude solves
+\[
+ iA'(t)=\big((\kappa^2-|p|^2)^2-\beta|A(t)|^2
+                    +\gamma|A(t)|^4\big)A(t).
+\]
+Its modulus is constant, so
+\[
+ A(t)=A(0)e^{-i\Omega t},\qquad
+ \Omega=(\kappa^2-|p|^2)^2-\beta|A(0)|^2+\gamma|A(0)|^4.
+\]
+Thus $E_{\{p\}}$ is invariant.
+\end{proof}
+
+\begin{proposition}[Fifth-harmonic generation from a cosine]
+\label{prop:cos}
+In one spatial dimension, let $u_0(x)=\cos x$.  For the solution
+of \eqref{eq:flow},
+\[
+ \widehat u(5,0)=0,
+ \qquad
+ \widehat u(5,t)=-\frac{i\gamma}{32}t+o(t)
+ \quad(t\to0).
+\]
+\end{proposition}
+
+\begin{proof}
+Apply Theorem~\ref{thm:noninvariance} with
+$p=1$, $q=-1$, and $a=b=1/2$; then $r=5$ and
+$a^3\overline b^{\,2}=1/32$.
+\end{proof}
+
+\section{Scope and interpretation}
+
+\begin{remark}[Unprojected versus Galerkin-projected evolution]
+For a finite set $S$, the Galerkin equation
+\[
+ i\partial_tu=P_S\big[(\Delta+\kappa^2)^2u
+  -\beta|u|^2u+\gamma|u|^4u\big]
+\]
+remains in $E_S$ by construction.  This does not establish invariance
+of $E_S$ for the original unprojected equation: $P_S$ discards the
+newly generated harmonics and changes the dynamics.
+\end{remark}
+
+\begin{remark}[What the result does not prove]
+Theorems~\ref{thm:noninvariance} and \ref{thm:all-data}
+concern finite \emph{Fourier coordinate subspaces}.  They do not exclude
+other finite-dimensional nonlinear invariant manifolds, rule out useful
+finite-time approximation by Galerkin or envelope models, or establish
+that every solution populates infinitely many frequencies.  They also
+do not derive the cubic--quintic equation from a proposed higher-derivative
+parent theory.  A controlled reduction must separately justify excluded
+modes and quantify its approximation error.
+\end{remark}
+
+\end{document}
