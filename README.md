@@ -4,6 +4,32 @@ Standalone mathematical proofs and research notes by Richard J. Reyes.
 
 ## Papers
 
+### Exact minimum for weighted closed-loop phase locking
+
+[LaTeX source](papers/weighted-closed-loop-phase-locking/main.tex)
+
+For a fixed closed loop, positive weight $w$, geometric phase target $\sigma$,
+connection $\Omega$, and winding number $n$, the manuscript proves
+
+$
+\min_{\operatorname{wind}(\chi)=n}\oint w(\chi'-m\Omega-\sigma)^2\,ds
+=\frac{(2\pi n-m\Phi-J)^2}{I},\qquad
+I=\oint w^{-1}\,ds,\quad J=\oint\sigma\,ds.
+$
+
+The minimizer is attained uniquely in the covariant phase gradient
+$q_*=\sigma+(2\pi n-m\Phi-J)/(Iw)$, up to additive constant phase.
+An exact nonnegative remainder establishes strict fixed-sector variational
+minimality. Conditional comparison among integers does **not** establish
+physical winding transitions or full nonlinear-field stability.
+
+**Build:** Run `pdflatex -halt-on-error -interaction=nonstopmode main.tex`
+twice from the manuscript directory (5 pages in the checked build).
+
+**Supporting analysis:** [Winding selection analysis](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/WINDING_SELECTION_ANALYSIS.md).
+
+**Status:** Research manuscript; not independently peer-reviewed.
+
 ### Whole-space nonattainment and strict spreading for a positive curvature functional
 
 [LaTeX source](papers/positive-curvature-whole-space-nonattainment/main.tex)
