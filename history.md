@@ -1,5 +1,11 @@
 # Version history
 
+## 2026-10-26 — M6B exact nonuniqueness counterexamples
+
+- Added a standalone manuscript proving the structural nonuniqueness of the regularized nonlinear curvature closure and noninjectivity of the canonical stationary curvature map modulo global phase, at fixed Dirichlet data and mass.
+- The result does not establish nonuniqueness for the M7 initial-value problem; the manuscript is not Lean-formalized.
+- Integrated source, preprint notes, catalogue, and overview.
+
 ## 2026-10-26 — E26 regularized-curvature L2 estimate
 
 - Added the complete E26 proof and counterexample as a standalone LaTeX manuscript (F12).
