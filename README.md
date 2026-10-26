@@ -188,6 +188,6 @@ q_*=\frac{G-(2K+G)\sqrt{(G^2+Bs^2)/((2K+G)^2+B)}}{B}>0.
 \]
 It proves strict convexity, the sharp initial-slope criterion, and positivity of both squared-frequency branches on their real-pole interval. This is a parameter-dependent oscillatory-frequency minimum, **not** a cure for the higher-derivative ghost or high-wavenumber instability.
 
-**Build:** From the manuscript directory, run \`pdflatex -interaction=nonstopmode main.tex\` twice.
+**Build:** From the manuscript directory, run `pdflatex -interaction=nonstopmode main.tex` twice.
 
 **Supporting derivation:** [Finite-scale selection audit](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/cross_paper/FINITE_SCALE_SELECTION.md).
