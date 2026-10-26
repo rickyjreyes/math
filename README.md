@@ -8,6 +8,7 @@ A collection of **16 research manuscripts in 12 result families**, organized for
 
 - [Overview PDF](overview.pdf) — concise guide to all result families.
 - [Manuscript map](CONTENTS.md) — direct links to each **PDF**, LaTeX source, and notes.
+- [E18: corrected WCT Lyapunov descent](papers/wct-e18-exact-gradient-lyapunov/main.tex) — complete proof under the exact negative-gradient-flow assumption.
 - [Preprints](preprints/) — compiled manuscript PDFs.
 - [Lean catalogue](lean/formalization.yaml) and [Lean project](lean/README.md) — exact status of every family.
 - [History](history.md) — correction and release log.
