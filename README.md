@@ -33,3 +33,15 @@ one has $I(m)<I(\mu)+I(m-\mu)$ for every $0<\mu<m$. The proof uses mass-preservi
 - [Energy-per-mass analysis](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/d4_binding/D4_ENERGY_PER_MASS_ANALYSIS.md)
 
 The manuscript is a research draft and has not undergone independent peer review.
+
+### Non-invariance of finite Fourier coordinate subspaces under cubic–quintic evolution
+
+[LaTeX source](papers/finite-fourier-coordinate-subspace-noninvariance/main.tex)
+
+For the unprojected fourth-order cubic–quintic Schrödinger equation on a flat torus, the paper proves that every finite Fourier coordinate subspace with at least two frequencies fails to be invariant. The stronger theorem shows instantaneous out-of-support Fourier generation from every finite multimode trigonometric polynomial. Singleton plane-wave subspaces and the zero subspace are the only invariant finite Fourier coordinate subspaces.
+
+**Build:** Run `pdflatex -interaction=nonstopmode main.tex` twice from the manuscript directory.
+
+**Scope:** This is an exact Fourier-support obstruction, not a failure theorem for controlled Galerkin approximations or general nonlinear invariant manifolds. The argument applies for any real cubic coefficient and a nonzero quintic coefficient.
+
+**Related source:** [Nonlinear model bridge, C1](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/foundational_recovery/NONLINEAR_MODEL_BRIDGE.md).
