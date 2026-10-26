@@ -153,3 +153,22 @@ spectral nondegeneracy, stability of every stationary branch, or any result
 on four-spatial-dimensional confinement.
 
 **Related supporting note:** [Orbital stability analysis](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/d4_binding/D4_ORBITAL_STABILITY_STATUS.md).
+
+
+### An isolated Fourier shell cannot support a nonzero L² bound state
+
+[LaTeX source](papers/isolated-fourier-shell-no-l2-bound-state/main.tex)
+
+For $d\ge1$, $k_0\ge0$, and $u\in L^2(\mathbb R^d)$, the exact-shell support condition
+$\operatorname{supp}\widehat u\subseteq\{\xi:|\xi|=k_0\}$ implies $u=0$.
+The manuscript proves this via Plancherel and the measure-zero shell, derives
+free-space Helmholtz and polynomial-dispersion corollaries, and constructs
+fixed-carrier wave packets whose envelope radii vary freely.
+
+**Build:** Run `pdflatex -interaction=nonstopmode main.tex` twice from the paper directory.
+
+**Scope:** A standard Fourier-analytic obstruction for linear whole-space
+exact-shell $L^2$ states, not a no-go theorem for nonlinear localized
+states, trapping, or bounded-domain eigenmodes.
+
+**Related supporting note:** [Localization and domain selection audit](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/cross_paper/LOCALIZATION_AND_DOMAIN_SELECTION.md).
