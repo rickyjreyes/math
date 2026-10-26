@@ -11,3 +11,4 @@ import MathProofs.LocalIdentifiability
 import MathProofs.ComplexMetric
 import MathProofs.SphereNull
 import MathProofs.ScalarGradientFields
+import MathProofs.SchwartzShell
