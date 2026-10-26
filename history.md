@@ -1,5 +1,12 @@
 # Version history
 
+## 2026-10-26 — E26 regularized-curvature L2 estimate
+
+- Added the complete E26 proof and counterexample as a standalone LaTeX manuscript (F12).
+- Stated the essential denominator-separation hypothesis for the historical additive denominator and distinguished it from the corrected modulus-squared M2/E17 regularization.
+- Registered the result in the catalogue, overview and Lean coverage manifest as analytic and not Lean-formalized.
+
+
 ## 2026-10-26 — E61 continuum spectral threshold
 
 - Added the complete linear Swift--Hohenberg continuum threshold proof (E61), covering spectrum, semigroup stability, unstable annulus, periodic-domain correction and centered versus uncentered parameters.
