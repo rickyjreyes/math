@@ -84,3 +84,9 @@ For sufficiently regular solutions of the **specified exact negative-gradient fl
 **E69: Bounded corrected regularized curvature** — [PDF](preprints/high-regularity-bounded-curvature-e69/paper.pdf) · [LaTeX source](papers/high-regularity-bounded-curvature-e69/main.tex) · [Notes](preprints/high-regularity-bounded-curvature-e69/README.md)
 
 If \(\psi\in H^s(\mathbb R^n)\), \(s>n/2+2\), and \(\varepsilon>0\), the corrected regularized curvature lies in \(L^\infty\). This is an analytic result, not yet formalized in Lean.
+
+## WCT E58 — Band-selective Green multiplier
+
+**E58: Sharp band-selective Green multiplier bound** — [PDF](preprints/band-selective-green-kernel-bound/paper.pdf) · [LaTeX](papers/band-selective-green-kernel-bound/main.tex) · [Notes](preprints/band-selective-green-kernel-bound/README.md)
+
+For `r>0, a≥0`, proves `0<G(k)≤1/r`, shell equality, sharp continuum `L²` resolvent norm and a sign-changing physical-space example. The full continuum theorem is analytic, not Lean-formalized.
