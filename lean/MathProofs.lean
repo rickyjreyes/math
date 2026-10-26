@@ -21,3 +21,7 @@ import MathProofs.PhysicalDispersionMinimum
 import MathProofs.VariationalBinding
 import MathProofs.GaussianTrialAlgebra
 import MathProofs.S004DiracBracket
+import MathProofs.UVGrowthBound
+import MathProofs.ContinuousSpectralVariance
+import MathProofs.QuinticConvolution
+import MathProofs.CurvatureNonattainment
