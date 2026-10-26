@@ -62,3 +62,9 @@ A PDF here is an analytic manuscript, **not** a claim of peer review or Lean ker
 **E62: Spectral energy concentration fraction** — [PDF](preprints/spectral-energy-concentration-e62/paper.pdf) · [LaTeX source](papers/spectral-energy-concentration-e62/main.tex) · [Notes](preprints/spectral-energy-concentration-e62/README.md)
 
 For nonzero L² data, the Fourier energy fraction within any chosen band is between zero and one. Includes equality cases, projector formulation, and continuous spectra. This is a normalization result, not a proof of dynamical concentration or shell attraction.
+
+## Supplementary WCT operator proofs
+
+**M2 + E17 — Strict positivity and reciprocal consistency of the regularized curvature operator** — [PDF](preprints/regularized-curvature-operator/paper.pdf) · [LaTeX source](papers/regularized-curvature-operator/main.tex) · [Notes](preprints/regularized-curvature-operator/README.md)
+
+The corrected modulus-squared regularization is smooth and bounded for each ε > 0, tends to 1/ψ away from zeros, and obeys explicit convergence estimates; it does not establish nonlinear evolution well-posedness or stability.
