@@ -1,0 +1,1010 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{geometry}
+\usepackage{microtype}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\geometry{margin=1in}
+\hypersetup{colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black,citecolor=blue!55!black,pdftitle={Elementary Mathematical Foundations of Wave Confinement Theory},pdfauthor={Richard J. Reyes}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\T}{\mathbb T}
+\newcommand{\Om}{\Omega}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\inner}[2]{\left\langle#1,#2\right\rangle}
+\newcommand{\id}[1]{\textnormal{\textbf{[#1]}}}
+\newcommand{\scope}{\par\smallskip\noindent\textbf{Limitation.}\ }
+\newcommand{\note}{\par\smallskip\noindent\textbf{Interpretation.}\ }
+\setlist{itemsep=3pt,topsep=4pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small WCT elementary mathematical foundations}
+\fancyhead[R]{\small R. J. Reyes}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{14pt}
+\setlength{\parskip}{0.33em}
+\setlength{\parindent}{0pt}
+\title{\textbf{Elementary Mathematical Foundations of Wave Confinement Theory}\\[.45em]
+\large Proof Compendium for the Corrected WCT Equation Registry}
+\author{Richard J. Reyes}
+\date{October 26, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+This note collects complete proofs of standard or elementary statements associated with
+25 identifiers in the corrected Wave Confinement Theory (WCT) equation registry:
+Sobolev embeddings and counterexamples; finite entropy and counting bounds;
+operator and logarithmic-flow identities; calculus of variations, dissipation,
+and phase-coherence estimates; and flat-torus spectral computations.
+Some counting and physical interpretations require independent hypotheses.
+Canonical statements are distinguished from auxiliary identities and the historical
+uncorrected formulas. The note proves neither a generic physical confinement theorem,
+any standard complexity-class separation, nor absence of higher-derivative ghosts.
+\end{abstract}
+\tableofcontents
+\newpage
+
+\section{Conventions}
+\subsection{Fourier transform on $\R^n$}
+We use the unitary Fourier transform, as in the Fourier-shell manuscript
+\cite{reyesMath}:
+\begin{equation}\label{eq:fourier}
+\widehat f(\xi)=(2\pi)^{-n/2}\int_{\R^n}e^{-ix\cdot\xi}f(x)\,dx,
+\qquad
+f(x)=(2\pi)^{-n/2}\int_{\R^n}e^{ix\cdot\xi}\widehat f(\xi)\,d\xi.
+\end{equation}
+Initially these hold for Schwartz functions; Fourier inversion is understood
+in the appropriate $L^2$, distributional, or absolutely convergent sense.
+Plancherel's theorem and the multiplier convention give
+\begin{equation}
+\norm f_{L^2(\R^n)}=\norm{\widehat f}_{L^2(\R^n)},\qquad
+\widehat{\partial_j f}=i\xi_j\widehat f,\qquad
+\widehat{\Delta f}=-\abs\xi^2\widehat f.
+\end{equation}
+\subsection{Fourier coefficients on the flat torus}
+On $\T^n=(\R/2\pi\Z)^n$ we use the \emph{coefficient} convention of the
+E62 manuscript \cite{reyesMath}:
+\begin{equation}\label{eq:torusfourier}
+\widehat f_k=(2\pi)^{-n}\int_{\T^n}f(x)e^{-ik\cdot x}\,dx,
+\qquad f(x)=\sum_{k\in\Z^n}\widehat f_ke^{ik\cdot x},
+\end{equation}
+so Parseval's identity is
+\begin{equation}
+\norm f_{L^2(\T^n)}^2=(2\pi)^n\sum_{k\in\Z^n}\abs{\widehat f_k}^2.
+\end{equation}
+On $\prod_{j=1}^n(\R/L_j\Z)$, use the phases
+$\exp(2\pi i\sum_jm_jx_j/L_j)$ and normalized coefficients
+$\bigl(\prod_jL_j\bigr)^{-1}\int f\,\overline{e_m}$.
+\subsection{Sobolev spaces}
+For $s\in\R$, set
+\begin{equation}\label{eq:Hs}
+H^s(\R^n)=\left\{f\in\mathscr S'(\R^n):
+\norm f_{H^s}^2:=\int_{\R^n}(1+\abs\xi^2)^s
+\abs{\widehat f(\xi)}^2\,d\xi<\infty\right\}.
+\end{equation}
+For integer $s=2$ this agrees, up to equivalence of norms, with the
+weak-derivative definition involving derivatives of order at most two.
+$C_c^\infty$ denotes smooth compactly supported functions.
+
+\subsection{The canonical corrected curvature operator}
+In accordance with M2 and E17 of the corrected registry \cite{registry},
+for $\varepsilon>0$, $\alpha\in\R$, $z\in\C$ put
+\begin{equation}\label{eq:regularizer}
+D_\varepsilon(z)=\abs z^2+\varepsilon^2e^{-2\alpha\abs z^2},\qquad
+R_\varepsilon(z)=\frac{\overline z}{D_\varepsilon(z)},\qquad
+\Theta_\varepsilon[\psi]=-(\Delta\psi)R_\varepsilon(\psi).
+\end{equation}
+The denominator is strictly positive for all complex $z$. For fixed $z\ne0$,
+$R_\varepsilon(z)\to\overline z/\abs z^2=1/z$ as $\varepsilon\downarrow0$.
+The earlier additive-denominator expression is a different, potentially
+singular object and will not be substituted for \eqref{eq:regularizer}.
+
+\subsection{Variation and regularity conventions}
+All displayed integrations by parts are justified by compactly supported
+variations, periodic boundary conditions, or explicitly imposed vanishing
+boundary terms. For real-valued energies of complex fields, variations are
+performed in the real and imaginary parts. In a Hilbert-space gradient
+flow, the gradient always refers to the designated Hilbert inner product;
+$L^2$ and $H^2$ gradients are generally distinct.
+
+\section{Sobolev embeddings}
+\begin{theorem}[\id{M4/E24} Sharp $H^2$ threshold]\label{thm:sobolev}
+For integer $n\ge1$,
+\begin{equation}\label{eq:threshold}
+H^2(\R^n)\hookrightarrow L^\infty(\R^n)
+\quad\Longleftrightarrow\quad n\le3.
+\end{equation}
+The continuous embedding means $\norm f_\infty\le C_n\norm f_{H^2}$
+for every $f\in H^2(\R^n)$.
+\end{theorem}
+\begin{proof}
+Assume first $n<4$. Fourier inversion and Cauchy--Schwarz give,
+for Schwartz $f$,
+\begin{align*}
+\abs{f(x)}
+&\le(2\pi)^{-n/2}\int_{\R^n}\abs{\widehat f(\xi)}\,d\xi\\
+&=(2\pi)^{-n/2}\int_{\R^n}(1+\abs\xi^2)^{-1}
+(1+\abs\xi^2)\abs{\widehat f(\xi)}\,d\xi\\
+&\le (2\pi)^{-n/2}\left(\int_{\R^n}(1+\abs\xi^2)^{-2}\,d\xi\right)^{1/2}
+\norm f_{H^2}.
+\end{align*}
+To determine the integrability of the first factor, polar coordinates yield
+\begin{equation*}
+I_n=\abs{\mathbb S^{n-1}}\int_0^\infty
+\frac{r^{n-1}}{(1+r^2)^2}\,dr.
+\end{equation*}
+Near the origin the integrand is $O(r^{n-1})$, hence integrable for
+$n\ge1$. At infinity it is asymptotic to $r^{n-5}$, whose integral
+converges exactly when $n-5<-1$, equivalently $n<4$.
+Therefore $\norm f_\infty\le(2\pi)^{-n/2}I_n^{1/2}\norm f_{H^2}$.
+Extension by density gives the result for every $f\in H^2$, with a
+bounded continuous representative. The converse for $n\ge4$ is proved
+by Theorem~\ref{thm:failure}.
+\end{proof}
+\begin{remark}
+The theorem concerns the \emph{chosen} $H^2$ functional-analytic route.
+It does not show that long-lived confinement in four spatial dimensions is
+impossible or that every possible stability mechanism must use this embedding.
+On general domains $\Omega$, extension/regularity assumptions on $\Omega$
+are needed before transferring the Euclidean statement.
+\end{remark}
+
+\begin{theorem}[\id{E67} Explicit failure above three dimensions]\label{thm:failure}
+For every integer $n\ge4$ there exists $f\in H^2(\R^n)$ such that
+$f\notin L^\infty(\R^n)$.
+\end{theorem}
+\begin{proof}
+For $n=4$, choose a radial $\chi\in C_c^\infty(\R^4)$ equal to one on
+$\abs x\le e^{-3}$ and zero on $\abs x\ge e^{-2}$. For $x\ne0$ put
+\begin{equation*}
+f(x)=\chi(x)\log\log\frac e{\abs x}.
+\end{equation*}
+Near the origin, writing $r=\abs x$ and $L(r)=\log(e/r)$, we have
+\begin{equation*}
+f'(r)=-\frac1{rL(r)},\qquad
+f''(r)=\frac{L(r)-1}{r^2L(r)^2}.
+\end{equation*}
+A radial function on $\R^4$ satisfies
+$\abs{D^2f}^2=\abs{f''}^2+3\abs{f'/r}^2$.
+Consequently, for $r$ sufficiently small,
+\begin{equation*}
+\abs{D^2f(r)}^2\le\frac C{r^4L(r)^2}
+\end{equation*}
+and hence
+\begin{align*}
+\int_{B_{r_0}}\abs{D^2f}^2\,dx
+&\le C'\int_0^{r_0}\frac{dr}{r[\log(e/r)]^2}\\
+&=C'\int_{\log(e/r_0)}^\infty\frac{dy}{y^2}<\infty.
+\end{align*}
+The $L^2$ integrals of $f$ and $\nabla f$ converge by weaker
+singularity estimates. The cutoff terms are smooth and supported away
+from the origin. Integration by parts against test functions on punctured
+balls, followed by removal of the inner boundary, shows that these
+classical derivatives agree with the distributional derivatives:
+the respective boundary terms vanish. Thus $f\in H^2(\R^4)$.
+But $f(r)\to+\infty$ as $r\downarrow0$, so $f\notin L^\infty$.
+
+For $n\ge5$, choose
+\begin{equation*}
+0<\alpha_0<\frac n2-2
+\end{equation*}
+and let $f(x)=\chi(x)\abs x^{-\alpha_0}$ with $\chi$ compactly
+supported and equal to one near the origin. For $j=0,1,2$,
+\begin{equation*}
+\abs{D^jf(x)}\le C_j\abs x^{-\alpha_0-j}
+\end{equation*}
+near zero, so
+\begin{equation*}
+\int_{B_{r_0}}\abs{D^jf}^2\,dx\le
+C\int_0^{r_0}r^{n-1-2\alpha_0-2j}\,dr<\infty.
+\end{equation*}
+The last inequality follows from $n-2\alpha_0-4>0$. As above,
+the cutoff singularity has the stated weak derivatives, so $f\in H^2$.
+Yet $f(x)\to\infty$ at the origin. This completes both cases.
+\end{proof}
+\begin{remark}
+The existence of these unbounded $H^2$ functions is classical and is
+consistent with the sharp critical Sobolev theory; see
+Adams--Fournier \cite{adamsfournier}.
+\end{remark}
+
+\begin{definition}[\id{E65} Critical Sobolev power]\label{def:critical}
+For $n>2$ the $H^1$ critical Lebesgue exponent and associated semilinear
+power are
+\begin{equation}\label{eq:crit}
+2^*=\frac{2n}{n-2},\qquad
+p_c(n):=2^*-1=\frac{n+2}{n-2}.
+\end{equation}
+The last equality follows by subtracting one. This is a standard exponent
+\emph{definition}, not a new existence or stability theorem
+\cite{adamsfournier,evans}.
+\end{definition}
+\begin{remark}
+Criticality is model dependent: the displayed $p_c$ is the usual
+energy-critical power for $H^1$-based semilinear equations, not a
+universally applicable $H^2$-critical exponent.
+\end{remark}
+
+\section{Spectral entropy and counting}
+\begin{theorem}[\id{E30} Sharp entropy inequalities]\label{thm:entropy}
+If $P=(P_1,\ldots,P_K)$, with $K\ge1$, is a probability vector,
+$P_j\ge0$ and $\sum_jP_j=1$, then for
+$H(P)=-\sum_jP_j\ln P_j$, with $0\ln0=0$, one has
+\begin{equation}\label{eq:entropy}
+0\le H(P)\le\ln K.
+\end{equation}
+The upper equality holds exactly for $P_j=1/K$ for every $j$; the lower
+equality holds exactly for a point mass.
+\end{theorem}
+\begin{proof}
+Since $0\le P_j\le1$, every term $-P_j\ln P_j$ is nonnegative.
+If the sum is zero, each positive $P_j$ must equal one, and the
+normalization forces a point mass. For the upper bound, let
+$U_j=1/K$ and use Gibbs' inequality for relative entropy:
+\begin{equation*}
+0\le D(P\Vert U)=\sum_{j:P_j>0}P_j\ln\frac{P_j}{U_j}
+=-H(P)+\ln K.
+\end{equation*}
+Thus $H(P)\le\ln K$, with equality if and only if $P=U$.
+Alternatively this is the strict concavity of the logarithm.
+\end{proof}
+\scope A finite entropy inequality does not prove monotone entropy
+production under an evolution. That requires a separate dynamical law.
+
+\begin{corollary}[\id{E33} Effective-support inequality]\label{cor:support}
+If $K_t\ge1$ is the number of positive entries of a discrete
+probability distribution, then
+\begin{equation}
+\boxed{e^{H(t)}\le K_t}.
+\end{equation}
+Equality holds exactly for a distribution uniform on its support.
+\end{corollary}
+\begin{proof}
+Apply Theorem~\ref{thm:entropy} to the strictly positive entries:
+$H(t)\le\ln K_t$. Exponentiate both sides.
+\end{proof}
+\scope The inequality is a \emph{lower} bound for actual support size;
+it is not an upper bound. In particular, support shrinkage is not
+established by the entropy inequality alone.
+
+\begin{theorem}[\id{E29} Cumulative exponential pruning]\label{thm:pruning}
+Suppose $M_t\ge0$ and $\Delta_t\ge0$ obey
+$M_{t+1}\le e^{-\Delta_t}M_t$. Then for every integer $T\ge1$,
+\begin{equation}\label{eq:pruning}
+\boxed{M_T\le M_0\exp\left(-\sum_{t=0}^{T-1}\Delta_t\right)}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+At $T=1$, \eqref{eq:pruning} is exactly the given recurrence.
+Assume it holds at $T$. Then
+\begin{align*}
+M_{T+1}&\le e^{-\Delta_T}M_T\\
+&\le e^{-\Delta_T}M_0
+\exp\left(-\sum_{t=0}^{T-1}\Delta_t\right)
+=M_0\exp\left(-\sum_{t=0}^{T}\Delta_t\right).
+\end{align*}
+The result follows by induction.
+\end{proof}
+\begin{corollary}[Fixed fraction]
+If $0\le\delta\le1$ and $M_{t+1}\le(1-\delta)M_t$, then
+\begin{equation*}
+M_T\le(1-\delta)^TM_0.
+\end{equation*}
+\end{corollary}
+\begin{proof}
+The claim follows by the same induction. For $\delta<1$ it is
+Theorem~\ref{thm:pruning} with $\Delta_t=-\ln(1-\delta)$.
+At $\delta=1$, $M_t=0$ for $t\ge1$.
+\end{proof}
+\scope The \emph{canonical} E29 hypothesis is the exponential factor
+$e^{-\Delta_t}$, not an assumed constant retention fraction. Entropy
+reduction does not imply the recurrence without a model-specific bridge.
+
+\begin{theorem}[\id{E28} Corrected alpha-drop identity]\label{thm:alpha}
+Let $n\in\N$, $m(n)\in\N\cup\{0\}$, $\rho_t(n)\in(0,1]$ and
+$\beta(n)\in\R$, and define
+\begin{equation}\label{eq:alphadef}
+\alpha(n):=1+\frac1n\sum_{t=1}^{m(n)}\log_2\rho_t(n)+\beta(n).
+\end{equation}
+Then
+\begin{equation}\label{eq:alphacriterion}
+\alpha(n)<1
+\quad\Longleftrightarrow\quad
+\beta(n)<-\frac1n\sum_{t=1}^{m(n)}\log_2\rho_t(n).
+\end{equation}
+\end{theorem}
+\begin{proof}
+Subtract one from both sides of $\alpha(n)<1$, substitute
+\eqref{eq:alphadef}, and rearrange. Each step is reversible.
+\end{proof}
+\begin{remark}
+The retained-fraction factors $\rho_t\in(0,1]$ replace the historical
+ratio $(M_t+1)/M_t>1$, which cannot by itself induce an exponent drop.
+The formula does not show that a proposed physical or algorithmic filter
+actually attains those fractions.
+\end{remark}
+
+\begin{theorem}[\id{E32} Uniform exponent margin]\label{thm:margin}
+Suppose there exist $n_0\ge1$ and $\eta>0$ such that for every
+$n\ge n_0$,
+\begin{equation}\label{eq:margin}
+\beta(n)+\frac1n\sum_{t=1}^{m(n)}\log_2\rho_t(n)\le-\eta.
+\end{equation}
+Then
+\begin{equation*}
+\boxed{\limsup_{n\to\infty}\alpha(n)\le1-\eta<1}.
+\end{equation*}
+\end{theorem}
+\begin{proof}
+By \eqref{eq:alphadef} and \eqref{eq:margin},
+$\alpha(n)\le1-\eta$ for all $n\ge n_0$. Taking the limit superior
+establishes the bound.
+\end{proof}
+\begin{remark}[Terminology]
+A bound of order $2^{(1-\eta)n}$ with $0<\eta<1$ is still
+\emph{exponential} in $n$, though its exponent improves on $2^n$.
+The usual asymptotic meaning of \emph{subexponential} is $2^{o(n)}$.
+The canonical registry title ``Subexponential exploration condition''
+should not be interpreted as proving $2^{o(n)}$ from $\limsup\alpha<1$.
+\end{remark}
+
+\begin{theorem}[\id{E41} Conditional configuration count]\label{thm:count}
+Let an initial finite binary code set $B_0(n)$ satisfy
+$\abs{B_0(n)}\le2^n$. Assume a sequence of finite retained sets $B_t(n)$
+satisfies
+\begin{equation}\label{eq:retain}
+\abs{B_t(n)}\le\rho_t(n)\abs{B_{t-1}(n)},\qquad
+\rho_t(n)\in(0,1].
+\end{equation}
+Suppose a finite code set $A_n$ has cardinality
+\begin{equation}\label{eq:overhead}
+\abs{A_n}\le2^{n\beta(n)}\abs{B_{m(n)}(n)}
+\end{equation}
+and the physically defined set $C_{\mathrm{curv}}(n)$ admits an
+injection into $A_n$. Then
+\begin{equation}\label{eq:count}
+\boxed{\abs{C_{\mathrm{curv}}(n)}\le2^{n\alpha(n)}}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Repeated application of \eqref{eq:retain} gives
+$\abs{B_m}\le\abs{B_0}\prod_{t=1}^m\rho_t(n)$.
+An injection cannot increase cardinality, so
+\begin{align*}
+\abs{C_{\mathrm{curv}}(n)}
+&\le\abs{A_n}
+\le2^{n\beta(n)}\abs{B_0(n)}\prod_{t=1}^{m(n)}\rho_t(n)\\
+&\le2^{n+n\beta(n)+\sum_{t=1}^{m(n)}\log_2\rho_t(n)}
+=2^{n\alpha(n)}.
+\end{align*}
+\end{proof}
+\scope The injections and cardinality retention inequalities are
+\emph{hypotheses}, not consequences of E28 alone. If the right side is
+less than one, the hypotheses force the discrete retained set to be
+empty. No polynomial-time enumeration follows from \eqref{eq:count}.
+
+\begin{corollary}[\id{E72} Effective search-space count]\label{cor:eff}
+If the effective search space $S_{\mathrm{eff}}(n)$ admits an injection
+into a finite code set $A_n$ satisfying the cardinality hypotheses
+of Theorem~\ref{thm:count}, then
+\begin{equation*}
+\boxed{\abs{S_{\mathrm{eff}}(n)}\le2^{n\alpha(n)}}.
+\end{equation*}
+\end{corollary}
+\begin{proof}
+Injectivity yields $\abs{S_{\mathrm{eff}}(n)}\le\abs{A_n}$;
+apply the bound on $A_n$ in Theorem~\ref{thm:count}.
+\end{proof}
+\scope Neither E41 nor E72 proves any separation between standard
+complexity classes. In particular, a configuration count alone does not
+prove a computationally efficient encoding or pruning algorithm.
+
+\section{Operator identities}
+\begin{lemma}[Auxiliary Laplacian-multiplication commutator]\label{lem:lapcomm}
+Let $f,v\in C^2(\Omega)$ be scalar-valued. With
+$[\Delta,f]v:=\Delta(fv)-f\Delta v$,
+\begin{equation}\label{eq:lapcomm}
+\boxed{[\Delta,f]v=(\Delta f)v+2\nabla f\cdot\nabla v}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Twice applying the product rule yields
+\begin{equation*}
+\partial_j^2(fv)=(\partial_j^2f)v
++2(\partial_jf)(\partial_jv)+f\partial_j^2v.
+\end{equation*}
+Sum over $j$ and subtract $f\Delta v$.
+\end{proof}
+\begin{remark}
+This is a useful auxiliary identity, but it is \emph{not} the canonical
+E51 operator commutator, which is proved next.
+\end{remark}
+
+\begin{theorem}[\id{E51} Frozen-denominator curvature commutator]\label{thm:curvcomm}
+Let $D\in C^1(\Omega;\C)$ have no zero, let
+$\psi\in C^3(\Omega;\C)$, and define a \emph{linear frozen-coefficient}
+operator $\Theta_D[v]:=-(\Delta v)/D$. Applying it componentwise to a
+vector field,
+\begin{equation}\label{eq:curvcomm}
+\boxed{\nabla(\Theta_D[\psi])-\Theta_D[\nabla\psi]
+=\frac{\Delta\psi}{D^2}\nabla D}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+By the quotient rule,
+\begin{equation*}
+\nabla\left(-\frac{\Delta\psi}{D}\right)
+=-\frac{\nabla\Delta\psi}{D}
++\frac{\Delta\psi}{D^2}\nabla D.
+\end{equation*}
+Constant-coefficient partial derivatives commute on $\R^n$,
+so $\nabla\Delta\psi=\Delta\nabla\psi$. The first term is
+$\Theta_D[\nabla\psi]$; subtract it to obtain \eqref{eq:curvcomm}.
+\end{proof}
+\begin{remark}[Relation to the corrected curvature operator]
+The true corrected map $\Theta_\varepsilon[\psi]
+=-(\Delta\psi)R_\varepsilon(\psi)$ is nonlinear because its
+multiplier depends on $\psi$ and $\overline\psi$.
+If one freezes the coefficient at a chosen field and defines
+$T_\psi[v]=-R_\varepsilon(\psi)\Delta v$, then the exact related
+identity is
+\begin{equation*}
+\nabla(T_\psi\psi)-T_\psi(\nabla\psi)
+=-(\Delta\psi)\nabla(R_\varepsilon(\psi)).
+\end{equation*}
+Neither formula permits replacing the frozen coefficient by one
+evaluated afresh on the vector field $\nabla\psi$.
+\end{remark}
+
+\begin{theorem}[\id{EX} Logarithmic Laplacian identity]\label{thm:loglap}
+Let $u\in C^2(\Omega;\R)$ and $\psi=e^u>0$. Then
+\begin{equation}\label{eq:loglap}
+\boxed{\frac{\Delta\psi}{\psi}=\Delta u+\abs{\nabla u}^2}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+The chain rule gives $\nabla\psi=e^u\nabla u$.
+Therefore
+\begin{equation*}
+\Delta\psi=\nabla\cdot(e^u\nabla u)
+=e^u\abs{\nabla u}^2+e^u\Delta u.
+\end{equation*}
+Divide by $e^u>0$.
+\end{proof}
+
+\begin{theorem}[\id{EY/EZ} Cole--Hopf/logarithmic reduction]\label{thm:colehopf}
+Let $u\in C^{2,1}(\Omega\times(0,T);\R)$ satisfy
+\begin{equation}\label{eq:logflow}
+\partial_tu=\Delta u+\abs{\nabla u}^2.
+\end{equation}
+Then $\psi=e^u$ satisfies the heat equation
+\begin{equation}\label{eq:heat}
+\boxed{\partial_t\psi=\Delta\psi}.
+\end{equation}
+Conversely, every strictly positive $C^{2,1}$ solution of
+\eqref{eq:heat} gives a solution of \eqref{eq:logflow} by $u=\ln\psi$.
+\end{theorem}
+\begin{proof}
+Differentiation and Theorem~\ref{thm:loglap} show
+\begin{equation*}
+\psi_t=e^uu_t=e^u(\Delta u+\abs{\nabla u}^2)=\Delta(e^u).
+\end{equation*}
+Conversely, positivity permits $u=\ln\psi$ and hence
+\begin{equation*}
+u_t=\frac{\psi_t}{\psi}
+=\frac{\Delta\psi}{\psi}
+=\Delta u+\abs{\nabla u}^2.
+\end{equation*}
+\end{proof}
+\begin{remark}
+This is the classical logarithmic version of the Cole--Hopf
+transformation; see Evans \cite[\S 4.4]{evans}.
+It does not globally linearize an arbitrary WCT evolution; the
+real logarithm breaks down at zeros or sign changes of the field.
+\end{remark}
+
+\begin{theorem}[\id{E9} Polar phase-flux identity]\label{thm:phaseflux}
+Suppose $\psi$ is a differentiable complex field and locally, on
+$\{\psi\ne0\}$, write $\psi=\sqrt\rho\,e^{i\vartheta}$ with
+$\rho=\abs\psi^2$. Then
+\begin{equation}\label{eq:phaseflux}
+\boxed{\operatorname{Im}(\overline\psi\nabla\psi)
+=\rho\nabla\vartheta}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Differentiating the polar representation yields
+\begin{equation*}
+\nabla\psi=e^{i\vartheta}\nabla\sqrt\rho
++i\sqrt\rho\,e^{i\vartheta}\nabla\vartheta.
+\end{equation*}
+Multiplying by $\overline\psi=\sqrt\rho\,e^{-i\vartheta}$ gives
+\begin{equation*}
+\overline\psi\nabla\psi
+=\sqrt\rho\,\nabla\sqrt\rho+i\rho\nabla\vartheta.
+\end{equation*}
+The first term is real, so taking the imaginary part proves
+\eqref{eq:phaseflux}.
+\end{proof}
+\scope This is a kinematic identity. A continuity law
+$\rho_t+\nabla\cdot\mathbf S=0$ needs an additional field equation or
+conservation principle; it does not follow from \eqref{eq:phaseflux}.
+
+\section{Variational and flow lemmas}
+\begin{theorem}[\id{E20} Quadratic-sector positivity]\label{thm:quad}
+For $\kappa,\theta,\gamma\in\R$ set
+$Q(a,b)=\kappa a^2+\gamma ab+\theta b^2$. Then
+\begin{equation}\label{eq:quad}
+\boxed{Q(a,b)\ge0\quad\text{for all }a,b\in\R
+\iff\kappa\ge0,\ \theta\ge0,\ \gamma^2\le4\kappa\theta}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Taking $(a,b)=(1,0)$ and $(0,1)$ gives $\kappa,\theta\ge0$.
+If $\kappa>0$, complete the square:
+\begin{equation*}
+Q(a,b)=\kappa\left(a+\frac\gamma{2\kappa}b\right)^2
++\left(\theta-\frac{\gamma^2}{4\kappa}\right)b^2.
+\end{equation*}
+Nonnegativity for every $(a,b)$ requires $\gamma^2\le4\kappa\theta$.
+If $\kappa=0$, $Q(a,b)=\gamma ab+\theta b^2$ can be nonnegative for
+all $(a,b)$ only if $\gamma=0$, which is the same condition.
+Conversely, the completed-square expression is nonnegative whenever
+$\kappa>0$ and the three inequalities hold. If $\kappa=0$, those
+inequalities imply $\gamma=0$, so $Q=\theta b^2\ge0$.
+\end{proof}
+\begin{remark}[Sign convention and ghost obstruction]
+The canonical E20 sector is
+$Q(S,P)=\kappa S^2+\theta P^2-\gamma SP$.
+The criterion is unchanged on sending $\gamma\mapsto-\gamma$.
+Positivity of this algebraic quadratic sector does \emph{not} establish
+boundedness of the canonical Hamiltonian, reduction of higher-time
+configuration degrees of freedom, or absence of an Ostrogradsky ghost.
+The nondegenerate fixed-background S004 analysis is a separate
+canonical-constraint result \cite{s004}.
+\end{remark}
+
+\begin{theorem}[\id{E21} Second-derivative Euler--Lagrange equation]\label{thm:EL}
+Let
+\begin{equation*}
+S[u]=\int_\Omega L(u,\partial_\mu u,\partial_\mu\partial_\nu u)\,dx
+\end{equation*}
+with enough differentiability to justify first variation and
+integration by parts twice. If $u$ is stationary for all compactly
+supported smooth variations, then
+\begin{equation}\label{eq:EL}
+\boxed{\frac{\partial L}{\partial u}
+-\partial_\mu\!\left(\frac{\partial L}{\partial(\partial_\mu u)}\right)
++\partial_\mu\partial_\nu\!\left(
+\frac{\partial L}{\partial(\partial_\mu\partial_\nu u)}\right)=0}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+For $v\in C_c^\infty(\Omega)$ consider $u_\varepsilon=u+\varepsilon v$.
+The first variation is
+\begin{align*}
+\left.\frac d{d\varepsilon}S[u_\varepsilon]\right|_{\varepsilon=0}
+=\int_\Omega\bigg[
+&\frac{\partial L}{\partial u}v
++\frac{\partial L}{\partial(\partial_\mu u)}\partial_\mu v\\
+&+\frac{\partial L}{\partial(\partial_\mu\partial_\nu u)}
+\partial_\mu\partial_\nu v\bigg]dx.
+\end{align*}
+Integrating the first derivative term by parts once and the
+second-derivative term by parts twice, with vanishing boundary terms,
+produces
+\begin{equation*}
+\delta S[u](v)=\int_\Omega\bigg[
+\frac{\partial L}{\partial u}
+-\partial_\mu\!\left(\frac{\partial L}{\partial(\partial_\mu u)}\right)
++\partial_\mu\partial_\nu\!\left(
+\frac{\partial L}{\partial(\partial_\mu\partial_\nu u)}\right)
+\bigg]v\,dx.
+\end{equation*}
+This vanishes for arbitrary $v$. The fundamental lemma of the calculus
+of variations gives \eqref{eq:EL} (distributionally, and classically
+when the indicated derivatives exist).
+\end{proof}
+\scope An Euler--Lagrange equation does not by itself establish that its
+Cauchy problem is well posed or ghost free.
+
+\begin{theorem}[\id{TOP3} Hilbert-space gradient dissipation]\label{thm:gradient}
+Let $\mathcal H$ be a real Hilbert space, $E:\mathcal H\to\R$
+continuously Fr\'echet differentiable, and $u(t)$ a sufficiently
+regular solution of
+\begin{equation*}
+u_t=-\nabla_{\mathcal H}E(u).
+\end{equation*}
+Then
+\begin{equation}\label{eq:gradient}
+\boxed{\frac{d}{dt}E(u(t))
+=-\norm{\nabla_{\mathcal H}E(u(t))}_{\mathcal H}^2\le0}.
+\end{equation}
+For all times $T$ on which the solution and chain rule exist,
+\begin{equation}\label{eq:gradient-int}
+E(u(T))+\int_0^T\norm{\nabla_{\mathcal H}E(u(t))}_{\mathcal H}^2\,dt=E(u(0)).
+\end{equation}
+\end{theorem}
+\begin{proof}
+The chain rule and Riesz representation yield
+\begin{align*}
+\frac{dE}{dt}&=DE(u)[u_t]
+=\inner{\nabla_{\mathcal H}E(u)}{u_t}_{\mathcal H}\\
+&=-\inner{\nabla_{\mathcal H}E(u)}{\nabla_{\mathcal H}E(u)}_{\mathcal H}
+=-\norm{\nabla_{\mathcal H}E(u)}_{\mathcal H}^2.
+\end{align*}
+Integrating this identity over $[0,T]$ proves
+\eqref{eq:gradient-int}.
+\end{proof}
+\begin{remark}
+Canonical TOP3 applies this principle to an energy of curves $\gamma$.
+To do that rigorously, one must specify the curve-space metric,
+parametrization, regularity, and treatment of self-avoidance.
+Energy descent alone does not prove global existence, unique equilibrium,
+or convergence to a desired geometry.
+\end{remark}
+
+\begin{theorem}[\id{E50} Phase-coherence integrability]\label{thm:coherence}
+Let $\psi\in L^2(\Omega;\C)$ and suppose a measurable weak phase
+gradient $\nabla\vartheta$ is defined where $\psi\ne0$ and satisfies
+$\abs{\nabla\vartheta}\ge\delta>0$ almost everywhere on that region.
+Define the integrand to be zero on $\{\psi=0\}$. Then
+\begin{equation}\label{eq:coherence}
+\mathcal C[\psi]=\int_\Omega\frac{\abs\psi^2}{\abs{\nabla\vartheta}}\,dx,
+\qquad
+\boxed{0\le\mathcal C[\psi]\le\delta^{-1}\norm\psi_{L^2}^2<\infty}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+The gradient-floor assumption gives almost everywhere
+\begin{equation*}
+0\le\frac{\abs\psi^2}{\abs{\nabla\vartheta}}
+\le\frac{\abs\psi^2}{\delta}.
+\end{equation*}
+Integrating and using $\psi\in L^2$ proves the bound.
+\end{proof}
+\begin{remark}
+Alternatively the globally regularized denominator
+$\sqrt{\abs{\nabla\vartheta}^2+\delta^2}$ yields the same estimate
+where its gradient is defined. Neither formulation proves that a WCT
+flow generates or preserves the required phase-gradient lower bound.
+\end{remark}
+
+\begin{theorem}[\id{CM9} First-order mode-system equivalence]\label{thm:firstorder}
+Let $\delta_\gamma,\delta_b\in C^2(I)$ and suppose the prescribed
+second-order system is
+\begin{equation*}
+\ddot\delta_\gamma=-c_s^2k^2\delta_\gamma-k^2\Phi,
+\qquad
+\ddot\delta_b=-\mathcal R c_s^2k^2\delta_\gamma-k^2\Phi.
+\end{equation*}
+Set $v_\gamma=\dot\delta_\gamma$ and $v_b=\dot\delta_b$.
+Then the system is equivalent, with matching initial positions and
+velocities, to
+\begin{equation}\label{eq:cm9}
+\boxed{\begin{aligned}
+\dot\delta_\gamma&=v_\gamma,&
+\dot v_\gamma&=-c_s^2k^2\delta_\gamma-k^2\Phi,\\
+\dot\delta_b&=v_b,&
+\dot v_b&=-\mathcal R c_s^2k^2\delta_\gamma-k^2\Phi.
+\end{aligned}}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Differentiating the definitions of $v_\gamma,v_b$ and using the
+second-order equations yields \eqref{eq:cm9}. Conversely,
+differentiating the first and third equations in \eqref{eq:cm9} and
+substituting the second and fourth recovers the second-order system.
+Matching initial data makes these maps inverses.
+\end{proof}
+\scope This is an ODE equivalence, not a derivation of cosmological
+coefficients, gravitational forcing, or predictive physical dynamics.
+
+\section{Flat-torus eigenmodes (CLE5--CLE8)}
+\begin{theorem}[\id{CLE5} Flat product-torus eigenfunctions]\label{thm:torusspectrum}
+Let
+\begin{equation*}
+\T^2_{L_1,L_2}=(\R/L_1\Z)\times(\R/L_2\Z),
+\qquad L_1,L_2>0,
+\end{equation*}
+with its flat product metric. For $m,n\in\Z$,
+\begin{equation}\label{eq:torusmode}
+\varphi_{m,n}(s,t)=\exp\left(2\pi i\left(\frac{ms}{L_1}
++\frac{nt}{L_2}\right)\right)
+\end{equation}
+is an eigenfunction of $-\Delta$, with
+\begin{equation}\label{eq:eigenvalue}
+\boxed{\lambda_{m,n}=\left(\frac{2\pi m}{L_1}\right)^2
++\left(\frac{2\pi n}{L_2}\right)^2}.
+\end{equation}
+The modes constitute a complete orthogonal Fourier basis of $L^2$.
+\end{theorem}
+\begin{proof}
+Direct differentiation gives
+\begin{equation*}
+\partial_s^2\varphi_{m,n}=-\left(\frac{2\pi m}{L_1}\right)^2\varphi_{m,n},
+\quad
+\partial_t^2\varphi_{m,n}=-\left(\frac{2\pi n}{L_2}\right)^2\varphi_{m,n}.
+\end{equation*}
+Since $\Delta=\partial_s^2+\partial_t^2$ for the flat metric,
+adding proves \eqref{eq:eigenvalue}. Integer $m,n$ give periodicity,
+and completeness is the product Fourier series theorem.
+\end{proof}
+
+\begin{lemma}[\id{CLE6} Separation in angular coordinates]\label{lem:separation}
+On the flat angular torus with metric $R^2d\theta^2+r^2d\phi^2$,
+let $-\Delta\psi=\sigma_\star^2\psi$ and suppose
+$\psi(\theta,\phi)=f(\theta)g(\phi)$.
+Then, wherever $fg\ne0$,
+\begin{equation}\label{eq:separation}
+\boxed{\frac{f''}{f}+\frac{R^2}{r^2}\frac{g''}{g}
+=-\sigma_\star^2R^2}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+The Laplacian is $R^{-2}\partial_\theta^2+r^{-2}\partial_\phi^2$.
+Insert $\psi=fg$ into the eigenvalue equation to obtain
+$-R^{-2}f''g-r^{-2}fg''=\sigma_\star^2fg$.
+Dividing by $fg$ and multiplying by $-R^2$ yields
+\eqref{eq:separation}. The undivided equation remains valid at zeros.
+\end{proof}
+
+\begin{theorem}[\id{CLE7} Periodic angular ODE]\label{thm:angular}
+For integer $m\ge0$, every $2\pi$-periodic classical solution of
+$f''+m^2f=0$ is
+\begin{equation}\label{eq:angular}
+\boxed{f(\theta)=A\cos(m\theta)+B\sin(m\theta)}.
+\end{equation}
+If $m=0$, periodicity forces the solution to be constant.
+\end{theorem}
+\begin{proof}
+For $m>0$, the characteristic roots are $\pm im$, yielding exactly
+the two-dimensional solution space \eqref{eq:angular}; integer $m$
+ensures periodicity. For $m=0$, the general solution is $A+B\theta$,
+and periodicity requires $B=0$.
+\end{proof}
+
+\begin{theorem}[Lowest nonzero flat-torus eigenvalue]\label{thm:lowest}
+If $L_1>L_2>0$, the least positive eigenvalue of $-\Delta$ on
+$\T^2_{L_1,L_2}$ is
+\begin{equation*}
+\boxed{\lambda_1=\left(\frac{2\pi}{L_1}\right)^2},
+\end{equation*}
+attained precisely for $(m,n)=(\pm1,0)$.
+\end{theorem}
+\begin{proof}
+For every nonzero integer pair $(m,n)$, either $m\ne0$ or $n\ne0$.
+In the first case,
+$\lambda_{m,n}\ge(2\pi/L_1)^2$, with equality only for
+$\abs m=1$ and $n=0$. In the second case with $m=0$,
+$\lambda_{0,n}\ge(2\pi/L_2)^2>(2\pi/L_1)^2$.
+Thus precisely the indicated two modes realize the least positive
+eigenvalue.
+\end{proof}
+
+\begin{theorem}[\id{CLE8} Fixed-winding spectral selection]\label{thm:winding}
+On the flat angular torus with $R,r>0$,
+$\psi(\theta,\phi)=Ae^{i\phi}$ is an eigenfunction with eigenvalue
+$r^{-2}$. In the sector of separated Fourier modes
+$e^{i(m\theta+\phi)}$ with fixed $\phi$-winding $n=1$, this is the
+minimum eigenvalue, achieved exactly when $m=0$.
+\end{theorem}
+\begin{proof}
+The flat product spectrum in angular coordinates is
+\begin{equation*}
+\lambda_{m,n}=\frac{m^2}{R^2}+\frac{n^2}{r^2}.
+\end{equation*}
+At fixed $n=1$,
+\begin{equation*}
+\lambda_{m,1}=\frac{m^2}{R^2}+\frac1{r^2}\ge\frac1{r^2},
+\end{equation*}
+with equality only for $m=0$. The mode $Ae^{i\phi}$ is
+exactly $(m,n)=(0,1)$.
+\end{proof}
+\begin{remark}[Global versus fixed-winding selection]
+If $R>r$, then the global lowest nonzero angular mode is
+$e^{\pm i\theta}$, with eigenvalue $R^{-2}<r^{-2}$.
+Thus canonical CLE8 does not claim the global lowest nonzero
+product-torus eigenvalue: its minimization is within a fixed winding
+sector. Normalization, chirality, and physical electron identification
+require additional assumptions.
+\end{remark}
+
+\begin{theorem}[Quantified embedded-torus operator error]\label{thm:embedded}
+Let $R>r>0$, and consider the standard torus embedded in $\R^3$:
+\begin{equation*}
+X(\theta,\phi)=\bigl((R+r\cos\phi)\cos\theta,
+(R+r\cos\phi)\sin\theta,r\sin\phi\bigr).
+\end{equation*}
+Its Laplace--Beltrami operator and the flat product comparison are
+\begin{align}
+\Delta_g v&=\frac{\partial_\theta^2v}{(R+r\cos\phi)^2}
++\frac{\partial_\phi^2v}{r^2}
+-\frac{\sin\phi}{r(R+r\cos\phi)}\partial_\phi v,
+\label{eq:embedded}\
+\Delta_{\mathrm{flat}}v&=\frac1{R^2}\partial_\theta^2v
++\frac1{r^2}\partial_\phi^2v.
+\end{align}
+For $v\in C^2(\T^2)$ the absolute operator error satisfies
+\begin{equation}\label{eq:toruserror}
+\boxed{\begin{aligned}
+\norm{(\Delta_g-\Delta_{\mathrm{flat}})v}_{\infty}
+\le{}&\frac{2Rr+r^2}{R^2(R-r)^2}\norm{\partial_\theta^2v}_{\infty}\\
+&+\frac1{r(R-r)}\norm{\partial_\phi v}_{\infty}.
+\end{aligned}}
+\end{equation}
+\end{theorem}
+\begin{proof}
+The induced metric is diagonal:
+$g_{\theta\theta}=(R+r\cos\phi)^2$,
+$g_{\phi\phi}=r^2$, and
+$\sqrt{\det g}=r(R+r\cos\phi)$.
+Substitute into
+\begin{equation*}
+\Delta_gv=\frac1{\sqrt{\det g}}
+\partial_i\bigl(\sqrt{\det g}\,g^{ij}\partial_jv\bigr)
+\end{equation*}
+to obtain \eqref{eq:embedded}. Subtracting $\Delta_{\rm flat}$ gives
+\begin{align*}
+(\Delta_g-\Delta_{\rm flat})v
+={}&\left[\frac1{(R+r\cos\phi)^2}-\frac1{R^2}\right]\partial_\theta^2v\\
+&-\frac{\sin\phi}{r(R+r\cos\phi)}\partial_\phi v.
+\end{align*}
+Since $R+r\cos\phi\ge R-r>0$,
+\begin{equation*}
+\left|\frac1{(R+r\cos\phi)^2}-\frac1{R^2}\right|
+\le\frac{2Rr+r^2}{R^2(R-r)^2},
+\quad
+\left|\frac{\sin\phi}{r(R+r\cos\phi)}\right|
+\le\frac1{r(R-r)}.
+\end{equation*}
+Multiply these bounds by the indicated derivative norms and take the
+supremum to obtain \eqref{eq:toruserror}.
+\end{proof}
+\begin{remark}
+The flat product operator is exact only for the \emph{flat product}
+metric. On an embedded torus the metric-dependent first derivative
+and coefficients must be retained or controlled. The displayed
+error is a function-dependent absolute estimate, not a uniform relative
+eigenvalue-error theorem, and ``thin torus'' alone should not be treated
+as zero error for all families of high-frequency modes.
+\end{remark}
+
+\section{Registry cross-reference}
+The table distinguishes theorem type and specific WCT source family.
+A manuscript reference identifies relevant context, not a claim that
+its full physical theory is proved by the elementary lemma.
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.20}
+\begin{longtable}{@{}p{1.0cm}p{1.92cm}p{3.05cm}p{8.0cm}@{}}
+\toprule
+\textbf{ID} & \textbf{Result} & \textbf{Status} & \textbf{Supporting full paper or source}\\
+\midrule\endhead
+M4 & Thm.~\ref{thm:sobolev} & Standard & \emph{Hard Upper Bound on Spatial Dimensionality in WCT} \cite{dimensionality} \\
+E24 & Thm.~\ref{thm:sobolev} & Standard & \emph{Hard Upper Bound on Spatial Dimensionality in WCT} \cite{dimensionality} \\
+E67 & Thm.~\ref{thm:failure} & Standard counterexample & Dimensionality manuscript; \emph{Sobolev Spaces} \cite{dimensionality,adamsfournier} \\
+E65 & Def.~\ref{def:critical} & Standard definition & Dimensionality manuscript and standard Sobolev theory \cite{dimensionality,adamsfournier} \\
+E30 & Thm.~\ref{thm:entropy} & Standard & \emph{Self-Emergent Fourier Cymatics} \cite{cymatics} \\
+E33 & Cor.~\ref{cor:support} & Elementary & \emph{Self-Emergent Fourier Cymatics} \cite{cymatics} \\
+E29 & Thm.~\ref{thm:pruning} & Elementary & Corrected WCT equation registry, entropy/counting section \cite{registry} \\
+E28 & Thm.~\ref{thm:alpha} & Elementary & \emph{P vs NP in Curvature-Bounded Wave Computation} \cite{complexity} \\
+E32 & Thm.~\ref{thm:margin} & Conditional limit & \emph{P vs NP in Curvature-Bounded Wave Computation} \cite{complexity} \\
+E41 & Thm.~\ref{thm:count} & Conditional counting & \emph{P vs NP in Curvature-Bounded Wave Computation} \cite{complexity} \\
+E72 & Cor.~\ref{cor:eff} & Conditional counting & \emph{P vs NP in Curvature-Bounded Wave Computation} \cite{complexity} \\
+E51 & Thm.~\ref{thm:curvcomm} & Elementary identity & \emph{The Geometry of Resonance}; corrected registry \cite{geometry,registry} \\
+EX & Thm.~\ref{thm:loglap} & Standard & \emph{Logarithmic Curvature Flow} \cite{logflow} \\
+EY & Thm.~\ref{thm:colehopf} & Standard & \emph{Logarithmic Curvature Flow} \cite{logflow} \\
+EZ & Thm.~\ref{thm:colehopf} & Standard & \emph{Logarithmic Curvature Flow} \cite{logflow} \\
+E9 & Thm.~\ref{thm:phaseflux} & Elementary identity & \emph{Phase-Flux Field} \cite{pff} \\
+E20 & Thm.~\ref{thm:quad} & Elementary algebra & \emph{The Geometry of Resonance}; S004 analysis \cite{geometry,s004} \\
+E21 & Thm.~\ref{thm:EL} & Standard variation & \emph{The Geometry of Resonance} \cite{geometry} \\
+TOP3 & Thm.~\ref{thm:gradient} & Standard, conditional flow & Corrected WCT registry, topology module \cite{registry} \\
+E50 & Thm.~\ref{thm:coherence} & Conditional integral & Corrected WCT registry, coherence module \cite{registry} \\
+CM9 & Thm.~\ref{thm:firstorder} & Elementary ODE & Corrected WCT registry, cosmology module \cite{registry} \\
+CLE5 & Thms.~\ref{thm:torusspectrum}, \ref{thm:embedded} & Exact/approximate & Corrected WCT registry, curvature-locked electron module \cite{registry} \\
+CLE6 & Lem.~\ref{lem:separation} & Standard & Corrected WCT registry, curvature-locked electron module \cite{registry} \\
+CLE7 & Thm.~\ref{thm:angular} & Standard & Corrected WCT registry, curvature-locked electron module \cite{registry} \\
+CLE8 & Thms.~\ref{thm:lowest}, \ref{thm:winding} & Conditional selection & Corrected WCT registry, curvature-locked electron module \cite{registry} \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\section{Logical scope and conclusion}
+The fully analytic/elementary implications in this compendium are
+\begin{enumerate}[label=(\roman*)]
+\item the sharp $H^2\to L^\infty$ dimension threshold and explicit
+counterexamples above three dimensions;
+\item entropy and exponential-iteration bounds, with precise equality
+conditions or recurrences;
+\item standard differential, logarithmic, phase and commutator identities;
+\item quadratic-form positivity, Euler--Lagrange and exact
+negative-gradient-flow dissipation formulas; and
+\item the exact flat product-torus spectrum, plus an explicit
+embedded-torus operator-error estimate.
+\end{enumerate}
+The exponent-margin conclusion E32 and the discrete bounds E41/E72
+require independent uniform retention/counting hypotheses. The phase
+coherence estimate E50 requires a phase-gradient floor. None of those
+hypotheses is obtained merely by assigning PASS status to a symbolic
+registry check.
+
+Crucially, these proofs do \emph{not} show that $n=4$ confinement is
+physically impossible; that a positive algebraic quadratic sector avoids
+Ostrogradsky ghosts; that entropy control implies actual dynamical
+spectral concentration; that a bounded code count implies a complexity
+separation; or that an admissible winding-one toroidal mode is a unique
+physical particle. Such statements require separate theorems and data.
+
+\begin{thebibliography}{99}
+\bibitem{registry}
+R.~J. Reyes, \emph{Wave Confinement Theory---Corrected Full Equation Registry},
+revision 2.0, June 27, 2026 (with later scope notices).
+\url{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/WCT_FULL_EQUATION_LIST_CORRECTED.md}.
+
+\bibitem{reyesMath}
+R.~J. Reyes, \emph{Mathematical Manuscripts and Formal Proof Artifacts},
+versioned research repository, including E62 and Fourier-shell manuscripts.
+\url{https://github.com/rickyjreyes/math}.
+
+\bibitem{adamsfournier}
+R.~A. Adams and J.~J.~F. Fournier, \emph{Sobolev Spaces},
+2nd ed., Pure and Applied Mathematics 140, Academic Press, 2003.
+
+\bibitem{evans}
+L.~C. Evans, \emph{Partial Differential Equations}, 2nd ed.,
+Graduate Studies in Mathematics 19, American Mathematical Society, 2010.
+
+\bibitem{dimensionality}
+R.~J. Reyes, \emph{Hard Upper Bound on Spatial Dimensionality in
+Wave Confinement Theory}, Zenodo, 2025.
+\url{https://doi.org/10.5281/zenodo.17081283}.
+
+\bibitem{cymatics}
+R.~J. Reyes, \emph{Self-Emergent Fourier Cymatics: Entropic Eigenmodes
+out of Chaos}, Zenodo, 2025.
+\url{https://doi.org/10.5281/zenodo.17732648}.
+
+\bibitem{complexity}
+R.~J. Reyes, \emph{P vs NP in Curvature-Bounded Wave Computation:
+A Model-Relative Separation}, Zenodo, 2025.
+\url{https://doi.org/10.5281/zenodo.17743607}.
+
+\bibitem{pff}
+R.~J. Reyes, \emph{Phase-Flux Field (PFF): Axiomatic Substrate for
+Wave Confinement Theory}, Zenodo, 2025.
+\url{https://doi.org/10.5281/zenodo.17578766}.
+
+\bibitem{logflow}
+R.~J. Reyes, \emph{Logarithmic Curvature Flow, Filament Localization,
+and the Geometric Origin of the Lepton Mass Spectrum}, Zenodo, 2026.
+\url{https://doi.org/10.5281/zenodo.18936949}.
+
+\bibitem{geometry}
+R.~J. Reyes, \emph{The Geometry of Resonance: Wave Confinement Theory
+and the Emergence of Mass, Force, and Spacetime}, Zenodo, 2025.
+\url{https://doi.org/10.5281/zenodo.15644222}.
+
+\bibitem{s004}
+R.~J. Reyes, \emph{Ghost and Constraint Analysis: Corrected S004 Sector},
+foundational technical note, 2026.
+\url{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/foundational/GHOST_AND_CONSTRAINT_ANALYSIS.md}.
+\end{thebibliography}
+\end{document}
