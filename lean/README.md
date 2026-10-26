@@ -1,7 +1,7 @@
 # Lean 4 formalization status
 
-This Mathlib v4.23.0 project contains 81 formal theorem declarations
-(60 previously verified plus 21 new declarations) in twenty-seven imported modules. On any revision,
+This Mathlib v4.23.0 project contains 84 formal theorem declarations
+(81 previously verified plus 3 new declarations) in thirty imported modules. On any revision,
 regard them as kernel-checked only after that exact revision's Lean CI passes:
 
 - [Elementary](MathProofs/Elementary.lean) — original elementary algebra.
@@ -58,6 +58,13 @@ regard them as kernel-checked only after that exact revision's Lean CI passes:
 - [CurvatureNonattainment](MathProofs/CurvatureNonattainment.lean) —
   positivity of the corrected curvature weight and an abstract
   nonattainment criterion still requiring the actual H² dilation proof.
+- [CurvatureUniformBound](MathProofs/CurvatureUniformBound.lean) — a
+  finite, explicit global bound on the *actual* nonlinear weight F(s).
+- [DispersionBranchPositivity](MathProofs/DispersionBranchPositivity.lean) —
+  both real squared-frequency branches are strictly positive on the
+  admissible nonnegative q domain for the physical parameters.
+- [DispersionRealDomain](MathProofs/DispersionRealDomain.lean) — exact
+  collision endpoint and nonnegative-discriminant domain equivalence.
 
 For precise statements and manuscript coverage, see
 [formalization.yaml](formalization.yaml).
@@ -84,8 +91,8 @@ strict binding, whole-space minimizer existence, concentration–compactness,
 global continuation, and orbital stability remain conventional analytic
 proofs. Hamiltonian constraint-preservation and ultraviolet Sobolev evolution (F02), the full continuous
 periodic spectral identity (F03) and full H¹ winding-phase construction (F07), full multidimensional
-nonlinear Fourier-mode flow theorem (F04), H² curvature-energy nonattainment (F05),
-dispersion strict-convexity and branch-positivity corollaries (F06), numerical Jacobian rank claims (F09),
+nonlinear Fourier-mode flow theorem (F04), H² curvature-energy spreading and nonattainment (F05),
+dispersion strict second-derivative convexity and supplementary frequency corollaries (F06), numerical Jacobian rank claims (F09),
 and the Plancherel extension from Schwartz class to all L² states (F10) are
 likewise not fully formalized.
 
@@ -128,7 +135,8 @@ never count as end-to-end certification of the manuscript.
   Fourier coefficients and time differentiability of the full PDE solution.
 - **7:** Implement the real anisotropic Gaussian carrier as an H²(ℝ²)
   function and verify all Gaussian integral moments and mass preservation.
-- **8:** Implement H² mass-preserving spatial dilation and establish
-  a whole-space uniform curvature-weight bound and strict positive energy.
+- **8:** The nonlinear curvature weight now has an explicit uniform
+  bound in Lean. Implement actual H² mass-preserving spatial dilation,
+  integrated energy scaling, and strict positive energy.
 - **S004:** Derive brackets from the exact Hamiltonian and prove multiplier
   determination, no secondary constraints, and the full canonical reduction.
