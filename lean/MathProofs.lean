@@ -17,3 +17,4 @@ import MathProofs.MetricQuadratic
 import MathProofs.ContinuousPhaseIntegral
 import MathProofs.DispersionCriticalPoint
 import MathProofs.ContinuousPhaseOptimizer
+import MathProofs.PhysicalDispersionMinimum
