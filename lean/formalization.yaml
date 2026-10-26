@@ -13,24 +13,24 @@ proof_policy:
 families:
   F01:
     main_theorem_formalized: false
-    covered: "Only algebraic strict-gap lemma; no PDE binding, attainment, or stability."
-    declarations: [ReyesMath.negativeEnergy_strictGap]
+    covered: "Exact cubic–quintic potential completion of the square/lower bound, sufficient strict-specific-energy-to-binding implication, and exact Gaussian energy-coefficient signs and optimized negative scale energy. The H² infimum-specific-energy estimate, Gaussian norm integrals, concentration–compactness, and flow stability are NOT formalized."
+    declarations: [ReyesMath.negativeEnergy_strictGap, ReyesMath.cubic_quintic_potential_square, ReyesMath.cubic_quintic_potential_lower, ReyesMath.strict_binding_of_specific_energy, ReyesMath.gaussian_coefficient_c2_negative, ReyesMath.gaussian_coefficient_c4_positive, ReyesMath.quadratic_trial_energy_negative, ReyesMath.gaussian_trial_polynomial_certificate]
   F02:
     main_theorem_formalized: false
-    covered: "Acceleration Hessian determinant/positivity and both exact complex UV characteristic roots are formalized; four-jet ill-posedness, high-frequency growth, and Dirac/Ostrogradsky constraint count are not."
-    declarations: [ReyesMath.s004_acceleration_hessian_det, ReyesMath.s004_acceleration_hessian_det_pos, ReyesMath.ultraviolet_plus_root_exact, ReyesMath.ultraviolet_minus_root_exact]
+    covered: "S004 acceleration Hessian determinant, explicitly invertible four-constraint canonical Dirac bracket, conditional four-DOF arithmetic, exact UV dispersion roots, and quantitative σ(q)≥√q/4 for q≥4. Full physical Hamiltonian preservation/no-secondary-constraints verification and unbounded Sobolev evolution operator remain open."
+    declarations: [ReyesMath.s004_acceleration_hessian_det, ReyesMath.s004_acceleration_hessian_det_pos, ReyesMath.ultraviolet_plus_root_exact, ReyesMath.ultraviolet_minus_root_exact, ReyesMath.s004_dirac_bracket_left_inverse, ReyesMath.s004_dirac_bracket_right_inverse, ReyesMath.s004_four_constraint_bracket_nondegenerate, ReyesMath.s004_four_dof_arithmetic, ReyesMath.uv_growth_squared_lower, ReyesMath.uv_growth_linear_in_wavenumber]
   F03:
     main_theorem_formalized: false
-    covered: "Finite weighted variance identity and nonnegative variance; not the continuous periodic spectral identity."
-    declarations: [ReyesMath.varianceDeficit_nonnegative, ReyesMath.finite_weighted_variance_identity, ReyesMath.finite_weighted_mean_square_bound]
+    covered: "Finite weighted variance and true continuous normalized weighted-variance identity for Bochner integrals. Periodic eigenfunction identity, polar amplitude derivative, and integration by parts are still unformalized."
+    declarations: [ReyesMath.varianceDeficit_nonnegative, ReyesMath.finite_weighted_variance_identity, ReyesMath.finite_weighted_mean_square_bound, ReyesMath.continuous_normalized_weighted_variance]
   F04:
     main_theorem_formalized: false
-    covered: "One-dimensional cutoff and coordinatewise multidimensional quintic escape arithmetic; not general polynomial-flow coefficients or full noninvariance theorem."
-    declarations: [ReyesMath.quintic_frequency_above_cutoff, ReyesMath.quintic_frequency_below_cutoff, ReyesMath.multidimensional_quintic_frequency_escape]
+    covered: "Coordinatewise multidimensional escape, exact extremal-convolution uniqueness for any separating functional, impossibility of cubic cancellation at escaped frequency, and nonzero complex extremal coefficient. Full torus Fourier-convolution operator identity, dynamics and local solution Fourier differentiability remain."
+    declarations: [ReyesMath.quintic_frequency_above_cutoff, ReyesMath.quintic_frequency_below_cutoff, ReyesMath.multidimensional_quintic_frequency_escape, ReyesMath.quintic_extremal_convolution_unique, ReyesMath.cubic_cannot_reach_quintic_extreme, ReyesMath.quintic_extremal_coefficient_nonzero]
   F05:
     main_theorem_formalized: false
-    covered: "Curvature-energy nonattainment not formalized."
-    declarations: []
+    covered: "Exact pointwise regularized curvature weight has positive denominator, nonnegative/strict-positive sign, and an abstract no-minimizer step conditional on arbitrarily small fixed-mass competitors. Actual H² mass-preserving dilation, F global boundedness and whole-space functional nonattainment remain unformalized."
+    declarations: [ReyesMath.curvature_weight_denominator_positive, ReyesMath.curvature_weight_nonnegative, ReyesMath.curvature_weight_positive, ReyesMath.no_positive_mass_minimizer_of_spreading]
   F06:
     main_theorem_formalized: false
     covered: "The explicit positive stationary wavenumber, its tangent sign, and unique global squared-frequency minimum on the entire nonnegative real-domain are formalized, including the original physical K,T,G,m specialization. The PDF additionally claims strict second-derivative convexity, exact real-domain endpoint, and positivity of both squared-frequency roots; those stronger corollaries are not yet formalized."
