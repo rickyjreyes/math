@@ -18,3 +18,6 @@ import MathProofs.ContinuousPhaseIntegral
 import MathProofs.DispersionCriticalPoint
 import MathProofs.ContinuousPhaseOptimizer
 import MathProofs.PhysicalDispersionMinimum
+import MathProofs.VariationalBinding
+import MathProofs.GaussianTrialAlgebra
+import MathProofs.S004DiracBracket
