@@ -1,0 +1,467 @@
+% Standalone, self-contained LaTeX manuscript.
+% Compile: pdflatex -interaction=nonstopmode Strict_Subadditivity_Fourth_Order_Cubic_Quintic.tex (twice)
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[margin=1.05in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black,
+  pdftitle={Strict Subadditivity for a Fourth-Order Cubic--Quintic Hamiltonian in Two Dimensions},
+  pdfauthor={Richard J. Reyes},
+  pdfsubject={Mass-constrained fourth-order variational problem; explicit strict-binding threshold}
+}
+\setlength{\parindent}{1.15em}
+\setlength{\parskip}{0.1em}
+\allowdisplaybreaks[2]
+\numberwithin{equation}{section}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\esssup}{\operatorname*{ess\,sup}}
+
+\title{\bfseries Strict Subadditivity for a Fourth-Order\\
+Cubic--Quintic Hamiltonian in Two Dimensions}
+\author{Richard J. Reyes}
+\date{October 26, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We consider the mass-constrained infimum of a fourth-order Hamiltonian with a focusing quartic energy term and a defocusing sextic energy term on $H^2(\RR^2;\CC)$. We establish strict subadditivity for every interior splitting of each mass $0<m\le m_B$, where
+\[
+  m_B=\frac{3\beta}{\gamma\sqrt{k^4+3\beta^2/(32\gamma)}}
+  \qquad (\beta,\gamma,k>0).
+\]
+The proof first constructs negative-energy trials at every positive mass, then uses an exact mass-preserving dilation to replace arbitrary minimizing sequences by sequences satisfying a scalar stationarity identity. A Fourier $L^\infty$ estimate and a square-completion identity control the sextic-to-quartic ratio and yield a quantitative strict decrease of energy per unit mass. No attainment of the constrained infimum is assumed. An exact-arithmetic corollary verifies the sufficient condition for a specified frozen parameter set. The result is confined to this two-dimensional combined-power variational problem and does not assert a sharp critical mass or conclusions about physical confinement lifetimes.
+\end{abstract}
+
+\noindent\textbf{Keywords.} Fourth-order nonlinear Schr\"odinger energy; strict subadditivity; mass constraint; combined nonlinearities; concentration--compactness; mass-preserving dilation.\\
+\textbf{Mathematics Subject Classification (2020).} 35Q55, 35J30, 49J40.
+
+\section{Introduction and main result}
+
+Let
+\[
+  X=H^2(\RR^2;\CC),\qquad A=\Delta+k^2,
+\]
+and, for $\beta,\gamma,k>0$, define
+\begin{equation}\label{eq:H}
+  H(u)=\norm{Au}_2^2-\frac{\beta}{2}\norm{u}_4^4
+                +\frac{\gamma}{3}\norm{u}_6^6.
+\end{equation}
+For $m>0$, let
+\begin{equation}\label{eq:I}
+  I(m)=\inf\bigl\{H(u):u\in X,\ \norm{u}_2^2=m\bigr\}.
+\end{equation}
+All integrals are over $\RR^2$ with Lebesgue measure. No radial, real-valued, periodic, band-limited, or other symmetry restriction is imposed.
+
+For orientation, mixed-dispersion fourth-order nonlinear Schr\"odinger variational problems have been studied by Fern\'andez, Jeanjean, Mandel, and Mari\c{s} \cite{FJMM2022}, and combined-power mixed-dispersion problems by Ma, Chang, and Feng \cite{MCF2024}. The result proved here is the explicit sufficient mass interval for strict subadditivity of the \emph{particular} Hamiltonian \eqref{eq:H}. No assertion of an exhaustive literature-based priority or optimality is made.
+
+\begin{theorem}[Explicit strict-binding range]\label{thm:main}
+Let $\beta,\gamma,k>0$ and set
+\begin{equation}\label{eq:mB}
+ \rho=k^4+\frac{3\beta^2}{32\gamma},\qquad
+ \sigma=\sqrt{\rho},\qquad
+ m_B=\frac{3\beta}{\gamma\sigma}.
+\end{equation}
+For every $0<m\le m_B$ and every $0<\mu<m$,
+\begin{equation}\label{eq:strict}
+  \boxed{\ I(m)<I(\mu)+I(m-\mu).\ }
+\end{equation}
+In particular, equality cannot occur at an interior splitting in this range. The statement does not require the existence of a minimizer for $I(s)$ at any mass $s$.
+\end{theorem}
+
+Our principal intermediate estimate, with $e(s)=I(s)/s$, is
+\begin{equation}\label{eq:gap-intro}
+ e(a)-e(b)\ge
+ \frac{(b-a)}{a^2}
+ \left(1-\frac{a+b}{2m_B}\right)[-I(a)]>0
+ \quad\text{for }0<a<b,\ a+b<2m_B.
+\end{equation}
+This positive defect at the level of the infimum is more informative than a strict trial-function inequality, which need not remain strict after taking infima.
+
+\section{Basic estimates and negative constrained energy}
+
+For $u\in X$ introduce
+\[
+ \begin{aligned}
+ M(u)&=\norm{u}_2^2,&D(u)&=\norm{\Delta u}_2^2,&
+ K(u)&=\norm{\nabla u}_2^2,\\
+ T(u)&=\norm{Au}_2^2,&Q(u)&=\norm{u}_4^4,&
+ S(u)&=\norm{u}_6^6.
+ \end{aligned}
+\]
+Integration by parts, or Plancherel's theorem, gives
+\begin{equation}\label{eq:expand}
+ T=D-2k^2K+k^4M\ge0.
+\end{equation}
+The embedding $H^2(\RR^2)\hookrightarrow L^p(\RR^2)$ for finite $p\ge2$ shows that $H$ is well-defined and continuous on $X$.
+
+\begin{lemma}[Coercive lower bound]\label{lem:lower}
+For each $m>0$,
+\begin{equation}\label{eq:lower}
+  I(m)\ge-\frac{3\beta^2}{16\gamma}\,m> -\infty.
+\end{equation}
+Furthermore, a fixed-mass sequence with energies bounded above is bounded in $H^2(\RR^2)$.
+\end{lemma}
+\begin{proof}
+For $r\ge0$, square completion gives the \emph{exact} identity
+\begin{equation}\label{eq:potential-square}
+ -\frac{\beta}{2}r^2+\frac{\gamma}{3}r^3
+ =\frac{\gamma}{3}r\left(r-\frac{3\beta}{4\gamma}\right)^2
+ -\frac{3\beta^2}{16\gamma}r.
+\end{equation}
+Integrating with $r=\abs{u}^2$ yields
+\[
+ H(u)\ge T(u)-\frac{3\beta^2}{16\gamma}M(u),
+\]
+which proves \eqref{eq:lower}. If $M(u_n)=m$ and $H(u_n)\le C_0$, then $T(u_n)\le C_0+3\beta^2m/(16\gamma)$. Since
+\[
+ \norm{\Delta u_n}_2\le\norm{Au_n}_2+k^2\sqrt m,
+ \qquad K(u_n)\le\sqrt{M(u_n)D(u_n)},
+\]
+the $H^2$ norms remain bounded.
+\end{proof}
+
+\begin{lemma}[Strict negativity at every positive mass]\label{lem:negative}
+For every $m>0$, $I(m)<0$.
+\end{lemma}
+\begin{proof}
+For $a,b>0$, set
+\[
+ f_{a,b}(x,y)=\frac{1}{\sqrt{\pi ab}}
+ \exp\left(-\frac{x^2}{2a^2}-\frac{y^2}{2b^2}\right),
+ \qquad \norm{f_{a,b}}_2=1,
+\]
+and, for $R>0$, consider the complex anisotropic trial
+\[
+ u_R(x,y)=\sqrt m\,R^{-1} f_{a,b}(x/R,y/R)e^{ikx}.
+\]
+It satisfies $M(u_R)=m$. Differentiating the Gaussian and integrating shows that
+\begin{equation}\label{eq:gaussian-energy}
+ H(u_R)=\frac{c_2}{R^2}+\frac{c_4}{R^4},
+\end{equation}
+where
+\begin{align}
+ c_2&=\frac{2mk^2}{a^2}-\frac{\beta m^2}{4\pi ab},\label{eq:c2}\\
+ c_4&=m\left(\frac{3}{4a^4}+\frac{1}{2a^2b^2}
+                   +\frac{3}{4b^4}\right)
+       +\frac{\gamma m^3}{9\pi^2a^2b^2}>0.\label{eq:c4}
+\end{align}
+For any fixed $m>0$, choose $a/b>8\pi k^2/(\beta m)$, giving $c_2<0$. Then $R^2=-2c_4/c_2$ is positive and
+\[
+ H(u_R)=-\frac{c_2^2}{4c_4}<0.
+\]
+As $u_R$ has mass $m$, the constrained infimum is strictly negative.
+\end{proof}
+
+Combining the two lemmas,
+\begin{equation}\label{eq:finite-negative}
+ -\frac{3\beta^2}{16\gamma}m\le I(m)<0
+ \qquad\text{for all }m>0.
+\end{equation}
+
+\section{Exact adjustment of minimizing sequences}
+
+For $\lambda>0$, let
+\begin{equation}\label{eq:dilation}
+ u_\lambda(x)=\lambda u(\lambda x).
+\end{equation}
+In two dimensions, $M(u_\lambda)=M(u)$, while
+\[
+ D(u_\lambda)=\lambda^4 D(u),\qquad
+ K(u_\lambda)=\lambda^2 K(u),\qquad
+ Q(u_\lambda)=\lambda^2 Q(u),\qquad
+ S(u_\lambda)=\lambda^4 S(u).
+\]
+Thus
+\begin{equation}\label{eq:dilated-energy}
+ H(u_\lambda)=\lambda^4\underbrace{\left(D+\frac\gamma3 S\right)}_{P}
+ -\lambda^2\underbrace{\left(2k^2K+\frac\beta2 Q\right)}_{B}
+ +k^4M.
+\end{equation}
+For nonzero $u\in X$, both $P>0$ and $B>0$.
+
+\begin{lemma}[Dilation-stationary minimizing sequences]\label{lem:adjust}
+For every $a>0$ there exists a minimizing sequence $(w_n)\subset X$ such that
+\begin{equation}\label{eq:w-props}
+ M(w_n)=a,\qquad H(w_n)\longrightarrow I(a),
+\end{equation}
+and each $w_n$ satisfies the exact identity
+\begin{equation}\label{eq:virial}
+ \boxed{\ D(w_n)-k^2K(w_n)-\frac\beta4 Q(w_n)
+                   +\frac\gamma3 S(w_n)=0.\ }
+\end{equation}
+No attainment assumption is needed.
+\end{lemma}
+\begin{proof}
+For a nonzero $u$, write $z=\lambda^2$. Equation \eqref{eq:dilated-energy} is the strictly convex quadratic
+\[
+ Pz^2-Bz+k^4M,
+\]
+whose unique positive minimum occurs at $z_0=B/(2P)$. Defining $w=u_{\sqrt{z_0}}$ gives
+\begin{equation}\label{eq:exact-square}
+ H(u_\lambda)-H(w)=P(\lambda^2-z_0)^2\ge0.
+\end{equation}
+Stationarity at $\lambda=\sqrt{z_0}$ reads $2P(w)=B(w)$, which is precisely \eqref{eq:virial}.
+
+Start with any mass-$a$ minimizing sequence $(u_n)$. Apply this adjustment individually to obtain $w_n$. The dilation preserves mass and lowers or preserves energy, so
+\[
+ I(a)\le H(w_n)\le H(u_n)\longrightarrow I(a).
+\]
+This proves \eqref{eq:w-props} and \eqref{eq:virial}. Boundedness in $H^2$ also follows from Lemma~\ref{lem:lower}, although no weak or strong limit is required here.
+\end{proof}
+
+\section{Sextic-to-quartic control}
+
+The stationarity identity produces a stronger bound than a direct application of an arbitrary-profile Sobolev estimate.
+
+\begin{lemma}[Square completion on the stationary dilation]\label{lem:D-bound}
+If $w\in X\setminus\{0\}$ satisfies \eqref{eq:virial}, then
+\begin{equation}\label{eq:stationary-square}
+ D(w)+T(w)+\frac{2\gamma}{3}\int_{\RR^2}
+  \abs{w}^2\left(\abs{w}^2-\frac{3\beta}{8\gamma}\right)^2\dd x
+ =\rho M(w),
+\end{equation}
+where $\rho$ is defined in \eqref{eq:mB}. In particular,
+\begin{equation}\label{eq:D-rho}
+ D(w)\le\rho M(w).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Using \eqref{eq:expand} and \eqref{eq:virial},
+\[
+ \begin{aligned}
+ D+T&=2D-2k^2K+k^4M\\
+ &=\frac\beta2 Q-\frac{2\gamma}{3}S+k^4M.
+ \end{aligned}
+\]
+Also, for $r=\abs w^2$,
+\[
+ \begin{aligned}
+ \frac{2\gamma}{3}\int r\left(r-\frac{3\beta}{8\gamma}\right)^2\dd x
+ &=\frac{2\gamma}{3}S-\frac\beta2 Q
+   +\frac{3\beta^2}{32\gamma}M.
+ \end{aligned}
+\]
+Adding proves \eqref{eq:stationary-square}; all three terms on the left are nonnegative, giving \eqref{eq:D-rho}.
+\end{proof}
+
+\begin{lemma}[Fourier sup-norm estimate]\label{lem:Fourier}
+For every $u\in H^2(\RR^2;\CC)$ and $\eta>0$,
+\begin{equation}\label{eq:Fourier-eta}
+ \norm{u}_\infty^2\le\frac{D(u)+\eta M(u)}{8\sqrt\eta}.
+\end{equation}
+For every nonzero $u$, optimizing in $\eta$ yields
+\begin{equation}\label{eq:Fourier-opt}
+ \boxed{\ \norm{u}_\infty^2\le\frac14\sqrt{M(u)D(u)}.\ }
+\end{equation}
+\end{lemma}
+\begin{proof}
+Adopt the Fourier convention $\widehat u(\xi)=\int e^{-ix\cdot\xi}u(x)\dd x$. Fourier inversion, weighted Cauchy--Schwarz, and Plancherel show
+\[
+ \begin{aligned}
+ \abs{u(x)}^2
+ &\le\frac{1}{(2\pi)^4}
+ \left(\int_{\RR^2}\frac{\dd\xi}{\abs\xi^4+\eta}\right)
+ \left(\int_{\RR^2}(\abs\xi^4+\eta)\abs{\widehat u(\xi)}^2\dd\xi\right)\\
+ &=\left[\frac{1}{(2\pi)^2}
+ \int_{\RR^2}\frac{\dd\xi}{\abs\xi^4+\eta}\right]
+ [D(u)+\eta M(u)].
+ \end{aligned}
+\]
+Polar integration gives
+\[
+ \frac{1}{(2\pi)^2}\int_{\RR^2}
+ \frac{\dd\xi}{\abs\xi^4+\eta}
+ =\frac{1}{2\pi}\int_0^\infty\frac{r\dd r}{r^4+\eta}
+ =\frac{1}{8\sqrt\eta}.
+\]
+This proves \eqref{eq:Fourier-eta}. For $u\ne0$, both $M(u)$ and $D(u)$ are positive (a square-integrable harmonic function on $\RR^2$ is zero). The choice $\eta=D(u)/M(u)$ gives \eqref{eq:Fourier-opt}. The estimate first follows for Schwartz functions and extends by density to $H^2$.
+\end{proof}
+
+\begin{proposition}[Stationary sextic/quartic ratio]\label{prop:SQ}
+For every nonzero $w$ satisfying \eqref{eq:virial},
+\begin{equation}\label{eq:SQ}
+ \boxed{\ \frac{S(w)}{Q(w)}\le\norm{w}_\infty^2
+       \le\frac\sigma4 M(w).\ }
+\end{equation}
+\end{proposition}
+\begin{proof}
+By \eqref{eq:Fourier-opt} and \eqref{eq:D-rho},
+\[
+ \norm{w}_\infty^2\le\frac14\sqrt{M(w)D(w)}
+ \le\frac{\sqrt\rho}{4}M(w).
+\]
+Also $S(w)=\int\abs{w}^2\abs{w}^4\dd x\le\norm w_\infty^2Q(w)$; since $w\ne0$, $Q(w)>0$.
+\end{proof}
+
+\section{A quantitative energy-per-mass gap}
+
+\begin{proposition}[Strict decrease at the infimum]\label{prop:gap}
+Let $0<a<b$ and assume $a+b<2m_B$. Set
+\[
+ e(s)=\frac{I(s)}s,\qquad
+ h=1-\frac{a+b}{2m_B}>0.
+\]
+Then
+\begin{equation}\label{eq:gap}
+ \boxed{\ e(a)-e(b)\ge\frac{(b-a)h}{a^2}[-I(a)]>0.\ }
+\end{equation}
+\end{proposition}
+\begin{proof}
+Choose any minimizing sequence $(w_n)$ at mass $a$, adjusted as in Lemma~\ref{lem:adjust}. Set $t=b/a>1$. Amplitude rescaling has mass $M(\sqrt t\,w_n)=ta=b$ and transforms the energy according to
+\begin{equation}\label{eq:amp}
+ \frac{H(\sqrt t\,w_n)}t-H(w_n)
+ =(t-1)\left[-\frac\beta2 Q(w_n)
+       +\frac{\gamma(t+1)}3S(w_n)\right].
+\end{equation}
+By Proposition~\ref{prop:SQ}, using $M(w_n)=a$,
+\[
+ \begin{aligned}
+ -\frac\beta2 Q(w_n)+\frac{\gamma(t+1)}3S(w_n)
+ &\le\left[-\frac\beta2+\frac{\gamma\sigma(t+1)a}{12}\right]Q(w_n)\\
+ &=-\frac\beta2\left(1-\frac{a+b}{2m_B}\right)Q(w_n)\\
+ &=-\frac{\beta h}{2}Q(w_n).
+ \end{aligned}
+\]
+Since $T\ge0$ and $S\ge0$, we have
+\[
+ H(w_n)\ge-\frac\beta2Q(w_n).
+\]
+Consequently,
+\begin{equation}\label{eq:uniform-inf}
+ \begin{aligned}
+ \frac{I(b)}t
+ &\le\frac{H(\sqrt t\,w_n)}t\\
+ &\le H(w_n)-(t-1)\frac{\beta h}{2}Q(w_n)\\
+ &\le[1+(t-1)h]H(w_n).
+ \end{aligned}
+\end{equation}
+Pass to the limit $n\to\infty$ and divide by $a$:
+\[
+ e(b)\le[1+(t-1)h]e(a).
+\]
+It follows that
+\[
+ e(a)-e(b)\ge-(t-1)he(a)
+ =\frac{(b-a)h}{a^2}[-I(a)].
+\]
+The right side is strictly positive by Lemma~\ref{lem:negative}. In particular the positive defect is independent of the minimizing-sequence index and cannot vanish upon taking the infimum.
+\end{proof}
+
+\begin{remark}[The endpoint and larger-mass pairs]
+If $0<a<b\le m_B$, then $a+b<2m_B$, including when $b=m_B$. The argument also applies to some comparisons with $b>m_B$, provided $a+b<2m_B$; it does not assert monotonicity for arbitrary masses.
+\end{remark}
+
+\section{Strict binding and the frozen-parameter corollary}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Fix $0<m\le m_B$ and $0<\mu<m$. Since
+\[
+ \mu+m<2m\le2m_B,
+ \qquad (m-\mu)+m<2m\le2m_B,
+\]
+Proposition~\ref{prop:gap}, applied to $(\mu,m)$ and $(m-\mu,m)$, yields
+\[
+ e(\mu)>e(m),\qquad e(m-\mu)>e(m).
+\]
+Both $\mu$ and $m-\mu$ are strictly positive; multiplying the two inequalities by those masses and adding gives
+\[
+ \begin{aligned}
+ I(\mu)+I(m-\mu)
+ &=\mu e(\mu)+(m-\mu)e(m-\mu)\\
+ &>[\mu+(m-\mu)]e(m)=I(m).
+ \end{aligned}
+\]
+This is \eqref{eq:strict} for every interior split.
+\end{proof}
+
+\begin{corollary}[Exact frozen-parameter check]\label{cor:frozen}
+Consider $k=1$, $\beta=\gamma=b_0$, and $m=m_0$, where the parameters are the exactly represented binary64 values
+\[
+ b_0=\texttt{0x1.05f1d178c75ebp+2},\qquad
+ m_0=\texttt{0x1.45b8a0bad2714p+1}.
+\]
+Viewed as rational numbers, they equal
+\[
+ b_0=\frac{4608178181141995}{1125899906842624},\qquad
+ m_0=\frac{1432536998431173}{562949953421312}.
+\]
+For these coefficients, $m_0<m_B$. Therefore the strict-binding inequality holds at mass $m_0$ for all $0<\mu<m_0$.
+\end{corollary}
+\begin{proof}
+Because $k=1$ and $\beta=\gamma=b_0$,
+\[
+ \rho=1+\frac{3b_0}{32}
+ =\frac{49853331562389953}{36028797018963968},
+ \qquad m_B=\frac{3}{\sqrt\rho}.
+\]
+Exact rational arithmetic (before rounding any square roots) gives
+\begin{equation}\label{eq:frozen-rational}
+ 9-\rho m_0^2=
+ \frac{454708712324087584212476662678391978900775591}
+ {11417981541647679048466287755595961091061972992}>0.
+\end{equation}
+As all quantities are positive, this proves $m_0<3/\sqrt\rho=m_B$. For orientation only, the decimal values are
+\[
+ m_0=2.54469689485712\ldots,\qquad
+ m_B=2.550345636351549\ldots.
+\]
+Apply Theorem~\ref{thm:main}.
+\end{proof}
+
+\begin{remark}[Scope of the frozen corollary]
+The notation ``D4'' used in the associated computational project refers there to a particular square-symmetric configuration in two spatial dimensions. Corollary~\ref{cor:frozen} is a statement about an unrestricted whole-space functional on $\RR^2$; it does not establish identification with a computed periodic branch, uniqueness of minimizers, spectral stability of a branch, or a lifetime classification for four spatial dimensions.
+\end{remark}
+
+\section{Discussion and limitations}
+
+The proof uses two complementary scalings. The mass-preserving spatial dilation $u\mapsto\lambda u(\lambda\cdot)$ supplies an exact identity on adjusted minimizing sequences. The amplitude scaling $u\mapsto\sqrt t\,u$ then compares two masses. The positive sextic amplitude contribution prevents a universal comparison for \emph{all} profiles; the stationary ratio estimate \eqref{eq:SQ} controls that contribution on the adjusted sequences. In particular, negativity of $I(m)$ alone would not suffice to justify the comparison.
+
+The threshold $m_B$ is a \emph{sufficient} mass bound, not a proved sharp boundary of strict binding. This paper does not claim equality, failure of binding, or optimality of its constants for masses above $m_B$. Likewise, strict binding is distinct from attainment and compactness: concentration--compactness can use strict subadditivity to exclude certain splitting scenarios, but any existence or dynamical stability theorem requires additional hypotheses and arguments.
+
+For completeness, ordinary subadditivity $I(a+b)\le I(a)+I(b)$ follows by approximating mass-$a$ and mass-$b$ near-minimizers by compactly supported smooth profiles, restoring their exact masses by a factor tending to one, and translating one profile until the supports are separated. The mass, quadratic derivative form, and local nonlinear terms then add exactly; approximation and continuity of $H$ allow passage to the infima. The strict conclusion of Theorem~\ref{thm:main} is not a consequence of that elementary construction, but of Proposition~\ref{prop:gap}.
+
+\paragraph{Reproducibility.}
+The associated development notes, including independent dilation and arithmetic audits, are available in the public repository at
+\begin{center}
+\small\url{https://github.com/rickyjreyes/geometry_of_resonance/tree/main/docs/d4_binding}.
+\end{center}
+The theorem and its proof above are self-contained and do not depend on numerical evidence or external computational artifacts.
+
+\begin{thebibliography}{9}
+\bibitem{FJMM2022}
+A.~J. Fern\'andez, L. Jeanjean, R. Mandel, and M. Mari\c{s},
+\emph{Non-homogeneous Gagliardo--Nirenberg inequalities in $\RR^N$ and application to a biharmonic non-linear Schr\"odinger equation},
+Journal of Differential Equations \textbf{330} (2022), 1--65.
+\href{https://doi.org/10.1016/j.jde.2022.04.037}{doi:10.1016/j.jde.2022.04.037}.
+
+\bibitem{MCF2024}
+Z. Ma, X. Chang, and Z. Feng,
+\emph{Normalized ground state of a mixed dispersion nonlinear Schr\"odinger equation with combined power-type nonlinearities},
+Electronic Journal of Differential Equations \textbf{2024} (2024), no.~29, 1--20.
+\href{https://doi.org/10.58997/ejde.2024.29}{doi:10.58997/ejde.2024.29}.
+\end{thebibliography}
+
+\end{document}
