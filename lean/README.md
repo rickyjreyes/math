@@ -1,7 +1,7 @@
 # Lean 4 formalization status
 
-This Mathlib v4.23.0 project contains 51 formal theorem declarations
-(38 on the previous verified main commit plus 13 added here) in sixteen imported modules. On any revision,
+This Mathlib v4.23.0 project contains 60 formal theorem declarations
+(51 previously verified plus 9 new declarations) in twenty imported modules. On any revision,
 regard them as kernel-checked only after that exact revision's Lean CI passes:
 
 - [Elementary](MathProofs/Elementary.lean) — original elementary algebra.
@@ -39,6 +39,10 @@ regard them as kernel-checked only after that exact revision's Lean CI passes:
   matrix contraction with the directional-derivative sum of squares.
 - [SchwartzShell](MathProofs/SchwartzShell.lean) — complete shell-exclusion
   proof for Schwartz-class fields using the actual invertible Fourier transform.
+- [DispersionCriticalPoint](MathProofs/DispersionCriticalPoint.lean) — explicit positive critical point and its strict global minimum without assuming stationary-point existence.
+- [PhysicalDispersionMinimum](MathProofs/PhysicalDispersionMinimum.lean) — specialization to the original K,T,G,m conditions, proving the unique positive global lower-branch minimum.
+- [ContinuousPhaseIntegral](MathProofs/ContinuousPhaseIntegral.lean) — actual continuous weighted-integral gap identity and sharp bound.
+- [ContinuousPhaseOptimizer](MathProofs/ContinuousPhaseOptimizer.lean) — explicit continuous optimizer existence and equality-case a.e. uniqueness.
 
 For precise statements and manuscript coverage, see
 [formalization.yaml](formalization.yaml).
@@ -64,9 +68,9 @@ is not yet committed.
 strict binding, whole-space minimizer existence, concentration–compactness,
 global continuation, and orbital stability remain conventional analytic
 proofs. The higher-derivative constraint count and ultraviolet Sobolev evolution (F02), continuous
-spectral/phase integral identities (F03, F07), full multidimensional
+spectral integral identities (F03) and full H¹ winding-phase construction (F07), full multidimensional
 nonlinear Fourier-mode theorem (F04), curvature nonattainment (F05),
-dispersion existence/explicit-minimum theorem under the manuscript assumptions (F06), numerical Jacobian rank claims (F09),
+dispersion strict-convexity and branch-positivity corollaries (F06), numerical Jacobian rank claims (F09),
 and the Plancherel extension from Schwartz class to all L² states (F10) are
 likewise not fully formalized.
 
@@ -81,6 +85,8 @@ published numerical rank.
 
 Separate research-grade Lean work lives in [wct-lean](https://github.com/rickyjreyes/wct-lean);
 do not conflate its theorem count with this repository.
+
+The core #9 unique-global-minimum tweet is proved with the original physical parameter conditions. The #11 continuous fixed-integral minimization is also proved with explicit optimizer and a.e. uniqueness, but full phase lift remains open.
 
 The Schwartz-space version of F10 is now proved end-to-end using Mathlib's
 Schwartz Fourier inversion; it is **not** the manuscript's full L² theorem.
