@@ -55,4 +55,4 @@ A PDF here is an analytic manuscript, **not** a claim of peer review or Lean ker
 
 ## F11 — Band-pass amplitude gradient flow
 
-**E13/E14: negative-gradient-flow structure and exact dissipation identity** — [PDF](preprints/band-pass-amplitude-negative-gradient-flow/paper.pdf) · [LaTeX source](papers/band-pass-amplitude-negative-gradient-flow/main.tex) · [Notes](preprints/band-pass-amplitude-negative-gradient-flow/README.md)
+**E13/E14: negative-gradient-flow structure and exact dissipation identity** — [PDF](preprints/band-pass-amplitude-negative-gradient-flow/paper.pdf) · [LaTeX source](papers/band-pass-amplitude-negative-gradient-flow/main.tex) · [E14 companion LaTeX proof](papers/band-pass-amplitude-negative-gradient-flow/E14_full_proof.tex) · [Notes](preprints/band-pass-amplitude-negative-gradient-flow/README.md)
