@@ -25,3 +25,6 @@ import MathProofs.UVGrowthBound
 import MathProofs.ContinuousSpectralVariance
 import MathProofs.QuinticConvolution
 import MathProofs.CurvatureNonattainment
+import MathProofs.DispersionBranchPositivity
+import MathProofs.CurvatureUniformBound
+import MathProofs.DispersionRealDomain
