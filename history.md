@@ -1,5 +1,11 @@
 # Version history
 
+## 2026-10-26 — Mathematical compendium, Volume I
+
+- Added a separate `compendium/` reference series beginning with the 25-ID elementary mathematical foundations, with LaTeX source, per-volume notes, canonical-registry cross-references, and a reproducible PDF build.
+- Classified standard mathematical identities, conditional counting hypotheses, and physical interpretation distinctly; the compendium is not an F-series original research preprint or a completed Lean formalization.
+- Indexed the compendium in README and CONTENTS and extended the PDF publishing workflow to build the PDF beside its source.
+
 ## 2026-10-26 — E68 localized gradient-energy proof
 
 - Added complete Manuscript 4 E68 source: refutes unrestricted $H^1$ local-energy bound for $n\ne2$ over all radii, and proves a corrected $L^n$-gradient estimate with an $H^2$ result for $n=3,4$.
