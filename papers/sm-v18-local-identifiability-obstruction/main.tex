@@ -1,0 +1,434 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\geometry{margin=1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Null}{\operatorname{ker}}
+\newcommand{\diag}{\operatorname{diag}}
+
+\title{A Structural Local Identifiability Obstruction\\
+for the 31-Coefficient v18 Spectral Model}
+\author{Richard J. Reyes}
+\date{October 26, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We consider the eleven-nonzero-observable sensitivity map of a spectral
+model with twenty-nine stored scalar coefficients and two additional
+historically optimized parameters. At every parameter point at which the
+31-parameter forward map is differentiable, its Jacobian has eleven rows,
+so rank--nullity yields an exact lower bound of twenty on the dimension of
+its first-order null space. We give a full proof, spell out the precise
+perturbative interpretation, and distinguish the structural theorem from
+the repository's finite-difference singular-value-decomposition (SVD)
+result reporting numerical rank eleven. A block-structured 11-by-11 minor
+provides an independent numerical diagnostic. We also state the stronger
+local level-set result that follows \emph{conditionally} from an exact
+full-row-rank certificate and suitable smoothness. The result is an audit
+of parameter identifiability, not a derivation of particle masses or an
+independent physical spectral prediction.
+\end{abstract}
+
+\section{Model and hypotheses}
+
+Let \(U\subseteq\R^{31}\) be an open neighborhood of a reference
+coefficient vector \(\theta_0\), and let
+\begin{equation}
+  F:U\longrightarrow\R^{11},\qquad
+  F(\theta)=\bigl(f_1(\theta),\ldots,f_{11}(\theta)\bigr)^{\mathsf T}
+  \label{eq:forward}
+\end{equation}
+be the spectral forward map for the eleven nonzero observables.
+The assumption that \(F\) is differentiable at \(\theta_0\) is explicit:
+the implementation includes piecewise routing, clipping, and floors,
+so differentiability should not be asserted at a branch transition.
+Within a fixed smooth branch, the calculation below applies directly.
+The rank--nullity conclusion also applies to any chosen linear
+sensitivity matrix of the indicated shape, independently of how its
+entries were estimated.
+
+The audited parameter allocation is
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+Parameter section & Number of scalar parameters\\
+\midrule
+Light sector & 9\\
+Middle sector & 7\\
+Heavy sector & 13\\
+Historically live suppression parameters & 2\\
+\midrule
+Total & \(31\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+The v18 source specifies twelve targets, including one artificial
+zero-mass target. The full-coefficient audit excludes that zero target and
+uses the index set
+\begin{equation}
+  \mathcal N=\{1,2,3,12,19,53,73,91,95,96,123\},
+  \qquad |\mathcal N|=11.
+  \label{eq:indices}
+\end{equation}
+The corresponding eleven outputs are evaluated without refitting the
+stored coefficients or reassigning particle labels.
+
+\section{Exact structural theorem}
+
+\begin{theorem}[Minimum first-order nullity]
+\label{thm:structural}
+Suppose the map \(F\) in \eqref{eq:forward} is differentiable at
+\(\theta_0\in U\). Its sensitivity matrix
+\begin{equation}
+  J=DF(\theta_0)
+   =\left(\frac{\partial f_i}{\partial\theta_j}(\theta_0)\right)_
+          {\substack{1\leq i\leq11\\1\leq j\leq31}}
+   \in\R^{11\times31}
+  \label{eq:jacobian}
+\end{equation}
+satisfies
+\begin{equation}
+  \boxed{\rank J\leq11},
+  \qquad
+  \boxed{\dim\Null J=31-\rank J\geq20}.
+  \label{eq:main}
+\end{equation}
+In particular, there are at least twenty linearly independent directions
+in parameter space along which all eleven predictions have vanishing
+first directional derivative.
+\end{theorem}
+
+\begin{proof}
+The derivative \(DF(\theta_0)\) is a linear map
+\begin{equation}
+ J:\R^{31}\longrightarrow\R^{11}.
+\end{equation}
+Because the dimension of its codomain is eleven,
+\begin{equation}
+ \rank J\leq\min\{31,11\}=11.
+\end{equation}
+The rank--nullity theorem gives
+\begin{equation}
+  \dim\Null J+\rank J=\dim\R^{31}=31,
+\end{equation}
+and hence
+\begin{equation}
+  \dim\Null J=31-\rank J\geq31-11=20.
+\end{equation}
+Choose linearly independent vectors
+\(v_1,\ldots,v_d\) forming a basis of \(\Null J\), where \(d\geq20\).
+For any \(v\in\Null J\), we have \(Jv=0\). Differentiability entails
+\begin{equation}
+ F(\theta_0+tv)
+   =F(\theta_0)+tJv+o(|t|)
+   =F(\theta_0)+o(|t|)
+ \quad (t\to0).
+ \label{eq:firstorder}
+\end{equation}
+Thus the first derivative of every component of \(F\) vanishes along
+each \(v_i\), proving the last assertion.
+\end{proof}
+
+\begin{remark}[Meaning of ``unidentifiable direction'']
+Equation \eqref{eq:firstorder} is a \emph{first-order} statement; it
+neither says that a particular parameter is independently dispensable nor
+that \(F(\theta_0+tv)=F(\theta_0)\) holds for nonzero \(t\).
+The null vectors are generally combinations of the stored and live
+coefficients. Furthermore, if the physically admissible parameter set
+has active bounds, not every signed null perturbation need remain
+feasible. The theorem concerns the ambient linearized map.
+\end{remark}
+
+\begin{corollary}[Exact nullity under exact full row rank]
+\label{cor:exact}
+If, in addition, \(\rank DF(\theta_0)=11\) holds \emph{exactly}, then
+\begin{equation}
+  \boxed{\dim\Null DF(\theta_0)=20}.
+\end{equation}
+\end{corollary}
+\begin{proof}
+Insert \(\rank J=11\) into rank--nullity.
+\end{proof}
+
+\section{Reproducing the numerical sensitivity audit}
+
+The full-coefficient script loads the unchanged v18 implementation,
+checks the original predictions against an independent explicit
+branch-dispatch evaluator, and applies finite differences about the
+historical parameter vector \(\theta_0\).
+For a coordinate vector \(e_j\), it usually estimates
+\begin{equation}
+  J_{ij}\approx
+   \frac{f_i(\theta_0+h_je_j)-f_i(\theta_0-h_je_j)}{2h_j},
+  \qquad
+  h_j=10^{-5}\max\{1,|\theta_{0,j}|\}.
+  \label{eq:central}
+\end{equation}
+The historically live parameter \(\epsilon_{\mathrm{cutoff}}\)
+is at its upper bound \(5\), so that column is computed using a
+backward difference. Other active bounds, when relevant, also trigger
+one-sided differences. These finite differences are diagnostics and
+are not an exact derivative certificate.
+
+Let \(y_i>0\) denote the eleven observed nonzero target masses and set
+\(s_j=\max\{1,|\theta_{0,j}|\}\). The reported scaled matrix is
+\begin{equation}
+  \widetilde J= D_y^{-1} J D_s,
+  \qquad
+  D_y=\diag(y_1,\ldots,y_{11}),\quad
+  D_s=\diag(s_1,\ldots,s_{31}).
+  \label{eq:scaled}
+\end{equation}
+Both diagonal matrices are invertible, so exact linear-algebraic rank
+is unchanged:
+\begin{equation}
+   \rank\widetilde J=\rank J.
+\end{equation}
+However, a numerical rank estimate can depend on scaling, finite
+differences, and the threshold used in the SVD.
+
+Writing the eleven singular values as
+\(\sigma_1\geq\cdots\geq\sigma_{11}\geq0\), the script defines
+\begin{equation}
+  r_{\mathrm{num}}
+   =\#\{i:\sigma_i>10^{-8}\sigma_1\}.
+  \label{eq:rankthreshold}
+\end{equation}
+The executable audit reports
+\begin{equation}
+   \boxed{r_{\mathrm{num}}=11},\qquad
+   \boxed{31-r_{\mathrm{num}}=20}.
+\end{equation}
+This is \emph{numerical} full row rank. By contrast, the lower bound
+\(\dim\Null J\geq20\) in Theorem~\ref{thm:structural} is an exact
+consequence of dimensions, even if the true rank were below eleven.
+
+\section{Independent block-minor diagnostic}
+\label{sec:minor}
+
+The piecewise v18 model allows an independent check of the reported
+row-rank result. Order the output rows as three light, five middle, and
+three heavy targets. Select the following eleven \emph{stored}
+parameter columns:
+\begin{align*}
+ \text{light:}&\quad m_0,\,\beta,\,\gamma,\\
+ \text{middle:}&\quad A,\,\phi,\,h,\,c,\,d,\\
+ \text{heavy:}&\quad \omega,\,\varphi,\,b_H.
+\end{align*}
+Here \(\gamma\) is the cubic-index coefficient in the light formula,
+\(A,\phi,h,c,d\) are respectively the middle sinusoidal amplitude,
+phase, second-harmonic coefficient, constant offset, and quadratic
+coefficient, and \(\omega,\varphi,b_H\) are the W/Z-break angle, phase,
+and Higgs offset.
+
+At the frozen smooth branches the selected minor has the form
+\begin{equation}
+  J_{\mathrm{minor}}
+   =\begin{pmatrix}
+       L&0&0\\
+       0&M&0\\
+       B&0&H
+     \end{pmatrix},
+  \qquad
+  \det J_{\mathrm{minor}}=\det L\,\det M\,\det H.
+  \label{eq:block}
+\end{equation}
+The unspecified block \(B\) represents dependence of heavy predictions
+on light-sector coefficients, and does not affect the determinant.
+
+\subsection{Light sector}
+In the v18 light formula, away from an active prediction floor, the
+selected partial derivatives are a nonzero diagonal row rescaling of
+\begin{equation}
+  L_0=
+  \begin{pmatrix}
+    1/2&0&1\\
+    2/3&1&8\\
+    3/4&1&27
+  \end{pmatrix}.
+\end{equation}
+Direct expansion yields
+\begin{equation}
+  \det L_0
+   =\frac12(27-8)+\left(\frac23-\frac34\right)
+   =\boxed{\frac{113}{12}\ne0}.
+  \label{eq:lightdet}
+\end{equation}
+The multipliers are the positive logistic suppression factors and the
+nonzero special \(n=3\) neutrino factor, so \(\det L\ne0\) on the
+stated unclipped branch.
+
+\subsection{Middle sector}
+The middle mass formula is
+\begin{equation}
+ f(n)= A\sin(sn+\phi)+h\sin(tn)+c+dn^2,
+\end{equation}
+up to its inactive positive-mass floor. For
+\(n\in\{12,19,53,73,91\}\), the five selected derivative columns are
+\begin{equation}
+ M_n=\left(
+   \sin(sn+\phi),\,
+   A\cos(sn+\phi),\,
+   \sin(tn),\,1,\,n^2
+ \right).
+ \label{eq:middle}
+\end{equation}
+Using the stored decimal coefficient values
+\begin{equation}
+  (A,s,t,\phi)=(2241.1,5.0632,9.4062,1.6469),
+\end{equation}
+ordinary floating-point evaluation gives
+\begin{equation}
+  \det M\approx 2.1220606421\times10^7.
+  \label{eq:middledet}
+\end{equation}
+This is a numerical nonsingularity witness, not a rigorous interval
+certificate of the transcendental determinant.
+
+\subsection{Heavy sector}
+The v18 source adds a W/Z correction \(S\sin(\omega n+\varphi)\)
+for \(n=95,96\), and a separate Higgs offset at \(n=123\).
+On the corresponding unclipped branches,
+\begin{equation}
+ H=\begin{pmatrix}
+ 95S\cos(95\omega+\varphi)&S\cos(95\omega+\varphi)&0\\
+ 96S\cos(96\omega+\varphi)&S\cos(96\omega+\varphi)&0\\
+ 0&0&1
+ \end{pmatrix}.
+\end{equation}
+Therefore
+\begin{equation}
+ \det H=-S^2\cos(95\omega+\varphi)\cos(96\omega+\varphi).
+ \label{eq:heavydet}
+\end{equation}
+The source values \(S=8624\), \(\omega=-1.264\), and
+\(\varphi=4.685\) give
+\begin{equation}
+ \det H\approx-4.5126633137\times10^7.
+\end{equation}
+The two nonzero numerical determinants in
+\eqref{eq:middledet} and \eqref{eq:heavydet}, together with the exact
+light determinant \eqref{eq:lightdet}, support the numerical full-row-rank
+result. A formal exact-rank certification can be obtained by replacing
+these floating-point evaluations with verified interval enclosures that
+exclude zero, while also verifying the relevant branches remain smooth.
+This certification is not claimed here.
+
+\section{What exact full row rank would additionally prove}
+
+\begin{proposition}[Conditional nonlinear local level set]
+\label{prop:levelset}
+Assume \(F\) is continuously differentiable on an open neighborhood of
+\(\theta_0\), and assume the \emph{exact} rank condition
+\(\rank DF(\theta_0)=11\). Then, in a sufficiently small neighborhood
+of \(\theta_0\), the level set
+\begin{equation}
+  \mathcal M=\{\theta:F(\theta)=F(\theta_0)\}
+\end{equation}
+is a \(C^1\) submanifold of dimension twenty.
+\end{proposition}
+\begin{proof}
+Exact row rank eleven means that \(DF(\theta_0)\) is surjective.
+The submersion (or implicit-function) theorem then provides local
+coordinates in which \(F\) is the projection from \(\R^{31}\)
+onto the first eleven coordinates, up to smooth changes of coordinates.
+The fiber over \(F(\theta_0)\) is locally described by fixing those
+eleven coordinates, leaving \(31-11=20\) free coordinates.
+\end{proof}
+
+\begin{remark}[Active bounds]
+The historical live parameter \(\epsilon_{\mathrm{cutoff}}\) sits at an
+optimizer upper bound. Proposition~\ref{prop:levelset} is therefore
+stated for a smooth extension to an \emph{open} ambient domain; it does
+not automatically imply that every direction in the full twenty-dimensional
+fiber respects the fitted parameter constraints. Since the proposed
+numerically nonsingular minor in Section~\ref{sec:minor} uses eleven
+\emph{stored} parameters, certifying that minor would also permit a
+restricted implicit-function analysis with the two live parameters fixed.
+In that case the remaining twenty-nine stored parameters would support
+a local \(29-11=18\)-dimensional equal-prediction level set, without
+moving either live parameter across its bound.
+\end{remark}
+
+\section{Scope and scientific conclusion}
+
+The theorem makes no claim that exactly twenty individually named
+coefficients are redundant, that the measured masses identify the
+remaining eleven coefficients, or that a fitted spectral formula follows
+from a specified eigenvalue operator. It does not determine measurement
+uncertainties or Bayesian posterior widths. In particular, it does not
+supply an independent mapping from eigenmodes to particle assignments,
+a confinement operator with its domain and boundary conditions, or a
+physical normalization converting eigenvalues into measured mass units.
+
+The logical status of the main statements is:
+\begin{center}
+\begin{tabular}{p{0.69\linewidth}p{0.20\linewidth}}
+\toprule
+Statement & Status\\
+\midrule
+\(\rank J\leq11\) for an 11-by-31 Jacobian & Exact theorem\\
+\(\dim\Null J\geq20\) & Exact theorem\\
+At least twenty zero first-order sensitivities & Exact when differentiable\\
+The frozen audit's reported numerical rank eleven & Numerical diagnostic\\
+Exactly twenty-dimensional smooth local fibers & Conditional on exact rank and regularity\\
+Independent spectral prediction of particle masses & Not established\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Conclusion.}
+For the unrestricted 31-coefficient parameterization and eleven
+nonzero observables, the first-order structural obstruction is
+\begin{equation}
+ \boxed{
+  J\in\R^{11\times31}
+  \quad\Longrightarrow\quad
+  \rank J\leq11
+  \quad\Longrightarrow\quad
+  \dim\Null J\geq20.
+ }
+\end{equation}
+The unconditional conclusion is a local sensitivity obstruction, not an
+independently validated physical spectrum. The corresponding v18 research
+classification remains \texttt{EMPIRICAL\_FIT\_ONLY}.
+
+\section*{Sources and reproducibility}
+\begin{enumerate}
+\item v18 audit and scientific-status discussion:\\
+\url{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/SM_V18_SPECTRAL_BRIDGE_AUDIT.md}
+\item Full-coefficient finite-difference/SVD audit:\\
+\url{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/SM_Spectrum/audit_v18_identifiability.py}
+\item Original v18 source defining the coefficient blocks and predictions:\\
+\url{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/SM_Spectrum/_terms_perfection_v18.py}
+\item Foundational Stage 2 spectral-bridge obstruction report:\\
+\url{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/FOUNDATIONAL_STAGE2_2026-10-14.md}
+\end{enumerate}
+
+\noindent The repository's reproduction command is
+\begin{verbatim}
+python SM_Spectrum/audit_v18_identifiability.py \
+  --output audit/v18_identifiability.json
+\end{verbatim}
+It records coefficient and CSV file hashes, package versions, the
+11-by-31 scaled sensitivity, its SVD, and the declared numerical-rank
+threshold. This document reports the repository's rank result; it does
+not claim a new executed holdout test.
+
+\end{document}
