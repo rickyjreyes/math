@@ -1,0 +1,303 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\usepackage{microtype}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\avg}[1]{\langle #1\rangle_w}
+\newcommand{\Var}{\operatorname{Var}}
+
+\title{Spectral RMS Is Not Generally Equal to Averaged Curvature\\
+\large An Exact Spectral--Phase Identity and a Closed-Curve Counterexample}
+\author{Richard J. Reyes}
+\date{October 26, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For a smooth, nonvanishing eigenmode of the periodic operator
+$-\partial_s^2$, we establish an exact decomposition of its eigenvalue
+into squared weighted mean phase gradient, weighted phase variance, and
+normalized amplitude-gradient energy.  The decomposition yields sharp
+equality conditions and does not require a nonnegative phase gradient.
+An explicit eigenmode with $\sqrt{\lambda}=1$ and weighted mean phase
+gradient $4/5$ can moreover be realized as the unit tangent of a smooth
+closed planar curve, where the phase gradient equals its curvature.
+The conclusion applies to the declared free periodic operator, without
+assuming a derived physical confinement or mass operator.
+\end{abstract}
+
+\section{Setting and exact identity}
+
+Let $S_L^1=\mathbb{R}/L\mathbb{Z}$ denote a circle of length $L>0$.
+Consider the self-adjoint free operator
+\begin{equation}
+    H=-\frac{\mathrm{d}^2}{\mathrm{d}s^2},
+    \qquad D(H)=H^2_{\mathrm{per}}(S_L^1;\mathbb{C}).
+\end{equation}
+Suppose that $\chi$ is a smooth, nowhere-vanishing periodic eigenfunction:
+\begin{equation}\label{eq:eigenproblem}
+    -\chi''(s)=\lambda\chi(s),\qquad \chi(s)\ne0.
+\end{equation}
+Because $\chi$ has no zeros, its polar form may be written on the
+universal cover as
+\begin{equation}\label{eq:polar}
+    \chi(s)=R(s)e^{i\phi(s)},\qquad R(s)>0,\qquad
+    \sigma(s)=\phi'(s)\in\mathbb{R}.
+\end{equation}
+Although $\phi$ need not be periodic, $\phi'$ is periodic, and
+$\phi(s+L)-\phi(s)=2\pi n$ for some $n\in\mathbb{Z}$.
+Set
+\begin{equation}\label{eq:weights}
+    N=\int_0^L R(s)^2\dd s>0,\qquad
+    w(s)=\frac{R(s)^2}{N},\qquad
+    \avg{f}=\int_0^L f(s)w(s)\dd s,
+\end{equation}
+and define
+\begin{equation}
+    \Var_w(\sigma)=\avg{\sigma^2}-\avg{\sigma}^{\,2}
+    =\int_0^L w(s)\bigl(\sigma(s)-\avg{\sigma}\bigr)^2\dd s.
+\end{equation}
+
+\begin{theorem}[Sharp spectral--phase decomposition]\label{thm:main}
+Under the hypotheses above,
+\begin{equation}\label{eq:identity}
+    \boxed{
+      \lambda-\avg{\sigma}^{\,2}
+      =\frac{\displaystyle\int_0^L |R'(s)|^2\dd s}
+             {\displaystyle\int_0^L R(s)^2\dd s}
+       +\Var_w(\sigma)\ge0.
+    }
+\end{equation}
+Equality in \eqref{eq:identity} holds if and only if both $R$ and
+$\sigma$ are constant.  In particular,
+\begin{equation}\label{eq:rootbound}
+    \sqrt{\lambda}\ge\bigl|\avg{\sigma}\bigr|.
+\end{equation}
+No sign restriction on $\sigma$ is needed.
+\end{theorem}
+
+\begin{proof}
+Multiply \eqref{eq:eigenproblem} by $\overline{\chi}$ and integrate:
+\begin{equation}
+    \lambda\int_0^L |\chi|^2\dd s
+      =-\int_0^L\overline{\chi}\,\chi''\dd s.
+\end{equation}
+Periodic integration by parts, using periodicity of both $\chi$ and
+$\chi'$, eliminates the boundary term and yields
+\begin{equation}\label{eq:dirichlet}
+    \lambda N=\int_0^L|\chi'|^2\dd s.
+\end{equation}
+From \eqref{eq:polar},
+\begin{equation}
+    \chi'=e^{i\phi}(R'+iR\sigma),
+    \qquad
+    |\chi'|^2=|R'|^2+R^2\sigma^2,
+\end{equation}
+since $R'$ and $\sigma$ are real.  Inserting this expression into
+\eqref{eq:dirichlet} and dividing by $N$ gives
+\begin{equation}\label{eq:phase_second_moment}
+    \lambda
+    =\frac{\int_0^L|R'|^2\dd s}{N}+\avg{\sigma^2}.
+\end{equation}
+By the weighted variance identity,
+$\avg{\sigma^2}=\avg{\sigma}^{\,2}+\Var_w(\sigma)$.
+Substitution into \eqref{eq:phase_second_moment} proves
+\eqref{eq:identity}.  Both terms on its right-hand side are
+nonnegative, proving \eqref{eq:rootbound}.
+
+For the equality case, the sum in \eqref{eq:identity} vanishes if and
+only if both of its nonnegative terms vanish.  As $R$ is smooth,
+$\int_0^L|R'|^2\dd s=0$ implies $R'=0$ everywhere, hence $R$ is
+constant.  Likewise, $w>0$ everywhere and smoothness of $\sigma$
+show that $\Var_w(\sigma)=0$ implies
+$\sigma(s)=\avg{\sigma}$ everywhere.  The converse follows by direct
+substitution, completing the proof.
+\end{proof}
+
+\begin{remark}[Winding and the sign of the mean]
+When equality holds, $\chi(s)=R_0e^{i(\sigma_0s+\phi_0)}$, where
+$\sigma_0L=2\pi n$, $n\in\mathbb{Z}$, and
+$\lambda=\sigma_0^2$.  Consequently, equality in
+$\lambda=\avg{\sigma}^{\,2}$ allows either sign of the constant
+phase gradient.  The stronger unsigned statement
+$\sqrt{\lambda}=\avg{\sigma}$ requires in addition
+$\avg{\sigma}\ge0$; without this assumption the exact equality is
+$\sqrt{\lambda}=|\avg{\sigma}|$.
+\end{remark}
+
+\section{An explicit strict counterexample}
+
+\begin{proposition}[Nonconstant amplitude defeats mean closure]
+\label{prop:example}
+For $s\in[0,2\pi]$, let
+\begin{equation}\label{eq:example}
+    \chi_a(s)=\cos s+ia\sin s,\qquad a>0.
+\end{equation}
+Then $\chi_a$ is a smooth, nowhere-vanishing periodic eigenfunction
+with $\lambda=1$, while its weighted mean phase gradient is
+\begin{equation}\label{eq:generalmean}
+    \avg{\sigma}=\frac{2a}{1+a^2}.
+\end{equation}
+Thus $\sqrt{\lambda}\ne\avg{\sigma}$ for every $a>0$ with
+$a\ne1$.  In particular, at $a=\tfrac12$,
+\begin{equation}\label{eq:fourfifths}
+    \boxed{\sqrt{\lambda}=1,\qquad\avg{\sigma}=\frac45.}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Direct differentiation yields $-\chi_a''=\chi_a$, hence $\lambda=1$.
+Moreover,
+\begin{equation}
+    R_a^2(s)=|\chi_a(s)|^2=\cos^2s+a^2\sin^2s
+    \ge\min\{1,a^2\}>0.
+\end{equation}
+The normalization is
+\begin{equation}
+    N_a=\int_0^{2\pi}R_a^2(s)\dd s=\pi(1+a^2).
+\end{equation}
+For a nonvanishing complex function, its phase derivative is
+\begin{equation}
+    \sigma_a(s)=\frac{\operatorname{Im}
+    (\overline{\chi_a(s)}\chi_a'(s))}{|\chi_a(s)|^2}.
+\end{equation}
+Because $\operatorname{Im}(\overline{\chi_a}\chi_a')=a$,
+we have
+\begin{equation}\label{eq:sigmaa}
+    \sigma_a(s)=\frac{a}{R_a^2(s)}>0.
+\end{equation}
+Therefore $R_a^2\sigma_a=a$ pointwise and
+\begin{equation}
+    \avg{\sigma}
+      =\frac{1}{N_a}\int_0^{2\pi}R_a^2\sigma_a\dd s
+      =\frac{2\pi a}{\pi(1+a^2)}
+      =\frac{2a}{1+a^2}.
+\end{equation}
+The difference
+\begin{equation}
+    1-\frac{2a}{1+a^2}=\frac{(a-1)^2}{1+a^2}
+\end{equation}
+is strictly positive unless $a=1$.  Taking $a=1/2$ gives
+\eqref{eq:fourfifths}.
+\end{proof}
+
+\paragraph{Exact gap accounting at $a=1/2$.}
+For the explicit example $R^2=\cos^2s+\tfrac14\sin^2s$ and
+$N=5\pi/4$.  The elementary integral
+\begin{equation}
+    \int_0^{2\pi}\frac{\dd s}
+    {\cos^2s+\frac14\sin^2s}=4\pi
+\end{equation}
+gives, using $\sigma=(2R^2)^{-1}$,
+\begin{equation}
+    \avg{\sigma^2}
+      =\frac{1}{4N}\int_0^{2\pi}\frac{\dd s}{R^2(s)}
+      =\frac45.
+\end{equation}
+Hence
+\begin{equation}
+    \Var_w(\sigma)=\frac45-\frac{16}{25}=\frac4{25},
+\end{equation}
+while \eqref{eq:phase_second_moment} yields
+\begin{equation}
+    \frac{\int_0^{2\pi}|R'|^2\dd s}{N}
+      =1-\frac45=\frac15.
+\end{equation}
+Thus both contributions to the gap are explicit:
+\begin{equation}\label{eq:gap_accounting}
+    \boxed{
+    1-\left(\frac45\right)^2
+       =\underbrace{\frac15}_{\text{amplitude-gradient energy}}
+       +\underbrace{\frac4{25}}_{\text{phase variance}}
+       =\frac9{25}.}
+\end{equation}
+
+\section{Realization by a smooth closed planar curve}
+
+\begin{proposition}[Geometrically locked counterexample]
+\label{prop:curve}
+For $a>0$, define the complex unit tangent
+\begin{equation}
+    T_a(s)=\frac{\chi_a(s)}{|\chi_a(s)|}
+\end{equation}
+and the plane curve, with $\mathbb{C}\cong\mathbb{R}^2$,
+\begin{equation}
+    \Gamma_a(s)=\int_0^s T_a(t)\dd t.
+\end{equation}
+Then $\Gamma_a$ is a smooth, closed, unit-speed planar curve of
+length $2\pi$.  Its curvature $\kappa_a$ and torsion $\tau_a$ satisfy
+\begin{equation}
+    \kappa_a(s)=\sigma_a(s)>0,\qquad \tau_a(s)=0,
+\end{equation}
+and hence the pointwise geometric lock
+\begin{equation}
+    \sigma_a(s)=\sqrt{\kappa_a(s)^2+\tau_a(s)^2}
+\end{equation}
+holds.  Nevertheless, at $a=1/2$ the associated free periodic
+eigenmode has $\sqrt{\lambda}=1$ but
+$\avg{\kappa}=4/5$.
+\end{proposition}
+
+\begin{proof}
+Smoothness follows from $|\chi_a|>0$, and
+$|\Gamma_a'|=|T_a|=1$.  Since
+$\chi_a(s+\pi)=-\chi_a(s)$ and $R_a(s+\pi)=R_a(s)$,
+we have $T_a(s+\pi)=-T_a(s)$.  It follows that
+\begin{equation}
+    \Gamma_a(2\pi)-\Gamma_a(0)
+    =\int_0^\pi\bigl(T_a(s)+T_a(s+\pi)\bigr)\dd s=0.
+\end{equation}
+The curve is closed.  Writing $T_a=e^{i\phi_a}$,
+\begin{equation}
+    T_a'=i\phi_a'T_a=i\sigma_a T_a,
+\end{equation}
+so its curvature is $\kappa_a=|T_a'|=|\sigma_a|=\sigma_a$,
+where positivity follows from \eqref{eq:sigmaa}.  As the curve is
+planar, its torsion is zero.  The final assertion follows from
+Proposition~\ref{prop:example}.
+\end{proof}
+
+\section{Scope and consequences}
+
+The exact relation can be written in spectral-root form as
+\begin{equation}\label{eq:rootidentity}
+    \boxed{
+    \sqrt{\lambda}=
+    \left(
+      \avg{\sigma}^{\,2}
+      +\Var_w(\sigma)
+      +\frac{\|R'\|_{L^2}^2}{\|R\|_{L^2}^2}
+    \right)^{1/2}.}
+\end{equation}
+This demonstrates that the spectral scale $\sqrt{\lambda}$
+cannot generally be replaced by the weighted mean $\avg{\sigma}$,
+even if a pointwise identification of $\sigma$ with geometric
+curvature has been independently supplied.
+
+If the separated-field dispersion of an independently specified
+product-space model yields a conditional effective mass
+$m_{\mathrm{eff}}=(\hbar/c)\sqrt{\lambda}$, then replacing this with
+$(\hbar/c)\avg{\sigma}$ demands the equality hypotheses, together
+with the appropriate sign convention.  This theorem does not derive
+the confinement operator from an underlying physical action, identify
+particle modes, or establish an empirical mass spectrum.  Operators
+with nonzero potentials, connections, or different boundary conditions
+may require a different energy identity; zero-containing eigenmodes
+require additional treatment at their nodes.
+
+\paragraph{Source and context.}
+See the project note
+\href{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/foundational/GEOMETRIC_MASS_CLOSURE.md}
+{\texttt{GEOMETRIC\_MASS\_CLOSURE.md}}.
+
+\end{document}
