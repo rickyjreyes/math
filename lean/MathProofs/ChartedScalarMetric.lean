@@ -1,5 +1,6 @@
 import Mathlib.Geometry.Manifold.MFDeriv.Basic
 import MathProofs.ScalarGradientFields
+import MathProofs.MetricQuadratic
 
 /-!
 # Pointwise rank/signature obstruction in arbitrary four-chart spaces
@@ -65,5 +66,37 @@ theorem charted_complex_metric_everywhere_obstruction
   intro p
   exact ⟨charted_complex_metric_rank_le_two ψ p (hψ p),
     fun v => charted_complex_metric_no_timelike ψ p v (hψ p)⟩
+
+/-- The actual chartwise tensor-matrix contraction is nonnegative
+for every tangent-coordinate vector, not merely a separately defined Gram
+quadratic. -/
+theorem charted_complex_metric_matrix_psd
+    {M : Type*} [TopologicalSpace M] [ChartedSpace (Fin 4 → ℝ) M]
+    (ψ : M → ℂ) (p : M) (v : Fin 4 → ℝ)
+    (hψ : DifferentiableAt ℝ (complexScalarInChart ψ p)
+      (chartAt (Fin 4 → ℝ) p p)) :
+    0 ≤ ∑ i, ∑ j,
+      (complexFieldMetric (complexScalarInChart ψ p)
+        (chartAt (Fin 4 → ℝ) p p)) i j * v i * v j := by
+  exact complex_field_matrix_psd _ _ v hψ
+
+/-- A single complex scalar never supplies a Lorentzian four-metric via
+the positive-sign derivative-product tensor on any four-coordinate charted
+space: rank is at most two and there is no negative quadratic direction. -/
+theorem charted_complex_metric_full_pointwise_obstruction
+    {M : Type*} [TopologicalSpace M] [ChartedSpace (Fin 4 → ℝ) M]
+    (ψ : M → ℂ)
+    (hψ : ∀ p : M, DifferentiableAt ℝ
+      (complexScalarInChart ψ p) (chartAt (Fin 4 → ℝ) p p)) :
+    ∀ p : M,
+      (complexFieldMetric (complexScalarInChart ψ p)
+        (chartAt (Fin 4 → ℝ) p p)).rank ≤ 2 ∧
+      ∀ v : Fin 4 → ℝ, 0 ≤ ∑ i, ∑ j,
+        (complexFieldMetric (complexScalarInChart ψ p)
+          (chartAt (Fin 4 → ℝ) p p)) i j * v i * v j := by
+  intro p
+  exact ⟨charted_complex_metric_rank_le_two ψ p (hψ p),
+    fun v => charted_complex_metric_matrix_psd ψ p v (hψ p)⟩
+
 
 end ReyesMath
