@@ -62,15 +62,23 @@ theorem finite_weighted_phase_exact_gap {ι : Type*}
     C ^ 2 / I +
       s.sum (fun i => w i * (q i - σ i - η / w i) ^ 2)
   rw [hC] at hr
+  have hscalar : 2 * η * C - η ^ 2 * I = C ^ 2 / I := by
+    dsimp [η]
+    have hIn : I ≠ 0 := hI
+    field_simp [hIn]
+    ring
   calc
     s.sum (fun i => w i * (q i - σ i) ^ 2) =
       s.sum (fun i => w i * (q i - σ i - η / w i) ^ 2) +
         2 * η * C - η ^ 2 * I := hr
     _ = C ^ 2 / I +
       s.sum (fun i => w i * (q i - σ i - η / w i) ^ 2) := by
-        dsimp [η]
-        have hIn : I ≠ 0 := hI
-        field_simp [hIn]
+        rw [show
+          (s.sum (fun i => w i * (q i - σ i - η / w i) ^ 2) +
+            2 * η * C - η ^ 2 * I) =
+          (s.sum (fun i => w i * (q i - σ i - η / w i) ^ 2) +
+            (2 * η * C - η ^ 2 * I)) from by ring]
+        rw [hscalar]
         ring
 
 /-- A weighted-energy deficit cannot be negative when all weights
