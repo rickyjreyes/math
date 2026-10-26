@@ -42,16 +42,26 @@ theorem continuous_phase_square_integral
     funext x
     exact continuous_phase_square_pointwise (w x) (f x) η (hw x)
   rw [hpoint]
-  change
-    (∫ x, ((fun y => w y * (f y - η * (w y)⁻¹) ^ 2) +
-      (fun y => 2 * η * f y) -
-      (fun y => η ^ 2 * (w y)⁻¹)) x ∂μ) =
-      (∫ x, w x * (f x - η * (w x)⁻¹) ^ 2 ∂μ) +
+  have hsub :
+      (∫ x, (w x * (f x - η * (w x)⁻¹) ^ 2 + 2 * η * f x) -
+        η ^ 2 * (w x)⁻¹ ∂μ) =
+      (∫ x, w x * (f x - η * (w x)⁻¹) ^ 2 + 2 * η * f x ∂μ) -
+        (∫ x, η ^ 2 * (w x)⁻¹ ∂μ) :=
+    integral_sub (hres.add (hf.const_mul _)) (hinv.const_mul _)
+  have hadd :
+      (∫ x, w x * (f x - η * (w x)⁻¹) ^ 2 + 2 * η * f x ∂μ) =
+        (∫ x, w x * (f x - η * (w x)⁻¹) ^ 2 ∂μ) +
+        (∫ x, 2 * η * f x ∂μ) :=
+    integral_add hres (hf.const_mul _)
+  calc
+    (∫ x, w x * (f x - η * (w x)⁻¹) ^ 2 +
+      2 * η * f x - η ^ 2 * (w x)⁻¹ ∂μ) =
+        (∫ x, w x * (f x - η * (w x)⁻¹) ^ 2 + 2 * η * f x ∂μ) -
+          (∫ x, η ^ 2 * (w x)⁻¹ ∂μ) := hsub
+    _ = (∫ x, w x * (f x - η * (w x)⁻¹) ^ 2 ∂μ) +
         2 * η * (∫ x, f x ∂μ) -
-        η ^ 2 * (∫ x, (w x)⁻¹ ∂μ)
-  rw [integral_sub (hres.add (hf.const_mul _)) (hinv.const_mul _)]
-  rw [integral_add hres (hf.const_mul _)]
-  rw [integral_const_mul, integral_const_mul]
+        η ^ 2 * (∫ x, (w x)⁻¹ ∂μ) := by
+      rw [hadd, integral_const_mul, integral_const_mul]
 
 /-- The continuous fixed-integral phase-energy identity. The only
 variable is f; C and the weight are fixed. -/
