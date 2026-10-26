@@ -14,6 +14,8 @@ real square root. It does not make any ghost-stability claim.
 
 namespace ReyesMath
 
+set_option maxHeartbeats 1800000
+
 private def finiteScaleRadicand (s G B q : ℝ) : ℝ :=
   s ^ 2 + 2 * G * q - B * q ^ 2
 
