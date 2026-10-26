@@ -42,7 +42,8 @@ theorem s004_four_constraint_bracket_nondegenerate (u : Fin 4 → ℝ)
     (hu : s004DiracBracket u = 0) : u = 0 := by
   have h := s004_dirac_bracket_left_inverse u
   rw [hu] at h
-  simpa [s004DiracInverse] using h.symm
+  funext i
+  fin_cases i <;> simpa [s004DiracInverse] using congrFun h.symm i
 
 /-- Counting a 12-dimensional canonical scalar auxiliary phase space
 with four second-class and zero first-class constraints leaves exactly
