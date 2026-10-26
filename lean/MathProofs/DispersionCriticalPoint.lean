@@ -127,7 +127,7 @@ theorem finite_scale_positive_stationary_exists
       positivity
     have hl : 0 ≤ D * t := le_of_lt (mul_pos hD ht)
     have hr : 0 ≤ a * G := le_of_lt (mul_pos ha hG)
-    nlinarith
+    nlinarith only [hpos, hl, hr]
   have hshift2 : B * (t - a * q) = D * t - a * G := by
     dsimp [q, D]
     field_simp [ne_of_gt hB]
@@ -189,7 +189,7 @@ theorem finite_scale_explicit_global_minimum
       0 ≤ Real.sqrt (radicand s G B qstar) +
         (2 * K + G) * (q - qstar) := by
     have hm : 0 ≤ (2 * K + G) * q := mul_nonneg (le_of_lt ha) hq
-    nlinarith [ht0']
+    nlinarith only [ht0', hm]
   exact dispersion_unique_minimum_at_stationary
     K s G B (2 * K + G) q qstar hK hB
     hrad0 hrad hstat0 htangent hneq
