@@ -1,0 +1,36 @@
+schema_version: 1
+source: rickyjreyes/math
+lean_release: v4.23.0
+mathlib_release: v4.23.0
+scope: "Only explicitly listed elementary supporting statements; no main paper theorem fully formalized"
+families:
+  F01:
+    main_theorem_formalized: false
+    supporting_lean: [ReyesMath.negativeEnergy_strictGap]
+  F02:
+    main_theorem_formalized: false
+    supporting_lean: []
+  F03:
+    main_theorem_formalized: false
+    supporting_lean: [ReyesMath.varianceDeficit_nonnegative]
+  F04:
+    main_theorem_formalized: false
+    supporting_lean: []
+  F05:
+    main_theorem_formalized: false
+    supporting_lean: []
+  F06:
+    main_theorem_formalized: false
+    supporting_lean: []
+  F07:
+    main_theorem_formalized: false
+    supporting_lean: [ReyesMath.squaredMismatch_nonnegative]
+  F08:
+    main_theorem_formalized: false
+    supporting_lean: [ReyesMath.scalarGradientGram_nonnegative]
+  F09:
+    main_theorem_formalized: false
+    supporting_lean: [ReyesMath.elevenByThirtyone_nullity_bound, ReyesMath.nullityBound_arithmetic]
+  F10:
+    main_theorem_formalized: false
+    supporting_lean: []

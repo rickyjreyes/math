@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: Please cite a specific manuscript and its Git revision.
+authors:
+  - family-names: Reyes
+    given-names: Richard J.
+title: Mathematical Manuscripts and Formal Proof Artifacts
+date-released: '2026-10-26'
+repository-code: https://github.com/rickyjreyes/math
+url: https://github.com/rickyjreyes/math

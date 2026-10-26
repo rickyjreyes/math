@@ -1,238 +1,47 @@
-# Mathematical manuscripts
+# Mathematical manuscripts and formal proof artifacts
 
-Standalone mathematical proofs and research notes by Richard J. Reyes.
+**Richard J. Reyes · Independent Researcher**
 
-## Papers
+A collection of **14 research manuscripts in 10 result families**, organized for independent mathematical inspection. Inspired in navigation by [openai/math](https://github.com/openai/math), with independent authorship and separate verification claims.
 
-### Structural local identifiability obstruction in the 31-coefficient v18 spectral model
+## Navigate
 
-[LaTeX source](papers/sm-v18-local-identifiability-obstruction/main.tex)
+- [Overview PDF](overview.pdf) — concise guide to all result families.
+- [Manuscript map](CONTENTS.md) — direct links to each **PDF**, LaTeX source, and notes.
+- [Preprints](preprints/) — compiled manuscript PDFs.
+- [Lean catalogue](lean/formalization.yaml) and [Lean project](lean/README.md) — exact status of every family.
+- [History](history.md) — correction and release log.
 
-An 11-observable spectral model with 31 nominal coefficients has an 11-by-31 sensitivity matrix. By rank--nullity, its Jacobian has rank at most 11 and at least 20 first-order null directions wherever the forward map is differentiable. The v18 all-coefficient finite-difference audit reports numerical row rank 11; the manuscript separates this diagnostic from the exact structural theorem and from the conditional smooth level-set conclusion.
+## Featured results
 
-**Build:** Run `pdflatex -halt-on-error -interaction=nonstopmode main.tex` twice from the manuscript directory.
+| Family | Results | Scope |
+| --- | --- | --- |
+| **F01** | Strict binding, whole-space minimizer existence, orbital stability, negative trial energy | Combined focusing-cubic/defocusing-quintic fourth-order Hamiltonian on ℝ²; sufficient mass range |
+| **F02** | High-frequency Sobolev obstruction, higher-derivative constraint count | Specified linear and regular fixed-background models |
+| **F03** | Spectral–phase identity and 4/5 counterexample | Declared periodic spectral operator |
+| **F04** | Instantaneous finite Fourier-mode leakage | Unprojected cubic–quintic torus dynamics |
 
-**Scope:** Local linearized identifiability of the audited in-sample spectral parameterization; not a global identifiability theorem or physical particle-spectrum prediction. Research manuscript, not independently peer-reviewed.
+For F01, prior single-power work: Fernández, Jeanjean, Mandel and Mariş, *Journal of Differential Equations* **330** (2022), DOI [10.1016/j.jde.2022.04.037](https://doi.org/10.1016/j.jde.2022.04.037). An independent Hamiltonian model is **not** a derivation from a physically healthy parent, and D4 in this corpus is square symmetry in two spatial dimensions.
 
-**Reproduction:** [v18 all-coefficient sensitivity audit](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/SM_Spectrum/audit_v18_identifiability.py) and [spectral bridge audit](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/SM_V18_SPECTRAL_BRIDGE_AUDIT.md).
+## Reproducibility
 
-### Regular S004 complex scalar: four configuration degrees of freedom
+```bash
+# Compile all 14 PDFs and overview.pdf
+bash scripts/build_pdfs.sh
 
-[LaTeX source](papers/s004-complex-scalar-constraint-count/main.tex)
+# Compile the explicit Lean supporting theorems
+cd lean
+lake update
+lake exe cache get
+lake build
+```
 
-For the corrected S004 higher-derivative complex scalar on a fixed flat background, with nonzero field amplitude, `\kappa>0`, and `F(\rho)>0`, the real acceleration Hessian is `H_{\mathrm{acc}}=-2\kappa F I_2` with `\det H_{\mathrm{acc}}=4\kappa^2F^2>0`. A first-order Dirac analysis yields four second-class constraints, zero first-class or secondary constraints, and four real local configuration degrees of freedom (two more than an ordinary complex scalar). Global `U(1)` charge conservation does not remove the extra local modes.
+[PDF workflow](.github/workflows/pdfs.yml) builds and publishes the actual PDFs to the repository on a successful main-branch run; [Lean workflow](.github/workflows/lean.yml) checks the included Lean code.
 
-**Build:** Run `pdflatex -interaction=nonstopmode main.tex` twice from `papers/s004-complex-scalar-constraint-count/`.
+**Formalization status:** the Lean project currently includes *supporting elementary theorems only*. The principal strict-binding, concentration-compactness, orbital-stability, and four-jet ill-posedness theorems have **not** been encoded and verified by the Lean kernel. See [the exact manifest](lean/formalization.yaml). Separate WCT Lean work: [wct-lean](https://github.com/rickyjreyes/wct-lean).
 
-**Scope:** This is a regular nonzero-field, fixed-flat-background constraint count. It does not classify the degenerate vacuum or unspecified dynamical-metric/gauge completions. The manuscript is a research draft and has not undergone independent peer review.
+Every manuscript is a research draft, not independently peer-reviewed. Mathematical correctness, priority, physical interpretation and external replication are separate questions.
 
-**Related audit:** [S004 physical-health and constraint analysis](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/foundational/GHOST_AND_CONSTRAINT_ANALYSIS.md).
+## Cite and review
 
-### Whole-space minimizer existence for a fourth-order cubic–quintic Hamiltonian
-
-[LaTeX source](papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex)
-
-For $u\in H^2(\mathbb R^2;\mathbb C)$ and $k,\beta,\gamma>0$, consider
-$
-H(u)=\|(\Delta+k^2)u\|_2^2-\frac{\beta}{2}\|u\|_4^4+\frac{\gamma}{3}\|u\|_6^6,
-\qquad I(m)=\inf_{\|u\|_2^2=m}H(u).
-$
-For every
-$
-0<m\le m_B=\frac{3\beta}{\gamma\sqrt{k^4+3\beta^2/(32\gamma)}},
-$
-the manuscript proves $I(m)<0$, strict subadditivity at every positive mass split, and strong $H^2$ precompactness of every minimizing sequence modulo translations; in particular, the whole-space constrained infimum is attained.
-
-**Build:** Run `pdflatex -interaction=nonstopmode main.tex` twice in the manuscript directory.
-
-**Scope:** Two spatial dimensions, with no cavity or radial restriction. This does not prove uniqueness, identify a computed periodic D4 solution with a minimizer, or address four-dimensional confinement lifetimes. Research manuscript, not independently peer-reviewed.
-
-**Related proof:** [Whole-space compactness audit](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/d4_binding/D4_WHOLE_SPACE_COMPACTNESS.md).
-
-### Exact minimum for weighted closed-loop phase locking
-
-[LaTeX source](papers/weighted-closed-loop-phase-locking/main.tex)
-
-For a fixed closed loop, positive weight $w$, geometric phase target $\sigma$,
-connection $\Omega$, and winding number $n$, the manuscript proves
-
-$
-\min_{\operatorname{wind}(\chi)=n}\oint w(\chi'-m\Omega-\sigma)^2\,ds
-=\frac{(2\pi n-m\Phi-J)^2}{I},\qquad
-I=\oint w^{-1}\,ds,\quad J=\oint\sigma\,ds.
-$
-
-The minimizer is attained uniquely in the covariant phase gradient
-$q_*=\sigma+(2\pi n-m\Phi-J)/(Iw)$, up to additive constant phase.
-An exact nonnegative remainder establishes strict fixed-sector variational
-minimality. Conditional comparison among integers does **not** establish
-physical winding transitions or full nonlinear-field stability.
-
-**Build:** Run `pdflatex -halt-on-error -interaction=nonstopmode main.tex`
-twice from the manuscript directory (5 pages in the checked build).
-
-**Supporting analysis:** [Winding selection analysis](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/WINDING_SELECTION_ANALYSIS.md).
-
-**Status:** Research manuscript; not independently peer-reviewed.
-
-### Whole-space nonattainment and strict spreading for a positive curvature functional
-
-[LaTeX source](papers/positive-curvature-whole-space-nonattainment/main.tex)
-
-For $\psi\in H^2(\mathbb R^d;\mathbb C)$, consider
-
-$
-E(\psi)=c_1\|\nabla\psi\|_2^2+c_2\int_{\mathbb R^d}
-\frac{|\psi|^2}{(|\psi|^2+\varepsilon^2 e^{-2\alpha|\psi|^2})^2}
-|\Delta\psi|^2\,dx,
-\qquad c_1,c_2,\varepsilon>0,\quad\alpha\ge0.
-$
-
-For every positive mass $m$ and every finite spatial dimension $d\ge1$, the constrained infimum is zero but is not attained on $\mathbb R^d$. Moreover, for $1\le d\le4$, the energy strictly decreases under mass-preserving spreading, ruling out local constrained minimizers in $H^2$. These conclusions do not rule out stationary saddles, other interacting functionals, or imposed confinement.
-
-**Build:** Run `pdflatex -interaction=nonstopmode main.tex` twice in the manuscript directory.
-
-**Related proof audit:** [Localization and stability scope](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/foundational/LOCALIZED_STATE_EXISTENCE.md).
-
-**Status:** Research manuscript; not independently peer-reviewed.
-
-### Strict subadditivity for a fourth-order cubic–quintic Hamiltonian in two dimensions
-
-[LaTeX source](papers/strict-subadditivity-fourth-order-cubic-quintic/main.tex)
-
-For $u\in H^2(\mathbb R^2;\mathbb C)$, consider
-
-$$
-H(u)=\|(\Delta+k^2)u\|_2^2-\frac{\beta}{2}\|u\|_4^4+\frac{\gamma}{3}\|u\|_6^6,
-\qquad
-I(m)=\inf_{\|u\|_2^2=m}H(u).
-$$
-
-The manuscript proves that for $\beta,\gamma,k>0$ and
-
-$$
-0<m\le m_B=\frac{3\beta}{\gamma\sqrt{k^4+3\beta^2/(32\gamma)}},
-$$
-
-one has $I(m)<I(\mu)+I(m-\mu)$ for every $0<\mu<m$. The proof uses mass-preserving dilation of minimizing sequences and a quantitative energy-per-mass gap; no minimizer is assumed. The mass threshold is sufficient, not asserted optimal.
-
-**Build:** Run `pdflatex -interaction=nonstopmode main.tex` twice from the paper directory. The manuscript is self-contained and uses standard LaTeX packages.
-
-**Scope:** This is a two-spatial-dimensional whole-space variational result. It does not itself establish a physical confinement lifetime, uniqueness, spectral stability, or universal all-mass strict binding.
-
-**Related supporting notes:**
-- [Strict-binding audit and proof](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/d4_binding/D4_SUBADDITIVITY_PROOF_OR_COUNTEREXAMPLE.md)
-- [Energy-per-mass analysis](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/d4_binding/D4_ENERGY_PER_MASS_ANALYSIS.md)
-
-The manuscript is a research draft and has not undergone independent peer review.
-
-### Non-invariance of finite Fourier coordinate subspaces under cubic–quintic evolution
-
-[LaTeX source](papers/finite-fourier-coordinate-subspace-noninvariance/main.tex)
-
-For the unprojected fourth-order cubic–quintic Schrödinger equation on a flat torus, the paper proves that every finite Fourier coordinate subspace with at least two frequencies fails to be invariant. The stronger theorem shows instantaneous out-of-support Fourier generation from every finite multimode trigonometric polynomial. Singleton plane-wave subspaces and the zero subspace are the only invariant finite Fourier coordinate subspaces.
-
-**Build:** Run `pdflatex -interaction=nonstopmode main.tex` twice from the manuscript directory.
-
-**Scope:** This is an exact Fourier-support obstruction, not a failure theorem for controlled Galerkin approximations or general nonlinear invariant manifolds. The argument applies for any real cubic coefficient and a nonzero quintic coefficient.
-
-**Related source:** [Nonlinear model bridge, C1](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/foundational_recovery/NONLINEAR_MODEL_BRIDGE.md).
-
-
-### Ultraviolet Sobolev ill-posedness for a fourth-order wave equation
-
-[LaTeX source](papers/uv-sobolev-ill-posedness-fourth-order-wave/main.tex)
-
-For the constant-coefficient equation
-\[
-(\Box-\Box^2-\Delta^2)u=0,\qquad \Box=-\partial_t^2+\Delta,
-\]
-the manuscript proves that every positive-time four-jet evolution map \(S(t):X_{r+\ell}\to X_r\) is unbounded for all finite \(\ell\ge0\). The exact dispersion roots lead to the growing high-frequency rate
-\[
-\operatorname{Re}s(k)=\sqrt{\frac{\sqrt2-1}{2}}\,|k|+O(|k|^{-1}).
-\]
-The proof constructs smooth real solutions on the torus and Fourier packets on the whole space, and extends the argument to the strict-coefficient homogeneous S004 symbol.
-
-**Build:** Run `pdflatex -interaction=nonstopmode main.tex` twice from the paper directory. Uses standard LaTeX packages.
-
-**Scope:** This is a linearized homogeneous-sector ill-posedness theorem, not a nonlinear norm-inflation proof or measured physical lifetime.
-
-**Related audit:** [S004 ghost and ultraviolet obstruction](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/foundational/GHOST_AND_CONSTRAINT_ANALYSIS.md).
-
-This manuscript is a research draft and has not undergone independent peer review.
-
-### Rank and signature obstruction to Lorentzian metric emergence from scalar gradients
-
-[LaTeX source](papers/scalar-gradient-lorentzian-no-go/main.tex)
-
-For a complex scalar $\psi=a+ib$, the symmetric tensor
-$T_{\mu\nu}=\operatorname{Re}(\partial_\mu\bar\psi\,\partial_\nu\psi)$
-is the positive-semidefinite Gram form
-$\partial_\mu a\,\partial_\nu a+\partial_\mu b\,\partial_\nu b$.
-In four dimensions its rank is at most two, so it cannot be a Lorentzian metric. The proof also shows that sums of positive-sign real scalar-gradient outer products cannot yield Lorentzian signature, even when full rank is achieved.
-
-**Build:** From the manuscript directory, run pdflatex -interaction=nonstopmode main.tex twice.
-
-**Scope:** This is an exact algebraic obstruction to the specified positive-sign construction, not a no-go theorem for all emergent-metric models or a derivation of gravitational dynamics.
-
-**Supporting analysis:** [Foundational Stage 2 — tensor/tetrad emergence](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/FOUNDATIONAL_STAGE2_2026-10-14.md).
-
-### Orbital stability of the complete minimizing set for a fourth-order cubic–quintic Schrödinger equation
-
-[LaTeX source](papers/orbital-stability-fourth-order-cubic-quintic/main.tex)
-
-For $u\in H^2(\mathbb R^2;\mathbb C)$, consider the globally well-posed flow
-$i\partial_t u=(\Delta+k^2)^2u-\beta|u|^2u+\gamma|u|^4u$.
-Let $\mathcal G_m=\{u:\|u\|_2^2=m,\ H(u)=I(m)\}$.
-For $\beta,\gamma,k>0$ and $0<m\le m_B$ (defined above), the manuscript proves
-$\mathcal G_m$ is nonempty and orbitally stable in $H^2$, including under
-small perturbations that change the mass. The complete argument provides
-negative constrained energy, strict binding, compactness modulo translations,
-global $H^2$ well-posedness, and conservation laws.
-
-**Build:** Run `pdflatex -interaction=nonstopmode main.tex` twice from
-`papers/orbital-stability-fourth-order-cubic-quintic/`.
-
-**Scope:** Stability of the entire minimizing set, not uniqueness, attraction,
-spectral nondegeneracy, stability of every stationary branch, or any result
-on four-spatial-dimensional confinement.
-
-**Related supporting note:** [Orbital stability analysis](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/d4_binding/D4_ORBITAL_STABILITY_STATUS.md).
-
-
-### An isolated Fourier shell cannot support a nonzero L² bound state
-
-[LaTeX source](papers/isolated-fourier-shell-no-l2-bound-state/main.tex)
-
-For $d\ge1$, $k_0\ge0$, and $u\in L^2(\mathbb R^d)$, the exact-shell support condition
-$\operatorname{supp}\widehat u\subseteq\{\xi:|\xi|=k_0\}$ implies $u=0$.
-The manuscript proves this via Plancherel and the measure-zero shell, derives
-free-space Helmholtz and polynomial-dispersion corollaries, and constructs
-fixed-carrier wave packets whose envelope radii vary freely.
-
-**Build:** Run `pdflatex -interaction=nonstopmode main.tex` twice from the paper directory.
-
-**Scope:** A standard Fourier-analytic obstruction for linear whole-space
-exact-shell $L^2$ states, not a no-go theorem for nonlinear localized
-states, trapping, or bounded-domain eigenmodes.
-
-**Related supporting note:** [Localization and domain selection audit](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/cross_paper/LOCALIZATION_AND_DOMAIN_SELECTION.md).
-
-### Exact positive-wavenumber minimum in a higher-derivative dispersion relation
-
-[LaTeX source](papers/exact-positive-wavenumber-minimum/main.tex)
-
-For the lower real-frequency branch
-\[
-z_-(q)=\frac{1+(2K+G)q-\sqrt{s^2+2Gq-Bq^2}}{2K},
-\quad B=4KT-G^2>0,\quad s=\sqrt{1-4Km^2},
-\]
-the manuscript proves that under \(K,T>0\), \(0<4Km^2<1\), and \(G(1-s)/(2K)>s\), there is a unique positive interior minimum
-\[
-q_*=\frac{G-(2K+G)\sqrt{(G^2+Bs^2)/((2K+G)^2+B)}}{B}>0.
-\]
-It proves strict convexity, the sharp initial-slope criterion, and positivity of both squared-frequency branches on their real-pole interval. This is a parameter-dependent oscillatory-frequency minimum, **not** a cure for the higher-derivative ghost or high-wavenumber instability.
-
-**Build:** From the manuscript directory, run `pdflatex -interaction=nonstopmode main.tex` twice.
-
-**Supporting derivation:** [Finite-scale selection audit](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/cross_paper/FINITE_SCALE_SELECTION.md).
+Cite the specific manuscript and Git revision. [Citation metadata](CITATION.cff) · [Version history](history.md). Corrections, counterexamples and priority references are welcome through [issues](https://github.com/rickyjreyes/math/issues).
