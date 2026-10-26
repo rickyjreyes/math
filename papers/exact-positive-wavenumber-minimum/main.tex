@@ -1,0 +1,269 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref}
+\geometry{margin=1in}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remark}{Remark}
+\DeclareMathOperator{\sgn}{sgn}
+
+\title{An Exact Positive-Wavenumber Minimum\\in a Higher-Derivative Dispersion Relation}
+\author{}
+\date{26 October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We give an exact algebraic criterion for the lower real-frequency branch
+of a quadratic higher-derivative dispersion relation to attain its unique
+minimum at nonzero wavenumber.  The proof establishes strict convexity in
+squared wavenumber, the explicit minimizer, and positivity of both
+squared-frequency roots throughout the real-pole interval.  The result is
+parameter dependent: an oscillatory-frequency minimum does not remove
+higher-derivative ghost or high-wavenumber obstructions.
+\end{abstract}
+
+\section{Definitions and main result}
+Let $q=|\mathbf{k}|^2\geq 0$ and $z=\omega^2$.  Consider the quadratic
+dispersion relation
+\begin{equation}\label{eq:dispersion}
+ K z^2-(1+a q)z+m^2+q+(K+G+T)q^2=0,
+ \qquad a:=2K+G.
+\end{equation}
+Introduce
+\begin{equation}\label{eq:defs}
+ B:=4KT-G^2,\qquad
+ s:=\sqrt{1-4Km^2},\qquad
+ d(q):=s^2+2Gq-Bq^2.
+\end{equation}
+
+\begin{theorem}[Exact positive-wavenumber minimum]\label{thm:main}
+Assume
+\begin{equation}\label{eq:base}
+ K>0,\qquad T>0,\qquad B>0,\qquad 0<4Km^2<1,
+\end{equation}
+and the strict finite-scale condition
+\begin{equation}\label{eq:condition}
+ \frac{G(1-s)}{2K}>s.
+\end{equation}
+Then $G>0$ and $a>0$.  The two squared-frequency branches are
+\begin{equation}\label{eq:branches}
+ z_{\pm}(q)=\frac{1+aq\pm\sqrt{d(q)}}{2K}.
+\end{equation}
+For nonnegative $q$, the branches are real precisely on
+\begin{equation}\label{eq:domain}
+ 0\leq q\leq q_{\mathrm{coll}},\qquad
+ q_{\mathrm{coll}}:=\frac{G+\sqrt{G^2+Bs^2}}{B}.
+\end{equation}
+The lower branch $z_-$ has a unique global minimum on this interval.
+It lies strictly in the interior and is given by
+\begin{equation}\label{eq:qstar}
+ \boxed{\displaystyle
+ q_* = \frac{G-a\sqrt{\frac{G^2+Bs^2}{a^2+B}}}{B}}
+ \quad\text{with}\quad
+ 0<q_*<\frac{G}{B}<q_{\mathrm{coll}}.
+\end{equation}
+Moreover,
+\begin{equation}\label{eq:convex}
+ z_-''(q)=\frac{Bs^2+G^2}{2K\,d(q)^{3/2}}>0
+ \quad (0<q<q_{\mathrm{coll}}),
+\end{equation}
+and both squared frequencies are strictly positive on the full
+nonnegative real-pole interval.  Thus $|\mathbf{k}_*|=\sqrt{q_*}>0$
+is an oscillatory-frequency minimum, not a growing-mode band at that scale.
+\end{theorem}
+
+\begin{proof}
+\par\medskip\noindent\textbf{Step 1: Compute the discriminant.}\enspace
+The discriminant of \eqref{eq:dispersion}, regarded as a quadratic in $z$, is
+\begin{align*}
+ \Delta(q)
+ &=(1+aq)^2-4K\bigl[m^2+q+(K+G+T)q^2\bigr]\\
+ &=1-4Km^2+(2a-4K)q
+   +\bigl[a^2-4K(K+G+T)\bigr]q^2\\
+ &=s^2+2Gq-(4KT-G^2)q^2=d(q),
+\end{align*}
+where we used $a=2K+G$.  The quadratic formula proves
+\eqref{eq:branches}.
+
+\par\medskip\noindent\textbf{Step 2: Determine the real interval.}\enspace
+From $0<s<1$ and \eqref{eq:condition}, necessarily $G>0$;
+therefore $a=2K+G>0$. Since $B>0$, the two zeros of $d$ are
+\[
+ q_{\pm}=\frac{G\pm\sqrt{G^2+Bs^2}}{B},
+ \qquad q_-<0<q_+=q_{\mathrm{coll}}.
+\]
+Thus $d(q)>0$ for $0\leq q<q_{\mathrm{coll}}$, $d(q)=0$ at
+$q_{\mathrm{coll}}$, and $d(q)<0$ for $q>q_{\mathrm{coll}}$.
+This proves the stated real-pole interval.
+
+\par\medskip\noindent\textbf{Step 3: Differentiate.}\enspace
+Because $d'(q)=2(G-Bq)$,
+\begin{equation}\label{eq:first}
+ z_-'(q)=\frac{1}{2K}
+ \left(a-\frac{G-Bq}{\sqrt{d(q)}}\right).
+\end{equation}
+A second differentiation yields
+\begin{align*}
+ z_-''(q)
+ &=\frac{1}{2K}\left[
+ \frac{B}{\sqrt{d(q)}}
+ +\frac{(G-Bq)^2}{d(q)^{3/2}}\right]\\
+ &=\frac{Bd(q)+(G-Bq)^2}{2K\,d(q)^{3/2}}\\
+ &=\frac{Bs^2+G^2}{2K\,d(q)^{3/2}}>0.
+\end{align*}
+Hence $z_-'$ is strictly increasing on the interior real interval.
+
+\par\medskip\noindent\textbf{Step 4: Establish existence and uniqueness.}\enspace
+At the origin, using $\sqrt{d(0)}=s$,
+\begin{equation}\label{eq:initial}
+ z_-'(0)=\frac{a-G/s}{2K}
+ =1-\frac{G(1-s)}{2Ks}<0,
+\end{equation}
+where the last inequality is \eqref{eq:condition}.
+Meanwhile $G/B$ lies in $(0,q_{\mathrm{coll}})$ and
+\begin{equation}\label{eq:positive}
+ z_-'(G/B)=\frac{a}{2K}>0.
+\end{equation}
+Continuity and the intermediate value theorem give a zero of $z_-'$
+in $(0,G/B)$.  Strict positivity of $z_-''$ makes that zero unique.
+The derivative is negative before it and positive afterward; hence the
+zero is the unique global minimizer on
+$[0,q_{\mathrm{coll}}]$ (using continuity at the collision endpoint).
+
+\par\medskip\noindent\textbf{Step 5: Solve the stationary-point equation without extraneous roots.}\enspace
+The condition $z_-'(q_*)=0$ is equivalent to
+\begin{equation}\label{eq:stationary}
+ a\sqrt{d(q_*)}=G-Bq_*.
+\end{equation}
+Its left side is strictly positive, so $r:=G-Bq_*>0$.
+As $q_*=(G-r)/B$,
+\[
+ d(q_*)=s^2+\frac{G^2-r^2}{B}.
+\]
+Squaring \eqref{eq:stationary} under the established sign condition
+$r>0$ gives
+\[
+ a^2\left(s^2+\frac{G^2-r^2}{B}\right)=r^2,
+ \qquad
+ (a^2+B)r^2=a^2(G^2+Bs^2).
+\]
+We must take the positive root because $r>0$:
+\[
+ r=a\sqrt{\frac{G^2+Bs^2}{a^2+B}}.
+\]
+Substitution into $q_*=(G-r)/B$ proves \eqref{eq:qstar}.
+The positive-root choice also guarantees that the expression satisfies
+the original, unsquared stationary-point equation.
+
+For completeness, since $G,a,B>0$,
+\begin{align*}
+ q_*>0
+ &\iff G>a\sqrt{\frac{G^2+Bs^2}{a^2+B}}\\
+ &\iff G^2(a^2+B)>a^2(G^2+Bs^2)\\
+ &\iff G>as
+ \iff G(1-s)>2Ks,
+\end{align*}
+which is precisely \eqref{eq:condition}.  Also $r>0$ implies
+$q_*<G/B$, and $G/B<q_{\mathrm{coll}}$ follows from
+\eqref{eq:domain}.
+
+\par\medskip\noindent\textbf{Step 6: Show the roots are positive.}\enspace
+Vieta's identities applied to \eqref{eq:dispersion} yield
+\begin{equation}\label{eq:vieta}
+ z_+(q)+z_-(q)=\frac{1+aq}{K}>0,
+ \qquad
+ z_+(q)z_-(q)=
+ \frac{m^2+q+(K+G+T)q^2}{K}>0.
+\end{equation}
+Here $m^2>0$, $K,T,G>0$, and $q\geq0$.
+For $0\leq q\leq q_{\mathrm{coll}}$ both roots are real.
+Their positive product and positive sum imply that both are strictly
+positive.  Accordingly $\omega_-(q)=\sqrt{z_-(q)}$ is real and positive.
+Because the square-root map is strictly increasing on $(0,\infty)$,
+it attains its unique minimum at the same $q_*$.
+Replacing $q$ by $|\mathbf{k}|^2$ proves the positive-wavenumber claim.
+\end{proof}
+
+\section{Additional exact consequences}
+\begin{corollary}[Exact minimum squared frequency]\label{cor:freq}
+Under the assumptions of Theorem~\ref{thm:main},
+\begin{equation}\label{eq:zminimum}
+ \boxed{\displaystyle
+ z_{\min}=z_-(q_*)=
+ \frac{B+aG-\sqrt{(a^2+B)(G^2+Bs^2)}}{2KB}>0,}
+\end{equation}
+and the positive minimum frequency is
+$\omega_{\min}=\sqrt{z_{\min}}$.
+\end{corollary}
+\begin{proof}
+Let $t:=\sqrt{(G^2+Bs^2)/(a^2+B)}$.
+At the stationary point, $q_*=(G-at)/B$ and
+\eqref{eq:stationary} implies $\sqrt{d(q_*)}=t$.
+Thus
+\begin{align*}
+ z_-(q_*)
+ &=\frac{1+a(G-at)/B-t}{2K}\\
+ &=\frac{B+aG-(a^2+B)t}{2KB},
+\end{align*}
+which is \eqref{eq:zminimum}.  Positivity follows independently from
+\eqref{eq:vieta}.
+\end{proof}
+
+\begin{corollary}[Sharp initial-slope criterion]
+Under the baseline assumptions \eqref{eq:base}, the lower real branch
+has an interior minimum at a positive $q$ if and only if
+\eqref{eq:condition} holds.  Otherwise its minimum is at $q=0$.
+\end{corollary}
+\begin{proof}
+For arbitrary real $G$ satisfying \eqref{eq:base}, the positive
+endpoint $q_{\mathrm{coll}}=(G+\sqrt{G^2+Bs^2})/B$ exists.
+Equation \eqref{eq:convex} gives strict convexity on its interior,
+without requiring $G>0$.  Furthermore,
+\[
+ \lim_{q\uparrow q_{\mathrm{coll}}}z_-'(q)=+\infty,
+\]
+because $G-Bq_{\mathrm{coll}}=-\sqrt{G^2+Bs^2}<0$.
+Thus an interior stationary point exists precisely when
+$z_-'(0)<0$, equivalent by \eqref{eq:initial} to
+\eqref{eq:condition}. If the initial derivative is nonnegative,
+strict convexity makes $z_-$ increasing for every $q>0$ on the real
+interval and its minimum is at zero.
+\end{proof}
+
+\section{Interpretation and limitations}
+\begin{remark}[Wavenumber versus squared wavenumber]
+The strict-convexity statement is about $q=|\mathbf{k}|^2$.
+For $k=|\mathbf{k}|>0$, $z_-(k^2)$ has its unique positive
+stationary point at $k_*=\sqrt{q_*}$. At that point,
+\[
+ \frac{d^2}{dk^2}z_-(k^2)\bigg|_{k=k_*}
+ =4k_*^2z_-''(q_*)>0.
+\]
+The even dependence on $k$ also makes $k=0$ stationary when the
+function is viewed on the entire signed $k$ axis; it is not the
+minimizer under the strict criterion.
+\end{remark}
+
+\begin{remark}[No full-theory stability conclusion]
+The theorem identifies an exact oscillatory-frequency minimum on the
+real-pole interval; it does not eliminate ghost degrees of freedom,
+establish a healthy Hamiltonian, or prove nonlinear stability.
+Indeed, $d(q)<0$ for $q>q_{\mathrm{coll}}$, so the two $z$ roots
+are non-real there.  The corresponding time-frequency roots include
+exponentially growing solutions when the untruncated dispersion law is
+continued into that regime. The selected scale also depends on
+$K,T,G,m^2$; it is not independently calibrated by the algebra alone.
+\end{remark}
+
+\noindent\textbf{Related derivation:}
+\url{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/cross_paper/FINITE_SCALE_SELECTION.md}.
+
+\end{document}
