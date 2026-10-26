@@ -78,3 +78,9 @@ The corrected modulus-squared regularization is smooth and bounded for each ε >
 **E18: Exact Lyapunov descent for the corrected WCT curvature energy** — [PDF](preprints/wct-e18-exact-gradient-lyapunov/paper.pdf) · [LaTeX source](papers/wct-e18-exact-gradient-lyapunov/main.tex) · [Notes](preprints/wct-e18-exact-gradient-lyapunov/README.md)
 
 For sufficiently regular solutions of the **specified exact negative-gradient flow** on a torus, the energy is nonnegative and satisfies an exact energy-dissipation identity. This is not a proof of global existence, free-space confinement, or a derivation from separate physical-time WCT dynamics.
+
+## E69 — High-regularity WCT curvature bound
+
+**E69: Bounded corrected regularized curvature** — [PDF](preprints/high-regularity-bounded-curvature-e69/paper.pdf) · [LaTeX source](papers/high-regularity-bounded-curvature-e69/main.tex) · [Notes](preprints/high-regularity-bounded-curvature-e69/README.md)
+
+If \(\psi\in H^s(\mathbb R^n)\), \(s>n/2+2\), and \(\varepsilon>0\), the corrected regularized curvature lies in \(L^\infty\). This is an analytic result, not yet formalized in Lean.
