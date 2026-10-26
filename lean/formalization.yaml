@@ -42,8 +42,8 @@ families:
   F08:
     main_theorem_formalized: false
     algebraic_no_go_core_formalized: true
-    covered: "Exact Re(conjugate complex gradient × complex gradient) entry identity, 4×4 tensor equality to the Gram carrier and rank bound, arbitrary weighted PSD and rank at most carrier count; manifold-level differentiable-field formulation not formalized."
-    declarations: [ReyesMath.scalarGradientGram_nonnegative, ReyesMath.scalarGradientGram_psd, ReyesMath.scalarGradientGram_no_timelike, ReyesMath.scalarGradientCarrier_gram_entry, ReyesMath.scalarGradientCarrier_rank_le_two, ReyesMath.positive_weighted_gradient_family_psd, ReyesMath.gradient_gram_rank_le_carriers, ReyesMath.complex_gradient_real_identity, ReyesMath.complex_gradient_tensor_eq_gram, ReyesMath.complex_gradient_tensor_rank_le_two]
+    covered: "Actual differentiable complex field on Euclidean 4-charts and arbitrary four-chart spaces: tensor equals Gram matrix, rank ≤2, and exact matrix contraction is nonnegative. Arbitrary nonnegative weighted carriers also covered. Coordinate-independent global tensor bundle construction and smooth chart-transition covariance are not formalized."
+    declarations: [ReyesMath.scalarGradientGram_nonnegative, ReyesMath.scalarGradientGram_psd, ReyesMath.scalarGradientGram_no_timelike, ReyesMath.scalarGradientCarrier_gram_entry, ReyesMath.scalarGradientCarrier_rank_le_two, ReyesMath.positive_weighted_gradient_family_psd, ReyesMath.gradient_gram_rank_le_carriers, ReyesMath.complex_gradient_real_identity, ReyesMath.complex_gradient_tensor_eq_gram, ReyesMath.complex_gradient_tensor_rank_le_two, ReyesMath.complex_field_metric_is_gram, ReyesMath.complex_field_metric_rank_le_two, ReyesMath.complex_field_metric_quadratic_nonnegative, ReyesMath.complex_field_metric_no_timelike, ReyesMath.charted_complex_metric_rank_le_two, ReyesMath.charted_complex_metric_no_timelike, ReyesMath.charted_complex_metric_everywhere_obstruction, ReyesMath.charted_complex_metric_matrix_psd, ReyesMath.charted_complex_metric_full_pointwise_obstruction, ReyesMath.gradient_gram_matrix_quadratic, ReyesMath.complex_field_matrix_psd, ReyesMath.complex_field_matrix_no_timelike]
   F09:
     main_theorem_formalized: false
     matrix_nullity_core_formalized: true
@@ -51,8 +51,8 @@ families:
     declarations: [ReyesMath.elevenByThirtyone_nullity_bound, ReyesMath.nullityBound_arithmetic, ReyesMath.elevenByThirtyOne_matrix_nullity, ReyesMath.rectangular_sensitivity_nullity, ReyesMath.differential_local_identifiability_obstruction]
   F10:
     main_theorem_formalized: false
-    covered: "Abstract null-support, 1D shell, and positive-dimensional Euclidean sphere measure-zero / Fourier-representative a.e.-zero proved for every finite dimension. The L² Fourier-Plancherel inversion bridge to the original physical field remains."
-    declarations: [ReyesMath.zero_ae_of_null_support, ReyesMath.oneDimensional_shell_ae_zero, ReyesMath.euclidean_frequency_shell_measure_zero, ReyesMath.euclidean_frequency_shell_ae_zero]
+    covered: "Arbitrary-dimensional null Fourier sphere and vanishing a.e. Fourier representative. A full Fourier inversion/nonlocalization proof is now formalized for Schwartz-class fields using Mathlib's actual Schwartz Fourier equivalence. Extension to arbitrary L² states via Plancherel remains open."
+    declarations: [ReyesMath.zero_ae_of_null_support, ReyesMath.oneDimensional_shell_ae_zero, ReyesMath.euclidean_frequency_shell_measure_zero, ReyesMath.euclidean_frequency_shell_ae_zero, ReyesMath.schwartz_fourier_shell_no_bound_state]
   F11:
     main_theorem_formalized: false
     covered: "E13/E14 band-pass gradient-flow identity and E62 Fourier energy fraction proved analytically; neither main result is Lean-formalized."
