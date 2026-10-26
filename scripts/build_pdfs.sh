@@ -18,8 +18,24 @@ for src in papers/*/main.tex; do
   count=$((count + 1))
 done
 test "$count" -ge 14
+# Reference compendia live outside the F-series preprint catalogue.
+compendium_count=0
+for src in compendium/*/main.tex; do
+  slug="$(basename "$(dirname "$src")")"
+  out="$ROOT/.build/compendium-$slug"
+  mkdir -p "$out"
+  echo "Compiling compendium $slug"
+  ( cd "$(dirname "$src")"
+    pdflatex -halt-on-error -file-line-error -interaction=nonstopmode -output-directory="$out" main.tex >"$out/pass1.log" 2>&1 || { tail -100 "$out/pass1.log"; exit 1; }
+    pdflatex -halt-on-error -file-line-error -interaction=nonstopmode -output-directory="$out" main.tex >"$out/pass2.log" 2>&1 || { tail -100 "$out/pass2.log"; exit 1; }
+  )
+  test -s "$out/main.pdf"
+  cp "$out/main.pdf" "$ROOT/compendium/$slug/paper.pdf"
+  compendium_count=$((compendium_count + 1))
+done
+
 pdflatex -halt-on-error -file-line-error -interaction=nonstopmode -output-directory="$ROOT/.build" overview.tex >"$ROOT/.build/overview-pass1.log" 2>&1 || { tail -100 "$ROOT/.build/overview-pass1.log"; exit 1; }
 pdflatex -halt-on-error -file-line-error -interaction=nonstopmode -output-directory="$ROOT/.build" overview.tex >"$ROOT/.build/overview-pass2.log" 2>&1 || { tail -100 "$ROOT/.build/overview-pass2.log"; exit 1; }
 cp "$ROOT/.build/overview.pdf" "$ROOT/overview.pdf"
 test -s "$ROOT/overview.pdf"
-echo "Produced $count PDFs and overview.pdf"
+echo "Produced $count paper PDFs, $compendium_count compendium PDFs and overview.pdf"
