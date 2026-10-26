@@ -1,0 +1,230 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\calA}{\mathcal{A}^{\star}}
+\newcommand{\calH}{\mathcal{H}_{\calA}}
+\newcommand{\PA}{P_{k_{\star}}}
+\newcommand{\ii}{\mathrm{i}}
+
+\title{E59: Idempotence and Orthogonality of the Dominant-Annulus Fourier Projection}
+\author{Richard J. Reyes}
+\date{October 26, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We show that restriction to a fixed dominant Fourier annulus on the periodic domain
+is an idempotent, self-adjoint contraction on $L^{2}$, hence an orthogonal projection.
+We also establish its exact energy decomposition, its best-approximation property,
+and the corresponding discrete Fourier transform identity.  The result concerns a
+fixed sharp spectral mask; it does not assert invariance of the selected subspace
+under nonlinear evolution.
+\end{abstract}
+
+\section{Definitions and theorem}
+Let $d\geq 1$, let $\TT^{d}=(\mathbb{R}/2\pi\ZZ)^{d}$, and equip
+$L^{2}(\TT^{d};\mathbb{C})$ with the normalized inner product
+\begin{equation}
+\langle A,B\rangle := \frac{1}{(2\pi)^{d}}
+  \int_{\TT^{d}} A(x)\overline{B(x)}\,dx,
+\qquad \|A\|_{2}^{2}=\langle A,A\rangle.
+\end{equation}
+Its Fourier coefficients are
+\begin{equation}
+\widehat A_{k}=\frac{1}{(2\pi)^{d}}
+  \int_{\TT^{d}} A(x)e^{-\ii k\cdot x}\,dx,
+\qquad k\in\ZZ^{d},
+\end{equation}
+and $A=\sum_{k\in\ZZ^{d}}\widehat A_{k}e^{\ii k\cdot x}$
+with convergence in $L^{2}$.  Parseval's identity states
+\begin{equation}\label{eq:parseval}
+\langle A,B\rangle = \sum_{k\in\ZZ^{d}}
+    \widehat A_{k}\overline{\widehat B_{k}},
+\qquad \|A\|_{2}^{2}=\sum_{k\in\ZZ^{d}}|\widehat A_{k}|^{2}.
+\end{equation}
+Fix a preferred wavenumber $k_{\star}\geq0$ and bandwidth
+$\Delta k\geq0$.  Define the \emph{fixed} dominant annulus
+\begin{equation}\label{eq:annulus}
+\calA:=\left\{k\in\ZZ^{d}:\bigl||k|-k_{\star}\bigr|\leq\Delta k\right\}.
+\end{equation}
+Let $\chi_{\calA}$ be its indicator, and set
+\begin{equation}\label{eq:projection}
+(\PA A)(x)
+ :=\sum_{k\in\calA}\widehat A_{k}e^{\ii k\cdot x}
+ =\sum_{k\in\ZZ^{d}}\chi_{\calA}(k)\widehat A_{k}e^{\ii k\cdot x}.
+\end{equation}
+The corresponding band-limited subspace is
+\begin{equation}
+\calH:=\left\{B\in L^{2}(\TT^{d}):
+\widehat B_{k}=0\ \text{for all }k\notin\calA\right\}.
+\end{equation}
+
+\begin{theorem}[E59: dominant-annulus projection]\label{thm:e59}
+The operator $\PA:L^{2}(\TT^{d})\to L^{2}(\TT^{d})$
+defined by \eqref{eq:projection} is bounded and satisfies
+\begin{equation}\label{eq:main}
+\boxed{\PA^{2}=\PA,\qquad \PA^{*}=\PA,\qquad
+\|\PA A\|_{2}\leq\|A\|_{2}\quad(A\in L^{2}).}
+\end{equation}
+It is the orthogonal projection onto $\calH$, with
+\begin{equation}\label{eq:pythagoras}
+\boxed{\|A\|_{2}^{2}=\|\PA A\|_{2}^{2}
+              +\|(I-\PA)A\|_{2}^{2}.}
+\end{equation}
+Furthermore, $\PA A$ is the unique best $L^{2}$ approximation
+to $A$ from $\calH$:
+\begin{equation}\label{eq:best}
+\boxed{\PA A=\argmin_{B\in\calH}\|A-B\|_{2}.}
+\end{equation}
+If $\calA\neq\varnothing$, then $\|\PA\|_{\mathrm{op}}=1$;
+if $\calA=\varnothing$, then $\PA=0$.
+\end{theorem}
+
+\begin{proof}
+\textbf{Well-definedness and boundedness.}
+Because $\chi_{\calA}(k)\in\{0,1\}$, the coefficient sequence
+$(\chi_{\calA}(k)\widehat A_k)_{k\in\ZZ^d}$ belongs to $\ell^{2}$.
+Thus \eqref{eq:projection} defines an $L^{2}$ function.  By Parseval,
+\begin{equation}\label{eq:contraction}
+\|\PA A\|_{2}^{2}
+ =\sum_{k\in\ZZ^{d}}\chi_{\calA}(k)^{2}|\widehat A_{k}|^{2}
+ =\sum_{k\in\calA}|\widehat A_{k}|^{2}
+ \leq\sum_{k\in\ZZ^{d}}|\widehat A_{k}|^{2}
+ =\|A\|_{2}^{2}.
+\end{equation}
+In particular $\PA$ is a bounded linear map.
+
+\medskip\noindent
+\textbf{Idempotence.}
+Uniqueness of Fourier coefficients gives
+\begin{equation}
+\widehat{(\PA A)}_k=\chi_{\calA}(k)\widehat A_k.
+\end{equation}
+Applying $\PA$ once more,
+\begin{align}
+\PA^{2}A
+ &=\sum_{k\in\ZZ^{d}}\chi_{\calA}(k)
+       \widehat{(\PA A)}_k e^{\ii k\cdot x}\\
+ &=\sum_{k\in\ZZ^{d}}\chi_{\calA}(k)^{2}
+       \widehat A_k e^{\ii k\cdot x}\\
+ &=\sum_{k\in\ZZ^{d}}\chi_{\calA}(k)
+       \widehat A_k e^{\ii k\cdot x}
+ =\PA A.
+\end{align}
+The penultimate equality uses precisely
+$\chi_{\calA}(k)^{2}=\chi_{\calA}(k)$ for every $k$.
+Since $A$ is arbitrary, $\boxed{\PA^{2}=\PA}$.
+
+\medskip\noindent
+\textbf{Self-adjointness and range.}
+For $A,B\in L^{2}$, Parseval yields
+\begin{align}
+\langle\PA A,B\rangle
+ &=\sum_k\chi_{\calA}(k)\widehat A_k\overline{\widehat B_k}\\
+ &=\sum_k\widehat A_k\overline{\chi_{\calA}(k)\widehat B_k}
+ =\langle A,\PA B\rangle,
+\end{align}
+because $\chi_{\calA}$ is real.  Hence $\PA^{*}=\PA$.
+Every $\PA A$ has Fourier support in $\calA$, so
+$\operatorname{Ran}(\PA)\subseteq\calH$.
+Conversely, if $B\in\calH$, then $\PA B=B$ by the multiplier
+formula, so $\calH\subseteq\operatorname{Ran}(\PA)$.
+Thus $\operatorname{Ran}(\PA)=\calH$.  Self-adjointness and
+idempotence show that $\PA$ is its orthogonal projection.
+
+\medskip\noindent
+\textbf{Energy decomposition.}
+The Fourier supports of $\PA A$ and $(I-\PA)A$ are disjoint,
+so their inner product vanishes by Parseval:
+$\langle\PA A,(I-\PA)A\rangle=0$.
+Expanding $A=\PA A+(I-\PA)A$ gives \eqref{eq:pythagoras}.
+
+\medskip\noindent
+\textbf{Best approximation.}
+For any $B\in\calH$, the vectors $(I-\PA)A$ and
+$\PA A-B\in\calH$ are orthogonal.  Therefore
+\begin{equation}
+\|A-B\|_{2}^{2}
+ =\|(I-\PA)A\|_{2}^{2}+\|\PA A-B\|_{2}^{2}
+ \geq\|(I-\PA)A\|_{2}^{2},
+\end{equation}
+with equality exactly when $B=\PA A$.  This proves \eqref{eq:best}.
+Finally, \eqref{eq:contraction} implies $\|\PA\|_{\mathrm{op}}\leq1$.
+If $k\in\calA$, the nonzero function $e^{\ii k\cdot x}$ is fixed
+by $\PA$, proving $\|\PA\|_{\mathrm{op}}=1$; when $\calA$ is empty,
+\eqref{eq:projection} gives the zero operator.
+\end{proof}
+
+\section{Spectral concentration (E62)}
+For $A\neq0$, define the retained spectral-energy fraction
+\begin{equation}
+\eta(A):=\frac{\sum_{k\in\calA}|\widehat A_k|^{2}}
+                 {\sum_{k\in\ZZ^d}|\widehat A_k|^{2}}
+       =\frac{\|\PA A\|_{2}^{2}}{\|A\|_{2}^{2}}.
+\end{equation}
+Equation \eqref{eq:contraction} immediately implies
+\begin{equation}
+0\leq\eta(A)\leq1,
+\qquad
+\eta(A)=1\quad\Longleftrightarrow\quad \PA A=A.
+\end{equation}
+
+\section{Discrete FFT implementation}
+Let $F\in\mathbb{C}^{N\times N}$ be a unitary discrete Fourier
+transform matrix ($F^{*}F=FF^{*}=I$), and let
+$D=\operatorname{diag}(m_1,\ldots,m_N)$ with $m_j\in\{0,1\}$
+represent a \emph{fixed} discrete annulus mask.  The physical-space
+operator $P=F^{*}DF$ satisfies
+\begin{equation}
+P^{2}=F^{*}DF F^{*}DF=F^{*}D^{2}F=F^{*}DF=P,
+\end{equation}
+since $D^{2}=D$.  Likewise $P^{*}=P$.  Floating-point FFT
+implementations satisfy these identities up to rounding error when
+the same mask and transform conventions are used twice.
+
+\section{Scope and qualifications}
+\begin{remark}[Correct annulus convention]
+The symmetric condition $\bigl||k|-k_{\star}\bigr|\leq\Delta k$
+defines a shell about the preferred wavenumber.  The one-sided condition
+$|k|-k_{\star}\leq\Delta k$ defines a different set containing low
+wavenumbers.  Idempotence holds for a fixed mask of either kind, but
+only the symmetric condition encodes the intended annulus.
+\end{remark}
+
+\begin{remark}[Smooth multipliers]
+For any bounded Fourier multiplier $Q$ defined by
+$\widehat{QA}_k=w(k)\widehat A_k$, one has $Q^{2}=Q$ if and only if
+$w(k)^{2}=w(k)$ for every admissible Fourier mode $k$, i.e.,
+$w(k)\in\{0,1\}$.  A genuinely tapered band-pass filter is therefore
+not generally idempotent.
+\end{remark}
+
+\begin{remark}[Adaptive selections and nonlinear evolution]
+The proof assumes that $k_{\star}$ and $\Delta k$ are held fixed
+under successive applications.  If a ``dominant annulus'' is selected
+afresh from each input, the resulting map need not be idempotent.
+Moreover, the fact that $\PA$ is a projection does not imply that
+$\calH$ is invariant under an unprojected nonlinear PDE, nor does it
+by itself demonstrate localization, confinement, or stability.
+\end{remark}
+
+\section*{Conclusion}
+For the fixed, sharp dominant-annulus Fourier mask used in E59,
+\[
+\boxed{\PA^{2}=\PA,\qquad\PA^{*}=\PA,\qquad
+       \|\PA A\|_{2}\leq\|A\|_{2}.}
+\]
+Thus E59 is proved as an exact Hilbert-space operator statement.
+
+\end{document}
