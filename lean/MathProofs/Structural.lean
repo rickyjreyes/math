@@ -122,7 +122,7 @@ def scalarGradientCarrier {n : ℕ}
 /-- Its Gram matrix is precisely the two-gradient tensor, entrywise. -/
 theorem scalarGradientCarrier_gram_entry {n : ℕ}
     (a b : Fin n → ℝ) (i j : Fin n) :
-    ((scalarGradientCarrier a b) * (scalarGradientCarrier a b)ᵀ) i j =
+    ((scalarGradientCarrier a b) * (scalarGradientCarrier a b).transpose) i j =
       a i * a j + b i * b j := by
   simp [scalarGradientCarrier, Matrix.mul_apply, Fin.sum_univ_two,
     Matrix.transpose_apply]
@@ -131,9 +131,9 @@ theorem scalarGradientCarrier_gram_entry {n : ℕ}
     rank obstruction: the n-by-n Gram matrix has rank at most two. -/
 theorem scalarGradientCarrier_rank_le_two {n : ℕ}
     (a b : Fin n → ℝ) :
-    ((scalarGradientCarrier a b) * (scalarGradientCarrier a b)ᵀ).rank ≤ 2 := by
+    ((scalarGradientCarrier a b) * (scalarGradientCarrier a b).transpose).rank ≤ 2 := by
   calc
-    ((scalarGradientCarrier a b) * (scalarGradientCarrier a b)ᵀ).rank
+    ((scalarGradientCarrier a b) * (scalarGradientCarrier a b).transpose).rank
         ≤ (scalarGradientCarrier a b).rank :=
           Matrix.rank_mul_le_left _ _
     _ ≤ 2 := Matrix.rank_le_width _
