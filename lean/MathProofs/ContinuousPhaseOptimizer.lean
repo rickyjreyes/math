@@ -40,9 +40,10 @@ theorem continuous_phase_optimal_mismatch_exists
   have he : Integrable (fun x => w x * f x ^ 2) μ := by
     rw [hfun]
     exact hinv.const_mul _
+  have hIn : I ≠ 0 := hI
   have hη : η * I = C := by
     dsimp [η]
-    field_simp [hI]
+    field_simp [hIn]
   refine ⟨f, hf, ?_, he, ?_⟩
   · change (∫ x, η * (w x)⁻¹ ∂μ) = C
     rw [integral_const_mul]
@@ -50,6 +51,6 @@ theorem continuous_phase_optimal_mismatch_exists
   · rw [hfun, integral_const_mul]
     change η ^ 2 * I = C ^ 2 / I
     dsimp [η]
-    field_simp [hI] <;> ring
+    field_simp [hIn] <;> ring
 
 end ReyesMath
