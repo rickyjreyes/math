@@ -48,3 +48,7 @@ Every manuscript is a research draft, not independently peer-reviewed. Mathemati
 ## Cite and review
 
 Cite the specific manuscript and Git revision. [Citation metadata](CITATION.cff) · [Version history](history.md). Corrections, counterexamples and priority references are welcome through [issues](https://github.com/rickyjreyes/math/issues).
+
+## E61 — Continuum pattern-formation threshold
+
+[LaTeX proof](papers/e61-pattern-formation-threshold/main.tex) · [PDF](preprints/e61-pattern-formation-threshold/paper.pdf) · [Notes](preprints/e61-pattern-formation-threshold/README.md). Exact threshold for the centered linear Swift--Hohenberg operator; no nonlinear localization claim.
