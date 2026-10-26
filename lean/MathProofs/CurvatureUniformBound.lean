@@ -50,7 +50,7 @@ theorem positive_curvature_weight_uniform_bound
     have hfrac : s / (s + A) ^ 2 ≤ 1 / E ^ 2 :=
       (div_le_div_iff₀ (pow_pos hden _) (pow_pos hE _)).2 (by nlinarith)
     have hrep : 1 / E ^ 2 = E⁻¹ ^ 2 := by
-      field_simp
+      field_simp [ne_of_gt hE]
     rw [hrep] at hfrac
     linarith
   · have hlarge : 1 ≤ s := le_of_not_ge hsmall
