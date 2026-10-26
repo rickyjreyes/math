@@ -1,7 +1,7 @@
 # Lean 4 formalization status
 
-This Mathlib v4.23.0 project contains 49 formal theorem declarations
-(38 on the previous verified main commit plus 11 added here) in sixteen imported modules. On any revision,
+This Mathlib v4.23.0 project contains 51 formal theorem declarations
+(38 on the previous verified main commit plus 13 added here) in sixteen imported modules. On any revision,
 regard them as kernel-checked only after that exact revision's Lean CI passes:
 
 - [Elementary](MathProofs/Elementary.lean) — original elementary algebra.
