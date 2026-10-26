@@ -1,0 +1,237 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\dd}{\,\mathrm{d}}
+
+\title{Whole-Space Nonattainment and Strict Spreading for a Positive Curvature Functional}
+\author{Richard J. Reyes}
+\date{October 26, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For a nonnegative energy comprising a Dirichlet term and a bounded,
+nonlinear weight multiplying the squared Laplacian, we show that the
+fixed-positive-mass infimum on $H^2(\R^d;\C)$ is zero and is not attained
+in any finite spatial dimension $d\ge 1$. For $1\le d\le4$, the energy
+is strictly increasing along the mass-preserving dilation parameter,
+so no positive-mass local constrained minimizer exists in the strong
+$H^2$ topology. The conclusions are variational and do not exclude
+stationary saddle points or localization supplied by other terms or
+boundary conditions.
+\end{abstract}
+
+\section{Functional and results}
+Fix $d\in\mathbb{N}$ and constants $c_1,c_2,\varepsilon>0$ and
+$\alpha\ge0$. For $s\ge0$ define
+\begin{equation}\label{eq:weight}
+ F(s)=\frac{s}{\bigl(s+\varepsilon^2e^{-2\alpha s}\bigr)^2}.
+\end{equation}
+For $\psi\in H^2(\R^d;\C)$, set
+\begin{equation}\label{eq:energy}
+ E(\psi)
+ =c_1\int_{\R^d}|\nabla\psi|^2\dd x
+ +c_2\int_{\R^d}F(|\psi|^2)|\Delta\psi|^2\dd x.
+\end{equation}
+For every mass $m>0$ define
+\begin{equation}\label{eq:mass}
+ \A_m=\bigl\{\psi\in H^2(\R^d;\C):\|\psi\|_{L^2}^2=m\bigr\},
+ \qquad I_d(m)=\inf_{\psi\in\A_m} E(\psi).
+\end{equation}
+
+\begin{theorem}[Positive-mass whole-space nonattainment]\label{thm:global}
+For every finite dimension $d\ge1$ and every $m>0$, the energy
+\eqref{eq:energy} is finite and nonnegative on $H^2(\R^d;\C)$,
+strictly positive for each nonzero $\psi\in H^2(\R^d;\C)$, and
+\begin{equation}\label{eq:main}
+ \boxed{I_d(m)=0,\qquad
+ \operatorname*{arg\,min}_{\psi\in\A_m}E(\psi)=\varnothing.}
+\end{equation}
+\end{theorem}
+
+\begin{theorem}[Strict spreading for dimensions one through four]\label{thm:monotone}
+Suppose $1\le d\le4$. For each nonzero
+$\psi\in H^2(\R^d;\C)$ and $\lambda>0$, let
+\begin{equation}\label{eq:dilation}
+ \psi_\lambda(x)=\lambda^{d/2}\psi(\lambda x).
+\end{equation}
+The function $\lambda\mapsto E(\psi_\lambda)$ is continuously
+differentiable and strictly increasing on $(0,\infty)$. In particular,
+\begin{equation}\label{eq:strict}
+ 0<\lambda<1\quad\Longrightarrow\quad E(\psi_\lambda)<E(\psi).
+\end{equation}
+Consequently, $E|_{\A_m}$ has no local minimizer in the $H^2$
+topology for any $m>0$.
+\end{theorem}
+
+\section{Proof of all-dimensional nonattainment}
+\begin{proof}[Proof of Theorem~\ref{thm:global}]
+Write
+\begin{equation*}
+ A(s)=\varepsilon^2e^{-2\alpha s},\qquad D(s)=s+A(s).
+\end{equation*}
+Since $A(s)>0$, the function $F(s)=s/D(s)^2$ is continuous
+and nonnegative on $[0,\infty)$, and positive when $s>0$.
+Moreover,
+\begin{equation}\label{eq:asymptotics}
+ F(s)=\frac{s}{\varepsilon^4}+O(s^2)\quad(s\downarrow0),
+ \qquad F(s)=\frac{1+o(1)}{s}\quad(s\to\infty).
+\end{equation}
+It follows that $F$ is bounded; set
+$M_F=\sup_{s\ge0}F(s)<\infty$.
+For every $\psi\in H^2$,
+\begin{equation}\label{eq:bound}
+ 0\le \int_{\R^d}F(|\psi|^2)|\Delta\psi|^2\dd x
+ \le M_F\|\Delta\psi\|_{L^2}^2<\infty.
+\end{equation}
+Thus the energy is finite and nonnegative in all dimensions.
+
+Furthermore, if $E(\psi)=0$, then $c_1>0$ implies
+$\nabla\psi=0$ almost everywhere. Since $\R^d$ is connected,
+$\psi$ is almost everywhere constant. The only constant in
+$L^2(\R^d)$ is zero; hence
+\begin{equation}\label{eq:positive}
+ E(\psi)=0\quad\Longleftrightarrow\quad\psi=0.
+\end{equation}
+
+Choose any $\psi\in\A_m$. For $\lambda>0$ use the dilation
+\eqref{eq:dilation}; a change of variables gives
+\begin{equation}\label{eq:mass_preserved}
+ \|\psi_\lambda\|_{L^2}^2=\|\psi\|_{L^2}^2=m,
+ \qquad \|\nabla\psi_\lambda\|_{L^2}^2
+ =\lambda^2\|\nabla\psi\|_{L^2}^2.
+\end{equation}
+Also $\Delta\psi_\lambda(x)=\lambda^{d/2+2}\Delta\psi(\lambda x)$.
+Writing $\rho=|\psi|^2$ and $B=|\Delta\psi|^2$, we obtain the
+exact scaling formula
+\begin{equation}\label{eq:scale}
+ E(\psi_\lambda)
+ =c_1\lambda^2\|\nabla\psi\|_{L^2}^2
+ +c_2\lambda^4\int_{\R^d}F(\lambda^d\rho(y))B(y)\dd y.
+\end{equation}
+Using the uniform bound on $F$,
+\begin{equation}\label{eq:upper}
+ 0\le E(\psi_\lambda)
+ \le c_1\lambda^2\|\nabla\psi\|_{L^2}^2
+ +c_2 M_F\lambda^4\|\Delta\psi\|_{L^2}^2
+ \xrightarrow[\lambda\downarrow0]{}0.
+\end{equation}
+Since $\psi_\lambda\in\A_m$, nonnegativity and
+\eqref{eq:upper} show $I_d(m)=0$.
+If some $\psi_*\in\A_m$ attained this infimum, then
+$E(\psi_*)=0$ and \eqref{eq:positive} would force
+$\psi_*=0$, contradicting $\|\psi_*\|_{L^2}^2=m>0$.
+Hence the infimum is not attained.
+\end{proof}
+
+\section{Proof of strict spreading in dimensions $1\le d\le4$}
+\begin{proof}[Proof of Theorem~\ref{thm:monotone}]
+With $A(s)$ and $D(s)$ as above, the derivative of $F$ is
+\begin{equation}\label{eq:derivative}
+ F'(s)=\frac{A(s)-s+4\alpha sA(s)}{(s+A(s))^3}.
+\end{equation}
+The combination that controls dilation is
+\begin{align}
+ 4F(s)+dsF'(s)
+ &=F(s)\left[
+ 4-d+\frac{2dA(s)(1+2\alpha s)}{s+A(s)}
+ \right] \notag\\
+ &=F(s)\left[
+ 4-d+\frac{2d\varepsilon^2e^{-2\alpha s}(1+2\alpha s)}
+ {s+\varepsilon^2e^{-2\alpha s}}
+ \right].\label{eq:virial_weight}
+\end{align}
+For $1\le d\le4$, the bracket is strictly positive at every
+finite $s\ge0$. Accordingly,
+\begin{equation}\label{eq:virial_sign}
+ 4F(s)+dsF'(s)\ge0\quad(s\ge0),
+ \qquad 4F(s)+dsF'(s)>0\quad(s>0).
+\end{equation}
+
+To justify differentiating the nonlinear integral in
+\eqref{eq:scale}, note that $sF'(s)$ is bounded. Indeed,
+\eqref{eq:derivative} makes $sF'(s)$ continuous on
+$[0,\infty)$ with limit zero at both $s=0$ and $s=\infty$.
+Thus $4F+dsF'$ is bounded on $[0,\infty)$.
+For $\lambda$ in any compact subinterval of $(0,\infty)$,
+the derivative with respect to $\log\lambda$ of the
+integrand $\lambda^4F(\lambda^d\rho)B$ is bounded in
+absolute value by a constant times $B\in L^1(\R^d)$.
+Dominated convergence therefore yields
+\begin{align}
+ \frac{\dd}{\dd\log\lambda}E(\psi_\lambda)
+ &=2c_1\lambda^2\|\nabla\psi\|_{L^2}^2\notag\\
+ &\quad+c_2\lambda^4\int_{\R^d}
+ \bigl(4F(s)+dsF'(s)\bigr)B(y)\dd y,
+ \qquad s=\lambda^d\rho(y).
+ \label{eq:monotone_derivative}
+\end{align}
+By \eqref{eq:virial_sign}, the integral is nonnegative.
+By \eqref{eq:positive}, $\|\nabla\psi\|_{L^2}^2>0$ for
+nonzero $\psi$. Therefore
+\begin{equation}\label{eq:positive_derivative}
+ \boxed{\frac{\dd}{\dd\log\lambda}E(\psi_\lambda)
+ \ge2c_1\lambda^2\|\nabla\psi\|_{L^2}^2>0.}
+\end{equation}
+Strict monotonicity and \eqref{eq:strict} follow.
+
+For completeness, the dilation group is strongly continuous on
+$H^2(\R^d)$:
+\begin{equation}\label{eq:strong_cont}
+ \lim_{\lambda\to1}\|\psi_\lambda-\psi\|_{H^2}=0.
+\end{equation}
+To see this, first use dominated convergence for functions in
+$C_c^\infty(\R^d)$, and then pass to all of $H^2$ by density;
+the dilation operators are uniformly bounded on $H^2$ for
+$\lambda$ in a neighborhood of $1$, because their
+$L^2$, first-derivative, and second-derivative norms scale
+respectively as $1$, $\lambda$, and $\lambda^2$.
+
+Now suppose that $\psi\in\A_m$ were a local constrained
+$H^2$ minimizer. By \eqref{eq:strong_cont}, for $\lambda<1$
+sufficiently close to $1$, $\psi_\lambda$ would lie in its
+minimizing neighborhood. Yet \eqref{eq:mass_preserved} keeps
+$\psi_\lambda\in\A_m$ while \eqref{eq:strict} implies
+$E(\psi_\lambda)<E(\psi)$, a contradiction.
+\end{proof}
+
+\section{Interpretive limits}
+\begin{remark}[Dimensions greater than four]
+The proof of nonattainment uses only boundedness of $F$,
+positivity of the Dirichlet term, and mass-preserving
+spreading. It is therefore valid for every finite $d\ge1$.
+For $d>4$, the factor $4-d$ in \eqref{eq:virial_weight}
+can be negative. Thus the argument above does not establish
+strict dilation monotonicity or the absence of \emph{local}
+constrained minimizers in those dimensions.
+\end{remark}
+
+\begin{remark}[Stationary points and other models]
+The absence of positive-mass minimizing states is an energetic
+statement, not a nonexistence theorem for all stationary
+saddles or a dynamical scattering theorem. Likewise, excluding
+general constrained critical points via dilation requires
+justifying the dilation as a differentiable tangent variation
+in the selected function space. The result does not cover
+additional focusing terms, external confinement, prescribed
+boundaries, or other energy functionals with different signs.
+\end{remark}
+
+\section*{Source and reproducibility}
+A related foundational audit and scope discussion is available at
+\url{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/foundational/LOCALIZED_STATE_EXISTENCE.md}.
+
+\end{document}
