@@ -19,9 +19,7 @@ theorem continuous_phase_square_pointwise
     (w f η : ℝ) (hw : w ≠ 0) :
     w * f ^ 2 =
       w * (f - η * w⁻¹) ^ 2 + 2 * η * f - η ^ 2 * w⁻¹ := by
-  field_simp
-  · ring
-  · exact hw
+  field_simp [hw] <;> ring
 
 /-- Exact integral-level completion of the square. Every term is a
 genuine Bochner integral on the specified measure space. -/
@@ -44,6 +42,13 @@ theorem continuous_phase_square_integral
     funext x
     exact continuous_phase_square_pointwise (w x) (f x) η (hw x)
   rw [hpoint]
+  change
+    (∫ x, ((fun y => w y * (f y - η * (w y)⁻¹) ^ 2) +
+      (fun y => 2 * η * f y) -
+      (fun y => η ^ 2 * (w y)⁻¹)) x ∂μ) =
+      (∫ x, w x * (f x - η * (w x)⁻¹) ^ 2 ∂μ) +
+        2 * η * (∫ x, f x ∂μ) -
+        η ^ 2 * (∫ x, (w x)⁻¹ ∂μ)
   rw [integral_sub (hres.add (hf.const_mul _)) (hinv.const_mul _)]
   rw [integral_add hres (hf.const_mul _)]
   rw [integral_const_mul, integral_const_mul]
