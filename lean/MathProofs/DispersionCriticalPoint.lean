@@ -27,6 +27,7 @@ theorem finite_scale_positive_stationary_exists
       0 < q ∧ q < G / B ∧
       0 < finiteScaleRadicand s G B q ∧
       G - B * q = (2 * K + G) * Real.sqrt (finiteScaleRadicand s G B q) ∧
+      0 < Real.sqrt (finiteScaleRadicand s G B q) - (2 * K + G) * q ∧
       q = (G - (2 * K + G) *
         Real.sqrt ((G ^ 2 + B * s ^ 2) / ((2 * K + G) ^ 2 + B))) / B := by
   let a : ℝ := 2 * K + G
@@ -110,10 +111,39 @@ theorem finite_scale_positive_stationary_exists
     positivity
   have hsqrt : Real.sqrt (finiteScaleRadicand s G B q) = t := by
     rw [hrad, Real.sqrt_sq (le_of_lt ht)]
-  refine ⟨q, hqpos, hqmax, hradpos, ?_, ?_⟩
+  have hrel2 :
+      (D * t) ^ 2 - (a * G) ^ 2 =
+        B * (G ^ 2 + D * s ^ 2) := by
+    calc
+      _ = D * (D * t ^ 2) - a ^ 2 * G ^ 2 := by ring
+      _ = D * H - a ^ 2 * G ^ 2 := by rw [ht2]
+      _ = B * (G ^ 2 + D * s ^ 2) := by dsimp [D, H]; ring
+  have hposDt : a * G < D * t := by
+    have hpos : 0 < (D * t) ^ 2 - (a * G) ^ 2 := by
+      rw [hrel2]
+      positivity
+    have hl : 0 ≤ D * t := le_of_lt (mul_pos hD ht)
+    have hr : 0 ≤ a * G := le_of_lt (mul_pos ha hG)
+    nlinarith
+  have hshift2 : B * (t - a * q) = D * t - a * G := by
+    dsimp [q, D]
+    field_simp [ne_of_gt hB]
+    ring
+  have hT0 : 0 < t - a * q := by
+    have hprod : 0 < B * (t - a * q) := by
+      rw [hshift2]
+      linarith
+    by_contra hn
+    have hnonpos : t - a * q ≤ 0 := le_of_not_gt hn
+    have hnonposprod := mul_nonpos_of_nonneg_of_nonpos (le_of_lt hB) hnonpos
+    linarith
+  refine ⟨q, hqpos, hqmax, hradpos, ?_, ?_, ?_⟩
   · rw [hsqrt]
     change G - B * q = a * t
     exact hshift
+  · rw [hsqrt]
+    change 0 < t - a * q
+    exact hT0
   · dsimp [q, t, D, H, a]
 
 end ReyesMath
