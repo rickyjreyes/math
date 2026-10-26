@@ -5,3 +5,4 @@ import MathProofs.FourierSupport
 import MathProofs.PhaseMinimizer
 import MathProofs.StructuralExtensions
 import MathProofs.ModelAlgebra
+import MathProofs.DispersionMinimizer
