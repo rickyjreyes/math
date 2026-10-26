@@ -4,6 +4,18 @@ Standalone mathematical proofs and research notes by Richard J. Reyes.
 
 ## Papers
 
+### Regular S004 complex scalar: four configuration degrees of freedom
+
+[LaTeX source](papers/s004-complex-scalar-constraint-count/main.tex)
+
+For the corrected S004 higher-derivative complex scalar on a fixed flat background, with nonzero field amplitude, `\kappa>0`, and `F(\rho)>0`, the real acceleration Hessian is `H_{\mathrm{acc}}=-2\kappa F I_2` with `\det H_{\mathrm{acc}}=4\kappa^2F^2>0`. A first-order Dirac analysis yields four second-class constraints, zero first-class or secondary constraints, and four real local configuration degrees of freedom (two more than an ordinary complex scalar). Global `U(1)` charge conservation does not remove the extra local modes.
+
+**Build:** Run `pdflatex -interaction=nonstopmode main.tex` twice from `papers/s004-complex-scalar-constraint-count/`.
+
+**Scope:** This is a regular nonzero-field, fixed-flat-background constraint count. It does not classify the degenerate vacuum or unspecified dynamical-metric/gauge completions. The manuscript is a research draft and has not undergone independent peer review.
+
+**Related audit:** [S004 physical-health and constraint analysis](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/foundational/GHOST_AND_CONSTRAINT_ANALYSIS.md).
+
 ### Whole-space minimizer existence for a fourth-order cubic–quintic Hamiltonian
 
 [LaTeX source](papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex)
