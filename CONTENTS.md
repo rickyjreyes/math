@@ -1,6 +1,6 @@
 # Mathematics manuscript catalogue
 
-**15 manuscripts in 11 result families.** [Overview PDF](overview.pdf) · [Lean formalization status](lean/formalization.yaml) · [History](history.md)
+**16 manuscripts in 12 result families.** [Overview PDF](overview.pdf) · [Lean formalization status](lean/formalization.yaml) · [History](history.md)
 
 A PDF here is an analytic manuscript, **not** a claim of peer review or Lean kernel certification.
 
@@ -55,4 +55,20 @@ A PDF here is an analytic manuscript, **not** a claim of peer review or Lean ker
 
 ## F11 — Band-pass amplitude gradient flow
 
-**E13/E14: negative-gradient-flow structure and exact dissipation identity** — [PDF](preprints/band-pass-amplitude-negative-gradient-flow/paper.pdf) · [LaTeX source](papers/band-pass-amplitude-negative-gradient-flow/main.tex) · [E14 companion LaTeX proof](papers/band-pass-amplitude-negative-gradient-flow/E14_full_proof.tex) · [Notes](preprints/band-pass-amplitude-negative-gradient-flow/README.md)
+**E13/E14: negative-gradient-flow structure and exact dissipation identity** — [PDF](preprints/band-pass-amplitude-negative-gradient-flow/paper.pdf) · [LaTeX source](papers/band-pass-amplitude-negative-gradient-flow/main.tex) · [Notes](preprints/band-pass-amplitude-negative-gradient-flow/README.md)
+
+## F11 — Fourier concentration and projection
+
+**E62: Spectral energy concentration fraction** — [PDF](preprints/spectral-energy-concentration-e62/paper.pdf) · [LaTeX source](papers/spectral-energy-concentration-e62/main.tex) · [Notes](preprints/spectral-energy-concentration-e62/README.md)
+
+For nonzero L² data, the Fourier energy fraction within any chosen band is between zero and one. Includes equality cases, projector formulation, and continuous spectra. This is a normalization result, not a proof of dynamical concentration or shell attraction.
+
+## Supplementary WCT operator proofs
+
+**M2 + E17 — Strict positivity and reciprocal consistency of the regularized curvature operator** — [PDF](preprints/regularized-curvature-operator/paper.pdf) · [LaTeX source](papers/regularized-curvature-operator/main.tex) · [Notes](preprints/regularized-curvature-operator/README.md)
+
+The corrected modulus-squared regularization is smooth and bounded for each ε > 0, tends to 1/ψ away from zeros, and obeys explicit convergence estimates; it does not establish nonlinear evolution well-posedness or stability.
+
+## F12 — Regularized curvature operator
+
+**E26: Conditional $L^2$ curvature estimate and counterexample** — [PDF](preprints/regularized-curvature-l2-bound/paper.pdf) · [LaTeX source](papers/regularized-curvature-l2-bound/main.tex) · [Notes](preprints/regularized-curvature-l2-bound/README.md)
