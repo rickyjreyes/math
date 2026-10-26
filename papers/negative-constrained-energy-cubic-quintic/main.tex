@@ -1,0 +1,225 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+
+\title{Negative Constrained Energy at Every Positive Mass\\
+for a Fourth-Order Cubic--Quintic Hamiltonian on $\R^2$}
+\author{Richard J. Reyes}
+\date{October 26, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove that the constrained energy infimum of a fourth-order
+focusing-cubic/defocusing-quintic Hamiltonian on $\R^2$ is strictly
+negative at every positive mass. An anisotropic Gaussian modulated by
+a plane-wave carrier yields an exact two-term expression in the
+spatial scale. Choosing sufficient anisotropy makes the leading
+coefficient negative. A pointwise square-completion identity also
+provides a uniform lower bound. This is a variational infimum result;
+it does not by itself prove existence of minimizers or orbital stability.
+\end{abstract}
+
+\section{Statement}
+Let $\beta,\gamma,k>0$, and consider the functional
+\begin{equation}\label{eq:H}
+ H(u)=\norm{(\Delta+k^2)u}_{L^2(\R^2)}^2
+ -\frac{\beta}{2}\norm{u}_{L^4(\R^2)}^4
+ +\frac{\gamma}{3}\norm{u}_{L^6(\R^2)}^6,
+ \qquad u\in H^2(\R^2;\C).
+\end{equation}
+For each $m>0$, define
+\begin{equation}\label{eq:I}
+ I(m)=\inf\bigl\{H(u):u\in H^2(\R^2;\C),\ \norm{u}_2^2=m\bigr\}.
+\end{equation}
+
+\begin{theorem}\label{thm:negativity}
+For every $\beta,\gamma,k>0$ and every $m>0$,
+\begin{equation}\label{eq:main}
+ \boxed{-\frac{3\beta^2}{16\gamma}\,m\ \le\ I(m)\ <\ 0.}
+\end{equation}
+In particular, the constrained energy infimum is strictly negative at
+arbitrarily small positive mass.
+\end{theorem}
+
+\section{Proof}
+\begin{proof}
+\textbf{Step 1: A normalized anisotropic Gaussian.}
+For $a,b>0$, set
+\begin{equation}\label{eq:f}
+ f_{a,b}(x,y)=\frac{1}{\sqrt{\pi ab}}
+ \exp\!\left(-\frac{x^2}{2a^2}-\frac{y^2}{2b^2}\right).
+\end{equation}
+A direct Gaussian integral gives $\norm{f_{a,b}}_2^2=1$.
+For $R>0$, introduce the Gaussian carrier trial
+\begin{equation}\label{eq:trial}
+ u_R(x,y)=\frac{\sqrt{m}}{R}
+ f_{a,b}\!\left(\frac{x}{R},\frac{y}{R}\right)e^{ikx}.
+\end{equation}
+It belongs to $H^2(\R^2;\C)$, and the change of variables
+$(X,Y)=(x/R,y/R)$ shows that
+\begin{equation}\label{eq:mass}
+ \norm{u_R}_2^2
+ =m\int_{\R^2}|f_{a,b}(X,Y)|^2\,dX\,dY=m.
+\end{equation}
+Thus every $u_R$ is admissible in \eqref{eq:I}.
+
+\medskip
+\noindent\textbf{Step 2: The fourth-order kinetic term.}
+Write $u_R=e^{ikx}v_R$, where the real-valued envelope is
+\[
+ v_R(x,y)=\frac{\sqrt m}{R}f_{a,b}\left(\frac{x}{R},\frac{y}{R}\right).
+\]
+Then
+\begin{equation}\label{eq:carrier}
+ (\Delta+k^2)u_R
+ =e^{ikx}(\Delta v_R+2ik\,\partial_x v_R).
+\end{equation}
+The two summands inside the parentheses are respectively real and
+purely imaginary. Therefore the cross term vanishes pointwise:
+\begin{equation}\label{eq:kin-split}
+ \norm{(\Delta+k^2)u_R}_2^2
+ =\norm{\Delta v_R}_2^2+4k^2\norm{\partial_xv_R}_2^2.
+\end{equation}
+Using the normalized Gaussian moments
+\begin{align}\label{eq:moments}
+ \norm{\partial_xf_{a,b}}_2^2&=\frac{1}{2a^2},\\
+ \norm{\partial_{xx}f_{a,b}}_2^2&=\frac{3}{4a^4},
+ &\norm{\partial_{yy}f_{a,b}}_2^2&=\frac{3}{4b^4},\notag\\
+ \int_{\R^2}\partial_{xx}f_{a,b}\,\partial_{yy}f_{a,b}
+ \,dx\,dy&=\frac{1}{4a^2b^2},\notag
+\end{align}
+we obtain
+\begin{equation}\label{eq:delta-f}
+ \norm{\Delta f_{a,b}}_2^2
+ =\frac{3}{4a^4}+\frac{1}{2a^2b^2}+\frac{3}{4b^4}.
+\end{equation}
+The scaling of $v_R$ in dimension two gives
+\begin{equation}\label{eq:kinetic}
+ \boxed{\begin{aligned}
+ \norm{(\Delta+k^2)u_R}_2^2
+ &=\frac{2mk^2}{a^2R^2}\\
+ &\quad+\frac{m}{R^4}\left(
+ \frac{3}{4a^4}+\frac{1}{2a^2b^2}+\frac{3}{4b^4}\right).
+ \end{aligned}}
+\end{equation}
+
+\medskip
+\noindent\textbf{Step 3: The quartic and sextic contributions.}
+Direct integration yields
+\begin{equation}\label{eq:nonlinear-moments}
+ \norm{f_{a,b}}_4^4=\frac{1}{2\pi ab},
+ \qquad \norm{f_{a,b}}_6^6=\frac{1}{3\pi^2a^2b^2}.
+\end{equation}
+Thus the mass-preserving rescaling \eqref{eq:trial} gives
+\begin{equation}\label{eq:nonlinear}
+ \norm{u_R}_4^4=\frac{m^2}{2\pi abR^2},
+ \qquad
+ \norm{u_R}_6^6=\frac{m^3}{3\pi^2a^2b^2R^4}.
+\end{equation}
+
+\medskip
+\noindent\textbf{Step 4: An exact energy polynomial.}
+Substitution of \eqref{eq:kinetic} and \eqref{eq:nonlinear}
+into \eqref{eq:H} gives the \emph{exact} identity
+\begin{equation}\label{eq:polynomial}
+ \boxed{H(u_R)=\frac{c_2}{R^2}+\frac{c_4}{R^4},}
+\end{equation}
+where
+\begin{align}\label{eq:c2}
+ c_2&=\frac{2mk^2}{a^2}-\frac{\beta m^2}{4\pi ab},\\
+ c_4&=m\left(\frac{3}{4a^4}+\frac{1}{2a^2b^2}
+ +\frac{3}{4b^4}\right)
+ +\frac{\gamma m^3}{9\pi^2a^2b^2}>0.\label{eq:c4}
+\end{align}
+No higher-order remainder appears in \eqref{eq:polynomial}.
+
+\medskip
+\noindent\textbf{Step 5: Choosing the anisotropy.}
+From \eqref{eq:c2},
+\begin{equation}\label{eq:anisotropy}
+ c_2<0
+ \quad\Longleftrightarrow\quad
+ \frac{a}{b}>\frac{8\pi k^2}{\beta m}.
+\end{equation}
+For each fixed $m>0$, the right-hand side is finite;
+choose any $a,b>0$ satisfying \eqref{eq:anisotropy}.
+Then $c_2<0<c_4$.
+
+\medskip
+\noindent\textbf{Step 6: Optimizing the spatial scale.}
+Setting $z=R^{-2}>0$ in \eqref{eq:polynomial} gives
+$H(u_R)=c_2z+c_4z^2$.
+Its unique positive minimizer is
+\begin{equation}\label{eq:Ropt}
+ z_*=-\frac{c_2}{2c_4}>0,
+ \qquad R_*^2=-\frac{2c_4}{c_2}>0.
+\end{equation}
+At this value,
+\begin{equation}\label{eq:negative-trial}
+ H(u_{R_*})=-\frac{c_2^2}{4c_4}<0.
+\end{equation}
+Because $\norm{u_{R_*}}_2^2=m$, the definition of the infimum yields
+\begin{equation}\label{eq:upper}
+ I(m)\le H(u_{R_*})=-\frac{c_2^2}{4c_4}<0.
+\end{equation}
+This establishes strict negativity for every $m>0$.
+
+\medskip
+\noindent\textbf{Step 7: A finite lower bound.}
+For every $r\ge0$, the algebraic identity
+\begin{equation}\label{eq:completion}
+ -\frac{\beta}{2}r^2+\frac{\gamma}{3}r^3
+ =\frac{\gamma}{3}r\left(r-\frac{3\beta}{4\gamma}\right)^2
+ -\frac{3\beta^2}{16\gamma}r
+\end{equation}
+shows that
+\begin{equation}\label{eq:pointwise}
+ -\frac{\beta}{2}|u|^4+\frac{\gamma}{3}|u|^6
+ \ge-\frac{3\beta^2}{16\gamma}|u|^2.
+\end{equation}
+Integration, together with $\norm{(\Delta+k^2)u}_2^2\ge0$, implies
+\begin{equation}\label{eq:lower}
+ H(u)\ge-\frac{3\beta^2}{16\gamma}\norm{u}_2^2.
+\end{equation}
+Taking the infimum over the mass-$m$ constraint yields
+$I(m)\ge-3\beta^2m/(16\gamma)$.
+Combining this estimate with \eqref{eq:upper} proves
+\eqref{eq:main}.
+\end{proof}
+
+\section{Scope and relation to earlier work}
+The plane-wave carrier obeys $(\Delta+k^2)e^{ikx}=0$, eliminating
+the constant spectral cost while preserving an admissible
+square-integrable Gaussian envelope. Anisotropy makes the coefficient
+of $R^{-2}$ negative. The positive defocusing-sextic contribution
+appears only in the coefficient of $R^{-4}$ for these trials.
+The negative-energy mechanism is already present for the
+single-power focusing problem ($\gamma=0$); the new observation here
+is its persistence in the combined focusing-cubic/defocusing-quintic
+functional with the explicit coefficients above.
+
+The theorem concerns only the value of the constrained infimum. It
+neither asserts attainment nor proves strict subadditivity, compactness
+of all minimizing sequences, uniqueness of minimizers, or orbital
+stability. Such statements require separate arguments.
+
+\begin{thebibliography}{9}
+\bibitem{fernandez2022}
+Fern\'andez et al., \emph{Journal of Differential Equations}
+\textbf{330} (2022),
+\href{https://doi.org/10.1016/j.jde.2022.04.037}
+{doi:10.1016/j.jde.2022.04.037}.
+\end{thebibliography}
+
+\end{document}
