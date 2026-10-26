@@ -1,0 +1,270 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\DeclareMathOperator{\esssup}{ess\,sup}
+\DeclareMathOperator{\spec}{\sigma}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathcal{F}}
+
+\title{E61: Exact Pattern-Formation Threshold in the Continuum}
+\author{Mathematical proof for Manuscript 1}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For the centered Swift--Hohenberg linear evolution on $\R^d$, we prove that
+its spectral-instability threshold is exactly zero. We determine the
+spectrum and semigroup norm, distinguish strong stability from uniform
+exponential stability at criticality, characterize the unstable Fourier
+annulus, and derive the corresponding finite-periodic-domain threshold.
+The distinction between centered and uncentered control parameters is made
+explicit. The theorem concerns linear instability, not nonlinear pattern
+existence or localization.
+\end{abstract}
+
+\section{Continuum theorem}
+
+\begin{theorem}[E61: continuum spectral threshold]\label{thm:E61}
+Let $d\ge 1$, $a>0$, and $k_\star>0$. On $L^2(\R^d)$ define
+\begin{equation}\label{eq:operator}
+L_r = rI-a(\Delta+k_\star^2)^2,
+\qquad D(L_r)=H^4(\R^d), \quad r\in\R.
+\end{equation}
+Then
+\begin{equation}\label{eq:spectrum}
+\spec(L_r)=(-\infty,r], \qquad
+\|e^{tL_r}\|_{L^2\to L^2}=e^{rt}\quad (t\ge0).
+\end{equation}
+Consequently the critical centered growth parameter is
+\begin{equation}\label{eq:threshold}
+\boxed{\displaystyle
+r_c=\min_{k\in\R^d}a(|k|^2-k_\star^2)^2=0.}
+\end{equation}
+More precisely:
+\begin{enumerate}
+\item If $r<0$, every $L^2$ solution decays exponentially.
+\item If $r=0$, every $L^2$ solution tends strongly to zero as $t\to\infty$,
+      although the semigroup is not uniformly exponentially stable.
+\item If $r>0$, there exist nonzero $L^2$ data whose solutions grow
+      exponentially in norm.
+\end{enumerate}
+The maximum Fourier growth rate is $r$, attained as a value of the
+symbol precisely on $|k|=k_\star$.
+\end{theorem}
+
+\begin{proof}
+We use the unitary Fourier transform, so
+$\widehat{\Delta u}(k)=-|k|^2\widehat u(k)$. Hence $L_r$ is unitarily
+equivalent to multiplication by the real-valued function
+\begin{equation}\label{eq:symbol}
+\lambda_r(k)=r-a(|k|^2-k_\star^2)^2.
+\end{equation}
+For every $k\in\R^d$,
+\[
+a(|k|^2-k_\star^2)^2\ge0,
+\qquad\lambda_r(k)\le r.
+\]
+Since $k_\star>0$, the sphere
+$S_{k_\star}=\{k\in\R^d:|k|=k_\star\}$ is nonempty, and
+$\lambda_r(k)=r$ for each $k\in S_{k_\star}$. It follows that
+\begin{equation}\label{eq:extremum}
+\sup_{k\in\R^d}\lambda_r(k)=r,
+\qquad \min_{k\in\R^d}a(|k|^2-k_\star^2)^2=0.
+\end{equation}
+
+The function $\lambda_r$ is continuous, has range $(-\infty,r]$, and
+tends to $-\infty$ as $|k|\to\infty$. Its essential range is also
+$(-\infty,r]$: every neighborhood of a value in this range has a
+preimage of positive Lebesgue measure (including neighborhoods of the
+maximum $r$). The spectrum of an unbounded self-adjoint multiplication
+operator is its essential range, giving the first identity in
+\eqref{eq:spectrum}. The Fourier formula for the semigroup is
+\begin{equation}\label{eq:semigroup}
+\widehat{e^{tL_r}u_0}(k)
+=e^{t\lambda_r(k)}\widehat u_0(k), \qquad t\ge0.
+\end{equation}
+For $t\ge0$, its operator norm is the essential supremum of the
+multiplier:
+\[
+\|e^{tL_r}\|_{2\to2}
+=\esssup_{k\in\R^d}e^{t\lambda_r(k)}=e^{rt}.
+\]
+In particular, if $r<0$, then
+\[
+\|e^{tL_r}u_0\|_2\le e^{rt}\|u_0\|_2\longrightarrow0
+\qquad(t\to\infty).
+\]
+
+At $r=0$, Plancherel's identity gives
+\begin{equation}\label{eq:critical-decay}
+\|e^{tL_0}u_0\|_2^2
+=\int_{\R^d}
+ e^{-2at(|k|^2-k_\star^2)^2}|\widehat u_0(k)|^2\,dk.
+\end{equation}
+The shell $S_{k_\star}$ has $d$-dimensional Lebesgue measure zero
+(including when $d=1$, where it consists of two points). The multiplier
+in \eqref{eq:critical-decay} therefore tends to zero for almost every
+$k$, while remaining bounded by $1$. Since
+$|\widehat u_0|^2\in L^1(\R^d)$, dominated convergence gives
+\[
+\lim_{t\to\infty}\|e^{tL_0}u_0\|_2=0.
+\]
+Nevertheless $\|e^{tL_0}\|_{2\to2}=1$ at every $t\ge0$,
+so the semigroup is not uniformly exponentially stable. Note that
+the shell vectors are not nonzero $L^2$ eigenfunctions; the value zero
+is a spectral edge, not an $L^2$ point eigenvalue.
+
+For $r>0$, choose $k_0\in S_{k_\star}$. By continuity of the symbol,
+there is a bounded open ball $U$ centered at $k_0$ such that
+$\lambda_r(k)>r/2$ on $U$. Choose nonzero $u_0\in L^2$ with
+$\widehat u_0$ supported in $U$. Then
+\[
+\|e^{tL_r}u_0\|_2^2
+=\int_U e^{2t\lambda_r(k)}|\widehat u_0(k)|^2\,dk
+\ge e^{rt}\|u_0\|_2^2,
+\]
+and therefore $\|e^{tL_r}u_0\|_2\ge e^{rt/2}\|u_0\|_2$.
+Thus instability first occurs as $r$ crosses zero, proving
+\eqref{eq:threshold} and the stated classification.
+\end{proof}
+
+\section{Unstable spectral band and wavelength}
+
+\begin{proposition}[Unstable annulus]\label{prop:band}
+For $r>0$, the unstable wavevectors are exactly
+\begin{equation}\label{eq:unstable}
+\bigl\{k\in\R^d:\bigl||k|^2-k_\star^2\bigr|<\sqrt{r/a}\bigr\}.
+\end{equation}
+If $0<r<ak_\star^4$, this is the annulus
+\begin{equation}\label{eq:annulus}
+\sqrt{k_\star^2-\sqrt{r/a}}<|k|
+<\sqrt{k_\star^2+\sqrt{r/a}}.
+\end{equation}
+The fastest growth occurs at $|k|=k_\star$, corresponding to
+$\lambda_\star=2\pi/k_\star$. As $r\downarrow0$, the annulus collapses
+onto the shell $|k|=k_\star$.
+\end{proposition}
+
+\begin{proof}
+The inequality $\lambda_r(k)>0$ is equivalent to
+$a(|k|^2-k_\star^2)^2<r$, which is precisely
+\eqref{eq:unstable}. When $0<r<ak_\star^4$,
+both bounds on $|k|^2$ are positive, so taking their square roots gives
+\eqref{eq:annulus}. The maximum is characterized in
+\eqref{eq:extremum}. A plane wave of wavenumber magnitude $k_\star$
+has wavelength $2\pi/k_\star$. Both radii in \eqref{eq:annulus}
+converge to $k_\star$ as $r\downarrow0$.
+\end{proof}
+
+\begin{remark}[Near-onset width]
+Writing $|k|=k_\star+\delta$ gives
+\[
+\lambda_r(k)
+=r-a(2k_\star\delta+\delta^2)^2
+=r-4ak_\star^2\delta^2+O(\delta^3).
+\]
+Thus the unstable half-width is asymptotic to
+$(2k_\star)^{-1}\sqrt{r/a}$ as $r\downarrow0$.
+\end{remark}
+
+\section{Finite periodic domains}
+
+\begin{proposition}[Periodic-box threshold]\label{prop:torus}
+On the flat torus $\mathbb{T}_L^d=(\R/L\Z)^d$, the linear growth rates
+are
+\[
+\lambda_n(r)=r-a\left(\left|\frac{2\pi n}{L}\right|^2-k_\star^2\right)^2,
+\qquad n\in\Z^d.
+\]
+The threshold is
+\begin{equation}\label{eq:torus-threshold}
+r_c(L)=a\min_{n\in\Z^d}
+\left(\left|\frac{2\pi n}{L}\right|^2-k_\star^2\right)^2\ge0.
+\end{equation}
+Equality holds if and only if an admissible Fourier wavevector lies on
+$|k|=k_\star$. Moreover,
+\begin{equation}\label{eq:limit}
+\lim_{L\to\infty}r_c(L)=0.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The periodic Fourier basis has wavevectors $k_n=2\pi n/L$,
+so each Fourier coefficient solves
+$\partial_t\widehat u_n=\lambda_n(r)\widehat u_n$.
+The first mode reaches nonnegative growth when $r$ reaches the minimum
+in \eqref{eq:torus-threshold}. The minimum exists because the
+nonnegative expression tends to infinity with $|n|$. It vanishes
+exactly when $|2\pi n/L|=k_\star$ for some $n\in\Z^d$.
+
+For the limit, choose integers $m(L)$ satisfying
+$|m(L)-Lk_\star/(2\pi)|\le1/2$ and let
+$n(L)=(m(L),0,\ldots,0)$. Then
+\[
+\frac{2\pi n(L)}{L}\longrightarrow k_\star e_1.
+\]
+By the minimum property,
+\[
+0\le r_c(L)
+\le a\left(\left|\frac{2\pi n(L)}L\right|^2-k_\star^2\right)^2
+\longrightarrow0.
+\]
+The squeeze theorem proves \eqref{eq:limit}.
+\end{proof}
+
+\section{Centered versus uncentered parameters}
+
+\begin{proposition}[Control-parameter translation]\label{prop:shift}
+Suppose the original (uncentered) dispersion relation is
+\[
+\lambda(k)=r_0+\alpha|k|^2-b|k|^4,
+\qquad \alpha,b>0.
+\]
+Writing $k_\star^2=\alpha/(2b)$ and
+$\mu=r_0+\alpha^2/(4b)$ yields
+\begin{equation}\label{eq:shift}
+\lambda(k)=\mu-b(|k|^2-k_\star^2)^2.
+\end{equation}
+Therefore the threshold is $\mu_c=0$ in centered coordinates, and
+\begin{equation}\label{eq:uncentered}
+\boxed{r_{0,c}=-\frac{\alpha^2}{4b}}
+\end{equation}
+in the original coordinates.
+\end{proposition}
+
+\begin{proof}
+Expanding the square in \eqref{eq:shift},
+\[
+\mu-b\left(|k|^4-2k_\star^2|k|^2+k_\star^4\right)
+=\mu-b|k|^4+\alpha|k|^2-\frac{\alpha^2}{4b}
+=r_0+\alpha|k|^2-b|k|^4.
+\]
+Theorem~\ref{thm:E61} gives $\mu_c=0$, which is equivalent to
+\eqref{eq:uncentered}.
+\end{proof}
+
+\section{Scope of the result}
+
+Theorem~\ref{thm:E61} proves a \emph{linear spectral-instability
+threshold}. It does not assert nonlinear saturation, existence or
+uniqueness of patterns, orbital stability of nonzero equilibria,
+or localized finite-energy bound states. In particular, although an
+unprojected nonlinear Swift--Hohenberg evolution such as
+\[
+\partial_t A=rA-a(\Delta+k_\star^2)^2A-\beta|A|^2A
+\]
+has the same linearization at $A=0$, the existence and stability of
+nonzero patterns require additional arguments. Nor does the present
+proof derive the linear operator from any more fundamental WCT model.
+
+\end{document}
