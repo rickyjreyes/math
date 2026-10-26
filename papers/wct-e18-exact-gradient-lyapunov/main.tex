@@ -1,0 +1,301 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue}
+\usepackage{microtype}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remark}{Remark}
+\newcommand{\Om}{\Omega}
+\newcommand{\EE}{\mathcal E}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\DD}{\mathrm D}
+\newcommand{\Rea}{\operatorname{Re}}
+\newcommand{\Th}{\Theta_\varepsilon}
+
+\title{E18: Exact Lyapunov Descent for the Regularized WCT Curvature Energy}
+\author{Proof note for Manuscript 2}
+\date{October 26, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove a precise conditional version of E18: the regularized Wave
+Confinement Theory (WCT) curvature-plus-gradient energy is nonnegative and
+nonincreasing along its exact negative $L^2$ gradient flow.  We compute the
+full complex variational derivative, including differentiation of the
+nonlinear curvature weight, and obtain an exact energy--dissipation
+identity.  Periodic boundary conditions and classical solution regularity
+are imposed to make every integration by parts and chain rule legitimate.
+The theorem does not establish global existence of the flow or identify it
+with the independently proposed physical-time WCT dynamics.
+\end{abstract}
+
+\section{Definition and assumptions}
+Let $\Om=\mathbb T^d$ be a flat $d$-dimensional torus, $1\le d\le3$.
+Fix $c_1,c_2\ge0$, $\varepsilon>0$, and $\alpha\in\RR$.  For a complex
+field $\psi:\Om\to\CC$ set
+\begin{align}
+ \rho&=|\psi|^2,\\
+ D(\rho)&=\rho+\varepsilon^2e^{-2\alpha\rho},\\
+ R_\varepsilon(\psi)&=\frac{\overline\psi}{D(|\psi|^2)},\\
+ \Th[\psi]&=-(\Delta\psi)R_\varepsilon(\psi),\\
+ F(\rho)&=\frac{\rho}{D(\rho)^2}.
+\end{align}
+The energy is
+\begin{equation}\label{eq:energy}
+\boxed{\displaystyle
+ \EE[\psi]=\int_\Om\left(c_1|\nabla\psi|^2
+                +c_2|\Th[\psi]|^2\right)dx
+ =\int_\Om\left(c_1|\nabla\psi|^2
+                +c_2F(|\psi|^2)|\Delta\psi|^2\right)dx .}
+\end{equation}
+All variational derivatives below use the convention
+\begin{equation}\label{eq:convention}
+ \DD\EE(\psi)[h]
+ =2\Rea\int_\Om \frac{\delta\EE}{\delta\overline\psi}
+                         \overline h\,dx,
+\end{equation}
+where $h$ is a complex variation and the underlying tangent space is real.
+In particular, $\delta\EE/\delta\overline\psi$ is one-half of the
+real-$L^2$ Hilbert gradient for the inner product
+$(u,v)_\RR=\Rea\int_\Om u\overline v\,dx$.
+
+\begin{proposition}[Well-defined, nonnegative energy]\label{prop:positivity}
+The denominator $D(\rho)$ is strictly positive for every $\rho\ge0$.
+For every $\psi\in H^2(\Om;\CC)$, the functional in
+\eqref{eq:energy} is finite and nonnegative.
+\end{proposition}
+\begin{proof}
+As $\varepsilon>0$, one has
+$D(\rho)=\rho+\varepsilon^2e^{-2\alpha\rho}>0$.
+Thus $F$ is smooth and nonnegative on $[0,\infty)$.
+For $d\le3$, $H^2(\Om)$ embeds continuously in $L^\infty(\Om)$;
+therefore $F(|\psi|^2)$ is bounded, while
+$\nabla\psi,\Delta\psi\in L^2(\Om)$.  Both terms in
+\eqref{eq:energy} are finite and nonnegative because $c_1,c_2\ge0$.
+\end{proof}
+
+\section{Exact first variation}
+The derivative of the curvature weight is
+\begin{align}
+ D'(\rho)&=1-2\alpha\varepsilon^2e^{-2\alpha\rho},\\
+ F'(\rho)&=\frac{D(\rho)-2\rho D'(\rho)}{D(\rho)^3}\\
+ &=\boxed{\frac{\varepsilon^2e^{-2\alpha\rho}(1+4\alpha\rho)-\rho}
+                   {\bigl(\rho+\varepsilon^2e^{-2\alpha\rho}\bigr)^3}}.
+ \label{eq:Fprime}
+\end{align}
+
+\begin{proposition}[Full complex variational derivative]\label{prop:variation}
+For $\psi\in H^4(\Om;\CC)$, the $L^2$ representative of the
+variational derivative in convention \eqref{eq:convention} is
+\begin{equation}\label{eq:G}
+\boxed{\displaystyle
+ G[\psi]:=\frac{\delta\EE}{\delta\overline\psi}
+   =-c_1\Delta\psi
+     +c_2\Delta\!\bigl(F(|\psi|^2)\Delta\psi\bigr)
+     +c_2F'(|\psi|^2)\psi|\Delta\psi|^2 .}
+\end{equation}
+\end{proposition}
+\begin{proof}
+Let $h\in C^\infty(\Om;\CC)$ and $\psi_s=\psi+sh$ for real $s$.
+Direct differentiation gives
+\begin{align}
+ \left.\frac{d}{ds}|\psi_s|^2\right|_{s=0}
+ &=\psi\overline h+\overline\psi h,\\
+ \left.\frac{d}{ds}|\Delta\psi_s|^2\right|_{s=0}
+ &=\Delta h\,\Delta\overline\psi
+   +\Delta\psi\,\Delta\overline h.
+\end{align}
+For the gradient part, periodic integration by parts yields
+\begin{equation}\label{eq:first-gradient}
+ \DD\!\left(c_1\|\nabla\psi\|_2^2\right)[h]
+ =2c_1\Rea\int_\Om \nabla\psi\cdot\nabla\overline h\,dx
+ =-2c_1\Rea\int_\Om\Delta\psi\,\overline h\,dx.
+\end{equation}
+For the curvature part the product rule gives
+\begin{align}
+ &\DD\!\left(c_2\int_\Om F(|\psi|^2)|\Delta\psi|^2dx\right)[h]
+ \nonumber\\
+ &\qquad=2c_2\Rea\int_\Om
+     F(|\psi|^2)\Delta\psi\,\Delta\overline h\,dx
+ +2c_2\Rea\int_\Om
+     F'(|\psi|^2)\psi|\Delta\psi|^2\overline h\,dx.
+ \label{eq:first-curvature}
+\end{align}
+The Laplacian is self-adjoint on $\mathbb T^d$, so
+\begin{equation}
+ \int_\Om F(|\psi|^2)\Delta\psi\,\Delta\overline h\,dx
+ =\int_\Om
+   \Delta\!\bigl(F(|\psi|^2)\Delta\psi\bigr)
+   \overline h\,dx.
+\end{equation}
+Combining this with \eqref{eq:first-gradient} and
+\eqref{eq:first-curvature},
+\begin{equation}
+ \DD\EE(\psi)[h]=2\Rea\int_\Om G[\psi]\overline h\,dx.
+\end{equation}
+This is \eqref{eq:G}.  The $H^4$ assumption, together with the
+Sobolev algebra property in $d\le3$ and the smoothness of $F$,
+ensures that every term of $G[\psi]$ lies in $L^2$.
+\end{proof}
+
+\section{Exact gradient-flow dissipation theorem}
+\begin{theorem}[E18, conditional exact Lyapunov descent]\label{thm:E18}
+Let $\psi\in C^1([0,T];H^4(\mathbb T^d;\CC))$ solve the specified
+negative-gradient evolution
+\begin{equation}\label{eq:flow}
+\boxed{\displaystyle
+ \partial_t\psi=-G[\psi]
+ =c_1\Delta\psi
+  -c_2\Delta\!\bigl(F(|\psi|^2)\Delta\psi\bigr)
+  -c_2F'(|\psi|^2)\psi|\Delta\psi|^2.}
+\end{equation}
+Then, for every $t\in[0,T]$,
+\begin{equation}\label{eq:rate}
+\boxed{\displaystyle
+ \frac{d}{dt}\EE[\psi(t)]
+ =-2\|G[\psi(t)]\|_{L^2(\Om)}^2
+ =-2\|\partial_t\psi(t)\|_{L^2(\Om)}^2
+ \le0.}
+\end{equation}
+For any $0\le t_1\le t_2\le T$,
+\begin{equation}\label{eq:integrated}
+\boxed{\displaystyle
+ \EE[\psi(t_2)]
+ +2\int_{t_1}^{t_2}\|G[\psi(s)]\|_2^2\,ds
+ =\EE[\psi(t_1)] .}
+\end{equation}
+In particular, $\EE[\psi(t_2)]\le\EE[\psi(t_1)]$.
+\end{theorem}
+\begin{proof}
+Since the solution is classical in the stated Sobolev class,
+the real Banach-space chain rule and Proposition~\ref{prop:variation}
+give
+\begin{align}
+ \frac{d}{dt}\EE[\psi(t)]
+ &=\DD\EE(\psi(t))[\partial_t\psi(t)]\\
+ &=2\Rea\int_\Om
+       G[\psi(t)]\,\overline{\partial_t\psi(t)}\,dx.
+\end{align}
+Inserting $\partial_t\psi=-G[\psi]$ yields
+\begin{align}
+ \frac{d}{dt}\EE[\psi(t)]
+ &=-2\Rea\int_\Om G[\psi(t)]\overline{G[\psi(t)]}\,dx\\
+ &=-2\int_\Om|G[\psi(t)]|^2dx\le0,
+\end{align}
+proving \eqref{eq:rate}. Integrating over $[t_1,t_2]$ proves
+\eqref{eq:integrated}, and dropping the nonnegative dissipation
+integral gives monotonicity.
+\end{proof}
+
+\begin{corollary}[Characterization of zero instantaneous dissipation]
+Under the hypotheses of Theorem~\ref{thm:E18}, at each $t$ one has
+\begin{equation}
+ \frac{d}{dt}\EE[\psi(t)]=0
+ \quad\Longleftrightarrow\quad
+ G[\psi(t)]=0\text{ in }L^2
+ \quad\Longleftrightarrow\quad
+ \partial_t\psi(t)=0.
+\end{equation}
+Thus a nonstationary time slice has strictly negative energy derivative.
+\end{corollary}
+\begin{proof}
+The equivalent conditions follow immediately from
+\eqref{eq:rate}, the nonnegativity of a squared norm, and the
+evolution equation \eqref{eq:flow}.
+\end{proof}
+
+\begin{corollary}[Finite accumulated dissipation]
+If the hypotheses of Theorem~\ref{thm:E18} hold on every finite
+interval $[0,T]$ and the solution exists globally for $t\ge0$, then
+\begin{equation}\label{eq:infinite}
+ \int_0^\infty\|G[\psi(t)]\|_2^2dt
+ \le\frac12\EE[\psi(0)].
+\end{equation}
+\end{corollary}
+\begin{proof}
+By Proposition~\ref{prop:positivity} and \eqref{eq:integrated},
+$2\int_0^T\|G[\psi(t)]\|_2^2dt\le\EE[\psi(0)]$ for every $T$.
+Monotone convergence of the nonnegative time integral proves
+\eqref{eq:infinite}.
+\end{proof}
+
+\section{Boundary terms and conventions}
+\begin{remark}[Nonperiodic domains]
+For a sufficiently smooth bounded domain, the first variation has,
+in addition to the bulk term in \eqref{eq:G}, the boundary contribution
+\begin{equation}\label{eq:boundary}
+ \begin{split}
+ B[h]=2\Rea\int_{\partial\Om}\bigl[&
+ \bigl(c_1\partial_n\psi-c_2\partial_n(F(|\psi|^2)\Delta\psi)\bigr)
+ \overline h\\
+ &+c_2F(|\psi|^2)\Delta\psi\,\partial_n\overline h
+ \bigr]dS.
+ \end{split}
+\end{equation}
+The bulk $L^2$-gradient derivation applies when the admissible variations
+and boundary conditions make $B[h]=0$, and the evolution is compatible
+with those boundary conditions.  Imposing an unspecified boundary condition
+is not enough for a fourth-order integration-by-parts argument.
+\end{remark}
+
+\begin{remark}[Factor of two]
+With the convention \eqref{eq:convention}, the exact flow
+$\psi_t=-\delta\EE/\delta\overline\psi$ yields the coefficient $2$
+in \eqref{eq:rate}.  With the real Hilbert gradient
+$\nabla_\RR\EE=2G$, the flow $\psi_t=-\nabla_\RR\EE$ instead obeys
+$d\EE/dt=-\|\nabla_\RR\EE\|_2^2$.
+The factor is a normalization choice, not a substantive discrepancy.
+\end{remark}
+
+\section{Scope and limitations}
+Theorem~\ref{thm:E18} establishes an \emph{exact conditional}
+Lyapunov identity for solutions of \emph{the specified gradient flow}.
+It does not assert: (i) local or global existence for arbitrary initial
+data; (ii) uniform parabolicity, since $F(0)=0$; (iii) convergence
+to a unique equilibrium; (iv) whole-space spatial localization;
+or (v) derivation of \eqref{eq:flow} from a distinct Hamiltonian,
+wave, or mixed dissipative WCT dynamical equation.
+
+For an arbitrary specified evolution $\psi_t=X[\psi]$, the same
+chain rule gives only
+\begin{equation}
+ \frac{d}{dt}\EE[\psi(t)]
+ =2\Rea\int_\Om G[\psi]\,\overline{X[\psi]}\,dx,
+\end{equation}
+and this expression does not have a fixed sign without additional
+compatibility assumptions.
+
+\noindent\textbf{Conclusion.}
+The mathematically precise E18 statement is
+\begin{equation*}
+ \boxed{
+ \psi_t=-\frac{\delta\EE}{\delta\overline\psi}
+ \quad\Longrightarrow\quad
+ \frac{d\EE}{dt}
+ =-2\left\|\frac{\delta\EE}{\delta\overline\psi}\right\|_2^2
+ \le0,
+ }
+\end{equation*}
+for the corrected regularized energy, on the stated class of solutions.
+
+\begin{thebibliography}{9}
+\bibitem{WCTCorrected}
+R.~J.~Reyes, \emph{WCT Full Equation List Corrected},
+E17--E18, online repository,
+\url{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/WCT_FULL_EQUATION_LIST_CORRECTED.md}.
+
+\bibitem{WCTAudit}
+R.~J.~Reyes, \emph{WCT Lean Derived Audit}, E18 conditional
+algebraic descent core,
+\url{https://github.com/rickyjreyes/wct-lean/blob/main/WCTLean/DerivedAudit.lean}.
+\end{thebibliography}
+\end{document}
