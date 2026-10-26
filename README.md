@@ -68,3 +68,19 @@ The proof constructs smooth real solutions on the torus and Fourier packets on t
 **Related audit:** [S004 ghost and ultraviolet obstruction](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/foundational/GHOST_AND_CONSTRAINT_ANALYSIS.md).
 
 This manuscript is a research draft and has not undergone independent peer review.
+
+### Rank and signature obstruction to Lorentzian metric emergence from scalar gradients
+
+[LaTeX source](papers/scalar-gradient-lorentzian-no-go/main.tex)
+
+For a complex scalar $\psi=a+ib$, the symmetric tensor
+$T_{\mu\nu}=\operatorname{Re}(\partial_\mu\bar\psi\,\partial_\nu\psi)$
+is the positive-semidefinite Gram form
+$\partial_\mu a\,\partial_\nu a+\partial_\mu b\,\partial_\nu b$.
+In four dimensions its rank is at most two, so it cannot be a Lorentzian metric. The proof also shows that sums of positive-sign real scalar-gradient outer products cannot yield Lorentzian signature, even when full rank is achieved.
+
+**Build:** From the manuscript directory, run pdflatex -interaction=nonstopmode main.tex twice.
+
+**Scope:** This is an exact algebraic obstruction to the specified positive-sign construction, not a no-go theorem for all emergent-metric models or a derivation of gravitational dynamics.
+
+**Supporting analysis:** [Foundational Stage 2 — tensor/tetrad emergence](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/FOUNDATIONAL_STAGE2_2026-10-14.md).
