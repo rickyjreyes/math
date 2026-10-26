@@ -1,0 +1,265 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\esssupp}{\operatorname*{ess\,supp}}
+\newcommand{\one}{\mathbf{1}}
+
+\title{An Isolated Fourier Shell Cannot Support a Nonzero\\
+\texorpdfstring{$L^2$}{L2} Bound State}
+\author{Richard J. Reyes}
+\date{October 26, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove that a square-integrable function on $\R^d$ whose Fourier
+transform is supported on a single wavenumber shell must vanish.  The
+argument uses Plancherel's theorem and the zero $d$-dimensional Lebesgue
+measure of the shell.  It gives a direct obstruction to nonzero
+$L^2$ eigenfunctions of the free-space Helmholtz operator and, more
+generally, of nonconstant polynomial functions of the Laplacian.  A
+family of modulated wave packets then exhibits the separate freedom
+in envelope scale: fixing a carrier wavenumber alone does not select
+localization.  The result concerns homogeneous, linear, whole-space
+spectral equations; it is not a no-go theorem for nonlinear bound
+states or bounded-domain modes.
+\end{abstract}
+
+\section{Setting and main theorem}
+For $u\in L^2(\R^d;\C)$ we use the unitary Fourier transform
+\begin{equation}
+ \widehat{u}(\xi)=(2\pi)^{-d/2}
+ \int_{\R^d}u(x)e^{-ix\cdot\xi}\,dx,
+ \label{eq:Fourier}
+\end{equation}
+first defined for $u\in L^1\cap L^2$ and then extended by density
+and Plancherel to all of $L^2$.  Write
+\begin{equation}
+ S_{k_0}:=\{\xi\in\R^d:|\xi|=k_0\},\qquad k_0\geq 0.
+ \label{eq:shell}
+\end{equation}
+The support hypothesis below may be read either as a distributional
+support condition or as an essential-support condition on the $L^2$
+representative; both yield the same conclusion.
+
+\begin{theorem}[Zero $L^2$ state on an isolated Fourier shell]
+\label{thm:shell}
+Let $d\geq1$, $k_0\geq0$, and $u\in L^2(\R^d;\C)$.  If
+\begin{equation}
+ \supp\widehat u\subseteq S_{k_0},
+ \label{eq:support}
+\end{equation}
+then
+\begin{equation}
+ \boxed{u=0\quad\text{almost everywhere on }\R^d.}
+ \label{eq:main}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+By Plancherel's theorem,
+\begin{equation}
+ \widehat u\in L^2(\R^d),\qquad
+ \|u\|_{L^2}^2=\|\widehat u\|_{L^2}^2
+ =\int_{\R^d}|\widehat u(\xi)|^2\,d\xi.
+ \label{eq:plancherel}
+\end{equation}
+
+We next show that $S_{k_0}$ has zero $d$-dimensional Lebesgue measure.
+If $d=1$, the shell contains at most the two points $\pm k_0$, so
+its Lebesgue measure is zero.  If $d\geq2$ and $k_0>0$, polar
+coordinates give
+\begin{align}
+ |S_{k_0}|
+ &=\int_{\R^d}\one_{\{|\xi|=k_0\}}\,d\xi\\
+ &=\int_{\mathbb S^{d-1}}\int_0^\infty
+     \one_{\{r=k_0\}}r^{d-1}\,dr\,d\omega
+ =0.
+ \label{eq:null}
+\end{align}
+For $k_0=0$, the shell is the singleton $\{0\}$, which likewise has
+measure zero.  Thus $|S_{k_0}|=0$ in every dimension $d\geq1$.
+
+The support assumption in \eqref{eq:support} implies that
+$\widehat u=0$ almost everywhere off $S_{k_0}$.  It follows that
+\begin{equation}
+ \|\widehat u\|_{L^2}^2
+ =\int_{S_{k_0}}|\widehat u(\xi)|^2\,d\xi
+ =0,
+ \label{eq:zero}
+\end{equation}
+because $|\widehat u|^2\in L^1(\R^d)$ and the domain of integration
+has measure zero.  Equation \eqref{eq:plancherel} now gives
+$\|u\|_{L^2}=0$, hence $u=0$ almost everywhere.
+\end{proof}
+
+\section{Consequences for homogeneous spectral equations}
+
+\begin{corollary}[Free-space Helmholtz equation]
+\label{cor:Helmholtz}
+For $d\geq1$ and $k_0\geq0$, the distributional equation
+\begin{equation}
+ (-\Delta-k_0^2)u=0\quad\text{on }\R^d,
+ \qquad u\in L^2(\R^d),
+ \label{eq:Helmholtz}
+\end{equation}
+has only the trivial solution $u=0$.
+\end{corollary}
+
+\begin{proof}
+Fourier transformation in the sense of tempered distributions yields
+\begin{equation}
+ (|\xi|^2-k_0^2)\widehat u(\xi)=0
+ \quad\text{in }\mathcal S'(\R^d).
+ \label{eq:multiplier}
+\end{equation}
+On the open set $\R^d\setminus S_{k_0}$, the smooth multiplier
+$|\xi|^2-k_0^2$ does not vanish.  Local division by that multiplier
+in \eqref{eq:multiplier} shows that $\widehat u$ vanishes there as a
+distribution.  Consequently
+$\supp\widehat u\subseteq S_{k_0}$.  Theorem~\ref{thm:shell}
+then gives $u=0$.
+\end{proof}
+
+\begin{corollary}[Nonconstant polynomial dispersion]
+\label{cor:poly}
+Let $P\in\R[t]$ be a nonconstant polynomial, let $\lambda\in\R$,
+and let $u\in L^2(\R^d)$ solve
+\begin{equation}
+ P(-\Delta)u=\lambda u
+ \quad\text{in }\mathcal S'(\R^d).
+ \label{eq:poly}
+\end{equation}
+Then $u=0$ almost everywhere.
+\end{corollary}
+
+\begin{proof}
+The Fourier-side equation is
+\begin{equation}
+ \bigl(P(|\xi|^2)-\lambda\bigr)\widehat u(\xi)=0.
+ \label{eq:poly-mult}
+\end{equation}
+Since $P(t)-\lambda$ is a nonzero polynomial, it has only finitely
+many real roots.  Let $s_1,\ldots,s_N$ denote its nonnegative roots;
+the list may be empty.  Local division outside the zero set of the
+multiplier shows
+\begin{equation}
+ \supp\widehat u\subseteq
+ \bigcup_{j=1}^N\{\xi:|\xi|=\sqrt{s_j}\}.
+ \label{eq:finite-shells}
+\end{equation}
+Each shell is Lebesgue null by the proof of
+Theorem~\ref{thm:shell}.  A finite union of null sets is null; if
+$N=0$, the union is empty.  Plancherel therefore implies $u=0$.
+\end{proof}
+
+\begin{remark}[General Fourier multipliers]
+The same reasoning applies to a Fourier multiplier $m(D)$ at a level
+$\lambda$ whenever its eigenvalue equation forces the distributional
+support of $\widehat u$ into the set
+$\{\xi:m(\xi)=\lambda\}$ and that set has Lebesgue measure zero.
+The conclusion need not hold for multipliers that are constant on a
+set of positive Lebesgue measure.
+\end{remark}
+
+\section{Carrier wavelength versus envelope scale}
+The preceding theorem excludes a \emph{nonzero exact-shell $L^2$
+eigenstate}.  It does not exclude localized wave packets with nonzero
+spectral bandwidth.  The latter also show that selecting a carrier
+wavenumber does not independently determine an envelope radius.
+
+\begin{proposition}[Fixed carrier, freely varying envelope]
+\label{prop:packet}
+Fix $k_0>0$ and a unit vector $\omega_0\in\mathbb S^{d-1}$.
+Let $f\in\mathcal S(\R^d)$ be nonzero, with
+$\supp\widehat f\subset B(0,\rho)$ for some $\rho>0$.
+For each $R>0$ define
+\begin{equation}
+ u_R(x)=R^{-d/2}f(x/R)e^{ik_0\omega_0\cdot x}.
+ \label{eq:packet}
+\end{equation}
+Then
+\begin{align}
+ \|u_R\|_2^2&=\|f\|_2^2,\label{eq:packet-mass}\\
+ \widehat u_R(\xi)
+ &=R^{d/2}\widehat f\bigl(R(\xi-k_0\omega_0)\bigr),
+ \label{eq:packet-Fourier}\\
+ \supp\widehat u_R
+ &\subseteq B(k_0\omega_0,\rho/R),
+ \label{eq:packet-support}\\
+ \bigl\||x|u_R\bigr\|_2
+ &=R\bigl\||x|f\bigr\|_2.
+ \label{eq:packet-width}
+\end{align}
+In particular, a fixed carrier $k_0$ and fixed mass permit a
+continuous family of envelope scales $R$.
+\end{proposition}
+
+\begin{proof}
+For \eqref{eq:packet-mass}, change variables $y=x/R$ and use
+$|e^{ik_0\omega_0\cdot x}|=1$.  Equation
+\eqref{eq:packet-Fourier} follows from the Fourier scaling and
+modulation identities, and \eqref{eq:packet-support} follows at once
+from the support of $\widehat f$.  Finally,
+\begin{align*}
+ \bigl\||x|u_R\bigr\|_2^2
+ &=\int_{\R^d}|x|^2R^{-d}|f(x/R)|^2\,dx\\
+ &=R^2\int_{\R^d}|y|^2|f(y)|^2\,dy.
+\end{align*}
+Taking square roots proves \eqref{eq:packet-width}.
+\end{proof}
+
+From \eqref{eq:packet-support} and the reverse triangle inequality,
+all Fourier components in the packet support satisfy
+\begin{equation}
+ \bigl||\xi|-k_0\bigr|<\frac{\rho}{R}.
+ \label{eq:radial-bandwidth}
+\end{equation}
+Thus the spectral bandwidth narrows as $R\to\infty$, while the
+spatial extent grows linearly in $R$.  A finite-width localized
+packet has spectral content beyond an exact shell.  The examples
+$u_R$ are kinematic constructions; they are not asserted to solve
+any particular evolution or stationary field equation.
+
+\section{Scope and interpretation}
+The mathematical conclusion is
+\begin{equation}
+ \boxed{
+ \supp\widehat u\subseteq\{\xi:|\xi|=k_0\},\quad
+ u\in L^2(\R^d)
+ \quad\Longrightarrow\quad u\equiv0.
+ }
+ \label{eq:conclusion}
+\end{equation}
+A nonzero distribution supported on a shell, such as a plane-wave
+Fourier delta or a surface measure, can define a generalized
+solution, but it is not a nonzero element of $L^2(\R^d)$.
+
+The theorem does \emph{not} rule out nonlinear localized states,
+externally trapped states, or modes on bounded and periodic domains.
+Those settings do not satisfy the exact whole-space, linear
+homogeneous shell-support premise.  Nor does a chosen spectral
+minimum, by itself, establish a localized envelope, binding,
+stability, or confinement lifetime.  Such conclusions require
+additional dynamical or variational hypotheses.
+
+\noindent\textbf{Related research audit:}
+\url{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/cross_paper/LOCALIZATION_AND_DOMAIN_SELECTION.md}.
+
+\end{document}
