@@ -15,7 +15,7 @@ namespace ReyesMath
 private def radicand (s G B q : ℝ) : ℝ :=
   s ^ 2 + 2 * G * q - B * q ^ 2
 
-private def lowerBranch (K s G B a q : ℝ) : ℝ :=
+private noncomputable def lowerBranch (K s G B a q : ℝ) : ℝ :=
   (1 + a * q - Real.sqrt (radicand s G B q)) / (2 * K)
 
 /-- Exact discriminant identity underlying a strict supporting tangent. -/
@@ -27,12 +27,29 @@ theorem dispersion_tangent_square_identity
     (Real.sqrt (radicand s G B q₀) + a * (q - q₀)) ^ 2 -
         (Real.sqrt (radicand s G B q)) ^ 2 =
       (a ^ 2 + B) * (q - q₀) ^ 2 := by
-  rw [Real.sq_sqrt h₀, Real.sq_sqrt hq]
-  have hcancel :
-      a * Real.sqrt (radicand s G B q₀) = G - B * q₀ :=
-    hstat.symm
-  dsimp [radicand] at *
-  nlinarith [mul_self (q - q₀)]
+  have hs0 : (Real.sqrt (radicand s G B q₀)) ^ 2 =
+      radicand s G B q₀ := Real.sq_sqrt h₀
+  have hsq : (Real.sqrt (radicand s G B q)) ^ 2 =
+      radicand s G B q := Real.sq_sqrt hq
+  calc
+    (Real.sqrt (radicand s G B q₀) + a * (q - q₀)) ^ 2 -
+        (Real.sqrt (radicand s G B q)) ^ 2 =
+      2 * (a * Real.sqrt (radicand s G B q₀) -
+        (G - B * q₀)) * (q - q₀) +
+        (a ^ 2 + B) * (q - q₀) ^ 2 := by
+          calc
+            _ = (Real.sqrt (radicand s G B q₀)) ^ 2 +
+                  2 * Real.sqrt (radicand s G B q₀) *
+                    (a * (q - q₀)) + (a * (q - q₀)) ^ 2 -
+                  (Real.sqrt (radicand s G B q)) ^ 2 := by ring
+            _ = _ := by
+              rw [hs0, hsq]
+              dsimp [radicand]
+              ring
+    _ = (a ^ 2 + B) * (q - q₀) ^ 2 := by
+      rw [show a * Real.sqrt (radicand s G B q₀) -
+        (G - B * q₀) = 0 from by rw [← hstat]; ring]
+      ring
 
 /-- Every admissible point other than the positive-tangent stationary
 point has strictly larger lower-branch value. -/
