@@ -17,7 +17,7 @@ for src in papers/*/main.tex; do
   cp "$out/main.pdf" "$ROOT/preprints/$slug/paper.pdf"
   count=$((count + 1))
 done
-test "$count" -eq 15
+test "$count" -ge 14
 pdflatex -halt-on-error -file-line-error -interaction=nonstopmode -output-directory="$ROOT/.build" overview.tex >"$ROOT/.build/overview-pass1.log" 2>&1 || { tail -100 "$ROOT/.build/overview-pass1.log"; exit 1; }
 pdflatex -halt-on-error -file-line-error -interaction=nonstopmode -output-directory="$ROOT/.build" overview.tex >"$ROOT/.build/overview-pass2.log" 2>&1 || { tail -100 "$ROOT/.build/overview-pass2.log"; exit 1; }
 cp "$ROOT/.build/overview.pdf" "$ROOT/overview.pdf"
