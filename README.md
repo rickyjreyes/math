@@ -8,6 +8,7 @@ A growing collection of **research manuscripts organized by result family**, org
 
 - [Overview PDF](overview.pdf) — concise guide to all result families.
 - [Manuscript map](CONTENTS.md) — direct links to each **PDF**, LaTeX source, and notes.
+- [E16: spectral concentration and argmax proof](papers/e16-linear-spectral-concentration/main.tex) — linear Fourier selection with explicit hypotheses.
 - [E18: corrected WCT Lyapunov descent](papers/wct-e18-exact-gradient-lyapunov/main.tex) — complete proof under the exact negative-gradient-flow assumption.
 - [Preprints](preprints/) — compiled manuscript PDFs.
 - [Lean catalogue](lean/formalization.yaml) and [Lean project](lean/README.md) — exact status of every family.
@@ -21,7 +22,7 @@ A growing collection of **research manuscripts organized by result family**, org
 | **F02** | High-frequency Sobolev obstruction, higher-derivative constraint count | Specified linear and regular fixed-background models |
 | **F03** | Spectral–phase identity and 4/5 counterexample | Declared periodic spectral operator |
 | **F04** | Instantaneous finite Fourier-mode leakage | Unprojected cubic–quintic torus dynamics |
-| **F11** | E62 Fourier energy concentration and E13/E14 negative gradient flow | Measurable Fourier bands and the periodic Swift–Hohenberg amplitude model |
+| **F11** | E13/E14 negative-gradient-flow structure; E16 linear spectral concentration; E62 Fourier fraction | Periodic amplitude flow and continuum spectral selection under explicit initial-support assumptions |
 | **F12** | E26: conditional historical curvature $L^2$ estimate | Additive-denominator version requires uniform separation; corrected M2/E17 operator is different |
 | **M6B** | Regularized curvature closure and stationary inverse nonuniqueness | Explicit analytical counterexamples; no claim about M7 initial-value evolution |
 
