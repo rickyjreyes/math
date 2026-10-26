@@ -1,4 +1,5 @@
 import Mathlib
+import MathProofs.DispersionMinimizer
 
 /-!
 # Explicit positive interior critical point of the finite-wavenumber branch
@@ -145,5 +146,51 @@ theorem finite_scale_positive_stationary_exists
     change 0 < t - a * q
     exact hT0
   · dsimp [q, t, D, H, a]
+
+/-- The explicit positive critical point is the unique global minimum of
+the lower *squared-frequency branch* over the complete real-pole domain at
+nonnegative squared wavenumbers. The hypotheses are the precise reduced
+parameters s = sqrt(1-4Km²), B = 4KT-G², a = 2K+G. -/
+theorem finite_scale_explicit_global_minimum
+    (K G B s : ℝ)
+    (hK : 0 < K) (hB : 0 < B)
+    (hs : 0 < s) (hsone : s < 1)
+    (hcriterion : G * (1 - s) > 2 * K * s) :
+    ∃ qstar : ℝ,
+      0 < qstar ∧
+      qstar = (G - (2 * K + G) *
+        Real.sqrt ((G ^ 2 + B * s ^ 2) / ((2 * K + G) ^ 2 + B))) / B ∧
+      ∀ q : ℝ, 0 ≤ q → 0 ≤ radicand s G B q → q ≠ qstar →
+        lowerBranch K s G B (2 * K + G) qstar <
+          lowerBranch K s G B (2 * K + G) q := by
+  obtain ⟨qstar, hqpos, hqmax, hradpos, hstat, ht0, hformula⟩ :=
+    finite_scale_positive_stationary_exists K G B s hK hB hs hsone hcriterion
+  refine ⟨qstar, hqpos, hformula, ?_⟩
+  have hG : 0 < G := by
+    have hsm : 0 < 1 - s := by linarith
+    have hp : 0 < 2 * K * s := by positivity
+    by_contra hn
+    have hnG : G ≤ 0 := le_of_not_gt hn
+    have hbad := mul_nonpos_of_nonpos_of_nonneg hnG (le_of_lt hsm)
+    linarith
+  have ha : 0 < 2 * K + G := by linarith
+  have hrad0 : 0 ≤ radicand s G B qstar := by
+    simpa only [radicand, finiteScaleRadicand] using (le_of_lt hradpos)
+  have hstat0 :
+      G - B * qstar = (2 * K + G) * Real.sqrt (radicand s G B qstar) := by
+    simpa only [radicand, finiteScaleRadicand] using hstat
+  have ht0' :
+      0 < Real.sqrt (radicand s G B qstar) - (2 * K + G) * qstar := by
+    simpa only [radicand, finiteScaleRadicand] using ht0
+  intro q hq hrad hneq
+  have htangent :
+      0 ≤ Real.sqrt (radicand s G B qstar) +
+        (2 * K + G) * (q - qstar) := by
+    have hm : 0 ≤ (2 * K + G) * q := mul_nonneg (le_of_lt ha) hq
+    nlinarith [ht0']
+  exact dispersion_unique_minimum_at_stationary
+    K s G B (2 * K + G) q qstar hK hB
+    hrad0 hrad hstat0 htangent hneq
+
 
 end ReyesMath
