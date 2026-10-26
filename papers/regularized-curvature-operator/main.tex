@@ -1,0 +1,322 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remark}{Remark}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\Reps}{R_{\eps}}
+\newcommand{\Deps}{D_{\eps}}
+\newcommand{\Thetaeps}{\Theta_{\eps}}
+\newcommand{\aPlus}{\alpha_{+}}
+\newcommand{\aMinus}{\alpha_{-}}
+
+\title{M2 + E17: Positivity and Singular-Limit Consistency of the
+Regularized Curvature Operator}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove that the corrected modulus-squared regularization of the WCT
+curvature-feedback operator is well-defined for all finite complex field
+values at every fixed regularization scale $\eps>0$. The regularized
+reciprocal is smooth and globally bounded, converges to the ordinary
+reciprocal at every nonzero field value, and admits quantitative uniform
+and $L^2$ convergence estimates away from field nodes. We also verify
+global $U(1)$ phase invariance and exhibit a counterexample to the
+historical, uncorrected denominator. These algebraic and analytic
+properties do not by themselves imply well-posedness or stability of a
+nonlinear evolution equation.
+\end{abstract}
+
+\section{Definitions and theorem}
+
+Let $\Omega\subseteq\R^d$ be open, $\alpha\in\R$, and $\eps>0$. For
+$z\in\C$, define
+\begin{equation}\label{eq:definitions}
+\Deps(z):=|z|^2+\eps^2e^{-2\alpha|z|^2},
+\qquad
+\Reps(z):=\frac{\overline z}{\Deps(z)}.
+\end{equation}
+For $\psi\in C^2(\Omega;\C)$, define the regularized curvature operator
+\begin{equation}\label{eq:curvature}
+\Thetaeps[\psi](x):=-(\Delta\psi(x))\Reps(\psi(x)).
+\end{equation}
+The Laplacian is applied componentwise to the complex-valued field.
+
+\begin{theorem}[M2 + E17]\label{thm:main}
+For every $\eps>0$ and $\alpha\in\R$ the following hold.
+\begin{enumerate}
+\item $\Deps(z)>0$ for every $z\in\C$, including $z=0$.
+\item $\Reps$ is a globally bounded $C^\infty$ map $\R^2\to\R^2$,
+identifying $\C$ with $\R^2$, and $\Reps(0)=0$.
+\item For every $z\ne0$,
+\begin{equation}\label{eq:limit}
+\lim_{\eps\to0^+}\Reps(z)=\frac{1}{z}.
+\end{equation}
+\item If $\alpha\ge0$, then for every $\delta>0$,
+\begin{equation}\label{eq:uniform}
+\sup_{|z|\ge\delta}
+\left|\Reps(z)-\frac1z\right|
+\le\frac{\eps^2}{\delta^3}.
+\end{equation}
+For arbitrary $\alpha\in\R$, the convergence is uniform on every
+compact subset of $\C\setminus\{0\}$.
+\item For $\psi\in C^2(\Omega;\C)$ and every $x\in\Omega$ such that
+$\psi(x)\ne0$,
+\begin{equation}\label{eq:curvaturelimit}
+\lim_{\eps\to0^+}\Thetaeps[\psi](x)
+=-\frac{\Delta\psi(x)}{\psi(x)}.
+\end{equation}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\emph{Step 1: Strict denominator positivity.}
+For $z\in\C$, $|z|^2\ge0$. Because $\alpha$ and $|z|^2$ are real,
+$e^{-2\alpha|z|^2}>0$. Multiplying by $\eps^2>0$ gives
+\[
+\Deps(z)=\underbrace{|z|^2}_{\ge0}
++\underbrace{\eps^2e^{-2\alpha|z|^2}}_{>0}>0.
+\]
+At the node $z=0$, $\Deps(0)=\eps^2>0$, and consequently
+$\Reps(0)=0$.
+
+\emph{Step 2: Smoothness and boundedness.}
+Writing $z=x+iy$, the numerator $x-iy$ and the denominator
+\[
+x^2+y^2+\eps^2e^{-2\alpha(x^2+y^2)}
+\]
+are $C^\infty$ in the real variables $(x,y)$. Step 1 shows that the
+denominator is nowhere zero, so $\Reps\in C^\infty(\R^2;\R^2)$.
+
+To prove a global bound, fix any $\rho>0$ and set
+$\aPlus:=\max\{\alpha,0\}$. When $|z|\le\rho$,
+\[
+\Deps(z)\ge \eps^2e^{-2\aPlus\rho^2},
+\qquad
+|\Reps(z)|\le
+\frac{\rho e^{2\aPlus\rho^2}}{\eps^2}.
+\]
+When $|z|\ge\rho$, $\Deps(z)\ge|z|^2$, hence
+\[
+|\Reps(z)|\le\frac{|z|}{|z|^2}
+=\frac1{|z|}\le\frac1\rho.
+\]
+Therefore
+\begin{equation}\label{eq:globalbound}
+\|\Reps\|_{L^\infty(\C)}
+\le\max\!\left\{\frac1\rho,
+\frac{\rho e^{2\aPlus\rho^2}}{\eps^2}\right\}<\infty.
+\end{equation}
+This bound is for each fixed $\eps>0$; it is not asserted to be
+uniform as $\eps\to0^+$.
+
+\emph{Step 3: Reciprocal limit.}
+For fixed $z\ne0$, the quantity $e^{-2\alpha|z|^2}$ is finite and
+independent of $\eps$. Thus
+\[
+\lim_{\eps\to0^+}\Deps(z)=|z|^2>0.
+\]
+Continuity of division at a nonzero denominator yields
+\[
+\lim_{\eps\to0^+}\Reps(z)
+=\frac{\overline z}{|z|^2}
+=\frac{\overline z}{z\overline z}
+=\frac1z.
+\]
+
+\emph{Step 4: Quantitative convergence away from nodes.}
+For $z\ne0$, direct subtraction gives the exact identity
+\begin{align}
+\Reps(z)-\frac1z
+&=\frac1z\left(
+\frac{|z|^2}{|z|^2+\eps^2e^{-2\alpha|z|^2}}-1\right)
+\notag\\
+&=-\frac1z\,
+\frac{\eps^2e^{-2\alpha|z|^2}}
+{|z|^2+\eps^2e^{-2\alpha|z|^2}}.
+\label{eq:exactdifference}
+\end{align}
+Therefore
+\begin{equation}\label{eq:error}
+\left|\Reps(z)-\frac1z\right|
+=\frac{\eps^2e^{-2\alpha|z|^2}}
+{|z|\bigl(|z|^2+\eps^2e^{-2\alpha|z|^2}\bigr)}
+\le\frac{\eps^2e^{-2\alpha|z|^2}}{|z|^3}.
+\end{equation}
+If $\alpha\ge0$ and $|z|\ge\delta>0$, then the exponential is at
+most one. This proves \eqref{eq:uniform}.
+
+For general $\alpha$, let $K\subset\C\setminus\{0\}$ be compact.
+There exist $0<\delta\le M<\infty$ such that
+$\delta\le|z|\le M$ on $K$. With
+$\aMinus:=\max\{-\alpha,0\}$, we have
+\[
+\sup_{z\in K}
+\left|\Reps(z)-\frac1z\right|
+\le\frac{\eps^2e^{2\aMinus M^2}}{\delta^3}
+\xrightarrow[\eps\to0^+]{}0.
+\]
+
+\emph{Step 5: Curvature limit.}
+Fix $x\in\Omega$ with $\psi(x)\ne0$. Since $\psi$ and
+$\Delta\psi$ are fixed independently of $\eps$, Step 3 gives
+\[
+\lim_{\eps\to0^+}\Thetaeps[\psi](x)
+=-(\Delta\psi(x))\lim_{\eps\to0^+}\Reps(\psi(x))
+=-\frac{\Delta\psi(x)}{\psi(x)}.
+\]
+All the assertions follow.
+\end{proof}
+
+\section{Convergence in $L^2$}
+
+\begin{corollary}[Strong $L^2$ limit away from nodes]
+\label{cor:l2}
+Assume $\alpha\ge0$,
+$\psi\in H^2(\Omega;\C)$, and
+$|\psi(x)|\ge\delta>0$ for almost every $x\in\Omega$.
+Then
+\begin{equation}\label{eq:l2}
+\left\|\Thetaeps[\psi]
++\frac{\Delta\psi}{\psi}\right\|_{L^2(\Omega)}
+\le\frac{\eps^2}{\delta^3}
+\|\Delta\psi\|_{L^2(\Omega)}
+\xrightarrow[\eps\to0^+]{}0.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+By definition,
+\[
+\Thetaeps[\psi]+\frac{\Delta\psi}{\psi}
+=(\Delta\psi)\left(\frac1\psi-\Reps(\psi)\right)
+\quad\text{a.e. on }\Omega.
+\]
+Apply the pointwise multiplier estimate \eqref{eq:uniform} with
+$z=\psi(x)$, then take the $L^2$ norm.
+\end{proof}
+
+\begin{corollary}[Fixed-regularization $L^2$ control]
+If $\psi\in H^2(\Omega;\C)$ and $\eps>0$ is fixed, then
+\[
+\|\Thetaeps[\psi]\|_{L^2(\Omega)}
+\le\|\Reps\|_{L^\infty(\C)}
+\|\Delta\psi\|_{L^2(\Omega)}<\infty.
+\]
+\end{corollary}
+
+\begin{proof}
+The multiplier $\Reps(\psi)$ is essentially bounded by
+\eqref{eq:globalbound}, while $\Delta\psi\in L^2(\Omega)$.
+\end{proof}
+
+\begin{remark}[Whole-space limitation]
+The hypothesis $|\psi|\ge\delta>0$ almost everywhere on
+$\Omega=\R^d$ is incompatible with $\psi\in L^2(\R^d)$, since it
+would imply $\|\psi\|_2^2\ge\delta^2|\R^d|=\infty$.
+Thus Corollary~\ref{cor:l2} is not a blanket global convergence
+theorem for positive-mass localized whole-space fields.
+\end{remark}
+
+\begin{remark}[No uniform convergence through a node]
+At $z=0$, $\Reps(0)=0$ whereas $1/z$ is undefined. The obstruction
+is quantitative: set $z=\eps$ (real and positive). From
+\eqref{eq:error},
+\[
+\left|\Reps(\eps)-\frac1\eps\right|
+=\frac{e^{-2\alpha\eps^2}}
+{\eps\bigl(1+e^{-2\alpha\eps^2}\bigr)}
+\sim\frac{1}{2\eps}\quad(\eps\to0^+).
+\]
+Therefore the reciprocal convergence is not uniform in any punctured
+neighborhood of the origin.
+\end{remark}
+
+\section{Global phase invariance}
+
+\begin{proposition}[Constant $U(1)$ phase invariance]
+For every constant $\beta\in\R$ and
+$\psi\in C^2(\Omega;\C)$,
+\[
+\Thetaeps[e^{i\beta}\psi]=\Thetaeps[\psi].
+\]
+\end{proposition}
+
+\begin{proof}
+The denominator depends only on the modulus, so
+\[
+\Reps(e^{i\beta}z)=e^{-i\beta}\Reps(z).
+\]
+Since $\beta$ is constant,
+$\Delta(e^{i\beta}\psi)=e^{i\beta}\Delta\psi$. Hence
+\[
+\Thetaeps[e^{i\beta}\psi]
+=-e^{i\beta}(\Delta\psi)e^{-i\beta}\Reps(\psi)
+=\Thetaeps[\psi].
+\]
+\end{proof}
+
+\begin{remark}
+Global $U(1)$ invariance does not by itself establish local gauge
+invariance under a position-dependent phase $\beta(x)$.
+\end{remark}
+
+\section{Counterexample to the historical denominator}
+
+The earlier expression
+\begin{equation}\label{eq:old}
+\Thetaeps^{\mathrm{old}}[\psi]
+=-\frac{\Delta\psi}
+{\psi+\eps e^{-\alpha|\psi|^2}}
+\end{equation}
+does not have a universally nonzero denominator. Indeed, take
+$\alpha=0$ and $\psi\equiv-\eps$. Then
+\[
+\psi+\eps e^{-\alpha|\psi|^2}
+=-\eps+\eps=0.
+\]
+The expression \eqref{eq:old} is undefined there, even if
+$\Delta\psi=0$ (which gives the indeterminate quotient $0/0$).
+By contrast, the corrected denominator satisfies
+\[
+|\psi|^2+\eps^2e^{-2\alpha|\psi|^2}>0
+\quad\text{at every finite complex field value.}
+\]
+The historical denominator also fails generic constant-phase
+covariance because its two summands transform differently.
+
+\section{Scope of the result}
+
+The theorem establishes denominator positivity, pointwise regularity
+for fixed $\eps>0$, reciprocal consistency, quantitative convergence
+away from nodes, and global phase invariance. It does \emph{not}
+by itself prove nonlinear PDE well-posedness, global-in-time existence,
+uniqueness, confinement, Lyapunov descent, or dynamical stability.
+Those require separate hypotheses and proofs for the chosen evolution.
+
+\begin{thebibliography}{9}
+\bibitem{corrected}
+R.~J. Reyes, \emph{WCT Full Equation List (Corrected)},
+\url{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/WCT_FULL_EQUATION_LIST_CORRECTED.md}.
+\bibitem{master}
+R.~J. Reyes, \emph{WCT Master Equations (Updated)},
+\url{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/WCT_MASTER_EQUATIONS_UPDATED.md}.
+\bibitem{closure}
+R.~J. Reyes, \emph{Derivation Closure},
+\url{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/DERIVATION_CLOSURE.md}.
+\end{thebibliography}
+
+\end{document}
