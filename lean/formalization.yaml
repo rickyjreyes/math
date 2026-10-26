@@ -1,36 +1,55 @@
-schema_version: 1
+schema_version: 2
 source: rickyjreyes/math
 lean_release: v4.23.0
 mathlib_release: v4.23.0
-scope: "Only explicitly listed elementary supporting statements; no main paper theorem fully formalized"
+scope: >
+  Local finite-dimensional and measure-theoretic theorem cores are encoded
+  in Lean. Continuous PDE, dynamics, Gaussian variational constructions,
+  and other analytic main results are NOT thereby kernel-checked.
+proof_policy:
+  build: "cd lean && lake update && lake exe cache get && lake build"
+  excluded: ["sorry", "admit", "axiom"]
+  note: "Passing CI certifies only the precise statements in the imported Lean source."
 families:
   F01:
     main_theorem_formalized: false
-    supporting_lean: [ReyesMath.negativeEnergy_strictGap]
+    covered: "Only algebraic strict-gap lemma; no PDE binding, attainment, or stability."
+    declarations: [ReyesMath.negativeEnergy_strictGap]
   F02:
     main_theorem_formalized: false
-    supporting_lean: []
+    covered: "No four-jet ill-posedness or higher-derivative canonical proof."
+    declarations: []
   F03:
     main_theorem_formalized: false
-    supporting_lean: [ReyesMath.varianceDeficit_nonnegative]
+    covered: "Finite weighted variance identity and nonnegative variance; not the continuous periodic spectral identity."
+    declarations: [ReyesMath.varianceDeficit_nonnegative, ReyesMath.finite_weighted_variance_identity, ReyesMath.finite_weighted_mean_square_bound]
   F04:
     main_theorem_formalized: false
-    supporting_lean: []
+    covered: "Only one-dimensional cutoff frequency-exclusion arithmetic, not the general complex polynomial-flow coefficient or multidimensional theorem."
+    declarations: [ReyesMath.quintic_frequency_above_cutoff, ReyesMath.quintic_frequency_below_cutoff]
   F05:
     main_theorem_formalized: false
-    supporting_lean: []
+    covered: "Curvature-energy nonattainment not formalized."
+    declarations: []
   F06:
     main_theorem_formalized: false
-    supporting_lean: []
+    covered: "Dispersion minimum and convexity not formalized."
+    declarations: []
   F07:
     main_theorem_formalized: false
-    supporting_lean: [ReyesMath.squaredMismatch_nonnegative]
+    covered: "Finite weighted phase mismatch bound, not the continuous closed-loop theorem or equality characterization."
+    declarations: [ReyesMath.squaredMismatch_nonnegative, ReyesMath.finite_weighted_phase_bound]
   F08:
     main_theorem_formalized: false
-    supporting_lean: [ReyesMath.scalarGradientGram_nonnegative]
+    algebraic_no_go_core_formalized: true
+    covered: "Positive-sign two-gradient Gram tensor has nonnegative quadratic form and rank at most 2 in any finite dimension; does not formalize emergence of a spacetime metric."
+    declarations: [ReyesMath.scalarGradientGram_nonnegative, ReyesMath.scalarGradientGram_psd, ReyesMath.scalarGradientGram_no_timelike, ReyesMath.scalarGradientCarrier_gram_entry, ReyesMath.scalarGradientCarrier_rank_le_two]
   F09:
     main_theorem_formalized: false
-    supporting_lean: [ReyesMath.elevenByThirtyone_nullity_bound, ReyesMath.nullityBound_arithmetic]
+    matrix_nullity_core_formalized: true
+    covered: "Any real 11-by-31 matrix has at least 20 kernel dimensions; model-specific Jacobian construction and numerical rank 11 are not formalized."
+    declarations: [ReyesMath.elevenByThirtyone_nullity_bound, ReyesMath.nullityBound_arithmetic, ReyesMath.elevenByThirtyOne_matrix_nullity]
   F10:
     main_theorem_formalized: false
-    supporting_lean: []
+    covered: "Abstract null-support a.e. zero lemma and exact one-dimensional two-point shell; multidimensional shell measure-zero and Plancherel steps remain."
+    declarations: [ReyesMath.zero_ae_of_null_support, ReyesMath.oneDimensional_shell_ae_zero]
