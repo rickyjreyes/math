@@ -35,7 +35,7 @@ theorem schwartz_fourier_shell_no_bound_state
     exact euclidean_frequency_shell_ae_zero d k v hcarrier
   have hv_everywhere : (v : EuclideanSpace ℝ (Fin (d + 1)) → ℂ) =
       (fun _ => 0) :=
-    MeasureTheory.eq_of_ae_eq hv_ae v.continuous continuous_const
+    MeasureTheory.Measure.eq_of_ae_eq hv_ae v.continuous continuous_const
   have hv_zero : v = 0 := by
     ext ξ
     exact congrFun hv_everywhere ξ
