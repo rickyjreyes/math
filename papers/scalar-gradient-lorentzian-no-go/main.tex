@@ -1,0 +1,244 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
+
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\RePart}{\operatorname{Re}}
+\newcommand{\dd}{\mathrm{d}}
+
+\title{A Rank and Signature Obstruction to Lorentzian Metric Emergence\\
+from Positive-Sign Scalar Gradients}
+\author{Richard J. Reyes}
+\date{October 26, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We establish a pointwise algebraic obstruction to constructing a four-dimensional
+Lorentzian metric from the real part of the derivative product of a single
+complex scalar field.  Writing the scalar as two real components shows that
+its proposed symmetric tensor is a Gram form with rank at most two and is
+positive semidefinite.  Consequently, the tensor is degenerate and cannot
+have Lorentzian signature.  More generally, any finite sum of real
+scalar-gradient outer products with nonnegative weights is positive
+semidefinite, regardless of how many gradient directions are supplied.
+The conclusion is specific to this positive-sign gradient construction;
+it does not exclude composite or effective metrics involving different
+tensorial ingredients or independent geometric structure.
+\end{abstract}
+
+\section{Setup and main theorem}
+
+Let $M$ be a smooth real four-dimensional manifold and let
+$\psi\in C^1(M;\mathbb C)$ be a complex scalar field.  Write
+\begin{equation}
+  \psi=a+ib, \qquad a,b\in C^1(M;\mathbb R).
+\end{equation}
+Define the real symmetric covariant $(0,2)$-tensor
+\begin{equation}\label{eq:defT}
+  T_{\mu\nu}
+   :=\RePart\bigl(\partial_\mu\overline{\psi}\,
+                         \partial_\nu\psi\bigr).
+\end{equation}
+This definition is coordinate independent because derivatives of scalar
+fields are covectors.
+
+\begin{theorem}[Single-complex-scalar rank and signature obstruction]
+\label{thm:single}
+At each point $p\in M$, the bilinear form $T_p$ defined in
+\eqref{eq:defT} satisfies
+\begin{align}
+  \rank T_p &\leq 2, \label{eq:rankbound}\\
+  T_p(V,V)&\geq 0 \quad\text{for every }V\in T_pM, \label{eq:psd}\\
+  \dim\ker T_p&\geq 2. \label{eq:kernelbound}
+\end{align}
+Here $\ker T_p=\{V\in T_pM:T_p(V,W)=0\text{ for all }W\in T_pM\}$
+is the radical of the bilinear form.  In particular, $\det T_p=0$
+in any coordinate basis, and $T_p$ cannot be a Lorentzian metric.
+\end{theorem}
+
+\begin{proof}
+Since $\overline{\psi}=a-ib$,
+\begin{align}
+ \partial_\mu\overline{\psi}\,\partial_\nu\psi
+ &= (\partial_\mu a-i\partial_\mu b)
+    (\partial_\nu a+i\partial_\nu b)\\
+ &= \partial_\mu a\,\partial_\nu a
+  + \partial_\mu b\,\partial_\nu b
+  + i(\partial_\mu a\,\partial_\nu b
+      -\partial_\mu b\,\partial_\nu a).
+\end{align}
+Taking the real part gives the exact identity
+\begin{equation}\label{eq:sumouter}
+  T_{\mu\nu}=\partial_\mu a\,\partial_\nu a
+                +\partial_\mu b\,\partial_\nu b.
+\end{equation}
+Fix $p\in M$ and a coordinate basis for $T_pM$.  Set
+$A_\mu=(\partial_\mu a)_p$ and $B_\mu=(\partial_\mu b)_p$.
+Introduce the real $4\times 2$ matrix
+\begin{equation}
+  J=\begin{pmatrix}
+   A_0&B_0\\ A_1&B_1\\ A_2&B_2\\ A_3&B_3
+  \end{pmatrix}.
+\end{equation}
+Equation \eqref{eq:sumouter} is the Gram factorization
+\begin{equation}\label{eq:gram}
+  [T_p]=JJ^{\mathsf T}.
+\end{equation}
+It follows that
+\begin{equation}
+ \rank T_p=\rank(JJ^{\mathsf T})\leq \rank J\leq 2,
+\end{equation}
+proving \eqref{eq:rankbound}.  In particular, all $3\times3$
+minors of $[T_p]$ vanish, and its $4\times4$ determinant vanishes.
+
+For any real tangent vector $V=V^\mu\partial_\mu|_p$,
+\begin{align}\label{eq:squares}
+ T_p(V,V)
+ &= (V^\mu\partial_\mu a)^2
+   +(V^\mu\partial_\mu b)^2\\
+ &=\|J^{\mathsf T}[V]\|_{\mathbb R^2}^2\geq 0.
+\end{align}
+This proves positive semidefiniteness.  Finally, rank--nullity
+gives
+\begin{equation}
+ \dim\ker T_p=4-\rank T_p\geq 2.
+\end{equation}
+The kernel consists precisely of the tangent vectors annihilated by
+both $\dd a|_p$ and $\dd b|_p$, as follows from
+\eqref{eq:squares} and \eqref{eq:sumouter}.
+
+A Lorentzian metric in four dimensions is a nondegenerate symmetric
+bilinear form of inertia $(1,3)$ or $(3,1)$: it is indefinite and
+has rank four.  By contrast, $T_p$ is both degenerate and positive
+semidefinite.  Either property alone excludes Lorentzian signature.
+These properties are invariant under changes of coordinates
+(the inertia statement follows from Sylvester's law of inertia).
+Therefore $T_p$ cannot be a Lorentzian metric.
+\end{proof}
+
+\section{Positive-sign multiplets}
+
+\begin{proposition}[Nonnegative scalar-gradient sums]\label{prop:multiplet}
+Let $\phi^1,\dots,\phi^N\in C^1(M;\mathbb R)$ and let
+$w_A:M\to[0,\infty)$ be nonnegative weights.  Define
+\begin{equation}\label{eq:multi}
+ S_{\mu\nu}:=\sum_{A=1}^N w_A\,
+   \partial_\mu\phi^A\,\partial_\nu\phi^A.
+\end{equation}
+At every $p\in M$,
+\begin{equation}
+ \rank S_p\leq\min\{N,4\},\qquad
+ S_p(V,V)\geq 0\quad\text{for all }V\in T_pM.
+\end{equation}
+Thus no such tensor is Lorentzian, for any finite $N$.
+\end{proposition}
+
+\begin{proof}
+At a fixed $p$, define the real $4\times N$ matrix
+\begin{equation}
+ K_{\mu A}:=\sqrt{w_A(p)}\,(\partial_\mu\phi^A)_p.
+\end{equation}
+Then $[S_p]=KK^{\mathsf T}$, and hence
+\begin{equation}
+ \rank S_p\leq\rank K\leq\min\{N,4\}.
+\end{equation}
+Moreover, for every real $V\in T_pM$,
+\begin{equation}
+ S_p(V,V)=\sum_{A=1}^N w_A(p)
+ \bigl(V^\mu\partial_\mu\phi^A\bigr)^2\geq 0.
+\end{equation}
+A Lorentzian form is indefinite; therefore $S_p$ cannot be
+Lorentzian, even if it has rank four.
+\end{proof}
+
+\begin{corollary}[Rank budget is necessary but not sufficient]
+Within the construction \eqref{eq:multi}, at least four independent
+real gradient directions are necessary to obtain a rank-four tensor
+at a point.  Having four or more such directions cannot by itself
+produce Lorentzian signature when the weights remain nonnegative.
+\end{corollary}
+
+\section{Sharp examples and the role of additional structure}
+
+\begin{example}[Sharpness of the rank-two bound]
+In coordinates $(x^0,x^1,x^2,x^3)$ on $\mathbb R^4$, choose
+$a=x^1$ and $b=x^2$.  Then
+\begin{equation}
+ [T]=\operatorname{diag}(0,1,1,0),
+\end{equation}
+so $\rank T=2$ exactly.
+\end{example}
+
+\begin{example}[Four gradients give full rank, not Lorentzian signature]
+Take $\phi^A=x^{A-1}$ for $A=1,2,3,4$ and $w_A=1$.  Then
+\begin{equation}
+ [S]=\operatorname{diag}(1,1,1,1),
+\end{equation}
+which is full rank but positive definite, not Lorentzian.
+\end{example}
+
+\begin{example}[Indefinite internal bilinear form]
+Suppose instead one introduces an internal tensor
+$\eta_{AB}=\operatorname{diag}(-1,1,1,1)$ and defines
+\begin{equation}
+ G_{\mu\nu}:=\eta_{AB}\,
+  \partial_\mu\phi^A\,\partial_\nu\phi^B.
+\end{equation}
+For $\phi^A=x^A$ with indices $A=0,1,2,3$, one gets
+\begin{equation}
+ [G]=\operatorname{diag}(-1,1,1,1).
+\end{equation}
+Thus Lorentzian signature is algebraically possible once an
+indefinite internal bilinear form is supplied.  The internal form
+is additional input, not a consequence of \eqref{eq:defT}.
+\end{example}
+
+\begin{remark}[Scope of the no-go statement]
+The theorem excludes identifying the specific tensor
+$\RePart(\dd\overline\psi\otimes\dd\psi)$, or any nonnegative
+scalar-gradient sum of the form \eqref{eq:multi}, with a Lorentzian
+metric.  It does not prove that no theory involving a complex scalar
+can possess an effective Lorentzian metric.  In particular, it does
+not address constructions using an independent metric, indefinite
+contributions, disformal combinations, additional tensor fields,
+or other geometric data.  Nor does it establish Einstein dynamics,
+diffeomorphism gauge structure, a massless spin-two mode, or a
+microscopic theory of gravity.
+\end{remark}
+
+\section{Conclusion}
+The proposed tensor is a Gram form of only two real covectors:
+\begin{equation}\boxed{
+ T_{\mu\nu}=\partial_\mu a\,\partial_\nu a
+             +\partial_\mu b\,\partial_\nu b,
+ \quad\rank T\leq2,\quad T(V,V)\geq0.
+}\end{equation}
+Thus it is everywhere degenerate and positive semidefinite, and
+cannot be a four-dimensional Lorentzian metric.  More positive-sign
+scalar gradients can remove the rank deficiency, but cannot change
+the positive-semidefinite signature.  Lorentzian metric emergence
+therefore requires a different tensor construction, an indefinite
+contribution, or additional geometric structure.
+
+\paragraph{Research context.}
+This observation is applied to the tensor/tetrad emergence question
+in the foundational audit of the geometry-of-resonance program:
+\url{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/docs/FOUNDATIONAL_STAGE2_2026-10-14.md}.
+The underlying rank and Gram-matrix facts are standard linear algebra;
+the no-go conclusion concerns the specified candidate construction.
+
+\end{document}
