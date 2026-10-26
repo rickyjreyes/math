@@ -13,3 +13,4 @@ import MathProofs.SphereNull
 import MathProofs.ScalarGradientFields
 import MathProofs.SchwartzShell
 import MathProofs.ChartedScalarMetric
+import MathProofs.MetricQuadratic
