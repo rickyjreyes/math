@@ -57,3 +57,7 @@ families:
     main_theorem_formalized: false
     covered: "E13/E14 band-pass gradient-flow identity and E62 Fourier energy fraction proved analytically; neither main result is Lean-formalized."
     declarations: []
+  F12:
+    main_theorem_formalized: false
+    covered: "E26 historical additive-denominator conditional L2 estimate and counterexample proved analytically; no Lean encoding. The corrected M2/E17 regularization is a separate operator."
+    declarations: []
