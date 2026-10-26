@@ -1,0 +1,581 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{enumitem}
+
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\Hs}{H^2(\R^2;\C)}
+\newcommand{\calG}{\mathcal{G}}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+
+\title{Whole-Space Constrained Minimizers for a\\
+Two-Dimensional Fourth-Order Cubic--Quintic Hamiltonian}
+\author{Richard J. Reyes}
+\date{26 October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We consider the mass-constrained variational problem for the mixed-dispersion
+fourth-order Hamiltonian
+\[
+H(u)=\norm{(\Delta+k^2)u}_{2}^{2}
+-\frac{\beta}{2}\norm{u}_{4}^{4}
++\frac{\gamma}{3}\norm{u}_{6}^{6}
+\quad\text{on }H^2(\R^2;\C),
+\]
+where $k,\beta,\gamma>0$.  We give a self-contained sufficient condition
+for strict subadditivity and compactness: if
+\[
+0<m\le m_B:=\frac{3\beta}
+{\gamma\sqrt{k^4+3\beta^2/(32\gamma)}},
+\]
+then the constrained infimum $I(m)$ is negative, strictly subadditive at every
+positive split, and attained.  More precisely, every minimizing sequence
+possesses a subsequence converging strongly in $H^2$ after spatial
+translations.  The argument uses anisotropic oscillatory Gaussian trials,
+an exact mass-preserving dilation identity, an $H^2\!\to L^\infty$
+estimate, and a concentration--compactness splitting argument.  No radial,
+periodic, or finite-cavity restriction is imposed.  The threshold is a
+sufficient one; its sharpness and uniqueness or symmetry of minimizers are
+not asserted.
+\end{abstract}
+
+\section{Setting and main result}
+
+Fix $k,\beta,\gamma>0$, put $X=\Hs$, and write
+\begin{align}
+A&:=\Delta+k^2, & M(u)&:=\norm{u}_2^2,\\
+D(u)&:=\norm{\Delta u}_2^2, & K(u)&:=\norm{\nabla u}_2^2,\\
+T(u)&:=\norm{Au}_2^2, & Q(u)&:=\norm{u}_4^4,\\
+S(u)&:=\norm{u}_6^6, &
+H(u)&:=T(u)-\frac{\beta}{2}Q(u)+\frac{\gamma}{3}S(u).
+\end{align}
+All norms and integrals are taken over $\R^2$.  For $m>0$, define
+\begin{equation}\label{eq:infimum}
+I(m):=\inf\{H(u):u\in X,\ M(u)=m\},\qquad I(0):=0.
+\end{equation}
+We use the standard inhomogeneous $H^2$ topology; by Fourier interpolation,
+$\norm{u}_2+\norm{\Delta u}_2$ is an equivalent norm on $X$.
+
+\begin{theorem}[Whole-space existence and compactness]\label{thm:main}
+Let
+\begin{equation}\label{eq:threshold}
+\rho:=k^4+\frac{3\beta^2}{32\gamma},
+\qquad m_B:=\frac{3\beta}{\gamma\sqrt{\rho}}.
+\end{equation}
+For every $0<m\le m_B$ the following hold:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The infimum is finite and negative:
+\begin{equation}\label{eq:negative}
+-\frac{3\beta^2}{16\gamma}m\le I(m)<0.
+\end{equation}
+\item For each $0<\mu<m$, strict binding holds:
+\begin{equation}\label{eq:binding}
+I(m)<I(\mu)+I(m-\mu).
+\end{equation}
+\item If $M(u_n)=m$ and $H(u_n)\to I(m)$, then some subsequence,
+translations $y_n\in\R^2$, and $u\in X$ satisfy
+\begin{equation}\label{eq:compact}
+u_n(\,\cdot+y_n)\longrightarrow u\quad\text{strongly in }H^2(\R^2),
+\quad M(u)=m,\quad H(u)=I(m).
+\end{equation}
+Consequently the minimizing set
+\[
+\calG_m:=\{u\in X:M(u)=m,\ H(u)=I(m)\}
+\]
+is nonempty and sequentially compact modulo spatial translations.
+\end{enumerate}
+\end{theorem}
+
+The proof is assembled in Sections~\ref{sec:coercivity}--\ref{sec:compactness}.
+The argument does not assert uniqueness or a prescribed symmetry of a
+minimizer, nor that a specified periodic or numerically computed branch
+coincides with a whole-space minimizer.
+
+\section{Coercivity and strict negativity}\label{sec:coercivity}
+
+\begin{lemma}[Lower bound and constrained coercivity]\label{lem:coercivity}
+For all $u\in X$,
+\begin{equation}\label{eq:lowerbound}
+H(u)\ge T(u)-C M(u),\qquad C=\frac{3\beta^2}{16\gamma}.
+\end{equation}
+For each fixed $m>0$, every sequence with $M(u_n)=m$ and
+$\sup_n H(u_n)<\infty$ is bounded in $X$.
+\end{lemma}
+\begin{proof}
+The pointwise identity, valid for $r\ge0$,
+\begin{equation}\label{eq:pointwise}
+-\frac{\beta}{2}r^2+\frac{\gamma}{3}r^3
+=\frac{\gamma}{3}r\left(r-\frac{3\beta}{4\gamma}\right)^2
+-\frac{3\beta^2}{16\gamma}r
+\end{equation}
+gives \eqref{eq:lowerbound} upon taking $r=\abs{u}^2$ and integrating.
+For a fixed mass $m$, this implies
+$T(u_n)\le H(u_n)+Cm$, hence $\sup_n T(u_n)<\infty$.
+Since $\Delta u=Au-k^2u$,
+\[
+\norm{\Delta u_n}_2\le\norm{Au_n}_2+k^2\sqrt m.
+\]
+Finally, Plancherel and Cauchy--Schwarz imply
+\[
+\norm{\nabla u_n}_2^2
+\le\norm{u_n}_2\norm{\Delta u_n}_2.
+\]
+Together these bounds give uniform control of the $H^2$ norm.
+\end{proof}
+
+\begin{lemma}[Negative energy at every positive mass]\label{lem:negative}
+For every $m>0$, $I(m)<0$. In particular,
+\eqref{eq:negative} holds at every positive mass.
+\end{lemma}
+\begin{proof}
+For $a,b,R>0$ set
+\[
+f_{a,b}(x,y)=(\pi ab)^{-1/2}
+\exp\!\left(-\frac{x^2}{2a^2}-\frac{y^2}{2b^2}\right),
+\qquad
+u_R(x,y)=\frac{\sqrt m}{R}f_{a,b}(x/R,y/R)e^{ikx}.
+\]
+One checks that $\norm{f_{a,b}}_2=1$ and $M(u_R)=m$.
+Writing $g_R=\sqrt m R^{-1}f_{a,b}(\cdot/R)$, the real-valuedness of $g_R$
+gives
+\[
+A(e^{ikx}g_R)=e^{ikx}(\Delta g_R+2ik\partial_xg_R),\qquad
+T(u_R)=\norm{\Delta g_R}_2^2+4k^2\norm{\partial_xg_R}_2^2.
+\]
+The Gaussian integrals yield
+\begin{align*}
+\norm{\partial_x f_{a,b}}_2^2&=\frac{1}{2a^2},\\
+\norm{\Delta f_{a,b}}_2^2
+&=\frac{3}{4a^4}+\frac{1}{2a^2b^2}+\frac{3}{4b^4},\\
+\norm{f_{a,b}}_4^4&=\frac{1}{2\pi ab},\qquad
+\norm{f_{a,b}}_6^6=\frac{1}{3\pi^2a^2b^2}.
+\end{align*}
+Consequently
+\begin{equation}\label{eq:gaussianenergy}
+H(u_R)=\frac{c_2}{R^2}+\frac{c_4}{R^4},
+\end{equation}
+where
+\begin{align}
+ c_2&=\frac{2mk^2}{a^2}-\frac{\beta m^2}{4\pi ab},
+ \label{eq:c2}\\
+ c_4&=m\left(\frac{3}{4a^4}+\frac{1}{2a^2b^2}
+ +\frac{3}{4b^4}\right)+\frac{\gamma m^3}{9\pi^2a^2b^2}>0.
+ \label{eq:c4}
+\end{align}
+Choose $a/b>8\pi k^2/(\beta m)$, which makes $c_2<0$.
+At $R^2=-2c_4/c_2>0$, \eqref{eq:gaussianenergy} becomes
+\[
+H(u_R)=-\frac{c_2^2}{4c_4}<0.
+\]
+Since this is an admissible mass-$m$ test function, $I(m)\le H(u_R)<0$.
+Combine with Lemma~\ref{lem:coercivity}.
+\end{proof}
+
+\section{An exact dilation identity and the binding estimate}
+\label{sec:binding}
+
+\begin{lemma}[Adjustment of arbitrary minimizing sequences]
+\label{lem:dilation}
+Let $a>0$ and let $M(u_n)=a$, $H(u_n)\to I(a)$.
+There is another mass-$a$ minimizing sequence $(w_n)$, bounded in $X$,
+such that every $w_n$ satisfies
+\begin{equation}\label{eq:virial}
+D(w_n)-k^2K(w_n)-\frac{\beta}{4}Q(w_n)
++\frac{\gamma}{3}S(w_n)=0.
+\end{equation}
+\end{lemma}
+\begin{proof}
+For $u\in X$ with $M(u)=a$, define the mass-preserving spatial scaling
+$u_\lambda(x)=\lambda u(\lambda x)$ for $\lambda>0$.
+In two dimensions,
+\begin{align}
+M(u_\lambda)&=M(u),\\
+H(u_\lambda)
+&=\lambda^4\left(D(u)+\frac{\gamma}{3}S(u)\right)
+-\lambda^2\left(2k^2K(u)+\frac{\beta}{2}Q(u)\right)
++k^4a.\label{eq:dilation}
+\end{align}
+Put $P=D(u)+\gamma S(u)/3>0$ and
+$B=2k^2K(u)+\beta Q(u)/2>0$.
+Here $P,B>0$ because $u$ has positive mass.  As a function of
+$z=\lambda^2>0$, the energy is $Pz^2-Bz+k^4a$, with its unique
+minimum at $z=B/(2P)>0$.
+For each $u_n$, choose this optimal dilation, denoting the result by $w_n$.
+Then $M(w_n)=a$ and
+\[
+I(a)\le H(w_n)\le H(u_n)\longrightarrow I(a).
+\]
+Lemma~\ref{lem:coercivity} bounds $(w_n)$ in $X$.
+Differentiating the explicit scalar polynomial
+\eqref{eq:dilation} at its minimizing scale gives
+$4(D+\gamma S/3)-2(2k^2K+\beta Q/2)=0$,
+all quantities now evaluated at $w_n$.
+Division by $4$ gives \eqref{eq:virial}.
+No differentiability of a spatial scaling orbit in $H^2$ is required.
+\end{proof}
+
+\begin{lemma}[Uniform quartic--sextic ratio bound]\label{lem:ratio}
+Let $w\in X$ have mass $a>0$ and satisfy \eqref{eq:virial}.
+With $\rho$ as in \eqref{eq:threshold},
+\begin{equation}\label{eq:rhoD}
+D(w)\le\rho a,
+\end{equation}
+and
+\begin{equation}\label{eq:SQ}
+\frac{S(w)}{Q(w)}\le\norm{w}_\infty^2
+\le\frac{\sqrt\rho}{4}a.
+\end{equation}
+\end{lemma}
+\begin{proof}
+The expansion
+\[
+T(w)=D(w)-2k^2K(w)+k^4a
+\]
+and \eqref{eq:virial} imply
+\[
+D(w)+T(w)=k^4a+\frac{\beta}{2}Q(w)-\frac{2\gamma}{3}S(w).
+\]
+Completing the square produces the exact identity
+\begin{equation}\label{eq:positiveidentity}
+D(w)+T(w)+\frac{2\gamma}{3}
+\int_{\R^2}\abs{w}^2
+\left(\abs{w}^2-\frac{3\beta}{8\gamma}\right)^2\dd x
+=\left(k^4+\frac{3\beta^2}{32\gamma}\right)a=\rho a.
+\end{equation}
+All terms on the left are nonnegative, proving \eqref{eq:rhoD}.
+
+For completeness, use the unitary Plancherel normalization of the
+Fourier transform.  Fourier inversion, weighted Cauchy--Schwarz,
+and polar coordinates give, for every $\eta>0$,
+\begin{align*}
+\norm{w}_\infty^2
+&\le (D(w)+\eta a)
+\frac{1}{(2\pi)^2}\int_{\R^2}\frac{\dd\xi}{\abs\xi^4+\eta}\\
+&=\frac{D(w)+\eta a}{8\sqrt\eta},
+\end{align*}
+because the last Fourier integral is $1/(8\sqrt\eta)$.
+Since $w\ne0$ in $L^2$, one has $D(w)>0$; otherwise its Fourier transform
+would be supported on the measure-zero set $\{0\}$.
+Set $\eta=D(w)/a$ to obtain
+\begin{equation}\label{eq:GNinfty}
+\norm{w}_\infty^2\le\frac{\sqrt{aD(w)}}4
+\le\frac{\sqrt\rho}{4}a.
+\end{equation}
+Finally $S(w)=\int\abs{w}^6\le\norm{w}_\infty^2\int\abs{w}^4$,
+while $Q(w)>0$, proving \eqref{eq:SQ}.
+\end{proof}
+
+\begin{proposition}[Strict decrease of energy per mass]
+\label{prop:decrease}
+Let $e(a):=I(a)/a$.  For $0<a<b$ with $a+b<2m_B$,
+put
+\[
+h(a,b):=1-\frac{a+b}{2m_B}>0.
+\]
+Then
+\begin{equation}\label{eq:egap}
+e(a)-e(b)\ge
+\frac{(b-a)h(a,b)}{a^2}\,[-I(a)]>0.
+\end{equation}
+In particular, $e$ is strictly decreasing on $(0,m_B]$.
+\end{proposition}
+\begin{proof}
+Take the dilation-adjusted mass-$a$ minimizing sequence $(w_n)$ of
+Lemma~\ref{lem:dilation}, and set $t=b/a>1$.
+Amplitude scaling preserves membership in $X$ and gives
+$M(\sqrt t\,w_n)=b$.  Directly,
+\begin{equation}\label{eq:amplitudedefect}
+\frac{H(\sqrt t\,w_n)}{t}-H(w_n)
+=(t-1)\left[-\frac{\beta}{2}Q(w_n)
++\frac{\gamma(t+1)}{3}S(w_n)\right].
+\end{equation}
+By Lemma~\ref{lem:ratio}, $S(w_n)\le (\sqrt\rho/4)aQ(w_n)$.
+Recalling $m_B=3\beta/(\gamma\sqrt\rho)$ and $ta=b$, we have
+\begin{align*}
+-\frac{\beta}{2}Q(w_n)+\frac{\gamma(t+1)}3S(w_n)
+&\le\left[-\frac{\beta}{2}
++\frac{\gamma\sqrt\rho}{12}(a+b)\right]Q(w_n)\\
+&=-\frac{\beta}{2}h(a,b)Q(w_n).
+\end{align*}
+Moreover, $T,S\ge0$ implies
+\[
+H(w_n)\ge-\frac{\beta}{2}Q(w_n),
+\qquad Q(w_n)\ge-\frac{2}{\beta}H(w_n).
+\]
+Combining these inequalities with \eqref{eq:amplitudedefect} yields
+\begin{align*}
+\frac{I(b)}{t}
+&\le\frac{H(\sqrt t\,w_n)}{t}\\
+&\le H(w_n)-(t-1)\frac{\beta}{2}h(a,b)Q(w_n)\\
+&\le[1+(t-1)h(a,b)]H(w_n).
+\end{align*}
+Passing to $n\to\infty$ and dividing by $a$ gives
+\[
+e(b)\le\left[1+\frac{b-a}{a}h(a,b)\right]e(a).
+\]
+Rearrangement establishes \eqref{eq:egap}; it is strictly positive by
+Lemma~\ref{lem:negative} and $h(a,b)>0$.
+If $0<a<b\le m_B$, then $a+b<2m_B$, so the asserted monotonicity follows.
+\end{proof}
+
+\begin{corollary}[All-split strict subadditivity]\label{cor:binding}
+For $0<m\le m_B$ and $0<\mu<m$,
+\[
+I(m)<I(\mu)+I(m-\mu).
+\]
+\end{corollary}
+\begin{proof}
+Proposition~\ref{prop:decrease} gives
+$e(\mu)>e(m)$ and $e(m-\mu)>e(m)$.
+Therefore
+\begin{align*}
+I(\mu)+I(m-\mu)
+&=\mu e(\mu)+(m-\mu)e(m-\mu)\\
+&>\mu e(m)+(m-\mu)e(m)=I(m).
+\end{align*}
+\end{proof}
+
+\section{Whole-space concentration--compactness}
+\label{sec:compactness}
+
+\begin{lemma}[No local vanishing]\label{lem:nonvanishing}
+Let $0<m\le m_B$, and let $(u_n)$ be a minimizing sequence for $I(m)$.
+Then
+\begin{equation}\label{eq:notvanish}
+\limsup_{n\to\infty}\ \sup_{y\in\R^2}
+\int_{B(y,1)}\abs{u_n}^2\dd x>0.
+\end{equation}
+\end{lemma}
+\begin{proof}
+By Lemma~\ref{lem:coercivity}, $(u_n)$ is bounded in $H^2$.
+Suppose instead that
+\[
+\sup_{y\in\R^2}\int_{B(y,1)}\abs{u_n}^2\dd x\to0.
+\]
+Tile $\R^2$ by unit squares $Q_j$ and let $Q_j^*$ be concentric, slightly
+enlarged squares with uniformly bounded overlap.  The local
+Gagliardo--Nirenberg inequality on translated fixed-size squares gives
+\[
+\int_{Q_j}\abs{u_n}^4\dd x
+\le C\norm{u_n}_{L^2(Q_j^*)}^2
+\norm{u_n}_{H^1(Q_j^*)}^2.
+\]
+Since each $Q_j^*$ is covered by a uniformly bounded number of unit balls,
+our vanishing assumption gives
+$\sup_j\norm{u_n}_{L^2(Q_j^*)}^2\to0$.
+Summing over the squares and using bounded overlap, we obtain
+\begin{equation}\label{eq:Qvanishing}
+Q(u_n)\le C
+\left(\sup_j\norm{u_n}_{L^2(Q_j^*)}^2\right)
+\norm{u_n}_{H^1(\R^2)}^2\longrightarrow0.
+\end{equation}
+The embedding $H^2(\R^2)\hookrightarrow L^\infty(\R^2)$ and the
+$H^2$ bound then imply
+$S(u_n)\le\norm{u_n}_\infty^2 Q(u_n)\to0$.
+In fact, already $T(u_n)\ge0$ gives
+\[
+H(u_n)\ge-\frac{\beta}{2}Q(u_n)\longrightarrow0
+\quad\text{in the sense that }\liminf_n H(u_n)\ge0.
+\]
+This contradicts $H(u_n)\to I(m)<0$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+The lower bound and negativity are Lemmas~\ref{lem:coercivity}
+and \ref{lem:negative}.  Strict subadditivity is
+Corollary~\ref{cor:binding}.  We prove compactness and attainment.
+
+Let $(u_n)$ be any sequence with $M(u_n)=m$ and $H(u_n)\to I(m)$.
+It is bounded in $H^2$. By Lemma~\ref{lem:nonvanishing}, after passing to a
+subsequence there exist $\delta>0$ and translations $y_n\in\R^2$ such that
+\[
+\int_{B(y_n,1)}\abs{u_n}^2\dd x\ge\delta.
+\]
+Set $w_n(x)=u_n(x+y_n)$.  Translation invariance gives
+$M(w_n)=m$ and $H(w_n)\to I(m)$.
+By weak compactness in $H^2$, local Rellich compactness, and a diagonal
+subsequence, for some $u\in H^2(\R^2;\C)$ we have
+\begin{equation}\label{eq:weak}
+\begin{split}
+w_n&\rightharpoonup u\quad\text{weakly in }H^2(\R^2),\\
+w_n&\to u\quad\text{strongly in }L^p_{\mathrm{loc}}(\R^2)
+\quad(1\le p<\infty),\\
+w_n(x)&\to u(x)\quad\text{for almost every }x.
+\end{split}
+\end{equation}
+The local $L^2$ convergence shows
+$\int_{B(0,1)}\abs{u}^2\dd x\ge\delta$; hence $u\ne0$.
+Weak lower semicontinuity of the $L^2$ norm gives
+\begin{equation}\label{eq:a}
+a:=M(u)\in(0,m].
+\end{equation}
+
+Write $v_n=w_n-u$.  The Hilbert-space splitting of $L^2$ and of
+$Au_n$ (using the weak $H^2$ convergence) gives
+\begin{align}
+M(v_n)&=m-a+o(1),\label{eq:masssplit}\\
+T(w_n)&=T(u)+T(v_n)+o(1).\label{eq:Tsplit}
+\end{align}
+Since $(w_n)$ is bounded in $H^2$ and converges almost everywhere,
+the Brezis--Lieb lemma \cite{brezislieb} applied separately at exponents
+$4$ and $6$ yields
+\begin{align}
+Q(w_n)&=Q(u)+Q(v_n)+o(1),\label{eq:Qsplit}\\
+S(w_n)&=S(u)+S(v_n)+o(1).\label{eq:Ssplit}
+\end{align}
+Consequently,
+\begin{equation}\label{eq:Hsplit}
+H(w_n)=H(u)+H(v_n)+o(1).
+\end{equation}
+We do \emph{not} appeal to weak lower semicontinuity of $H$; the focusing
+term has the wrong sign for that shortcut.
+
+We next show $a=m$.  Suppose for contradiction that $a<m$.
+Then $M(v_n)\to m-a>0$.  Define the mass-corrected remainders
+\[
+\widetilde v_n:=\left(\frac{m-a}{M(v_n)}\right)^{1/2}v_n,
+\qquad M(\widetilde v_n)=m-a.
+\]
+The amplitude multiplier tends to one.  Moreover, $(v_n)$ is bounded in
+$H^2$, hence $T(v_n)$, $Q(v_n)$ and $S(v_n)$ are uniformly bounded.
+The explicit polynomial dependence of $H(c v_n)$ on $c>0$ therefore implies
+\begin{equation}\label{eq:normalize}
+H(\widetilde v_n)=H(v_n)+o(1).
+\end{equation}
+By the definition of $I(m-a)$ and \eqref{eq:normalize},
+$H(v_n)\ge I(m-a)+o(1)$; also $H(u)\ge I(a)$.
+Together with \eqref{eq:Hsplit} this gives
+\[
+I(m)=\lim_{n\to\infty}H(w_n)
+\ge I(a)+I(m-a),
+\]
+contradicting Corollary~\ref{cor:binding}.  Thus $a=m$.
+This rules out every remainder carrying positive $L^2$ mass, including
+spatially separated dichotomy and diffuse positive-mass loss.
+
+Now \eqref{eq:masssplit} gives
+\begin{equation}\label{eq:L2strong}
+\norm{v_n}_2\longrightarrow0.
+\end{equation}
+The uniform $H^2$ bound and Sobolev embedding provide
+$\sup_n\norm{v_n}_\infty<\infty$.  Hence
+\begin{equation}\label{eq:smallnonlinear}
+Q(v_n)\le\norm{v_n}_\infty^2\norm{v_n}_2^2\to0,
+\qquad
+S(v_n)\le\norm{v_n}_\infty^4\norm{v_n}_2^2\to0.
+\end{equation}
+From \eqref{eq:Hsplit} and \eqref{eq:smallnonlinear},
+\begin{equation}\label{eq:Teq}
+I(m)=H(u)+T(v_n)+o(1).
+\end{equation}
+Because $M(u)=m$, we know $H(u)\ge I(m)$; and $T(v_n)\ge0$.
+Therefore \eqref{eq:Teq} forces
+\begin{equation}\label{eq:Teqzero}
+H(u)=I(m),\qquad T(v_n)=\norm{Av_n}_2^2\longrightarrow0.
+\end{equation}
+Finally,
+\[
+\norm{\Delta v_n}_2\le\norm{Av_n}_2+k^2\norm{v_n}_2\to0,
+\qquad
+\norm{\nabla v_n}_2^2
+\le\norm{v_n}_2\norm{\Delta v_n}_2\to0.
+\]
+Together with \eqref{eq:L2strong}, this proves $v_n\to0$
+strongly in $H^2$.  Thus $w_n\to u$ strongly in $H^2$ and
+$M(u)=m$, $H(u)=I(m)$.  This proves \eqref{eq:compact} and nonemptiness
+of $\calG_m$.  Applying the same argument to an arbitrary sequence
+in $\calG_m$ proves sequential compactness modulo translations.
+\end{proof}
+
+\section{Frozen-parameter example and limitations}
+
+\begin{remark}[Frozen two-dimensional D4 comparison]
+For the frozen numerical parameters considered in the source audit,
+\[
+k=1,\qquad
+\beta=\gamma=\frac{4608178181141995}{1125899906842624},
+\qquad
+m_{D4}=\frac{1432536998431173}{562949953421312},
+\]
+the quantity $\rho$ is exactly
+\[
+\rho=\frac{49853331562389953}{36028797018963968}.
+\]
+A direct rational check gives
+\[
+9-\rho m_{D4}^2
+=\frac{454708712324087584212476662678391978900775591}
+{11417981541647679048466287755595961091061972992}>0.
+\]
+As $m_B=3/\sqrt\rho$ for $\beta=\gamma$, the check proves
+$m_{D4}<m_B$ \emph{without relying on rounded decimals}.
+Numerically,
+\[
+m_{D4}\approx2.54469689485712,
+\qquad m_B\approx2.55034563635155.
+\]
+Here ``D4'' labels the source problem's square-symmetry setting in
+\emph{two} spatial dimensions, not a statement about four spatial
+dimensions.
+\end{remark}
+
+\begin{remark}[Scope]
+The theorem establishes existence of at least one whole-space ground state
+and compactness of the complete minimizing set modulo translations.
+It does not establish uniqueness, radial or square symmetry, identification
+with a particular finite-torus numerical profile, a parent higher-derivative
+field-theory derivation, or a prediction about higher-dimensional confinement
+lifetimes.  The threshold $m_B$ is sufficient, not claimed sharp.
+\end{remark}
+
+\begin{remark}[Relation to earlier fourth-order results]
+The earlier mixed-dispersion variational problem with a single
+nonlinear power has substantial predecessors, including Fernández,
+Jeanjean, Mandel, and Mariş~\cite{fernandez2022}.
+The present argument addresses the stated combined focusing-cubic and
+defocusing-quintic Hamiltonian and its sufficient mass threshold.
+This is not a claim of literature-wide novelty.
+\end{remark}
+
+\begin{thebibliography}{9}
+\bibitem{brezislieb}
+H.~Brézis and E.~Lieb,
+\emph{A relation between pointwise convergence of functions and convergence
+of functionals},
+Proceedings of the American Mathematical Society \textbf{88} (1983),
+486--490.
+
+\bibitem{fernandez2022}
+A.~J.~Fernández, L.~Jeanjean, R.~Mandel, and M.~Mariş,
+\emph{Non-homogeneous Gagliardo--Nirenberg inequalities in $\R^N$ and
+application to a biharmonic non-linear Schrödinger equation},
+Journal of Differential Equations \textbf{330} (2022), 1--65.
+\href{https://doi.org/10.1016/j.jde.2022.04.037}{doi:10.1016/j.jde.2022.04.037}.
+
+\bibitem{repository}
+R.~J.~Reyes, \emph{Geometry of Resonance}, proof notes:
+\url{https://github.com/rickyjreyes/geometry_of_resonance/tree/main/docs/d4_binding}.
+\end{thebibliography}
+
+\end{document}
