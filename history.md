@@ -1,5 +1,10 @@
 # Version history
 
+## 2026-10-26 — E68 localized gradient-energy proof
+
+- Added a self-contained analytic E68 manuscript: disproves the unrestricted $H^1$ bound for $n\ne2$ (all radii), proves a corrected $L^n$-gradient estimate, and establishes an $H^2$ corollary in dimensions 3 and 4.
+- Does not claim Lean formalization, PDE stability, or physical confinement lifetime results.
+
 ## 2026-10-26 — M6B exact nonuniqueness counterexamples
 
 - Added a standalone manuscript proving the structural nonuniqueness of the regularized nonlinear curvature closure and noninjectivity of the canonical stationary curvature map modulo global phase, at fixed Dirichlet data and mass.

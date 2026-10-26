@@ -107,3 +107,9 @@ This E26 manuscript analyzes the historical additive denominator; the corrected 
 **Fourier symbol and quantitative off-shell damping** — [PDF](preprints/swift-hohenberg-fourier-shell-damping/paper.pdf) · [LaTeX source](papers/swift-hohenberg-fourier-shell-damping/main.tex) · [Notes](preprints/swift-hohenberg-fourier-shell-damping/README.md)
 
 The linear dissipative spectral estimate does not establish nonlinear WCT confinement or physical pattern persistence.
+
+## WCT E68 — Localized gradient-energy estimate
+
+**E68: Unrestricted estimate refuted; corrected gradient-integrability theorem** — [PDF](preprints/localized-gradient-energy-e68/paper.pdf) · [LaTeX source](papers/localized-gradient-energy-e68/main.tex) · [Notes](preprints/localized-gradient-energy-e68/README.md)
+
+For \(n>2\), the proposed \(R^{n-2}\|\psi\|_{H^1}^2\) local gradient-energy estimate fails for unrestricted \(H^1\). The correct \(R^{n-2}\) estimate follows from \(\nabla\psi\in L^n\); an \(H^2\) consequence holds for dimensions 3 and 4. This is an analytic proof, not Lean formalization or a physical confinement claim.

@@ -1,0 +1,354 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Rn}{\mathbb{R}^{n}}
+\newcommand{\BR}{B_R}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+
+\title{E68: Localized Gradient-Energy Estimate\\
+\large Counterexamples, Dimensional Classification, and Corrected Theorems}
+\author{Mathematical audit of WCT Manuscript 4}
+\date{October 26, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The proposed E68 estimate bounds the gradient energy inside a ball by
+$CR^{n-2}\norm{\psi}_{H^1(\Rn)}^2$. We prove that, with a constant
+independent of radius and field, this assertion holds for all $H^1$ fields
+and all radii exactly when $n=2$. For every $n>2$, a single compactly
+supported, singular $H^1$ field violates the estimate at arbitrarily small
+radii; a family of smooth compactly supported fields also rules out a
+universal constant. In dimension $n=1$ the proposed estimate fails at
+large radii. We then prove a corrected inequality under the assumption
+$\nabla\psi\in L^n$ and obtain its $H^2$ consequence in dimensions three
+and four. These results concern analytic energy estimates, not the
+existence or dynamical stability of confined wave solutions.
+\end{abstract}
+
+\section{Statement and quantifiers}
+
+For $n\geq1$, let $B_R(x_0)=\{x\in\Rn:|x-x_0|<R\}$, and use the
+inhomogeneous norm
+\[
+\norm{\psi}_{H^1(\Rn)}^2
+=\norm{\psi}_{L^2(\Rn)}^2+\norm{\nabla\psi}_{L^2(\Rn)}^2.
+\]
+The E68 assertion, interpreted as a uniform estimate, is
+\begin{equation}\label{eq:E68}
+\boxed{\qquad
+\int_{B_R(0)}|\nabla\psi(x)|^2\,dx
+\leq C_n R^{n-2}\norm{\psi}_{H^1(\Rn)}^2,
+\qquad \psi\in H^1(\Rn),\ R>0.
+\qquad}
+\tag{E68}
+\end{equation}
+Here $C_n<\infty$ must be independent of $R$ and $\psi$. The same
+conclusions hold if one requires the estimate uniformly over all centers
+$x_0\in\Rn$.
+
+\begin{theorem}[Exact dimensional classification]\label{thm:classification}
+For the class $H^1(\Rn)$ and all radii $R>0$, a uniform constant in
+\eqref{eq:E68} exists if and only if $n=2$. In that dimension $C_2=1$
+works. For each $n>2$, there is even a single
+$\psi\in H^1(\Rn)$ for which no finite constant depending on $\psi$
+can make \eqref{eq:E68} hold for all sufficiently small $R$.
+\end{theorem}
+
+\begin{proof}
+We consider the three cases.
+
+\medskip\noindent
+\textbf{Case $n=2$.} Since $R^{n-2}=1$ and $B_R\subset\mathbb R^2$,
+\[
+\int_{B_R}|\nabla\psi|^2\,dx
+\leq\int_{\mathbb R^2}|\nabla\psi|^2\,dx
+\leq\norm{\psi}_{H^1(\mathbb R^2)}^2.
+\]
+Thus the inequality holds with $C_2=1$.
+
+\medskip\noindent
+\textbf{Case $n=1$.} Choose a nonconstant
+$\psi\in C_c^\infty((-1,1))$ and put
+$A=\int_{\mathbb R}|\psi'|^2\,dx>0$.
+For every $R\geq1$,
+\[
+\int_{-R}^{R}|\psi'|^2\,dx=A.
+\]
+If \eqref{eq:E68} were true, then
+\[
+A\leq C_1R^{-1}\norm{\psi}_{H^1(\mathbb R)}^2
+\qquad(R\geq1).
+\]
+Sending $R\to\infty$ makes the right-hand side tend to zero, a
+contradiction.
+
+\medskip\noindent
+\textbf{Case $n>2$.} Fix
+\[
+0<a<\frac{n-2}{2},
+\]
+and choose $\chi\in C_c^\infty([0,\infty))$ with
+$\chi(r)=1$ for $0\leq r\leq1$ and $\chi(r)=0$ for $r\geq2$.
+Define, for $x\neq0$,
+\[
+\psi(x)=\chi(|x|)|x|^{-a},
+\]
+with an arbitrary value at $x=0$. Write
+$\sigma_{n-1}=|\mathbb S^{n-1}|$. Since $\psi=r^{-a}$ in $B_1$,
+polar coordinates yield
+\begin{equation}\label{eq:L2integral}
+\int_{B_1}|\psi|^2\,dx
+=\sigma_{n-1}\int_0^1r^{n-1-2a}\,dr
+=\frac{\sigma_{n-1}}{n-2a}<\infty.
+\end{equation}
+For $0<|x|<1$,
+\[
+\nabla\psi(x)=-a|x|^{-a-2}x,
+\qquad |\nabla\psi(x)|^2=a^2|x|^{-2a-2},
+\]
+and therefore
+\begin{equation}\label{eq:gradintegral}
+\int_{B_1}|\nabla\psi|^2\,dx
+=\sigma_{n-1}a^2\int_0^1r^{n-3-2a}\,dr
+=\frac{\sigma_{n-1}a^2}{n-2-2a}<\infty.
+\end{equation}
+The cutoff-annulus contributions are finite, and $\psi$ vanishes
+outside $B_2$. These classical derivatives on $\Rn\setminus\{0\}$
+are also the weak derivatives: applying integration by parts outside
+$B_\varepsilon$ leaves a boundary term bounded by a constant times
+$\varepsilon^{n-1-a}$, which tends to zero because
+$a<(n-2)/2<n-1$. Thus $\psi\in H^1(\Rn)$.
+
+For each $0<R<1$, the calculation in \eqref{eq:gradintegral} gives
+\begin{equation}\label{eq:localexact}
+\int_{B_R}|\nabla\psi|^2\,dx
+=\frac{\sigma_{n-1}a^2}{n-2-2a}R^{n-2-2a}.
+\end{equation}
+Hence
+\begin{equation}\label{eq:blowup}
+R^{2-n}\int_{B_R}|\nabla\psi|^2\,dx
+=\frac{\sigma_{n-1}a^2}{n-2-2a}R^{-2a}
+\longrightarrow+\infty
+\qquad(R\downarrow0).
+\end{equation}
+On the other hand, the proposed E68 bound would make the left-hand
+side at most $C_n\norm{\psi}_{H^1}^2<\infty$, independently of $R$.
+This contradiction completes the proof.
+\end{proof}
+
+\section{Failure on smooth fields}
+
+The preceding fixed-field counterexample has a singularity at the
+origin. The failure of a universal constant does not require any
+singular fields.
+
+\begin{proposition}[Smooth concentration counterexample]
+\label{prop:smooth}
+Let $n>2$. For every $C>0$, there are
+$\psi\in C_c^\infty(\Rn)$ and $R>0$ for which
+\[
+\int_{B_R}|\nabla\psi|^2\,dx
+>C R^{n-2}\norm{\psi}_{H^1(\Rn)}^2.
+\]
+\end{proposition}
+
+\begin{proof}
+Choose a nonconstant $\phi\in C_c^\infty(B_1)$ and put
+\[
+\psi_R(x)=R^{1-n/2}\phi(x/R).
+\]
+Let
+\[
+A=\norm{\nabla\phi}_2^2>0,
+\qquad B=\norm{\phi}_2^2.
+\]
+Differentiation and the substitution $y=x/R$ give
+\[
+\norm{\nabla\psi_R}_2^2=A,
+\qquad \norm{\psi_R}_2^2=R^2B.
+\]
+Since $\operatorname{supp}\psi_R\subset B_R$,
+\[
+\int_{B_R}|\nabla\psi_R|^2\,dx=A,
+\qquad \norm{\psi_R}_{H^1}^2=A+R^2B.
+\]
+A uniform E68 inequality would imply
+\[
+A\leq CR^{n-2}(A+R^2B)
+\qquad\text{for every }R>0.
+\]
+The right-hand side tends to zero as $R\downarrow0$, since $n>2$,
+while $A>0$ is fixed. This is impossible.
+\end{proof}
+
+\section{Corrected estimate with critical gradient integrability}
+
+\begin{theorem}[Corrected E68]\label{thm:corrected}
+Let $n>2$ and suppose $\psi\in H^1(\Rn)$ with
+$\nabla\psi\in L^n(\Rn)$. For every $R>0$ and $x_0\in\Rn$,
+\begin{equation}\label{eq:corrected}
+\boxed{\quad
+\int_{B_R(x_0)}|\nabla\psi|^2\,dx
+\leq\omega_n^{1-2/n}R^{n-2}
+\norm{\nabla\psi}_{L^n(\Rn)}^2,
+\quad}
+\tag{E68$'$}
+\end{equation}
+where $\omega_n=|B_1(0)|$.
+\end{theorem}
+
+\begin{proof}
+Apply H\"older's inequality on $B_R(x_0)$ with conjugate
+exponents $p=n/2$ and $q=n/(n-2)$:
+\begin{align*}
+\int_{B_R(x_0)}|\nabla\psi|^2\,dx
+&=\int_{B_R(x_0)}|\nabla\psi|^2\cdot1\,dx\\
+&\leq
+\left(\int_{B_R(x_0)}|\nabla\psi|^{2p}\,dx\right)^{1/p}
+\left(\int_{B_R(x_0)}1^q\,dx\right)^{1/q}\\
+&=\left(\int_{B_R(x_0)}|\nabla\psi|^n\,dx\right)^{2/n}
+|B_R(x_0)|^{(n-2)/n}\\
+&\leq\norm{\nabla\psi}_{L^n(\Rn)}^2
+(\omega_nR^n)^{(n-2)/n}\\
+&=\omega_n^{1-2/n}R^{n-2}
+\norm{\nabla\psi}_{L^n(\Rn)}^2.
+\end{align*}
+This is \eqref{eq:corrected}.
+\end{proof}
+
+\begin{corollary}[Recovering the original $H^1$ right-hand side]
+\label{cor:apriori}
+Let $n>2$ and let $\mathcal A\subset H^1(\Rn)$ be an admissible
+class satisfying the \emph{independently established} a priori bound
+\[
+\norm{\nabla\psi}_{L^n(\Rn)}
+\leq K\norm{\psi}_{H^1(\Rn)}
+\qquad\text{for all }\psi\in\mathcal A,
+\]
+with $K$ independent of $\psi$. Then
+\[
+\int_{B_R(x_0)}|\nabla\psi|^2\,dx
+\leq\omega_n^{1-2/n}K^2R^{n-2}
+\norm{\psi}_{H^1(\Rn)}^2
+\qquad (\psi\in\mathcal A).
+\]
+\end{corollary}
+
+\begin{proof}
+Insert the assumed gradient estimate into
+Theorem~\ref{thm:corrected}.
+\end{proof}
+
+\begin{remark}
+The hypothesis in Corollary~\ref{cor:apriori} does not follow from
+$H^1$ membership alone. A governing PDE, a band limit, or an additional
+regularity restriction may supply such a bound, but it must be proved
+separately for the specified admissible class.
+\end{remark}
+
+\section{An $H^2$ replacement in dimensions three and four}
+
+\begin{corollary}[Higher-regularity localized estimate]
+\label{cor:H2}
+If $n\in\{3,4\}$ and $\psi\in H^2(\Rn)$, there is a constant
+$C_n<\infty$, independent of $\psi$, $x_0$, and $R$, such that
+\begin{equation}\label{eq:H2}
+\boxed{\quad
+\int_{B_R(x_0)}|\nabla\psi|^2\,dx
+\leq C_nR^{n-2}\norm{\psi}_{H^2(\Rn)}^2.
+\quad}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+When $n=4$, the standard Sobolev inequality in $\mathbb R^4$
+applied to $\nabla\psi\in H^1(\mathbb R^4)$ gives
+\[
+\norm{\nabla\psi}_{L^4}
+\leq C\norm{\nabla\psi}_{H^1}
+\leq C\norm{\psi}_{H^2}.
+\]
+When $n=3$, Sobolev embedding yields
+$\norm{\nabla\psi}_{L^6}\leq C\norm{\psi}_{H^2}$.
+Interpolation between $L^2$ and $L^6$ gives
+\[
+\norm{\nabla\psi}_{L^3}
+\leq\norm{\nabla\psi}_{L^2}^{1/2}
+\norm{\nabla\psi}_{L^6}^{1/2}
+\leq C\norm{\psi}_{H^2}.
+\]
+In both dimensions the hypothesis of Theorem~\ref{thm:corrected}
+holds with $\norm{\nabla\psi}_{L^n}\leq C\norm{\psi}_{H^2}$.
+Its conclusion is precisely \eqref{eq:H2}.
+\end{proof}
+
+\begin{proposition}[The $H^2$ replacement fails above dimension four]
+\label{prop:H2fail}
+If $n>4$, there is no constant $C_n$ for which
+\eqref{eq:H2} holds for all $\psi\in C_c^\infty(\Rn)$ and all $R>0$.
+\end{proposition}
+
+\begin{proof}
+Take a nonconstant $\phi\in C_c^\infty(B_1)$ and set
+\[
+u_R(x)=R^{2-n/2}\phi(x/R),\qquad 0<R<1.
+\]
+Scaling gives
+\[
+\norm{u_R}_2^2=R^4\norm{\phi}_2^2,
+\quad \norm{\nabla u_R}_2^2=R^2\norm{\nabla\phi}_2^2,
+\quad \norm{D^2u_R}_2^2=\norm{D^2\phi}_2^2.
+\]
+Thus $\norm{u_R}_{H^2}^2$ stays bounded as $R\downarrow0$, whereas
+\[
+\int_{B_R}|\nabla u_R|^2\,dx
+=R^2\norm{\nabla\phi}_2^2.
+\]
+If \eqref{eq:H2} held universally, it would imply
+\[
+R^2\norm{\nabla\phi}_2^2\leq C R^{n-2}
+\]
+for some fixed $C$ and every small $R$. Dividing by $R^2$ gives
+$\norm{\nabla\phi}_2^2\leq C R^{n-4}\to0$, a contradiction.
+\end{proof}
+
+\section{Status and scope for Manuscript 4}
+
+\begin{itemize}
+\item \textbf{REFUTED:} E68 with its unrestricted $H^1$ hypothesis,
+when $n>2$, even if the multiplicative constant is allowed to depend on
+one fixed singular $H^1$ field. The all-radii $n=1$ version also fails.
+\item \textbf{PROVED:} E68 in dimension $n=2$ with $C_2=1$.
+\item \textbf{PROVED:} Corrected E68$'$ when $n>2$ and
+$\nabla\psi\in L^n$, with the displayed explicit constant.
+\item \textbf{PROVED:} The $H^2$-based estimate for $n=3,4$.
+\item \textbf{CONDITIONAL:} Recovery of the original $H^1$ right-hand
+side within a PDE-dependent admissible class, pending an independent
+uniform $L^n$ gradient estimate.
+\end{itemize}
+
+These are purely analytic assertions. They do not establish existence,
+orbital stability, metastability, or a physical confinement-lifetime
+comparison in different spatial dimensions.
+
+\begin{thebibliography}{9}
+\bibitem{WCTCorrected}
+\emph{WCT Full Equation List (Corrected)}, E68 entry,
+\url{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/WCT_FULL_EQUATION_LIST_CORRECTED.md}.
+
+\bibitem{WCTLean}
+\emph{WCT Lean Analytic Contracts}, definition \texttt{LocalEnergyBound},
+\url{https://github.com/rickyjreyes/wct-lean/blob/main/WCTLean/Contracts/Analytic.lean}.
+\end{thebibliography}
+
+\end{document}
