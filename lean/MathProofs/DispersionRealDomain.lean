@@ -35,11 +35,10 @@ theorem dispersion_real_domain_endpoint
       B * radicand s G B q =
         (t + B * q - G) * (t - B * q + G) := by
     dsimp [radicand]
-    rw [show t ^ 2 = G ^ 2 + B * s ^ 2 from ht2] at *
     nlinarith [ht2]
   have hqend : t - B * qmax + G = 0 := by
     dsimp [qmax]
-    field_simp
+    field_simp [ne_of_gt hB]
     ring
   have hz : radicand s G B qmax = 0 := by
     have hprod := hfactor qmax
