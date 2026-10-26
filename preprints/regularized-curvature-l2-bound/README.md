@@ -2,7 +2,7 @@
 
 [PDF](paper.pdf) · [LaTeX](../../papers/regularized-curvature-l2-bound/main.tex)
 
-Family: **F12** (E26; manuscript 2). For \(\psi\in H^2(\Omega;\mathbb C)\), the regularized curvature operator
+Family: **F12** (E26; manuscript 2). This proof concerns the **historical additive-denominator operator**, distinct from the corrected phase-covariant M2/E17 regularization. For \(\psi\in H^2(\Omega;\mathbb C)\), the regularized curvature operator
 \[
 \Theta_\varepsilon[\psi]
 =-\frac{\Delta\psi}{\psi+\varepsilon e^{-\alpha|\psi|^2}}
