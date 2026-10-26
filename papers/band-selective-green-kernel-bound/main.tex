@@ -1,0 +1,290 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\DeclareMathOperator{\esssup}{ess\,sup}
+\newcommand{\R}{\mathbb R}
+\newcommand{\F}{\mathcal F}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+
+\title{E58: Sharp Bound for the Band-Selective Green Multiplier}
+\author{Richard J. Reyes\\Independent Researcher}
+\date{October 26, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For the fourth-order band-selective operator
+$\mathcal L=r+a(\Delta+k_\star^2)^2$ on $\R^d$, with $r>0$, $a\geq0$,
+and $k_\star\geq0$, we prove the pointwise Fourier-multiplier bound
+$0<G(k)\leq 1/r$. For $a>0$, the bound is sharp exactly on the selected
+shell $|k|=k_\star$. We further prove the exact $L^2$ resolvent norm,
+identify the discrete-spectrum qualification, and distinguish positivity
+of the Fourier multiplier from positivity of the physical-space Green
+function.
+\end{abstract}
+
+\section{Definitions and principal result}
+
+Fix an integer $d\geq1$. On the Schwartz class $\mathcal S(\R^d)$,
+consider
+\begin{equation}\label{eq:L}
+  \mathcal L := r+a(\Delta+k_\star^2)^2,
+  \qquad r>0,\quad a\geq0,\quad k_\star\geq0.
+\end{equation}
+We use the Fourier-transform convention
+\begin{equation}\label{eq:fourier}
+  \widehat u(k)=\int_{\R^d}e^{-ik\cdot x}u(x)\,dx,
+  \qquad
+  u(x)=\frac{1}{(2\pi)^d}\int_{\R^d}e^{ik\cdot x}\widehat u(k)\,dk.
+\end{equation}
+Write
+\begin{equation}\label{eq:symbol}
+  \ell(k):=r+a\bigl(|k|^2-k_\star^2\bigr)^2,
+  \qquad
+  G(k):=\frac{1}{\ell(k)}.
+\end{equation}
+
+\begin{theorem}[E58: positive, sharply bounded Green multiplier]
+\label{thm:E58}
+For every $k\in\R^d$,
+\begin{equation}\label{eq:mainbound}
+  \boxed{\quad 0<G(k)\leq\frac1r.\quad}
+\end{equation}
+If $a>0$, equality holds if and only if $|k|=k_\star$; in particular,
+\begin{equation}\label{eq:sup}
+  \sup_{k\in\R^d}G(k)=\frac1r.
+\end{equation}
+If $a=0$, $G(k)=1/r$ for all $k$.
+\end{theorem}
+
+\begin{proof}
+Since $\widehat{\Delta u}(k)=-|k|^2\widehat u(k)$,
+\begin{align*}
+  \widehat{(\Delta+k_\star^2)u}(k)
+    &=(k_\star^2-|k|^2)\widehat u(k),\\
+  \widehat{(\Delta+k_\star^2)^2u}(k)
+    &=(|k|^2-k_\star^2)^2\widehat u(k).
+\end{align*}
+Therefore $\widehat{\mathcal Lu}(k)=\ell(k)\widehat u(k)$ with
+$\ell$ as in \eqref{eq:symbol}. For every $k$,
+\begin{equation}\label{eq:denom}
+  \bigl(|k|^2-k_\star^2\bigr)^2\geq0,
+  \qquad
+  a\bigl(|k|^2-k_\star^2\bigr)^2\geq0,
+\end{equation}
+and hence
+\begin{equation}
+  0<r\leq r+a\bigl(|k|^2-k_\star^2\bigr)^2=\ell(k).
+\end{equation}
+Taking reciprocals of positive numbers reverses the inequality:
+\begin{equation}
+  0<\frac{1}{\ell(k)}\leq\frac1r,
+\end{equation}
+which proves \eqref{eq:mainbound}.
+
+For $a>0$, equality holds precisely when
+$a(|k|^2-k_\star^2)^2=0$, or equivalently when
+$|k|^2=k_\star^2$. Since $k_\star\geq0$, this is exactly
+$|k|=k_\star$. That set is nonempty in $\R^d$, even if
+$k_\star=0$, proving \eqref{eq:sup}. When $a=0$, the symbol is
+identically $r$, so $G\equiv1/r$.
+\end{proof}
+
+\section{Inverse operator and exact $L^2$ estimate}
+
+\begin{proposition}[Sharp continuum resolvent bound]\label{prop:L2}
+Let $\mathcal L$ be as in \eqref{eq:L}. For each $f\in L^2(\R^d)$,
+there exists a unique $u\in L^2(\R^d)$ satisfying
+$\mathcal Lu=f$ in the sense of tempered distributions. It is defined
+by
+\begin{equation}\label{eq:solution}
+  \widehat u(k)=G(k)\widehat f(k).
+\end{equation}
+Moreover,
+\begin{equation}\label{eq:operatornorm}
+  \boxed{\quad
+  \norm{\mathcal L^{-1}}_{L^2\to L^2}=\frac1r.
+  \quad}
+\end{equation}
+If $a>0$, then $u\in H^4(\R^d)$.
+\end{proposition}
+
+\begin{proof}
+By Theorem~\ref{thm:E58}, $G\in L^\infty(\R^d)$ and
+$\norm{G}_{L^\infty}\leq1/r$. For any $f\in L^2$, the product
+$G\widehat f\in L^2$, so Plancherel's theorem defines the unique
+$u\in L^2$ with \eqref{eq:solution} and gives
+\begin{equation}\label{eq:upper}
+  \norm{u}_{2}^2
+  =\frac{1}{(2\pi)^d}\int_{\R^d}|G(k)|^2
+   |\widehat f(k)|^2\,dk
+  \leq\frac{1}{r^2}\norm{f}_2^2.
+\end{equation}
+Since $\ell(k)G(k)=1$, equation \eqref{eq:solution} solves
+$\mathcal Lu=f$ distributionally. Conversely, if
+$\mathcal Lu=0$ and $u\in L^2$, then
+$\ell\widehat u=0$ and $\ell>0$, hence $u=0$.
+
+To show that \eqref{eq:upper} is sharp, fix $\varepsilon>0$ and let
+\begin{equation}
+  E_\varepsilon
+  :=\left\{k\in\R^d:
+      \bigl||k|^2-k_\star^2\bigr|<\varepsilon\right\}.
+\end{equation}
+This measurable set has positive, finite measure for every
+$\varepsilon>0$ (including when $k_\star=0$). Choose a nonzero
+$f_\varepsilon\in L^2$ whose Fourier transform is supported in
+$E_\varepsilon$. On this set,
+\begin{equation}
+  G(k)\geq\frac{1}{r+a\varepsilon^2},
+\end{equation}
+so Plancherel implies
+\begin{equation}
+  \frac{\norm{\mathcal L^{-1}f_\varepsilon}_2}
+       {\norm{f_\varepsilon}_2}
+  \geq\frac{1}{r+a\varepsilon^2}.
+\end{equation}
+Letting $\varepsilon\downarrow0$ gives
+$\norm{\mathcal L^{-1}}_{L^2\to L^2}\geq1/r$,
+which, together with \eqref{eq:upper}, proves
+\eqref{eq:operatornorm}.
+
+Finally, if $a>0$, the function
+$(1+|k|^2)^2G(k)$ is bounded: its denominator grows like
+$a|k|^4$ at high frequency and stays strictly positive at finite
+frequency. Hence
+\begin{equation}
+  \int_{\R^d}(1+|k|^2)^4|\widehat u(k)|^2\,dk
+  \leq C^2\int_{\R^d}|\widehat f(k)|^2\,dk<\infty,
+\end{equation}
+so $u\in H^4(\R^d)$.
+\end{proof}
+
+\begin{remark}[Norm attainment]
+For $a>0$, the equality set $\{k:|k|=k_\star\}$ has
+Lebesgue measure zero. Thus the $L^2\to L^2$ operator norm in
+\eqref{eq:operatornorm} is approached by concentrating Fourier mass
+near the shell, but is not attained by any nonzero $L^2$ input.
+For $a=0$, every nonzero input attains it.
+\end{remark}
+
+\section{Energy (coercivity) proof of the upper estimate}
+
+When $a>0$ and $u\in H^4(\R^d)$, integration by parts, or
+Plancherel's theorem, yields
+\begin{equation}\label{eq:coercivity}
+\begin{aligned}
+  \ip{u}{\mathcal Lu}_{L^2}
+  &=r\norm{u}_2^2
+    +a\norm{(\Delta+k_\star^2)u}_2^2\\
+  &\geq r\norm{u}_2^2.
+\end{aligned}
+\end{equation}
+If $\mathcal Lu=f$, then Cauchy--Schwarz gives
+\begin{equation}
+  r\norm{u}_2^2
+  \leq\operatorname{Re}\ip{u}{f}_{L^2}
+  \leq\norm{u}_2\norm{f}_2.
+\end{equation}
+Dividing by $\norm{u}_2$ when it is nonzero proves
+$\norm{u}_2\leq r^{-1}\norm{f}_2$; when $u=0$, the estimate is
+immediate. For $a=0$, $\mathcal L=rI$ and the estimate is an
+identity.
+
+\section{Band selectivity and the discrete-spectrum caveat}
+
+Assume $a>0$ and set
+$\delta:=\bigl||k|^2-k_\star^2\bigr|\geq0$. Then
+\begin{equation}
+  G(\delta)=\frac{1}{r+a\delta^2},
+  \qquad
+  \frac{dG}{d\delta}
+  =-\frac{2a\delta}{(r+a\delta^2)^2}<0
+  \quad(\delta>0).
+\end{equation}
+Thus the response is strictly largest on the shell and strictly
+decreases with detuning. At high detuning,
+\begin{equation}
+  G(\delta)\sim\frac{1}{a\delta^2}
+  \qquad(\delta\to\infty).
+\end{equation}
+
+For a periodic box, the same Fourier-multiplier inequality holds
+at every admissible discrete wavevector $k\in\Lambda$. However,
+\begin{equation}
+  \norm{\mathcal L^{-1}}_{L^2\to L^2}
+  =\sup_{k\in\Lambda}G(k)
+  \leq\frac1r,
+\end{equation}
+with equality for $a>0$ if and only if the discrete spectrum
+contains a wavevector with $|k|=k_\star$. The maximum is smaller
+than $1/r$ otherwise.
+
+\section{Fourier multiplier versus physical-space Green function}
+
+The inequality $0<G(k)\leq1/r$ is a \emph{Fourier-space}
+statement. It does not imply that the inverse Fourier transform
+$g=\F^{-1}G$ is pointwise nonnegative, nor does it provide a
+pointwise bound $g(x)\leq1/r$.
+
+To see why nonnegativity fails, consider $d=1$, $k_\star=0$,
+$r>0$, $a>0$. Write
+\begin{equation}
+  b:=\left(\frac ra\right)^{1/4},
+  \qquad t:=\frac{b|x|}{\sqrt2}.
+\end{equation}
+The explicit spatial Green function for
+$\mathcal L=r+a\,d^4/dx^4$ is
+\begin{equation}\label{eq:physicalgreen}
+  g(x)=\frac{1}{2\sqrt2\,a^{1/4}r^{3/4}}
+       e^{-t}\bigl(\cos t+\sin t\bigr).
+\end{equation}
+For completeness, the formula follows from the even, decaying
+solution to $ag''''+rg=0$ away from $x=0$. Indeed, with
+$c=b/\sqrt2$, the function
+$h(x)=e^{-c|x|}(\cos(c|x|)+\sin(c|x|))$
+satisfies $ah''''+rh=0$ for $x\ne0$, is continuous with
+$h'(0^+)=h'(0^-)=0$, and has
+$h'''(0^+)-h'''(0^-)=8c^3$. Multiplying by
+$C=(8ac^3)^{-1}=(2\sqrt2\,a^{1/4}r^{3/4})^{-1}$ gives
+$ag''''+rg=\delta_0$ in the sense of distributions.
+Since the Fourier transform of this identity yields
+$\widehat g(k)=1/(r+ak^4)$, equation
+\eqref{eq:physicalgreen} is exactly the inverse Fourier transform
+of $G$ in this example.
+
+At $t=\pi$, one has
+$\cos t+\sin t=-1$, so $g(x)<0$, even though
+$G(k)>0$ for every $k$. Consequently, positivity of the
+Fourier multiplier must not be confused with pointwise positivity
+of the spatial Green function.
+
+\section{Scope and conclusion}
+
+The assumptions $r>0$ and $a\geq0$ are essential to the
+unconditional bound. If $r=0$ and $a>0$, the Fourier symbol
+vanishes on the selected shell. If $a<0$, it is not globally
+bounded below by $r$ and can vanish at real frequencies. The
+result establishes a bounded \emph{linear} spectral response;
+it does not, by itself, establish nonlinear pattern stability,
+spatial localization, or physical wavelength selection.
+
+\begin{equation*}
+  \boxed{
+    \forall k\in\R^d:\quad
+    0<\frac{1}{r+a(|k|^2-k_\star^2)^2}\leq\frac1r,
+    \qquad
+    \norm{\mathcal L^{-1}}_{L^2\to L^2}=\frac1r.
+  }
+\end{equation*}
+
+\end{document}
