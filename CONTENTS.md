@@ -56,3 +56,9 @@ A PDF here is an analytic manuscript, **not** a claim of peer review or Lean ker
 ## F11 — Band-pass amplitude gradient flow
 
 **E13/E14: negative-gradient-flow structure and exact dissipation identity** — [PDF](preprints/band-pass-amplitude-negative-gradient-flow/paper.pdf) · [LaTeX source](papers/band-pass-amplitude-negative-gradient-flow/main.tex) · [Notes](preprints/band-pass-amplitude-negative-gradient-flow/README.md)
+
+## F11 — Fourier concentration and projection
+
+**E62: Spectral energy concentration fraction** — [PDF](preprints/spectral-energy-concentration-e62/paper.pdf) · [LaTeX source](papers/spectral-energy-concentration-e62/main.tex) · [Notes](preprints/spectral-energy-concentration-e62/README.md)
+
+For nonzero L² data, the Fourier energy fraction within any chosen band is between zero and one. Includes equality cases, projector formulation, and continuous spectra. This is a normalization result, not a proof of dynamical concentration or shell attraction.

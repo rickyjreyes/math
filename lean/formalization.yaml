@@ -57,3 +57,8 @@ families:
     main_theorem_formalized: false
     covered: "Band-pass negative gradient flow and dissipative identity proved analytically; no Lean formalization of the amplitude PDE."
     declarations: []
+
+  F11:
+    main_theorem_formalized: false
+    covered: "E62 analytic normalization proof added to PDF catalogue; not formalized in this Lean project."
+    declarations: []

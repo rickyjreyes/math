@@ -15,3 +15,9 @@
 - Preserved the original mathematical manuscript content; no PDE theorem has been relabeled as fully Lean-formalized.
 
 Future errata and withdrawals will link previous Git revisions instead of silently rewriting the historical record.
+
+## 2026-10-26 — E62 spectral concentration proof
+
+- Added Manuscript 1 E62 as family F11, with discrete and continuous-spectrum bounds and equality conditions.
+- Distinguished the kinematic normalized-energy claim from unproved time-monotone band selection.
+- Updated the reproducible PDF catalogue and build counts from 14 to 15, without asserting that this new manuscript is Lean-formalized in this repository.

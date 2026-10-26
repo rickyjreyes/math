@@ -1,0 +1,235 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\one}{\mathbf{1}}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+
+\title{E62: Bounds for the Spectral Energy Concentration Fraction}
+\author{Richard J. Reyes\\\small Manuscript 1 --- Self-Emergent Fourier Cymatics}
+\date{October 26, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For a nonzero square-integrable field, the fraction of Fourier energy contained in a selected set of modes lies between zero and one. We prove the bound and its equality cases for discrete Fourier series, give an independent proof using orthogonal spectral projection, and establish the continuous-spectrum analogue. The assertion is kinematic: it does not imply dynamical concentration, mode selection, or monotonicity in time.
+\end{abstract}
+
+\section{Discrete spectral concentration}
+
+Let $d\geq 1$ and $\T^d=(\R/2\pi\Z)^d$. Fix a time $t$ and let
+$A(t)=A(\cdot,t)\in L^2(\T^d;\C)$ have Fourier coefficients
+\begin{equation}\label{eq:coeff}
+\widehat A_k(t)
+=\frac{1}{(2\pi)^d}\int_{\T^d} A(x,t)e^{-ik\cdot x}\,dx,
+\qquad k\in\Z^d.
+\end{equation}
+Let $\mathcal A^\star\subseteq\Z^d$ be an arbitrary set of selected modes.
+A standard choice is the dominant annulus
+\begin{equation}\label{eq:annulus}
+\mathcal A^\star
+=\bigl\{k\in\Z^d:\bigl||k|-k_\star\bigr|\leq\delta\bigr\},
+\qquad k_\star>0,\quad\delta\geq0.
+\end{equation}
+Define
+\begin{align}
+E_\star(t)&=\sum_{k\in\mathcal A^\star}|\widehat A_k(t)|^2,
+\label{eq:estar}\\
+E_{\mathrm{tot}}(t)&=\sum_{k\in\Z^d}|\widehat A_k(t)|^2.
+\label{eq:etotal}
+\end{align}
+For $E_{\mathrm{tot}}(t)>0$, the \emph{spectral energy concentration fraction} is
+\begin{equation}\label{eq:eta}
+\boxed{\displaystyle
+\eta(t)=\frac{E_\star(t)}{E_{\mathrm{tot}}(t)}
+=\frac{\sum_{k\in\mathcal A^\star}|\widehat A_k(t)|^2}
+{\sum_{k\in\Z^d}|\widehat A_k(t)|^2}.}
+\end{equation}
+
+\begin{theorem}[E62: spectral concentration bound]\label{thm:e62}
+Let $A(t)\in L^2(\T^d;\C)$ be nonzero and let
+$\mathcal A^\star\subseteq\Z^d$. Then $\eta(t)$ in
+\eqref{eq:eta} is well-defined and
+\begin{equation}\label{eq:bound}
+\boxed{0\leq\eta(t)\leq1.}
+\end{equation}
+Moreover,
+\begin{align}
+\eta(t)=0
+&\iff \widehat A_k(t)=0\quad\text{for every }k\in\mathcal A^\star,
+\label{eq:zero}\\
+\eta(t)=1
+&\iff \widehat A_k(t)=0\quad\text{for every }k\notin\mathcal A^\star.
+\label{eq:one}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+By Parseval's identity,
+\begin{equation}\label{eq:parseval}
+\norm{A(t)}_{L^2(\T^d)}^2
+=(2\pi)^d\sum_{k\in\Z^d}|\widehat A_k(t)|^2.
+\end{equation}
+Since $A(t)$ is nonzero and belongs to $L^2$, the denominator is
+strictly positive and finite:
+\[
+0<E_{\mathrm{tot}}(t)<\infty.
+\]
+Every summand $|\widehat A_k(t)|^2$ is nonnegative. Hence the disjoint
+partition $\Z^d=\mathcal A^\star\sqcup(\Z^d\setminus\mathcal A^\star)$
+gives
+\begin{align*}
+E_{\mathrm{tot}}(t)
+&=\sum_{k\in\mathcal A^\star}|\widehat A_k(t)|^2
++\sum_{k\notin\mathcal A^\star}|\widehat A_k(t)|^2\\
+&=E_\star(t)+E_{\mathrm{out}}(t),
+\qquad E_{\mathrm{out}}(t)\geq0.
+\end{align*}
+It follows that
+\[
+0\leq E_\star(t)\leq E_{\mathrm{tot}}(t).
+\]
+Dividing by the strictly positive $E_{\mathrm{tot}}(t)$ proves
+\eqref{eq:bound}.
+
+Because the denominator is positive, $\eta(t)=0$ if and only if
+$E_\star(t)=0$. A (possibly infinite, convergent) sum of nonnegative
+terms is zero exactly when every term is zero; this proves
+\eqref{eq:zero}. Similarly, $\eta(t)=1$ if and only if
+$E_{\mathrm{out}}(t)=0$, which proves \eqref{eq:one}.
+\end{proof}
+
+\begin{remark}[Sharpness]
+If $\mathcal A^\star$ contains a mode $p$, the nonzero field
+$A(x)=e^{ip\cdot x}$ has $\eta=1$. If the complement contains a mode
+$q$, then $A(x)=e^{iq\cdot x}$ has $\eta=0$. Thus both endpoints are
+attainable when both spectral regions contain at least one mode.
+\end{remark}
+
+\section{Equivalent proof via the orthogonal Fourier projector}
+
+Define $P_\star:L^2(\T^d)\to L^2(\T^d)$ by
+\begin{equation}\label{eq:projector}
+\widehat{P_\star A}(k)
+=\one_{\mathcal A^\star}(k)\widehat A(k).
+\end{equation}
+Because the multiplier is real-valued and belongs to $\{0,1\}$,
+\begin{equation}
+P_\star^2=P_\star,\qquad P_\star^*=P_\star.
+\end{equation}
+Thus $P_\star$ is the orthogonal projection onto the selected Fourier
+subspace. Parseval's identity gives
+\begin{equation}\label{eq:projratio}
+\eta(t)=\frac{\norm{P_\star A(t)}_2^2}{\norm{A(t)}_2^2}.
+\end{equation}
+Moreover, $P_\star A$ and $(I-P_\star)A$ are orthogonal, so
+\begin{equation}\label{eq:pythag}
+\norm{A(t)}_2^2
+=\norm{P_\star A(t)}_2^2
++\norm{(I-P_\star)A(t)}_2^2.
+\end{equation}
+Both terms on the right are nonnegative, hence
+$0\leq\norm{P_\star A(t)}_2^2\leq\norm{A(t)}_2^2$.
+Since $A(t)\neq0$, \eqref{eq:projratio} proves
+$0\leq\eta(t)\leq1$ again. Furthermore, $\eta(t)=0$ exactly when
+$P_\star A(t)=0$, and $\eta(t)=1$ exactly when
+$(I-P_\star)A(t)=0$. These are precisely the Fourier-support
+conditions of Theorem~\ref{thm:e62}.
+
+\section{Continuous-spectrum analogue}
+
+\begin{proposition}\label{prop:continuous}
+Let $A(t)\in L^2(\R^d;\C)$ be nonzero, and let
+$\mathcal B\subseteq\R^d$ be Lebesgue-measurable. Define
+\begin{equation}\label{eq:continuous}
+\eta_{\mathcal B}(t)
+=\frac{\displaystyle\int_{\mathcal B}
+|\widehat A(\xi,t)|^2\,d\xi}
+{\displaystyle\int_{\R^d}
+|\widehat A(\xi,t)|^2\,d\xi}.
+\end{equation}
+Then $0\leq\eta_{\mathcal B}(t)\leq1$. Equality at zero holds if
+and only if $\widehat A(\xi,t)=0$ for almost every $\xi\in\mathcal B$;
+equality at one holds if and only if $\widehat A(\xi,t)=0$ for almost
+every $\xi\notin\mathcal B$.
+\end{proposition}
+
+\begin{proof}
+By Plancherel's theorem, the denominator of
+\eqref{eq:continuous} is finite and positive. As
+$|\widehat A(\xi,t)|^2\geq0$ almost everywhere and
+$\mathcal B\subseteq\R^d$,
+\[
+0\leq\int_{\mathcal B}|\widehat A|^2\,d\xi
+\leq\int_{\R^d}|\widehat A|^2\,d\xi.
+\]
+Division gives the claimed bound. A nonnegative measurable function
+has zero integral over a measurable set if and only if it vanishes
+almost everywhere there, proving both equality statements.
+\end{proof}
+
+\begin{remark}[Zero-width shell in the continuum]
+For $k_\star>0$, the exact sphere
+$\{\xi\in\R^d:|\xi|=k_\star\}$ has $d$-dimensional Lebesgue
+measure zero. Its concentration fraction in \eqref{eq:continuous}
+is therefore zero for every $L^2$ field, even a nonzero one.
+A finite-width annulus is needed to quantify nonzero $L^2$ energy
+around that carrier shell in the continuum.
+\end{remark}
+
+\section{Domain of definition and dynamical scope}
+
+\begin{remark}[Zero field]
+When $A(t)=0$ in $L^2$, the numerator and denominator in
+\eqref{eq:eta} both vanish. The expression is undefined ($0/0$).
+Setting $\eta(t)=0$ at such times is a permissible added convention,
+not a conclusion from the ratio itself.
+\end{remark}
+
+\begin{remark}[No monotonicity follows from E62]
+The inequality is pointwise in time and assumes no evolution
+law. To see that it does not imply monotonicity, choose
+$p\in\mathcal A^\star$ and $q\notin\mathcal A^\star$ and let
+\[
+A(x,t)=\cos(t)e^{ip\cdot x}+\sin(t)e^{iq\cdot x}.
+\]
+The two Fourier modes are orthogonal, and their total spectral energy
+is $\cos^2t+\sin^2t=1$. Therefore
+\[
+\eta(t)=\cos^2t,
+\]
+which is not monotone. Any claim of time-dependent spectral
+concentration, asymptotic selection, or spontaneous pattern formation
+requires additional dynamical hypotheses and a separate proof.
+\end{remark}
+
+\section{Conclusion}
+
+For a nonzero $L^2$ field and any selected measurable set of
+Fourier modes, the energy fraction carried by those modes is a
+well-defined number in $[0,1]$. In the discrete setting,
+\[
+\boxed{
+\eta(t)
+=\frac{\sum_{k\in\mathcal A^\star}|\widehat A_k(t)|^2}
+{\sum_k|\widehat A_k(t)|^2}
+=\frac{\norm{P_\star A(t)}_2^2}{\norm{A(t)}_2^2}
+\in[0,1].}
+\]
+The result is exact, sharp under the stated mode-existence conditions,
+and independent of the choice of evolution equation. It establishes
+normalization of the concentration statistic, not dynamical attraction
+to the selected shell.
+
+\end{document}
