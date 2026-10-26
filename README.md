@@ -26,6 +26,8 @@ A growing collection of **research manuscripts organized by result family**, org
 
 For F01, prior single-power work: Fernández, Jeanjean, Mandel and Mariş, *Journal of Differential Equations* **330** (2022), DOI [10.1016/j.jde.2022.04.037](https://doi.org/10.1016/j.jde.2022.04.037). An independent Hamiltonian model is **not** a derivation from a physically healthy parent, and D4 in this corpus is square symmetry in two spatial dimensions.
 
+| **M6B** | Regularized curvature closure and stationary inverse nonuniqueness | Explicit analytical counterexamples; no claim about M7 initial-value evolution |
+
 ## Reproducibility
 
 ```bash
