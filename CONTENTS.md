@@ -89,3 +89,7 @@ If \(\psi\in H^s(\mathbb R^n)\), \(s>n/2+2\), and \(\varepsilon>0\), the correct
 **E58: Sharp band-selective Green multiplier bound** — [PDF](preprints/band-selective-green-kernel-bound/paper.pdf) · [LaTeX](papers/band-selective-green-kernel-bound/main.tex) · [Notes](preprints/band-selective-green-kernel-bound/README.md)
 
 For `r>0, a≥0`, proves `0<G(k)≤1/r`, shell equality, sharp continuum `L²` resolvent norm and a sign-changing physical-space example. The full continuum theorem is analytic, not Lean-formalized.
+
+## E61 — Linear Swift--Hohenberg spectral threshold
+
+**Exact continuum pattern-formation threshold** — [PDF](preprints/e61-pattern-formation-threshold/paper.pdf) · [LaTeX source](papers/e61-pattern-formation-threshold/main.tex) · [Notes](preprints/e61-pattern-formation-threshold/README.md)
