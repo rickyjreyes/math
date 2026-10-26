@@ -9,6 +9,9 @@ on:
       - '.github/workflows/pdfs.yml'
   pull_request:
   workflow_dispatch:
+concurrency:
+  group: pdf-build-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: write
 jobs:
@@ -46,5 +49,13 @@ jobs:
           git add -f overview.pdf preprints/*/paper.pdf
           if ! git diff --cached --quiet; then
             git commit -m 'build: publish manuscript PDFs [skip ci]'
-            git push origin HEAD:main
+            for attempt in 1 2 3 4 5; do
+              git fetch origin main
+              git rebase origin/main || { git rebase --abort; exit 1; }
+              if git push origin HEAD:main; then
+                exit 0
+              fi
+              sleep 2
+            done
+            exit 1
           fi
