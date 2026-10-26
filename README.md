@@ -82,7 +82,7 @@ the manuscript proves that every positive-time four-jet evolution map \(S(t):X_{
 \]
 The proof constructs smooth real solutions on the torus and Fourier packets on the whole space, and extends the argument to the strict-coefficient homogeneous S004 symbol.
 
-**Build:** Run \`pdflatex -interaction=nonstopmode main.tex\` twice from the paper directory. Uses standard LaTeX packages.
+**Build:** Run `pdflatex -interaction=nonstopmode main.tex` twice from the paper directory. Uses standard LaTeX packages.
 
 **Scope:** This is a linearized homogeneous-sector ill-posedness theorem, not a nonlinear norm-inflation proof or measured physical lifetime.
 
