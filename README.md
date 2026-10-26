@@ -1,60 +1,87 @@
-# Mathematical manuscripts and formal proof artifacts
+# Mathematical Manuscripts and Formal Proof Artifacts
 
-**Richard J. Reyes · Independent Researcher**
+**Richard J. Reyes** · Independent Researcher
 
-A growing collection of **research manuscripts organized by result family**, organized for independent mathematical inspection. Inspired in navigation by [openai/math](https://github.com/openai/math), with independent authorship and separate verification claims.
+A collection of mathematical manuscripts on **fourth-order partial differential equations, spectral dynamics, variational analysis, geometric constraints, and nonlinear operators**. The emphasis is on explicit hypotheses, self-contained arguments, counterexamples where claims fail, and reproducible source material.
 
-## Navigate
+Results are organized by mathematical subject rather than by a single overarching physical interpretation. **Analytical proofs, Lean-checked statements, and physical claims are distinct levels of evidence.**
 
-- [Mathematical compendium — Volume I](compendium/wct-elementary-mathematics/paper.pdf) — 25 corrected WCT registry IDs: standard results, conditional bounds, assumptions and limitations ([source](compendium/wct-elementary-mathematics/main.tex), [compendium index](compendium/README.md)).
-- [Overview PDF](overview.pdf) — concise guide to all result families.
-- [Manuscript map](CONTENTS.md) — direct links to each **PDF**, LaTeX source, and notes.
-- [E16: spectral concentration and argmax proof](papers/e16-linear-spectral-concentration/main.tex) — linear Fourier selection with explicit hypotheses.
-- [E18: corrected WCT Lyapunov descent](papers/wct-e18-exact-gradient-lyapunov/main.tex) — complete proof under the exact negative-gradient-flow assumption.
-- [Preprints](preprints/) — compiled manuscript PDFs.
-- [Lean catalogue](lean/formalization.yaml) and [Lean project](lean/README.md) — exact status of every family.
-- [History](history.md) — correction and release log.
+**Explore:** [Complete manuscript catalogue](CONTENTS.md) · [Compiled PDFs](preprints/) · [Overview](overview.pdf) · [Lean formalization status](lean/formalization.yaml) · [Revision history](history.md)
 
-## Featured results
+## Selected mathematical results
 
-| Family | Results | Scope |
+The table is a starting point, not an exhaustive list. Each link opens an individual compiled manuscript; the [catalogue](CONTENTS.md) links every manuscript to its PDF, LaTeX source, and notes.
+
+| Area | Result and precise scope | Proof |
 | --- | --- | --- |
-| **F01** | Strict binding, whole-space minimizer existence, orbital stability, negative trial energy | Combined focusing-cubic/defocusing-quintic fourth-order Hamiltonian on ℝ²; sufficient mass range |
-| **F02** | High-frequency Sobolev obstruction, higher-derivative constraint count | Specified linear and regular fixed-background models |
-| **F03** | Spectral–phase identity and 4/5 counterexample | Declared periodic spectral operator |
-| **F04** | Instantaneous finite Fourier-mode leakage | Unprojected cubic–quintic torus dynamics |
-| **F11** | E13/E14 negative-gradient-flow structure; E16 linear spectral concentration; E62 Fourier fraction | Periodic amplitude flow and continuum spectral selection under explicit initial-support assumptions |
-| **F12** | E26: conditional historical curvature $L^2$ estimate | Additive-denominator version requires uniform separation; corrected M2/E17 operator is different |
-| **M6B** | Regularized curvature closure and stationary inverse nonuniqueness | Explicit analytical counterexamples; no claim about M7 initial-value evolution |
+| **Fourth-order variational PDE** | Strict binding, minimizer existence, and orbital stability for a focusing-cubic/defocusing-quintic Hamiltonian on $\mathbb R^2$, within a stated sufficient mass range. | [Strict binding](preprints/strict-subadditivity-fourth-order-cubic-quintic/paper.pdf) · [Existence](preprints/whole-space-fourth-order-cubic-quintic-minimizers/paper.pdf) · [Stability](preprints/orbital-stability-fourth-order-cubic-quintic/paper.pdf) |
+| **Higher-derivative fields** | Constraint counting for a specified nonzero fixed-background complex-scalar sector; a separate linear homogeneous-sector ultraviolet Sobolev obstruction. | [Constraint analysis](preprints/s004-complex-scalar-constraint-count/paper.pdf) · [UV obstruction](preprints/uv-sobolev-ill-posedness-fourth-order-wave/paper.pdf) |
+| **Scalar-gradient geometry** | The tensor $T_{\mu\nu}=\operatorname{Re}(\partial_\mu\psi^*\partial_\nu\psi)$ has rank at most two and is positive semidefinite, so this construction alone cannot yield a Lorentzian metric. | [Rank and signature proof](preprints/scalar-gradient-lorentzian-no-go/paper.pdf) |
+| **Spectral inverse problems** | An $11\times31$ sensitivity matrix has kernel dimension at least 20: a structural *linearized local* identifiability obstruction, not a global inverse theorem. | [Identifiability proof](preprints/sm-v18-local-identifiability-obstruction/paper.pdf) |
+| **Fourier-band selection (E16)** | Exact linear modal-power evolution; normalized concentration near the preferred shell when that shell is present in the initial spectral support, with additional hypotheses for pointwise argmax convergence. | [Spectral concentration proof](preprints/e16-linear-spectral-concentration/paper.pdf) |
+| **Geometric phase locking** | Exact weighted closed-loop energy minimum at fixed winding and geometry, including the equality condition. | [Phase-locking proof](preprints/weighted-closed-loop-phase-locking/paper.pdf) |
+| **Whole-space Fourier spectra** | A nonzero $L^2$ function cannot have Fourier support confined to a measure-zero frequency shell. | [Fourier-shell proof](preprints/isolated-fourier-shell-no-l2-bound-state/paper.pdf) |
+| **Curvature energy and local estimates** | Whole-space nonattainment for a positive curvature energy; separate counterexamples and corrected hypotheses for localized energy bounds. | [Nonattainment](preprints/positive-curvature-whole-space-nonattainment/paper.pdf) · [Localized estimates (E68)](preprints/localized-gradient-energy-e68/paper.pdf) |
 
-For F01, prior single-power work: Fernández, Jeanjean, Mandel and Mariş, *Journal of Differential Equations* **330** (2022), DOI [10.1016/j.jde.2022.04.037](https://doi.org/10.1016/j.jde.2022.04.037). An independent Hamiltonian model is **not** a derivation from a physically healthy parent, and D4 in this corpus is square symmetry in two spatial dimensions.
+## Research map
 
+| Family | Subject | Contents |
+| --- | --- | --- |
+| **F01** | Fourth-order variational PDE | Negative trial energy, strict binding, minimizers, orbital stability |
+| **F02** | Higher-derivative fields | Canonical constraints and ultraviolet ill-posedness |
+| **F03** | Spectral–phase geometry | Weighted curvature identity and counterexample |
+| **F04** | Finite-mode dynamics | Failure of finite Fourier-subspace invariance under an unprojected nonlinear flow |
+| **F05** | Curvature energy | Positive-energy whole-space nonattainment |
+| **F06** | Dispersion | Exact positive-wavenumber minimum under stated parameter conditions |
+| **F07** | Phase locking | Sharp closed-loop variational minimum |
+| **F08** | Scalar-gradient tensors | Rank and Lorentzian-signature obstructions |
+| **F09** | Spectral inverse problems | Structural matrix-nullity and local identifiability bounds |
+| **F10** | Fourier localization | Nonexistence of nonzero $L^2$ states on an isolated spectral shell |
+| **F11** | Fourier-band dynamics | E13/E14 gradient flow, E16 spectral selection, E62 spectral fraction |
+| **F12** | Curvature multipliers | Conditional E26 estimate for the historical additive denominator |
 
-**E68 addition:** [Localized-energy counterexamples and corrected theorem](papers/localized-gradient-energy-e68/main.tex) · [PDF](preprints/localized-gradient-energy-e68/paper.pdf) · [Notes](preprints/localized-gradient-energy-e68/README.md). Not Lean-formalized.
+**Additional WCT operator results** include M2/E17 regularization, E18 Lyapunov descent, E58 resolvent bounds, E61 instability threshold, E69 curvature regularity, M3/E57 shell damping, M6B nonuniqueness, and E68 localized estimates. See the [complete catalogue](CONTENTS.md) for links and precise assumptions.
 
-## Reproducibility
+## Verification and reproducibility
+
+Each manuscript has a separate proof and source. The [Lean project](lean/README.md) records which supporting statements have been formalized; **a successful Lean build does not certify every theorem in the PDFs**.
+
+| Evidence | What it establishes |
+| --- | --- |
+| **Analytical manuscript** | A written mathematical argument under its specified definitions and assumptions; subject to independent mathematical review |
+| **Lean formalization** | Kernel checking of the *exact declarations encoded in Lean*, which may be narrower than the corresponding manuscript |
+| **Executable or numerical check** | A computational check of a stated instance or model; not a general analytic proof |
+| **Physical interpretation** | An additional hypothesis or application, requiring its own mathematical and empirical justification |
+
+Lean-checked supporting material includes algebraic parts of the $11\times31$ nullity obstruction, positive-semidefinite scalar-gradient tensor identities, finite weighted phase and variance inequalities, and selected Fourier and polynomial identities. The major nonlinear PDE existence and stability proofs are **not** fully formalized in Lean. Refer to the [per-family manifest](lean/formalization.yaml) for exact coverage.
+
+To reproduce the PDF compilation (with a compatible LaTeX installation) and the Lean build:
 
 ```bash
-# Compile all manuscript PDFs and overview.pdf
+git clone https://github.com/rickyjreyes/math.git
+cd math
+
+# Build manuscript PDFs and overview
 bash scripts/build_pdfs.sh
 
-# Compile the explicit Lean supporting theorems
+# Check Lean declarations
 cd lean
 lake update
 lake exe cache get
 lake build
 ```
 
-[PDF workflow](.github/workflows/pdfs.yml) builds and publishes the actual PDFs to the repository on a successful main-branch run; [Lean workflow](.github/workflows/lean.yml) checks the included Lean code.
+GitHub Actions also runs the [PDF compilation workflow](.github/workflows/pdfs.yml) and [Lean checking workflow](.github/workflows/lean.yml). The PDF workflow publishes compiled manuscripts under `preprints/` after a successful main-branch run.
 
-**Formalization status:** the Lean project includes kernel-checkable elementary theorems and substantive structural cores: the actual 11×31 matrix nullity bound, rank-two/positive-semidefinite scalar-gradient Gram obstruction, finite weighted variance and phase inequalities, 1D Fourier cutoff certificates, and null-support consequences. **The main nonlinear PDE and higher-derivative dynamics manuscripts remain unformalized.** A green Lean check does not certify the manuscript PDFs. See [the per-family manifest](lean/formalization.yaml) and [the Lean guide](lean/README.md). Separate WCT Lean work: [wct-lean](https://github.com/rickyjreyes/wct-lean).
+## Scope and prior work
 
-Every manuscript is a research draft, not independently peer-reviewed. Mathematical correctness, priority, physical interpretation and external replication are separate questions.
+- **Model separation:** The F01 Hamiltonian is studied as an independent mathematical model. Its results do not establish a derivation from a ghost-free parent field theory.
+- **Dimensional notation:** “D4” in the corresponding variational analyses denotes **square symmetry in two spatial dimensions**; it is not a theorem about lifetimes in four spatial dimensions.
+- **Operator versions:** E26 concerns a historical additive-denominator curvature operator under a uniform separation hypothesis. M2/E17 analyzes a different, corrected phase-covariant regularization.
+- **Earlier literature:** For the related single-power fourth-order problem, see Fernández, Jeanjean, Mandel and Mariş, *Journal of Differential Equations* **330** (2022), [doi:10.1016/j.jde.2022.04.037](https://doi.org/10.1016/j.jde.2022.04.037). The combined cubic–quintic results should be read with this distinction in mind.
 
-## Cite and review
+These are **research manuscripts, not peer-reviewed publications by virtue of appearing here**. Claims of mathematical validity, formal verification, novelty, and physical applicability require separate evaluation.
 
-Cite the specific manuscript and Git revision. [Citation metadata](CITATION.cff) · [Version history](history.md). Corrections, counterexamples and priority references are welcome through [issues](https://github.com/rickyjreyes/math/issues).
+## Citation and review
 
-## E61 — Continuum pattern-formation threshold
-
-[LaTeX proof](papers/e61-pattern-formation-threshold/main.tex) · [PDF](preprints/e61-pattern-formation-threshold/paper.pdf) · [Notes](preprints/e61-pattern-formation-threshold/README.md). Exact threshold for the centered linear Swift--Hohenberg operator; no nonlinear localization claim.
+Cite the **specific manuscript and Git revision**, rather than treating the entire repository as a single theorem or publication. See [citation metadata](CITATION.cff) and [version history](history.md). Corrections, counterexamples, reproduction reports, and priority references are welcome via [GitHub Issues](https://github.com/rickyjreyes/math/issues).
