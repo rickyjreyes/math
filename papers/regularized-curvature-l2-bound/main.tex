@@ -1,0 +1,222 @@
+\documentclass[11pt]{article}
+
+% Compile with: pdflatex E26_regularized_curvature_L2_bound.tex
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newtheorem{counterexample}{Counterexample}
+\DeclareMathOperator*{\essinf}{ess\,inf}
+
+\title{E26: A Conditional $L^2$ Estimate for the\\
+Regularized Curvature Operator}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For $\varepsilon>0$ and $\alpha\geq0$, consider the curvature
+expression
+\[
+\Theta_\varepsilon[\psi]
+=-\frac{\Delta\psi}
+{\psi+\varepsilon e^{-\alpha|\psi|^2}}.
+\]
+We prove the $L^2$ bound asserted in lemma E26 under a precise,
+uniform lower bound on the modulus of the denominator. We also establish
+two explicit sufficient conditions and exhibit a smooth counterexample
+to the unconditional version of the estimate. In particular,
+$\varepsilon>0$ alone does not prevent denominator zeros for signed
+real or complex fields.
+\end{abstract}
+
+\section{Definitions and main result}
+Let $\Omega\subseteq\mathbb R^d$ be open, with $d\geq1$.
+Fix $\varepsilon>0$ and $\alpha\geq0$ and take
+$\psi\in H^2(\Omega;\mathbb C)$. Define
+\begin{equation}\label{eq:D}
+D_\varepsilon[\psi](x)
+:=\psi(x)+\varepsilon e^{-\alpha|\psi(x)|^2}.
+\end{equation}
+Where $D_\varepsilon[\psi]\neq0$, let
+\begin{equation}\label{eq:Theta}
+\Theta_\varepsilon[\psi](x)
+:=-\frac{\Delta\psi(x)}{D_\varepsilon[\psi](x)}.
+\end{equation}
+Pointwise assertions about Sobolev representatives are always
+understood almost everywhere.
+
+\begin{theorem}[E26: conditional $L^2$ estimate]\label{thm:E26}
+Assume that there is a constant $\delta>0$ for which
+\begin{equation}\label{eq:H}
+\essinf_{x\in\Omega}\bigl|D_\varepsilon[\psi](x)\bigr|
+\geq\delta.
+\end{equation}
+Then $\Theta_\varepsilon[\psi]\in L^2(\Omega;\mathbb C)$ and
+\begin{equation}\label{eq:E26}
+\boxed{
+\bigl\|\Theta_\varepsilon[\psi]\bigr\|_{L^2(\Omega)}
+\leq\frac{1}{\delta}\,
+\bigl\|\Delta\psi\bigr\|_{L^2(\Omega)}.
+}
+\end{equation}
+The estimate is valid for every $d\geq1$; no additional boundary
+condition is needed for this inequality.
+\end{theorem}
+
+\begin{proof}
+Since $\psi\in H^2(\Omega;\mathbb C)$, every weak second partial
+derivative of $\psi$ belongs to $L^2(\Omega)$, and hence
+\[
+\Delta\psi=\sum_{j=1}^{d}\partial_j^2\psi
+\in L^2(\Omega;\mathbb C).
+\]
+The expression $D_\varepsilon[\psi]$ is measurable. Hypothesis
+\eqref{eq:H} implies that it is nonzero almost everywhere and that
+its reciprocal is essentially bounded:
+\begin{equation}\label{eq:reciprocal}
+\left\|\frac{1}{D_\varepsilon[\psi]}\right\|_{L^\infty(\Omega)}
+\leq\frac{1}{\delta}.
+\end{equation}
+The product of an $L^\infty$ function and an $L^2$ function belongs
+to $L^2$. In particular, by H\"older's inequality,
+\begin{align*}
+\bigl\|\Theta_\varepsilon[\psi]\bigr\|_{L^2(\Omega)}
+&=\left\|\frac{\Delta\psi}{D_\varepsilon[\psi]}
+\right\|_{L^2(\Omega)}\\
+&\leq\left\|\frac{1}{D_\varepsilon[\psi]}
+\right\|_{L^\infty(\Omega)}
+\bigl\|\Delta\psi\bigr\|_{L^2(\Omega)}\\
+&\leq\frac{1}{\delta}\,
+\bigl\|\Delta\psi\bigr\|_{L^2(\Omega)}.
+\end{align*}
+This proves \eqref{eq:E26}. Equivalently, one can calculate directly:
+\begin{align*}
+\bigl\|\Theta_\varepsilon[\psi]\bigr\|_{L^2(\Omega)}^2
+&=\int_\Omega
+\frac{|\Delta\psi(x)|^2}{|D_\varepsilon[\psi](x)|^2}\,dx\\
+&\leq\delta^{-2}\int_\Omega|\Delta\psi(x)|^2\,dx\\
+&=\delta^{-2}\bigl\|\Delta\psi\bigr\|_{L^2(\Omega)}^2.
+\end{align*}
+Taking nonnegative square roots gives the same conclusion.
+\end{proof}
+
+\section{Sufficient denominator bounds}
+
+\begin{corollary}[Fields bounded away from zero]\label{cor:modulus}
+If $|\psi(x)|\geq m>\varepsilon$ almost everywhere on $\Omega$, then
+\begin{equation}\label{eq:modulus}
+\bigl\|\Theta_\varepsilon[\psi]\bigr\|_{L^2(\Omega)}
+\leq\frac{1}{m-\varepsilon}\,
+\bigl\|\Delta\psi\bigr\|_{L^2(\Omega)}.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+As $\alpha\geq0$, one has
+$0<\varepsilon e^{-\alpha|\psi|^2}\leq\varepsilon$.
+The reverse triangle inequality therefore yields
+\[
+|D_\varepsilon[\psi]|
+\geq|\psi|-\varepsilon e^{-\alpha|\psi|^2}
+\geq m-\varepsilon>0.
+\]
+Apply Theorem~\ref{thm:E26} with $\delta=m-\varepsilon$.
+\end{proof}
+
+\begin{remark}
+On $\Omega=\mathbb R^d$, an $L^2$ function cannot satisfy
+$|\psi|\geq m>0$ almost everywhere. Thus
+Corollary~\ref{cor:modulus} is most naturally used on finite-measure
+domains. The main theorem itself applies equally well on unbounded
+domains whenever its hypothesis is satisfied.
+\end{remark}
+
+\begin{corollary}[Nonnegative real fields]\label{cor:nonnegative}
+Suppose $\psi\in H^2(\Omega;\mathbb R)$ and $\psi\geq0$ almost
+everywhere. For every fixed $\varepsilon>0$ and $\alpha\geq0$, set
+\begin{equation}\label{eq:deltaeps}
+\delta_\varepsilon
+:=\min\left\{\frac{\varepsilon}{2},\,
+\varepsilon e^{-\alpha\varepsilon^2/4}\right\}>0.
+\end{equation}
+Then
+\begin{equation}\label{eq:nonnegative}
+\bigl\|\Theta_\varepsilon[\psi]\bigr\|_{L^2(\Omega)}
+\leq\frac{1}{\delta_\varepsilon}\,
+\bigl\|\Delta\psi\bigr\|_{L^2(\Omega)}.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+For almost every $x$, write $r=\psi(x)\geq0$.
+If $r\geq\varepsilon/2$, then
+\[
+r+\varepsilon e^{-\alpha r^2}\geq\varepsilon/2.
+\]
+If $0\leq r<\varepsilon/2$, the assumption $\alpha\geq0$ yields
+\[
+r+\varepsilon e^{-\alpha r^2}
+\geq\varepsilon e^{-\alpha\varepsilon^2/4}.
+\]
+Thus $D_\varepsilon[\psi]\geq\delta_\varepsilon$ almost
+everywhere. The assertion follows from Theorem~\ref{thm:E26}.
+\end{proof}
+
+\section{Counterexample without denominator separation}
+
+\begin{counterexample}[Positive regularization is not enough]
+Choose $\Omega=(-1,1)$, take any $\varepsilon>0$, set $\alpha=0$,
+and define the smooth real-valued function
+\[
+\psi(x)=x^2-\varepsilon.
+\]
+Then $\psi\in H^2((-1,1))$ and
+\[
+D_\varepsilon[\psi](x)=x^2,
+\qquad
+\Delta\psi(x)=\psi''(x)=2.
+\]
+Although the denominator vanishes only at $x=0$, the quotient is not
+square-integrable:
+\[
+\Theta_\varepsilon[\psi](x)=-\frac{2}{x^2}
+\quad(x\ne0),
+\qquad
+\int_{-1}^{1}|\Theta_\varepsilon[\psi](x)|^2\,dx
+=4\int_{-1}^{1}|x|^{-4}\,dx=+\infty.
+\]
+In contrast,
+\[
+\bigl\|\Delta\psi\bigr\|_{L^2((-1,1))}^2
+=\int_{-1}^{1}4\,dx=8<\infty.
+\]
+Consequently, the E26 estimate is \emph{false} for unrestricted
+signed real fields (and hence for unrestricted complex fields) if
+one assumes only $\varepsilon>0$ and $\psi\in H^2$.
+\end{counterexample}
+
+\section{Scope and interpretation}
+Hypothesis~\eqref{eq:H} is a bound on the \emph{modulus of the full
+denominator}. It does not follow from the mere positivity of
+$\varepsilon$. Nor may the constant $\delta$ be replaced by
+$\varepsilon$ without additional restrictions on $\psi$.
+
+Theorem~\ref{thm:E26} is a pointwise-in-$\psi$ multiplication estimate,
+not an estimate for the difference of operators evaluated at two
+different fields. It establishes neither local Lipschitz continuity
+nor global existence or uniqueness for an associated evolution
+problem. Furthermore, the theorem supplies no uniform-in-$\varepsilon$
+estimate as $\varepsilon\downarrow0$ unless a positive denominator
+bound independent of $\varepsilon$ is separately established.
+
+\end{document}
