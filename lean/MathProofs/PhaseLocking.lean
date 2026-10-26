@@ -16,8 +16,8 @@ open scoped BigOperators
 positive. The sum of inverse weights is the effective compliance. -/
 theorem finite_weighted_phase_bound {ι : Type*} [Fintype ι]
     (w q σ : ι → ℝ) (hw : ∀ i, 0 < w i) :
-    (∑ i, q i - σ i) ^ 2 / (∑ i, (w i)⁻¹) ≤
-      ∑ i, w i * (q i - σ i) ^ 2 := by
+    (∑ i : ι, q i - σ i) ^ 2 / (∑ i : ι, (w i)⁻¹) ≤
+      ∑ i : ι, w i * (q i - σ i) ^ 2 := by
   classical
   have h := Finset.sq_sum_div_le_sum_sq_div (Finset.univ)
       (fun i => q i - σ i)
@@ -26,9 +26,9 @@ theorem finite_weighted_phase_bound {ι : Type*} [Fintype ι]
         intro i _
         exact inv_pos.mpr (hw i))
   calc
-    (∑ i, q i - σ i) ^ 2 / (∑ i, (w i)⁻¹)
-        ≤ ∑ i, (q i - σ i) ^ 2 / (w i)⁻¹ := h
-    _ = ∑ i, w i * (q i - σ i) ^ 2 := by
+    (∑ i : ι, q i - σ i) ^ 2 / (∑ i : ι, (w i)⁻¹)
+        ≤ ∑ i : ι, (q i - σ i) ^ 2 / (w i)⁻¹ := h
+    _ = ∑ i : ι, w i * (q i - σ i) ^ 2 := by
         apply Finset.sum_congr rfl
         intro i _
         rw [div_inv_eq_mul]
