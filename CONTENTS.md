@@ -1,6 +1,6 @@
 # Mathematics manuscript catalogue
 
-**14 manuscripts in 10 result families.** [Overview PDF](overview.pdf) · [Lean formalization status](lean/formalization.yaml) · [History](history.md)
+**15 manuscripts in 11 result families.** [Overview PDF](overview.pdf) · [Lean formalization status](lean/formalization.yaml) · [History](history.md)
 
 A PDF here is an analytic manuscript, **not** a claim of peer review or Lean kernel certification.
 
@@ -52,3 +52,7 @@ A PDF here is an analytic manuscript, **not** a claim of peer review or Lean ker
 
 **Fourier-shell L² nonexistence** — [PDF](preprints/isolated-fourier-shell-no-l2-bound-state/paper.pdf) · [LaTeX source](papers/isolated-fourier-shell-no-l2-bound-state/main.tex) · [Notes](preprints/isolated-fourier-shell-no-l2-bound-state/README.md)
 
+
+## F11 — Band-pass amplitude gradient flow
+
+**E13/E14: negative-gradient-flow structure and exact dissipation identity** — [PDF](preprints/band-pass-amplitude-negative-gradient-flow/paper.pdf) · [LaTeX source](papers/band-pass-amplitude-negative-gradient-flow/main.tex) · [Notes](preprints/band-pass-amplitude-negative-gradient-flow/README.md)

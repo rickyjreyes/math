@@ -2,7 +2,7 @@
 
 **Richard J. Reyes · Independent Researcher**
 
-A collection of **14 research manuscripts in 10 result families**, organized for independent mathematical inspection. Inspired in navigation by [openai/math](https://github.com/openai/math), with independent authorship and separate verification claims.
+A collection of **15 research manuscripts in 11 result families**, organized for independent mathematical inspection. Inspired in navigation by [openai/math](https://github.com/openai/math), with independent authorship and separate verification claims.
 
 ## Navigate
 
@@ -20,13 +20,14 @@ A collection of **14 research manuscripts in 10 result families**, organized for
 | **F02** | High-frequency Sobolev obstruction, higher-derivative constraint count | Specified linear and regular fixed-background models |
 | **F03** | Spectral–phase identity and 4/5 counterexample | Declared periodic spectral operator |
 | **F04** | Instantaneous finite Fourier-mode leakage | Unprojected cubic–quintic torus dynamics |
+| **F11** | Band-pass negative gradient flow and exact dissipation | Periodic Swift–Hohenberg amplitude model with sufficiently regular solutions |
 
 For F01, prior single-power work: Fernández, Jeanjean, Mandel and Mariş, *Journal of Differential Equations* **330** (2022), DOI [10.1016/j.jde.2022.04.037](https://doi.org/10.1016/j.jde.2022.04.037). An independent Hamiltonian model is **not** a derivation from a physically healthy parent, and D4 in this corpus is square symmetry in two spatial dimensions.
 
 ## Reproducibility
 
 ```bash
-# Compile all 14 PDFs and overview.pdf
+# Compile all 15 PDFs and overview.pdf
 bash scripts/build_pdfs.sh
 
 # Compile the explicit Lean supporting theorems

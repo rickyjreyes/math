@@ -1,0 +1,321 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=blue}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remark}{Remark}
+\newcommand{\Om}{\Omega}
+\newcommand{\E}{\mathcal E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\Real}{\operatorname{Re}}
+\newcommand{\Lp}[1]{L^{#1}(\Om)}
+
+\title{E13: The Band-Pass Amplitude Equation as a Negative Gradient Flow\\
+\large A Complete Variational and Dissipation Proof}
+\author{}
+\date{October 26, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove that the complex band-pass amplitude equation
+\(
+\partial_t A=(r-a\Delta-b\Delta^2)A-\beta|A|^2A
+\)
+is the negative Wirtinger gradient flow of the associated Swift--Hohenberg
+energy.  We compute the first variation, establish an exact energy--dissipation
+identity, identify the normalization relative to the real $L^2$ gradient,
+and recover the preferred Fourier shell.  The claim is made under explicit
+periodic boundary and regularity assumptions; it does not imply global
+well-posedness or convergence to a unique pattern.
+\end{abstract}
+
+\section{Setting and statement}
+Let $\Om=\mathbb T^d$ be a flat periodic torus, with $1\leq d\leq3$,
+and let $r\in\mathbb R$, $a,b>0$, and $\beta\in\mathbb R$.  Complex
+$L^2$ is viewed as a real Hilbert space with inner product
+\begin{equation}\label{eq:realinner}
+ (u,v)_{\mathbb R}=\Real\int_\Om u\overline v\,\dd x.
+\end{equation}
+Define the real-valued energy for $A\in H^2(\Om;\mathbb C)$ by
+\begin{equation}\label{eq:energy}
+ \E[A]=\int_\Om\left(-r|A|^2-a|\nabla A|^2
+             +b|\Delta A|^2+\frac\beta2|A|^4\right)\dd x.
+\end{equation}
+This energy is well defined for $d\leq3$ because $H^2(\Om)$ embeds
+continuously into $L^\infty(\Om)$.
+
+\begin{theorem}[E13 negative-gradient-flow identity]\label{thm:e13}
+Suppose
+\begin{equation}\label{eq:regularity}
+ A\in C^1([0,T];H^2(\Om;\mathbb C))\cap
+       C([0,T];H^4(\Om;\mathbb C))
+\end{equation}
+and $A$ solves, as an identity in $L^2(\Om)$,
+\begin{equation}\label{eq:e13}
+ \partial_t A=(r-a\Delta-b\Delta^2)A-\beta|A|^2A.
+\end{equation}
+Then the Wirtinger variational derivative (with the convention below) is
+\begin{equation}\label{eq:wirtinger}
+ \frac{\delta\E}{\delta\overline A}
+   =-rA+a\Delta A+b\Delta^2 A+\beta|A|^2A,
+\end{equation}
+so that
+\begin{equation}\label{eq:negative}
+ \partial_t A=-\frac{\delta\E}{\delta\overline A}.
+\end{equation}
+Moreover, for every $t\in[0,T]$,
+\begin{equation}\label{eq:dissip}
+ \frac{\dd}{\dd t}\E[A(t)]
+      =-2\|\partial_t A(t)\|_{L^2(\Om)}^2\leq0,
+\end{equation}
+and consequently
+\begin{equation}\label{eq:balance}
+ \E[A(T)]+2\int_0^T\|\partial_t A(t)\|_{L^2(\Om)}^2\,\dd t
+       =\E[A(0)].
+\end{equation}
+Equality in \eqref{eq:dissip} at time $t$ holds if and only if
+$\partial_t A(t)=0$ in $L^2(\Om)$, equivalently if $A(t)$ satisfies
+\begin{equation}\label{eq:stationary}
+ (r-a\Delta-b\Delta^2)A-\beta|A|^2A=0.
+\end{equation}
+\end{theorem}
+
+\section{First variation: proof of the gradient formula}
+\begin{proof}[Proof of Theorem~\ref{thm:e13}]
+Fix $A\in H^4(\Om;\mathbb C)$ and a smooth periodic test function
+$h\in C^\infty(\Om;\mathbb C)$. For real $\varepsilon$, put
+$A_\varepsilon=A+\varepsilon h$. We use the convention
+\begin{equation}\label{eq:variationconv}
+ D\E[A](h)=2\Real\int_\Om
+       \frac{\delta\E}{\delta\overline A}\,\overline h\,\dd x.
+\end{equation}
+This is the standard conjugate-variable/Wirtinger normalization for a
+real-valued functional.
+
+\paragraph{Quadratic amplitude term.}
+Since
+\[
+ \left.\frac{\dd}{\dd\varepsilon}|A+\varepsilon h|^2
+ \right|_{\varepsilon=0}=2\Real(A\overline h),
+\]
+the contribution of $-r\int|A|^2$ is
+\begin{equation}\label{eq:var1}
+ -2r\Real\int_\Om A\overline h\,\dd x.
+\end{equation}
+
+\paragraph{Gradient term.}
+Differentiating $-a\int|\nabla A|^2$ gives
+\[
+ -2a\Real\int_\Om\nabla A\cdot\nabla\overline h\,\dd x.
+\]
+By periodic integration by parts,
+$\int_\Om\nabla A\cdot\nabla\overline h
+=-\int_\Om(\Delta A)\overline h$. Thus this contribution is
+\begin{equation}\label{eq:var2}
+ 2a\Real\int_\Om(\Delta A)\overline h\,\dd x.
+\end{equation}
+
+\paragraph{Fourth-order term.}
+Differentiating $b\int|\Delta A|^2$ yields
+\[
+ 2b\Real\int_\Om(\Delta A)(\Delta\overline h)\,\dd x.
+\]
+Two periodic integrations by parts, or self-adjointness of $\Delta$,
+give $\int(\Delta A)(\Delta\overline h)
+=\int(\Delta^2 A)\overline h$. Therefore the contribution is
+\begin{equation}\label{eq:var3}
+ 2b\Real\int_\Om(\Delta^2 A)\overline h\,\dd x.
+\end{equation}
+
+\paragraph{Quartic term.}
+The pointwise identity
+\[
+ \left.\frac{\dd}{\dd\varepsilon}|A+\varepsilon h|^4
+ \right|_{\varepsilon=0}
+   =4|A|^2\Real(A\overline h)
+\]
+shows that the contribution of $(\beta/2)\int|A|^4$ is
+\begin{equation}\label{eq:var4}
+ 2\beta\Real\int_\Om|A|^2A\overline h\,\dd x.
+\end{equation}
+
+\paragraph{Combination.}
+Adding \eqref{eq:var1}--\eqref{eq:var4} gives
+\begin{equation}\label{eq:firstvariation}
+ D\E[A](h)=2\Real\int_\Om
+ (-rA+a\Delta A+b\Delta^2A+\beta|A|^2A)\overline h\,\dd x.
+\end{equation}
+By density, \eqref{eq:firstvariation} holds for all $h\in H^2(\Om)$.
+Comparison with \eqref{eq:variationconv} proves \eqref{eq:wirtinger}.
+Taking its negative gives exactly the right-hand side of
+\eqref{eq:e13}, establishing \eqref{eq:negative}.
+
+\paragraph{Energy dissipation.}
+The regularity \eqref{eq:regularity} justifies the $H^2$ chain rule:
+\[
+ \frac{\dd}{\dd t}\E[A(t)]=D\E[A(t)](\partial_t A(t)).
+\]
+Substituting $h=\partial_t A$ into \eqref{eq:firstvariation} and then
+using \eqref{eq:negative},
+\begin{align*}
+ \frac{\dd}{\dd t}\E[A(t)]
+ &=2\Real\int_\Om
+     \frac{\delta\E}{\delta\overline A}
+        \overline{\partial_t A}\,\dd x\\
+ &=-2\Real\int_\Om
+       \partial_t A\,\overline{\partial_t A}\,\dd x\\
+ &=-2\|\partial_t A\|_{L^2(\Om)}^2.
+\end{align*}
+This proves \eqref{eq:dissip}. Integrating in time proves
+\eqref{eq:balance}. Finally, the integrand is a squared norm, so it
+vanishes exactly when $\partial_t A=0$, which is equivalent to
+\eqref{eq:stationary} via \eqref{eq:e13}.
+\end{proof}
+
+\section{Normalization of the real $L^2$ gradient}
+Because the real $L^2$ gradient is defined by
+\[
+ D\E[A](h)=(\nabla_{\mathbb R}\E[A],h)_{\mathbb R},
+\]
+comparison with \eqref{eq:firstvariation} implies
+\begin{equation}\label{eq:gradientfactor}
+ \nabla_{\mathbb R}\E[A]
+   =2\frac{\delta\E}{\delta\overline A}.
+\end{equation}
+Consequently the equation can also be written
+\[
+ \partial_t A=-\tfrac12\nabla_{\mathbb R}\E[A].
+\]
+If $\F[A]=\E[A]/2$, then E13 is a literal negative real $L^2$
+gradient flow:
+\begin{equation}\label{eq:realflow}
+ \partial_t A=-\nabla_{\mathbb R}\F[A],\qquad
+ \frac{\dd}{\dd t}\F[A(t)]
+     =-\|\partial_t A(t)\|_{L^2(\Om)}^2.
+\end{equation}
+The factor of two is a convention and does not change the dynamics.
+
+\section{Centered Swift--Hohenberg representation}
+Define
+\begin{equation}\label{eq:kmu}
+ k_\star^2=\frac{a}{2b},\qquad
+ \mu=r+\frac{a^2}{4b}.
+\end{equation}
+Direct expansion shows
+\[
+ r-a\Delta-b\Delta^2=\mu-b(\Delta+k_\star^2)^2,
+\]
+so the same equation takes the centered form
+\begin{equation}\label{eq:centeredflow}
+ \partial_t A=\mu A-b(\Delta+k_\star^2)^2A-\beta|A|^2A.
+\end{equation}
+Consider
+\begin{equation}\label{eq:centeredenergy}
+ \E_{\mathrm{SH}}[A]
+ =\int_\Om\left[-\mu|A|^2
+      +b|(\Delta+k_\star^2)A|^2
+      +\frac\beta2|A|^4\right]\dd x.
+\end{equation}
+Periodic integration by parts gives
+\begin{align*}
+ \|(\Delta+k_\star^2)A\|_2^2
+ &=\|\Delta A\|_2^2
+   +2k_\star^2\Real\int_\Om(\Delta A)\overline A\,\dd x
+   +k_\star^4\|A\|_2^2\\
+ &=\|\Delta A\|_2^2-2k_\star^2\|\nabla A\|_2^2
+   +k_\star^4\|A\|_2^2.
+\end{align*}
+Since $2bk_\star^2=a$ and $bk_\star^4-\mu=-r$, it follows that
+\begin{equation}\label{eq:equalenergy}
+ \E_{\mathrm{SH}}[A]=\E[A]
+ \qquad(A\in H^2(\Om;\mathbb C)).
+\end{equation}
+Thus the centered and uncentered energy descriptions are identical,
+not merely equivalent up to an additive constant.
+
+\section{Preferred Fourier shell}
+Linearizing \eqref{eq:e13} at $A=0$ and substituting a Fourier
+mode $e^{ik\cdot x}$ gives
+\[
+ \partial_t\widehat A_k=\lambda(k)\widehat A_k,
+ \qquad
+ \lambda(k)=r+a|k|^2-b|k|^4.
+\]
+Completion of the square using \eqref{eq:kmu} yields
+\begin{equation}\label{eq:dispersion}
+ \lambda(k)=\mu-b(|k|^2-k_\star^2)^2.
+\end{equation}
+In the continuum variable $q=|k|^2\geq0$, the function
+$\lambda(q)=r+aq-bq^2$ has
+\[
+ \lambda'(q)=a-2bq,\qquad\lambda''(q)=-2b<0.
+\]
+Its unique maximizing radius is therefore $|k|=k_\star>0$.
+When $\mu>0$, the linearly growing modes satisfy
+\begin{equation}\label{eq:unstableband}
+ \bigl||k|^2-k_\star^2\bigr|<\sqrt{\mu/b}.
+\end{equation}
+On the torus, only discrete lattice wavenumbers occur; the actual
+fastest available modes maximize \eqref{eq:dispersion} over that lattice.
+The nonlinear equation does not in general preserve a finite Fourier
+shell exactly.
+
+\section{Lower bound when $\beta>0$}
+\begin{corollary}\label{cor:bound}
+If $\beta>0$ and $\Om$ has finite volume, then
+\begin{equation}\label{eq:lowerbound}
+ \E[A]\geq-\frac{|\Om|}{2\beta}(\max\{\mu,0\})^2.
+\end{equation}
+If a solution satisfying the theorem's regularity assumptions exists
+globally forward in time, then
+\begin{equation}\label{eq:integrateddissipation}
+ \int_0^\infty\|\partial_t A(t)\|_2^2\,\dd t<\infty.
+\end{equation}
+\end{corollary}
+\begin{proof}
+For $s\geq0$, completing the square (or minimizing the quadratic on
+$[0,\infty)$) gives
+\[
+ \frac\beta2 s^2-\mu s
+ \geq-\frac{(\max\{\mu,0\})^2}{2\beta}.
+\]
+Take $s=|A(x)|^2$ and integrate in \eqref{eq:centeredenergy}.
+The remaining fourth-order square is nonnegative, proving
+\eqref{eq:lowerbound}.  Integrate \eqref{eq:dissip} from $0$ to $T$,
+apply the lower bound, and let $T\to\infty$ to obtain
+\eqref{eq:integrateddissipation}.
+\end{proof}
+
+\begin{remark}[Scope]
+The algebraic first-variation identity does not require $\beta>0$;
+positivity is used only for the lower-bound corollary.  The proof
+establishes monotone energy descent for regular solutions, but does
+not by itself prove global well-posedness, convergence to a unique
+steady state, nonlinear Fourier-shell invariance, or derivation of the
+amplitude equation from a more fundamental physical model.  On other
+domains the same computation holds when boundary conditions eliminate
+all boundary terms and give the required self-adjoint operator.
+\end{remark}
+
+\section*{Conclusion}
+Under the hypotheses of Theorem~\ref{thm:e13},
+\begin{equation*}
+ \boxed{\displaystyle
+ \partial_t A=-\frac{\delta\E}{\delta\overline A},\qquad
+ \frac{\dd}{\dd t}\E[A(t)]=-2\|\partial_t A(t)\|_2^2\leq0.}
+\end{equation*}
+This is the complete E13 negative-gradient-flow and Lyapunov-dissipation
+identity for the specified periodic Swift--Hohenberg amplitude model.
+
+\paragraph{Equation registry.}
+\url{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/WCT_FULL_EQUATION_LIST_CORRECTED.md}
+
+\end{document}

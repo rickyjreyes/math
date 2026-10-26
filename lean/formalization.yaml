@@ -53,3 +53,7 @@ families:
     main_theorem_formalized: false
     covered: "Abstract null-support, 1D shell, and positive-dimensional Euclidean sphere measure-zero / Fourier-representative a.e.-zero proved for every finite dimension. The L² Fourier-Plancherel inversion bridge to the original physical field remains."
     declarations: [ReyesMath.zero_ae_of_null_support, ReyesMath.oneDimensional_shell_ae_zero, ReyesMath.euclidean_frequency_shell_measure_zero, ReyesMath.euclidean_frequency_shell_ae_zero]
+  F11:
+    main_theorem_formalized: false
+    covered: "Band-pass negative gradient flow and dissipative identity proved analytically; no Lean formalization of the amplitude PDE."
+    declarations: []
