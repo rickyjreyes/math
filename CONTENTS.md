@@ -58,6 +58,10 @@ A PDF here is an analytic manuscript, **not** a claim of peer review or Lean ker
 **E13/E14: negative-gradient-flow structure and exact dissipation identity** — [PDF](preprints/band-pass-amplitude-negative-gradient-flow/paper.pdf) · [LaTeX source](papers/band-pass-amplitude-negative-gradient-flow/main.tex) · [Notes](preprints/band-pass-amplitude-negative-gradient-flow/README.md)
 
 
+**E16: Linear spectral concentration and dominant-wavenumber convergence** — [PDF](preprints/e16-linear-spectral-concentration/paper.pdf) · [LaTeX source](papers/e16-linear-spectral-concentration/main.tex) · [Notes](preprints/e16-linear-spectral-concentration/README.md)
+
+For the linear fourth-order band-pass flow, proves exact Fourier-power evolution and normalized spectral concentration near the preferred shell under the spectral-access hypothesis. Pointwise argmax convergence additionally requires continuous spectral power vanishing at infinity. This does not establish nonlinear confinement.
+
 **E62: Spectral energy concentration fraction** — [PDF](preprints/spectral-energy-concentration-e62/paper.pdf) · [LaTeX source](papers/spectral-energy-concentration-e62/main.tex) · [Notes](preprints/spectral-energy-concentration-e62/README.md)
 
 For nonzero L² data, the Fourier energy fraction within any chosen band is between zero and one. Includes equality cases, projector formulation, and continuous spectra. This is a normalization result, not a proof of dynamical concentration or shell attraction.
