@@ -1,6 +1,6 @@
 # Mathematics manuscript catalogue
 
-**16 manuscripts in 12 result families.** [Overview PDF](overview.pdf) · [Lean formalization status](lean/formalization.yaml) · [History](history.md)
+**Manuscripts and supplementary proofs organized below.** [Overview PDF](overview.pdf) · [Lean formalization status](lean/formalization.yaml) · [History](history.md)
 
 A PDF here is an analytic manuscript, **not** a claim of peer review or Lean kernel certification.
 
@@ -68,9 +68,9 @@ For nonzero L² data, the Fourier energy fraction within any chosen band is betw
 
 The corrected modulus-squared regularization is smooth and bounded for each ε > 0, tends to 1/ψ away from zeros, and obeys explicit convergence estimates; it does not establish nonlinear evolution well-posedness or stability.
 
-## F12 — Regularized curvature operator
+## F12 — Conditional curvature multiplier estimate
 
-**E26: Conditional $L^2$ curvature estimate and counterexample** — [PDF](preprints/regularized-curvature-l2-bound/paper.pdf) · [LaTeX source](papers/regularized-curvature-l2-bound/main.tex) · [Notes](preprints/regularized-curvature-l2-bound/README.md)
+**E26: Conditional $L^2$ estimate for the historical additive-denominator curvature operator** — [PDF](preprints/regularized-curvature-l2-bound/paper.pdf) · [LaTeX source](papers/regularized-curvature-l2-bound/main.tex) · [Notes](preprints/regularized-curvature-l2-bound/README.md)
 
 ## WCT E18 — Corrected curvature-energy Lyapunov descent
 
@@ -99,3 +99,5 @@ For `r>0, a≥0`, proves `0<G(k)≤1/r`, shell equality, sharp continuum `L²` r
 **M6B: Two exact nonlinear-curvature nonuniqueness counterexamples** — [PDF](preprints/m6b-nonlinear-curvature-nonuniqueness/paper.pdf) · [LaTeX source](papers/m6b-nonlinear-curvature-nonuniqueness/main.tex) · [Notes](preprints/m6b-nonlinear-curvature-nonuniqueness/README.md)
 
 Analytical counterexamples show (i) the standard node-safe, phase-invariant, unregularized-limit properties do not determine a unique closure; and (ii) even with fixed mass and Dirichlet data the canonical map is not injective modulo global phase. Neither result demonstrates nonuniqueness of an M7 initial-value evolution.
+
+This E26 manuscript analyzes the historical additive denominator; the corrected phase-covariant operator and its different fixed-$\varepsilon$ bound appear in M2/E17 above.
