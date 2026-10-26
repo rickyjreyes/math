@@ -1,0 +1,380 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Ncurv}{\mathcal{N}_{\varepsilon}}
+\newcommand{\NN}[1]{\mathcal{N}_{\varepsilon,#1}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Om}{\Omega}
+
+\title{M6B: Nonuniqueness of the Regularized Nonlinear Curvature Closure\\
+\large Two Exact Counterexamples and Their Scope}
+\author{Richard J. Reyes}
+\date{October 26, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We examine the proposed nonlinear curvature operator
+\[
+\mathcal{N}_{\varepsilon}[\psi]
+=-\frac{(\Delta\psi)\overline{\psi}}
+       {|\psi|^2+\varepsilon^2e^{-2\alpha|\psi|^2}},
+\qquad \varepsilon>0,\quad\alpha\in\R.
+\]
+Two distinct uniqueness statements fail. First, positivity, smoothness at
+nodes, invariance under constant phase rotations, and recovery of the
+unregularized curvature quotient do not characterize the closure uniquely:
+we construct an infinite family of different operators with all these
+properties. Second, on a bounded square with homogeneous Dirichlet data,
+we construct two smooth complex fields having the same prescribed positive
+mass and the same nonlinear curvature image, although they are not related
+by any constant phase. These are counterexamples to uniqueness of the
+closure and injectivity of the stationary curvature map, respectively.
+They do not imply nonuniqueness of solutions of the time-dependent
+curvature--wavefield initial-value problem.
+\end{abstract}
+
+\section{Definition and preliminary facts}
+
+Let $d\geq1$, let $\Omega\subset\R^d$ be open, and let
+$\psi\in C^2(\Omega;\C)$. For $\varepsilon>0$ and $\alpha\in\R$, set
+\begin{equation}\label{eq:denominator}
+D_\varepsilon(s)=s+\varepsilon^2e^{-2\alpha s},
+\qquad s\geq0,
+\end{equation}
+and define the canonical M6B operator by
+\begin{equation}\label{eq:canonical}
+\boxed{\quad
+\Ncurv[\psi]
+=-\frac{(\Delta\psi)\overline\psi}
+       {D_\varepsilon(|\psi|^2)}.
+\quad}
+\end{equation}
+
+\begin{proposition}[Node safety and the unregularized limit]
+\label{prop:basic}
+For every $s\geq0$, $D_\varepsilon(s)>0$. Consequently,
+\eqref{eq:canonical} is pointwise defined for every $C^2$ field, including
+at zeros of $\psi$, where $\Ncurv[\psi]=0$. At each point where
+$\psi\neq0$,
+\begin{equation}\label{eq:unreg}
+\lim_{\varepsilon\downarrow0}\Ncurv[\psi]
+=-\frac{\Delta\psi}{\psi}.
+\end{equation}
+For every constant $\theta\in\R$,
+\begin{equation}\label{eq:invariance}
+\Ncurv[e^{i\theta}\psi]=\Ncurv[\psi].
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Since $s\geq0$, $\varepsilon^2>0$, and $e^{-2\alpha s}>0$,
+one has $D_\varepsilon(s)>0$. At $\psi=0$, the numerator in
+\eqref{eq:canonical} vanishes while the denominator equals
+$\varepsilon^2$. At a point with $\psi\neq0$, the denominator converges
+to $|\psi|^2$ as $\varepsilon\downarrow0$, and
+$\overline\psi/|\psi|^2=1/\psi$, giving \eqref{eq:unreg}.
+Finally, constancy of $\theta$ implies
+$\Delta(e^{i\theta}\psi)=e^{i\theta}\Delta\psi$; the phases cancel in
+the numerator, and the modulus in the denominator is unchanged.
+\end{proof}
+
+\section{Nonuniqueness of the regularized closure}
+
+\begin{theorem}[The stated structural axioms do not select a unique closure]
+\label{thm:closure}
+Fix $d\geq1$, $\varepsilon>0$, $\alpha\in\R$, and a reference
+intensity $S_0>0$. There exists an infinite family of pairwise distinct
+operators indexed by $\lambda\geq0$ such that each operator:
+\begin{enumerate}
+\item has a strictly positive denominator and is smooth in the real
+      field variables and their second derivatives;
+\item is well-defined and vanishes at field nodes;
+\item is invariant under constant global $U(1)$ phase rotations;
+\item converges pointwise to $-\Delta\psi/\psi$ as
+      $\varepsilon\downarrow0$ wherever $\psi\neq0$;
+\item has denominator $\varepsilon^2$ at $\psi=0$.
+\end{enumerate}
+The family includes the canonical M6B operator.
+\end{theorem}
+
+\begin{proof}
+For $s\geq0$, define
+\begin{equation}\label{eq:family-denominator}
+D_{\varepsilon,\lambda}(s)
+=s+\varepsilon^2e^{-2\alpha s}
+  \left(1+\lambda\frac{s}{S_0+s}\right),
+\qquad \lambda\geq0,
+\end{equation}
+and for $\psi\in C^2(\Omega;\C)$ put
+\begin{equation}\label{eq:family}
+\NN{\lambda}[\psi]
+=-\frac{(\Delta\psi)\overline\psi}
+       {D_{\varepsilon,\lambda}(|\psi|^2)}.
+\end{equation}
+When $\lambda=0$, \eqref{eq:family} equals \eqref{eq:canonical}.
+
+\emph{Positivity and smoothness.}
+For $s\geq0$ and $\lambda\geq0$, the multiplier
+$1+\lambda s/(S_0+s)$ is at least one. Hence
+\[
+D_{\varepsilon,\lambda}(s)
+\geq \varepsilon^2e^{-2\alpha s}>0.
+\]
+All functions in \eqref{eq:family-denominator} are smooth on an open
+neighborhood of the half-line $s\geq0$, and the denominator is nonzero
+there. Therefore the jet-variable map
+\[
+(z,w)\longmapsto
+-\frac{w\overline z}{D_{\varepsilon,\lambda}(|z|^2)}
+\qquad (z,w\in\C)
+\]
+is smooth. Substitution of $z=\psi(x)$ and $w=\Delta\psi(x)$ gives
+pointwise smoothness of the closure.
+
+\emph{Nodes.}
+At $s=0$,
+\[
+D_{\varepsilon,\lambda}(0)=\varepsilon^2.
+\]
+When $\psi(x)=0$, its curvature image at $x$ is zero, regardless of
+$\Delta\psi(x)$.
+
+\emph{Global phase invariance.}
+For any constant $\theta\in\R$,
+\[
+\Delta(e^{i\theta}\psi)\,
+\overline{e^{i\theta}\psi}
+=e^{i\theta}\Delta\psi\,e^{-i\theta}\overline\psi
+=(\Delta\psi)\overline\psi,
+\]
+and $|e^{i\theta}\psi|^2=|\psi|^2$. Equation
+\eqref{eq:family} is consequently unchanged.
+
+\emph{Unregularized limit.}
+At any point where $\psi\neq0$, put $s=|\psi|^2>0$. For each fixed
+$\lambda\geq0$,
+\[
+\lim_{\varepsilon\downarrow0}D_{\varepsilon,\lambda}(s)=s.
+\]
+It follows that
+\[
+\lim_{\varepsilon\downarrow0}\NN{\lambda}[\psi]
+=-\frac{(\Delta\psi)\overline\psi}{|\psi|^2}
+=-\frac{\Delta\psi}{\psi}.
+\]
+
+\emph{Pairwise distinctness.}
+For $s>0$ and $\lambda_1\neq\lambda_2$,
+\begin{equation}\label{eq:difference}
+D_{\varepsilon,\lambda_1}(s)
+-D_{\varepsilon,\lambda_2}(s)
+=(\lambda_1-\lambda_2)\varepsilon^2e^{-2\alpha s}
+  \frac{s}{S_0+s}\neq0.
+\end{equation}
+Choose a neighborhood of $0\in\R^d$ and the smooth test field
+$\psi(x)=1+|x|^2$. Then
+$\psi(0)=1$ and $\Delta\psi(0)=2d$. Hence
+\begin{equation}\label{eq:distinct}
+\NN{\lambda}[\psi](0)
+=-\frac{2d}
+{1+\varepsilon^2e^{-2\alpha}
+ \left(1+\lambda/(S_0+1)\right)}.
+\end{equation}
+The right-hand side takes distinct values at distinct $\lambda\geq0$.
+Therefore all operators in the family are different.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:closure} refutes uniqueness \emph{under the enumerated
+properties}. It does not rule out a uniqueness result derived from an
+additional, explicitly specified action principle, normalization,
+constitutive law, or physical constraint.
+\end{remark}
+
+\section{Noninjectivity of the canonical curvature map modulo phase}
+
+\begin{theorem}[Two inequivalent fields with identical curvature,
+Dirichlet data, and mass]
+\label{thm:stationary}
+Let $\Omega=(0,\pi)^2$, $\varepsilon>0$, and $\alpha\in\R$.
+For every $m>0$, there exists a real-valued
+$F_m\in C^\infty(\overline\Omega)$ such that
+\begin{equation}\label{eq:stationary-pde}
+\begin{cases}
+\Ncurv[\psi]=F_m&\text{in }\Omega,\\
+\psi=0&\text{on }\partial\Omega,\\
+\|\psi\|_{L^2(\Omega)}^2=m
+\end{cases}
+\end{equation}
+has at least two solutions
+$\psi_\pm\in C^\infty(\overline\Omega;\C)$ with
+\[
+\psi_-\neq e^{i\theta}\psi_+
+\quad\text{for every constant }\theta\in\R.
+\]
+Thus the canonical stationary curvature map is not injective even
+modulo global phase, with mass and homogeneous Dirichlet data fixed.
+\end{theorem}
+
+\begin{proof}
+\emph{Common Laplacian eigenvalue.}
+Let
+\[
+f(x,y)=\sin x\sin(2y),\qquad
+ g(x,y)=\sin(2x)\sin y.
+\]
+Both are real and smooth on $\overline\Omega$ and vanish on
+$\partial\Omega$. Direct differentiation yields
+\begin{equation}\label{eq:eigen}
+\Delta f=-5f,\qquad\Delta g=-5g.
+\end{equation}
+
+\emph{Two complex fields.}
+For arbitrary prescribed $m>0$, set
+\[
+c=\frac{\sqrt{2m}}{\pi}>0,
+\qquad
+\psi_+=c(f+ig),\quad
+\psi_-=c(f-ig).
+\]
+By \eqref{eq:eigen},
+\begin{equation}\label{eq:eigen-fields}
+\Delta\psi_\pm=-5\psi_\pm,
+\qquad\psi_\pm|_{\partial\Omega}=0.
+\end{equation}
+Moreover, since $f$ and $g$ are real,
+\begin{equation}\label{eq:amplitude}
+|\psi_+|^2=|\psi_-|^2
+=c^2(f^2+g^2)=:A_m(x,y).
+\end{equation}
+
+\emph{Identical curvature images.}
+Using \eqref{eq:eigen-fields} in the canonical formula,
+\begin{align*}
+\Ncurv[\psi_\pm]
+&=-\frac{(-5\psi_\pm)\overline{\psi_\pm}}
+{|\psi_\pm|^2+\varepsilon^2e^{-2\alpha|\psi_\pm|^2}}\\
+&=\frac{5|\psi_\pm|^2}
+{|\psi_\pm|^2+\varepsilon^2e^{-2\alpha|\psi_\pm|^2}}\\
+&=\frac{5A_m(x,y)}{A_m(x,y)+\varepsilon^2e^{-2\alpha A_m(x,y)}}.
+\end{align*}
+Define
+\begin{equation}\label{eq:force}
+\boxed{\quad
+F_m(x,y)=\frac{5A_m(x,y)}
+{A_m(x,y)+\varepsilon^2e^{-2\alpha A_m(x,y)}}.
+\quad}
+\end{equation}
+The positive denominator proves that $F_m$ is real-valued and
+$C^\infty$ on $\overline\Omega$. Both fields solve the same equation
+with the same source.
+
+\emph{Equal prescribed masses.}
+For every integer $n\geq1$,
+\[
+\int_0^\pi\sin^2(nx)\,dx=\frac\pi2.
+\]
+Consequently,
+\[
+\|f\|_2^2=\frac{\pi^2}{4},\qquad
+\|g\|_2^2=\frac{\pi^2}{4},
+\]
+and therefore
+\begin{equation}\label{eq:mass}
+\|\psi_\pm\|_2^2
+=c^2\int_\Omega(f^2+g^2)\,dx\,dy
+=\frac{2m}{\pi^2}\frac{\pi^2}{2}=m.
+\end{equation}
+
+\emph{Not equivalent under any global phase.}
+Suppose that $\psi_-=e^{i\theta}\psi_+$ for a constant $\theta$.
+At
+\[
+P=(\pi/2,\pi/4),
+\]
+we have $f(P)=1$ and $g(P)=0$. Thus
+$\psi_+(P)=\psi_-(P)=c\neq0$, forcing $e^{i\theta}=1$.
+At
+\[
+Q=(\pi/4,\pi/2),
+\]
+we have $f(Q)=0$ and $g(Q)=1$. Hence
+$\psi_+(Q)=ic$ and $\psi_-(Q)=-ic$, forcing
+$e^{i\theta}=-1$. This is a contradiction.
+
+The two fields are therefore inequivalent modulo global phase and
+satisfy the same boundary conditions, source equation, and mass
+constraint. This proves the theorem.
+\end{proof}
+
+\section{Interpretation and limitations}
+
+\begin{proposition}[Phase invariance is not phase equivariance]
+For any $\psi\in C^2(\Omega;\C)$ and constant $\theta\in\R$,
+\[
+\Ncurv[e^{i\theta}\psi]=\Ncurv[\psi].
+\]
+In general, however,
+\[
+\Ncurv[e^{i\theta}\psi]\neq
+ e^{i\theta}\Ncurv[\psi].
+\]
+\end{proposition}
+\begin{proof}
+The first identity is Proposition~\ref{prop:basic}. For the second,
+take any field with $\Ncurv[\psi](x)\neq0$ at some point $x$, for
+example $\psi(x)=1+|x|^2$ near $0$. If $e^{i\theta}\neq1$, the two
+expressions at that point differ.
+\end{proof}
+
+\begin{remark}[Precise meaning of the counterexamples]
+Theorem~\ref{thm:closure} shows that the stipulated regularity,
+symmetry, and limit conditions do not identify one \emph{constitutive
+operator}. Theorem~\ref{thm:stationary} shows that the fixed canonical
+mapping $\psi\mapsto\Ncurv[\psi]$ is not injective on a particular
+Dirichlet and fixed-mass class. Neither theorem states that a
+specified time-dependent PDE has two solutions with the \emph{same
+initial condition}. Such a conclusion would require a separate
+analysis of the chosen evolution equation, its domain, regularity
+class, parameters, and initial data. Similarly, existence for an
+arbitrary prescribed forcing $F$ is not established here.
+\end{remark}
+
+\section{Conclusion}
+
+The correct classification for the claims proved here is
+\[
+\boxed{\text{M6B: explicit counterexamples to closure uniqueness
+and stationary injectivity.}}
+\]
+Both counterexamples are analytical, require no numerical search, and
+hold for all $\varepsilon>0$ and $\alpha\in\R$ under their stated
+hypotheses. Existence and uniqueness for a separately specified full
+nonlinear evolution remain distinct open obligations.
+
+\begin{thebibliography}{9}
+\bibitem{registry}
+\emph{WCT Full Equation List (Corrected)}, M6B: nonlinear curvature
+operator. \href{https://github.com/rickyjreyes/geometry_of_resonance/blob/main/WCT_FULL_EQUATION_LIST_CORRECTED.md}{Canonical registry document}
+\bibitem{issue}
+\emph{wct-sympy}, issue \#17: M6B nonlinear curvature-operator
+existence/uniqueness obligations.
+\href{https://github.com/rickyjreyes/wct-sympy/issues/17}{M6B issue tracker}
+\end{thebibliography}
+
+\end{document}
