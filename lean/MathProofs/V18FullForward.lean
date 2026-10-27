@@ -103,8 +103,7 @@ def selectedColumn : Fin 11 → Fin 31 :=
 
 theorem selectedColumn_injective : Function.Injective selectedColumn := by
   intro i j h
-  fin_cases i <;> fin_cases j <;>
-    norm_num [selectedColumn] at h ⊢
+  fin_cases i <;> fin_cases j <;> simp_all [selectedColumn]
 
 /-- The middle scalar output exactly coincides with the analytically
 differentiated source model when its historical floor is inactive. -/
@@ -112,7 +111,9 @@ theorem middle_eq_raw_of_unclipped (p : Params) (n : ℕ)
     (h : (1e-12 : ℝ) ≤ middleRaw p n) :
     middle p n = V18MiddleDerivatives.raw n (p 14) (p 15)
       (p 9) (p 12) (p 13) := by
-  simp only [middle, max_eq_left h, middleRaw]
+  change max (V18MiddleDerivatives.raw n (p 14) (p 15)
+    (p 9) (p 12) (p 13)) (1e-12 : ℝ) = _
+  exact max_eq_left (by simpa only [middleRaw] using h)
 
 /-- In the strict unclipped middle region, the five selected
 coordinates have exactly the source-frozen analytic derivatives. -/
