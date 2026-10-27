@@ -7,15 +7,15 @@
 
 ## Result
 
-On the flat torus, for a **fixed sharp annulus** Α of allowed Fourier modes, define the Fourier multiplier (P_Α) by the indicator (1_Α). The manuscript proves
+On the flat torus, for a **fixed sharp annulus** $\mathcal A$ of allowed Fourier modes, define the Fourier multiplier $P_{\mathcal A}$ by the indicator $\mathbf 1_{\mathcal A}$. The manuscript proves
 
-- **Idempotence:** (P_Α^2=P_Α).
-- **Self-adjointness:** (P_Α^*=P_Α).
-- **Contraction:** (‖P_Αu‖_2≤‖u‖_2).
-- **Orthogonal decomposition and best approximation** of (u) by its selected Fourier-band component.
+- **Idempotence:** $P_{\mathcal A}^2=P_{\mathcal A}$.
+- **Self-adjointness:** $P_{\mathcal A}^*=P_{\mathcal A}$.
+- **Contraction:** $\|P_{\mathcal A}u\|_2\le\|u\|_2$.
+- **Orthogonal decomposition and best approximation** of $u$ by its selected Fourier-band component.
 - **Discrete Fourier-transform version** for a fixed 0/1 mask, plus the associated retained-energy fraction.
 
-These are exact Hilbert-space/Fourier identities for a *fixed mask*. The annulus must be defined symmetrically as ||ξ|−k⋆|≤Δk if the intended selection is a shell.
+These are exact Hilbert-space/Fourier identities for a *fixed mask*. The annulus must be defined symmetrically as $\bigl||\xi|-k_\star\bigr|\le\Delta k$ if the intended selection is a shell.
 
 ## Scope
 
