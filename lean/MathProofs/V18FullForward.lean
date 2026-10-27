@@ -130,4 +130,52 @@ theorem selected_middle_matrix_exact :
       V18MiddleJacobian.middle :=
   V18MiddleDerivatives.selectedMatrix_eq_middle
 
+
+/-! ## Selected middle sensitivities in the actual 31-dimensional parameter vector -/
+
+/-- The frozen middle offset coordinate is parameter 14 of 31. -/
+theorem middle_offset_coordinate_derivative (n : ℕ) (p : Params) :
+    HasDerivAt
+      (fun x : ℝ => middleRaw (Function.update p (14 : Fin 31) x) n)
+      1 (p 14) := by
+  simpa [middleRaw] using
+    V18MiddleDerivatives.offset_derivative n
+      (p 14) (p 15) (p 9) (p 12) (p 13)
+
+/-- The frozen quadratic coefficient is parameter 15 of 31. -/
+theorem middle_quad_coordinate_derivative (n : ℕ) (p : Params) :
+    HasDerivAt
+      (fun x : ℝ => middleRaw (Function.update p (15 : Fin 31) x) n)
+      ((n : ℝ) ^ 2) (p 15) := by
+  simpa [middleRaw] using
+    V18MiddleDerivatives.quad_derivative n
+      (p 14) (p 15) (p 9) (p 12) (p 13)
+
+/-- The frozen middle amplitude is parameter 9 of 31. -/
+theorem middle_amp_coordinate_derivative (n : ℕ) (p : Params) :
+    HasDerivAt
+      (fun x : ℝ => middleRaw (Function.update p (9 : Fin 31) x) n)
+      (Real.sin ((5.0632 : ℝ) * n + p 12)) (p 9) := by
+  simpa [middleRaw] using
+    V18MiddleDerivatives.amp_derivative n
+      (p 14) (p 15) (p 9) (p 12) (p 13)
+
+/-- The frozen middle phase is parameter 12 of 31. -/
+theorem middle_phase_coordinate_derivative (n : ℕ) (p : Params) :
+    HasDerivAt
+      (fun x : ℝ => middleRaw (Function.update p (12 : Fin 31) x) n)
+      ((p 9) * Real.cos ((5.0632 : ℝ) * n + p 12)) (p 12) := by
+  simpa [middleRaw] using
+    V18MiddleDerivatives.phase_derivative n
+      (p 14) (p 15) (p 9) (p 12) (p 13)
+
+/-- The frozen middle harmonic coefficient is parameter 13 of 31. -/
+theorem middle_harmonic_coordinate_derivative (n : ℕ) (p : Params) :
+    HasDerivAt
+      (fun x : ℝ => middleRaw (Function.update p (13 : Fin 31) x) n)
+      (Real.sin ((9.4062 : ℝ) * n)) (p 13) := by
+  simpa [middleRaw] using
+    V18MiddleDerivatives.harmonic_derivative n
+      (p 14) (p 15) (p 9) (p 12) (p 13)
+
 end ReyesMath.V18Forward
