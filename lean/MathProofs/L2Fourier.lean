@@ -33,7 +33,7 @@ def schwartzRange (d : ℕ) : Submodule ℂ (L2 d) :=
 theorem schwartzRange_dense : Dense (schwartzRange d : Set (L2 d)) := by
   apply (dense_iff_closure_eq).2
   have htop : (schwartzRange d).topologicalClosure = ⊤ := by
-    apply (Submodule.topologicalClosure_eq_top_iff _).2
+    apply (Submodule.topologicalClosure_eq_top_iff).2
     apply le_antisymm ?_ bot_le
     intro w hw
     apply Submodule.mem_bot.2
@@ -124,9 +124,7 @@ theorem shell_exclusion (d : ℕ) (k : ℝ) (u : L2 (d + 1))
     have hoff : ∀ᵐ ξ ∂volume, ξ ∉ Metric.sphere
         (0 : EuclideanSpace ℝ (Fin (d + 1))) k := by
       apply ae_iff.mpr
-      convert hnull using 1
-      ext ξ
-      simp
+      simpa only [not_not, Metric.sphere, dist_zero_right] using hnull
     filter_upwards [h, hoff] with ξ hξ hn
     exact hξ hn
   apply (equivalence (d + 1)).injective
