@@ -113,7 +113,7 @@ def main():
     for n, row in zip(NS, matrix):
         print("n =", n, "three trigonometric entries:")
         for cell in (row[2], row[3], row[4]):
-            print("  ", float(cell.lo), "<= actual <=", float(cell.hi))
+            print("  approximate endpoints:", float(cell.lo), float(cell.hi))
     print("det(M) rational lower:", bound.lo)
     print("det(M) rational upper:", bound.hi)
     print("CONCLUSION: 18,000,000 < det(M) < 24,000,000")

@@ -24,6 +24,19 @@ On this parameter interval, all 11 active outputs are strictly above the
 kernel has dimension **20**. This proves local *linearized* nullity, not
 global non-identifiability or predictive validity.
 
+The input intervals enclose both the printed exact decimal values used by
+the Lean real model and the exact binary64 values stored in the source's
+NumPy arrays. Heavy-sector ratios enclose both rational division and the
+source's Python float division. The enclosure endpoints are computed from
+exact rational numbers before outward-rounded interval evaluation. This is
+a certificate for the analytic real interpretation of those inputs; it is
+not a derivative theorem about floating-point execution.
+
+The inner light baseline of each heavy output is strictly below its floor,
+while the outer heavy output is strictly above its floor. These distinct
+branches, as well as the relevant exponential and power clips, are checked
+before interpreting the selected entries as derivatives.
+
 ### Proof
 
 Select the following 11 columns of the 31-dimensional Jacobian, in the
@@ -51,7 +64,8 @@ where `epsilon_1 = epsilon_2 = 1` and the frozen
 
 `det([(n/(n+1), n^2, n^3)]_(n=1,2,3)) = 9`.
 
-Therefore `det(L) = 9 * 0.0048 * D_1 * D_2 * D_3 > 0`.
+Therefore `det(L) = 9 * epsilon_3 * D_1 * D_2 * D_3 > 0`, with
+`epsilon_3` enclosed as described above.
 
 **Middle block.** Let `A=2241.1`, `s1=5.0632`, `s2=9.4062`,
 `phase=1.6469`. The five analytic derivative rows are
@@ -60,7 +74,7 @@ Therefore `det(L) = 9 * 0.0048 * D_1 * D_2 * D_3 > 0`.
 
 An outward-rounded interval determinant gives
 
-`21,220,606.4210508780 < det(M) < 21,220,606.4210508781`.
+`21,220,606.42104903 < det(M) < 21,220,606.42105274`.
 
 **Heavy block.** Let `p=-1.189`, `angle=-1.264`, `phase=4.685`.
 The three analytic derivative rows are
@@ -69,7 +83,7 @@ The three analytic derivative rows are
 
 An outward-rounded interval determinant gives
 
-`1.2178964326641464 < det(H) < 1.2178964326641466`.
+`1.2178964326641453 < det(H) < 1.2178964326641481`.
 
 For the stated live-parameter interval, the full selected determinant
 satisfies the strict enclosure
@@ -83,14 +97,16 @@ has only 11 rows, its rank is exactly 11. Rank–nullity gives
 ## Reproduction and limitations
 
 ```bash
-python -m pip install mpmath==1.3.0
+python -m pip install numpy==2.3.5 scipy==1.17.0 mpmath==1.3.0
+python scripts/test_v18_rank_certificate.py
 python scripts/v18_analytic_rank_certificate.py \
   --source ../geometry_of_resonance/SM_Spectrum/_terms_perfection_v18.py
 ```
 
 The `--source` verification checks the Git blob SHA of the historical
 source, its stored coefficient arrays, its optimizer success and live-parameter
-interval, the exact 11 output labels, and inactive clipping branches. Without
+interval, the exact 11 output labels, and the strict active/inactive floor and
+clipping branches. Without
 `--source`, the interval minor is checked against the documented frozen
 constants but the source/optimizer link is explicitly unverified.
 
@@ -102,8 +118,15 @@ show that 20 different global parameter vectors give identical spectra, that
 physical mass predictions generalize beyond the fitted indices, or that model
 eigenmodes are independently identified.
 
-**Lean status:** the general ≥20 nullity lemma in
-`MathProofs/LocalIdentifiability.lean` is already kernel-checkable.
-An exact Lean representation of the frozen real-valued model and certified
-transcendental interval determinants is still required before setting F09
-`main_theorem_formalized: true`.
+**Lean status:** `MathProofs/V18FullForward.lean` defines the full real-valued
+model, including both variable middle-sector frequencies, its Fréchet
+Jacobian, the structural nullity bound, and zero first derivatives in kernel
+directions. The exact light and heavy block determinants are proved in
+their respective modules. Identification of the full active-branch Jacobian
+with those blocks and the concrete middle determinant's nonvanishing remain
+unproved in Lean. The conditional nonlinear level-set proposition also
+remains unformalized. F09 therefore stays `main_theorem_formalized: false`.
+
+The previous decimal-only input intervals did not enclose the exact stored
+binary64 coefficients. The wider enclosures above repair that mismatch and
+retain the strict nonzero-minor conclusion.

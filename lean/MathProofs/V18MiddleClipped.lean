@@ -10,7 +10,7 @@ physical observation derivative unless the floor is inactive.
 
 V18MiddleFloor establishes strict interiority for all five frozen
 middle outputs. This module proves the generic local max derivative
-lemma and then transports the five 31-coordinate source derivative
+lemma and then transports all seven middle-coordinate source derivative
 identities to the actual clipped middle model.
 -/
 
@@ -64,38 +64,61 @@ theorem quad_derivative :
 theorem amplitude_derivative :
     HasDerivAt
       (fun x => V18Forward.middle (Function.update p (9 : Fin 31) x) n)
-      (Real.sin ((5.0632 : ℝ) * n + p 12)) (p 9) := by
+      (Real.sin (p 10 * n + p 12)) (p 9) := by
   have hraw := V18Forward.middle_amp_coordinate_derivative n p
   change HasDerivAt
     (fun x => max (V18Forward.middleRaw (Function.update p (9 : Fin 31) x) n)
-      (1e-12 : ℝ)) (Real.sin ((5.0632 : ℝ) * n + p 12)) (p 9)
+      (1e-12 : ℝ)) (Real.sin (p 10 * n + p 12)) (p 9)
   apply hasDerivAt_max_of_gt _ _ _ _ hraw
   simpa only [Function.update_eq_self] using h
 
 theorem phase_derivative :
     HasDerivAt
       (fun x => V18Forward.middle (Function.update p (12 : Fin 31) x) n)
-      (p 9 * Real.cos ((5.0632 : ℝ) * n + p 12)) (p 12) := by
+      (p 9 * Real.cos (p 10 * n + p 12)) (p 12) := by
   have hraw := V18Forward.middle_phase_coordinate_derivative n p
   change HasDerivAt
     (fun x => max (V18Forward.middleRaw (Function.update p (12 : Fin 31) x) n)
       (1e-12 : ℝ))
-      (p 9 * Real.cos ((5.0632 : ℝ) * n + p 12)) (p 12)
+      (p 9 * Real.cos (p 10 * n + p 12)) (p 12)
   apply hasDerivAt_max_of_gt _ _ _ _ hraw
   simpa only [Function.update_eq_self] using h
 
 theorem harmonic_derivative :
     HasDerivAt
       (fun x => V18Forward.middle (Function.update p (13 : Fin 31) x) n)
-      (Real.sin ((9.4062 : ℝ) * n)) (p 13) := by
+      (Real.sin (p 11 * n)) (p 13) := by
   have hraw := V18Forward.middle_harmonic_coordinate_derivative n p
   change HasDerivAt
     (fun x => max (V18Forward.middleRaw (Function.update p (13 : Fin 31) x) n)
       (1e-12 : ℝ))
-      (Real.sin ((9.4062 : ℝ) * n)) (p 13)
+      (Real.sin (p 11 * n)) (p 13)
   apply hasDerivAt_max_of_gt _ _ _ _ hraw
   simpa only [Function.update_eq_self] using h
 
+theorem scale1_derivative :
+    HasDerivAt
+      (fun x => V18Forward.middle (Function.update p (10 : Fin 31) x) n)
+      (p 9 * Real.cos (p 10 * n + p 12) * n) (p 10) := by
+  have hraw := V18Forward.middle_scale1_coordinate_derivative n p
+  change HasDerivAt
+    (fun x => max (V18Forward.middleRaw (Function.update p (10 : Fin 31) x) n)
+      (1e-12 : ℝ)) _ (p 10)
+  apply hasDerivAt_max_of_gt _ _ _ _ hraw
+  simpa only [Function.update_eq_self] using h
+
+theorem scale2_derivative :
+    HasDerivAt
+      (fun x => V18Forward.middle (Function.update p (11 : Fin 31) x) n)
+      (p 13 * Real.cos (p 11 * n) * n) (p 11) := by
+  have hraw := V18Forward.middle_scale2_coordinate_derivative n p
+  change HasDerivAt
+    (fun x => max (V18Forward.middleRaw (Function.update p (11 : Fin 31) x) n)
+      (1e-12 : ℝ)) _ (p 11)
+  apply hasDerivAt_max_of_gt _ _ _ _ hraw
+  simpa only [Function.update_eq_self] using h
+
+omit h in
 /-- All five selected derivative identities apply at each of the five
 frozen middle observations, without any unclipped assumption. -/
 theorem all_frozen_middle_coordinate_derivatives
@@ -119,8 +142,25 @@ theorem all_frozen_middle_coordinate_derivatives
         (Real.sin ((9.4062 : ℝ)*n)) (p 13) := by
   dsimp
   have hn := V18MiddleFloor.every_middle_observable_unclipped alpha epsilon i
-  exact ⟨offset_derivative _ _ hn, quad_derivative _ _ hn,
-    amplitude_derivative _ _ hn, phase_derivative _ _ hn,
-    harmonic_derivative _ _ hn⟩
+  refine ⟨offset_derivative _ _ hn, quad_derivative _ _ hn, ?_, ?_, ?_⟩
+  · simpa [V18Forward.frozen] using amplitude_derivative _ _ hn
+  · simpa [V18Forward.frozen] using phase_derivative _ _ hn
+  · simpa [V18Forward.frozen] using harmonic_derivative _ _ hn
+
+omit h in
+/-- Both frequency coordinates of the full model also have their genuine
+clipped-output derivatives at every frozen middle observation. -/
+theorem all_frozen_middle_frequency_derivatives (alpha epsilon : ℝ) (i : Fin 5) :
+    let p := V18Forward.frozen alpha epsilon
+    let n := ((![12,19,53,73,91] : Fin 5 → ℕ) i)
+    HasDerivAt
+      (fun x => V18Forward.middle (Function.update p (10 : Fin 31) x) n)
+      (p 9 * Real.cos (p 10 * n + p 12) * n) (p 10) ∧
+    HasDerivAt
+      (fun x => V18Forward.middle (Function.update p (11 : Fin 31) x) n)
+      (p 13 * Real.cos (p 11 * n) * n) (p 11) := by
+  dsimp
+  have hn := V18MiddleFloor.every_middle_observable_unclipped alpha epsilon i
+  exact ⟨scale1_derivative _ _ hn, scale2_derivative _ _ hn⟩
 
 end ReyesMath.V18MiddleClipped
