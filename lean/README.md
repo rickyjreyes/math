@@ -31,6 +31,13 @@ This Mathlib v4.23.0 project integrates main-line supporting modules with newer 
   (concentration–compactness with a Fourier Hölder estimate, weak compactness, weak closedness
   of `H²` and the Brezis–Lieb lemma), so minimizers exist and `𝒢_m` is compact modulo
   translations.
+- [FreeEvolution](MathProofs/FreeEvolution.lean), [H2Algebra](MathProofs/H2Algebra.lean),
+  [CubicQuinticFlow](MathProofs/CubicQuinticFlow.lean),
+  [OrbitalStability](MathProofs/OrbitalStability.lean) — F01, complete: the free group
+  `e^{-it(Δ+k²)²}` on `𝓢`, `L²` and `H²`, the `H²(ℝ²)` algebra and the cubic–quintic
+  nonlinearity, global `H²(ℝ²)` well-posedness with continuous dependence and conservation of
+  mass and energy (interaction-picture Picard–Lindelöf), and orbital stability of the full
+  minimizing set `𝒢_m` for `0 < m ≤ m_B`, including perturbations that change the mass.
 - [CurvatureNonattainment](MathProofs/CurvatureNonattainment.lean) — F05, complete:
   whole-space nonattainment in every dimension and strict spreading for `1 ≤ d ≤ 4`.
 
@@ -38,7 +45,7 @@ This Mathlib v4.23.0 project integrates main-line supporting modules with newer 
 
 - [IntrinsicScalarMetric](MathProofs/IntrinsicScalarMetric.lean): intrinsic positive-sign tensor and frame-covariance, but not a globally smooth cotangent tensor section.
 - [MinimizerNonvanishing](MathProofs/MinimizerNonvanishing.lean): quantitative quartic nonvanishing for negative-energy near-minimizers.
-- [OrbitalStabilityCriterion](MathProofs/OrbitalStabilityCriterion.lean): conditional Cazenave–Lions orbital stability, not an unconditional PDE stability result.
+- [OrbitalStabilityCriterion](MathProofs/OrbitalStabilityCriterion.lean): an abstract, conditional Cazenave–Lions orbital-stability reduction; the unconditional theorem for the cubic–quintic flow is [OrbitalStability](MathProofs/OrbitalStability.lean).
 - [L2FourierShellBridge](MathProofs/L2FourierShellBridge.lean): infinite-dimensional L² shell exclusion under a supplied Plancherel equivalence; canonical transform construction remains open.
 - [Source-pinned v18 analytic Jacobian rank certificate](../docs/SM_V18_ANALYTIC_RANK_CERTIFICATE.md): reproducible interval arithmetic, not Lean.
 - Original main-line modules retained: CurvatureUniformBound, PhysicalDispersionMinimum, DispersionCriticalPoint, S004DiracBracket, GaussianTrialAlgebra, VariationalBinding, ContinuousPhaseIntegral, ContinuousPhaseOptimizer, ContinuousSpectralVariance, QuinticConvolution, UVGrowthBound, UVExponentialObstruction, DispersionBranchPositivity and DispersionRealDomain.
@@ -102,9 +109,7 @@ is not yet committed.
 
 ## Gaps
 
-In F01, the orbital-stability manuscript (global `H²` well-posedness, conservation laws and
-orbital stability) is not formalized; strict binding, negative energy and the whole-space
-minimizer theorem are. The frozen v18 analytic Jacobian rank is separately source-pinned and interval-certified but not Lean formalized. The Plancherel extension from Schwartz class to all `L²` states (F10), and F11/F12 remain
+All four F01 manuscripts are formalized. The frozen v18 analytic Jacobian rank is separately source-pinned and interval-certified but not Lean formalized. The Plancherel extension from Schwartz class to all `L²` states (F10), and F11/F12 remain
 outside Lean.
 
 The local-coordinate rank/signature obstruction (F08) **is formalized** for
