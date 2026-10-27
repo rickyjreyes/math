@@ -50,7 +50,6 @@ import MathProofs.FreeEvolution
 import MathProofs.H2Algebra
 import MathProofs.CubicQuinticFlow
 import MathProofs.OrbitalStability
-import MathProofs.GlobalScalarTensor
 import MathProofs.ManifoldScalarMetric
 import MathProofs.L2Fourier
 import MathProofs.ExactSensitivityNullity
