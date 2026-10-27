@@ -1,6 +1,6 @@
 # Lean 4 formalization status
 
-This Mathlib v4.23.0 project contains 727 `theorem`/`lemma` declarations in 27 imported
+This Mathlib v4.23.0 project contains 910 `theorem`/`lemma` declarations in 28 imported
 modules. On any revision, regard them as kernel-checked only after that exact revision's
 Lean CI passes. Manuscript-level status (which papers are formalized end to end) is in
 [formalization.yaml](formalization.yaml).
@@ -18,9 +18,10 @@ Lean CI passes. Manuscript-level status (which papers are formalized end to end)
 - [UVIllPosedness](MathProofs/UVIllPosedness.lean),
   [UVWholeSpace](MathProofs/UVWholeSpace.lean) — F02, complete: ultraviolet growth and
   Sobolev ill-posedness on `𝕋^d` and `ℝ^d`.
-- [FourierLeakage](MathProofs/FourierLeakage.lean) — F04, partial: instantaneous leakage
-  for every classical solution from multimode trigonometric data; local existence and
-  uniqueness (classification corollary) not yet formalized.
+- [FourierLeakage](MathProofs/FourierLeakage.lean),
+  [FourierLeakageWellPosed](MathProofs/FourierLeakageWellPosed.lean) — F04, complete:
+  instantaneous leakage, local existence and uniqueness of classical solutions on `𝕋^d`, and
+  the classification `E_S` invariant iff `|S| ≤ 1`.
 - [SobolevH2](MathProofs/SobolevH2.lean) — `H²(ℝ^d; ℂ)` as the Schwartz closure of
   `(φ, ∇φ, Δφ)`, Parseval on `𝓢`, the 2D Fourier sup-norm estimate, dilations.
 - [NegativeEnergy](MathProofs/NegativeEnergy.lean) — F01, complete: `I(m) < 0` at every
@@ -90,9 +91,8 @@ is not yet committed.
 
 In F01, the whole-space minimizer manuscript (compactness of minimizing sequences modulo
 translations) and the orbital-stability manuscript (global `H²` well-posedness and
-stability) are not formalized; strict binding and negative energy are. In F04 the leakage
-theorems are proved for every classical solution, but local existence and uniqueness of
-classical solutions are not yet formalized. Numerical Jacobian rank claims (F09), the
+stability) are not formalized; strict binding and negative energy are. Numerical Jacobian
+rank claims (F09), the
 Plancherel extension from Schwartz class to all `L²` states (F10), and F11/F12 remain
 outside Lean.
 

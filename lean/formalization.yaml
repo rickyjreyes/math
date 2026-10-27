@@ -61,14 +61,13 @@ families:
         declarations: [ReyesMath.SpectralPhase.sharp_spectral_phase_decomposition, ReyesMath.SpectralPhase.root_identity, ReyesMath.SpectralPhase.exists_polar_lift, ReyesMath.SpectralPhase.four_fifths, ReyesMath.SpectralPhase.gap_accounting, ReyesMath.SpectralPhase.geometric_lock_four_fifths]
     legacy_supporting_declarations: [ReyesMath.varianceDeficit_nonnegative, ReyesMath.finite_weighted_variance_identity, ReyesMath.finite_weighted_mean_square_bound]
   F04:
-    main_theorem_formalized: false
+    main_theorem_formalized: true
     manuscripts:
       finite-fourier-coordinate-subspace-noninvariance:
-        main_theorem_formalized: false
-        modules: [MathProofs/FourierLeakage.lean]
-        covered: "Exact cubic and quintic Fourier convolutions at the extremal frequency r = 3p - 2q; Theorems 1-2 and the fifth-harmonic Proposition for every classical solution launched from the stated data (u^(r,0) = 0, d/dt u^(r,0) = -i gamma c_p^3 conj(c_q)^2 != 0, u(t) not in E_S for small t != 0); exact single-mode solutions."
-        gaps: "Local existence of classical solutions for multimode trigonometric data and uniqueness of classical solutions (used by the classification corollary) are not formalized."
-        declarations: [ReyesMath.FourierLeakage.universal_leakage, ReyesMath.FourierLeakage.no_multimode_invariance, ReyesMath.FourierLeakage.fifth_harmonic, ReyesMath.FourierLeakage.singleMode_isClassicalSolution, ReyesMath.FourierLeakage.coeff_cubic_leak, ReyesMath.FourierLeakage.coeff_quintic_leak]
+        main_theorem_formalized: true
+        modules: [MathProofs/FourierLeakage.lean, MathProofs/FourierLeakageWellPosed.lean]
+        covered: "Classical solutions of i u_t = (Laplacian + kappa^2)^2 u - beta |u|^2 u + gamma |u|^4 u on the flat torus: uniqueness (L^2 energy method with a periodic Green identity) and local existence for every trigonometric polynomial datum (interaction-picture Picard-Lindelof in a weighted Wiener algebra); Theorem 1 (no E_S with |S| >= 2 is invariant, with the leaking frequency r = 3p - 2q and d/dt u^(r,0) != 0), Theorem 2 (universal leakage for every multimode datum), the classification corollary (E_S invariant iff |S| <= 1), and the fifth-harmonic proposition."
+        declarations: [ReyesMath.FourierLeakage.classification, ReyesMath.FourierLeakage.noninvariance, ReyesMath.FourierLeakage.universal_leakage_solution, ReyesMath.FourierLeakage.fifth_harmonic_solution, ReyesMath.FourierLeakage.exists_classical_solution, ReyesMath.FourierLeakage.IsClassicalSolution.unique, ReyesMath.FourierLeakage.universal_leakage, ReyesMath.FourierLeakage.no_multimode_invariance, ReyesMath.FourierLeakage.fifth_harmonic, ReyesMath.FourierLeakage.coeff_quintic_leak]
     legacy_supporting_declarations: [ReyesMath.quintic_frequency_above_cutoff, ReyesMath.quintic_frequency_below_cutoff, ReyesMath.multidimensional_quintic_frequency_escape]
   F05:
     main_theorem_formalized: true

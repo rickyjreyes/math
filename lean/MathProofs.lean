@@ -25,3 +25,4 @@ import MathProofs.SobolevH2
 import MathProofs.NegativeEnergy
 import MathProofs.StrictBinding
 import MathProofs.CurvatureNonattainment
+import MathProofs.FourierLeakageWellPosed
