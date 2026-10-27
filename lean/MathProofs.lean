@@ -58,3 +58,4 @@ import MathProofs.V18HeavyJacobian
 import MathProofs.PolynomialFourier
 import MathProofs.WeakFourierSpectrum
 import MathProofs.WavepacketEnvelope
+import MathProofs.V18FullForward
