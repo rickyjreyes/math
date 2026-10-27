@@ -46,3 +46,7 @@ import MathProofs.OrbitalStabilityCriterion
 import MathProofs.MinimizerNonvanishing
 import MathProofs.L2FourierShellBridge
 import MathProofs.CurvatureLegacy
+import MathProofs.FreeEvolution
+import MathProofs.H2Algebra
+import MathProofs.CubicQuinticFlow
+import MathProofs.OrbitalStability

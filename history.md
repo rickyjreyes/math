@@ -1,5 +1,10 @@
 # Version history
 
+## 2026-10-27 — Lean formalization of orbital stability (F01)
+
+- Formalized the orbital-stability manuscript (F01) end to end on `H²(ℝ²)`: the free group `e^{-it(Δ+k²)²}` on Schwartz space, `L²` and `H²`; the `H²(ℝ²)` algebra and the cubic–quintic nonlinearity; global well-posedness with continuous dependence on the data and conservation of mass and energy (an interaction-picture Picard–Lindelöf construction with a radial truncation); and Lyapunov stability of the full minimizing set for `0 < m ≤ m_B`, including perturbations that change the mass.
+- `lean/formalization.yaml` now marks the orbital-stability manuscript, and with it the F01 family, as formalized.
+
 ## 2026-10-27 — Integrate whole-space Lean proofs and analytic v18 rank certification
 
 - Combined later whole-space H² minimizer compactness, curvature nonattainment and torus Fourier-leakage well-posedness proofs with all main-line supporting Lean modules and the mathematical compendium.
