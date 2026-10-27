@@ -38,6 +38,10 @@ This Mathlib v4.23.0 project integrates main-line supporting modules with newer 
   nonlinearity, global `H²(ℝ²)` well-posedness with continuous dependence and conservation of
   mass and energy (interaction-picture Picard–Lindelöf), and orbital stability of the full
   minimizing set `𝒢_m` for `0 < m ≤ m_B`, including perturbations that change the mass.
+- [FourierShellL2](MathProofs/FourierShellL2.lean) — F10, complete: Plancherel's theorem
+  (the unitary `L²` Fourier transform, equal to the Fourier integral on `L¹ ∩ L²`), the
+  isolated-shell theorem for essential and distributional support, the Helmholtz and
+  polynomial-dispersion corollaries, and the wave-packet proposition.
 - [CurvatureNonattainment](MathProofs/CurvatureNonattainment.lean) — F05, complete:
   whole-space nonattainment in every dimension and strict spreading for `1 ≤ d ≤ 4`.
 
@@ -46,7 +50,7 @@ This Mathlib v4.23.0 project integrates main-line supporting modules with newer 
 - [IntrinsicScalarMetric](MathProofs/IntrinsicScalarMetric.lean): intrinsic positive-sign tensor and frame-covariance, but not a globally smooth cotangent tensor section.
 - [MinimizerNonvanishing](MathProofs/MinimizerNonvanishing.lean): quantitative quartic nonvanishing for negative-energy near-minimizers.
 - [OrbitalStabilityCriterion](MathProofs/OrbitalStabilityCriterion.lean): an abstract, conditional Cazenave–Lions orbital-stability reduction; the unconditional theorem for the cubic–quintic flow is [OrbitalStability](MathProofs/OrbitalStability.lean).
-- [L2FourierShellBridge](MathProofs/L2FourierShellBridge.lean): infinite-dimensional L² shell exclusion under a supplied Plancherel equivalence; canonical transform construction remains open.
+- [L2FourierShellBridge](MathProofs/L2FourierShellBridge.lean): infinite-dimensional L² shell exclusion under a supplied Plancherel equivalence; the canonical transform is constructed in [FourierShellL2](MathProofs/FourierShellL2.lean).
 - [Source-pinned v18 analytic Jacobian rank certificate](../docs/SM_V18_ANALYTIC_RANK_CERTIFICATE.md): reproducible interval arithmetic, not Lean.
 - Original main-line modules retained: CurvatureUniformBound, PhysicalDispersionMinimum, DispersionCriticalPoint, S004DiracBracket, GaussianTrialAlgebra, VariationalBinding, ContinuousPhaseIntegral, ContinuousPhaseOptimizer, ContinuousSpectralVariance, QuinticConvolution, UVGrowthBound, UVExponentialObstruction, DispersionBranchPositivity and DispersionRealDomain.
 - [CurvatureLegacy](MathProofs/CurvatureLegacy.lean) preserves earlier abstract nonattainment and curvature-weight positivity support; full H² results are in CurvatureNonattainment.
@@ -109,7 +113,7 @@ is not yet committed.
 
 ## Gaps
 
-All four F01 manuscripts are formalized. The frozen v18 analytic Jacobian rank is separately source-pinned and interval-certified but not Lean formalized. The Plancherel extension from Schwartz class to all `L²` states (F10), and F11/F12 remain
+All four F01 manuscripts are formalized. The frozen v18 analytic Jacobian rank is separately source-pinned and interval-certified but not Lean formalized. F11 and F12 remain
 outside Lean.
 
 The local-coordinate rank/signature obstruction (F08) **is formalized** for
@@ -123,8 +127,8 @@ published numerical rank.
 Separate research-grade Lean work lives in [wct-lean](https://github.com/rickyjreyes/wct-lean);
 do not conflate its theorem count with this repository.
 
-The Schwartz-space version of F10 is proved end-to-end using Mathlib's
-Schwartz Fourier inversion; it is **not** the manuscript's full L² theorem.
+F10 is formalized on all of `L²` through the Plancherel transform of
+[FourierShellL2](MathProofs/FourierShellL2.lean); the earlier Schwartz-space version is retained.
 
 ## Completion criterion for each of the 14 tweets
 

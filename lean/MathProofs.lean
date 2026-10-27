@@ -50,3 +50,4 @@ import MathProofs.FreeEvolution
 import MathProofs.H2Algebra
 import MathProofs.CubicQuinticFlow
 import MathProofs.OrbitalStability
+import MathProofs.FourierShellL2

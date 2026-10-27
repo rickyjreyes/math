@@ -1,5 +1,9 @@
 # Version history
 
+## 2026-10-27 — Lean formalization of the isolated Fourier shell (F10)
+
+- Formalized the isolated-Fourier-shell manuscript (F10) on all of `L²(ℝ^d)`: Plancherel's theorem (the unitary extension of the Schwartz-space Fourier transform, identified with the Fourier integral on `L¹ ∩ L²`, in the manuscript's normalization), the shell theorem for essential and for distributional support, the Helmholtz corollary for distributional solutions, the polynomial-dispersion corollary, the general-multiplier remark, and the wave-packet proposition.
+
 ## 2026-10-27 — Lean formalization of orbital stability (F01)
 
 - Formalized the orbital-stability manuscript (F01) end to end on `H²(ℝ²)`: the free group `e^{-it(Δ+k²)²}` on Schwartz space, `L²` and `H²`; the `H²(ℝ²)` algebra and the cubic–quintic nonlinearity; global well-posedness with continuous dependence on the data and conservation of mass and energy (an interaction-picture Picard–Lindelöf construction with a radial truncation); and Lyapunov stability of the full minimizing set for `0 < m ≤ m_B`, including perturbations that change the mass.
