@@ -103,7 +103,7 @@ def validate_source(path):
     import runpy
 
     data = Path(path).read_bytes()
-    git_hash = hashlib.sha1(b"blob " + str(len(data)).encode() + b"\\0" + data).hexdigest()
+    git_hash = hashlib.sha1(b"blob " + str(len(data)).encode() + bytes([0]) + data).hexdigest()
     assert git_hash == SOURCE_GIT_BLOB, (
         f"Source revision changed ({git_hash}); regenerate and re-audit the certificate")
     with contextlib.redirect_stdout(io.StringIO()):
