@@ -19,6 +19,10 @@ real-trigonometric middle and heavy block determinants. Those still
 have a reproducible external outward-rounded interval certificate.
 -/
 
+/- The nested Sum index for 3+5+3 determinant synthesis needs more
+kernel recursion than the small default, not an admitted theorem. -/
+set_option maxRecDepth 8192
+
 noncomputable section
 namespace ReyesMath.V18BlockJacobian
 
