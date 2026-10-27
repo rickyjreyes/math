@@ -107,9 +107,10 @@ families:
     main_theorem_formalized: false
     matrix_nullity_core_formalized: true
     exact_nullity_surjectivity_corollary: MathProofs/ExactSensitivityNullity.lean
+    frozen_complete_31_parameter_forward_candidate: MathProofs/V18FullForward.lean
     analytic_rank_certificate: docs/SM_V18_ANALYTIC_RANK_CERTIFICATE.md
     analytic_rank_ci: .github/workflows/v18-rank.yml
-    covered: "Lean proves nullity >= 20 for every differentiable 31-to-11 map. Separately, a source-pinned model-specific interval-arithmetic certificate proves a nonzero analytic 11x11 Jacobian minor, exact rank 11 and nullity 20 on the frozen v18 active branch. A model-independent exact-nullity-20 corollary under an assumed surjective derivative is additionally proved in ExactSensitivityNullity.lean. The actual 31-parameter model and its transcendental interval bounds are not yet encoded in Lean."
+    covered: "Lean proves nullity >= 20 for every differentiable 31-to-11 map. Separately, a source-pinned model-specific interval-arithmetic certificate proves a nonzero analytic 11x11 Jacobian minor, exact rank 11 and nullity 20 on the frozen v18 active branch. A model-independent exact-nullity-20 corollary under an assumed surjective derivative is additionally proved in ExactSensitivityNullity.lean. The complete 31-parameter real-valued observation-map analogue (clip/max/dispatch) and five middle-coordinate partial derivatives are encoded in V18FullForward.lean. The full Fréchet-Jacobian/block identification and the middle-block nonzero trigonometric determinant remain unproved in Lean."
     declarations: [ReyesMath.elevenByThirtyone_nullity_bound, ReyesMath.nullityBound_arithmetic, ReyesMath.elevenByThirtyOne_matrix_nullity, ReyesMath.rectangular_sensitivity_nullity, ReyesMath.differential_local_identifiability_obstruction]
   F10:
     main_theorem_formalized: false
