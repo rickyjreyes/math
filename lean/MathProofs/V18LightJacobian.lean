@@ -28,7 +28,7 @@ def base : Matrix (Fin 3) (Fin 3) ℝ :=
 
 theorem base_det : base.det = 9 := by
   rw [Matrix.det_fin_three]
-  norm_num [base, Matrix.vecCons]
+  norm_num [base, Matrix.vecCons, Fin.cons]
 
 /-- Historically frozen epsilon_3=0.0048 and the logistic suppression. -/
 def rowScale (alpha epsilon : ℝ) (i : Fin 3) : ℝ :=
