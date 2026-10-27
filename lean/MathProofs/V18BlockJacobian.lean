@@ -51,8 +51,13 @@ theorem det_three_blocks
     (B : Matrix K J ℝ) :
     (Matrix.fromBlocks L 0 A (Matrix.fromBlocks M 0 B H)).det =
       L.det * M.det * H.det := by
-  rw [Matrix.det_fromBlocks_zero₁₂, Matrix.det_fromBlocks_zero₁₂]
-  ring
+  calc
+    (Matrix.fromBlocks L 0 A (Matrix.fromBlocks M 0 B H)).det =
+        L.det * (Matrix.fromBlocks M 0 B H).det :=
+      Matrix.det_fromBlocks_zero₁₂ _ _ _
+    _ = L.det * (M.det * H.det) := by
+      rw [Matrix.det_fromBlocks_zero₁₂]
+    _ = L.det * M.det * H.det := by ring
 
 /-- Specialized source-visible 3+5+3 analytic minor identity.
 This is a direct application of the generic proven determinant theorem. -/
