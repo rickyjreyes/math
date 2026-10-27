@@ -29,12 +29,13 @@ families:
         declarations: [ReyesMath.NegativeEnergy.negative_constrained_energy, ReyesMath.NegativeEnergy.exists_negative, ReyesMath.Sobolev.H2.energy_ge]
       whole-space-fourth-order-cubic-quintic-minimizers:
         main_theorem_formalized: false
-        covered: "Parts (i) and (ii) of the main theorem (bounds on I(m), strict binding) are the declarations above."
+        covered: "Parts (i) and (ii) of the main theorem (bounds on I(m), strict binding) are the declarations above. An additional exact F01 near-minimizer quartic nonvanishing estimate is in MinimizerNonvanishing.lean (not spatial concentration compactness)."
         gaps: "Part (iii): non-vanishing lemma, local compactness, Brezis-Lieb splitting and strong H^2 compactness of minimizing sequences modulo translations are not formalized."
         declarations: [ReyesMath.NegativeEnergy.negative_constrained_energy, ReyesMath.StrictBinding.strict_binding]
       orbital-stability-fourth-order-cubic-quintic:
         main_theorem_formalized: false
-        gaps: "Global H^2 well-posedness, conservation laws, compactness of minimizing sequences and orbital stability are not formalized."
+        covered: "OrbitalStabilityCriterion.lean proves the full epsilon-delta Cazenave-Lions implication conditional on an existing global mass/energy-conserving flow and uniform near-minimizer compactness."
+        gaps: "Actual global H^2 PDE well-posedness, conservation laws, compactness of minimizing sequences and unconditional orbital stability are not formalized."
         declarations: []
     legacy_supporting_declarations: [ReyesMath.negativeEnergy_strictGap]
   F02:
@@ -98,16 +99,18 @@ families:
   F08:
     main_theorem_formalized: false
     algebraic_no_go_core_formalized: true
-    covered: "Actual differentiable complex field on Euclidean 4-charts and arbitrary four-chart spaces: tensor equals Gram matrix, rank ≤2, and exact matrix contraction is nonnegative. Arbitrary nonnegative weighted carriers also covered. Coordinate-independent global tensor bundle construction and smooth chart-transition covariance are not formalized."
+    covered: "Actual differentiable complex field on Euclidean 4-charts and arbitrary four-chart spaces: tensor equals Gram matrix, rank ≤2, and matrix contraction is nonnegative. IntrinsicScalarMetric.lean adds covector-based pointwise tensor, positivity/nullity on arbitrary tangent fibers and exact linear frame-change covariance. Smooth global cotangent-bundle construction from a complex scalar is still open."
     declarations: [ReyesMath.scalarGradientGram_nonnegative, ReyesMath.scalarGradientGram_psd, ReyesMath.scalarGradientGram_no_timelike, ReyesMath.scalarGradientCarrier_gram_entry, ReyesMath.scalarGradientCarrier_rank_le_two, ReyesMath.positive_weighted_gradient_family_psd, ReyesMath.gradient_gram_rank_le_carriers, ReyesMath.complex_gradient_real_identity, ReyesMath.complex_gradient_tensor_eq_gram, ReyesMath.complex_gradient_tensor_rank_le_two, ReyesMath.complex_field_metric_is_gram, ReyesMath.complex_field_metric_rank_le_two, ReyesMath.complex_field_metric_quadratic_nonnegative, ReyesMath.complex_field_metric_no_timelike, ReyesMath.charted_complex_metric_rank_le_two, ReyesMath.charted_complex_metric_no_timelike, ReyesMath.charted_complex_metric_everywhere_obstruction, ReyesMath.charted_complex_metric_matrix_psd, ReyesMath.charted_complex_metric_full_pointwise_obstruction, ReyesMath.gradient_gram_matrix_quadratic, ReyesMath.complex_field_matrix_psd, ReyesMath.complex_field_matrix_no_timelike]
   F09:
     main_theorem_formalized: false
     matrix_nullity_core_formalized: true
-    covered: "Any real 11-by-31 matrix has at least 20 kernel dimensions; extended to the Fréchet derivative of any differentiable 31-to-11 map. Model-specific Jacobian and measured numerical rank 11 remain outside Lean."
+    analytic_rank_certificate: docs/SM_V18_ANALYTIC_RANK_CERTIFICATE.md
+    analytic_rank_ci: .github/workflows/v18-rank.yml
+    covered: "Lean proves nullity >= 20 for every differentiable 31-to-11 map. Separately, a source-pinned model-specific interval-arithmetic certificate proves a nonzero analytic 11x11 Jacobian minor, exact rank 11 and nullity 20 on the frozen v18 active branch. The 31-parameter model and transcendental interval bounds are not yet encoded in Lean."
     declarations: [ReyesMath.elevenByThirtyone_nullity_bound, ReyesMath.nullityBound_arithmetic, ReyesMath.elevenByThirtyOne_matrix_nullity, ReyesMath.rectangular_sensitivity_nullity, ReyesMath.differential_local_identifiability_obstruction]
   F10:
     main_theorem_formalized: false
-    covered: "Arbitrary-dimensional null Fourier sphere and vanishing a.e. Fourier representative. A full Fourier inversion/nonlocalization proof is now formalized for Schwartz-class fields using Mathlib's actual Schwartz Fourier equivalence. Extension to arbitrary L² states via Plancherel remains open."
+    covered: "Null Fourier spheres and Schwartz-class Fourier inversion are formally proved. L2FourierShellBridge.lean adds exact shell exclusion on actual L² for any supplied Plancherel isometric Fourier equivalence. The canonical L² Fourier transform and its identification with the Schwartz extension remain open in pinned Mathlib."
     declarations: [ReyesMath.zero_ae_of_null_support, ReyesMath.oneDimensional_shell_ae_zero, ReyesMath.euclidean_frequency_shell_measure_zero, ReyesMath.euclidean_frequency_shell_ae_zero, ReyesMath.schwartz_fourier_shell_no_bound_state]
   F11:
     main_theorem_formalized: false
