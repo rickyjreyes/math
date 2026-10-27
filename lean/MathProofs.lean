@@ -53,3 +53,4 @@ import MathProofs.OrbitalStability
 import MathProofs.GlobalScalarTensor
 import MathProofs.ManifoldScalarMetric
 import MathProofs.L2Fourier
+import MathProofs.ExactSensitivityNullity
