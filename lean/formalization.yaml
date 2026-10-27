@@ -109,13 +109,14 @@ families:
     verified_heavy_block: MathProofs/V18HeavyJacobian.lean
     verified_three_block_factorization: MathProofs/V18BlockJacobian.lean
     source_middle_derivatives: MathProofs/V18MiddleDerivatives.lean
+    complete_frozen_forward_model: MathProofs/V18FullForward.lean
     exact_middle_block_source: MathProofs/V18MiddleJacobian.lean
     remaining: "Lean certification of the concrete trigonometric 5x5 middle determinant and the full clipped 31-parameter forward map derivative. No rank-11 full-model theorem may be claimed until both are proved."
     matrix_nullity_core_formalized: true
     exact_nullity_surjectivity_corollary: MathProofs/ExactSensitivityNullity.lean
     analytic_rank_certificate: docs/SM_V18_ANALYTIC_RANK_CERTIFICATE.md
     analytic_rank_ci: .github/workflows/v18-rank.yml
-    covered: "Lean proves nullity >= 20 for every differentiable 31-to-11 map. Separately, a source-pinned model-specific interval-arithmetic certificate proves a nonzero analytic 11x11 Jacobian minor, exact rank 11 and nullity 20 on the frozen v18 active branch. A model-independent exact-nullity-20 corollary under an assumed surjective derivative is additionally proved in ExactSensitivityNullity.lean. The actual 31-parameter model and its transcendental interval bounds are not yet encoded in Lean."
+    covered: "Lean proves nullity >= 20 for every differentiable 31-to-11 map. Separately, a source-pinned model-specific interval-arithmetic certificate proves a nonzero analytic 11x11 Jacobian minor, exact rank 11 and nullity 20 on the frozen v18 active branch. A model-independent exact-nullity-20 corollary under an assumed surjective derivative is additionally proved in ExactSensitivityNullity.lean. The source-matched real-valued 31-parameter forward observation map, including clipping and branches, and five direct middle parameter-coordinate derivative lemmas are now encoded and F09 targeted-CI checked in V18FullForward.lean. The full active-sector Fréchet derivative identification and concrete nonzero 5x5 transcendental determinant have not been kernel-proved."
     declarations: [ReyesMath.elevenByThirtyone_nullity_bound, ReyesMath.nullityBound_arithmetic, ReyesMath.elevenByThirtyOne_matrix_nullity, ReyesMath.rectangular_sensitivity_nullity, ReyesMath.differential_local_identifiability_obstruction]
   F10:
     main_theorem_formalized: true
