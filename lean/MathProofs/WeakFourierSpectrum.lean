@@ -21,7 +21,7 @@ requires a separate theorem for tempered-distribution Fourier derivatives.
 noncomputable section
 namespace ReyesMath.WeakFourierSpectrum
 open MeasureTheory PolynomialFourier
-open scoped Polynomial
+open scoped Polynomial ContDiff Topology
 
 private abbrev Rd (d : ℕ) := EuclideanSpace ℝ (Fin (d + 1))
 
