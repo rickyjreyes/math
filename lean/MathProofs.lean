@@ -62,3 +62,5 @@ import MathProofs.V18MiddleDerivatives
 import MathProofs.V18FullForward
 
 import MathProofs.RemainingCores
+
+import MathProofs.E16SpectralCore
