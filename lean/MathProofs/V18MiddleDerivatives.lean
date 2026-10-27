@@ -94,4 +94,12 @@ def selectedRow (n : ℕ) (amp phase : ℝ) : Fin 5 → ℝ
 def selectedMatrix : Matrix (Fin 5) (Fin 5) ℝ :=
   fun i => selectedRow ([12, 19, 53, 73, 91].get ⟨i.val, by omega⟩) 2241.1 1.6469
 
+/-- The analytically differentiated source rows are the matrix used in the
+frozen v18 determinant certificate. This checks every declared entry. -/
+theorem selectedMatrix_eq_middle :
+    selectedMatrix = V18MiddleJacobian.middle := by
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    norm_num [selectedMatrix, selectedRow, V18MiddleJacobian.middle]
+
 end ReyesMath.V18MiddleDerivatives
