@@ -60,7 +60,7 @@ theorem ae_eval_ne (d : ℕ) (p : ℝ[X]) (hp : p ≠ 0) :
   have hs : ‖ξ‖ ^ 2 ∈ s := by
     change ‖ξ‖ ^ 2 ∈ p.roots.toFinset
     exact Multiset.mem_toFinset.mpr ((Polynomial.mem_roots hp).mpr hx)
-  exact hξ _ hs heq
+  exact (hξ _ hs) rfl
 
 /-- A polynomial Fourier multiplier whose symbol is not identically zero
 has trivial kernel in genuine L²(ℝᵈ). -/
@@ -82,15 +82,15 @@ theorem multiplier_kernel_zero (d : ℕ) (p : ℝ[X]) (hp : p ≠ 0)
 /-- Spectral shift version: a nonconstant polynomial of -Δ has no
 square-integrable eigenstate at any real eigenvalue, provided the
 distributional equation has been converted to its Fourier multiplier. -/
-theorem shifted_multiplier_kernel_zero (d : ℕ) (p : ℝ[X]) (λ : ℝ)
-    (hp : p ≠ Polynomial.C λ)
+theorem shifted_multiplier_kernel_zero (d : ℕ) (p : ℝ[X]) (eigenvalue : ℝ)
+    (hp : p ≠ Polynomial.C eigenvalue)
     (u : Sobolev.L2 (d + 1))
     (h : ∀ᵐ ξ : Rd d ∂volume,
-      (((Polynomial.eval (‖ξ‖ ^ 2) p - λ : ℝ) : ℂ) *
+      (((Polynomial.eval (‖ξ‖ ^ 2) p - eigenvalue : ℝ) : ℂ) *
         (L2Fourier.equivalence (d + 1) u : Rd d → ℂ) ξ) = 0) :
     u = 0 := by
-  have hsub : p - Polynomial.C λ ≠ 0 := sub_ne_zero.mpr hp
-  apply multiplier_kernel_zero d (p - Polynomial.C λ) hsub u
+  have hsub : p - Polynomial.C eigenvalue ≠ 0 := sub_ne_zero.mpr hp
+  apply multiplier_kernel_zero d (p - Polynomial.C eigenvalue) hsub u
   filter_upwards [h] with ξ hξ
   simpa only [Polynomial.eval_sub, Polynomial.eval_C] using hξ
 
