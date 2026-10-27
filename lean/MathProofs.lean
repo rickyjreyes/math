@@ -46,3 +46,4 @@ import MathProofs.OrbitalStabilityCriterion
 import MathProofs.MinimizerNonvanishing
 import MathProofs.L2FourierShellBridge
 import MathProofs.CurvatureLegacy
+import MathProofs.ManifoldScalarMetric
