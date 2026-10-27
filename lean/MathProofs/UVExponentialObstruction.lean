@@ -36,7 +36,7 @@ theorem ultraviolet_exponential_outgrows_polynomial
     simp [p]
   have hP : C * (1 + (4 / t) * y) ^ N < Real.exp y := by
     rw [hp] at hsmall
-    exact (div_lt_iff₀ (Real.exp_pos y)).mp hsmall
+    simpa only [one_mul] using (div_lt_iff₀ (Real.exp_pos y)).mp hsmall
   let k : ℝ := 4 * y / t
   have hk : 2 ≤ k := by
     dsimp [k]
@@ -48,8 +48,7 @@ theorem ultraviolet_exponential_outgrows_polynomial
   rw [habs] at hkg
   have heq : t * (k / 4) = y := by
     dsimp [k]
-    field_simp [ne_of_gt ht]
-    ring
+    field_simp [ne_of_gt ht] <;> ring
   have hgrowth : y ≤ t * uvGrowth (k ^ 2) := by
     have hm := mul_le_mul_of_nonneg_left hkg ht.le
     rw [heq] at hm
@@ -59,8 +58,7 @@ theorem ultraviolet_exponential_outgrows_polynomial
     C * (1 + k) ^ N = C * (1 + (4 / t) * y) ^ N := by
       dsimp [k]
       congr 1
-      field_simp [ne_of_gt ht]
-      ring
+      field_simp [ne_of_gt ht] <;> ring
     _ < Real.exp y := hP
     _ ≤ Real.exp (t * uvGrowth (k ^ 2)) :=
       Real.exp_le_exp.mpr hgrowth
