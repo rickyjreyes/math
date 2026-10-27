@@ -10,10 +10,10 @@ the later `Analysis/Fourier/LpSpace.lean` isometric L² Fourier equivalence.
 For any supplied complex-linear L² Fourier isometric equivalence, a
 state whose transformed representative is supported on a sphere is zero.
 
-This is an exact infinite-dimensional L² theorem but the given Fourier
-operator has not been shown to coincide with the canonical Fourier
-transform.  Building that canonical transform from Schwartz-space
-density remains the distinct F10 certification gate.
+This is an exact infinite-dimensional L² theorem for a supplied Fourier
+operator.  The canonical Plancherel transform, built from Schwartz-space
+density and identified with the Fourier integral on `L¹ ∩ L²`, and the full
+F10 theorem are in `MathProofs.FourierShellL2`.
 -/
 
 namespace ReyesMath
