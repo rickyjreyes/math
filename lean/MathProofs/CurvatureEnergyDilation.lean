@@ -21,7 +21,6 @@ namespace CurvatureEnergy
 
 open MeasureTheory Sobolev
 open Sobolev.H2
-open Sobolev.Dilation
 
 variable {d : ℕ}
 
