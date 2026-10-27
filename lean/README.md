@@ -141,7 +141,7 @@ published numerical rank.
 Separate research-grade Lean work lives in [wct-lean](https://github.com/rickyjreyes/wct-lean);
 do not conflate its theorem count with this repository.
 
-The main theorem and corollaries of **F03 (spectral phase), F06 (finite-scale dispersion), and F07 (continuous phase locking)** are now represented by complete kernel-checked Lean declarations. The **regular fixed-background S004 constraint count** within F02 is independently proved, while F02's separate ultraviolet Sobolev evolution theorem remains open. Across the fourteen requested tweets this certifies #5, #9, #10 and #11, subject to the exact written hypotheses (not unrelated physics claims).
+The full mathematical statements of **F02 (regular fixed-background S004 constraint count and UV four-jet ill-posedness), F03 (spectral phase), F06 (finite-scale dispersion) and F07 (continuous phase locking)** now have kernel-checked Lean declarations. **F01's negative-energy subtheorem** is also verified, although F01's broader strict-binding/attainment/stability family remains open. Across the original fourteen manuscript targets this certifies #4, #5, #7, #9, #10 and #11, precisely within the encoded mathematical hypotheses.
 
 The Schwartz-space version of F10 is now proved end-to-end using Mathlib's
 Schwartz Fourier inversion; it is **not** the manuscript's full L² theorem.
