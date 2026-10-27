@@ -38,6 +38,10 @@ This Mathlib v4.23.0 project integrates main-line supporting modules with newer 
   nonlinearity, global `H²(ℝ²)` well-posedness with continuous dependence and conservation of
   mass and energy (interaction-picture Picard–Lindelöf), and orbital stability of the full
   minimizing set `𝒢_m` for `0 < m ≤ m_B`, including perturbations that change the mass.
+- [FourierShellL2](MathProofs/FourierShellL2.lean) — F10, full manuscript formalization:
+  Plancherel on `L²`, Fourier integral agreement, essential and distributional
+  shell exclusion, Helmholtz and polynomial-multiplier corollaries, and
+  fixed-carrier variable-envelope wave packets. Integration CI must pass before certification.
 - [CurvatureNonattainment](MathProofs/CurvatureNonattainment.lean) — F05, complete:
   whole-space nonattainment in every dimension and strict spreading for `1 ≤ d ≤ 4`.
 
@@ -46,7 +50,7 @@ This Mathlib v4.23.0 project integrates main-line supporting modules with newer 
 - [IntrinsicScalarMetric](MathProofs/IntrinsicScalarMetric.lean): intrinsic positive-sign tensor and frame-covariance, but not a globally smooth cotangent tensor section.
 - [MinimizerNonvanishing](MathProofs/MinimizerNonvanishing.lean): quantitative quartic nonvanishing for negative-energy near-minimizers.
 - [OrbitalStabilityCriterion](MathProofs/OrbitalStabilityCriterion.lean): an abstract, conditional Cazenave–Lions orbital-stability reduction; the unconditional theorem for the cubic–quintic flow is [OrbitalStability](MathProofs/OrbitalStability.lean).
-- [L2FourierShellBridge](MathProofs/L2FourierShellBridge.lean): infinite-dimensional L² shell exclusion under a supplied Plancherel equivalence; canonical transform construction remains open.
+- [L2FourierShellBridge](MathProofs/L2FourierShellBridge.lean): infinite-dimensional L² shell exclusion under a supplied Plancherel equivalence; the canonical transform and the broader F10 corollaries are now encoded in [FourierShellL2](MathProofs/FourierShellL2.lean).
 - [Source-pinned v18 analytic Jacobian rank certificate](../docs/SM_V18_ANALYTIC_RANK_CERTIFICATE.md): reproducible interval arithmetic, not Lean.
 - Original main-line modules retained: CurvatureUniformBound, PhysicalDispersionMinimum, DispersionCriticalPoint, S004DiracBracket, GaussianTrialAlgebra, VariationalBinding, ContinuousPhaseIntegral, ContinuousPhaseOptimizer, ContinuousSpectralVariance, QuinticConvolution, UVGrowthBound, UVExponentialObstruction, DispersionBranchPositivity and DispersionRealDomain.
 - [CurvatureLegacy](MathProofs/CurvatureLegacy.lean) preserves earlier abstract nonattainment and curvature-weight positivity support; full H² results are in CurvatureNonattainment.
@@ -113,14 +117,14 @@ is not yet committed.
 
 ## Gaps
 
-All four F01 manuscripts and the F08 scalar-manifold obstruction are formalized. The frozen-v18 Jacobian rank is source-pinned and interval-certified but not yet Lean formalized. The new canonical Plancherel construction is pending CI; the complete F10 paper still has distributional and wavepacket obligations. F11/F12 also remain outside Lean.
+All four F01 manuscripts and the F08 scalar-manifold obstruction are formalized. The frozen-v18 Jacobian rank is source-pinned and interval-certified but not yet Lean formalized. The canonical transform, distributional corollaries and wavepacket theorem now have imported Lean declarations; exact-head integration CI is required for certification. F11/F12 also remain outside Lean.
 
 The F08 obstruction on a smooth four-manifold is fully formalized for an actual global complex scalar, including its covariant fiberwise tensor, nonnegativity, rank/nullity, determinant, pullback covariance, and continuous/C^m tangent-bundle evaluation. The model-independent differential nullity core of F09 and its exact-nullity corollary are in Lean, but the source-pinned frozen-v18 transcendental determinant is still a separate numerical interval certificate.
 
 Separate research-grade Lean work lives in [wct-lean](https://github.com/rickyjreyes/wct-lean);
 do not conflate its theorem count with this repository.
 
-The principal arbitrary-L² Fourier-shell theorem has a new explicit canonical Fourier construction in [L2Fourier](MathProofs/L2Fourier.lean), currently undergoing Lean CI verification. The manuscript's distributional Helmholtz and polynomial-dispersion corollaries and its envelope-scale wavepacket proposition remain to be formalized.
+The canonical `L²` transform is in [L2Fourier](MathProofs/L2Fourier.lean). The complete F10 distributional Helmholtz, polynomial-dispersion and envelope-scale wavepacket statements are in [FourierShellL2](MathProofs/FourierShellL2.lean), pending the combined integration build.
 
 ## Completion criterion for each of the 14 tweets
 
