@@ -15,7 +15,7 @@ of the homogeneous four-jet PDE solution operator on Sobolev spaces.
 
 namespace ReyesMath
 
-open Filter
+open Filter Topology
 
 /-- For positive time and any finite polynomial frequency weight, an
 arbitrarily high real wavenumber violates the proposed upper bound
