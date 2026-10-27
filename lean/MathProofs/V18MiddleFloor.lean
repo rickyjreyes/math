@@ -26,7 +26,7 @@ theorem abs_sin_le_distance_to_nat_pi (x : ℝ) (k : ℕ) :
   have hx : x - k * Real.pi + k * Real.pi = x := by ring
   rw [hx] at h
   rw [h, abs_mul] 
-  simpa using (Real.abs_sin_le_abs (x - k * Real.pi))
+  simpa using (Real.abs_sin_le_abs (x := x - k * Real.pi))
 
 /-- Exact rational reduction of source frequencies modulo pi. -/
 theorem frozen_middle_sine_lower_12 :
@@ -39,7 +39,7 @@ theorem frozen_middle_sine_lower_12 :
   have h := abs_sin_le_distance_to_nat_pi x 20
   have hn := (abs_le.mp h).1
   have hc := neg_le_neg hr
-  exact le_trans hc hn
+  convert le_trans hc hn using 1 <;> norm_num [x]
 
 theorem frozen_middle_sine_lower_19 :
     (-46 / 100 : ℝ) ≤ Real.sin ((5.0632 : ℝ) * 19 + 1.6469) := by
@@ -49,7 +49,7 @@ theorem frozen_middle_sine_lower_19 :
     constructor <;> dsimp [x] <;>
       nlinarith [Real.pi_gt_d6, Real.pi_lt_d6]
   have h := abs_sin_le_distance_to_nat_pi x 31
-  exact (neg_le_neg hr).trans (abs_le.mp h).1
+  convert ((neg_le_neg hr).trans (abs_le.mp h).1) using 1 <;> norm_num [x]
 
 theorem frozen_middle_sine_lower_53 :
     (-19 / 100 : ℝ) ≤ Real.sin ((5.0632 : ℝ) * 53 + 1.6469) := by
@@ -66,35 +66,50 @@ theorem middle_12_strict (alpha epsilon : ℝ) :
     (1e-12 : ℝ) < V18Forward.middleRaw (V18Forward.frozen alpha epsilon) 12 := by
   have h1 := frozen_middle_sine_lower_12
   have h2 := Real.neg_one_le_sin ((9.4062 : ℝ) * 12)
-  norm_num [V18Forward.middleRaw, V18Forward.frozen, V18MiddleDerivatives.raw]
+  change (1e-12 : ℝ) <
+    (998.7 : ℝ) + 0.2427 * (12 : ℝ)^2 +
+      0.2092 * Real.sin ((9.4062 : ℝ) * 12) +
+      2241.1 * Real.sin ((5.0632 : ℝ) * 12 + 1.6469)
   nlinarith
 
 theorem middle_19_strict (alpha epsilon : ℝ) :
     (1e-12 : ℝ) < V18Forward.middleRaw (V18Forward.frozen alpha epsilon) 19 := by
   have h1 := frozen_middle_sine_lower_19
   have h2 := Real.neg_one_le_sin ((9.4062 : ℝ) * 19)
-  norm_num [V18Forward.middleRaw, V18Forward.frozen, V18MiddleDerivatives.raw]
+  change (1e-12 : ℝ) <
+    (998.7 : ℝ) + 0.2427 * (19 : ℝ)^2 +
+      0.2092 * Real.sin ((9.4062 : ℝ) * 19) +
+      2241.1 * Real.sin ((5.0632 : ℝ) * 19 + 1.6469)
   nlinarith
 
 theorem middle_53_strict (alpha epsilon : ℝ) :
     (1e-12 : ℝ) < V18Forward.middleRaw (V18Forward.frozen alpha epsilon) 53 := by
   have h1 := frozen_middle_sine_lower_53
   have h2 := Real.neg_one_le_sin ((9.4062 : ℝ) * 53)
-  norm_num [V18Forward.middleRaw, V18Forward.frozen, V18MiddleDerivatives.raw]
+  change (1e-12 : ℝ) <
+    (998.7 : ℝ) + 0.2427 * (53 : ℝ)^2 +
+      0.2092 * Real.sin ((9.4062 : ℝ) * 53) +
+      2241.1 * Real.sin ((5.0632 : ℝ) * 53 + 1.6469)
   nlinarith
 
 theorem middle_73_strict (alpha epsilon : ℝ) :
     (1e-12 : ℝ) < V18Forward.middleRaw (V18Forward.frozen alpha epsilon) 73 := by
   have h1 := Real.neg_one_le_sin ((5.0632 : ℝ) * 73 + 1.6469)
   have h2 := Real.neg_one_le_sin ((9.4062 : ℝ) * 73)
-  norm_num [V18Forward.middleRaw, V18Forward.frozen, V18MiddleDerivatives.raw]
+  change (1e-12 : ℝ) <
+    (998.7 : ℝ) + 0.2427 * (73 : ℝ)^2 +
+      0.2092 * Real.sin ((9.4062 : ℝ) * 73) +
+      2241.1 * Real.sin ((5.0632 : ℝ) * 73 + 1.6469)
   nlinarith
 
 theorem middle_91_strict (alpha epsilon : ℝ) :
     (1e-12 : ℝ) < V18Forward.middleRaw (V18Forward.frozen alpha epsilon) 91 := by
   have h1 := Real.neg_one_le_sin ((5.0632 : ℝ) * 91 + 1.6469)
   have h2 := Real.neg_one_le_sin ((9.4062 : ℝ) * 91)
-  norm_num [V18Forward.middleRaw, V18Forward.frozen, V18MiddleDerivatives.raw]
+  change (1e-12 : ℝ) <
+    (998.7 : ℝ) + 0.2427 * (91 : ℝ)^2 +
+      0.2092 * Real.sin ((9.4062 : ℝ) * 91) +
+      2241.1 * Real.sin ((5.0632 : ℝ) * 91 + 1.6469)
   nlinarith
 
 /-- All five middle observations are locally on the differentiable branch
