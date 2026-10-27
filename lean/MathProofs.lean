@@ -21,3 +21,4 @@ import MathProofs.S004ConstraintCount
 import MathProofs.FourierLeakage
 import MathProofs.UVIllPosedness
 import MathProofs.UVWholeSpace
+import MathProofs.SobolevH2
