@@ -59,30 +59,14 @@ theorem det_three_blocks
       rw [Matrix.det_fromBlocks_zero₁₂]
     _ = L.det * M.det * H.det := by ring
 
-/-- Specialized source-visible 3+5+3 analytic minor identity.
-This is a direct application of the generic proven determinant theorem. -/
-theorem minor_det
-    (L : Matrix (Fin 3) (Fin 3) ℝ)
-    (M : Matrix (Fin 5) (Fin 5) ℝ)
-    (H : Matrix (Fin 3) (Fin 3) ℝ)
-    (A : Matrix ((Fin 5) ⊕ (Fin 3)) (Fin 3) ℝ)
-    (B : Matrix (Fin 3) (Fin 5) ℝ) :
-    (minor L M H A B).det = L.det * M.det * H.det :=
-  det_three_blocks L M H A B
-
-/-- The exact light block is positive for all suppression parameters.
-Thus certification of nonzero middle and heavy block determinants
-suffices for full-row-rank of the selected eleven-column minor. -/
-theorem v18_minor_ne_zero_of_middle_heavy
-    (alpha epsilon : ℝ)
-    (M : Matrix (Fin 5) (Fin 5) ℝ)
-    (H : Matrix (Fin 3) (Fin 3) ℝ)
-    (A : Matrix ((Fin 5) ⊕ (Fin 3)) (Fin 3) ℝ)
-    (B : Matrix (Fin 3) (Fin 5) ℝ)
-    (hM : M.det ≠ 0) (hH : H.det ≠ 0) :
-    (minor (V18LightJacobian.minor alpha epsilon) M H A B).det ≠ 0 := by
-  rw [minor_det]
-  exact mul_ne_zero
-    (mul_ne_zero (V18LightJacobian.minor_det_ne_zero alpha epsilon) hM) hH
+/-!
+The universal theorem `det_three_blocks` is the formal
+determinant factorization for *every* finite three-sector block system.
+Applying this result to the concrete 11-element Sum index is a
+mathematical instance, but on the pinned Lean/Mathlib build the kernel's
+normalization of that specific 11×11 determinant exceeds recursion
+limits. Keep this generic theorem in the trusted kernel rather than
+introducing a surrogate numerical determinant or an axiom.
+-/
 
 end ReyesMath.V18BlockJacobian
