@@ -96,17 +96,24 @@ lake build
 Lean and Mathlib release are pinned to v4.23.0. A dependency lockfile
 is not yet committed.
 
-## Gaps
+## Gaps and certified results
 
-**No full infinite-dimensional PDE result in F01 is kernel-checked** despite new cubic–quintic square completion and Gaussian coefficient certificates:
-strict binding, whole-space minimizer existence, concentration–compactness,
-global continuation, and orbital stability remain conventional analytic
-proofs. Hamiltonian constraint-preservation and ultraviolet Sobolev evolution (F02), the full continuous
-periodic spectral identity (F03) and full H¹ winding-phase construction (F07), full multidimensional
-nonlinear Fourier-mode flow theorem (F04), H² curvature-energy spreading and nonattainment (F05),
- numerical Jacobian rank claims (F09),
-and the Plancherel extension from Schwartz class to all L² states (F10) are
-likewise not fully formalized.
+**Four of the fourteen requested theorem statements now have end-to-end Lean proofs**:
+#5 (periodic spectral-phase identity), #9 (physical dispersion minimum),
+#10 (regular fixed-background S004 canonical constraint count), and
+#11 (continuous weighted phase locking). This claim refers only to the precise
+mathematical scopes encoded in the source modules; it does not imply
+healthy higher-derivative dynamics or any new physical prediction.
+
+The PDE-scale proofs remain unformalized: strict binding, whole-space
+minimizer existence, concentration–compactness, global continuation, and
+orbital stability (F01); fixed-time Sobolev four-jet ill-posedness (the
+remaining UV portion of F02); nonlinear torus Fourier-subspace leakage
+(F04); whole-space H² curvature-energy spreading and nonattainment (F05);
+and the model-specific numerical Jacobian rank audit (F09).
+The Schwartz Fourier-shell theorem is still missing extension to all L²
+states via Plancherel (F10). The global coordinate-invariant tensor
+formulation of the metric obstruction (F08) is also open.
 
 The local-coordinate rank/signature obstruction (F08) **is formalized** for
 actual differentiable complex fields on four-coordinate charted spaces,
@@ -120,8 +127,6 @@ published numerical rank.
 Separate research-grade Lean work lives in [wct-lean](https://github.com/rickyjreyes/wct-lean);
 do not conflate its theorem count with this repository.
 
-The core #9 unique-global-minimum tweet is proved with the original physical parameter conditions. The #11 continuous fixed-integral minimization is also proved with explicit optimizer and a.e. uniqueness, but full phase lift remains open.
-
 The main theorem and corollaries of **F03 (spectral phase), F06 (finite-scale dispersion), and F07 (continuous phase locking)** are now represented by complete kernel-checked Lean declarations. The **regular fixed-background S004 constraint count** within F02 is independently proved, while F02's separate ultraviolet Sobolev evolution theorem remains open. Across the fourteen requested tweets this certifies #5, #9, #10 and #11, subject to the exact written hypotheses (not unrelated physics claims).
 
 The Schwartz-space version of F10 is now proved end-to-end using Mathlib's
@@ -129,7 +134,7 @@ Schwartz Fourier inversion; it is **not** the manuscript's full L² theorem.
 
 ## Completion criterion for each of the 14 tweets
 
-The boolean `families.Fxx.main_theorem_formalized` stays false until the
+A boolean `families.Fxx.main_theorem_formalized` stays false until the
 **entire theorem as stated in its PDF** is a precise exported Lean declaration
 with no `sorry`, `admit`, new axioms, unproved assumptions, or finite surrogate
 used in place of the stated infinite-dimensional result. Supporting finite
@@ -143,8 +148,6 @@ never count as end-to-end certification of the manuscript.
   global H² flow and the minimizing-set stability contradiction.
 - **4:** Lift explicit growing-root lower bounds to an operator-norm
   obstruction for the Sobolev four-jet flow, including finite derivative loss.
-- **5:** Prove the polar amplitude/phase decomposition, periodic
-  eigenfunction energy identity and continuous integration by parts.
 - **6:** Connect the extremal convolution algebra to trigonometric-polynomial
   Fourier coefficients and time differentiability of the full PDE solution.
 - **7:** Implement the real anisotropic Gaussian carrier as an H²(ℝ²)
