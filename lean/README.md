@@ -51,6 +51,10 @@ This Mathlib v4.23.0 project integrates main-line supporting modules with newer 
 - Original main-line modules retained: CurvatureUniformBound, PhysicalDispersionMinimum, DispersionCriticalPoint, S004DiracBracket, GaussianTrialAlgebra, VariationalBinding, ContinuousPhaseIntegral, ContinuousPhaseOptimizer, ContinuousSpectralVariance, QuinticConvolution, UVGrowthBound, UVExponentialObstruction, DispersionBranchPositivity and DispersionRealDomain.
 - [CurvatureLegacy](MathProofs/CurvatureLegacy.lean) preserves earlier abstract nonattainment and curvature-weight positivity support; full H² results are in CurvatureNonattainment.
 
+- [ManifoldScalarMetric](MathProofs/ManifoldScalarMetric.lean) — full F08 global scalar-gradient manifold tensor and smooth tangent-bundle obstruction: actual mfderiv, bilinear form, positivity, nullity, det=0, covariance and nonnegative multiplets (CI passed).
+- [L2Fourier](MathProofs/L2Fourier.lean) — canonical L² Fourier from Schwartz density and Plancherel, plus exact-shell exclusion (patched source awaiting CI; F10 corollaries not all certified).
+- [ExactSensitivityNullity](MathProofs/ExactSensitivityNullity.lean) — conditional exact-nullity-20 corollary for a full-row-rank 31-to-11 derivative (CI passed). The frozen v18 determinant remains externally interval-certified, not Lean-certified.
+
 ### Supporting modules
 
 - [Elementary](MathProofs/Elementary.lean) — original elementary algebra.
@@ -109,22 +113,14 @@ is not yet committed.
 
 ## Gaps
 
-All four F01 manuscripts are formalized. The frozen v18 analytic Jacobian rank is separately source-pinned and interval-certified but not Lean formalized. The Plancherel extension from Schwartz class to all `L²` states (F10), and F11/F12 remain
-outside Lean.
+All four F01 manuscripts and the F08 scalar-manifold obstruction are formalized. The frozen-v18 Jacobian rank is source-pinned and interval-certified but not yet Lean formalized. The new canonical Plancherel construction is pending CI; the complete F10 paper still has distributional and wavepacket obligations. F11/F12 also remain outside Lean.
 
-The local-coordinate rank/signature obstruction (F08) **is formalized** for
-actual differentiable complex fields on four-coordinate charted spaces,
-including explicit matrix contraction and its positivity. A global bundled
-coordinate-invariant tensor construction is not certified. The generic local matrix
-nullity core of F09 is formalized but is not a certification of the
-11-parameter-observable physical model, its computed Jacobian, or its
-published numerical rank.
+The F08 obstruction on a smooth four-manifold is fully formalized for an actual global complex scalar, including its covariant fiberwise tensor, nonnegativity, rank/nullity, determinant, pullback covariance, and continuous/C^m tangent-bundle evaluation. The model-independent differential nullity core of F09 and its exact-nullity corollary are in Lean, but the source-pinned frozen-v18 transcendental determinant is still a separate numerical interval certificate.
 
 Separate research-grade Lean work lives in [wct-lean](https://github.com/rickyjreyes/wct-lean);
 do not conflate its theorem count with this repository.
 
-The Schwartz-space version of F10 is proved end-to-end using Mathlib's
-Schwartz Fourier inversion; it is **not** the manuscript's full L² theorem.
+The principal arbitrary-L² Fourier-shell theorem has a new explicit canonical Fourier construction in [L2Fourier](MathProofs/L2Fourier.lean), currently undergoing Lean CI verification. The manuscript's distributional Helmholtz and polynomial-dispersion corollaries and its envelope-scale wavepacket proposition remain to be formalized.
 
 ## Completion criterion for each of the 14 tweets
 
