@@ -59,7 +59,7 @@ theorem frozen_middle_sine_lower_53 :
     constructor <;> dsimp [x] <;>
       nlinarith [Real.pi_gt_d6, Real.pi_lt_d6]
   have h := abs_sin_le_distance_to_nat_pi x 86
-  exact (neg_le_neg hr).trans (abs_le.mp h).1
+  convert ((neg_le_neg hr).trans (abs_le.mp h).1) using 1 <;> norm_num [x]
 
 /-- Source middle values exceed the actual piecewise clipping floor. -/
 theorem middle_12_strict (alpha epsilon : ℝ) :
