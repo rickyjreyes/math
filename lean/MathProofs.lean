@@ -39,3 +39,6 @@ import MathProofs.UVIllPosedness
 import MathProofs.UVWholeSpace
 import MathProofs.NegativeEnergy
 import MathProofs.StrictBinding
+import MathProofs.IntrinsicScalarMetric
+import MathProofs.L2FourierShellBridge
+import MathProofs.CurvatureEnergyDilation
