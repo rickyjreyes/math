@@ -1,5 +1,11 @@
 # Version history
 
+## 2026-10-27 — Frozen v18 analytic Jacobian formalization (partial)
+
+- Imported kernel-checked light and heavy 3×3 blocks; generic 3+5+3 block determinant identity; derived the five selected middle-sector source partial derivatives and recorded their exact 5×5 matrix.
+- The interval-certified trigonometric middle determinant and full clipped 31-parameter source-model derivative remain to be proved inside Lean. F09 completion flag remains false.
+
+
 ## 2026-10-27 — Lean formalization of the isolated Fourier shell (F10)
 
 - Formalized the isolated-Fourier-shell manuscript (F10) on all of `L²(ℝ^d)`: Plancherel's theorem (the unitary extension of the Schwartz-space Fourier transform, identified with the Fourier integral on `L¹ ∩ L²`, in the manuscript's normalization), the shell theorem for essential and for distributional support, the Helmholtz corollary for distributional solutions, the polynomial-dispersion corollary, the general-multiplier remark, and the wave-packet proposition.

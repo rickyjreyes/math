@@ -54,3 +54,8 @@ import MathProofs.ManifoldScalarMetric
 import MathProofs.L2Fourier
 import MathProofs.ExactSensitivityNullity
 import MathProofs.FourierShellL2
+import MathProofs.V18LightJacobian
+import MathProofs.V18HeavyJacobian
+import MathProofs.V18BlockJacobian
+import MathProofs.V18MiddleJacobian
+import MathProofs.V18MiddleDerivatives

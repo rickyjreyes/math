@@ -105,6 +105,12 @@ families:
     declarations: [ReyesMath.ManifoldScalarMetric.main, ReyesMath.ManifoldScalarMetric.tensor_det_zero, ReyesMath.ManifoldScalarMetric.tensor_pullback, ReyesMath.ManifoldScalarMetric.tensorEval_continuous, ReyesMath.ManifoldScalarMetric.tensorEval_contMDiff, ReyesMath.ManifoldScalarMetric.multiplet_obstruction, ReyesMath.ManifoldScalarMetric.multiplet_rank_budget, ReyesMath.ManifoldScalarMetric.gram_rank_le_two, ReyesMath.ManifoldScalarMetric.gram_nullity, ReyesMath.ManifoldScalarMetric.gram_degenerate]
   F09:
     main_theorem_formalized: false
+    verified_light_block: MathProofs/V18LightJacobian.lean
+    verified_heavy_block: MathProofs/V18HeavyJacobian.lean
+    verified_three_block_factorization: MathProofs/V18BlockJacobian.lean
+    source_middle_derivatives: MathProofs/V18MiddleDerivatives.lean
+    exact_middle_block_source: MathProofs/V18MiddleJacobian.lean
+    remaining: "Lean certification of the concrete trigonometric 5x5 middle determinant and the full clipped 31-parameter forward map derivative. No rank-11 full-model theorem may be claimed until both are proved."
     matrix_nullity_core_formalized: true
     exact_nullity_surjectivity_corollary: MathProofs/ExactSensitivityNullity.lean
     analytic_rank_certificate: docs/SM_V18_ANALYTIC_RANK_CERTIFICATE.md
