@@ -32,3 +32,4 @@ import MathProofs.DispersionMinimum
 import MathProofs.PhaseLockingContinuous
 import MathProofs.SpectralPhaseIdentity
 import MathProofs.S004ConstraintCount
+import MathProofs.FourierLeakage
