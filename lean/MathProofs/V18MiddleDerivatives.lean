@@ -92,7 +92,7 @@ def selectedRow (n : ℕ) (amp phase : ℝ) : Fin 5 → ℝ
 
 /-- Exact source-frozen derivative row matrix at n=12,19,53,73,91. -/
 def selectedMatrix : Matrix (Fin 5) (Fin 5) ℝ :=
-  fun i => selectedRow ([12, 19, 53, 73, 91].get ⟨i.val, by omega⟩) 2241.1 1.6469
+  fun i => selectedRow ((![12, 19, 53, 73, 91] : Fin 5 → ℕ) i) 2241.1 1.6469
 
 /-- The analytically differentiated source rows are the matrix used in the
 frozen v18 determinant certificate. This checks every declared entry. -/
