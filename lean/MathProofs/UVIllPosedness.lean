@@ -27,7 +27,7 @@ Formalization of `papers/uv-sobolev-ill-posedness-fourth-order-wave/main.tex`.
   `wave_torus_unbounded` for the stated equation: `‖Uₙ(0)‖_{X_{r+ℓ}} → 0`,
   `‖Uₙ(t₀)‖_{X_r} = 1`, so no bounded (linear) `S(t₀) : X_{r+ℓ} → X_r` extends the evolution.
 
-The whole-space (`M = ℝ^d`) Fourier-packet case is not covered by this module.
+The whole-space (`M = ℝ^d`) Fourier-packet case is in `MathProofs.UVWholeSpace`.
 -/
 
 open Filter Topology Complex InnerProductSpace MeasureTheory

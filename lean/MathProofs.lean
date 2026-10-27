@@ -20,3 +20,4 @@ import MathProofs.SpectralPhaseIdentity
 import MathProofs.S004ConstraintCount
 import MathProofs.FourierLeakage
 import MathProofs.UVIllPosedness
+import MathProofs.UVWholeSpace
