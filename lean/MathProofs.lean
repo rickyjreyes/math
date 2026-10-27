@@ -26,3 +26,5 @@ import MathProofs.NegativeEnergy
 import MathProofs.StrictBinding
 import MathProofs.CurvatureNonattainment
 import MathProofs.FourierLeakageWellPosed
+import MathProofs.IntrinsicScalarMetric
+import MathProofs.OrbitalStabilityCriterion
