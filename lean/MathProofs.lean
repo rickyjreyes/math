@@ -28,3 +28,4 @@ import MathProofs.CurvatureNonattainment
 import MathProofs.FourierLeakageWellPosed
 import MathProofs.IntrinsicScalarMetric
 import MathProofs.OrbitalStabilityCriterion
+import MathProofs.MinimizerNonvanishing
