@@ -59,6 +59,16 @@ This Mathlib v4.23.0 project integrates main-line supporting modules with newer 
 - [L2Fourier](MathProofs/L2Fourier.lean) — canonical L² Fourier from Schwartz density and Plancherel, plus exact-shell exclusion (patched source awaiting CI; F10 corollaries not all certified).
 - [ExactSensitivityNullity](MathProofs/ExactSensitivityNullity.lean) — conditional exact-nullity-20 corollary for a full-row-rank 31-to-11 derivative (CI passed). The frozen v18 determinant remains externally interval-certified, not Lean-certified.
 
+### Frozen v18 F09 checked partial results
+
+- [V18LightJacobian](MathProofs/V18LightJacobian.lean): exact nonzero source light 3×3 minor.
+- [V18HeavyJacobian](MathProofs/V18HeavyJacobian.lean): positive heavy 3×3 minor with rational π bounds.
+- [V18BlockJacobian](MathProofs/V18BlockJacobian.lean): generic lower-block-triangular determinant factorization.
+- [V18MiddleDerivatives](MathProofs/V18MiddleDerivatives.lean): analytically derives all five selected derivatives of the frozen middle predictor, identifies their matrix entries.
+- [V18MiddleJacobian](MathProofs/V18MiddleJacobian.lean): source-specific 5×5 real trigonometric matrix; exact rank-11 reduction is still **conditional** on `middle.det ≠ 0`.
+
+**F09 is not complete:** proving the middle determinant's sign inside Lean and formally identifying the complete clipped 31-parameter v18 Jacobian are still required. An external interval certificate does not discharge these kernel obligations.
+
 ### Supporting modules
 
 - [Elementary](MathProofs/Elementary.lean) — original elementary algebra.
