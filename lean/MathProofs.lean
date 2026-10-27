@@ -51,3 +51,5 @@ import MathProofs.H2Algebra
 import MathProofs.CubicQuinticFlow
 import MathProofs.OrbitalStability
 import MathProofs.FourierShellL2
+import MathProofs.TorusFourier
+import MathProofs.SpectralConcentration

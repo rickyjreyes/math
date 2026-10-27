@@ -1,5 +1,12 @@
 # Version history
 
+## 2026-10-27 — Lean formalization of E59, E62 and E16 (F11)
+
+- Built the Fourier Hilbert basis of `L²((ℝ/Lℤ)^d)` and bounded Fourier multipliers, and formalized E59 (the dominant-annulus projection is a bounded, idempotent, self-adjoint contraction, the orthogonal projection onto the band-limited subspace, with the energy decomposition, unique best approximation and operator norm; the discrete FFT identity; the smooth-multiplier and annulus-convention remarks).
+- Formalized E62: the discrete spectral energy fraction and its equality cases, the projector formulation, sharpness and the non-monotone example, and the continuous-spectrum proposition on `L²(ℝ^d)` with the zero-width-shell remark.
+- Formalized E16 on `L²(ℝ^d)`: existence and uniqueness of mild solutions of `∂ₜA = (r − aΔ − bΔ²)A` with the exact modal power law, the strict gap lemma, exponential concentration of the normalized spectral measure under the essential-support hypothesis, argmax convergence and the `t^{-1/2}` rate, the radial spectral density with polar integration and its corollary, and the counterexample without spectral access.
+- The E13/E14 band-pass gradient-flow manuscript is not yet formalized, so the F11 family flag stays false.
+
 ## 2026-10-27 — Lean formalization of the isolated Fourier shell (F10)
 
 - Formalized the isolated-Fourier-shell manuscript (F10) on all of `L²(ℝ^d)`: Plancherel's theorem (the unitary extension of the Schwartz-space Fourier transform, identified with the Fourier integral on `L¹ ∩ L²`, in the manuscript's normalization), the shell theorem for essential and for distributional support, the Helmholtz corollary for distributional solutions, the polynomial-dispersion corollary, the general-multiplier remark, and the wave-packet proposition.

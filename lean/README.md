@@ -42,6 +42,16 @@ This Mathlib v4.23.0 project integrates main-line supporting modules with newer 
   (the unitary `L²` Fourier transform, equal to the Fourier integral on `L¹ ∩ L²`), the
   isolated-shell theorem for essential and distributional support, the Helmholtz and
   polynomial-dispersion corollaries, and the wave-packet proposition.
+- [TorusFourier](MathProofs/TorusFourier.lean) — F11 (E59 and discrete E62): the Fourier Hilbert
+  basis of `L²((ℝ/Lℤ)^d)`, bounded Fourier multipliers, the dominant-annulus projection
+  (idempotent, self-adjoint, contraction, orthogonal projection onto the band-limited subspace,
+  energy decomposition, best approximation, operator norm), the discrete FFT identity, and the
+  discrete spectral energy fraction with its equality cases and remarks.
+- [SpectralConcentration](MathProofs/SpectralConcentration.lean) — F11 (E16 and continuous E62):
+  the weak realisation of `r − aΔ − bΔ²` on `L²(ℝ^d)`, existence and uniqueness of mild solutions
+  with the exact modal power law, concentration of the normalised spectral measure on the
+  preferred shell, argmax convergence with the `t^{-1/2}` rate, polar coordinates and the radial
+  corollary, the counterexample without spectral access, and the continuous spectral fraction.
 - [CurvatureNonattainment](MathProofs/CurvatureNonattainment.lean) — F05, complete:
   whole-space nonattainment in every dimension and strict spreading for `1 ≤ d ≤ 4`.
 
@@ -113,8 +123,9 @@ is not yet committed.
 
 ## Gaps
 
-All four F01 manuscripts are formalized. The frozen v18 analytic Jacobian rank is separately source-pinned and interval-certified but not Lean formalized. F11 and F12 remain
-outside Lean.
+All four F01 manuscripts are formalized. The frozen v18 analytic Jacobian rank is separately source-pinned and interval-certified but not Lean formalized. In F11 the E59, E62
+and E16 manuscripts are formalized; the E13/E14 band-pass gradient-flow manuscript and F12
+remain outside Lean.
 
 The local-coordinate rank/signature obstruction (F08) **is formalized** for
 actual differentiable complex fields on four-coordinate charted spaces,
