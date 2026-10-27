@@ -1,7 +1,7 @@
 # Lean 4 formalization status
 
-This Mathlib v4.23.0 project contains 84 formal theorem declarations
-(81 previously verified plus 3 new declarations) in thirty imported modules. On any revision,
+This Mathlib v4.23.0 project contains 327 formal theorem/lemma declarations
+(84 previously verified plus 243 new declarations) in thirty-four imported modules. On any revision,
 regard them as kernel-checked only after that exact revision's Lean CI passes:
 
 - [Elementary](MathProofs/Elementary.lean) — original elementary algebra.
@@ -65,6 +65,18 @@ regard them as kernel-checked only after that exact revision's Lean CI passes:
   admissible nonnegative q domain for the physical parameters.
 - [DispersionRealDomain](MathProofs/DispersionRealDomain.lean) — exact
   collision endpoint and nonnegative-discriminant domain equivalence.
+- [DispersionMinimum](MathProofs/DispersionMinimum.lean) — the full
+  original-parameter finite-wavenumber minimum, convexity/second derivative,
+  sharp initial slope, minimum-frequency and wavenumber corollaries.
+- [PhaseLockingContinuous](MathProofs/PhaseLockingContinuous.lean) —
+  continuous H¹ winding-phase minimization, sharp gap and equality case,
+  unique minimizing phase modulo additive constants and sector selection.
+- [SpectralPhaseIdentity](MathProofs/SpectralPhaseIdentity.lean) —
+  polar periodic eigenfunction integral identity, equality conditions,
+  the exact 4/5 counterexample, and a geometric planar realization.
+- [S004ConstraintCount](MathProofs/S004ConstraintCount.lean) —
+  regular fixed-background S004 Legendre-image constraints, genuine
+  Poisson/Dirac pairing and multiplier preservation, and 4 configuration DOF.
 
 For precise statements and manuscript coverage, see
 [formalization.yaml](formalization.yaml).
@@ -84,17 +96,24 @@ lake build
 Lean and Mathlib release are pinned to v4.23.0. A dependency lockfile
 is not yet committed.
 
-## Gaps
+## Gaps and certified results
 
-**No full infinite-dimensional PDE result in F01 is kernel-checked** despite new cubic–quintic square completion and Gaussian coefficient certificates:
-strict binding, whole-space minimizer existence, concentration–compactness,
-global continuation, and orbital stability remain conventional analytic
-proofs. Hamiltonian constraint-preservation and ultraviolet Sobolev evolution (F02), the full continuous
-periodic spectral identity (F03) and full H¹ winding-phase construction (F07), full multidimensional
-nonlinear Fourier-mode flow theorem (F04), H² curvature-energy spreading and nonattainment (F05),
-dispersion strict second-derivative convexity and supplementary frequency corollaries (F06), numerical Jacobian rank claims (F09),
-and the Plancherel extension from Schwartz class to all L² states (F10) are
-likewise not fully formalized.
+**Four of the fourteen requested theorem statements now have end-to-end Lean proofs**:
+#5 (periodic spectral-phase identity), #9 (physical dispersion minimum),
+#10 (regular fixed-background S004 canonical constraint count), and
+#11 (continuous weighted phase locking). This claim refers only to the precise
+mathematical scopes encoded in the source modules; it does not imply
+healthy higher-derivative dynamics or any new physical prediction.
+
+The PDE-scale proofs remain unformalized: strict binding, whole-space
+minimizer existence, concentration–compactness, global continuation, and
+orbital stability (F01); fixed-time Sobolev four-jet ill-posedness (the
+remaining UV portion of F02); nonlinear torus Fourier-subspace leakage
+(F04); whole-space H² curvature-energy spreading and nonattainment (F05);
+and the model-specific numerical Jacobian rank audit (F09).
+The Schwartz Fourier-shell theorem is still missing extension to all L²
+states via Plancherel (F10). The global coordinate-invariant tensor
+formulation of the metric obstruction (F08) is also open.
 
 The local-coordinate rank/signature obstruction (F08) **is formalized** for
 actual differentiable complex fields on four-coordinate charted spaces,
@@ -108,14 +127,14 @@ published numerical rank.
 Separate research-grade Lean work lives in [wct-lean](https://github.com/rickyjreyes/wct-lean);
 do not conflate its theorem count with this repository.
 
-The core #9 unique-global-minimum tweet is proved with the original physical parameter conditions. The #11 continuous fixed-integral minimization is also proved with explicit optimizer and a.e. uniqueness, but full phase lift remains open.
+The main theorem and corollaries of **F03 (spectral phase), F06 (finite-scale dispersion), and F07 (continuous phase locking)** are now represented by complete kernel-checked Lean declarations. The **regular fixed-background S004 constraint count** within F02 is independently proved, while F02's separate ultraviolet Sobolev evolution theorem remains open. Across the fourteen requested tweets this certifies #5, #9, #10 and #11, subject to the exact written hypotheses (not unrelated physics claims).
 
 The Schwartz-space version of F10 is now proved end-to-end using Mathlib's
 Schwartz Fourier inversion; it is **not** the manuscript's full L² theorem.
 
 ## Completion criterion for each of the 14 tweets
 
-The boolean `families.Fxx.main_theorem_formalized` stays false until the
+A boolean `families.Fxx.main_theorem_formalized` stays false until the
 **entire theorem as stated in its PDF** is a precise exported Lean declaration
 with no `sorry`, `admit`, new axioms, unproved assumptions, or finite surrogate
 used in place of the stated infinite-dimensional result. Supporting finite
@@ -129,8 +148,6 @@ never count as end-to-end certification of the manuscript.
   global H² flow and the minimizing-set stability contradiction.
 - **4:** Lift explicit growing-root lower bounds to an operator-norm
   obstruction for the Sobolev four-jet flow, including finite derivative loss.
-- **5:** Prove the polar amplitude/phase decomposition, periodic
-  eigenfunction energy identity and continuous integration by parts.
 - **6:** Connect the extremal convolution algebra to trigonometric-polynomial
   Fourier coefficients and time differentiability of the full PDE solution.
 - **7:** Implement the real anisotropic Gaussian carrier as an H²(ℝ²)
@@ -138,5 +155,4 @@ never count as end-to-end certification of the manuscript.
 - **8:** The nonlinear curvature weight now has an explicit uniform
   bound in Lean. Implement actual H² mass-preserving spatial dilation,
   integrated energy scaling, and strict positive energy.
-- **S004:** Derive brackets from the exact Hamiltonian and prove multiplier
-  determination, no secondary constraints, and the full canonical reduction.
+- **S004:** The regular pointwise canonical count is now formalized. Full nonlinear field-theoretic or gauge-coupled extensions are separate questions.
