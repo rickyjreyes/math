@@ -45,4 +45,5 @@ import MathProofs.IntrinsicScalarMetric
 import MathProofs.OrbitalStabilityCriterion
 import MathProofs.MinimizerNonvanishing
 import MathProofs.L2FourierShellBridge
+import MathProofs.L2Fourier
 import MathProofs.CurvatureLegacy
