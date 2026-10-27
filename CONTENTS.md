@@ -68,6 +68,10 @@ Twenty-five corrected WCT registry IDs: Sobolev embeddings, entropy and counting
 
 For the linear fourth-order band-pass flow, proves exact Fourier-power evolution and normalized spectral concentration near the preferred shell under the spectral-access hypothesis. Pointwise argmax convergence additionally requires continuous spectral power vanishing at infinity. This does not establish nonlinear confinement.
 
+**E59: Dominant-annulus Fourier projection (fixed sharp mask)** — [PDF](preprints/e59-dominant-annulus-projection/paper.pdf) · [LaTeX source](papers/e59-dominant-annulus-projection/main.tex) · [Notes](preprints/e59-dominant-annulus-projection/README.md)
+
+Establishes idempotence, self-adjointness, contraction, orthogonal energy decomposition, best approximation, and the discrete FFT projection identity. The result concerns a fixed Fourier annulus; it does not imply invariance under unprojected nonlinear flow.
+
 **E62: Spectral energy concentration fraction** — [PDF](preprints/spectral-energy-concentration-e62/paper.pdf) · [LaTeX source](papers/spectral-energy-concentration-e62/main.tex) · [Notes](preprints/spectral-energy-concentration-e62/README.md)
 
 For nonzero L² data, the Fourier energy fraction within any chosen band is between zero and one. Includes equality cases, projector formulation, and continuous spectra. This is a normalization result, not a proof of dynamical concentration or shell attraction.
