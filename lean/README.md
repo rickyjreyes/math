@@ -1,7 +1,7 @@
 # Lean 4 formalization status
 
-This Mathlib v4.23.0 project contains 655 formal theorem/lemma declarations
-(401 previously verified plus 254 new declarations) in forty imported modules. On any revision,
+This Mathlib v4.23.0 project contains 693 formal theorem/lemma declarations
+(655 previously verified plus 38 new declarations) in forty-one imported modules. On any revision,
 regard them as kernel-checked only after that exact revision's Lean CI passes:
 
 - [Elementary](MathProofs/Elementary.lean) — original elementary algebra.
@@ -94,6 +94,10 @@ regard them as kernel-checked only after that exact revision's Lean CI passes:
   growing modes and no bounded four-jet Sobolev evolution operator on flat tori.
 - [UVWholeSpace](MathProofs/UVWholeSpace.lean) — exact Fourier-packet solutions,
   norms, and no bounded four-jet Sobolev evolution operator on ℝ^d.
+- [StrictBinding](MathProofs/StrictBinding.lean) — exact whole-space
+  H² constrained-infimum strict subadditivity for 0<m≤m_B, including
+  stationary dilations, quantitative energy-per-mass gap and the exact
+  frozen-parameter certificate. Does not assume existence of minimizers.
 
 For precise statements and manuscript coverage, see
 [formalization.yaml](formalization.yaml).
@@ -115,7 +119,8 @@ is not yet committed.
 
 ## Gaps and certified results
 
-**Six of the fourteen requested theorem statements now have end-to-end Lean proofs**:
+**Seven of the fourteen requested theorem statements now have end-to-end Lean proofs**:
+#1 (strict binding in the explicit 0<m≤m_B range),
 #4 (UV Sobolev four-jet ill-posedness on torus and whole space), #5 (spectral phase),
 #7 (negative constrained energy for all positive masses on a whole-space H² graph
 model), #9 (physical dispersion minimum), #10 (regular fixed-background S004
@@ -123,7 +128,7 @@ canonical constraint count), and #11 (continuous weighted phase locking).
 These claims refer to the precise mathematical hypotheses encoded in Lean,
 and do not establish an independent derivation of a healthy physical field theory.
 
-The remaining original eight are: strict binding, whole-space minimizers,
+The remaining original seven are: whole-space minimizers,
 orbital stability, unconditional nonlinear Fourier-flow invariance classification
 (current leakage proof assumes an existing classical solution), whole-space
 curvature nonattainment, global coordinate-independent metric tensor formulation,
@@ -141,7 +146,7 @@ published numerical rank.
 Separate research-grade Lean work lives in [wct-lean](https://github.com/rickyjreyes/wct-lean);
 do not conflate its theorem count with this repository.
 
-The full mathematical statements of **F02 (regular fixed-background S004 constraint count and UV four-jet ill-posedness), F03 (spectral phase), F06 (finite-scale dispersion) and F07 (continuous phase locking)** now have kernel-checked Lean declarations. **F01's negative-energy subtheorem** is also verified, although F01's broader strict-binding/attainment/stability family remains open. Across the original fourteen manuscript targets this certifies #4, #5, #7, #9, #10 and #11, precisely within the encoded mathematical hypotheses.
+The full mathematical statements of **F02 (regular fixed-background S004 constraint count and UV four-jet ill-posedness), F03 (spectral phase), F06 (finite-scale dispersion) and F07 (continuous phase locking)** now have kernel-checked Lean declarations. **F01's negative-energy and strict-binding subtheorems** are also verified, although F01's broader attainment/stability family remains open. Across the original fourteen manuscript targets this certifies #1, #4, #5, #7, #9, #10 and #11, precisely within the encoded mathematical hypotheses.
 
 The Schwartz-space version of F10 is now proved end-to-end using Mathlib's
 Schwartz Fourier inversion; it is **not** the manuscript's full L² theorem.
@@ -157,9 +162,9 @@ never count as end-to-end certification of the manuscript.
 
 ## Further Lean proof obligations (October 26, 2026)
 
-- **1–3:** Real H² trial function and exact negative energy are now verified;
-  prove the strict infimum-specific-energy gap, concentration–compactness,
-  global H² flow and the minimizing-set orbital-stability contradiction.
+- **2–3:** Exact H² trial, negative energy, and full strict binding are
+  now verified in Lean. Prove whole-space concentration–compactness,
+  attainment, global H² flow, and the minimizing-set orbital-stability contradiction.
 - **6:** Actual torus Fourier integrals, nonlinear convolution, classical
   solution differentiation and instantaneous leakage are now proved in
   Lean. The missing component for unconditional flow noninvariance is
