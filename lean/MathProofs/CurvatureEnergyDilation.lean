@@ -80,5 +80,29 @@ theorem E_dil (c₁ c₂ ε α : ℝ) {lam : ℝ} (hlam : 0 < lam)
   rw [E, Sobolev.H2.K_dil, N_dil]
   ring
 
+
+/-- The nonlinear weighted Laplacian energy is nonnegative on the
+whole-space H² model for every nonzero regularization parameter. -/
+theorem N_nonnegative (ε α : ℝ) (hε : ε ≠ 0)
+    (U : Sobolev.H2 d) :
+    0 ≤ N ε α U := by
+  unfold N
+  apply integral_nonneg
+  intro x
+  exact mul_nonneg
+    (curvature_weight_nonnegative ε α _ hε (sq_nonneg _))
+    (sq_nonneg _)
+
+/-- Nonnegativity of the actual nonlinear curvature energy, including
+its Dirichlet term. -/
+theorem E_nonnegative (c₁ c₂ ε α : ℝ)
+    (hc₁ : 0 ≤ c₁) (hc₂ : 0 ≤ c₂) (hε : ε ≠ 0)
+    (U : Sobolev.H2 d) :
+    0 ≤ E c₁ c₂ ε α U := by
+  unfold E
+  exact add_nonneg
+    (mul_nonneg hc₁ (Sobolev.H2.K_nonneg U))
+    (mul_nonneg hc₂ (N_nonnegative ε α hε U))
+
 end CurvatureEnergy
 end ReyesMath
