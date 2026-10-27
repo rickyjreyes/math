@@ -52,6 +52,14 @@ This Mathlib v4.23.0 project integrates main-line supporting modules with newer 
   with the exact modal power law, concentration of the normalised spectral measure on the
   preferred shell, argmax convergence with the `t^{-1/2}` rate, polar coordinates and the radial
   corollary, the counterexample without spectral access, and the continuous spectral fraction.
+- [BandPassFlow](MathProofs/BandPassFlow.lean) — F11 (E13/E14): `H^{2k}` of the flat torus as a
+  weighted `ℓ²` space, the Sobolev embedding `H² ⊂ C` for `d ≤ 3`, and the band-pass energy as a
+  `C¹` functional on `H²`. It proves the negative Wirtinger gradient-flow identity with exact
+  energy dissipation and the balance law, the real-gradient and half-energy normalisations, and
+  the centred Swift–Hohenberg form with the exact energy identity. It also covers the preferred
+  Fourier shell (linearisation, growing band, ultraviolet damping, lattice maximisers,
+  non-invariance of finite shells), the `β > 0` lower bound with finite total dissipation, and
+  stationarity of time-periodic solutions.
 - [CurvatureNonattainment](MathProofs/CurvatureNonattainment.lean) — F05, complete:
   whole-space nonattainment in every dimension and strict spreading for `1 ≤ d ≤ 4`.
 
@@ -123,9 +131,8 @@ is not yet committed.
 
 ## Gaps
 
-All four F01 manuscripts are formalized. The frozen v18 analytic Jacobian rank is separately source-pinned and interval-certified but not Lean formalized. In F11 the E59, E62
-and E16 manuscripts are formalized; the E13/E14 band-pass gradient-flow manuscript and F12
-remain outside Lean.
+All four F01 manuscripts are formalized. The frozen v18 analytic Jacobian rank is separately source-pinned and interval-certified but not Lean formalized. All four F11
+manuscripts (E13/E14, E16, E59, E62) are formalized; F12 remains outside Lean.
 
 The local-coordinate rank/signature obstruction (F08) **is formalized** for
 actual differentiable complex fields on four-coordinate charted spaces,
