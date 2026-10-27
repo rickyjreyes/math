@@ -4,8 +4,9 @@ lean_release: v4.23.0
 mathlib_release: v4.23.0
 scope: >
   Local finite-dimensional, continuous integral variational, measure-theoretic, and polynomial-algebra results are encoded
-  in Lean. Continuous PDE, dynamics, Gaussian variational constructions,
-  and other analytic main results are NOT thereby kernel-checked.
+  in Lean. Some continuous PDE and Sobolev results are now kernel-checked, including negative constrained
+  energy and UV ill-posedness. Infinite-dimensional variational binding, minimizer attainment,
+  orbital stability, curvature nonattainment, and the L² Fourier-shell theorem remain open.
 proof_policy:
   build: "cd lean && lake update && lake exe cache get && lake build"
   excluded: ["sorry", "admit", "axiom"]
@@ -13,14 +14,16 @@ proof_policy:
 families:
   F01:
     main_theorem_formalized: false
-    covered: "Exact cubic–quintic potential completion of the square/lower bound, sufficient strict-specific-energy-to-binding implication, and exact Gaussian energy-coefficient signs and optimized negative scale energy. The H² infimum-specific-energy estimate, Gaussian norm integrals, concentration–compactness, and flow stability are NOT formalized."
-    declarations: [ReyesMath.negativeEnergy_strictGap, ReyesMath.cubic_quintic_potential_square, ReyesMath.cubic_quintic_potential_lower, ReyesMath.strict_binding_of_specific_energy, ReyesMath.gaussian_coefficient_c2_negative, ReyesMath.gaussian_coefficient_c4_positive, ReyesMath.quadratic_trial_energy_negative, ReyesMath.gaussian_trial_polynomial_certificate]
+    negative_constrained_energy_formalized: true
+    covered: "NegativeEnergy.negative_constrained_energy is kernel-checked: on Sobolev.H2 (Schwartz graph closure of u, grad u and Δu in genuine whole-space L²), for β,γ,m>0 and any k, -(3β²/(16γ))m ≤ I(m)<0. Exact smooth compactly supported anisotropic oscillatory trial (not the PDF's Gaussian), mass, kinetic, L4 and L6 integrals, and scaling are proved. SobolevH2 also formalizes true H² differentiation and mass-preserving dilation. Still OPEN: strict binding, attainment, concentration–compactness and orbital stability, including extension/identification of this graph model with an independently defined Sobolev H² if required."
+    declarations: [ReyesMath.negativeEnergy_strictGap, ReyesMath.cubic_quintic_potential_square, ReyesMath.cubic_quintic_potential_lower, ReyesMath.strict_binding_of_specific_energy, ReyesMath.gaussian_coefficient_c2_negative, ReyesMath.gaussian_coefficient_c4_positive, ReyesMath.quadratic_trial_energy_negative, ReyesMath.gaussian_trial_polynomial_certificate, ReyesMath.NegativeEnergy.negative_constrained_energy, ReyesMath.NegativeEnergy.exists_negative, ReyesMath.Sobolev.H2.M_dil, ReyesMath.Sobolev.H2.K_dil, ReyesMath.Sobolev.H2.D_dil]
   F02:
-    main_theorem_formalized: false
+    main_theorem_formalized: true
     s004_regular_constraint_count_formalized: true
     uv_spectral_no_polynomial_loss_formalized: true
-    covered: "For the regular fixed-background patch ρ>0 the actual S004 acceleration Hessian, canonical constraints, invertible Dirac matrix, no secondary constraints, 8-dimensional reduced phase space and four configuration DOF are kernel-checked. For the separate homogeneous ultraviolet branch, exp(t σ(k²)) exceeds every fixed polynomial (1+k)^N times any C at each t>0: spectral amplification cannot be bounded with finite polynomial loss. A genuine boundedness obstruction for the four-jet Sobolev PDE solution operator, with exact Fourier representation and function-space control, is still not formalized."
-    declarations: [ReyesMath.s004_acceleration_hessian_det, ReyesMath.s004_acceleration_hessian_det_pos, ReyesMath.ultraviolet_plus_root_exact, ReyesMath.ultraviolet_minus_root_exact, ReyesMath.s004_dirac_bracket_left_inverse, ReyesMath.s004_dirac_bracket_right_inverse, ReyesMath.s004_four_constraint_bracket_nondegenerate, ReyesMath.s004_four_dof_arithmetic, ReyesMath.uv_growth_squared_lower, ReyesMath.uv_growth_linear_in_wavenumber, ReyesMath.ultraviolet_exponential_outgrows_polynomial, ReyesMath.ultraviolet_no_finite_polynomial_loss, ReyesMath.S004.constraint_count, ReyesMath.S004.diracMatrix_det, ReyesMath.S004.no_secondary_constraints, ReyesMath.S004.charge_not_constraint]
+    uv_sobolev_fourjet_formalized: true
+    covered: "S004 regular fixed-flat-background canonical four-DOF constraint-count proof remains verified. UVIllPosedness and UVWholeSpace now prove the precise separate UV PDE theorems: real smooth exact solutions, unstable roots, positive-time Fourier mode/packet growth, explicit H^r four-jet norms on flat tori and whole ℝ^d, sequences whose initial X_{r+ℓ}-norm tends to zero while terminal X_r-norm is one, and no bounded extension for any fixed finite derivative loss. Parameters include K>0 and 4KT-G²>0; the manuscript's normalized wave equation follows as a corollary. No implication of a healthy full nonlinear S004 field theory."
+    declarations: [ReyesMath.s004_acceleration_hessian_det, ReyesMath.s004_acceleration_hessian_det_pos, ReyesMath.ultraviolet_plus_root_exact, ReyesMath.ultraviolet_minus_root_exact, ReyesMath.s004_dirac_bracket_left_inverse, ReyesMath.s004_dirac_bracket_right_inverse, ReyesMath.s004_four_constraint_bracket_nondegenerate, ReyesMath.s004_four_dof_arithmetic, ReyesMath.uv_growth_squared_lower, ReyesMath.uv_growth_linear_in_wavenumber, ReyesMath.ultraviolet_exponential_outgrows_polynomial, ReyesMath.ultraviolet_no_finite_polynomial_loss, ReyesMath.S004.constraint_count, ReyesMath.S004.diracMatrix_det, ReyesMath.S004.no_secondary_constraints, ReyesMath.S004.charge_not_constraint, ReyesMath.UVIllPosed.torus_no_bounded_linear_extension, ReyesMath.UVIllPosed.wave_torus_unbounded, ReyesMath.UVIllPosed.whole_no_bounded_linear_extension, ReyesMath.UVIllPosed.wave_whole_unbounded]
   F03:
     main_theorem_formalized: true
     covered: "SpectralPhaseIdentity formalizes the full periodic C² eigenfunction polar identity with integral integration by parts, equality criterion, global C¹ polar lift for nowhere-vanishing fields, the χ=cos(s)+i a sin(s) family and exact 4/5 counterexample, including the closed planar geometric curvature construction."
