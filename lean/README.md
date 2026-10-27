@@ -1,7 +1,7 @@
 # Lean 4 formalization status
 
-This Mathlib v4.23.0 project contains 327 formal theorem/lemma declarations
-(84 previously verified plus 243 new declarations) in thirty-four imported modules. On any revision,
+This Mathlib v4.23.0 project contains 401 formal theorem/lemma declarations
+(327 previously verified plus 74 new declarations) in thirty-six imported modules. On any revision,
 regard them as kernel-checked only after that exact revision's Lean CI passes:
 
 - [Elementary](MathProofs/Elementary.lean) — original elementary algebra.
@@ -77,6 +77,15 @@ regard them as kernel-checked only after that exact revision's Lean CI passes:
 - [S004ConstraintCount](MathProofs/S004ConstraintCount.lean) —
   regular fixed-background S004 Legendre-image constraints, genuine
   Poisson/Dirac pairing and multiplier preservation, and 4 configuration DOF.
+- [FourierLeakage](MathProofs/FourierLeakage.lean) — actual Fourier
+  integral coefficients and nonlinear torus cubic/quintic leakage:
+  conditional exit from finite multimode coordinate subspaces for every
+  locally existing classical solution; explicit fifth harmonic and
+  single-mode solutions. Multimode solution existence remains open in Lean.
+- [UVExponentialObstruction](MathProofs/UVExponentialObstruction.lean) —
+  fixed-time unstable multiplier grows faster than every finite-degree
+  polynomial frequency weight, independently of any PDE well-posedness
+  assumption. Sobolev four-jet realization still open.
 
 For precise statements and manuscript coverage, see
 [formalization.yaml](formalization.yaml).
@@ -107,8 +116,9 @@ healthy higher-derivative dynamics or any new physical prediction.
 
 The PDE-scale proofs remain unformalized: strict binding, whole-space
 minimizer existence, concentration–compactness, global continuation, and
-orbital stability (F01); fixed-time Sobolev four-jet ill-posedness (the
-remaining UV portion of F02); nonlinear torus Fourier-subspace leakage
+orbital stability (F01); full fixed-time Sobolev four-jet solution-map ill-posedness (the
+remaining UV portion of F02); unconditional torus Fourier-subspace flow
+invariance classification requiring local multimode classical existence/uniqueness
 (F04); whole-space H² curvature-energy spreading and nonattainment (F05);
 and the model-specific numerical Jacobian rank audit (F09).
 The Schwartz Fourier-shell theorem is still missing extension to all L²
@@ -146,10 +156,14 @@ never count as end-to-end certification of the manuscript.
 - **1–3:** Prove the *actual* infimum-specific-energy gap on H²(ℝ²),
   all Gaussian mass/energy integral identities, concentration–compactness,
   global H² flow and the minimizing-set stability contradiction.
-- **4:** Lift explicit growing-root lower bounds to an operator-norm
-  obstruction for the Sobolev four-jet flow, including finite derivative loss.
-- **6:** Connect the extremal convolution algebra to trigonometric-polynomial
-  Fourier coefficients and time differentiability of the full PDE solution.
+- **4:** The spectral multiplier's impossibility of every fixed polynomial
+  derivative-loss bound is now proved in Lean. Construct the true Sobolev
+  four-jet PDE solution operator and prove the Fourier-mode operator
+  obstruction in the four-jet norm.
+- **6:** Actual torus Fourier integrals, nonlinear convolution, classical
+  solution differentiation and instantaneous leakage are now proved in
+  Lean. The missing component for unconditional flow noninvariance is
+  smooth local existence and uniqueness for all finite multimode data.
 - **7:** Implement the real anisotropic Gaussian carrier as an H²(ℝ²)
   function and verify all Gaussian integral moments and mass preservation.
 - **8:** The nonlinear curvature weight now has an explicit uniform
