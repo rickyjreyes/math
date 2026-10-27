@@ -23,3 +23,4 @@ import MathProofs.UVIllPosedness
 import MathProofs.UVWholeSpace
 import MathProofs.SobolevH2
 import MathProofs.NegativeEnergy
+import MathProofs.StrictBinding
