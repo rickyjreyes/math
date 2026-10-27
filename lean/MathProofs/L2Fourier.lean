@@ -36,7 +36,7 @@ theorem schwartzRange_dense : Dense (schwartzRange d : Set (L2 d)) := by
     apply (Submodule.topologicalClosure_eq_top_iff).2
     apply le_antisymm ?_ bot_le
     intro w hw
-    apply Submodule.mem_bot.2
+    change w = 0
     apply eq_zero_of_inner_schwartz
     intro f
     exact (Submodule.mem_orthogonal _ _).1 hw (toL2 f) ⟨f, rfl⟩
