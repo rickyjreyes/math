@@ -71,4 +71,40 @@ theorem fixed_mass_all_scales (d : ℕ) (f : Sobolev.L2 (d + 1))
     ‖Sobolev.dilL2 (d := d + 1) (inv_pos.mpr hR) f‖ = ‖f‖ :=
   Sobolev.norm_dilL2 (inv_pos.mpr hR) f
 
+
+/-- The second spatial moment of the normalized physical envelope scales
+exactly as λ⁻², with no compactness or Gaussian assumption. -/
+theorem second_moment_dilation (d : ℕ) (lam : ℝ) (hlam : 0 < lam)
+    (f : Rd d → ℂ) :
+    (∫ x : Rd d, ‖x‖ ^ 2 * ‖Sobolev.dilF lam f x‖ ^ 2) =
+      (lam ^ 2)⁻¹ * ∫ y : Rd d, ‖y‖ ^ 2 * ‖f y‖ ^ 2 := by
+  have hne : lam ^ 2 ≠ 0 := pow_ne_zero _ hlam.ne'
+  have hpoint : ∀ x : Rd d,
+      ‖x‖ ^ 2 * ‖Sobolev.dilF lam f x‖ ^ 2 =
+        (lam ^ (d + 1) / lam ^ 2) *
+          (‖lam • x‖ ^ 2 * ‖f (lam • x)‖ ^ 2) := by
+    intro x
+    rw [Sobolev.norm_dilF_sq hlam, norm_smul,
+      Real.norm_eq_abs, abs_of_pos hlam]
+    field_simp
+    ring
+  calc
+    (∫ x : Rd d, ‖x‖ ^ 2 * ‖Sobolev.dilF lam f x‖ ^ 2) =
+        ∫ x : Rd d, (lam ^ (d + 1) / lam ^ 2) *
+          (‖lam • x‖ ^ 2 * ‖f (lam • x)‖ ^ 2) := by
+            exact integral_congr_ae (Filter.Eventually.of_forall hpoint)
+    _ = (lam ^ (d + 1) / lam ^ 2) *
+        ∫ x : Rd d, (‖lam • x‖ ^ 2 * ‖f (lam • x)‖ ^ 2) := by
+          rw [integral_const_mul]
+    _ = (lam ^ (d + 1) / lam ^ 2) *
+        ((lam ^ (d + 1))⁻¹ *
+          ∫ y : Rd d, ‖y‖ ^ 2 * ‖f y‖ ^ 2) := by
+          rw [Sobolev.integral_comp_dil hlam
+            (fun y : Rd d => ‖y‖ ^ 2 * ‖f y‖ ^ 2)]
+    _ = (lam ^ 2)⁻¹ *
+        ∫ y : Rd d, ‖y‖ ^ 2 * ‖f y‖ ^ 2 := by
+          have hpow : lam ^ (d + 1) ≠ 0 := pow_ne_zero _ hlam.ne'
+          field_simp
+          ring
+
 end ReyesMath.WavepacketEnvelope
