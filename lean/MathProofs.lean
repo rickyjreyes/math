@@ -56,3 +56,4 @@ import MathProofs.ExactSensitivityNullity
 import MathProofs.PolynomialFourier
 import MathProofs.V18LightJacobian
 import MathProofs.V18BlockJacobian
+import MathProofs.WeakFourierSpectrum
