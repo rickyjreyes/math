@@ -24,7 +24,7 @@ theorem ultraviolet_exponential_outgrows_polynomial
     (t : ℝ) (ht : 0 < t) (N : ℕ) (C : ℝ) :
     ∃ k : ℝ, 2 ≤ k ∧
       C * (1 + k) ^ N < Real.exp (t * uvGrowth (k ^ 2)) := by
-  let p : ℝ[X] :=
+  let p : Polynomial ℝ :=
     Polynomial.C C * (Polynomial.C 1 + Polynomial.C (4 / t) * Polynomial.X) ^ N
   have hlim : Tendsto (fun y : ℝ => p.eval y / Real.exp y)
       atTop (𝓝 0) := Polynomial.tendsto_div_exp_atTop p
