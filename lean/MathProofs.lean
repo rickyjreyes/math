@@ -28,3 +28,7 @@ import MathProofs.CurvatureNonattainment
 import MathProofs.DispersionBranchPositivity
 import MathProofs.CurvatureUniformBound
 import MathProofs.DispersionRealDomain
+import MathProofs.DispersionMinimum
+import MathProofs.PhaseLockingContinuous
+import MathProofs.SpectralPhaseIdentity
+import MathProofs.S004ConstraintCount
