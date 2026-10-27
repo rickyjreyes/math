@@ -36,17 +36,34 @@ def minor
     Matrix (Fin 3 ⊕ (Fin 5 ⊕ Fin 3)) (Fin 3 ⊕ (Fin 5 ⊕ Fin 3)) ℝ :=
   Matrix.fromBlocks L 0 A (Matrix.fromBlocks M 0 B H)
 
-/-- General exact factorization for arbitrary lower-left off-diagonal
-blocks, without a numeric rank approximation. -/
+/-- Determinant of an arbitrary lower-block-triangular three-sector
+matrix. Proof is entirely generic; it avoids forcing the kernel to
+expand permutations of the concrete eleven-coordinate index type. -/
+theorem det_three_blocks
+    {I J K : Type*}
+    [Fintype I] [DecidableEq I]
+    [Fintype J] [DecidableEq J]
+    [Fintype K] [DecidableEq K]
+    (L : Matrix I I ℝ)
+    (M : Matrix J J ℝ)
+    (H : Matrix K K ℝ)
+    (A : Matrix (J ⊕ K) I ℝ)
+    (B : Matrix K J ℝ) :
+    (Matrix.fromBlocks L 0 A (Matrix.fromBlocks M 0 B H)).det =
+      L.det * M.det * H.det := by
+  rw [Matrix.det_fromBlocks_zero₁₂, Matrix.det_fromBlocks_zero₁₂]
+  ring
+
+/-- Specialized source-visible 3+5+3 analytic minor identity.
+This is a direct application of the generic proven determinant theorem. -/
 theorem minor_det
     (L : Matrix (Fin 3) (Fin 3) ℝ)
     (M : Matrix (Fin 5) (Fin 5) ℝ)
     (H : Matrix (Fin 3) (Fin 3) ℝ)
     (A : Matrix ((Fin 5) ⊕ (Fin 3)) (Fin 3) ℝ)
     (B : Matrix (Fin 3) (Fin 5) ℝ) :
-    (minor L M H A B).det = L.det * M.det * H.det := by
-  simp only [minor, Matrix.det_fromBlocks_zero₁₂]
-  ring
+    (minor L M H A B).det = L.det * M.det * H.det :=
+  det_three_blocks L M H A B
 
 /-- The exact light block is positive for all suppression parameters.
 Thus certification of nonzero middle and heavy block determinants
