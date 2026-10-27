@@ -59,3 +59,4 @@ import MathProofs.V18BlockJacobian
 import MathProofs.WeakFourierSpectrum
 import MathProofs.V18HeavyJacobian
 import MathProofs.WavepacketEnvelope
+import MathProofs.V18MiddleJacobian
