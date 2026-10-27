@@ -1,11 +1,14 @@
-schema_version: 2
+schema_version: 3
 source: rickyjreyes/math
 lean_release: v4.23.0
 mathlib_release: v4.23.0
 scope: >
-  Local finite-dimensional, measure-theoretic, and polynomial-algebra cores are encoded
-  in Lean. Continuous PDE, dynamics, Gaussian variational constructions,
-  and other analytic main results are NOT thereby kernel-checked.
+  Each family lists its manuscripts. A manuscript's main_theorem_formalized flag is true only
+  when every theorem, proposition and corollary stated in that manuscript is a precise exported
+  Lean declaration (no sorry/admit/axiom, no unproved hypotheses, no finite surrogate). A family
+  flag is true only when all of its manuscripts are. Infinite-dimensional statements on Sobolev
+  spaces use the H^2(R^d; C) construction of MathProofs/SobolevH2.lean (closure of
+  {(phi, grad phi, Laplacian phi) : phi Schwartz} in L^2 x (L^2)^d x L^2).
 proof_policy:
   build: "cd lean && lake update && lake exe cache get && lake build"
   excluded: ["sorry", "admit", "axiom"]
@@ -13,32 +16,86 @@ proof_policy:
 families:
   F01:
     main_theorem_formalized: false
-    covered: "Only algebraic strict-gap lemma; no PDE binding, attainment, or stability."
-    declarations: [ReyesMath.negativeEnergy_strictGap]
+    manuscripts:
+      strict-subadditivity-fourth-order-cubic-quintic:
+        main_theorem_formalized: true
+        modules: [MathProofs/SobolevH2.lean, MathProofs/NegativeEnergy.lean, MathProofs/StrictBinding.lean]
+        covered: "Theorem (explicit strict-binding range) for beta, gamma > 0, every k, 0 < m <= m_B, 0 < mu < m, on H^2(R^2; C) without any attainment assumption; Proposition (quantitative energy-per-mass gap); all lemmas (coercive lower bound and H^2 boundedness, negativity, dilation-stationary minimizing sequences, exact stationary square-completion identity, Fourier sup-norm estimate, stationary sextic/quartic ratio); Corollary (exact frozen binary64 parameters)."
+        declarations: [ReyesMath.StrictBinding.strict_binding, ReyesMath.StrictBinding.gap, ReyesMath.StrictBinding.frozen_parameters, ReyesMath.StrictBinding.exists_stationary_minimizing_seq, ReyesMath.StrictBinding.bounded_of_energy_le, ReyesMath.Sobolev.H2.stationary_square, ReyesMath.Sobolev.H2.S_le_of_stationary, ReyesMath.Sobolev.H2.ae_sup_bound_opt, ReyesMath.Sobolev.H2.energy_ge]
+      negative-constrained-energy-cubic-quintic:
+        main_theorem_formalized: true
+        modules: [MathProofs/SobolevH2.lean, MathProofs/NegativeEnergy.lean]
+        covered: "-(3 beta^2/(16 gamma)) m <= I(m) < 0 for every m > 0 on H^2(R^2; C). The negative trial is an anisotropic plane-wave carrier built on a smooth compactly supported bump in place of the Gaussian (same two-term R-scaling c2/R^2 + c4/R^4 with c2 < 0 for large anisotropy)."
+        declarations: [ReyesMath.NegativeEnergy.negative_constrained_energy, ReyesMath.NegativeEnergy.exists_negative, ReyesMath.Sobolev.H2.energy_ge]
+      whole-space-fourth-order-cubic-quintic-minimizers:
+        main_theorem_formalized: false
+        covered: "Parts (i) and (ii) of the main theorem (bounds on I(m), strict binding) are the declarations above."
+        gaps: "Part (iii): non-vanishing lemma, local compactness, Brezis-Lieb splitting and strong H^2 compactness of minimizing sequences modulo translations are not formalized."
+        declarations: [ReyesMath.NegativeEnergy.negative_constrained_energy, ReyesMath.StrictBinding.strict_binding]
+      orbital-stability-fourth-order-cubic-quintic:
+        main_theorem_formalized: false
+        gaps: "Global H^2 well-posedness, conservation laws, compactness of minimizing sequences and orbital stability are not formalized."
+        declarations: []
+    legacy_supporting_declarations: [ReyesMath.negativeEnergy_strictGap]
   F02:
-    main_theorem_formalized: false
-    covered: "Acceleration Hessian determinant/positivity and both exact complex UV characteristic roots are formalized; four-jet ill-posedness, high-frequency growth, and Dirac/Ostrogradsky constraint count are not."
-    declarations: [ReyesMath.s004_acceleration_hessian_det, ReyesMath.s004_acceleration_hessian_det_pos, ReyesMath.ultraviolet_plus_root_exact, ReyesMath.ultraviolet_minus_root_exact]
+    main_theorem_formalized: true
+    manuscripts:
+      uv-sobolev-ill-posedness-fourth-order-wave:
+        main_theorem_formalized: true
+        modules: [MathProofs/UVIllPosedness.lean, MathProofs/UVWholeSpace.lean]
+        covered: "Exact growing temporal root and characteristic equation; ultraviolet growth asymptotics and comparability; exact smooth solutions on the flat torus and Fourier-packet smooth solutions on R^d; four-jet Sobolev norms with isometric Hilbert realizations; Theorem 1 and the general-sector Proposition (no bounded estimate, operator or linear extension X_{r+l} -> X_r) on both T^d and R^d, including the stated equation box u - box^2 u - Delta^2 u = 0."
+        declarations: [ReyesMath.UVIllPosed.dispersion_root, ReyesMath.UVIllPosed.sigma_pos, ReyesMath.UVIllPosed.torus_unbounded, ReyesMath.UVIllPosed.torus_no_bounded_operator, ReyesMath.UVIllPosed.wave_torus_unbounded, ReyesMath.UVIllPosed.whole_unbounded, ReyesMath.UVIllPosed.whole_no_bounded_operator, ReyesMath.UVIllPosed.wave_whole_unbounded]
+      s004-complex-scalar-constraint-count:
+        main_theorem_formalized: true
+        modules: [MathProofs/S004ConstraintCount.lean]
+        covered: "Lemmas 1-2 and the theorem: acceleration Hessian from the actual second Frechet derivative, canonical momenta and Legendre image (four primary constraints), Dirac matrix of determinant one (no first-class constraint), no secondary constraints, eight-dimensional reduced phase space and N_conf = 4; unbounded canonical energy; U(1) charge."
+        declarations: [ReyesMath.S004.accHessian_det_pos, ReyesMath.S004.legendre_image, ReyesMath.S004.diracMatrix_det, ReyesMath.S004.no_first_class, ReyesMath.S004.no_secondary_constraints, ReyesMath.S004.constraint_count, ReyesMath.S004.Hphys_unbounded_below, ReyesMath.S004.charge_not_constraint]
+    legacy_supporting_declarations: [ReyesMath.s004_acceleration_hessian_det, ReyesMath.s004_acceleration_hessian_det_pos, ReyesMath.ultraviolet_plus_root_exact, ReyesMath.ultraviolet_minus_root_exact]
   F03:
-    main_theorem_formalized: false
-    covered: "Finite weighted variance identity and nonnegative variance; not the continuous periodic spectral identity."
-    declarations: [ReyesMath.varianceDeficit_nonnegative, ReyesMath.finite_weighted_variance_identity, ReyesMath.finite_weighted_mean_square_bound]
+    main_theorem_formalized: true
+    manuscripts:
+      spectral-rms-averaged-curvature:
+        main_theorem_formalized: true
+        modules: [MathProofs/SpectralPhaseIdentity.lean]
+        covered: "Exact continuous identity lambda - <sigma>^2 = int |R'|^2 / int R^2 + Var_w(sigma) for C^2 periodic nowhere-vanishing eigenmodes with polar form (whose existence is proved), equality case, spectral-root form, the 4/5 counterexample with gap accounting, and the closed unit-speed planar curve with <kappa> = 4/5."
+        declarations: [ReyesMath.SpectralPhase.sharp_spectral_phase_decomposition, ReyesMath.SpectralPhase.root_identity, ReyesMath.SpectralPhase.exists_polar_lift, ReyesMath.SpectralPhase.four_fifths, ReyesMath.SpectralPhase.gap_accounting, ReyesMath.SpectralPhase.geometric_lock_four_fifths]
+    legacy_supporting_declarations: [ReyesMath.varianceDeficit_nonnegative, ReyesMath.finite_weighted_variance_identity, ReyesMath.finite_weighted_mean_square_bound]
   F04:
     main_theorem_formalized: false
-    covered: "One-dimensional cutoff and coordinatewise multidimensional quintic escape arithmetic; not general polynomial-flow coefficients or full noninvariance theorem."
-    declarations: [ReyesMath.quintic_frequency_above_cutoff, ReyesMath.quintic_frequency_below_cutoff, ReyesMath.multidimensional_quintic_frequency_escape]
+    manuscripts:
+      finite-fourier-coordinate-subspace-noninvariance:
+        main_theorem_formalized: false
+        modules: [MathProofs/FourierLeakage.lean]
+        covered: "Exact cubic and quintic Fourier convolutions at the extremal frequency r = 3p - 2q; Theorems 1-2 and the fifth-harmonic Proposition for every classical solution launched from the stated data (u^(r,0) = 0, d/dt u^(r,0) = -i gamma c_p^3 conj(c_q)^2 != 0, u(t) not in E_S for small t != 0); exact single-mode solutions."
+        gaps: "Local existence of classical solutions for multimode trigonometric data and uniqueness of classical solutions (used by the classification corollary) are not formalized."
+        declarations: [ReyesMath.FourierLeakage.universal_leakage, ReyesMath.FourierLeakage.no_multimode_invariance, ReyesMath.FourierLeakage.fifth_harmonic, ReyesMath.FourierLeakage.singleMode_isClassicalSolution, ReyesMath.FourierLeakage.coeff_cubic_leak, ReyesMath.FourierLeakage.coeff_quintic_leak]
+    legacy_supporting_declarations: [ReyesMath.quintic_frequency_above_cutoff, ReyesMath.quintic_frequency_below_cutoff, ReyesMath.multidimensional_quintic_frequency_escape]
   F05:
-    main_theorem_formalized: false
-    covered: "Curvature-energy nonattainment not formalized."
-    declarations: []
+    main_theorem_formalized: true
+    manuscripts:
+      positive-curvature-whole-space-nonattainment:
+        main_theorem_formalized: true
+        modules: [MathProofs/SobolevH2.lean, MathProofs/CurvatureNonattainment.lean]
+        covered: "Theorem 1 for every d >= 1 and m > 0 on H^2(R^d; C): E finite (integrable curvature integrand) and nonnegative, positive at every nonzero psi, I_d(m) = 0 and empty set of constrained minimizers. Theorem 2 for 1 <= d <= 4: lambda -> E(psi_lambda) is C^1 and strictly increasing on (0, infinity), with the derivative formula and the log-derivative bound, E(psi_lambda) < E(psi) for 0 < lambda < 1, strong continuity of the dilation group on H^2, and no local constrained minimizer in the H^2 topology."
+        declarations: [ReyesMath.Curvature.global_nonattainment, ReyesMath.Curvature.strict_spreading, ReyesMath.Curvature.no_local_minimizer, ReyesMath.Curvature.hasDerivAt_eDil, ReyesMath.Curvature.log_deriv_ge, ReyesMath.Curvature.virial_weight, ReyesMath.Curvature.Ec_eq_zero_iff, ReyesMath.Sobolev.H2.val_eq_zero_of_K_eq_zero, ReyesMath.Sobolev.H2.tendsto_distH2_dilR]
   F06:
-    main_theorem_formalized: false
-    covered: "Exact discriminant, supporting-tangent square identity, and strict global uniqueness of a given admissible stationary minimum are formalized; original parameter hypotheses and existence/explicit critical point remain."
-    declarations: [ReyesMath.dispersion_discriminant_identity, ReyesMath.dispersion_tangent_square_identity, ReyesMath.dispersion_unique_minimum_at_stationary]
+    main_theorem_formalized: true
+    manuscripts:
+      exact-positive-wavenumber-minimum:
+        main_theorem_formalized: true
+        modules: [MathProofs/DispersionMinimum.lean]
+        covered: "Main theorem under the manuscript hypotheses (real branches, collision wavenumber, explicit q*, unique global minimizer, second derivative), both corollaries and the wavenumber remark."
+        declarations: [ReyesMath.Dispersion.exact_positive_wavenumber_minimum, ReyesMath.Dispersion.exact_minimum_frequency, ReyesMath.Dispersion.sharp_initial_slope_criterion, ReyesMath.Dispersion.min_at_zero_of_not_finiteScale, ReyesMath.Dispersion.omegaMinus_unique_min, ReyesMath.Dispersion.wavenumber_minimum, ReyesMath.Dispersion.wavenumber_second_deriv]
+    legacy_supporting_declarations: [ReyesMath.dispersion_discriminant_identity, ReyesMath.dispersion_tangent_square_identity, ReyesMath.dispersion_unique_minimum_at_stationary]
   F07:
-    main_theorem_formalized: false
-    covered: "Finite weighted bound, exact gap/completion-of-square identity, and sharp lower bound; not the continuous closed-loop theorem or equality characterization."
-    declarations: [ReyesMath.squaredMismatch_nonnegative, ReyesMath.finite_weighted_phase_bound, ReyesMath.finite_weighted_phase_remainder, ReyesMath.finite_weighted_phase_exact_gap, ReyesMath.finite_weighted_phase_sharp_bound]
+    main_theorem_formalized: true
+    manuscripts:
+      weighted-closed-loop-phase-locking:
+        main_theorem_formalized: true
+        modules: [MathProofs/PhaseLockingContinuous.lean]
+        covered: "Main theorem for H^1 phases with measurable weights bounded above and below (minimum Delta_n^2/I, explicit minimizer, exact remainder, uniqueness), both corollaries, the sector proposition and the uniform-weight example."
+        declarations: [ReyesMath.phase_locking_exact_minimum, ReyesMath.exact_lock_criterion, ReyesMath.optimalPhase_perturbation, ReyesMath.optimalPhase_second_variation, ReyesMath.perturbation_weight_eq_zero_iff, ReyesMath.sector_selection, ReyesMath.nearest_integers_unique, ReyesMath.nearest_integers_tie, ReyesMath.uniform_weight_example]
+    legacy_supporting_declarations: [ReyesMath.squaredMismatch_nonnegative, ReyesMath.finite_weighted_phase_bound, ReyesMath.finite_weighted_phase_remainder, ReyesMath.finite_weighted_phase_exact_gap, ReyesMath.finite_weighted_phase_sharp_bound]
   F08:
     main_theorem_formalized: false
     algebraic_no_go_core_formalized: true

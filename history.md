@@ -1,5 +1,11 @@
 # Version history
 
+## 2026-10-27 — Lean formalization of nine manuscripts
+
+- Added end-to-end Lean 4/Mathlib formalizations of the strict-binding and negative-energy manuscripts (F01), ultraviolet Sobolev ill-posedness and the S004 constraint count (F02), the continuous spectral–phase identity (F03), positive-curvature nonattainment and strict spreading (F05), the dispersion minimum (F06), and continuous phase locking (F07), on top of a Sobolev-space construction of `H²(ℝ^d; ℂ)`.
+- F04 leakage theorems are proved for every classical solution; local existence and uniqueness for the classification corollary remain open in Lean. Whole-space minimizer compactness and orbital stability (F01) are not formalized.
+- `lean/formalization.yaml` now records status per manuscript (schema version 3).
+
 ## 2026-10-26 — E68 localized gradient-energy proof
 
 - Added complete Manuscript 4 E68 source: refutes unrestricted $H^1$ local-energy bound for $n\ne2$ over all radii, and proves a corrected $L^n$-gradient estimate with an $H^2$ result for $n=3,4$.

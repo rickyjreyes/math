@@ -1,8 +1,36 @@
 # Lean 4 formalization status
 
-This Mathlib v4.23.0 project contains 51 formal theorem declarations
-(38 on the previous verified main commit plus 13 added here) in sixteen imported modules. On any revision,
-regard them as kernel-checked only after that exact revision's Lean CI passes:
+This Mathlib v4.23.0 project contains 727 `theorem`/`lemma` declarations in 27 imported
+modules. On any revision, regard them as kernel-checked only after that exact revision's
+Lean CI passes. Manuscript-level status (which papers are formalized end to end) is in
+[formalization.yaml](formalization.yaml).
+
+### Manuscript formalizations
+
+- [PhaseLockingContinuous](MathProofs/PhaseLockingContinuous.lean) — F07, complete:
+  exact continuous weighted closed-loop phase-locking minimum for `H¹` phases.
+- [DispersionMinimum](MathProofs/DispersionMinimum.lean) — F06, complete: existence,
+  explicit formula and uniqueness of the positive-wavenumber dispersion minimum.
+- [SpectralPhaseIdentity](MathProofs/SpectralPhaseIdentity.lean) — F03, complete:
+  continuous spectral–phase identity, equality case and the 4/5 counterexample.
+- [S004ConstraintCount](MathProofs/S004ConstraintCount.lean) — F02, complete: canonical
+  Dirac analysis and `N_conf = 4` for the regular S004 scalar.
+- [UVIllPosedness](MathProofs/UVIllPosedness.lean),
+  [UVWholeSpace](MathProofs/UVWholeSpace.lean) — F02, complete: ultraviolet growth and
+  Sobolev ill-posedness on `𝕋^d` and `ℝ^d`.
+- [FourierLeakage](MathProofs/FourierLeakage.lean) — F04, partial: instantaneous leakage
+  for every classical solution from multimode trigonometric data; local existence and
+  uniqueness (classification corollary) not yet formalized.
+- [SobolevH2](MathProofs/SobolevH2.lean) — `H²(ℝ^d; ℂ)` as the Schwartz closure of
+  `(φ, ∇φ, Δφ)`, Parseval on `𝓢`, the 2D Fourier sup-norm estimate, dilations.
+- [NegativeEnergy](MathProofs/NegativeEnergy.lean) — F01, complete: `I(m) < 0` at every
+  positive mass on `H²(ℝ²)`.
+- [StrictBinding](MathProofs/StrictBinding.lean) — F01, complete: explicit strict-binding
+  range `0 < m ≤ m_B` and the frozen-parameter corollary.
+- [CurvatureNonattainment](MathProofs/CurvatureNonattainment.lean) — F05, complete:
+  whole-space nonattainment in every dimension and strict spreading for `1 ≤ d ≤ 4`.
+
+### Supporting modules
 
 - [Elementary](MathProofs/Elementary.lean) — original elementary algebra.
 - [Structural](MathProofs/Structural.lean) — an **actual 11 × 31 matrix**
@@ -60,21 +88,18 @@ is not yet committed.
 
 ## Gaps
 
-**No full infinite-dimensional PDE result in F01 is kernel-checked**:
-strict binding, whole-space minimizer existence, concentration–compactness,
-global continuation, and orbital stability remain conventional analytic
-proofs. The higher-derivative constraint count and ultraviolet Sobolev evolution (F02), continuous
-spectral/phase integral identities (F03, F07), full multidimensional
-nonlinear Fourier-mode theorem (F04), curvature nonattainment (F05),
-dispersion existence/explicit-minimum theorem under the manuscript assumptions (F06), numerical Jacobian rank claims (F09),
-and the Plancherel extension from Schwartz class to all L² states (F10) are
-likewise not fully formalized.
+In F01, the whole-space minimizer manuscript (compactness of minimizing sequences modulo
+translations) and the orbital-stability manuscript (global `H²` well-posedness and
+stability) are not formalized; strict binding and negative energy are. In F04 the leakage
+theorems are proved for every classical solution, but local existence and uniqueness of
+classical solutions are not yet formalized. Numerical Jacobian rank claims (F09), the
+Plancherel extension from Schwartz class to all `L²` states (F10), and F11/F12 remain
+outside Lean.
 
 The local-coordinate rank/signature obstruction (F08) **is formalized** for
 actual differentiable complex fields on four-coordinate charted spaces,
 including explicit matrix contraction and its positivity. A global bundled
-coordinate-invariant tensor construction is not certified. Arbitrarily many
-nonnegative-weight carriers have positive-semidefinite Gram forms. The generic local matrix
+coordinate-invariant tensor construction is not certified. The generic local matrix
 nullity core of F09 is formalized but is not a certification of the
 11-parameter-observable physical model, its computed Jacobian, or its
 published numerical rank.
@@ -82,12 +107,12 @@ published numerical rank.
 Separate research-grade Lean work lives in [wct-lean](https://github.com/rickyjreyes/wct-lean);
 do not conflate its theorem count with this repository.
 
-The Schwartz-space version of F10 is now proved end-to-end using Mathlib's
+The Schwartz-space version of F10 is proved end-to-end using Mathlib's
 Schwartz Fourier inversion; it is **not** the manuscript's full L² theorem.
 
 ## Completion criterion for each of the 14 tweets
 
-The boolean `families.Fxx.main_theorem_formalized` stays false until the
+The boolean `main_theorem_formalized` (per manuscript, and per family) stays false until the
 **entire theorem as stated in its PDF** is a precise exported Lean declaration
 with no `sorry`, `admit`, new axioms, unproved assumptions, or finite surrogate
 used in place of the stated infinite-dimensional result. Supporting finite
