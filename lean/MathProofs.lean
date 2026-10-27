@@ -38,3 +38,4 @@ import MathProofs.SobolevH2
 import MathProofs.UVIllPosedness
 import MathProofs.UVWholeSpace
 import MathProofs.NegativeEnergy
+import MathProofs.StrictBinding
