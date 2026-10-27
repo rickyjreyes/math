@@ -107,4 +107,69 @@ theorem second_moment_dilation (d : ℕ) (lam : ℝ) (hlam : 0 < lam)
           field_simp
           ring
 
+
+/-- Arbitrary real carrier phases leave every pointwise complex amplitude
+unchanged. In particular this covers exp(i k ω⋅x). -/
+theorem modulation_norm (z : ℂ) (phase : ℝ) :
+    ‖z * Complex.exp (Complex.I * (phase : ℂ))‖ = ‖z‖ := by
+  rw [norm_mul, Complex.norm_exp]
+  simp
+
+/-- The specified physically modulated normalized envelope, allowing an
+arbitrary real phase function (including a fixed plane-wave carrier). -/
+def physicalPacket (d : ℕ) (R : ℝ) (phase : Rd d → ℝ)
+    (f : Rd d → ℂ) (x : Rd d) : ℂ :=
+  Sobolev.dilF R⁻¹ f x * Complex.exp (Complex.I * (phase x : ℂ))
+
+theorem physical_packet_norm (d : ℕ) (R : ℝ)
+    (phase : Rd d → ℝ) (f : Rd d → ℂ) (x : Rd d) :
+    ‖physicalPacket d R phase f x‖ = ‖Sobolev.dilF R⁻¹ f x‖ :=
+  modulation_norm _ _
+
+/-- Exact mass of the physical wavepacket is independent of its carrier
+phase and its envelope radius. -/
+theorem physical_packet_mass (d : ℕ) (R : ℝ) (hR : 0 < R)
+    (phase : Rd d → ℝ) (f : Rd d → ℂ) :
+    (∫ x : Rd d, ‖physicalPacket d R phase f x‖ ^ 2) =
+      ∫ y : Rd d, ‖f y‖ ^ 2 := by
+  have hlam : 0 < R⁻¹ := inv_pos.mpr hR
+  calc
+    (∫ x : Rd d, ‖physicalPacket d R phase f x‖ ^ 2) =
+      ∫ x : Rd d, ‖Sobolev.dilF R⁻¹ f x‖ ^ 2 := by
+        apply integral_congr_ae
+        exact Filter.Eventually.of_forall fun x => by
+          rw [physical_packet_norm]
+    _ = ∫ x : Rd d, (R⁻¹) ^ (d + 1) * ‖f (R⁻¹ • x)‖ ^ 2 := by
+        apply integral_congr_ae
+        exact Filter.Eventually.of_forall fun x =>
+          Sobolev.norm_dilF_sq hlam f x
+    _ = (R⁻¹) ^ (d + 1) *
+        ∫ x : Rd d, ‖f (R⁻¹ • x)‖ ^ 2 := by rw [integral_const_mul]
+    _ = (R⁻¹) ^ (d + 1) * ((R⁻¹) ^ (d + 1))⁻¹ *
+        ∫ y : Rd d, ‖f y‖ ^ 2 := by
+          rw [Sobolev.integral_comp_dil hlam (fun y : Rd d => ‖f y‖ ^ 2)]
+          ring
+    _ = ∫ y : Rd d, ‖f y‖ ^ 2 := by
+          have hn : (R⁻¹) ^ (d + 1) ≠ 0 := pow_ne_zero _ hlam.ne'
+          field_simp
+
+/-- Exact second-moment identity for the specified physical modulation:
+every carrier phase has the same envelope radius R. -/
+theorem physical_packet_second_moment (d : ℕ) (R : ℝ) (hR : 0 < R)
+    (phase : Rd d → ℝ) (f : Rd d → ℂ) :
+    (∫ x : Rd d, ‖x‖ ^ 2 * ‖physicalPacket d R phase f x‖ ^ 2) =
+      R ^ 2 * ∫ y : Rd d, ‖y‖ ^ 2 * ‖f y‖ ^ 2 := by
+  have hlam : 0 < R⁻¹ := inv_pos.mpr hR
+  calc
+    (∫ x : Rd d, ‖x‖ ^ 2 * ‖physicalPacket d R phase f x‖ ^ 2) =
+      ∫ x : Rd d, ‖x‖ ^ 2 * ‖Sobolev.dilF R⁻¹ f x‖ ^ 2 := by
+        apply integral_congr_ae
+        exact Filter.Eventually.of_forall fun x => by
+          rw [physical_packet_norm]
+    _ = ((R⁻¹) ^ 2)⁻¹ *
+      ∫ y : Rd d, ‖y‖ ^ 2 * ‖f y‖ ^ 2 :=
+        second_moment_dilation d R⁻¹ hlam f
+    _ = R ^ 2 * ∫ y : Rd d, ‖y‖ ^ 2 * ‖f y‖ ^ 2 := by
+        simp [inv_pow]
+
 end ReyesMath.WavepacketEnvelope
