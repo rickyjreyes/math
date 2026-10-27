@@ -39,3 +39,10 @@ import MathProofs.UVIllPosedness
 import MathProofs.UVWholeSpace
 import MathProofs.NegativeEnergy
 import MathProofs.StrictBinding
+import MathProofs.FourierLeakageWellPosed
+import MathProofs.WholeSpaceMinimizers
+import MathProofs.IntrinsicScalarMetric
+import MathProofs.OrbitalStabilityCriterion
+import MathProofs.MinimizerNonvanishing
+import MathProofs.L2FourierShellBridge
+import MathProofs.CurvatureLegacy

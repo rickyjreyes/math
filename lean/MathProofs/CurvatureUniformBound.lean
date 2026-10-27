@@ -1,5 +1,5 @@
 import Mathlib
-import MathProofs.CurvatureNonattainment
+import MathProofs.CurvatureLegacy
 
 /-!
 # Global uniform bound on the *actual* curvature weight F
