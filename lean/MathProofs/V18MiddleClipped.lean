@@ -17,6 +17,9 @@ identities to the actual clipped middle model.
 noncomputable section
 namespace ReyesMath.V18MiddleClipped
 
+open Filter
+open scoped Topology
+
 /-- Differentiating max(f,c) is legitimate at a point where f is
 strictly above c. The proof establishes equality on a neighborhood. -/
 theorem hasDerivAt_max_of_gt
@@ -32,6 +35,7 @@ theorem hasDerivAt_max_of_gt
 
 variable (p : V18Forward.Params) (n : ℕ)
 variable (h : (1e-12 : ℝ) < V18Forward.middleRaw p n)
+include h
 
 /-- The five actual observed middle partial derivatives are exactly
 the selected analytic Jacobian row when the floor is inactive. -/
