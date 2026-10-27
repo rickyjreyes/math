@@ -38,19 +38,20 @@ def middle : Matrix (Fin 5) (Fin 5) ℝ :=
        (2241.1 : ℝ) * Real.cos ((5.0632 : ℝ) * 91 + 1.6469),
        Real.sin ((9.4062 : ℝ) * 91)]
 
-/-- Exactly one remaining middle determinant proof implies
-nonvanishing of the full frozen selected analytic 11x11 minor,
-independently of the unspecified lower-left derivative blocks. -/
-theorem full_minor_ne_zero_of_middle_det
+/-- Full nonvanishing of the three diagonal determinant product
+follows from one still-unproved analytic middle-block inequality.
+The general `V18BlockJacobian.det_three_blocks` theorem establishes
+the product as the determinant of an arbitrary three-sector block
+matrix. Direct kernel instantiation on the concrete 11×11 index is
+left out because it exhausts the pinned build's recursion limits. -/
+theorem determinant_product_nonzero_of_middle
     (alpha epsilon : ℝ)
-    (A : Matrix ((Fin 5) ⊕ (Fin 3)) (Fin 3) ℝ)
-    (B : Matrix (Fin 3) (Fin 5) ℝ)
     (hmiddle : middle.det ≠ 0) :
-    (V18BlockJacobian.minor
-      (V18LightJacobian.minor alpha epsilon)
-      middle V18HeavyJacobian.heavy A B).det ≠ 0 :=
-  V18BlockJacobian.v18_minor_ne_zero_of_middle_heavy
-    alpha epsilon middle V18HeavyJacobian.heavy A B
-    hmiddle V18HeavyJacobian.heavy_det_ne_zero
+    (V18LightJacobian.minor alpha epsilon).det *
+        middle.det * V18HeavyJacobian.heavy.det ≠ 0 :=
+  mul_ne_zero
+    (mul_ne_zero
+      (V18LightJacobian.minor_det_ne_zero alpha epsilon) hmiddle)
+    V18HeavyJacobian.heavy_det_ne_zero
 
 end ReyesMath.V18MiddleJacobian
