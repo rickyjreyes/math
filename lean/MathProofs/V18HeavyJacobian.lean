@@ -71,7 +71,16 @@ theorem heavy_det_eq :
     heavy.det =
       a95 * Real.sin (-116.659) - Real.sin (-115.395) * a96 := by
   rw [Matrix.det_fin_three]
-  simp [heavy, Matrix.vecCons, Fin.cons]
+  simp only [
+    show heavy 0 0 = a95 from rfl,
+    show heavy 0 1 = Real.sin (-115.395) from rfl,
+    show heavy 0 2 = (0 : ℝ) from rfl,
+    show heavy 1 0 = a96 from rfl,
+    show heavy 1 1 = Real.sin (-116.659) from rfl,
+    show heavy 1 2 = (0 : ℝ) from rfl,
+    show heavy 2 0 = a123 from rfl,
+    show heavy 2 1 = (0 : ℝ) from rfl,
+    show heavy 2 2 = (1 : ℝ) from rfl]
   ring
 
 /-- Stronger than the numerical >1.2 enclosure: the exact analytic
