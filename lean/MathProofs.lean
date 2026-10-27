@@ -24,3 +24,4 @@ import MathProofs.UVWholeSpace
 import MathProofs.SobolevH2
 import MathProofs.NegativeEnergy
 import MathProofs.StrictBinding
+import MathProofs.CurvatureNonattainment
