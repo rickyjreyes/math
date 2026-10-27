@@ -5,8 +5,8 @@ mathlib_release: v4.23.0
 scope: >
   Local finite-dimensional, continuous integral variational, measure-theoretic, and polynomial-algebra results are encoded
   in Lean. Some continuous PDE and Sobolev results are now kernel-checked, including negative constrained
-  energy and UV ill-posedness. Infinite-dimensional variational binding, minimizer attainment,
-  orbital stability, curvature nonattainment, and the L² Fourier-shell theorem remain open.
+  energy and UV ill-posedness. Infinite-dimensional strict binding is now certified for the specified H² cubic–quintic model.
+  Minimizer attainment, orbital stability, curvature nonattainment and L² Fourier-shell exclusion remain open.
 proof_policy:
   build: "cd lean && lake update && lake exe cache get && lake build"
   excluded: ["sorry", "admit", "axiom"]
@@ -15,8 +15,9 @@ families:
   F01:
     main_theorem_formalized: false
     negative_constrained_energy_formalized: true
-    covered: "NegativeEnergy.negative_constrained_energy is kernel-checked: on Sobolev.H2 (Schwartz graph closure of u, grad u and Δu in genuine whole-space L²), for β,γ,m>0 and any k, -(3β²/(16γ))m ≤ I(m)<0. Exact smooth compactly supported anisotropic oscillatory trial (not the PDF's Gaussian), mass, kinetic, L4 and L6 integrals, and scaling are proved. SobolevH2 also formalizes true H² differentiation and mass-preserving dilation. Still OPEN: strict binding, attainment, concentration–compactness and orbital stability, including extension/identification of this graph model with an independently defined Sobolev H² if required."
-    declarations: [ReyesMath.negativeEnergy_strictGap, ReyesMath.cubic_quintic_potential_square, ReyesMath.cubic_quintic_potential_lower, ReyesMath.strict_binding_of_specific_energy, ReyesMath.gaussian_coefficient_c2_negative, ReyesMath.gaussian_coefficient_c4_positive, ReyesMath.quadratic_trial_energy_negative, ReyesMath.gaussian_trial_polynomial_certificate, ReyesMath.NegativeEnergy.negative_constrained_energy, ReyesMath.NegativeEnergy.exists_negative, ReyesMath.Sobolev.H2.M_dil, ReyesMath.Sobolev.H2.K_dil, ReyesMath.Sobolev.H2.D_dil]
+    strict_binding_formalized: true
+    covered: "On Sobolev.H2 (Schwartz graph closure of u, grad u and Δu in actual whole-space L²), NegativeEnergy.negative_constrained_energy establishes -(3β²/(16γ))m ≤ I(m)<0 for β,γ,m>0 and any k, with actual smooth compactly supported anisotropic carrier trials. StrictBinding.strict_binding now proves I(m)<I(μ)+I(m-μ) for all 0<m≤3β/(γ√(k⁴+3β²/(32γ))) and 0<μ<m, using mass-preserving dilations, adjusted stationary minimizing sequences and a quantitative strict specific-energy gap. StrictBinding.frozen_parameters verifies the encoded exact k=1 and β=γ rational parameters at m_D4=2.54469689485712... satisfy the explicit binding range; no minimizer attainment is assumed. Still OPEN: concentration–compactness, whole-space minimizer existence and orbital stability. Mathematical identification with an independently defined Sobolev H², if requested, is separate."
+    declarations: [ReyesMath.negativeEnergy_strictGap, ReyesMath.cubic_quintic_potential_square, ReyesMath.cubic_quintic_potential_lower, ReyesMath.strict_binding_of_specific_energy, ReyesMath.gaussian_coefficient_c2_negative, ReyesMath.gaussian_coefficient_c4_positive, ReyesMath.quadratic_trial_energy_negative, ReyesMath.gaussian_trial_polynomial_certificate, ReyesMath.NegativeEnergy.negative_constrained_energy, ReyesMath.NegativeEnergy.exists_negative, ReyesMath.Sobolev.H2.M_dil, ReyesMath.Sobolev.H2.K_dil, ReyesMath.Sobolev.H2.D_dil, ReyesMath.StrictBinding.strict_binding, ReyesMath.StrictBinding.gap, ReyesMath.StrictBinding.frozen_parameters, ReyesMath.StrictBinding.exists_stationary_minimizing_seq]
   F02:
     main_theorem_formalized: true
     s004_regular_constraint_count_formalized: true
