@@ -26,3 +26,4 @@ import MathProofs.NegativeEnergy
 import MathProofs.StrictBinding
 import MathProofs.CurvatureNonattainment
 import MathProofs.FourierLeakageWellPosed
+import MathProofs.WholeSpaceMinimizers

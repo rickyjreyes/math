@@ -1,6 +1,6 @@
 # Lean 4 formalization status
 
-This Mathlib v4.23.0 project contains 910 `theorem`/`lemma` declarations in 28 imported
+This Mathlib v4.23.0 project contains 980 `theorem`/`lemma` declarations in 29 imported
 modules. On any revision, regard them as kernel-checked only after that exact revision's
 Lean CI passes. Manuscript-level status (which papers are formalized end to end) is in
 [formalization.yaml](formalization.yaml).
@@ -28,6 +28,11 @@ Lean CI passes. Manuscript-level status (which papers are formalized end to end)
   positive mass on `H²(ℝ²)`.
 - [StrictBinding](MathProofs/StrictBinding.lean) — F01, complete: explicit strict-binding
   range `0 < m ≤ m_B` and the frozen-parameter corollary.
+- [WholeSpaceMinimizers](MathProofs/WholeSpaceMinimizers.lean) — F01, complete: for
+  `0 < m ≤ m_B`, every minimizing sequence converges strongly in `H²(ℝ²)` after translations
+  (concentration–compactness with a Fourier Hölder estimate, weak compactness, weak closedness
+  of `H²` and the Brezis–Lieb lemma), so minimizers exist and `𝒢_m` is compact modulo
+  translations.
 - [CurvatureNonattainment](MathProofs/CurvatureNonattainment.lean) — F05, complete:
   whole-space nonattainment in every dimension and strict spreading for `1 ≤ d ≤ 4`.
 
@@ -89,9 +94,9 @@ is not yet committed.
 
 ## Gaps
 
-In F01, the whole-space minimizer manuscript (compactness of minimizing sequences modulo
-translations) and the orbital-stability manuscript (global `H²` well-posedness and
-stability) are not formalized; strict binding and negative energy are. Numerical Jacobian
+In F01, the orbital-stability manuscript (global `H²` well-posedness, conservation laws and
+orbital stability) is not formalized; strict binding, negative energy and the whole-space
+minimizer theorem are. Numerical Jacobian
 rank claims (F09), the
 Plancherel extension from Schwartz class to all `L²` states (F10), and F11/F12 remain
 outside Lean.

@@ -28,10 +28,10 @@ families:
         covered: "-(3 beta^2/(16 gamma)) m <= I(m) < 0 for every m > 0 on H^2(R^2; C). The negative trial is an anisotropic plane-wave carrier built on a smooth compactly supported bump in place of the Gaussian (same two-term R-scaling c2/R^2 + c4/R^4 with c2 < 0 for large anisotropy)."
         declarations: [ReyesMath.NegativeEnergy.negative_constrained_energy, ReyesMath.NegativeEnergy.exists_negative, ReyesMath.Sobolev.H2.energy_ge]
       whole-space-fourth-order-cubic-quintic-minimizers:
-        main_theorem_formalized: false
-        covered: "Parts (i) and (ii) of the main theorem (bounds on I(m), strict binding) are the declarations above."
-        gaps: "Part (iii): non-vanishing lemma, local compactness, Brezis-Lieb splitting and strong H^2 compactness of minimizing sequences modulo translations are not formalized."
-        declarations: [ReyesMath.NegativeEnergy.negative_constrained_energy, ReyesMath.StrictBinding.strict_binding]
+        main_theorem_formalized: true
+        modules: [MathProofs/SobolevH2.lean, MathProofs/NegativeEnergy.lean, MathProofs/StrictBinding.lean, MathProofs/WholeSpaceMinimizers.lean]
+        covered: "Theorem (whole-space existence and compactness) for beta, gamma > 0, every k and 0 < m <= m_B on H^2(R^2; C): (i) bounds on I(m); (ii) strict binding at every split; (iii) every minimizing sequence has a subsequence that converges strongly in H^2 after spatial translations to some u with M(u) = m and H(u) = I(m); hence G_m is nonempty and sequentially compact modulo translations. Proved with translations on H^2, a Fourier Holder-1/2 estimate and its disc-average form (no-vanishing lemma), weak sequential compactness in separable Hilbert spaces, weak closedness of H^2, a.e. convergence of weakly null bounded sequences, the Brezis-Lieb lemma, the Hilbert splittings of M and T, and mass correction plus strict binding."
+        declarations: [ReyesMath.WholeSpace.main, ReyesMath.WholeSpace.compactness, ReyesMath.WholeSpace.exists_minimizer, ReyesMath.WholeSpace.minimizers_seq_compact, ReyesMath.WholeSpace.conclusion, ReyesMath.WholeSpace.exists_translations, ReyesMath.WholeSpace.exists_profile, ReyesMath.Sobolev.H2.exists_ball_avg, ReyesMath.Sobolev.holder_schwartz, ReyesMath.Sobolev.H2.ae_ball_avg, ReyesMath.WeakCompact.exists_weak_subseq, ReyesMath.Sobolev.H2.exists_weak_limit, ReyesMath.Sobolev.H2.ae_tendsto_zero_of_weak, ReyesMath.BrezisLieb.brezis_lieb, ReyesMath.Sobolev.H2.tendsto_energy_split, ReyesMath.Sobolev.H2.exists_energy_ge_Imin, ReyesMath.Sobolev.H2.energy_translate, ReyesMath.NegativeEnergy.negative_constrained_energy, ReyesMath.StrictBinding.strict_binding]
       orbital-stability-fourth-order-cubic-quintic:
         main_theorem_formalized: false
         gaps: "Global H^2 well-posedness, conservation laws, compactness of minimizing sequences and orbital stability are not formalized."

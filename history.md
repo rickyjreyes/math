@@ -1,9 +1,10 @@
 # Version history
 
-## 2026-10-27 — Lean formalization of ten manuscripts
+## 2026-10-27 — Lean formalization of eleven manuscripts
 
-- Added end-to-end Lean 4/Mathlib formalizations of the strict-binding and negative-energy manuscripts (F01), finite Fourier-mode leakage (F04), ultraviolet Sobolev ill-posedness and the S004 constraint count (F02), the continuous spectral–phase identity (F03), positive-curvature nonattainment and strict spreading (F05), the dispersion minimum (F06), and continuous phase locking (F07), on top of a Sobolev-space construction of `H²(ℝ^d; ℂ)`.
-- F04 (finite Fourier-mode leakage) is formalized end to end, including local existence and uniqueness of classical solutions on the torus and the classification of invariant coordinate subspaces. Whole-space minimizer compactness and orbital stability (F01) are not formalized.
+- Added end-to-end Lean 4/Mathlib formalizations of the strict-binding, negative-energy and whole-space-minimizer manuscripts (F01), finite Fourier-mode leakage (F04), ultraviolet Sobolev ill-posedness and the S004 constraint count (F02), the continuous spectral–phase identity (F03), positive-curvature nonattainment and strict spreading (F05), the dispersion minimum (F06), and continuous phase locking (F07), on top of a Sobolev-space construction of `H²(ℝ^d; ℂ)`.
+- F04 (finite Fourier-mode leakage) is formalized end to end, including local existence and uniqueness of classical solutions on the torus and the classification of invariant coordinate subspaces.
+- The whole-space minimizer theorem (F01) is formalized end to end: for `0 < m ≤ m_B` every minimizing sequence converges strongly in `H²(ℝ²)` after translations, so minimizers exist and the minimizing set is compact modulo translations. Orbital stability (F01) is not formalized.
 - `lean/formalization.yaml` now records status per manuscript (schema version 3).
 
 ## 2026-10-26 — E68 localized gradient-energy proof
