@@ -18,3 +18,4 @@ import MathProofs.PhaseLockingContinuous
 import MathProofs.DispersionMinimum
 import MathProofs.SpectralPhaseIdentity
 import MathProofs.S004ConstraintCount
+import MathProofs.FourierLeakage
