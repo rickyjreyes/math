@@ -1,5 +1,14 @@
 # Version history
 
+## 2026-10-27 — Integrate whole-space Lean proofs and analytic v18 rank certification
+
+- Combined later whole-space H² minimizer compactness, curvature nonattainment and torus Fourier-leakage well-posedness proofs with all main-line supporting Lean modules and the mathematical compendium.
+- Added a source-pinned interval-arithmetic certificate of exact rank 11 and nullity 20 for the frozen 31→11 v18 Jacobian, distinct from Lean kernel formalization.
+- Preserved earlier curvature-weight positivity/abstract nonattainment lemmas as CurvatureLegacy for compatibility.
+- Added intrinsic scalar-metric, L² Plancherel-conditional shell, quartic near-minimizer nonvanishing and conditional orbital-stability Lean modules.
+- Global PDE H² well-posedness/stability, smooth cotangent tensor construction, canonical L² Fourier realization and Lean model-specific rank certificate remain open.
+
+
 ## 2026-10-26 — Mathematical compendium, Volume I
 
 - Added a separate `compendium/` reference series beginning with the 25-ID elementary mathematical foundations, with LaTeX source, per-volume notes, canonical-registry cross-references, and a reproducible PDF build.

@@ -23,9 +23,9 @@ Laplacian `Δ` on `EuclideanSpace ℝ (Fin d)` and Fourier coefficients
 * `singleMode_isClassicalSolution`, `singleMode_mem`: each single-mode subspace carries the
   exact solution `A₀ e^{−iΩt} e^{ip·x}`.
 
-Local existence of classical solutions for multimode trigonometric data, and uniqueness
-of classical solutions (needed for the invariance direction `|S| ≤ 1` of the
-classification corollary), are not formalized in this module.
+Local existence and uniqueness of classical solutions, the classification corollary
+(`E_S` invariant iff `|S| ≤ 1`) and the existence-backed forms of the theorems are in
+`MathProofs.FourierLeakageWellPosed`.
 -/
 
 open MeasureTheory Set Filter Topology Complex InnerProductSpace

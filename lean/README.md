@@ -1,8 +1,50 @@
 # Lean 4 formalization status
 
-This Mathlib v4.23.0 project contains 693 formal theorem/lemma declarations
-(655 previously verified plus 38 new declarations) in forty-one imported modules. On any revision,
-regard them as kernel-checked only after that exact revision's Lean CI passes:
+This Mathlib v4.23.0 project integrates main-line supporting modules with newer full H² manuscript formalizations and conditional bridges. All declarations must pass Lean CI on the exact revision before being called kernel-checked. Manuscript-level status (which papers are formalized end to end) is in
+[formalization.yaml](formalization.yaml).
+
+### Manuscript formalizations
+
+- [PhaseLockingContinuous](MathProofs/PhaseLockingContinuous.lean) — F07, complete:
+  exact continuous weighted closed-loop phase-locking minimum for `H¹` phases.
+- [DispersionMinimum](MathProofs/DispersionMinimum.lean) — F06, complete: existence,
+  explicit formula and uniqueness of the positive-wavenumber dispersion minimum.
+- [SpectralPhaseIdentity](MathProofs/SpectralPhaseIdentity.lean) — F03, complete:
+  continuous spectral–phase identity, equality case and the 4/5 counterexample.
+- [S004ConstraintCount](MathProofs/S004ConstraintCount.lean) — F02, complete: canonical
+  Dirac analysis and `N_conf = 4` for the regular S004 scalar.
+- [UVIllPosedness](MathProofs/UVIllPosedness.lean),
+  [UVWholeSpace](MathProofs/UVWholeSpace.lean) — F02, complete: ultraviolet growth and
+  Sobolev ill-posedness on `𝕋^d` and `ℝ^d`.
+- [FourierLeakage](MathProofs/FourierLeakage.lean),
+  [FourierLeakageWellPosed](MathProofs/FourierLeakageWellPosed.lean) — F04, complete:
+  instantaneous leakage, local existence and uniqueness of classical solutions on `𝕋^d`, and
+  the classification `E_S` invariant iff `|S| ≤ 1`.
+- [SobolevH2](MathProofs/SobolevH2.lean) — `H²(ℝ^d; ℂ)` as the Schwartz closure of
+  `(φ, ∇φ, Δφ)`, Parseval on `𝓢`, the 2D Fourier sup-norm estimate, dilations.
+- [NegativeEnergy](MathProofs/NegativeEnergy.lean) — F01, complete: `I(m) < 0` at every
+  positive mass on `H²(ℝ²)`.
+- [StrictBinding](MathProofs/StrictBinding.lean) — F01, complete: explicit strict-binding
+  range `0 < m ≤ m_B` and the frozen-parameter corollary.
+- [WholeSpaceMinimizers](MathProofs/WholeSpaceMinimizers.lean) — F01, complete: for
+  `0 < m ≤ m_B`, every minimizing sequence converges strongly in `H²(ℝ²)` after translations
+  (concentration–compactness with a Fourier Hölder estimate, weak compactness, weak closedness
+  of `H²` and the Brezis–Lieb lemma), so minimizers exist and `𝒢_m` is compact modulo
+  translations.
+- [CurvatureNonattainment](MathProofs/CurvatureNonattainment.lean) — F05, complete:
+  whole-space nonattainment in every dimension and strict spreading for `1 ≤ d ≤ 4`.
+
+### Integrated additional proofs and diagnostics
+
+- [IntrinsicScalarMetric](MathProofs/IntrinsicScalarMetric.lean): intrinsic positive-sign tensor and frame-covariance, but not a globally smooth cotangent tensor section.
+- [MinimizerNonvanishing](MathProofs/MinimizerNonvanishing.lean): quantitative quartic nonvanishing for negative-energy near-minimizers.
+- [OrbitalStabilityCriterion](MathProofs/OrbitalStabilityCriterion.lean): conditional Cazenave–Lions orbital stability, not an unconditional PDE stability result.
+- [L2FourierShellBridge](MathProofs/L2FourierShellBridge.lean): infinite-dimensional L² shell exclusion under a supplied Plancherel equivalence; canonical transform construction remains open.
+- [Source-pinned v18 analytic Jacobian rank certificate](../docs/SM_V18_ANALYTIC_RANK_CERTIFICATE.md): reproducible interval arithmetic, not Lean.
+- Original main-line modules retained: CurvatureUniformBound, PhysicalDispersionMinimum, DispersionCriticalPoint, S004DiracBracket, GaussianTrialAlgebra, VariationalBinding, ContinuousPhaseIntegral, ContinuousPhaseOptimizer, ContinuousSpectralVariance, QuinticConvolution, UVGrowthBound, UVExponentialObstruction, DispersionBranchPositivity and DispersionRealDomain.
+- [CurvatureLegacy](MathProofs/CurvatureLegacy.lean) preserves earlier abstract nonattainment and curvature-weight positivity support; full H² results are in CurvatureNonattainment.
+
+### Supporting modules
 
 - [Elementary](MathProofs/Elementary.lean) — original elementary algebra.
 - [Structural](MathProofs/Structural.lean) — an **actual 11 × 31 matrix**
@@ -39,65 +81,6 @@ regard them as kernel-checked only after that exact revision's Lean CI passes:
   matrix contraction with the directional-derivative sum of squares.
 - [SchwartzShell](MathProofs/SchwartzShell.lean) — complete shell-exclusion
   proof for Schwartz-class fields using the actual invertible Fourier transform.
-- [DispersionCriticalPoint](MathProofs/DispersionCriticalPoint.lean) — explicit positive critical point and its strict global minimum without assuming stationary-point existence.
-- [PhysicalDispersionMinimum](MathProofs/PhysicalDispersionMinimum.lean) — specialization to the original K,T,G,m conditions, proving the unique positive global lower-branch minimum.
-- [ContinuousPhaseIntegral](MathProofs/ContinuousPhaseIntegral.lean) — actual continuous weighted-integral gap identity and sharp bound.
-- [ContinuousPhaseOptimizer](MathProofs/ContinuousPhaseOptimizer.lean) — explicit continuous optimizer existence and equality-case a.e. uniqueness.
-- [VariationalBinding](MathProofs/VariationalBinding.lean) — exact cubic–quintic
-  coercive square and the conditional specific-energy-to-strict-binding implication.
-- [GaussianTrialAlgebra](MathProofs/GaussianTrialAlgebra.lean) — exact
-  anisotropic coefficient signs and optimized negative scalar trial energy.
-- [S004DiracBracket](MathProofs/S004DiracBracket.lean) — explicitly
-  invertible four-constraint bracket and conditional Dirac count.
-- [UVGrowthBound](MathProofs/UVGrowthBound.lean) — high-frequency
-  unstable growth-rate lower bound proportional to the wavenumber.
-- [ContinuousSpectralVariance](MathProofs/ContinuousSpectralVariance.lean) —
-  true integral-level weighted variance identity.
-- [QuinticConvolution](MathProofs/QuinticConvolution.lean) — uniqueness
-  and nonvanishing of the extremal quintic coefficient, excluding cubic cancellation.
-- [CurvatureNonattainment](MathProofs/CurvatureNonattainment.lean) —
-  positivity of the corrected curvature weight and an abstract
-  nonattainment criterion still requiring the actual H² dilation proof.
-- [CurvatureUniformBound](MathProofs/CurvatureUniformBound.lean) — a
-  finite, explicit global bound on the *actual* nonlinear weight F(s).
-- [DispersionBranchPositivity](MathProofs/DispersionBranchPositivity.lean) —
-  both real squared-frequency branches are strictly positive on the
-  admissible nonnegative q domain for the physical parameters.
-- [DispersionRealDomain](MathProofs/DispersionRealDomain.lean) — exact
-  collision endpoint and nonnegative-discriminant domain equivalence.
-- [DispersionMinimum](MathProofs/DispersionMinimum.lean) — the full
-  original-parameter finite-wavenumber minimum, convexity/second derivative,
-  sharp initial slope, minimum-frequency and wavenumber corollaries.
-- [PhaseLockingContinuous](MathProofs/PhaseLockingContinuous.lean) —
-  continuous H¹ winding-phase minimization, sharp gap and equality case,
-  unique minimizing phase modulo additive constants and sector selection.
-- [SpectralPhaseIdentity](MathProofs/SpectralPhaseIdentity.lean) —
-  polar periodic eigenfunction integral identity, equality conditions,
-  the exact 4/5 counterexample, and a geometric planar realization.
-- [S004ConstraintCount](MathProofs/S004ConstraintCount.lean) —
-  regular fixed-background S004 Legendre-image constraints, genuine
-  Poisson/Dirac pairing and multiplier preservation, and 4 configuration DOF.
-- [FourierLeakage](MathProofs/FourierLeakage.lean) — actual Fourier
-  integral coefficients and nonlinear torus cubic/quintic leakage:
-  conditional exit from finite multimode coordinate subspaces for every
-  locally existing classical solution; explicit fifth harmonic and
-  single-mode solutions. Multimode solution existence remains open in Lean.
-- [UVExponentialObstruction](MathProofs/UVExponentialObstruction.lean) —
-  growing unstable multiplier exceeds every finite polynomial frequency weight.
-- [SobolevH2](MathProofs/SobolevH2.lean) — actual whole-space L² graph-closure
-  Sobolev H² construction, Laplacian and gradient identities, 2D estimates,
-  and exact mass-preserving dilations.
-- [NegativeEnergy](MathProofs/NegativeEnergy.lean) — the complete negative
-  constrained-energy theorem for every positive mass using a genuine smooth
-  compactly supported anisotropic carrier trial on H²(ℝ²;ℂ).
-- [UVIllPosedness](MathProofs/UVIllPosedness.lean) — exact high-frequency
-  growing modes and no bounded four-jet Sobolev evolution operator on flat tori.
-- [UVWholeSpace](MathProofs/UVWholeSpace.lean) — exact Fourier-packet solutions,
-  norms, and no bounded four-jet Sobolev evolution operator on ℝ^d.
-- [StrictBinding](MathProofs/StrictBinding.lean) — exact whole-space
-  H² constrained-infimum strict subadditivity for 0<m≤m_B, including
-  stationary dilations, quantitative energy-per-mass gap and the exact
-  frozen-parameter certificate. Does not assume existence of minimizers.
 
 For precise statements and manuscript coverage, see
 [formalization.yaml](formalization.yaml).
@@ -117,28 +100,17 @@ lake build
 Lean and Mathlib release are pinned to v4.23.0. A dependency lockfile
 is not yet committed.
 
-## Gaps and certified results
+## Gaps
 
-**Seven of the fourteen requested theorem statements now have end-to-end Lean proofs**:
-#1 (strict binding in the explicit 0<m≤m_B range),
-#4 (UV Sobolev four-jet ill-posedness on torus and whole space), #5 (spectral phase),
-#7 (negative constrained energy for all positive masses on a whole-space H² graph
-model), #9 (physical dispersion minimum), #10 (regular fixed-background S004
-canonical constraint count), and #11 (continuous weighted phase locking).
-These claims refer to the precise mathematical hypotheses encoded in Lean,
-and do not establish an independent derivation of a healthy physical field theory.
-
-The remaining original seven are: whole-space minimizers,
-orbital stability, unconditional nonlinear Fourier-flow invariance classification
-(current leakage proof assumes an existing classical solution), whole-space
-curvature nonattainment, global coordinate-independent metric tensor formulation,
-model-specific Jacobian rank certification, and L² Fourier-shell exclusion.
+In F01, the orbital-stability manuscript (global `H²` well-posedness, conservation laws and
+orbital stability) is not formalized; strict binding, negative energy and the whole-space
+minimizer theorem are. The frozen v18 analytic Jacobian rank is separately source-pinned and interval-certified but not Lean formalized. The Plancherel extension from Schwartz class to all `L²` states (F10), and F11/F12 remain
+outside Lean.
 
 The local-coordinate rank/signature obstruction (F08) **is formalized** for
 actual differentiable complex fields on four-coordinate charted spaces,
 including explicit matrix contraction and its positivity. A global bundled
-coordinate-invariant tensor construction is not certified. Arbitrarily many
-nonnegative-weight carriers have positive-semidefinite Gram forms. The generic local matrix
+coordinate-invariant tensor construction is not certified. The generic local matrix
 nullity core of F09 is formalized but is not a certification of the
 11-parameter-observable physical model, its computed Jacobian, or its
 published numerical rank.
@@ -146,30 +118,14 @@ published numerical rank.
 Separate research-grade Lean work lives in [wct-lean](https://github.com/rickyjreyes/wct-lean);
 do not conflate its theorem count with this repository.
 
-The full mathematical statements of **F02 (regular fixed-background S004 constraint count and UV four-jet ill-posedness), F03 (spectral phase), F06 (finite-scale dispersion) and F07 (continuous phase locking)** now have kernel-checked Lean declarations. **F01's negative-energy and strict-binding subtheorems** are also verified, although F01's broader attainment/stability family remains open. Across the original fourteen manuscript targets this certifies #1, #4, #5, #7, #9, #10 and #11, precisely within the encoded mathematical hypotheses.
-
-The Schwartz-space version of F10 is now proved end-to-end using Mathlib's
+The Schwartz-space version of F10 is proved end-to-end using Mathlib's
 Schwartz Fourier inversion; it is **not** the manuscript's full L² theorem.
 
 ## Completion criterion for each of the 14 tweets
 
-A boolean `families.Fxx.main_theorem_formalized` stays false until the
+The boolean `main_theorem_formalized` (per manuscript, and per family) stays false until the
 **entire theorem as stated in its PDF** is a precise exported Lean declaration
 with no `sorry`, `admit`, new axioms, unproved assumptions, or finite surrogate
 used in place of the stated infinite-dimensional result. Supporting finite
 models, algebraic identities, and theorems with stronger extra assumptions
 never count as end-to-end certification of the manuscript.
-
-## Further Lean proof obligations (October 26, 2026)
-
-- **2–3:** Exact H² trial, negative energy, and full strict binding are
-  now verified in Lean. Prove whole-space concentration–compactness,
-  attainment, global H² flow, and the minimizing-set orbital-stability contradiction.
-- **6:** Actual torus Fourier integrals, nonlinear convolution, classical
-  solution differentiation and instantaneous leakage are now proved in
-  Lean. The missing component for unconditional flow noninvariance is
-  smooth local existence and uniqueness for all finite multimode data.
-- **8:** The nonlinear curvature weight now has an explicit uniform
-  bound in Lean. Implement actual H² mass-preserving spatial dilation,
-  integrated energy scaling, and strict positive energy.
-- **S004:** The regular pointwise canonical count is now formalized. Full nonlinear field-theoretic or gauge-coupled extensions are separate questions.
