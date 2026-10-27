@@ -53,3 +53,8 @@ import MathProofs.OrbitalStability
 import MathProofs.ManifoldScalarMetric
 import MathProofs.L2Fourier
 import MathProofs.ExactSensitivityNullity
+import MathProofs.V18LightJacobian
+import MathProofs.V18HeavyJacobian
+import MathProofs.PolynomialFourier
+import MathProofs.WeakFourierSpectrum
+import MathProofs.WavepacketEnvelope
