@@ -107,14 +107,21 @@ families:
     main_theorem_formalized: false
     matrix_nullity_core_formalized: true
     exact_nullity_surjectivity_corollary: MathProofs/ExactSensitivityNullity.lean
+    analytic_light_block_candidate: MathProofs/V18LightJacobian.lean
+    analytic_heavy_block_candidate: MathProofs/V18HeavyJacobian.lean
+    analytic_block_factorization_candidate: MathProofs/V18BlockJacobian.lean
+    exact_remaining_middle_block_candidate: MathProofs/V18MiddleJacobian.lean
     analytic_rank_certificate: docs/SM_V18_ANALYTIC_RANK_CERTIFICATE.md
     analytic_rank_ci: .github/workflows/v18-rank.yml
-    covered: "Lean proves nullity >= 20 for every differentiable 31-to-11 map. Separately, a source-pinned model-specific interval-arithmetic certificate proves a nonzero analytic 11x11 Jacobian minor, exact rank 11 and nullity 20 on the frozen v18 active branch. A model-independent exact-nullity-20 corollary under an assumed surjective derivative is additionally proved in ExactSensitivityNullity.lean. The actual 31-parameter model and its transcendental interval bounds are not yet encoded in Lean."
+    covered: "Lean proves nullity >= 20 for every differentiable 31-to-11 map. Separately, a source-pinned model-specific interval-arithmetic certificate proves a nonzero analytic 11x11 Jacobian minor, exact rank 11 and nullity 20 on the frozen v18 active branch. A model-independent exact-nullity-20 corollary under an assumed surjective derivative is additionally proved in ExactSensitivityNullity.lean. The candidate Lean modules explicitly encode the frozen light and heavy analytic blocks, the exact 3+5+3 determinant factorization and the actual frozen 5x5 middle block. The middle transcendental determinant interval and derivative linkage to the complete piecewise v18 function are still outside the Lean kernel. New candidate-module CI must pass before their proof claims are certified."
     declarations: [ReyesMath.elevenByThirtyone_nullity_bound, ReyesMath.nullityBound_arithmetic, ReyesMath.elevenByThirtyOne_matrix_nullity, ReyesMath.rectangular_sensitivity_nullity, ReyesMath.differential_local_identifiability_obstruction]
   F10:
     main_theorem_formalized: false
     canonical_l2_fourier_candidate: MathProofs/L2Fourier.lean
-    covered: "Fourier-shell nullity, Schwartz-class inversion and a conditional arbitrary-L² shell lemma have already passed Lean CI. L2Fourier.lean constructs the genuine canonical Fourier transform by dense-range extension of Schwartz Fourier, with Plancherel equivalence, compatibility and exact L² shell exclusion; its patched source is awaiting final Lean CI. Distributional Helmholtz and polynomial-operator corollaries and the freely variable envelope-scale proposition of the PDF are not formalized."
+    polynomial_multiplier_candidate: MathProofs/PolynomialFourier.lean
+    weak_fourier_distribution_candidate: MathProofs/WeakFourierSpectrum.lean
+    envelope_support_candidate: MathProofs/WavepacketEnvelope.lean
+    covered: "Fourier-shell nullity, Schwartz-class inversion and a conditional arbitrary-L² shell lemma have already passed Lean CI. L2Fourier.lean constructs the genuine canonical Fourier transform by dense-range extension of Schwartz Fourier, with Plancherel equivalence, compatibility and exact L² shell exclusion; its patched source is awaiting final Lean CI. PolynomialFourier.lean gives actual L² Fourier-side zero-kernel results, WeakFourierSpectrum.lean gives their compactly-supported smooth-test distributional version, and WavepacketEnvelope.lean proves bandwidth and normalized L² scaling; those new modules are pending final Lean CI. The physical-space P(-Δ) tempered-distribution Fourier bridge and exact modulation/Fourier-shift and spatial second-moment wavepacket identities remain open."
     declarations: [ReyesMath.zero_ae_of_null_support, ReyesMath.oneDimensional_shell_ae_zero, ReyesMath.euclidean_frequency_shell_measure_zero, ReyesMath.euclidean_frequency_shell_ae_zero, ReyesMath.schwartz_fourier_shell_no_bound_state]
   F11:
     main_theorem_formalized: false
