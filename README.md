@@ -19,6 +19,7 @@ The table is a starting point, not an exhaustive list. Each link opens an indivi
 | **Scalar-gradient geometry** | The tensor $T_{\mu\nu}=\operatorname{Re}(\partial_\mu\psi^*\partial_\nu\psi)$ has rank at most two and is positive semidefinite, so this construction alone cannot yield a Lorentzian metric. | [Rank and signature proof](preprints/scalar-gradient-lorentzian-no-go/paper.pdf) |
 | **Spectral inverse problems** | An $11\times31$ sensitivity matrix has kernel dimension at least 20: a structural *linearized local* identifiability obstruction, not a global inverse theorem. | [Identifiability proof](preprints/sm-v18-local-identifiability-obstruction/paper.pdf) |
 | **Fourier-band selection (E16)** | Exact linear modal-power evolution; normalized concentration near the preferred shell when that shell is present in the initial spectral support, with additional hypotheses for pointwise argmax convergence. | [Spectral concentration proof](preprints/e16-linear-spectral-concentration/paper.pdf) |
+| **Fourier projection (E59)** | A fixed sharp annulus mask defines an orthogonal $L^2$ projection: $P^2=P$, with exact energy decomposition and best approximation. | [Dominant-annulus projection](preprints/e59-dominant-annulus-projection/paper.pdf) |
 | **Geometric phase locking** | Exact weighted closed-loop energy minimum at fixed winding and geometry, including the equality condition. | [Phase-locking proof](preprints/weighted-closed-loop-phase-locking/paper.pdf) |
 | **Whole-space Fourier spectra** | A nonzero $L^2$ function cannot have Fourier support confined to a measure-zero frequency shell. | [Fourier-shell proof](preprints/isolated-fourier-shell-no-l2-bound-state/paper.pdf) |
 | **Curvature energy and local estimates** | Whole-space nonattainment for a positive curvature energy; separate counterexamples and corrected hypotheses for localized energy bounds. | [Nonattainment](preprints/positive-curvature-whole-space-nonattainment/paper.pdf) · [Localized estimates (E68)](preprints/localized-gradient-energy-e68/paper.pdf) |
@@ -37,7 +38,7 @@ The table is a starting point, not an exhaustive list. Each link opens an indivi
 | **F08** | Scalar-gradient tensors | Rank and Lorentzian-signature obstructions |
 | **F09** | Spectral inverse problems | Structural matrix-nullity and local identifiability bounds |
 | **F10** | Fourier localization | Nonexistence of nonzero $L^2$ states on an isolated spectral shell |
-| **F11** | Fourier-band dynamics | E13/E14 gradient flow, E16 spectral selection, E62 spectral fraction |
+| **F11** | Fourier-band dynamics | E13/E14 gradient flow, E16 spectral selection, E59 fixed-annulus projection, E62 spectral fraction |
 | **F12** | Curvature multipliers | Conditional E26 estimate for the historical additive denominator |
 
 **Additional WCT operator results** include M2/E17 regularization, E18 Lyapunov descent, E58 resolvent bounds, E61 instability threshold, E69 curvature regularity, M3/E57 shell damping, M6B nonuniqueness, and E68 localized estimates. See the [complete catalogue](CONTENTS.md) for links and precise assumptions.
