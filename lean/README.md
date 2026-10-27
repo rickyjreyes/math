@@ -1,7 +1,7 @@
 # Lean 4 formalization status
 
-This Mathlib v4.23.0 project contains 84 formal theorem declarations
-(81 previously verified plus 3 new declarations) in thirty imported modules. On any revision,
+This Mathlib v4.23.0 project contains 327 formal theorem/lemma declarations
+(84 previously verified plus 243 new declarations) in thirty-four imported modules. On any revision,
 regard them as kernel-checked only after that exact revision's Lean CI passes:
 
 - [Elementary](MathProofs/Elementary.lean) — original elementary algebra.
@@ -65,6 +65,18 @@ regard them as kernel-checked only after that exact revision's Lean CI passes:
   admissible nonnegative q domain for the physical parameters.
 - [DispersionRealDomain](MathProofs/DispersionRealDomain.lean) — exact
   collision endpoint and nonnegative-discriminant domain equivalence.
+- [DispersionMinimum](MathProofs/DispersionMinimum.lean) — the full
+  original-parameter finite-wavenumber minimum, convexity/second derivative,
+  sharp initial slope, minimum-frequency and wavenumber corollaries.
+- [PhaseLockingContinuous](MathProofs/PhaseLockingContinuous.lean) —
+  continuous H¹ winding-phase minimization, sharp gap and equality case,
+  unique minimizing phase modulo additive constants and sector selection.
+- [SpectralPhaseIdentity](MathProofs/SpectralPhaseIdentity.lean) —
+  polar periodic eigenfunction integral identity, equality conditions,
+  the exact 4/5 counterexample, and a geometric planar realization.
+- [S004ConstraintCount](MathProofs/S004ConstraintCount.lean) —
+  regular fixed-background S004 Legendre-image constraints, genuine
+  Poisson/Dirac pairing and multiplier preservation, and 4 configuration DOF.
 
 For precise statements and manuscript coverage, see
 [formalization.yaml](formalization.yaml).
@@ -92,7 +104,7 @@ global continuation, and orbital stability remain conventional analytic
 proofs. Hamiltonian constraint-preservation and ultraviolet Sobolev evolution (F02), the full continuous
 periodic spectral identity (F03) and full H¹ winding-phase construction (F07), full multidimensional
 nonlinear Fourier-mode flow theorem (F04), H² curvature-energy spreading and nonattainment (F05),
-dispersion strict second-derivative convexity and supplementary frequency corollaries (F06), numerical Jacobian rank claims (F09),
+ numerical Jacobian rank claims (F09),
 and the Plancherel extension from Schwartz class to all L² states (F10) are
 likewise not fully formalized.
 
@@ -109,6 +121,8 @@ Separate research-grade Lean work lives in [wct-lean](https://github.com/rickyjr
 do not conflate its theorem count with this repository.
 
 The core #9 unique-global-minimum tweet is proved with the original physical parameter conditions. The #11 continuous fixed-integral minimization is also proved with explicit optimizer and a.e. uniqueness, but full phase lift remains open.
+
+The main theorem and corollaries of **F03 (spectral phase), F06 (finite-scale dispersion), and F07 (continuous phase locking)** are now represented by complete kernel-checked Lean declarations. The **regular fixed-background S004 constraint count** within F02 is independently proved, while F02's separate ultraviolet Sobolev evolution theorem remains open. Across the fourteen requested tweets this certifies #5, #9, #10 and #11, subject to the exact written hypotheses (not unrelated physics claims).
 
 The Schwartz-space version of F10 is now proved end-to-end using Mathlib's
 Schwartz Fourier inversion; it is **not** the manuscript's full L² theorem.
@@ -138,5 +152,4 @@ never count as end-to-end certification of the manuscript.
 - **8:** The nonlinear curvature weight now has an explicit uniform
   bound in Lean. Implement actual H² mass-preserving spatial dilation,
   integrated energy scaling, and strict positive energy.
-- **S004:** Derive brackets from the exact Hamiltonian and prove multiplier
-  determination, no secondary constraints, and the full canonical reduction.
+- **S004:** The regular pointwise canonical count is now formalized. Full nonlinear field-theoretic or gauge-coupled extensions are separate questions.
