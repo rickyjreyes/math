@@ -31,4 +31,4 @@ jobs:
           if grep -rnE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' MathProofs; then exit 1; fi
       - name: Verify only the active unfinished theorem modules
         run: |
-          lake build MathProofs.PolynomialFourier MathProofs.WeakFourierSpectrum MathProofs.WavepacketEnvelope MathProofs.V18LightJacobian MathProofs.V18HeavyJacobian MathProofs.V18BlockJacobian
+          lake build MathProofs.PolynomialFourier MathProofs.WeakFourierSpectrum MathProofs.WavepacketEnvelope MathProofs.V18LightJacobian MathProofs.V18HeavyJacobian MathProofs.V18BlockJacobian MathProofs.V18MiddleJacobian
