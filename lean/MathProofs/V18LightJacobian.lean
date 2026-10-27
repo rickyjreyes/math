@@ -33,7 +33,7 @@ theorem base_det : base.det = 9 := by
 /-- Historically frozen epsilon_3=0.0048 and the logistic suppression. -/
 def rowScale (alpha epsilon : ℝ) (i : Fin 3) : ℝ :=
   (if i = 2 then (0.0048 : ℝ) else 1) /
-    (1 + Real.exp (alpha * (((i : ℕ) + 1 : ℕ) - epsilon)))
+    (1 + Real.exp (alpha * (((i.val + 1 : ℕ) : ℝ) - epsilon)))
 
 theorem rowScale_pos (alpha epsilon : ℝ) (i : Fin 3) :
     0 < rowScale alpha epsilon i := by
