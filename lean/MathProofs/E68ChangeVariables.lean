@@ -22,7 +22,7 @@ theorem integral_inverse_smul_exact
     (g : EuclideanSpace ℝ (Fin n) → ℝ) :
     (∫ x : EuclideanSpace ℝ (Fin n), g ((R⁻¹ : ℝ) • x)) =
       R ^ n * (∫ x : EuclideanSpace ℝ (Fin n), g x) := by
-  have h := MeasureTheory.integral_comp_inv_smul_of_nonneg
+  have h := MeasureTheory.Measure.integral_comp_inv_smul_of_nonneg
     (volume : Measure (EuclideanSpace ℝ (Fin n))) g hR.le
   simpa only [finrank_euclideanSpace, smul_eq_mul] using h
 
