@@ -40,7 +40,7 @@ theorem local_critical_gradient_norm
           ((volume.restrict (Metric.ball center R)) Set.univ) ^
             (1 / (2 : ENNReal).toReal - 1 / (n : ENNReal).toReal) := by
       gcongr
-      exact eLpNorm_restrict_le g (n : ENNReal) volume (Metric.ball center R)
+      exact Measure.restrict_le_self
 
 /-- Exact radius dependence of Lebesgue volume for every n>2 and R>0.
 This is the geometric origin of the R^(n-2) energy exponent. -/
