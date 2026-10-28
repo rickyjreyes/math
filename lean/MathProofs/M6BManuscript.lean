@@ -42,6 +42,34 @@ private theorem pointQ_interior :
   · linarith
   constructor <;> linarith
 
+private theorem modeF_atP :
+    squareModeF (Real.pi / 2) (Real.pi / 4) = 1 := by
+  unfold squareModeF
+  have h : (2 : ℝ) * (Real.pi / 4) = Real.pi / 2 := by ring
+  rw [h]
+  norm_num
+
+private theorem modeG_atP :
+    squareModeG (Real.pi / 2) (Real.pi / 4) = 0 := by
+  unfold squareModeG
+  have h : (2 : ℝ) * (Real.pi / 2) = Real.pi := by ring
+  rw [h, Real.sin_pi]
+  ring
+
+private theorem modeF_atQ :
+    squareModeF (Real.pi / 4) (Real.pi / 2) = 0 := by
+  unfold squareModeF
+  have h : (2 : ℝ) * (Real.pi / 2) = Real.pi := by ring
+  rw [h, Real.sin_pi]
+  ring
+
+private theorem modeG_atQ :
+    squareModeG (Real.pi / 4) (Real.pi / 2) = 1 := by
+  unfold squareModeG
+  have h : (2 : ℝ) * (Real.pi / 4) = Real.pi / 2 := by ring
+  rw [h]
+  norm_num
+
 /-- Inequivalence is shown *inside the open square*, not only by
 quantifying over points outside the PDE's prescribed domain. -/
 theorem stationary_not_phase_related_on_square (m : ℝ) (hm : 0 < m) :
@@ -53,8 +81,7 @@ theorem stationary_not_phase_related_on_square (m : ℝ) (hm : 0 < m) :
   have hQ := h (Real.pi / 4) (Real.pi / 2) pointQ_interior
   have hP' : ((amplitude m : ℝ) : ℂ) =
       u * ((amplitude m : ℝ) : ℂ) := by
-    simpa [squarePlus, squareMinus, squareModeF, squareModeG,
-      Real.sin_pi, Real.sin_pi_div_two] using hP
+    simpa [squarePlus, squareMinus, modeF_atP, modeG_atP] using hP
   have hc : ((amplitude m : ℝ) : ℂ) ≠ 0 := by
     exact_mod_cast (ne_of_gt (amplitude_pos m hm))
   have hu : u = 1 := by
@@ -69,8 +96,7 @@ theorem stationary_not_phase_related_on_square (m : ℝ) (hm : 0 < m) :
   rw [hu, one_mul] at hQ
   have him := congrArg Complex.im hQ
   have ha : amplitude m ≠ 0 := ne_of_gt (amplitude_pos m hm)
-  simp [squareMinus, squarePlus, squareModeF, squareModeG,
-    Real.sin_pi, Real.sin_pi_div_two] at him
+  simp [squareMinus, squarePlus, modeF_atQ, modeG_atQ] at him
   exact ha (by linarith)
 
 /-- The exact manuscript stationary theorem, including an explicit
