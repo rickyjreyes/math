@@ -1,0 +1,27 @@
+name: M6B actual continuum Lean counterexamples
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  proofs:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: lean
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch Mathlib cache
+        run: |
+          lake update
+          lake exe cache get
+      - name: Forbid proof holes
+        run: |
+          if grep -rnE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' MathProofs/M6BCurvature.lean MathProofs/M6BStationary.lean MathProofs/M6BDirichletLaplacian.lean; then exit 1; fi
+      - name: Kernel-check exact issue modules
+        run: lake build MathProofs.M6BCurvature MathProofs.M6BStationary MathProofs.M6BDirichletLaplacian
