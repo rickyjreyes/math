@@ -136,5 +136,23 @@ theorem fraction_one_iff (c : ι → ℂ) (S : Set ι)
       exact h k hk)
     linarith
 
+
+/-- The zero field has zero total energy. The raw quotient is therefore
+    the indeterminate 0/0 in the intended mathematical interpretation;
+    Lean's totalized real division evaluates it to zero. -/
+theorem zero_field_total_energy :
+    totalEnergy (fun _ : ι => (0 : ℂ)) = 0 := by
+  simp [totalEnergy]
+
+theorem zero_field_selected_energy (S : Set ι) :
+    selectedEnergy (fun _ : ι => (0 : ℂ)) S = 0 := by
+  simp [selectedEnergy]
+
+theorem zero_field_fraction (S : Set ι) :
+    fraction (fun _ : ι => (0 : ℂ)) S = 0 := by
+  simp [fraction, energyFraction, zero_field_total_energy,
+    zero_field_selected_energy]
+
+
 end E62Discrete
 end ReyesMath
