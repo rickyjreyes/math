@@ -50,43 +50,37 @@
 
 **Problem.** Fix a dimension $d\ge 2$ and a regularization parameter $\varepsilon>0$. For a smooth complex field $u:\mathbb R^d\to\mathbb C$, define the regularized curvature functional
 
-$$
-K_{\varepsilon}(u)
-=
-\nabla\cdot
-\left(
-\frac{\mathrm{Im}(\overline{u}\,\nabla u)}
-{\varepsilon+|u|^2}
-\right).
-$$
+```math
+K_{\varepsilon}(u) = \nabla \cdot \left( \frac{\mathrm{Im}(\overline{u}\,\nabla u)}{\varepsilon + |u|^2} \right)
+```
 
 Let $C$ be a real-valued local differential operator of order at most two on smooth complex fields. Assume that $C$ is invariant under constant phase rotations, translations, and proper spatial rotations:
 
-$$
+```math
 C(e^{i\theta}u)=C(u),\qquad
 C(u(\,\cdot-a))(x)=C(u)(x-a),
-$$
+```
 
-$$
+```math
 C(u\circ R)(x)=C(u)(Rx),
 \qquad
 \theta\in\mathbb R,\ a\in\mathbb R^d,\ R\in SO(d).
-$$
+```
 
 Require agreement with $K_\varepsilon$ on every nonvanishing constant-amplitude plane wave
 
-$$
+```math
 u(x)=A e^{i(\xi\cdot x+\theta_0)},
 \qquad A>0,\quad \xi\in\mathbb R^d.
-$$
+```
 
 **Determine whether these conditions uniquely characterize $K_\varepsilon$. If not, construct inequivalent operators $C$ satisfying all conditions and characterize the resulting freedom under explicitly stated regularity and locality assumptions.**
 
 **Initial counterexample check.** The plane-wave condition alone cannot establish uniqueness: on every constant-amplitude plane wave, both $K_\varepsilon(u)$ and $\Delta(|u|^2)$ vanish. Consequently, for every real constant $\lambda$,
 
-$$
+```math
 C_\lambda(u)=K_\varepsilon(u)+\lambda\,\Delta(|u|^2)
-$$
+```
 
 satisfies the stated symmetry and plane-wave conditions. The uniqueness version of the problem is therefore **refuted** for this unrestricted operator class. The remaining classification problem is to identify additional admissibility axioms that narrow the class, and determine whether any such axioms yield uniqueness.
 
