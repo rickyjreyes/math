@@ -95,7 +95,7 @@ theorem high_dimensional_H2_scaling_obstruction (n : ℕ)
   rw [he, pow_add] at hh
   have hscaled : R ^ 2 * A ≤ R ^ 2 * F R := by
     simpa [F, mul_assoc, mul_comm, mul_left_comm] using hh
-  exact (mul_le_mul_left hr2).mp hscaled
+  exact (mul_le_mul_iff_right₀ hr2).mp hscaled
 
 /-- The n=2 portion of E68 with C₂=1, for the actual (strong)
 derivative and the inhomogeneous whole-space H¹ energy integral.
@@ -103,9 +103,9 @@ Both the center and the positive radius are universally quantified.
 In particular this theorem covers smooth H¹ fields. -/
 theorem two_dimensional_local_gradient_energy
     (ψ : EuclideanSpace ℝ (Fin 2) → ℂ)
-    (hψ : MeasureTheory.Integrable (fun x => ‖ψ x‖ ^ 2))
+    (_hψ : MeasureTheory.Integrable (fun x => ‖ψ x‖ ^ 2))
     (hgrad : MeasureTheory.Integrable (fun x => ‖fderiv ℝ ψ x‖ ^ 2))
-    (center : EuclideanSpace ℝ (Fin 2)) (R : ℝ) (hR : 0 < R) :
+    (center : EuclideanSpace ℝ (Fin 2)) (R : ℝ) (_hR : 0 < R) :
     (∫ x in Metric.ball center R, ‖fderiv ℝ ψ x‖ ^ 2) ≤
       (∫ x, ‖ψ x‖ ^ 2) + (∫ x, ‖fderiv ℝ ψ x‖ ^ 2) := by
   have hlocal : (∫ x in Metric.ball center R, ‖fderiv ℝ ψ x‖ ^ 2) ≤
