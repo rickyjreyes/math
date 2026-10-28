@@ -123,7 +123,12 @@ theorem quadraticFieldD_laplacian_at_origin (d : ℕ) :
     change InnerProductSpace.laplacian f 0 =
       InnerProductSpace.laplacian (fun _ : E => (1 : ℝ)) 0 +
         InnerProductSpace.laplacian (fun y : E => ‖y‖ ^ 2) 0 at h
-    simpa [InnerProductSpace.laplacian_const, squared_norm_laplacian_D] using h
+    have hzero :
+        InnerProductSpace.laplacian (fun _ : E => (1 : ℝ)) 0 = 0 := by
+      rw [InnerProductSpace.laplacian_eq_iteratedFDeriv_stdOrthonormalBasis]
+      simp [iteratedFDeriv_const_of_ne two_ne_zero]
+    rw [hzero, zero_add, squared_norm_laplacian_D] at h
+    exact h
   have hc := (hf.contDiffAt (0 : E)).laplacian_CLM_comp_left
     (l := Complex.ofRealCLM)
   simpa [laplacianD, quadraticFieldD, f, Function.comp_def,
