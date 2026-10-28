@@ -100,6 +100,30 @@ theorem fieldCurvatureD_phase_invariant_on_open (d : ℕ)
   rw [laplacianD_phase_on_open d Ω hΩ ψ hψ x hx u]
   exact curvature_phase_invariant ε α lam S u (ψ x) (laplacianD d ψ x) hu
 
+/-- On any spatial dimension and at any field node, the exact
+nonlinear field-level curvature vanishes for every Laplacian value. -/
+theorem fieldCurvatureD_at_node (d : ℕ)
+    (ε α lam S : ℝ)
+    (ψ : EuclideanSpace ℝ (Fin d) → ℂ)
+    (x : EuclideanSpace ℝ (Fin d)) (hnode : ψ x = 0) :
+    fieldCurvatureD d ε α lam S ψ x = 0 := by
+  unfold fieldCurvatureD
+  rw [hnode]
+  exact curvature_at_node ε α lam S (laplacianD d ψ x)
+
+/-- Literal unregularized limit on an actual d-dimensional Laplacian.
+At nonzero ψ, the quotient converges to -Δψ/ψ. -/
+theorem fieldCurvatureD_downarrow_zero (d : ℕ)
+    (α lam S : ℝ)
+    (ψ : EuclideanSpace ℝ (Fin d) → ℂ)
+    (x : EuclideanSpace ℝ (Fin d)) (hψx : ψ x ≠ 0) :
+    Filter.Tendsto
+      (fun ε : ℝ => fieldCurvatureD d ε α lam S ψ x)
+      (nhdsWithin 0 (Set.Ioi 0))
+      (nhds (-(laplacianD d ψ x / ψ x))) := by
+  exact curvature_downarrow_zero α lam S
+    (ψ x) (laplacianD d ψ x) hψx
+
 /-- The actual d-dimensional quadratic test field, on Euclidean
 space, has smooth real components everywhere. -/
 def quadraticFieldD (d : ℕ) :
