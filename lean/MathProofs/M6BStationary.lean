@@ -94,9 +94,9 @@ theorem square_not_related_by_constant_phase (c : ℝ) (hc : c ≠ 0) :
 
 /-- The two actual trigonometric fields have equal stationary curvature
 when evaluated at their shared Laplace eigenvalue -5. -/
-theorem square_equal_eigen_curvature (ε α λ S c x y : ℝ) :
-    curvature ε α λ S (squarePlus c x y) (-5 * squarePlus c x y) =
-      curvature ε α λ S (squareMinus c x y) (-5 * squareMinus c x y) :=
-  equal_intensity_eigenjets ε α λ S _ _ (square_intensity_eq c x y)
+theorem square_equal_eigen_curvature (ε α lam S c x y : ℝ) :
+    curvature ε α lam S (squarePlus c x y) (-5 * squarePlus c x y) =
+      curvature ε α lam S (squareMinus c x y) (-5 * squareMinus c x y) :=
+  equal_intensity_eigenjets ε α lam S _ _ (square_intensity_eq c x y)
 
 end ReyesMath.M6B
