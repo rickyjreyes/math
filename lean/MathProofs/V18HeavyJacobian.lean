@@ -83,8 +83,8 @@ theorem heavy_det_eq :
     show heavy 2 2 = (1 : ℝ) from rfl]
   ring
 
-/-- Stronger than the numerical >1.2 enclosure: the exact analytic
-heavy block is nonzero, hence has full rank three. -/
+/-- Exact symbolic positivity of the analytic heavy block, hence rank three.
+The stronger numerical lower bound >1.2 remains a separate interval result. -/
 theorem heavy_det_pos : 0 < heavy.det := by
   rw [heavy_det_eq]
   have h1 : 0 < a95 * Real.sin (-116.659) :=

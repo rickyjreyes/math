@@ -2,7 +2,7 @@
 
 **Issue:** [#41](https://github.com/rickyjreyes/math/issues/41) · **PR:** [#50](https://github.com/rickyjreyes/math/pull/50).
 
-Pinned versions: Lean 4.23.0, Mathlib 4.23.0. The baseline `E68Scaling` and `E68CriticalGradient` passed [focused CI](https://github.com/rickyjreyes/math/actions/runs/40632112750) and supporting CI at commit `6df2eab1`. Later files are unverified, not completed proofs.
+Pinned versions: Lean 4.23.0, Mathlib 4.23.0. The baseline `E68Scaling` and `E68CriticalGradient` passed [focused CI](https://github.com/rickyjreyes/math/actions/runs/40632112750) and supporting CI at commit `6df2eab1`. The smooth-profile and weak-H1 modules passed full Lean CI at d083c2f2. The strict n=1 energy contradiction passed focused compilation at 146c4d9a; its full-project check is pending.
 
 | Manuscript obligation | Lean mapping | Scope / blocker |
 |---|---|---|
@@ -16,3 +16,9 @@ Pinned versions: Lean 4.23.0, Mathlib 4.23.0. The baseline `E68Scaling` and `E68
 | H², n>4 counterexample | `high_dimensional_H2_scaling_obstruction` | Algebraic obstruction checked; construct actual smooth rescaled H² fields and prove all derivative integrals |
 
 **Dimension status:** n=2 has a proved strong-gradient result; n=1 and n>2 are analytically refuted in the manuscript but their actual function-space Lean counterexamples remain open. `main_theorem_formalized` must stay **false**. No discrete or numerical surrogate qualifies.
+
+## 2026-10-28 execution checkpoint
+
+- Exact C-infinity compact bump, its nonzero derivative, integrable and strictly positive whole-line squared derivative energy: **full-project Lean PASS** at `d083c2f2` ([CI](https://github.com/rickyjreyes/math/actions/runs/40720089883)).
+- Genuine support containment, equality of ball and whole-line derivative integrals for radius at least one, and impossibility of a single uniform `C/R` bound: **focused Lean module PASS** at `146c4d9a`; full build pending ([CI](https://github.com/rickyjreyes/math/actions/runs/40721010142)).
+- Open: nontrivial n>2 continuum concentration energy identities; singular H1 profile; complete dimension iff; corrected E68-prime in real energy form; H2 embeddings and obstructions. `main_theorem_formalized` remains **false**.

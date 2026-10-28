@@ -21,7 +21,33 @@ from mpmath import iv
 
 iv.dps = 60
 v = iv.mpf
-TINY = v("0.000000000001")
+
+
+def enclose_nominal_and_binary64(nominal, stored):
+    """Enclose the exact rational input and its source binary64 value.
+
+    The source's coefficient arrays initially have dtype float64. Their
+    printed decimals are not the exact stored numbers. Rational endpoints
+    followed by outward-rounded interval division cover both interpretations.
+    This certifies the analytic real model, not floating execution derivatives.
+    """
+    a, b = Fraction(nominal), Fraction.from_float(float(stored))
+    lo, hi = min(a, b), max(a, b)
+    lower = v(lo.numerator) / v(lo.denominator)
+    upper = v(hi.numerator) / v(hi.denominator)
+    return v([lower.a, upper.b])
+
+
+def coefficient(text):
+    return enclose_nominal_and_binary64(Fraction(text), float(text))
+
+
+def source_ratio(n, d):
+    # Heavy-sector ratios are computed by Python float division in the source.
+    return enclose_nominal_and_binary64(Fraction(n, d), n / d)
+
+
+TINY = coefficient("0.000000000001")
 SOURCE_GIT_BLOB = "d98cfe243c5a90c332c80ca88618b2343e0698f4"
 LIGHT = [".3877", "-2.3676", "-8.2963", "6.8830", "-1.7948",
          "-8.6415", "-6.1744", ".9981", ".0048"]
@@ -49,10 +75,17 @@ def det(a):
 
 
 def light_raw(n):
-    m0, beta, sigma, theta, gamma, amp, lamb, chi, _ = map(v, LIGHT)
+    m0, beta, sigma, theta, gamma, amp, lamb, chi, _ = map(coefficient, LIGHT)
     c = (n % 3 - 1) * (-1) ** n
+    arg = lamb * n
+    if arg < -50:
+        arg = v(-50)
+    elif arg > 50:
+        arg = v(50)
+    else:
+        assert arg > -50 and arg < 50, "uncertified exponential clipping boundary"
     return (m0 * (v(n) / (n + 1)) + beta * c + sigma * iv.log(v(n + 1))
-            + theta * n ** 2 + gamma * n ** 3 + amp * iv.exp(lamb * n)
+            + theta * n ** 2 + gamma * n ** 3 + amp * iv.exp(arg)
             + chi / n ** 2)
 
 
@@ -61,7 +94,7 @@ def suppression(n):
 
 
 def middle_rows():
-    amp, scale1, scale2, phase, harmonic, offset, quad = map(v, MIDDLE)
+    amp, scale1, scale2, phase, harmonic, offset, quad = map(coefficient, MIDDLE)
     rows = []
     for n in MIDDLE_N:
         x = scale1 * n + phase
@@ -75,10 +108,12 @@ def middle_rows():
 
 def heavy_rows():
     (_, boson, _, boson_power, nonlin1, power1, nonlin2, power2,
-     wz, angle, phase, higgs, offset) = map(v, HEAVY)
+     wz, angle, phase, higgs, offset) = map(coefficient, HEAVY)
+    assert boson_power > -10 and boson_power < 10, "uncertified power clipping boundary"
     rows = []
     for n in HEAVY_N:
-        z = v(n) / 100
+        z = source_ratio(n, 100)
+        assert z > coefficient(".000001") and z < 1000000
         power1_value = iv.power(z, power1)
         x = angle * n + phase
         correction = (boson * iv.power(z, boson_power)
@@ -86,7 +121,9 @@ def heavy_rows():
         if n in (95, 96):
             correction += wz * iv.sin(x)
         if n == 123:
-            correction += higgs * (v(n) / (n + 1)) + offset
+            correction += higgs * source_ratio(n, n + 1) + offset
+        baseline_raw = light_raw(n) * suppression(n)
+        assert baseline_raw < TINY, f"heavy light-baseline floor is not strictly active: {n}"
         assert correction > TINY, f"heavy n={n} correction is not positive: {correction}"
         # Actual heavy baseline is max(light_mass, 1e-12) >= 1e-12, hence
         # the outer max cannot be active and these derivatives are exact.
@@ -134,7 +171,7 @@ def main():
         print("Source binding NOT checked: supply --source to validate the historical optimizer.")
 
     for n in LIGHT_N:
-        mass = light_raw(n) * suppression(n) * (v(LIGHT[8]) if n == 3 else v(1))
+        mass = light_raw(n) * suppression(n) * (coefficient(LIGHT[8]) if n == 3 else v(1))
         assert mass > TINY, f"light n={n} max branch is active or uncertified"
 
     # Rational determinant of rows (n/(n+1), n², n³) for n=1,2,3:
@@ -144,7 +181,7 @@ def main():
         * rational[0][p[0]] * rational[1][p[1]] * rational[2][p[2]]
         for p in itertools.permutations(range(3)))
     assert det_rational == 9
-    det_light = v(9) * v(LIGHT[8])
+    det_light = v(9) * coefficient(LIGHT[8])
     for n in LIGHT_N:
         det_light *= suppression(n)
 
