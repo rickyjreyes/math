@@ -3,6 +3,8 @@
 This Mathlib v4.23.0 project integrates main-line supporting modules with newer full H² manuscript formalizations and conditional bridges. All declarations must pass Lean CI on the exact revision before being called kernel-checked. Manuscript-level status (which papers are formalized end to end) is in
 [formalization.yaml](formalization.yaml).
 
+The maintained import tree contains **64 project modules and 1,515 theorem/lemma declarations** (including private source lemmas). **13 of the 14 original manuscripts are complete** under the audit criterion; F09 remains partial. Declaration totals do not measure manuscript completeness. The [review and theorem table](../docs/FORMALIZATION_REVIEW_2026-10-27.md) records the remaining obligations.
+
 ### Manuscript formalizations
 
 - [PhaseLockingContinuous](MathProofs/PhaseLockingContinuous.lean) — F07, complete:
@@ -27,7 +29,7 @@ This Mathlib v4.23.0 project integrates main-line supporting modules with newer 
 - [StrictBinding](MathProofs/StrictBinding.lean) — F01, complete: explicit strict-binding
   range `0 < m ≤ m_B` and the frozen-parameter corollary.
 - [WholeSpaceMinimizers](MathProofs/WholeSpaceMinimizers.lean) — F01, complete: for
-  `0 < m ≤ m_B`, every minimizing sequence converges strongly in `H²(ℝ²)` after translations
+  `0 < m ≤ m_B`, every minimizing sequence has a subsequence converging strongly in `H²(ℝ²)` after translations
   (concentration–compactness with a Fourier Hölder estimate, weak compactness, weak closedness
   of `H²` and the Brezis–Lieb lemma), so minimizers exist and `𝒢_m` is compact modulo
   translations.
@@ -56,7 +58,7 @@ This Mathlib v4.23.0 project integrates main-line supporting modules with newer 
 - [CurvatureLegacy](MathProofs/CurvatureLegacy.lean) preserves earlier abstract nonattainment and curvature-weight positivity support; full H² results are in CurvatureNonattainment.
 
 - [ManifoldScalarMetric](MathProofs/ManifoldScalarMetric.lean) — full F08 global scalar-gradient manifold tensor and smooth tangent-bundle obstruction: actual mfderiv, bilinear form, positivity, nullity, det=0, covariance and nonnegative multiplets (CI passed).
-- [L2Fourier](MathProofs/L2Fourier.lean) — canonical L² Fourier from Schwartz density and Plancherel, plus exact-shell exclusion (patched source awaiting CI; F10 corollaries not all certified).
+- [L2Fourier](MathProofs/L2Fourier.lean) — canonical L² Fourier from Schwartz density and Plancherel, plus exact-shell exclusion (kernel-checked together with the F10 corollaries).
 - [ExactSensitivityNullity](MathProofs/ExactSensitivityNullity.lean) — conditional exact-nullity-20 corollary for a full-row-rank 31-to-11 derivative (CI passed). The frozen v18 determinant remains externally interval-certified, not Lean-certified.
 
 ### Frozen v18 F09 checked partial results
@@ -66,8 +68,10 @@ This Mathlib v4.23.0 project integrates main-line supporting modules with newer 
 - [V18BlockJacobian](MathProofs/V18BlockJacobian.lean): generic lower-block-triangular determinant factorization.
 - [V18MiddleDerivatives](MathProofs/V18MiddleDerivatives.lean): analytically derives all five selected derivatives of the frozen middle predictor, identifies their matrix entries.
 - [V18MiddleJacobian](MathProofs/V18MiddleJacobian.lean): source-specific 5×5 real trigonometric matrix; exact rank-11 reduction is still **conditional** on `middle.det ≠ 0`.
+- [V18FullForward](MathProofs/V18FullForward.lean): all 31 real parameters, including both variable middle frequencies; its actual Jacobian and the model-specific structural nullity theorem.
+- [V18MiddleFloor](MathProofs/V18MiddleFloor.lean), [V18MiddleClipped](MathProofs/V18MiddleClipped.lean): strict floor inactivity for all five frozen middle observations, and derivatives of the clipped outputs in all seven middle coordinate directions.
 
-**F09 is not complete:** proving the middle determinant's sign inside Lean and formally identifying the complete clipped 31-parameter v18 Jacobian are still required. An external interval certificate does not discharge these kernel obligations.
+**F09 is not complete:** proving the middle determinant's sign inside Lean and formally identifying the complete clipped 31-parameter v18 Jacobian are still required. The conditional nonlinear local level-set proposition also remains unformalized. An external interval certificate does not discharge these kernel obligations.
 
 ### Supporting modules
 
@@ -127,14 +131,14 @@ is not yet committed.
 
 ## Gaps
 
-All four F01 manuscripts and the F08 scalar-manifold obstruction are formalized. The frozen-v18 Jacobian rank is source-pinned and interval-certified but not yet Lean formalized. The canonical transform, distributional corollaries and wavepacket theorem now have imported Lean declarations; exact-head integration CI is required for certification. F11/F12 also remain outside Lean.
+All four F01 manuscripts and the F08 scalar-manifold obstruction are formalized. The frozen-v18 Jacobian rank is source-pinned and interval-certified but not yet Lean formalized. The canonical transform, distributional corollaries and wavepacket theorem now have imported Lean declarations; the combined maintained build has passed Lean CI. F11/F12 also remain outside Lean.
 
 The F08 obstruction on a smooth four-manifold is fully formalized for an actual global complex scalar, including its covariant fiberwise tensor, nonnegativity, rank/nullity, determinant, pullback covariance, and continuous/C^m tangent-bundle evaluation. The model-independent differential nullity core of F09 and its exact-nullity corollary are in Lean, but the source-pinned frozen-v18 transcendental determinant is still a separate numerical interval certificate.
 
 Separate research-grade Lean work lives in [wct-lean](https://github.com/rickyjreyes/wct-lean);
 do not conflate its theorem count with this repository.
 
-The canonical `L²` transform is in [L2Fourier](MathProofs/L2Fourier.lean). The complete F10 distributional Helmholtz, polynomial-dispersion and envelope-scale wavepacket statements are in [FourierShellL2](MathProofs/FourierShellL2.lean), pending the combined integration build.
+The canonical `L²` transform is in [L2Fourier](MathProofs/L2Fourier.lean). The complete F10 distributional Helmholtz, polynomial-dispersion and envelope-scale wavepacket statements are in [FourierShellL2](MathProofs/FourierShellL2.lean), checked in the maintained build.
 
 ## Completion criterion for each of the 14 tweets
 
