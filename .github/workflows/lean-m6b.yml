@@ -22,6 +22,6 @@ jobs:
           lake exe cache get
       - name: Forbid proof holes
         run: |
-          if grep -rnE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' MathProofs/M6BCurvature.lean MathProofs/M6BStationary.lean MathProofs/M6BDirichletLaplacian.lean MathProofs/M6BLimit.lean MathProofs/M6BMass.lean MathProofs/M6BSmooth.lean MathProofs/M6BSquareMass.lean MathProofs/M6BStationaryTheorem.lean MathProofs/M6BForcing.lean MathProofs/M6BJetSmooth.lean; then exit 1; fi
+          if grep -rnE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' MathProofs/M6BCurvature.lean MathProofs/M6BStationary.lean MathProofs/M6BDirichletLaplacian.lean MathProofs/M6BLimit.lean MathProofs/M6BMass.lean MathProofs/M6BSmooth.lean MathProofs/M6BSquareMass.lean MathProofs/M6BStationaryTheorem.lean MathProofs/M6BForcing.lean MathProofs/M6BJetSmooth.lean MathProofs/M6BClosureTheorem.lean; then exit 1; fi
       - name: Kernel-check exact issue modules
-        run: lake build MathProofs.M6BCurvature MathProofs.M6BStationary MathProofs.M6BDirichletLaplacian MathProofs.M6BLimit MathProofs.M6BMass MathProofs.M6BSmooth MathProofs.M6BSquareMass MathProofs.M6BStationaryTheorem MathProofs.M6BForcing MathProofs.M6BJetSmooth
+        run: lake build MathProofs.M6BCurvature MathProofs.M6BStationary MathProofs.M6BDirichletLaplacian MathProofs.M6BLimit MathProofs.M6BMass MathProofs.M6BSmooth MathProofs.M6BSquareMass MathProofs.M6BStationaryTheorem MathProofs.M6BForcing MathProofs.M6BJetSmooth MathProofs.M6BClosureTheorem
