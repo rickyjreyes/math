@@ -129,8 +129,7 @@ theorem fraction_one_iff (c : ι → ℂ) (S : Set ι)
   have hzero := selectedEnergy_eq_zero_iff c Sᶜ hc
   constructor
   · intro h k hk
-    apply hzero.mp
-      (show selectedEnergy c Sᶜ = 0 by linarith) k hk
+    exact (hzero.mp (show selectedEnergy c Sᶜ = 0 by linarith)) k hk
   · intro h
     have hother : selectedEnergy c Sᶜ = 0 := hzero.mpr (by
       intro k hk
