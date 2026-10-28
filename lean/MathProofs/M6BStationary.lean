@@ -99,4 +99,27 @@ theorem square_equal_eigen_curvature (ε α lam S c x y : ℝ) :
       curvature ε α lam S (squareMinus c x y) (-5 * squareMinus c x y) :=
   equal_intensity_eigenjets ε α lam S _ _ (square_intensity_eq c x y)
 
+/-- The four edges of the manuscript's closed Dirichlet square. -/
+def onSquareEdge (x y : ℝ) : Prop :=
+  x = 0 ∨ x = Real.pi ∨ y = 0 ∨ y = Real.pi
+
+/-- Both actual trigonometric modes vanish on every edge. -/
+theorem square_modes_dirichlet (x y : ℝ) (h : onSquareEdge x y) :
+    squareModeF x y = 0 ∧ squareModeG x y = 0 := by
+  rcases h with hx | hx | hy | hy
+  · subst x
+    simp [squareModeF, squareModeG]
+  · subst x
+    simp [squareModeF, squareModeG]
+  · subst y
+    simp [squareModeF, squareModeG]
+  · subst y
+    simp [squareModeF, squareModeG]
+
+/-- Both explicit complex modes have the exact homogeneous Dirichlet data. -/
+theorem square_fields_dirichlet (c x y : ℝ) (h : onSquareEdge x y) :
+    squarePlus c x y = 0 ∧ squareMinus c x y = 0 := by
+  obtain ⟨hf, hg⟩ := square_modes_dirichlet x y h
+  simp [squarePlus, squareMinus, hf, hg]
+
 end ReyesMath.M6B
