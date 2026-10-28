@@ -39,10 +39,10 @@ theorem compactProfile_fderiv_nonzero
   let e : EuclideanSpace ℝ (Fin n) := EuclideanSpace.single i (1 : ℝ)
   have h0 : bumpD n 0 = 1 := by
     apply (compactProfile n).one_of_mem_closedBall
-    simp [bumpD, Metric.mem_closedBall]
+    norm_num [Metric.mem_closedBall, compactProfile]
   have he : bumpD n e = 0 := by
     apply (compactProfile n).zero_of_le_dist
-    simp [bumpD, e, compactProfile, dist_zero]
+    norm_num [e, compactProfile, dist_zero]
   by_contra hnone
   push_neg at hnone
   have heq : bumpD n (0 : EuclideanSpace ℝ (Fin n)) =
