@@ -63,3 +63,5 @@ import MathProofs.V18FullForward
 import MathProofs.M6BCurvature
 import MathProofs.M6BStationary
 import MathProofs.M6BDirichletLaplacian
+import MathProofs.M6BLimit
+import MathProofs.M6BMass
