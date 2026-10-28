@@ -122,9 +122,11 @@ eigenmodes are independently identified.
 model, including both variable middle-sector frequencies, its Fréchet
 Jacobian, the structural nullity bound, and zero first derivatives in kernel
 directions. The exact light and heavy block determinants are proved in
-their respective modules. Identification of the full active-branch Jacobian
-with those blocks and the concrete middle determinant's nonvanishing remain
-unproved in Lean. The conditional nonlinear level-set proposition also
+their respective modules. `V18MiddleDeterminant.lean` now proves
+`18,000,000 < middle.det < 24,000,000` for the exact matrix definition,
+using rational enclosures, Mathlib Taylor remainders, and an exact determinant
+expansion. Identification of the full active-branch Jacobian with these
+blocks remains unproved in Lean. The conditional nonlinear level-set proposition also
 remains unformalized. F09 therefore stays `main_theorem_formalized: false`.
 
 The previous decimal-only input intervals did not enclose the exact stored

@@ -62,3 +62,4 @@ import MathProofs.V18MiddleDerivatives
 import MathProofs.V18FullForward
 import MathProofs.V18MiddleFloor
 import MathProofs.V18MiddleClipped
+import MathProofs.V18MiddleDeterminant

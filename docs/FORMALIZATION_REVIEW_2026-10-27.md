@@ -1,6 +1,6 @@
 # Formalization review — 2026-10-27
 
-The maintained library contains **64 project modules and 1,515 source theorem/lemma
+The maintained library contains **67 project modules and 1,539 source theorem/lemma
 declarations**, including private lemmas. **13 of the 14 original manuscripts are
 complete** under the manifest's manuscript-wide criterion. F09 remains partial.
 The declaration count is an inventory, not a measure of mathematical novelty or
@@ -52,7 +52,10 @@ manuscript completeness.
 - Regression checks verify that all 29 coefficient enclosures and the relevant
   heavy ratios contain both exact rational interpretations.
 - The separate exact-rational Taylor certificate yields
-  `18,000,000 < det(M) < 24,000,000`. It is explicitly **outside Lean**.
+  `18,000,000 < det(M) < 24,000,000`. This external regression is now
+  accompanied by the Lean theorem `V18MiddleJacobian.middle_det_bounds`
+  in `V18MiddleDeterminant.lean`; that theorem checks the actual matrix
+  using rational arithmetic, six-decimal pi bounds, and Taylor remainders.
 - The maintained source contains no executable `sorry`, `admit`, `axiom`, or
   `native_decide` token. Passing these scans is supplementary to kernel checking
   and the comparison of theorem statements with their intended definitions.
@@ -77,7 +80,7 @@ All unqualified declaration names below are in the `ReyesMath` namespace.
 | 10 | S004 constraint count | [`S004.constraint_count`](../lean/MathProofs/S004ConstraintCount.lean) | [PASS][review-ci] | Complete | None for the regular fixed-background sector |
 | 11 | Weighted phase locking | [`phase_locking_exact_minimum`](../lean/MathProofs/PhaseLockingContinuous.lean) | [PASS][review-ci] | Complete | None |
 | 12 | Global scalar-metric obstruction | [`ManifoldScalarMetric.main`](../lean/MathProofs/ManifoldScalarMetric.lean) | [PASS][review-ci] | Complete | None for the positive-sign tensor construction |
-| 13 | Spectral identifiability | [`V18Forward.local_identifiability`, `null_direction`](../lean/MathProofs/V18FullForward.lean) | [PASS][review-ci] | Supporting proofs verified | Full derivative/block identification, concrete middle determinant in Lean, conditional nonlinear local level-set theorem |
+| 13 | Spectral identifiability | [`V18Forward.local_identifiability`, `null_direction`](../lean/MathProofs/V18FullForward.lean) | [PASS][review-ci] | Supporting proofs verified | Full derivative/block identification, conditional nonlinear local level-set theorem |
 | 14 | Fourier-shell exclusion | [`FourierShell.shell_theorem`, `helmholtz`, `poly_dispersion`, `packets`](../lean/MathProofs/FourierShellL2.lean) | [PASS][review-ci] | Complete | None for the F10 manuscript statements |
 
 ## Exact remaining F09 work
@@ -93,10 +96,13 @@ interval, with the 3+5+3 selected block matrix. This includes the light and
 heavy clipping branches and their derivative formulas; nonsingularity of
 separately defined matrices is insufficient.
 
-The next arithmetic obligation is an unconditional Lean proof of
-`V18MiddleJacobian.middle.det ≠ 0`. The exact-rational Taylor certificate gives
-concrete bounds to formalize, but its Python execution is not a kernel proof.
-After those steps, the full-model rank-11/nullity-20 theorem can be exported.
+The arithmetic obligation is discharged by the unconditional theorem
+`V18MiddleJacobian.middle_det_ne_zero`. Its stronger bound theorem proves
+`18,000,000 < middle.det < 24,000,000`. The proof checks ten trigonometric
+enclosures and a 60-term exact determinant expansion; Python only generates
+Lean proof scripts and supplies no assumptions. The local targeted Lean build
+passes on v4.23.0. The full-model rank-11/nullity-20 theorem still requires the
+complete derivative/block identification above.
 The manuscript's separate conditional C¹ local level-set proposition still
 requires a formal application of the implicit-function/submersion theorem.
 

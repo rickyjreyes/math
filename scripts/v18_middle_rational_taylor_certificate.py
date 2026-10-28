@@ -11,8 +11,8 @@ Those are provided in Mathlib v4.23.0 as Real.sin_bound and Real.cos_bound.
 Exact interval four-corner multiplication and the 120-term Leibniz
 formula yield a positive determinant interval. This is a rigorously
 checkable *mathematical certificate implemented in Python*, NOT a Lean
-proof of the transcendental determinant. Porting the interval arithmetic
-into the Lean kernel remains the F09 closure task.
+proof of the transcendental determinant. The corresponding Lean proof is now in V18MiddleDeterminant.lean;
+this script remains an independent regression calculation.
 """
 from __future__ import annotations
 from dataclasses import dataclass
@@ -117,7 +117,7 @@ def main():
     print("det(M) rational lower:", bound.lo)
     print("det(M) rational upper:", bound.hi)
     print("CONCLUSION: 18,000,000 < det(M) < 24,000,000")
-    print("LEAN STATUS: bounds not yet encoded as Lean theorems")
+    print("LEAN COUNTERPART: V18MiddleJacobian.middle_det_bounds (V18MiddleDeterminant.lean)")
 
 
 if __name__ == "__main__":

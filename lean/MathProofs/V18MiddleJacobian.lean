@@ -13,9 +13,9 @@ Theorems below reduce the full 31-to-11 model-specific Jacobian rank
 certificate to one explicit real inequality: middle.det ≠ 0.
 
 No extra sin/cos nonvanishing is assumed for the previously certified
-light and heavy 3x3 blocks. The remaining middle determinant inequality
-has only been checked externally by outward-rounded interval arithmetic
-and is NOT asserted as a Lean theorem here.
+light and heavy 3x3 blocks. The unconditional middle determinant enclosure
+and nonvanishing are proved in `V18MiddleDeterminant`, which imports this
+definition and checks the rational Taylor bounds in Lean.
 -/
 
 noncomputable section
@@ -39,7 +39,8 @@ def middle : Matrix (Fin 5) (Fin 5) ℝ :=
        Real.sin ((9.4062 : ℝ) * 91)]
 
 /-- Full nonvanishing of the three diagonal determinant product
-follows from one still-unproved analytic middle-block inequality.
+follows from a middle-block inequality. The unconditional version is
+exported by `V18MiddleDeterminant.determinant_product_nonzero`.
 The general `V18BlockJacobian.det_three_blocks` theorem establishes
 the product as the determinant of an arbitrary three-sector block
 matrix. Direct kernel instantiation on the concrete 11×11 index is

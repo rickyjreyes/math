@@ -14,8 +14,8 @@ proof_policy:
   excluded: ["sorry", "admit", "axiom", "native_decide"]
   note: "Passing CI certifies only the precise statements in the imported Lean source."
 verification_counts:
-  imported_project_modules: 64
-  source_theorem_lemma_declarations: 1515
+  imported_project_modules: 67
+  source_theorem_lemma_declarations: 1539
   completed_original_manuscripts: 13
   original_manuscripts: 14
   note: "Declaration inventory includes private source lemmas; it is not a count of distinct mathematical results."
@@ -129,13 +129,16 @@ families:
     verified_clipped_middle_derivatives: MathProofs/V18MiddleClipped.lean
     complete_frozen_forward_model: MathProofs/V18FullForward.lean
     exact_middle_block_source: MathProofs/V18MiddleJacobian.lean
-    remaining: "Lean certification of the concrete trigonometric 5x5 middle determinant; identification of the complete active-branch Frechet derivative with the selected blocks; the conditional C1 local level-set/submanifold proposition. No rank-11 full-model Lean theorem is claimed."
+    verified_middle_determinant: MathProofs/V18MiddleDeterminant.lean
+    verified_middle_enclosures: MathProofs/V18MiddleEnclosures.lean
+    verified_interval_arithmetic: MathProofs/V18Interval.lean
+    remaining: "Identification of the complete active-branch Frechet derivative with the selected blocks; the conditional C1 local level-set/submanifold proposition. No rank-11 full-model Lean theorem is claimed."
     matrix_nullity_core_formalized: true
     exact_nullity_surjectivity_corollary: MathProofs/ExactSensitivityNullity.lean
     analytic_rank_certificate: docs/SM_V18_ANALYTIC_RANK_CERTIFICATE.md
     analytic_rank_ci: .github/workflows/v18-rank.yml
-    covered: "V18FullForward encodes the real-arithmetic source formula with all 31 coordinates, including variable middle frequencies at coordinates 10 and 11, the clipping and dispatch. It defines the actual Frechet Jacobian, proves rank <= 11, nullity = 31 - rank >= 20, and vanishing directional derivatives for its kernel vectors at differentiability points. All seven middle coordinate derivatives are proved. V18MiddleFloor and V18MiddleClipped discharge the floor premise at all five frozen middle observations, for both the five selected columns and the two frequency columns. Frozen Lean constants represent the published exact decimals, not NumPy rounding semantics. Separately, the source-pinned interval certificate now encloses both the nominal decimals and exact stored binary64 inputs, verifies the strict branches, and certifies a nonzero analytic minor outside Lean. Light/heavy block nonsingularity and the generic block factorization are kernel-proved; they have not yet been identified as the complete model's derivative blocks in Lean."
-    declarations: [ReyesMath.elevenByThirtyone_nullity_bound, ReyesMath.nullityBound_arithmetic, ReyesMath.elevenByThirtyOne_matrix_nullity, ReyesMath.rectangular_sensitivity_nullity, ReyesMath.differential_local_identifiability_obstruction, ReyesMath.V18Forward.local_identifiability, ReyesMath.V18Forward.null_direction, ReyesMath.V18Forward.jacobian, ReyesMath.V18Forward.middle_scale1_coordinate_derivative, ReyesMath.V18Forward.middle_scale2_coordinate_derivative, ReyesMath.V18Forward.frozen_middleRaw, ReyesMath.V18MiddleFloor.every_middle_observable_unclipped, ReyesMath.V18MiddleClipped.all_frozen_middle_coordinate_derivatives, ReyesMath.V18MiddleClipped.all_frozen_middle_frequency_derivatives]
+    covered: "V18FullForward encodes the real-arithmetic source formula with all 31 coordinates, including variable middle frequencies at coordinates 10 and 11, the clipping and dispatch. It defines the actual Frechet Jacobian, proves rank <= 11, nullity = 31 - rank >= 20, and vanishing directional derivatives for its kernel vectors at differentiability points. All seven middle coordinate derivatives are proved. V18MiddleFloor and V18MiddleClipped discharge the floor premise at all five frozen middle observations, for both the five selected columns and the two frequency columns. Frozen Lean constants represent the published exact decimals, not NumPy rounding semantics. Separately, the source-pinned interval certificate now encloses both the nominal decimals and exact stored binary64 inputs, verifies the strict branches, and certifies a nonzero analytic minor outside Lean. The actual middle determinant is now kernel-proved to lie strictly between 18000000 and 24000000, using exact rational interval arithmetic and Mathlib Taylor remainders. All three block determinants and the generic block factorization are kernel-proved; they have not yet been identified as the complete model's derivative blocks in Lean."
+    declarations: [ReyesMath.elevenByThirtyone_nullity_bound, ReyesMath.nullityBound_arithmetic, ReyesMath.elevenByThirtyOne_matrix_nullity, ReyesMath.rectangular_sensitivity_nullity, ReyesMath.differential_local_identifiability_obstruction, ReyesMath.V18MiddleJacobian.middle_det_bounds, ReyesMath.V18MiddleJacobian.middle_det_pos, ReyesMath.V18MiddleJacobian.middle_det_ne_zero, ReyesMath.V18MiddleJacobian.determinant_product_nonzero, ReyesMath.V18Forward.local_identifiability, ReyesMath.V18Forward.null_direction, ReyesMath.V18Forward.jacobian, ReyesMath.V18Forward.middle_scale1_coordinate_derivative, ReyesMath.V18Forward.middle_scale2_coordinate_derivative, ReyesMath.V18Forward.frozen_middleRaw, ReyesMath.V18MiddleFloor.every_middle_observable_unclipped, ReyesMath.V18MiddleClipped.all_frozen_middle_coordinate_derivatives, ReyesMath.V18MiddleClipped.all_frozen_middle_frequency_derivatives]
   F10:
     main_theorem_formalized: true
     status: MAIN_THEOREM_VERIFIED
