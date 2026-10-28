@@ -14,6 +14,7 @@ Lebesgue integrals.
 noncomputable section
 
 open MeasureTheory
+open scoped ContDiff
 
 namespace ReyesMath.E68
 
@@ -33,7 +34,7 @@ structure WeakH1Field (n : ℕ) where
   distributionalDerivative :
     ∀ (v : EuclideanSpace ℝ (Fin n))
       (φ : EuclideanSpace ℝ (Fin n) → ℝ),
-      ContDiff ℝ ⊤ φ → HasCompactSupport φ →
+      ContDiff ℝ ∞ φ → HasCompactSupport φ →
         (∫ x, ψ x * ((fderiv ℝ φ x) v : ℂ)) =
           -(∫ x, (weakGradient x v) * (φ x : ℂ))
 
