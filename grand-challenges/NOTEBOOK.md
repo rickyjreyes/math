@@ -26,7 +26,7 @@
 
 ## Reusable entry template
 
-\`\`\`markdown
+```markdown
 ## NNN · Working title
 **Related GC:** GCxx or none
 **Observation or motivation:**
@@ -37,6 +37,6 @@
 **First proof milestone:**
 **Status:** Candidate / refuted / superseded / promoted
 **Contributor and date:**
-\`\`\`
+```
 
 To promote an entry, follow [METHOD.md](METHOD.md) and add a dated literature and counterexample record. Preserve rejected candidates; correcting an incorrect idea is valid progress.
