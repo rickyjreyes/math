@@ -29,6 +29,7 @@ declarations:
 | Exact Hessian-trace identity Δ‖x‖²=2d | `squared_norm_laplacian_D` | Source committed; CI pending |
 | Explicit quadratic witness jet at the origin | `quadraticFieldD_at_origin`, `quadraticFieldD_laplacian_at_origin` | Source committed; CI pending |
 | Distinct closure images on genuine fields in *every* d≥1 | `distinct_closures_on_actual_fields_all_dimensions` | Source committed; CI pending |
+| Complete assembled closure theorem with all 5 structural axioms and the field-level witness for every d≥1 | `IsAdmissibleRegularization`, `manuscript_closure_nonuniqueness_all_dimensions` | Source committed; CI pending |
 
 Unlike the old two-dimensional field example, this proposed theorem has the
 original universal `d ≥ 1` quantifier. It is not certified until compiled.
@@ -37,7 +38,7 @@ original universal `d ≥ 1` quantifier. It is not certified until compiled.
 
 - `M6BClosureFieldWitness.lean` proves `distinct_closures_on_actual_smooth_field`: distinct admissible regularizations give different outputs on `squarePlus 1` at `(π/2,π/4)`, using the *computed* Laplacian, not an arbitrarily supplied jet. It is imported and listed in focused CI but **awaits current-head verification**.
 - `M6BFubini.lean` now also states `planarSquareMass_eq_sq_norm`: the actual product-measure mass is the square of the complex `L²` norm integrand, not just an unnamed intensity.
-- The new general-dimension module uses the equivalent quadratic profile `ψ(x)=1+‖x‖²`, yielding a distinguishing nonzero jet `(1,2d)` for each `d≥1`. Its exact current-head Lean proof remains subject to the full build. The field-space construction is on all of ℝ^d, whose restriction to any open neighborhood of zero supplies the local manuscript witness.
+- The new general-dimension module uses the quadratic profile `ψ(x)=1+‖x‖²`, yielding a distinguishing nonzero jet `(1,2d)` for each `d≥1`. Its exact current-head Lean proof remains subject to the full build. The field-space construction is on all of ℝ^d, whose restriction to any open neighborhood of zero supplies the local manuscript witness.
 - The newest branch commits have **no associated successful GitHub Actions runs**. Earlier `08f52a4d` green checks cannot certify them.
 
 **Certification policy:** Keep `main_theorem_formalized: false` until the current PR head passes the root `lake build` and focused CI, with the actual new declarations checked. Revalidate the manuscript statement's domain, parameter, and quantifier scope before declaring complete.
