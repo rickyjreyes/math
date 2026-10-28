@@ -150,9 +150,10 @@ theorem distinct_closures_on_actual_fields_all_dimensions
           fieldCurvatureD d ε α mu S ψ x := by
   let a : ℂ := ((2 * (d : ℝ) : ℝ) : ℂ)
   have ha : a ≠ 0 := by
-    have hr : 2 * (d : ℝ) ≠ 0 := by
-      have hdpos : (0 : ℝ) < d := by exact_mod_cast (Nat.lt_of_lt_of_le (by omega : 0 < 1) hd)
-      exact ne_of_gt (mul_pos (by norm_num) hdpos)
+    have hdpos : (0 : ℝ) < (d : ℝ) := by
+      exact_mod_cast (by omega : 0 < d)
+    have hr : 2 * (d : ℝ) ≠ 0 :=
+      ne_of_gt (mul_pos (by norm_num) hdpos)
     exact_mod_cast hr
   have hlinear (k : ℝ) :
       curvature ε α k S 1 a = a * curvature ε α k S 1 1 := by
