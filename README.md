@@ -12,17 +12,25 @@ Results are organized by mathematical subject rather than by a single overarchin
 
 The table is a starting point, not an exhaustive list. Each link opens an individual compiled manuscript; the [catalogue](CONTENTS.md) links every manuscript to its PDF, LaTeX source, and notes.
 
-| Area | Result and precise scope | Proof |
-| --- | --- | --- |
-| **Fourth-order variational PDE** | Strict binding, minimizer existence, and orbital stability for a focusing-cubic/defocusing-quintic Hamiltonian on $\mathbb R^2$, within a stated sufficient mass range. | [Strict binding](preprints/strict-subadditivity-fourth-order-cubic-quintic/paper.pdf) · [Existence](preprints/whole-space-fourth-order-cubic-quintic-minimizers/paper.pdf) · [Stability](preprints/orbital-stability-fourth-order-cubic-quintic/paper.pdf) |
-| **Higher-derivative fields** | Constraint counting for a specified nonzero fixed-background complex-scalar sector; a separate linear homogeneous-sector ultraviolet Sobolev obstruction. | [Constraint analysis](preprints/s004-complex-scalar-constraint-count/paper.pdf) · [UV obstruction](preprints/uv-sobolev-ill-posedness-fourth-order-wave/paper.pdf) |
-| **Scalar-gradient geometry** | The tensor $T_{\mu\nu}=\operatorname{Re}(\partial_\mu\psi^*\partial_\nu\psi)$ has rank at most two and is positive semidefinite, so this construction alone cannot yield a Lorentzian metric. | [Rank and signature proof](preprints/scalar-gradient-lorentzian-no-go/paper.pdf) |
-| **Spectral inverse problems** | An $11\times31$ sensitivity matrix has kernel dimension at least 20: a structural *linearized local* identifiability obstruction, not a global inverse theorem. | [Identifiability proof](preprints/sm-v18-local-identifiability-obstruction/paper.pdf) |
-| **Fourier-band selection (E16)** | Exact linear modal-power evolution; normalized concentration near the preferred shell when that shell is present in the initial spectral support, with additional hypotheses for pointwise argmax convergence. | [Spectral concentration proof](preprints/e16-linear-spectral-concentration/paper.pdf) |
-| **Fourier projection (E59)** | A fixed sharp annulus mask defines an orthogonal $L^2$ projection: $P^2=P$, with exact energy decomposition and best approximation. | [Dominant-annulus projection](preprints/e59-dominant-annulus-projection/paper.pdf) |
-| **Geometric phase locking** | Exact weighted closed-loop energy minimum at fixed winding and geometry, including the equality condition. | [Phase-locking proof](preprints/weighted-closed-loop-phase-locking/paper.pdf) |
-| **Whole-space Fourier spectra** | A nonzero $L^2$ function cannot have Fourier support confined to a measure-zero frequency shell. | [Fourier-shell proof](preprints/isolated-fourier-shell-no-l2-bound-state/paper.pdf) |
-| **Curvature energy and local estimates** | Whole-space nonattainment for a positive curvature energy; separate counterexamples and corrected hypotheses for localized energy bounds. | [Nonattainment](preprints/positive-curvature-whole-space-nonattainment/paper.pdf) · [Localized estimates (E68)](preprints/localized-gradient-energy-e68/paper.pdf) |
+| Area | Result and precise scope | Manuscript PDFs |
+| :--- | :--- | :--- |
+| **Fourth-order variational PDE** | Strict binding, minimizer existence, and orbital stability for a focusing-cubic/defocusing-quintic Hamiltonian on ℝ², within an explicit sufficient mass range. | [Strict binding](preprints/strict-subadditivity-fourth-order-cubic-quintic/paper.pdf) · [Existence](preprints/whole-space-fourth-order-cubic-quintic-minimizers/paper.pdf) · [Stability](preprints/orbital-stability-fourth-order-cubic-quintic/paper.pdf) |
+| **Higher-derivative fields** | Constraint counting in a specified nonzero fixed-background complex-scalar sector; a separate linear homogeneous-sector ultraviolet Sobolev obstruction. | [Constraint analysis](preprints/s004-complex-scalar-constraint-count/paper.pdf) · [UV obstruction](preprints/uv-sobolev-ill-posedness-fourth-order-wave/paper.pdf) |
+| **Scalar-gradient geometry (F08)** | A real-part scalar-gradient Gram tensor has rank at most two and is positive semidefinite; by itself, it cannot produce a Lorentzian metric. | [Rank and signature proof](preprints/scalar-gradient-lorentzian-no-go/paper.pdf) |
+| **Spectral inverse problems (F09)** | Any 11 × 31 sensitivity matrix has nullity at least 20. This is a linearized local identifiability bound, not a global inverse theorem. | [Identifiability proof](preprints/sm-v18-local-identifiability-obstruction/paper.pdf) |
+| **Fourier-band selection (E16)** | Exact linear modal-power evolution and conditional spectral concentration near the preferred shell, with additional hypotheses for dominant-wavenumber convergence. | [Spectral concentration proof](preprints/e16-linear-spectral-concentration/paper.pdf) |
+| **Fourier projection (E59)** | A fixed sharp annulus mask defines an orthogonal L² projection satisfying P² = P, with exact energy decomposition and best approximation. | [Dominant-annulus projection](preprints/e59-dominant-annulus-projection/paper.pdf) |
+| **Geometric phase locking (F07)** | Exact weighted closed-loop energy minimum at fixed winding and geometry, including its equality condition. | [Phase-locking proof](preprints/weighted-closed-loop-phase-locking/paper.pdf) |
+| **Whole-space Fourier spectra (F10)** | An L² function supported in Fourier space on a measure-zero isolated frequency shell must vanish. | [Fourier-shell proof](preprints/isolated-fourier-shell-no-l2-bound-state/paper.pdf) |
+| **Curvature energy and local estimates** | Whole-space nonattainment for a positive curvature energy; separate counterexamples and corrected hypotheses for localized-energy bounds. | [Nonattainment](preprints/positive-curvature-whole-space-nonattainment/paper.pdf) · [Localized estimates (E68)](preprints/localized-gradient-energy-e68/paper.pdf) |
+
+The scalar-gradient tensor in the F08 result is, for a complex scalar field:
+
+$$
+T_{\mu\nu} = \mathrm{Re}\!\left( \partial_\mu \overline{\psi}\,\partial_\nu \psi \right).
+$$
+
+The rank and signature obstruction applies to this **specific positive-sign construction**, not to every possible metric built using scalar fields.
 
 ## Research map
 
@@ -37,7 +45,7 @@ The table is a starting point, not an exhaustive list. Each link opens an indivi
 | **F07** | Phase locking | Sharp closed-loop variational minimum |
 | **F08** | Scalar-gradient tensors | Rank and Lorentzian-signature obstructions |
 | **F09** | Spectral inverse problems | Structural matrix-nullity and local identifiability bounds |
-| **F10** | Fourier localization | Nonexistence of nonzero $L^2$ states on an isolated spectral shell |
+| **F10** | Fourier localization | Nonexistence of nonzero L² states on an isolated spectral shell |
 | **F11** | Fourier-band dynamics | E13/E14 gradient flow, E16 spectral selection, E59 fixed-annulus projection, E62 spectral fraction |
 | **F12** | Curvature multipliers | Conditional E26 estimate for the historical additive denominator |
 
@@ -54,7 +62,9 @@ Each manuscript has a separate proof and source. The [Lean project](lean/README.
 | **Executable or numerical check** | A computational check of a stated instance or model; not a general analytic proof |
 | **Physical interpretation** | An additional hypothesis or application, requiring its own mathematical and empirical justification |
 
-Lean-checked mathematical results include whole-space strict binding, negative energy, minimizer attainment and compactness modulo translations, global H² well-posedness of the flow and orbital stability of the full minimizing set (F01); ultraviolet Sobolev ill-posedness and S004 constraints (F02); continuous spectral–phase identities (F03); finite Fourier leakage with local classical torus well-posedness (F04); curvature nonattainment and spreading (F05); a positive-wavenumber dispersion minimum (F06); and weighted phase locking (F07). The original main-line supporting Lean modules and compendium are preserved. [An additional source-pinned interval certificate](docs/SM_V18_ANALYTIC_RANK_CERTIFICATE.md) verifies rank 11 and nullity 20 of the frozen model's analytic Jacobian; it is not a Lean-kernel proof. The global manifold scalar-tensor obstruction (F08) and complete F10 source are now in the maintained Lean build. F09's frozen 31-parameter Jacobian certificate remains outside Lean. F10's imported module requires CI on this combined revision. Refer to the [per-family manifest](lean/formalization.yaml) for precise coverage.
+**Formalization coverage on `main`:** the [per-family manifest](lean/formalization.yaml) marks **F01–F08 and F10** complete at the stated manuscript scope. These include strict binding, minimizer existence, global H² flow and orbital stability (F01); ultraviolet ill-posedness and specified S004 constraints (F02); spectral–phase identities (F03); nonlinear Fourier-mode leakage (F04); curvature-energy nonattainment (F05); dispersion minimization (F06); phase locking (F07); the global scalar-gradient tensor obstruction (F08); and canonical whole-space L² Fourier-shell exclusion, including the manuscript's stated corollaries (F10). The F08/F10 integrations have corresponding merged, Lean-tested source PRs [#25](https://github.com/rickyjreyes/math/pull/25) and [#26](https://github.com/rickyjreyes/math/pull/26). These statements are formalized **only under their exact declared assumptions**.
+
+**Still incomplete in Lean:** F09, F11, and F12. For F09, the structural nullity lower bound and selected frozen-v18 Jacobian blocks are encoded; a [source-pinned interval-arithmetic certificate](docs/SM_V18_ANALYTIC_RANK_CERTIFICATE.md) separately verifies exact rank 11 and nullity 20 for the frozen model. That external computation does **not** establish the full model-specific rank theorem inside the Lean kernel. Other WCT operator manuscripts may have supporting Lean lemmas without full manuscript certification. Draft work on [F09](https://github.com/rickyjreyes/math/pull/47) and [additional analytic cores](https://github.com/rickyjreyes/math/pull/46) is not included in `main` until merged and verified.
 
 To reproduce the PDF compilation (with a compatible LaTeX installation) and the Lean build:
 
