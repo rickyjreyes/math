@@ -81,11 +81,12 @@ theorem squarePlus_prescribed_mass (m : ℝ) (hm : 0 < m) :
     Real.sq_sqrt (by positivity)
   rw [div_pow, hsq]
   field_simp [ne_of_gt Real.pi_pos]
-  ring
 
 theorem squareMinus_prescribed_mass (m : ℝ) (hm : 0 < m) :
     squareMass (squareMinus (amplitude m)) = m := by
-  rw [squareMinus_mass, ← squarePlus_mass]
-  exact squarePlus_prescribed_mass m hm
+  calc
+    squareMass (squareMinus (amplitude m)) =
+        squareMass (squarePlus (amplitude m)) := by rw [squareMinus_mass, squarePlus_mass]
+    _ = m := squarePlus_prescribed_mass m hm
 
 end ReyesMath.M6B
