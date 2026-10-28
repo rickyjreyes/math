@@ -46,6 +46,33 @@ theorem laplacianD_phase (d : ℕ)
   simpa only [laplacianD, Function.comp_def, L,
     ContinuousLinearMap.lsmul_apply, smul_eq_mul] using h
 
+/-- Local C² version of constant-phase Laplacian covariance:
+only differentiability at the evaluated point is needed. -/
+theorem laplacianD_phase_at (d : ℕ)
+    (ψ : EuclideanSpace ℝ (Fin d) → ℂ)
+    (x : EuclideanSpace ℝ (Fin d))
+    (hψ : ContDiffAt ℝ 2 ψ x) (u : ℂ) :
+    laplacianD d (fun y => u * ψ y) x =
+      u * laplacianD d ψ x := by
+  let L : ℂ →L[ℝ] ℂ := (ContinuousLinearMap.lsmul ℝ ℂ) u
+  have h := hψ.laplacian_CLM_comp_left (l := L)
+  simpa only [laplacianD, Function.comp_def, L,
+    ContinuousLinearMap.lsmul_apply, smul_eq_mul] using h
+
+/-- The real C² hypothesis may hold only on an arbitrary open domain.
+No global smoothness or boundary condition is required for phase
+invariance at an interior point. -/
+theorem laplacianD_phase_on_open (d : ℕ)
+    (Ω : Set (EuclideanSpace ℝ (Fin d)))
+    (hΩ : IsOpen Ω)
+    (ψ : EuclideanSpace ℝ (Fin d) → ℂ)
+    (hψ : ContDiffOn ℝ 2 ψ Ω)
+    (x : EuclideanSpace ℝ (Fin d)) (hx : x ∈ Ω) (u : ℂ) :
+    laplacianD d (fun y => u * ψ y) x =
+      u * laplacianD d ψ x :=
+  laplacianD_phase_at d ψ x
+    ((hψ x hx).contDiffAt (hΩ.mem_nhds hx)) u
+
 /-- A constant unit phase preserves the actual d-dimensional
 regularized curvature operator on every C² field and every point. -/
 theorem fieldCurvatureD_phase_invariant (d : ℕ)
@@ -56,6 +83,21 @@ theorem fieldCurvatureD_phase_invariant (d : ℕ)
       fieldCurvatureD d ε α lam S ψ x := by
   unfold fieldCurvatureD
   rw [laplacianD_phase d ψ hψ u x]
+  exact curvature_phase_invariant ε α lam S u (ψ x) (laplacianD d ψ x) hu
+
+/-- Full U(1) invariance on an arbitrary open Ω⊆ℝᵈ for
+complex fields that are C² on Ω, with no global C² hypothesis. -/
+theorem fieldCurvatureD_phase_invariant_on_open (d : ℕ)
+    (Ω : Set (EuclideanSpace ℝ (Fin d))) (hΩ : IsOpen Ω)
+    (ψ : EuclideanSpace ℝ (Fin d) → ℂ)
+    (hψ : ContDiffOn ℝ 2 ψ Ω)
+    (u : ℂ) (hu : ‖u‖ = 1)
+    (ε α lam S : ℝ) (x : EuclideanSpace ℝ (Fin d))
+    (hx : x ∈ Ω) :
+    fieldCurvatureD d ε α lam S (fun y => u * ψ y) x =
+      fieldCurvatureD d ε α lam S ψ x := by
+  unfold fieldCurvatureD
+  rw [laplacianD_phase_on_open d Ω hΩ ψ hψ x hx u]
   exact curvature_phase_invariant ε α lam S u (ψ x) (laplacianD d ψ x) hu
 
 /-- The actual d-dimensional quadratic test field, on Euclidean
