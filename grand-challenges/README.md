@@ -15,31 +15,31 @@ These questions connect nonlinear partial differential equations, variational an
 
 ## Start here: five questions worth exploring
 
-### [**GC06 · Can a wave confine itself?**](./FORMAL_PROBLEMS.md#gc06-can-a-wave-confine-itself)
+### [**GC06 · Can a wave confine itself?**](./FORMAL_PROBLEMS.md#gc06-self-confinement-criteria)
 
 A nonlinear wave may spread, fragment, or remain localized. Find the precise conditions under which localized energy minimizers actually exist without an imposed trapping potential.
 
 *Relevant foundations: [whole-space minimizers](../papers/whole-space-fourth-order-cubic-quintic-minimizers) and [Lean minimizer modules](../lean/MathProofs/WholeSpaceMinimizers.lean).*
 
-### [**GC36 · Can a knot of wave energy survive?**](./FORMAL_PROBLEMS.md#gc36-can-a-knot-of-wave-energy-survive)
+### [**GC36 · Can a knot of wave energy survive?**](./FORMAL_PROBLEMS.md#gc36-stable-knotted-wave-configurations)
 
 Determine whether a nontrivial topological class supports a stable stationary field, or prove an obstruction. A picture of a knot is not itself a stability theorem.
 
 *Research status: proposed model-dependent existence and stability question.*
 
-### [**GC11 · Can a wave select its own wavelength?**](./FORMAL_PROBLEMS.md#gc11-can-a-wave-select-its-own-wavelength)
+### [**GC11 · Can a wave select its own wavelength?**](./FORMAL_PROBLEMS.md#gc11-nonlinear-finite-wavelength-selection)
 
 Linear dispersion can prefer a finite scale. The harder question is whether nonlinear dynamics select and stabilize one wavelength among competing patterns.
 
 *Related foothold: [exact positive-wave-number minimum](../papers/exact-positive-wavenumber-minimum) and [Lean dispersion analysis](../lean/MathProofs/DispersionMinimum.lean).*
 
-### [**GC43 · Can a wave-based rule compute anything?**](./FORMAL_PROBLEMS.md#gc43-can-a-wave-based-rule-compute-anything)
+### [**GC43 · Can a wave-based rule compute anything?**](./FORMAL_PROBLEMS.md#gc43-discrete-wave-computational-universality)
 
 Specify a finite-alphabet local wave-cell model and ask whether a fixed rule can simulate every Turing machine with polynomial overhead.
 
 *Research status: proposed computational model, not a claim about demonstrated physical hardware.*
 
-### [**GC01 · Which waves can survive a disturbance?**](./FORMAL_PROBLEMS.md#gc01-which-waves-can-survive-a-disturbance)
+### [**GC01 · Which waves can survive a disturbance?**](./FORMAL_PROBLEMS.md#gc01-universal-orbital-stability)
 
 Go beyond stable ground-state minimizers and classify standing waves, including excited states, whose phase-and-translation orbits remain stable.
 
