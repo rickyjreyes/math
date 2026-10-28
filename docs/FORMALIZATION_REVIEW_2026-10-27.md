@@ -38,10 +38,14 @@ manuscript completeness.
 - The combined baseline `main` revision
   [`0e93a9f`](https://github.com/rickyjreyes/math/commit/0e93a9f2a920d779793648ce3f088bf16efca165)
   passed its [full Lean build](https://github.com/rickyjreyes/math/actions/runs/40586171550).
-- The corrected F09 modules build with Lean/Mathlib **v4.23.0**. The focused
-  workflow now explicitly builds `V18FullForward` as well as the determinant
-  and clipped-derivative modules. Integration requires the full library build
-  in [PR #47](https://github.com/rickyjreyes/math/pull/47/checks).
+- The corrected F09 source revision
+  [`b6af6cd`](https://github.com/rickyjreyes/math/commit/b6af6cdb2db0aca5eafb8c1ee67913eba1404b4f)
+  passed the [full 64-module Lean build][review-ci], the targeted F09 build,
+  both external certificates, and PDF compilation on Lean/Mathlib **v4.23.0**.
+  The focused workflow explicitly builds `V18FullForward` as well as the
+  determinant and clipped-derivative modules. The subsequent integration
+  preserves the latest main README improvements; the combined revision must
+  also pass [PR #47 checks](https://github.com/rickyjreyes/math/pull/47/checks).
 - The source-bound interval certificate passes with the unchanged source blob
   `d98cfe243c5a90c332c80ca88618b2343e0698f4`, and optimized values
   `alpha = 5.1725333213…`, `epsilon = 5`.
@@ -59,22 +63,22 @@ All unqualified declaration names below are in the `ReyesMath` namespace.
 “Complete” denotes `MAIN_THEOREM_VERIFIED`; the F09 row denotes
 `KERNEL_VERIFIED_SUPPORTING` with `OPEN_MATHEMATICAL_OBLIGATION`.
 
-| # | Result | Exported declaration / module | Status | Remaining obligation |
-|---|---|---|---|---|
-| 1 | Strict binding | [`StrictBinding.strict_binding`](../lean/MathProofs/StrictBinding.lean) | Complete | None within the stated mass range |
-| 2 | Whole-space minimizers | [`WholeSpace.main`](../lean/MathProofs/WholeSpaceMinimizers.lean) | Complete | None within the stated mass range |
-| 3 | Orbital stability | [`OrbitalStability.main`](../lean/MathProofs/OrbitalStability.lean) | Complete | None; full minimizing-set stability, not attraction or uniqueness of a minimizer |
-| 4 | UV Sobolev ill-posedness | [`UVIllPosed.wave_torus_unbounded`](../lean/MathProofs/UVIllPosedness.lean), [`wave_whole_unbounded`](../lean/MathProofs/UVWholeSpace.lean) | Complete | None in the stated linear sectors |
-| 5 | Spectral–phase identity | [`SpectralPhase.sharp_spectral_phase_decomposition`](../lean/MathProofs/SpectralPhaseIdentity.lean) | Complete | None |
-| 6 | Nonlinear Fourier leakage | [`FourierLeakage.classification`](../lean/MathProofs/FourierLeakageWellPosed.lean) | Complete | None for the stated local classical torus flow |
-| 7 | Negative constrained energy | [`NegativeEnergy.negative_constrained_energy`](../lean/MathProofs/NegativeEnergy.lean) | Complete | None; genuine Sobolev trial proved using a compact bump carrier |
-| 8 | Curvature nonattainment | [`Curvature.global_nonattainment`, `strict_spreading`](../lean/MathProofs/CurvatureNonattainment.lean) | Complete | None under the manuscript's dimension assumptions |
-| 9 | Dispersion minimum | [`Dispersion.exact_positive_wavenumber_minimum`](../lean/MathProofs/DispersionMinimum.lean) | Complete | None |
-| 10 | S004 constraint count | [`S004.constraint_count`](../lean/MathProofs/S004ConstraintCount.lean) | Complete | None for the regular fixed-background sector |
-| 11 | Weighted phase locking | [`phase_locking_exact_minimum`](../lean/MathProofs/PhaseLockingContinuous.lean) | Complete | None |
-| 12 | Global scalar-metric obstruction | [`ManifoldScalarMetric.main`](../lean/MathProofs/ManifoldScalarMetric.lean) | Complete | None for the positive-sign tensor construction |
-| 13 | Spectral identifiability | [`V18Forward.local_identifiability`, `null_direction`](../lean/MathProofs/V18FullForward.lean) | Supporting proofs verified | Full derivative/block identification, concrete middle determinant in Lean, conditional nonlinear local level-set theorem |
-| 14 | Fourier-shell exclusion | [`FourierShell.shell_theorem`, `helmholtz`, `poly_dispersion`, `packets`](../lean/MathProofs/FourierShellL2.lean) | Complete | None for the F10 manuscript statements |
+| # | Result | Exported declaration / module | CI | Status | Remaining obligation |
+|---|---|---|---|---|---|
+| 1 | Strict binding | [`StrictBinding.strict_binding`](../lean/MathProofs/StrictBinding.lean) | [PASS][review-ci] | Complete | None within the stated mass range |
+| 2 | Whole-space minimizers | [`WholeSpace.main`](../lean/MathProofs/WholeSpaceMinimizers.lean) | [PASS][review-ci] | Complete | None within the stated mass range |
+| 3 | Orbital stability | [`OrbitalStability.main`](../lean/MathProofs/OrbitalStability.lean) | [PASS][review-ci] | Complete | None; full minimizing-set stability, not attraction or uniqueness of a minimizer |
+| 4 | UV Sobolev ill-posedness | [`UVIllPosed.wave_torus_unbounded`](../lean/MathProofs/UVIllPosedness.lean), [`wave_whole_unbounded`](../lean/MathProofs/UVWholeSpace.lean) | [PASS][review-ci] | Complete | None in the stated linear sectors |
+| 5 | Spectral–phase identity | [`SpectralPhase.sharp_spectral_phase_decomposition`](../lean/MathProofs/SpectralPhaseIdentity.lean) | [PASS][review-ci] | Complete | None |
+| 6 | Nonlinear Fourier leakage | [`FourierLeakage.classification`](../lean/MathProofs/FourierLeakageWellPosed.lean) | [PASS][review-ci] | Complete | None for the stated local classical torus flow |
+| 7 | Negative constrained energy | [`NegativeEnergy.negative_constrained_energy`](../lean/MathProofs/NegativeEnergy.lean) | [PASS][review-ci] | Complete | None; genuine Sobolev trial proved using a compact bump carrier |
+| 8 | Curvature nonattainment | [`Curvature.global_nonattainment`, `strict_spreading`](../lean/MathProofs/CurvatureNonattainment.lean) | [PASS][review-ci] | Complete | None under the manuscript's dimension assumptions |
+| 9 | Dispersion minimum | [`Dispersion.exact_positive_wavenumber_minimum`](../lean/MathProofs/DispersionMinimum.lean) | [PASS][review-ci] | Complete | None |
+| 10 | S004 constraint count | [`S004.constraint_count`](../lean/MathProofs/S004ConstraintCount.lean) | [PASS][review-ci] | Complete | None for the regular fixed-background sector |
+| 11 | Weighted phase locking | [`phase_locking_exact_minimum`](../lean/MathProofs/PhaseLockingContinuous.lean) | [PASS][review-ci] | Complete | None |
+| 12 | Global scalar-metric obstruction | [`ManifoldScalarMetric.main`](../lean/MathProofs/ManifoldScalarMetric.lean) | [PASS][review-ci] | Complete | None for the positive-sign tensor construction |
+| 13 | Spectral identifiability | [`V18Forward.local_identifiability`, `null_direction`](../lean/MathProofs/V18FullForward.lean) | [PASS][review-ci] | Supporting proofs verified | Full derivative/block identification, concrete middle determinant in Lean, conditional nonlinear local level-set theorem |
+| 14 | Fourier-shell exclusion | [`FourierShell.shell_theorem`, `helmholtz`, `poly_dispersion`, `packets`](../lean/MathProofs/FourierShellL2.lean) | [PASS][review-ci] | Complete | None for the F10 manuscript statements |
 
 ## Exact remaining F09 work
 
@@ -98,3 +102,5 @@ requires a formal application of the implicit-function/submersion theorem.
 
 F11 and F12 are additional families outside the original fourteen. Their
 unmerged developments do not change this completion count.
+
+[review-ci]: https://github.com/rickyjreyes/math/actions/runs/40603164974
