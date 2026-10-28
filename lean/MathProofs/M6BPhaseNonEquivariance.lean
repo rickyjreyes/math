@@ -24,7 +24,7 @@ theorem canonical_curvature_one_nonzero (ε α : ℝ) (hε : 0 < ε) :
   unfold curvature
   apply div_ne_zero
   · norm_num
-  · exact hdenC
+  · simpa only [Complex.normSq_one] using hdenC
 
 /-- Invariance under U(1) holds, but equivariance under the same
 output phase fails already at the concrete jet (1,1) and u=-1. -/
@@ -47,7 +47,11 @@ theorem phase_invariant_not_equivariant (ε α : ℝ) (hε : 0 < ε) :
     have hmul : (2 : ℂ) * curvature ε α 0 1 1 1 = 0 := by
       calc
         _ = curvature ε α 0 1 1 1 + curvature ε α 0 1 1 1 := by ring
-        _ = 0 := by rw [hz]; ring
+        _ = 0 := by
+          have hsum : curvature ε α 0 1 1 1 + curvature ε α 0 1 1 1 =
+              curvature ε α 0 1 1 1 + -curvature ε α 0 1 1 1 :=
+            congrArg (fun z : ℂ => curvature ε α 0 1 1 1 + z) hz
+          simpa only [add_neg_cancel_right] using hsum
     rcases mul_eq_zero.mp hmul with h2 | h0
     · norm_num at h2
     · exact h0
