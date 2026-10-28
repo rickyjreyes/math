@@ -56,13 +56,13 @@ A problem is closed only when its exact version is answered. Store the theorem o
 
 ## Explicit status transitions
 
-- \`candidate\`: proposed, neither comprehensive literature search nor precise model audit completed.
-- \`scoping\`: exact statement and admissible model are being frozen.
-- \`literature_checked\`: closest relevant results compared; gap report dated.
-- \`open_verified\`: conditional and qualified assessment after critical review; not a claim of absolute worldwide priority.
-- \`partially_resolved\`: nontrivial specific part answered but broader classification still pending.
-- \`resolved\`: exact problem resolved analytically or by a documented existing theorem.
-- \`withdrawn\`: ill-posed, duplicative, or superseded; explanation retained.
+- `candidate`: proposed, neither comprehensive literature search nor precise model audit completed.
+- `scoping`: exact statement and admissible model are being frozen.
+- `literature_checked`: closest relevant results compared; gap report dated.
+- `open_verified`: conditional and qualified assessment after critical review; not a claim of absolute worldwide priority.
+- `partially_resolved`: nontrivial specific part answered but broader classification still pending.
+- `resolved`: exact problem resolved analytically or by a documented existing theorem.
+- `withdrawn`: ill-posed, duplicative, or superseded; explanation retained.
 
 The machine-readable [problem_registry.json](problem_registry.json) is the source of truth for status. Edit the register in the same PR as any status change. The validation script checks IDs, links, and formats but cannot determine whether a conjecture is original or true.
 
