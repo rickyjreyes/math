@@ -14,11 +14,30 @@ Pinned versions: Lean 4.23.0, Mathlib 4.23.0. All eleven pre-existing proof modu
 
 The first theorem is about constitutive closure **nonuniqueness** and the second about stationary-map **noninjectivity**. Neither establishes time-evolution nonuniqueness. A pointwise two-jet theorem is not asserted to solve an arbitrary PDE or to provide arbitrary prescribed forcing.
 
+## General-dimensional genuine-field formalization
+
+The new `M6BDimensionalField.lean` imports Mathlib's canonical
+`InnerProductSpace.laplacian` and exports the following current-head
+declarations:
+
+| Mathematical statement | Exact Lean name | Status |
+|---|---|---|
+| Define true d-dimensional Laplacian by second Fréchet derivative | `laplacianD` | Source committed; CI pending |
+| Constancy of complex phase commutes with the actual Laplacian for all C² fields | `laplacianD_phase` | Source committed; CI pending |
+| U(1) invariance of d-dimensional field-level curvature | `fieldCurvatureD_phase_invariant` | Source committed; CI pending |
+| Explicit globally smooth quadratic field on ℝ^d | `quadraticFieldD_smooth` | Source committed; CI pending |
+| Exact Hessian-trace identity Δ‖x‖²=2d | `squared_norm_laplacian_D` | Source committed; CI pending |
+| Explicit quadratic witness jet at the origin | `quadraticFieldD_at_origin`, `quadraticFieldD_laplacian_at_origin` | Source committed; CI pending |
+| Distinct closure images on genuine fields in *every* d≥1 | `distinct_closures_on_actual_fields_all_dimensions` | Source committed; CI pending |
+
+Unlike the old two-dimensional field example, this proposed theorem has the
+original universal `d ≥ 1` quantifier. It is not certified until compiled.
+
 ## Additional field-level and mass-scope work
 
 - `M6BClosureFieldWitness.lean` proves `distinct_closures_on_actual_smooth_field`: distinct admissible regularizations give different outputs on `squarePlus 1` at `(π/2,π/4)`, using the *computed* Laplacian, not an arbitrarily supplied jet. It is imported and listed in focused CI but **awaits current-head verification**.
 - `M6BFubini.lean` now also states `planarSquareMass_eq_sq_norm`: the actual product-measure mass is the square of the complex `L²` norm integrand, not just an unnamed intensity.
-- An exact general-dimension field-level bridge remains to be exported if the manuscript's `d ≥ 1` quantifier is to appear literally in Lean: for every `d ≥ 1`, for every `C²` complex field on an open subset of `ℝ^d`, show the `d`-dimensional Cartesian Laplacian obeys `Δ(uψ)=uΔψ` for constant unit complex `u`, and show the test field `ψ(x)=1+‖x‖²/(2d)` realizes the distinguishing jet `(1,1)` at the origin. The existing jet-level theorem itself has no dimension parameter. This is not a license to reinterpret the dimension-two field witness as a theorem for every dimension.
+- The new general-dimension module uses the equivalent quadratic profile `ψ(x)=1+‖x‖²`, yielding a distinguishing nonzero jet `(1,2d)` for each `d≥1`. Its exact current-head Lean proof remains subject to the full build. The field-space construction is on all of ℝ^d, whose restriction to any open neighborhood of zero supplies the local manuscript witness.
 - The newest branch commits have **no associated successful GitHub Actions runs**. Earlier `08f52a4d` green checks cannot certify them.
 
 **Certification policy:** Keep `main_theorem_formalized: false` until the current PR head passes the root `lake build` and focused CI, with the actual new declarations checked. Revalidate the manuscript statement's domain, parameter, and quantifier scope before declaring complete.
