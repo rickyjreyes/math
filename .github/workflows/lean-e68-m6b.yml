@@ -1,0 +1,33 @@
+name: E68 and M6B focused Lean checks
+on:
+  pull_request:
+    paths:
+      - 'lean/MathProofs/E68Scaling.lean'
+      - 'lean/MathProofs/M6BCurvature.lean'
+      - 'lean/MathProofs/M6BStationary.lean'
+      - 'lean/MathProofs.lean'
+      - '.github/workflows/lean-e68-m6b.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  proofs:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: lean
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Mathlib cache
+        run: |
+          lake update
+          lake exe cache get
+      - name: Reject holes or fresh axioms
+        run: |
+          if grep -nE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' MathProofs/E68Scaling.lean MathProofs/M6BCurvature.lean MathProofs/M6BStationary.lean; then exit 1; fi
+      - name: Kernel-check issue-specific declarations
+        run: lake build MathProofs.E68Scaling MathProofs.M6BCurvature MathProofs.M6BStationary
