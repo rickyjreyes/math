@@ -22,6 +22,6 @@ jobs:
           lake exe cache get
       - name: Forbid proof holes
         run: |
-          if grep -rnE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' MathProofs/E68Scaling.lean MathProofs/E68CriticalGradient.lean; then exit 1; fi
+          if grep -rnE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' MathProofs/E68Scaling.lean MathProofs/E68CriticalGradient.lean MathProofs/E68SmoothProfiles.lean; then exit 1; fi
       - name: Kernel-check exact issue modules
-        run: lake build MathProofs.E68Scaling MathProofs.E68CriticalGradient
+        run: lake build MathProofs.E68Scaling MathProofs.E68CriticalGradient MathProofs.E68SmoothProfiles
