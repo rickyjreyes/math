@@ -131,3 +131,11 @@ families:
     main_theorem_formalized: false
     covered: "E26 historical additive-denominator conditional L2 estimate and counterexample proved analytically; no Lean encoding. The corrected M2/E17 regularization is a separate operator."
     declarations: []
+
+open_manuscripts:
+  localized-gradient-energy-e68:
+    issue: "https://github.com/rickyjreyes/math/issues/41"
+    main_theorem_formalized: false
+    modules: [MathProofs/E68Scaling.lean, MathProofs/E68CriticalGradient.lean]
+    declarations: [ReyesMath.E68.two_dimensional_local_gradient_energy, ReyesMath.E68.smooth_concentration_scaling_obstruction, ReyesMath.E68.large_radius_one_dimensional_obstruction, ReyesMath.E68.high_dimensional_H2_scaling_obstruction, ReyesMath.E68.local_critical_gradient_norm, ReyesMath.E68.euclidean_ball_volume_scaling]
+    remaining: "Exact all-dimension H1 weak-gradient ball estimate classification; n=1 actual compactly supported counterexample; n>2 smooth concentration and fixed singular H1 fields with actual norm/scaling integrals; critical Lp-to-local integral conversion and explicit omega_n radius constant; H2 3D/4D regularity embedding and n>4 actual smooth-field counterexample."
