@@ -61,3 +61,4 @@ import MathProofs.V18MiddleJacobian
 import MathProofs.V18MiddleDerivatives
 import MathProofs.V18FullForward
 import MathProofs.E68Scaling
+import MathProofs.E68CriticalGradient
