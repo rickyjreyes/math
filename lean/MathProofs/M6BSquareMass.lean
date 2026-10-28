@@ -85,7 +85,7 @@ theorem squarePlus_prescribed_mass (m : ℝ) (hm : 0 < m) :
 
 theorem squareMinus_prescribed_mass (m : ℝ) (hm : 0 < m) :
     squareMass (squareMinus (amplitude m)) = m := by
-  rw [squareMinus_mass]
+  rw [squareMinus_mass, ← squarePlus_mass]
   exact squarePlus_prescribed_mass m hm
 
 end ReyesMath.M6B
