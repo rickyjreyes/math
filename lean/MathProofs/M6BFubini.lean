@@ -26,6 +26,14 @@ def planarSquareMass (ψ : ℝ → ℝ → ℂ) : ℝ :=
   ∫ p in openSquare, Complex.normSq (ψ p.1 p.2)
     ∂((volume : Measure ℝ).prod volume)
 
+/-- The product-measure mass is the literal squared complex L²
+integral, as opposed to only a normSq notation. -/
+theorem planarSquareMass_eq_sq_norm (ψ : ℝ → ℝ → ℂ) :
+    planarSquareMass ψ =
+      (∫ p in openSquare, ‖ψ p.1 p.2‖ ^ 2
+        ∂((volume : Measure ℝ).prod volume)) := by
+  simp only [planarSquareMass, Complex.normSq_eq_norm_sq]
+
 /-- Fubini identifies the whole square's real product-measure integral
 with the previously calculated iterated Lebesgue integral whenever the
 field has a continuous extension to ℝ². -/
