@@ -14,7 +14,7 @@ namespace ReyesMath.M6B
 
 theorem sin_sq_one_integral :
     (∫ x in (0 : ℝ)..Real.pi, Real.sin x ^ 2) = Real.pi / 2 := by
-  rw [intervalIntegral.integral_sin_sq]
+  rw [integral_sin_sq]
   simp
   ring
 
@@ -23,12 +23,12 @@ theorem sin_sq_two_integral :
   have hscale :
       (2 : ℝ) * (∫ x in (0 : ℝ)..Real.pi, Real.sin (2 * x) ^ 2) =
       ∫ x in (0 : ℝ)..2 * Real.pi, Real.sin x ^ 2 := by
-    simpa using
+    simpa only [mul_zero, zero_mul] using
       (intervalIntegral.mul_integral_comp_mul_left
         (f := fun x : ℝ => Real.sin x ^ 2) (a := 0) (b := Real.pi) (c := 2))
   have hdouble :
       (∫ x in (0 : ℝ)..2 * Real.pi, Real.sin x ^ 2) = Real.pi := by
-    rw [intervalIntegral.integral_sin_sq]
+    rw [integral_sin_sq]
     simp
     ring
   rw [hdouble] at hscale
