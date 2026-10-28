@@ -23,7 +23,6 @@ theorem curvature_zero_epsilon (α lam S : ℝ) (z w : ℂ) (hz : z ≠ 0) :
     zero_mul, add_zero]
   rw [hnorm]
   field_simp [hz, hconj]
-  ring
 
 /-- The *full complex quotient* converges at nonzero field values,
 not merely the real regularizing denominator.  We use unrestricted
@@ -45,7 +44,7 @@ theorem curvature_nonzero_limit (α lam S : ℝ)
       fun_prop
     exact continuousAt_const.div hdenCont (by exact_mod_cast hden)
   convert hcont.tendsto using 1
-  exact curvature_zero_epsilon α lam S z w hz
+  exact (curvature_zero_epsilon α lam S z w hz).symm
 
 /-- The one-sided ε↓0 limit, as stated in the manuscript. -/
 theorem curvature_downarrow_zero (α lam S : ℝ)
