@@ -139,9 +139,7 @@ theorem quadraticFieldD_smooth (d : ℕ) :
   have hsum : ContDiff ℝ ⊤ (fun x : E => (1 : ℝ) + ‖x‖ ^ 2) :=
     (contDiff_const (c := (1 : ℝ))).add hnorm
   convert (Complex.ofRealCLM.contDiff.comp hsum) using 1
-  funext x
-  rfl
-
+  
 /-- The raw real squared norm has the exact Hessian trace 2d on
 the d-dimensional Euclidean vector space. -/
 theorem squared_norm_laplacian_D (d : ℕ)
@@ -153,7 +151,7 @@ theorem squared_norm_laplacian_D (d : ℕ)
   let L : E →L[ℝ] (E →L[ℝ] ℝ) := innerSL ℝ
   have hd (y : E) :
       fderiv ℝ (fun z : E => ‖z‖ ^ 2) y = (2 : ℝ) • L y := by
-    simpa [L] using ((hasFDerivAt_id y).norm_sq.fderiv)
+    simpa [L, two_smul] using ((hasFDerivAt_id y).norm_sq.fderiv)
   have hfun :
       fderiv ℝ (fun z : E => ‖z‖ ^ 2) =
         fun y => (2 : ℝ) • L y := funext hd
@@ -205,8 +203,13 @@ theorem quadraticFieldD_laplacian_at_origin (d : ℕ) :
     exact h
   have hc := (hf.contDiffAt : ContDiffAt ℝ 2 f (0 : E)).laplacian_CLM_comp_left
     (l := Complex.ofRealCLM)
-  simpa [laplacianD, quadraticFieldD, f, Function.comp_def,
-    hreal] using hc
+  have hfun : (fun y : E => ((f y : ℝ) : ℂ)) = quadraticFieldD d := by
+    funext y
+    simp [f, quadraticFieldD, Complex.ofReal_add]
+  change InnerProductSpace.laplacian (quadraticFieldD d) (0 : E) =
+    ((2 * (d : ℝ) : ℝ) : ℂ)
+  rw [← hfun]
+  simpa [Function.comp_def, hreal] using hc
 
 /-- The manuscript's infinite family is genuinely nonunique on
 actual C-infinity complex fields for *every* spatial d >= 1.
