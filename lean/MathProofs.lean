@@ -84,3 +84,4 @@ import MathProofs.E68SmoothProfiles
 import MathProofs.E68WeakH1
 import MathProofs.E68OneDimEnergy
 import MathProofs.E68HigherDimEnergy
+import MathProofs.E68ChangeVariables
