@@ -19,7 +19,7 @@ theorem curvature_contDiff (ε α lam S : ℝ)
   have hz : ContDiff ℝ ⊤ (fun p : ℂ × ℂ => p.1) := by fun_prop
   have hw : ContDiff ℝ ⊤ (fun p : ℂ × ℂ => p.2) := by fun_prop
   have hn : ContDiff ℝ ⊤ (fun p : ℂ × ℂ => Complex.normSq p.1) := by
-    simpa only [Complex.normSq_eq_norm_sq] using hz.norm_sq
+    simpa only [Complex.normSq_eq_norm_sq] using (ContDiff.norm_sq (𝕜 := ℂ) hz)
   have hSpos : ∀ p : ℂ × ℂ, S + Complex.normSq p.1 ≠ 0 := by
     intro p
     have hnonneg := Complex.normSq_nonneg p.1
