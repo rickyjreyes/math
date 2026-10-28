@@ -74,3 +74,4 @@ import MathProofs.M6BClosureTheorem
 import MathProofs.M6BFubini
 import MathProofs.M6BManuscript
 import MathProofs.M6BPhaseNonEquivariance
+import MathProofs.M6BClosureFieldWitness
