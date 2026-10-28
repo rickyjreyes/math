@@ -36,7 +36,6 @@ theorem square_intensity_eq (c x y : ℝ) :
     Complex.normSq (squarePlus c x y) =
       Complex.normSq (squareMinus c x y) := by
   simp [squarePlus, squareMinus, Complex.normSq_apply]
-  ring
 
 private theorem modeF_P :
     squareModeF (Real.pi / 2) (Real.pi / 4) = 1 := by
@@ -119,6 +118,7 @@ theorem square_modes_dirichlet (x y : ℝ) (h : onSquareEdge x y) :
 theorem square_fields_dirichlet (c x y : ℝ) (h : onSquareEdge x y) :
     squarePlus c x y = 0 ∧ squareMinus c x y = 0 := by
   obtain ⟨hf, hg⟩ := square_modes_dirichlet x y h
-  simp [squarePlus, squareMinus, hf, hg] <;> rfl
+  simp [squarePlus, squareMinus, hf, hg]
+  rfl
 
 end ReyesMath.M6B
