@@ -33,17 +33,6 @@ def prescribedForcing (ε α m : ℝ) (p : ℝ × ℝ) : ℝ :=
 
 theorem prescribedForcing_smooth (ε α m : ℝ) (hε : 0 < ε) :
     ContDiff ℝ ⊤ (prescribedForcing ε α m) := by
-  have hA : ContDiff ℝ ⊤
-      (fun p : ℝ × ℝ => density m p.1 p.2) := by
-    unfold density
-    fun_prop
-  have hExp : ContDiff ℝ ⊤
-      (fun p : ℝ × ℝ => Real.exp (-2 * α * density m p.1 p.2)) :=
-    (hA.const_mul (-2 * α)).exp
-  have hD : ContDiff ℝ ⊤
-      (fun p : ℝ × ℝ => density m p.1 p.2 +
-        ε ^ 2 * Real.exp (-2 * α * density m p.1 p.2)) :=
-    hA.add (hExp.const_mul (ε ^ 2))
   have hDne : ∀ p : ℝ × ℝ,
       density m p.1 p.2 +
         ε ^ 2 * Real.exp (-2 * α * density m p.1 p.2) ≠ 0 := by
@@ -51,7 +40,16 @@ theorem prescribedForcing_smooth (ε α m : ℝ) (hε : 0 < ε) :
     have h := denominator_pos ε α 0 1 (density m p.1 p.2)
       hε (by norm_num) (by norm_num) (density_nonneg m p.1 p.2)
     exact ne_of_gt (by simpa [denominator_canonical] using h)
-  exact (hA.const_mul 5).div hD hDne
+  have hn : ContDiff ℝ ⊤
+      (fun p : ℝ × ℝ => 5 * density m p.1 p.2) := by
+    unfold density
+    fun_prop
+  have hd : ContDiff ℝ ⊤
+      (fun p : ℝ × ℝ => density m p.1 p.2 +
+        ε ^ 2 * Real.exp (-2 * α * density m p.1 p.2)) := by
+    unfold density
+    fun_prop
+  exact ContDiff.div hn hd hDne
 
 /-- Exact eigenjet identity for the canonical regularized curvature,
 with an *explicit real* value. -/
