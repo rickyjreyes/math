@@ -44,7 +44,7 @@ theorem curvature_nonzero_limit (α lam S : ℝ)
       fun_prop
     exact continuousAt_const.div hdenCont (by exact_mod_cast hden)
   convert hcont.tendsto using 1
-  exact (curvature_zero_epsilon α lam S z w hz).symm
+  exact congrArg nhds ((curvature_zero_epsilon α lam S z w hz).symm)
 
 /-- The one-sided ε↓0 limit, as stated in the manuscript. -/
 theorem curvature_downarrow_zero (α lam S : ℝ)
