@@ -36,8 +36,6 @@ theorem squarePlus_smooth (c : ℝ) :
   have hp := hr.prodMk hi
   have h := Complex.equivRealProdCLM.symm.contDiff.comp hp
   convert h using 1
-  funext p
-  rfl
 
 theorem squareMinus_smooth (c : ℝ) :
     ContDiff ℝ ⊤ (fun p : ℝ × ℝ => squareMinus c p.1 p.2) := by
@@ -52,8 +50,5 @@ theorem squareMinus_smooth (c : ℝ) :
   have hp := hr.prodMk hi
   have h := Complex.equivRealProdCLM.symm.contDiff.comp hp
   convert h using 1
-  funext p
-  simp [squareMinus]
-  ring
 
 end ReyesMath.M6B
