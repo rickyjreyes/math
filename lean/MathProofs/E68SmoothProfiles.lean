@@ -75,4 +75,34 @@ theorem compactOneDim_nonconstant : compactOneDim 0 ≠ compactOneDim 1 := by
   rw [compactOneDim_at_zero, compactOneDim_at_one]
   norm_num
 
+/-- Every positive-radius concentration is an actual compactly
+supported smooth field, not a formal rescaling symbol. -/
+theorem smoothConcentration_hasCompactSupport (n : ℕ) (R : ℝ)
+    (hR : 0 < R) :
+    HasCompactSupport (smoothConcentration n R) := by
+  have hcomp : HasCompactSupport
+      (fun x : EuclideanSpace ℝ (Fin n) =>
+        compactProfile n ((R⁻¹ : ℝ) • x)) :=
+    (compactProfile_hasCompactSupport n).comp_smul
+      (inv_ne_zero (ne_of_gt hR))
+  change HasCompactSupport
+    ((fun _ : EuclideanSpace ℝ (Fin n) =>
+        R ^ (1 - (n : ℝ) / 2)) *
+      (fun x : EuclideanSpace ℝ (Fin n) =>
+        compactProfile n ((R⁻¹ : ℝ) • x)))
+  exact hcomp.mul_left
+
+/-- The chosen one-dimensional bump has support *inside* (-1,1),
+exactly as required for the large-radius E68 counterexample. -/
+theorem compactOneDim_support_in_unit_interval :
+    Function.support (fun x : ℝ => compactOneDim x) ⊆
+      Set.Ioo (-1 : ℝ) 1 := by
+  intro x hx
+  have hball : x ∈ Metric.ball (0 : ℝ) compactOneDim.rOut := by
+    rw [← compactOneDim.support_eq]
+    exact hx
+  have hnorm : |x| < (1 / 2 : ℝ) := by
+    simpa [Metric.mem_ball, Real.dist_eq, compactOneDim] using hball
+  exact ⟨by linarith [neg_abs_le x], by linarith [le_abs_self x]⟩
+
 end ReyesMath.E68
