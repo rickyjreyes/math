@@ -35,15 +35,14 @@ pointwise intensity, at *every* point of the square. -/
 theorem square_intensity_eq (c x y : ℝ) :
     Complex.normSq (squarePlus c x y) =
       Complex.normSq (squareMinus c x y) := by
-  simp only [squarePlus, squareMinus, Complex.normSq_apply,
-    Complex.mk_re, Complex.mk_im]
+  simp [squarePlus, squareMinus, Complex.normSq_apply]
   ring
 
 private theorem modeF_P :
     squareModeF (Real.pi / 2) (Real.pi / 4) = 1 := by
   unfold squareModeF
   have h : (2 : ℝ) * (Real.pi / 4) = Real.pi / 2 := by ring
-  rw [h, Real.sin_pi_div_two, Real.sin_pi_div_two]
+  rw [h]
   norm_num
 
 private theorem modeG_P :
@@ -64,7 +63,7 @@ private theorem modeG_Q :
     squareModeG (Real.pi / 4) (Real.pi / 2) = 1 := by
   unfold squareModeG
   have h : (2 : ℝ) * (Real.pi / 4) = Real.pi / 2 := by ring
-  rw [h, Real.sin_pi_div_two, Real.sin_pi_div_two]
+  rw [h]
   norm_num
 
 /-- There is no constant complex phase (not even of arbitrary modulus)
@@ -120,6 +119,6 @@ theorem square_modes_dirichlet (x y : ℝ) (h : onSquareEdge x y) :
 theorem square_fields_dirichlet (c x y : ℝ) (h : onSquareEdge x y) :
     squarePlus c x y = 0 ∧ squareMinus c x y = 0 := by
   obtain ⟨hf, hg⟩ := square_modes_dirichlet x y h
-  simp [squarePlus, squareMinus, hf, hg]
+  simp [squarePlus, squareMinus, hf, hg] <;> rfl
 
 end ReyesMath.M6B
