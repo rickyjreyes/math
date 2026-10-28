@@ -1,6 +1,6 @@
 # Formalization review — 2026-10-27
 
-The maintained library contains **67 project modules and 1,539 source theorem/lemma
+The maintained library contains **83 project modules and 1,624 source theorem/lemma
 declarations**, including private lemmas. **13 of the 14 original manuscripts are
 complete** under the manifest's manuscript-wide criterion. F09 remains partial.
 The declaration count is an inventory, not a measure of mathematical novelty or
