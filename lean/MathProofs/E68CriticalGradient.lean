@@ -23,24 +23,24 @@ theorem local_critical_gradient_norm
     (hg : AEStronglyMeasurable g (volume : Measure (EuclideanSpace ℝ (Fin n))))
     (center : EuclideanSpace ℝ (Fin n)) (R : ℝ) :
     eLpNorm g 2 (volume.restrict (Metric.ball center R)) ≤
-      eLpNorm g (n : ℝ≥0∞) volume *
+      eLpNorm g (n : ENNReal) volume *
         ((volume.restrict (Metric.ball center R)) Set.univ) ^
-          (1 / (2 : ℝ≥0∞).toReal - 1 / (n : ℝ≥0∞).toReal) := by
-  have hpq : (2 : ℝ≥0∞) ≤ (n : ℝ≥0∞) := by
+          (1 / (2 : ENNReal).toReal - 1 / (n : ENNReal).toReal) := by
+  have hpq : (2 : ENNReal) ≤ (n : ENNReal) := by
     exact_mod_cast Nat.le_of_lt hn
   have hcomp := eLpNorm_le_eLpNorm_mul_rpow_measure_univ
     (f := g) (μ := volume.restrict (Metric.ball center R))
     hpq hg.restrict
   calc
     eLpNorm g 2 (volume.restrict (Metric.ball center R)) ≤
-        eLpNorm g (n : ℝ≥0∞) (volume.restrict (Metric.ball center R)) *
+        eLpNorm g (n : ENNReal) (volume.restrict (Metric.ball center R)) *
           ((volume.restrict (Metric.ball center R)) Set.univ) ^
-            (1 / (2 : ℝ≥0∞).toReal - 1 / (n : ℝ≥0∞).toReal) := hcomp
-    _ ≤ eLpNorm g (n : ℝ≥0∞) volume *
+            (1 / (2 : ENNReal).toReal - 1 / (n : ENNReal).toReal) := hcomp
+    _ ≤ eLpNorm g (n : ENNReal) volume *
           ((volume.restrict (Metric.ball center R)) Set.univ) ^
-            (1 / (2 : ℝ≥0∞).toReal - 1 / (n : ℝ≥0∞).toReal) := by
+            (1 / (2 : ENNReal).toReal - 1 / (n : ENNReal).toReal) := by
       gcongr
-      exact eLpNorm_restrict_le g (n : ℝ≥0∞) volume (Metric.ball center R)
+      exact eLpNorm_restrict_le g (n : ENNReal) volume (Metric.ball center R)
 
 /-- Exact radius dependence of Lebesgue volume for every n>2 and R>0.
 This is the geometric origin of the R^(n-2) energy exponent. -/
@@ -49,6 +49,7 @@ theorem euclidean_ball_volume_scaling
     (center : EuclideanSpace ℝ (Fin n)) (R : ℝ) (hR : 0 < R) :
     volume (Metric.ball center R) =
       ENNReal.ofReal (R ^ n) * volume (Metric.ball (0 : EuclideanSpace ℝ (Fin n)) 1) := by
+  letI : Nonempty (Fin n) := ⟨⟨0, by omega⟩⟩
   rw [Measure.addHaar_ball (volume : Measure (EuclideanSpace ℝ (Fin n))) center hR.le]
   simp [finrank_euclideanSpace]
 
