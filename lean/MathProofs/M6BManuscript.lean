@@ -107,18 +107,18 @@ theorem manuscript_stationary_noninjectivity
     (ε α m : ℝ) (hε : 0 < ε) (hm : 0 < m) :
     ∃ F : ℝ × ℝ → ℝ,
       ContDiff ℝ ⊤ F ∧
-      ∃ ψ₊ ψ₋ : ℝ → ℝ → ℂ,
-        ContDiff ℝ ⊤ (fun p : ℝ × ℝ => ψ₊ p.1 p.2) ∧
-        ContDiff ℝ ⊤ (fun p : ℝ × ℝ => ψ₋ p.1 p.2) ∧
-        planarSquareMass ψ₊ = m ∧
-        planarSquareMass ψ₋ = m ∧
+      ∃ psiPlus psiMinus : ℝ → ℝ → ℂ,
+        ContDiff ℝ ⊤ (fun p : ℝ × ℝ => psiPlus p.1 p.2) ∧
+        ContDiff ℝ ⊤ (fun p : ℝ × ℝ => psiMinus p.1 p.2) ∧
+        planarSquareMass psiPlus = m ∧
+        planarSquareMass psiMinus = m ∧
         (∀ x y : ℝ, squareInterior x y →
-          canonicalStationaryMap ε α ψ₊ x y = (F (x, y) : ℂ) ∧
-          canonicalStationaryMap ε α ψ₋ x y = (F (x, y) : ℂ)) ∧
+          canonicalStationaryMap ε α psiPlus x y = (F (x, y) : ℂ) ∧
+          canonicalStationaryMap ε α psiMinus x y = (F (x, y) : ℂ)) ∧
         (∀ x y : ℝ, onSquareEdge x y →
-          ψ₊ x y = 0 ∧ ψ₋ x y = 0) ∧
+          psiPlus x y = 0 ∧ psiMinus x y = 0) ∧
         ¬ ∃ u : ℂ, ∀ x y : ℝ, squareInterior x y →
-          ψ₋ x y = u * ψ₊ x y := by
+          psiMinus x y = u * psiPlus x y := by
   refine ⟨prescribedForcing ε α m, prescribedForcing_smooth ε α m hε,
     squarePlus (amplitude m), squareMinus (amplitude m),
     squarePlus_smooth (amplitude m), squareMinus_smooth (amplitude m),
