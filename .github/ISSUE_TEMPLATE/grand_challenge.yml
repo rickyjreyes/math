@@ -1,0 +1,64 @@
+name: "Grand Challenge research contribution"
+description: "Submit a proof, counterexample, prior-art finding, or precise correction for GC01-GC50"
+title: "[GCxx] "
+body:
+  - type: input
+    id: gc_id
+    attributes:
+      label: "Challenge ID"
+      description: "Use a valid challenge ID, for example GC08."
+      placeholder: "GC08"
+    validations:
+      required: true
+  - type: dropdown
+    id: contribution
+    attributes:
+      label: "Contribution type"
+      options:
+        - "Existing result / literature correction"
+        - "Counterexample / impossibility"
+        - "Mathematical proof"
+        - "Lean 4 formalization"
+        - "Model or hypothesis correction"
+        - "Numerical falsification test"
+        - "Other research question"
+    validations:
+      required: true
+  - type: textarea
+    id: exact
+    attributes:
+      label: "Exact statement and hypotheses"
+      description: "Identify the version, model, parameters, spaces, and quantifiers."
+      placeholder: "I address the claim that ... under the assumptions ..."
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: "Proof, counterexample, or evidence"
+      description: "Provide reproducible derivations, theorem references, links, or source code."
+    validations:
+      required: true
+  - type: textarea
+    id: literature
+    attributes:
+      label: "Closest known results"
+      description: "Give citations and explain precisely how this differs, or say if review is incomplete."
+    validations:
+      required: false
+  - type: textarea
+    id: limitations
+    attributes:
+      label: "Limitations and what is not proved"
+      description: "Distinguish analytic, Lean-verified, numerical, and physical claims."
+    validations:
+      required: false
+  - type: checkboxes
+    id: integrity
+    attributes:
+      label: "Research integrity"
+      options:
+        - label: "I have stated which exact claim the evidence addresses."
+          required: true
+        - label: "I have not presented simulation or unverified novelty as a completed mathematical proof."
+          required: true
