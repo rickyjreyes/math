@@ -72,3 +72,4 @@ import MathProofs.M6BForcing
 import MathProofs.M6BJetSmooth
 import MathProofs.M6BClosureTheorem
 import MathProofs.M6BFubini
+import MathProofs.M6BManuscript
