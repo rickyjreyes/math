@@ -1,6 +1,6 @@
 # Formalization review — 2026-10-27
 
-The maintained library contains **83 project modules and 1,624 source theorem/lemma
+The maintained library contains **84 project modules and 1,643 source theorem/lemma
 declarations**, including private lemmas. **13 of the 14 original manuscripts are
 complete** under the manifest's manuscript-wide criterion. F09 remains partial.
 The declaration count is an inventory, not a measure of mathematical novelty or
@@ -89,6 +89,13 @@ The actual forward map and its Jacobian are defined, and at every point where
 that map is differentiable the rank is at most 11 and its kernel dimension is
 at least 20. The new middle proofs establish strict floor inactivity and all
 seven coordinate derivatives at the five frozen middle observations.
+`V18BranchBounds` additionally proves the three light floors strictly inactive
+for every nonnegative alpha, the heavy inner light floors strictly active,
+and the heavy outer floors strictly inactive. Exact exponential and power
+clipping bounds are also checked. The light estimates use rational lower
+bounds on exponential Taylor sums and proved logarithm bounds; the heavy
+estimates use monotonicity and positivity of real powers. Neighborhood
+regularity and derivative identification remain the next steps.
 
 The next analytic obligation is to identify the full Fréchet derivative of
 `V18Forward.observed` near `V18Forward.frozen alpha 5`, for the stated alpha
