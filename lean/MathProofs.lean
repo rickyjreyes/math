@@ -68,3 +68,4 @@ import MathProofs.M6BMass
 import MathProofs.M6BSmooth
 import MathProofs.M6BSquareMass
 import MathProofs.M6BStationaryTheorem
+import MathProofs.M6BForcing
