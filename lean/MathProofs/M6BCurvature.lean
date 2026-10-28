@@ -110,6 +110,7 @@ theorem equal_intensity_eigenjets (ε α lam S : ℝ)
         rw [Complex.mul_conj']
         push_cast
         rw [Complex.normSq_eq_norm_sq]
+        push_cast
   rw [eigen_formula z₁, eigen_formula z₂, h]
 
 /-- The family denominators are injectively parametrized by lam even
