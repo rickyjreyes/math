@@ -6,7 +6,9 @@
 
 These questions connect nonlinear partial differential equations, variational analysis, spectral geometry, topological fields, computation, and formal verification. They are invitations to investigate, not claims of 50 previously unknown theorems.
 
-**[Explore the 50 formal problem statements](./FORMAL_PROBLEMS.md)** · **[Browse existing papers](../papers)** · **[Explore Lean 4 proofs](../lean/MathProofs)** · **[Open a research discussion](https://github.com/rickyjreyes/math/issues)**
+**[Formal problems](./FORMAL_PROBLEMS.md)** · **[Live research status](./STATUS.md)** · **[Five flagship dossiers](#start-here-five-questions-worth-exploring)** · **[Candidate notebook](./NOTEBOOK.md)** · **[How to contribute](./CONTRIBUTING.md)**
+
+**[Screening and editorial method](./METHOD.md)** · [Initial literature ledger](./LITERATURE.md) · [Flagship screening](./SCREENING.md) · [Existing papers](../papers) · [Lean 4 source](../lean/MathProofs) · [Submit a research contribution](https://github.com/rickyjreyes/math/issues/new?template=grand_challenge.yml)
 
 > [!IMPORTANT]
 > **Research status:** This is a proposed challenge catalogue, **not** an established list of unsolved problems comparable in standing to the Millennium Prize Problems. No prizes are offered. Novelty and open status have not been established through comprehensive literature review. Some statements have partial results or counterexamples; others require sharper assumptions. See [research standards](#what-counts-as-a-solution).
@@ -21,11 +23,15 @@ A nonlinear wave may spread, fragment, or remain localized. Find the precise con
 
 *Relevant foundations: [whole-space minimizers](../papers/whole-space-fourth-order-cubic-quintic-minimizers) and [Lean minimizer modules](../lean/MathProofs/WholeSpaceMinimizers.lean).*
 
+**Research dossier:** [GC06 · Precise model, known obstructions, and next proof tests](./flagship/GC06.md)
+
 ### [**GC36 · Can a knot of wave energy survive?**](./FORMAL_PROBLEMS.md#gc36-stable-knotted-wave-configurations)
 
 Determine whether a nontrivial topological class supports a stable stationary field, or prove an obstruction. A picture of a knot is not itself a stability theorem.
 
 *Research status: proposed model-dependent existence and stability question.*
+
+**Research dossier:** [GC36 · Precise model, known obstructions, and next proof tests](./flagship/GC36.md)
 
 ### [**GC11 · Can a wave select its own wavelength?**](./FORMAL_PROBLEMS.md#gc11-nonlinear-finite-wavelength-selection)
 
@@ -33,17 +39,23 @@ Linear dispersion can prefer a finite scale. The harder question is whether nonl
 
 *Related foothold: [exact positive-wave-number minimum](../papers/exact-positive-wavenumber-minimum) and [Lean dispersion analysis](../lean/MathProofs/DispersionMinimum.lean).*
 
+**Research dossier:** [GC11 · Precise model, known obstructions, and next proof tests](./flagship/GC11.md)
+
 ### [**GC43 · Can a wave-based rule compute anything?**](./FORMAL_PROBLEMS.md#gc43-discrete-wave-computational-universality)
 
 Specify a finite-alphabet local wave-cell model and ask whether a fixed rule can simulate every Turing machine with polynomial overhead.
 
 *Research status: proposed computational model, not a claim about demonstrated physical hardware.*
 
+**Research dossier:** [GC43 · Precise model, known obstructions, and next proof tests](./flagship/GC43.md)
+
 ### [**GC01 · Which waves can survive a disturbance?**](./FORMAL_PROBLEMS.md#gc01-universal-orbital-stability)
 
 Go beyond stable ground-state minimizers and classify standing waves, including excited states, whose phase-and-translation orbits remain stable.
 
 *Relevant foundations: [orbital stability analysis](../papers/orbital-stability-fourth-order-cubic-quintic) and [Lean stability module](../lean/MathProofs/OrbitalStability.lean).*
+**Research dossier:** [GC01 · Precise model, known obstructions, and next proof tests](./flagship/GC01.md)
+
 
 ---
 
@@ -67,7 +79,7 @@ Related starting points: [orbital stability](../papers/orbital-stability-fourth-
 
 **Choose a question.** Each title links to its mathematical problem statement, including a proof-or-counterexample resolution criterion. The plain-language prompts below are guides, not replacements for the formal statements.
 
-**Status key:** All entries are **proposed / literature review pending** unless specifically noted. *Related established work* is not a claim that the challenge is solved.
+**Status key:** All entries remain **candidate research questions** unless specifically documented. **GC08** has a partial negative resolution (the unrestricted uniqueness condition fails). The five featured dossiers include initial literature leads, not exhaustive novelty clearance. [Track all 50 statuses](./STATUS.md) and [see how problems are screened](./METHOD.md).
 
 <details open>
 <summary><strong>Nonlinear wave dynamics</strong> · 5 challenges</summary>
@@ -227,6 +239,14 @@ That refutes uniqueness under the unrestricted conditions. The interesting remai
 
 ---
 
+## How this free problem book works
+
+**Capture** ideas in the [candidate notebook](./NOTEBOOK.md). **Screen** them using the [precision and prior-art rubric](./METHOD.md). **Compare** nearby established theorems in the [literature ledger](./LITERATURE.md). **Work** on one of the [five flagship dossiers](#start-here-five-questions-worth-exploring). **Contribute** a proof, counterexample, model correction, or verified Lean theorem through GitHub. **Record** the exact result in the [status register](./STATUS.md), preserving withdrawn and refuted questions.
+
+The registry distinguishes **candidate**, **scoping**, **literature-checked**, **partially resolved**, **resolved**, and **withdrawn** work. This is an open mathematical notebook, not a claim that every listed item is a globally recognized open conjecture.
+
+---
+
 ## What counts as a solution?
 
 A challenge is **not completed** by an appealing visualization, a successful numerical run, a Lean lemma about a simplified model, or an argument that assumes the main conclusion.
@@ -241,7 +261,7 @@ To resolve a mathematical problem:
 
 ### Want to work on one?
 
-Pick any **GC01–GC50**, read its [formal problem statement](./FORMAL_PROBLEMS.md), and [open a GitHub issue](https://github.com/rickyjreyes/math/issues/new) identifying the challenge ID, relevant prior work, and your proposed proof, counterexample, or sharper formulation. Contributions can include literature corrections and evidence that an item is already known or not well-posed.
+Pick any **GC01–GC50**, read its [formal statement](./FORMAL_PROBLEMS.md), and [submit a structured research contribution](https://github.com/rickyjreyes/math/issues/new?template=grand_challenge.yml). The [contribution guide](./CONTRIBUTING.md) describes how to document proofs, counterexamples, existing literature, and corrected hypotheses. No prizes or paid services are required. A [versioned JSON register](./problem_registry.json) tracks every entry, and a [standard-library validation script](./scripts/validate_catalog.py) checks catalogue integrity.
 
 **A good challenge is not one that sounds impossible. It is one whose answer changes what we can rigorously say about waves.**
 
