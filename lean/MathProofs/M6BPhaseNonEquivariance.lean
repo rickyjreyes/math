@@ -51,7 +51,7 @@ theorem phase_invariant_not_equivariant (ε α : ℝ) (hε : 0 < ε) :
           have hsum : curvature ε α 0 1 1 1 + curvature ε α 0 1 1 1 =
               curvature ε α 0 1 1 1 + -curvature ε α 0 1 1 1 :=
             congrArg (fun z : ℂ => curvature ε α 0 1 1 1 + z) hz
-          simpa only [add_neg_cancel_right] using hsum
+          exact hsum.trans (add_neg_cancel _)
     rcases mul_eq_zero.mp hmul with h2 | h0
     · norm_num at h2
     · exact h0
