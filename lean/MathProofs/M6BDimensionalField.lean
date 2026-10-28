@@ -42,7 +42,7 @@ theorem laplacianD_phase (d : ℕ)
     laplacianD d (fun y => u * ψ y) x =
       u * laplacianD d ψ x := by
   let L : ℂ →L[ℝ] ℂ := (ContinuousLinearMap.lsmul ℝ ℂ) u
-  have h := (hψ.contDiffAt x).laplacian_CLM_comp_left (l := L)
+  have h := (hψ.contDiffAt : ContDiffAt ℝ 2 ψ x).laplacian_CLM_comp_left (l := L)
   simpa only [laplacianD, Function.comp_def, L,
     ContinuousLinearMap.lsmul_apply, smul_eq_mul] using h
 
@@ -138,8 +138,9 @@ theorem quadraticFieldD_smooth (d : ℕ) :
     (contDiff_id (E := E)).norm_sq ℝ
   have hsum : ContDiff ℝ ⊤ (fun x : E => (1 : ℝ) + ‖x‖ ^ 2) :=
     (contDiff_const (c := (1 : ℝ))).add hnorm
-  simpa [quadraticFieldD, Function.comp_def] using
-    (Complex.ofRealCLM.contDiff.comp hsum)
+  convert (Complex.ofRealCLM.contDiff.comp hsum) using 1
+  funext x
+  rfl
 
 /-- The raw real squared norm has the exact Hessian trace 2d on
 the d-dimensional Euclidean vector space. -/
@@ -152,7 +153,7 @@ theorem squared_norm_laplacian_D (d : ℕ)
   let L : E →L[ℝ] (E →L[ℝ] ℝ) := innerSL ℝ
   have hd (y : E) :
       fderiv ℝ (fun z : E => ‖z‖ ^ 2) y = (2 : ℝ) • L y := by
-    simpa [L] using (fderiv_norm_sq_apply y)
+    simpa [L] using ((hasFDerivAt_id y).norm_sq.fderiv)
   have hfun :
       fderiv ℝ (fun z : E => ‖z‖ ^ 2) =
         fun y => (2 : ℝ) • L y := funext hd
@@ -165,8 +166,8 @@ theorem squared_norm_laplacian_D (d : ℕ)
     (fun y : E => ‖y‖ ^ 2)]
   simp only [iteratedFDeriv_two_apply]
   simp_rw [htwo]
-  simp [L, innerSL_apply, real_inner_self_eq_norm_sq,
-    OrthonormalBasis.norm_eq_one, finrank_euclideanSpace]
+  simp [L, OrthonormalBasis.norm_eq_one]
+  simpa [E, finrank_euclideanSpace_fin, mul_comm]
 
 
 /-- The polynomial witness has the nonzero field value one at the
@@ -188,9 +189,9 @@ theorem quadraticFieldD_laplacian_at_origin (d : ℕ) :
     dsimp [f]
     exact (contDiff_const (c := (1 : ℝ))).add hnorm
   have hconst : ContDiffAt ℝ 2 (fun _ : E => (1 : ℝ)) 0 :=
-    (contDiff_const (c := (1 : ℝ))).contDiffAt 0
+    (contDiff_const (c := (1 : ℝ))).contDiffAt
   have hsq : ContDiffAt ℝ 2 (fun y : E => ‖y‖ ^ 2) 0 :=
-    hnorm.contDiffAt 0
+    hnorm.contDiffAt
   have hreal : InnerProductSpace.laplacian f (0 : E) = 2 * (d : ℝ) := by
     have h := hconst.laplacian_add hsq
     change InnerProductSpace.laplacian f 0 =
@@ -202,7 +203,7 @@ theorem quadraticFieldD_laplacian_at_origin (d : ℕ) :
       simp [iteratedFDeriv_const_of_ne two_ne_zero]
     rw [hzero, zero_add, squared_norm_laplacian_D] at h
     exact h
-  have hc := (hf.contDiffAt (0 : E)).laplacian_CLM_comp_left
+  have hc := (hf.contDiffAt : ContDiffAt ℝ 2 f (0 : E)).laplacian_CLM_comp_left
     (l := Complex.ofRealCLM)
   simpa [laplacianD, quadraticFieldD, f, Function.comp_def,
     hreal] using hc
@@ -227,6 +228,7 @@ theorem distinct_closures_on_actual_fields_all_dimensions
       exact_mod_cast (by omega : 0 < d)
     have hr : 2 * (d : ℝ) ≠ 0 :=
       ne_of_gt (mul_pos (by norm_num) hdpos)
+    dsimp [a]
     exact_mod_cast hr
   have hlinear (k : ℝ) :
       curvature ε α k S 1 a = a * curvature ε α k S 1 1 := by
