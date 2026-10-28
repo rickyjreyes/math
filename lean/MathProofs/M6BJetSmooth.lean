@@ -29,8 +29,8 @@ theorem curvature_contDiff (ε α lam S : ℝ)
     (hn.const_mul (-2 * α)).exp
   have hSden : ∀ p : ℂ × ℂ, S + Complex.normSq p.1 ≠ 0 := by
     intro p
-    exact ne_of_gt (lt_of_lt_of_le hS (by
-      simpa only [lt_add_iff_pos_right] using Complex.normSq_nonneg p.1))
+    have hn0 := Complex.normSq_nonneg p.1
+    exact ne_of_gt (by linarith)
   have hfrac : ContDiff ℝ ⊤
       (fun p : ℂ × ℂ =>
         lam * Complex.normSq p.1 / (S + Complex.normSq p.1)) :=
