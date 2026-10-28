@@ -2,6 +2,8 @@ name: E68 whole-space gradient energy Lean proofs
 on:
   pull_request:
   workflow_dispatch:
+  push:
+    branches: [proofs/e68-issue-41-sobolev]
 permissions:
   contents: read
 jobs:
@@ -25,3 +27,5 @@ jobs:
           if grep -rnE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' MathProofs/E68Scaling.lean MathProofs/E68CriticalGradient.lean MathProofs/E68SmoothProfiles.lean MathProofs/E68WeakH1.lean; then exit 1; fi
       - name: Kernel-check exact issue modules
         run: lake build MathProofs.E68Scaling MathProofs.E68CriticalGradient MathProofs.E68SmoothProfiles MathProofs.E68WeakH1
+      - name: Kernel-check complete project
+        run: lake build
