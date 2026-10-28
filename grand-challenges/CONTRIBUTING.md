@@ -11,7 +11,7 @@ This is an open, no-prize mathematical problem book. **Criticism, prior-art corr
 3. [Open a GitHub issue](https://github.com/rickyjreyes/math/issues/new) or submit a pull request. Include the GC number and select a contribution type: prior work, counterexample, proof, formalization, model correction, or numerical falsification.
 4. Describe the mathematical model, spaces, quantifiers, and the **precise claim** your contribution addresses.
 5. Link reproducible calculations or Lean source where relevant. Lean proofs must compile without unacknowledged axioms or placeholders, and the theorem must match the claimed statement.
-6. Request an explicit status change in \`problem_registry.json\` only if justified by evidence. A partial case does not automatically settle a full classification problem.
+6. Request an explicit status change in `problem_registry.json` only if justified by evidence. A partial case does not automatically settle a full classification problem.
 
 ## Issue format
 
