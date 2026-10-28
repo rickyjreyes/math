@@ -1,5 +1,12 @@
 # Version history
 
+## 2026-10-27 — Review and correct the full v18 parameter map
+
+- Restored middle-frequency coordinates 10 and 11 in the 31-parameter real forward map, proved their coordinate derivatives, and defined the actual Fréchet Jacobian with its structural nullity and directional-derivative theorems.
+- Proved strict floor inactivity at all five frozen middle observations and derivatives of the clipped outputs in all seven middle coordinates. Removed an accidentally inherited auxiliary hypothesis from the frozen-output aggregate theorem.
+- Widened the external interval certificate to enclose nominal decimals and exact stored binary64 inputs, and verified the inner heavy light-floor branch. The nonzero-minor conclusion survives; it remains outside Lean.
+- Recorded 64 imported project modules, 1,515 theorem/lemma declarations, and 13/14 complete original manuscripts. F09 remains incomplete, including its full derivative identification, middle determinant proof and conditional nonlinear level-set proposition.
+
 ## 2026-10-27 — Frozen v18 analytic Jacobian formalization (partial)
 
 - Imported kernel-checked light and heavy 3×3 blocks; generic 3+5+3 block determinant identity; derived the five selected middle-sector source partial derivatives and recorded their exact 5×5 matrix.

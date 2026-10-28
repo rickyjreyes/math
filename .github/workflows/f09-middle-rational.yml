@@ -1,0 +1,19 @@
+name: F09 rational middle determinant certificate
+on:
+  pull_request:
+    paths:
+      - 'scripts/v18_middle_rational_taylor_certificate.py'
+      - '.github/workflows/f09-middle-rational.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  rational-interval-check:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Evaluate the exact-rational Taylor / 120-term determinant enclosure
+        run: python scripts/v18_middle_rational_taylor_certificate.py

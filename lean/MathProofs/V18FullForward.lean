@@ -30,7 +30,7 @@ namespace ReyesMath.V18Forward
 
 abbrev Params := Fin 31 → ℝ
 
-/-- Historically stored 9+7+13 coefficients, with the two optimizer
+/-- Published decimal values of the 9+7+13 coefficients, with the two optimizer
 coordinates supplied as real parameters. -/
 def frozen (alpha epsilon : ℝ) : Params :=
   ![(0.3877 : ℝ), -2.3676, -8.2963, 6.8830, -1.7948,
@@ -65,7 +65,8 @@ def light (p : Params) (n : ℕ) : ℝ :=
 
 /-- The analytic middle function in exactly the source coefficient order. -/
 def middleRaw (p : Params) (n : ℕ) : ℝ :=
-  V18MiddleDerivatives.raw n (p 14) (p 15) (p 9) (p 12) (p 13)
+  p 14 + p 15 * (n : ℝ) ^ 2 + p 13 * Real.sin (p 11 * n) +
+    p 9 * Real.sin (p 10 * n + p 12)
 
 def middle (p : Params) (n : ℕ) : ℝ :=
   max (middleRaw p n) (1e-12 : ℝ)
@@ -105,18 +106,29 @@ theorem selectedColumn_injective : Function.Injective selectedColumn := by
   intro i j h
   fin_cases i <;> fin_cases j <;> simp_all [selectedColumn]
 
-/-- The middle scalar output exactly coincides with the analytically
-differentiated source model when its historical floor is inactive. -/
+/-- The floor is inactive when the raw value exceeds it. -/
+theorem middle_eq_middleRaw_of_unclipped (p : Params) (n : ℕ)
+    (h : (1e-12 : ℝ) ≤ middleRaw p n) : middle p n = middleRaw p n :=
+  max_eq_left h
+
+/-- The five-parameter frozen helper represents the full middle formula only
+when the two frequency parameters have their stated frozen values. -/
 theorem middle_eq_raw_of_unclipped (p : Params) (n : ℕ)
-    (h : (1e-12 : ℝ) ≤ middleRaw p n) :
+    (h : (1e-12 : ℝ) ≤ middleRaw p n)
+    (hscale1 : p 10 = 5.0632) (hscale2 : p 11 = 9.4062) :
     middle p n = V18MiddleDerivatives.raw n (p 14) (p 15)
       (p 9) (p 12) (p 13) := by
-  change max (V18MiddleDerivatives.raw n (p 14) (p 15)
-    (p 9) (p 12) (p 13)) (1e-12 : ℝ) = _
-  exact max_eq_left (by simpa only [middleRaw] using h)
+  rw [middle_eq_middleRaw_of_unclipped p n h]
+  simp [middleRaw, V18MiddleDerivatives.raw, hscale1, hscale2]
 
-/-- In the strict unclipped middle region, the five selected
-coordinates have exactly the source-frozen analytic derivatives. -/
+/-- All seven middle coefficients are retained in the full parameter map;
+the published frozen values specialize to the existing five-column helper. -/
+theorem frozen_middleRaw (alpha epsilon : ℝ) (n : ℕ) :
+    middleRaw (frozen alpha epsilon) n =
+      V18MiddleDerivatives.raw n 998.7 0.2427 2241.1 1.6469 0.2092 := by
+  rfl
+
+/-- Retained five-variable helper at the explicitly frozen frequencies. -/
 theorem middle_raw_phase_derivative (n : ℕ) (p : Params) :
     HasDerivAt
       (fun phase : ℝ => V18MiddleDerivatives.raw n
@@ -133,49 +145,107 @@ theorem selected_middle_matrix_exact :
 
 /-! ## Selected middle sensitivities in the actual 31-dimensional parameter vector -/
 
-/-- The frozen middle offset coordinate is parameter 14 of 31. -/
+/-- The middle offset coordinate is parameter 14 of 31. -/
 theorem middle_offset_coordinate_derivative (n : ℕ) (p : Params) :
     HasDerivAt
       (fun x : ℝ => middleRaw (Function.update p (14 : Fin 31) x) n)
       1 (p 14) := by
-  simpa [middleRaw] using
-    V18MiddleDerivatives.offset_derivative n
-      (p 14) (p 15) (p 9) (p 12) (p 13)
+  convert (hasDerivAt_id (p 14)).add_const
+    (p 15 * (n : ℝ) ^ 2 + p 13 * Real.sin (p 11 * n) +
+      p 9 * Real.sin (p 10 * n + p 12)) using 1 <;>
+    simp [middleRaw, add_assoc]
 
-/-- The frozen quadratic coefficient is parameter 15 of 31. -/
+/-- The quadratic coefficient is parameter 15 of 31. -/
 theorem middle_quad_coordinate_derivative (n : ℕ) (p : Params) :
     HasDerivAt
       (fun x : ℝ => middleRaw (Function.update p (15 : Fin 31) x) n)
       ((n : ℝ) ^ 2) (p 15) := by
-  simpa [middleRaw] using
-    V18MiddleDerivatives.quad_derivative n
-      (p 14) (p 15) (p 9) (p 12) (p 13)
+  have hx := (hasDerivAt_id (p 15)).mul_const ((n : ℝ) ^ 2)
+  convert (hx.const_add (p 14)).add_const
+    (p 13 * Real.sin (p 11 * n) + p 9 * Real.sin (p 10 * n + p 12)) using 1 <;>
+    simp [middleRaw, add_assoc]
 
-/-- The frozen middle amplitude is parameter 9 of 31. -/
+/-- The amplitude derivative depends on the live frequency coordinate 10. -/
 theorem middle_amp_coordinate_derivative (n : ℕ) (p : Params) :
     HasDerivAt
       (fun x : ℝ => middleRaw (Function.update p (9 : Fin 31) x) n)
-      (Real.sin ((5.0632 : ℝ) * n + p 12)) (p 9) := by
-  simpa [middleRaw] using
-    V18MiddleDerivatives.amp_derivative n
-      (p 14) (p 15) (p 9) (p 12) (p 13)
+      (Real.sin (p 10 * n + p 12)) (p 9) := by
+  have hx := (hasDerivAt_id (p 9)).mul_const (Real.sin (p 10 * n + p 12))
+  convert hx.const_add
+    (p 14 + p 15 * (n : ℝ) ^ 2 + p 13 * Real.sin (p 11 * n)) using 1 <;>
+    simp [middleRaw, add_assoc]
 
-/-- The frozen middle phase is parameter 12 of 31. -/
+/-- Phase derivative at arbitrary values of all 31 coordinates. -/
 theorem middle_phase_coordinate_derivative (n : ℕ) (p : Params) :
     HasDerivAt
       (fun x : ℝ => middleRaw (Function.update p (12 : Fin 31) x) n)
-      ((p 9) * Real.cos ((5.0632 : ℝ) * n + p 12)) (p 12) := by
-  simpa [middleRaw] using
-    V18MiddleDerivatives.phase_derivative n
-      (p 14) (p 15) (p 9) (p 12) (p 13)
+      (p 9 * Real.cos (p 10 * n + p 12)) (p 12) := by
+  have harg := (hasDerivAt_id (p 12)).const_add (p 10 * (n : ℝ))
+  have hs := (Real.hasDerivAt_sin _).comp (p 12) harg
+  convert (hs.const_mul (p 9)).const_add
+    (p 14 + p 15 * (n : ℝ) ^ 2 + p 13 * Real.sin (p 11 * n)) using 1 <;>
+    simp [middleRaw, add_assoc]
 
-/-- The frozen middle harmonic coefficient is parameter 13 of 31. -/
+/-- The harmonic amplitude derivative depends on frequency coordinate 11. -/
 theorem middle_harmonic_coordinate_derivative (n : ℕ) (p : Params) :
     HasDerivAt
       (fun x : ℝ => middleRaw (Function.update p (13 : Fin 31) x) n)
-      (Real.sin ((9.4062 : ℝ) * n)) (p 13) := by
-  simpa [middleRaw] using
-    V18MiddleDerivatives.harmonic_derivative n
-      (p 14) (p 15) (p 9) (p 12) (p 13)
+      (Real.sin (p 11 * n)) (p 13) := by
+  have hx := (hasDerivAt_id (p 13)).mul_const (Real.sin (p 11 * n))
+  convert hx.const_add
+    (p 14 + p 15 * (n : ℝ) ^ 2 + p 9 * Real.sin (p 10 * n + p 12)) using 1 <;>
+    simp [middleRaw, add_assoc, add_comm, add_left_comm]
+
+/-- Regression certificate: varying source frequency coordinate 10 produces
+its actual derivative, rather than the identically zero derivative of a frozen helper. -/
+theorem middle_scale1_coordinate_derivative (n : ℕ) (p : Params) :
+    HasDerivAt
+      (fun x : ℝ => middleRaw (Function.update p (10 : Fin 31) x) n)
+      (p 9 * Real.cos (p 10 * n + p 12) * n) (p 10) := by
+  have harg := ((hasDerivAt_id (p 10)).mul_const (n : ℝ)).add_const (p 12)
+  have hs := (Real.hasDerivAt_sin _).comp (p 10) harg
+  convert (hs.const_mul (p 9)).const_add
+    (p 14 + p 15 * (n : ℝ) ^ 2 + p 13 * Real.sin (p 11 * n)) using 1 <;>
+    simp [middleRaw, add_assoc, mul_assoc]
+
+/-- Regression certificate for the second source frequency coordinate. -/
+theorem middle_scale2_coordinate_derivative (n : ℕ) (p : Params) :
+    HasDerivAt
+      (fun x : ℝ => middleRaw (Function.update p (11 : Fin 31) x) n)
+      (p 13 * Real.cos (p 11 * n) * n) (p 11) := by
+  have harg := (hasDerivAt_id (p 11)).mul_const (n : ℝ)
+  have hs := (Real.hasDerivAt_sin _).comp (p 11) harg
+  convert (hs.const_mul (p 13)).const_add
+    (p 14 + p 15 * (n : ℝ) ^ 2 + p 9 * Real.sin (p 10 * n + p 12)) using 1 <;>
+    simp [middleRaw, add_assoc, add_comm, add_left_comm, mul_assoc]
+
+/-- The Jacobian of this specified full observation map. -/
+def jacobian (p : Params) : Params →L[ℝ] (Fin 11 → ℝ) := fderiv ℝ observed p
+
+/-- Model-specific structural nullity, at any differentiability point.
+Differentiability is explicit because clipping/floor transitions need not be smooth. -/
+theorem local_identifiability (p : Params) (h : DifferentiableAt ℝ observed p) :
+    HasFDerivAt observed (jacobian p) p ∧
+    Module.finrank ℝ (LinearMap.range (jacobian p).toLinearMap) ≤ 11 ∧
+    Module.finrank ℝ (LinearMap.ker (jacobian p).toLinearMap) =
+      31 - Module.finrank ℝ (LinearMap.range (jacobian p).toLinearMap) ∧
+    20 ≤ Module.finrank ℝ (LinearMap.ker (jacobian p).toLinearMap) := by
+  have hr : Module.finrank ℝ (LinearMap.range (jacobian p).toLinearMap) ≤ 11 := by
+    simpa using (Submodule.finrank_le (LinearMap.range (jacobian p).toLinearMap))
+  have hsum := LinearMap.finrank_range_add_finrank_ker (jacobian p).toLinearMap
+  have hdim : Module.finrank ℝ Params = 31 := by simp [Params]
+  exact ⟨h.hasFDerivAt, hr, by omega, by omega⟩
+
+/-- Each vector in this Jacobian's kernel has zero first directional derivative
+along its actual parameter line. This is not a nonlinear equal-prediction claim. -/
+theorem null_direction (p v : Params) (h : DifferentiableAt ℝ observed p)
+    (hv : v ∈ LinearMap.ker (jacobian p).toLinearMap) :
+    HasDerivAt (fun t : ℝ => observed (p + t • v)) 0 0 := by
+  have hv' : jacobian p v = 0 := hv
+  have hline : HasDerivAt (fun t : ℝ => p + t • v) v 0 := by
+    simpa using ((hasDerivAt_id (0 : ℝ)).smul_const v).const_add p
+  have hf : HasFDerivAt observed (jacobian p) (p + (0 : ℝ) • v) := by
+    simpa [jacobian] using h.hasFDerivAt
+  simpa only [hv'] using hf.comp_hasDerivAt 0 hline
 
 end ReyesMath.V18Forward

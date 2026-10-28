@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'scripts/v18_analytic_rank_certificate.py'
+      - 'scripts/test_v18_rank_certificate.py'
       - 'docs/SM_V18_ANALYTIC_RANK_CERTIFICATE.md'
       - '.github/workflows/v18-rank.yml'
   workflow_dispatch:
@@ -28,5 +29,6 @@ jobs:
           persist-credentials: false
       - name: Verify actual coefficient source and analytic nonzero 11x11 minor
         run: |
+          python scripts/test_v18_rank_certificate.py
           python scripts/v18_analytic_rank_certificate.py \
             --source pinned-geometry-of-resonance/SM_Spectrum/_terms_perfection_v18.py
