@@ -19,7 +19,7 @@ namespace ReyesMath.M6B
 
 /-- The actual open square (0, π) × (0, π). -/
 def openSquare : Set (ℝ × ℝ) :=
-  Set.Ioc 0 Real.pi ×ˢ Set.Ioc 0 Real.pi
+  Set.Ioo 0 Real.pi ×ˢ Set.Ioo 0 Real.pi
 
 /-- Actual two-dimensional product Lebesgue L² mass. -/
 def planarSquareMass (ψ : ℝ → ℝ → ℂ) : ℝ :=
@@ -43,10 +43,12 @@ theorem squareMass_eq_planarSquareMass (ψ : ℝ → ℝ → ℂ)
   have hsmall : IntegrableOn
       (fun p : ℝ × ℝ => Complex.normSq (ψ p.1 p.2))
       openSquare ((volume : Measure ℝ).prod volume) :=
-    hbig.mono_set (Set.prod_mono Set.Ioc_subset_Icc_self Set.Ioc_subset_Icc_self)
+    hbig.mono_set (Set.prod_mono Set.Ioo_subset_Icc_self Set.Ioo_subset_Icc_self)
   unfold squareMass planarSquareMass openSquare
   rw [intervalIntegral.integral_of_le (le_of_lt Real.pi_pos)]
-  simp_rw [intervalIntegral.integral_of_le (le_of_lt Real.pi_pos)]
+  rw [integral_Ioc_eq_integral_Ioo]
+  simp_rw [intervalIntegral.integral_of_le (le_of_lt Real.pi_pos),
+    integral_Ioc_eq_integral_Ioo]
   exact (MeasureTheory.setIntegral_prod _ hsmall).symm
 
 /-- Exactly the manuscript's squared L² norm, for the actual plus field. -/
