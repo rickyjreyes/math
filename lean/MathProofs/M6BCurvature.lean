@@ -1,0 +1,115 @@
+import Mathlib
+
+/-!
+# M6B: exact regularized curvature at a complex two-jet
+
+The second jet of a C² complex field at a point is represented by the
+value `z` and the value `w = Δψ`.  This is the *actual* pointwise
+nonlinear expression from the manuscript, not a substitute polynomial.
+
+These lemmas establish strict denominator positivity, behavior at nodes,
+the canonical λ=0 specialization, global U(1) invariance, and identical
+curvature for eigenjets of equal intensity.  The full C² Dirichlet,
+mass-integral and smooth-operator nonuniqueness statements are separate
+obligations; none is assumed here.
+-/
+
+noncomputable section
+
+namespace ReyesMath.M6B
+
+/-- The family of regularized M6B denominators, for intensity `s ≥ 0`. -/
+def denominator (ε α λ S s : ℝ) : ℝ :=
+  s + ε ^ 2 * Real.exp (-2 * α * s) * (1 + λ * s / (S + s))
+
+/-- The exact nonlinear regularized curvature applied to the field value
+and the Laplacian value of a complex field at a point. -/
+def curvature (ε α λ S : ℝ) (z w : ℂ) : ℂ :=
+  -(w * (starRingEnd ℂ) z) /
+    ((denominator ε α λ S (Complex.normSq z) : ℝ) : ℂ)
+
+/-- Positivity holds at every nonnegative intensity, with no sign
+assumption on the exponential parameter α. -/
+theorem denominator_pos (ε α λ S s : ℝ)
+    (hε : 0 < ε) (hλ : 0 ≤ λ) (hS : 0 < S) (hs : 0 ≤ s) :
+    0 < denominator ε α λ S s := by
+  have hsum : 0 < S + s := by linarith
+  have hfrac : 0 ≤ λ * s / (S + s) :=
+    div_nonneg (mul_nonneg hλ hs) (le_of_lt hsum)
+  have hfac : 0 < 1 + λ * s / (S + s) := by linarith
+  have hbase : 0 < ε ^ 2 * Real.exp (-2 * α * s) := by positivity
+  unfold denominator
+  have hterm : 0 < ε ^ 2 * Real.exp (-2 * α * s) *
+      (1 + λ * s / (S + s)) := mul_pos hbase hfac
+  linarith
+
+/-- The denominator at a node is exactly ε². -/
+theorem denominator_at_node (ε α λ S : ℝ) :
+    denominator ε α λ S 0 = ε ^ 2 := by
+  simp [denominator]
+
+/-- λ=0 gives the canonical manuscript denominator. -/
+theorem denominator_canonical (ε α S s : ℝ) :
+    denominator ε α 0 S s = s + ε ^ 2 * Real.exp (-2 * α * s) := by
+  simp [denominator]
+
+/-- The curvature image is zero at nodes, regardless of the Laplacian. -/
+theorem curvature_at_node (ε α λ S : ℝ) (w : ℂ) :
+    curvature ε α λ S 0 w = 0 := by
+  simp [curvature]
+
+/-- The pointwise denominator has the correct unregularized limit. -/
+theorem denominator_unregularized_limit (α λ S s : ℝ) :
+    Filter.Tendsto (fun ε : ℝ => denominator ε α λ S s)
+      (nhds 0) (nhds s) := by
+  have hc : Continuous (fun ε : ℝ => denominator ε α λ S s) := by
+    unfold denominator
+    fun_prop
+  convert hc.continuousAt.tendsto using 1
+  simp [denominator]
+
+/-- Every constant unit complex phase leaves the curvature unchanged
+provided it rotates both the value and the Laplacian. -/
+theorem curvature_phase_invariant (ε α λ S : ℝ)
+    (u z w : ℂ) (hu : ‖u‖ = 1) :
+    curvature ε α λ S (u * z) (u * w) =
+      curvature ε α λ S z w := by
+  have husq : Complex.normSq u = 1 := by
+    rw [Complex.normSq_eq_norm_sq, hu]
+    norm_num
+  have hnorm : Complex.normSq (u * z) = Complex.normSq z := by
+    rw [Complex.normSq_mul, husq, one_mul]
+  have hmul : (u * w) * (starRingEnd ℂ) (u * z) =
+      w * (starRingEnd ℂ) z := by
+    rw [map_mul]
+    calc
+      (u * w) * ((starRingEnd ℂ) u * (starRingEnd ℂ) z) =
+          (u * (starRingEnd ℂ) u) * (w * (starRingEnd ℂ) z) := by ring
+      _ = w * (starRingEnd ℂ) z := by
+        rw [Complex.mul_conj']
+        simp [hu]
+  simp only [curvature, hnorm, hmul]
+
+/-- The eigenjet equation w=-5z yields the same real curvature for any
+two complex values with the same squared modulus. -/
+theorem equal_intensity_eigenjets (ε α λ S : ℝ)
+    (z₁ z₂ : ℂ) (h : Complex.normSq z₁ = Complex.normSq z₂) :
+    curvature ε α λ S z₁ (-5 * z₁) =
+      curvature ε α λ S z₂ (-5 * z₂) := by
+  have eigen_formula (z : ℂ) :
+      curvature ε α λ S z (-5 * z) =
+        ((5 * Complex.normSq z : ℝ) : ℂ) /
+          ((denominator ε α λ S (Complex.normSq z) : ℝ) : ℂ) := by
+    unfold curvature
+    calc
+      -((-5 * z) * (starRingEnd ℂ) z) /
+          ((denominator ε α λ S (Complex.normSq z) : ℝ) : ℂ) =
+        (5 * (z * (starRingEnd ℂ) z)) /
+          ((denominator ε α λ S (Complex.normSq z) : ℝ) : ℂ) := by ring
+      _ = _ := by
+        rw [Complex.mul_conj']
+        push_cast
+        rw [Complex.normSq_eq_norm_sq]
+  rw [eigen_formula z₁, eigen_formula z₂, h]
+
+end ReyesMath.M6B
