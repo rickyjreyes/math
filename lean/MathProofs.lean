@@ -63,3 +63,4 @@ import MathProofs.V18FullForward
 import MathProofs.E68Scaling
 import MathProofs.E68CriticalGradient
 import MathProofs.E68SmoothProfiles
+import MathProofs.E68WeakH1
