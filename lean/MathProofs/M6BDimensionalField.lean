@@ -1,0 +1,100 @@
+import Mathlib
+import MathProofs.M6BClosureTheorem
+
+/-!
+# M6B: genuine n-dimensional real-inner-product Laplacian
+
+This module uses Mathlib's `InnerProductSpace.laplacian` on the actual
+EuclideanSpace ℝ (Fin d), not a symbolic curvature jet or grid.
+
+The Laplacian phase identity is a direct consequence of the second
+Fréchet derivative and continuous ℝ-linear complex multiplication.
+
+The quadratic test profile is a globally C∞ field. Its derived jet
+is computed by the exact Hessian of the squared norm and the trace
+over the standard orthonormal basis, not assumed.
+-/
+
+noncomputable section
+open scoped RealInnerProductSpace
+namespace ReyesMath.M6B
+
+/-- Cartesian Laplacian in dimension d, genuinely given by Mathlib's
+canonical covariant tensor and the second Fréchet derivative. -/
+def laplacianD (d : ℕ)
+    (ψ : EuclideanSpace ℝ (Fin d) → ℂ) :
+    EuclideanSpace ℝ (Fin d) → ℂ :=
+  InnerProductSpace.laplacian ψ
+
+/-- The d-dimensional curvature operator acts on the *actual*
+Cartesian Laplacian of a complex C² field. -/
+def fieldCurvatureD (d : ℕ) (ε α lam S : ℝ)
+    (ψ : EuclideanSpace ℝ (Fin d) → ℂ)
+    (x : EuclideanSpace ℝ (Fin d)) : ℂ :=
+  curvature ε α lam S (ψ x) (laplacianD d ψ x)
+
+/-- Full C² phase covariance of the genuine finite-dimensional
+Laplacian, with no stationary-eigenfield assumption. -/
+theorem laplacianD_phase (d : ℕ)
+    (ψ : EuclideanSpace ℝ (Fin d) → ℂ)
+    (hψ : ContDiff ℝ 2 ψ) (u : ℂ)
+    (x : EuclideanSpace ℝ (Fin d)) :
+    laplacianD d (fun y => u * ψ y) x =
+      u * laplacianD d ψ x := by
+  let L : ℂ →L[ℝ] ℂ := (ContinuousLinearMap.lsmul ℝ ℂ) u
+  have h := (hψ.contDiffAt x).laplacian_CLM_comp_left (l := L)
+  simpa only [laplacianD, Function.comp_def, L,
+    ContinuousLinearMap.lsmul_apply, smul_eq_mul] using h
+
+/-- A constant unit phase preserves the actual d-dimensional
+regularized curvature operator on every C² field and every point. -/
+theorem fieldCurvatureD_phase_invariant (d : ℕ)
+    (ψ : EuclideanSpace ℝ (Fin d) → ℂ)
+    (hψ : ContDiff ℝ 2 ψ) (u : ℂ) (hu : ‖u‖ = 1)
+    (ε α lam S : ℝ) (x : EuclideanSpace ℝ (Fin d)) :
+    fieldCurvatureD d ε α lam S (fun y => u * ψ y) x =
+      fieldCurvatureD d ε α lam S ψ x := by
+  unfold fieldCurvatureD
+  rw [laplacianD_phase d ψ hψ u x]
+  exact curvature_phase_invariant ε α lam S u (ψ x) (laplacianD d ψ x) hu
+
+/-- The actual d-dimensional quadratic test field, on Euclidean
+space, has smooth real components everywhere. -/
+def quadraticFieldD (d : ℕ) :
+    EuclideanSpace ℝ (Fin d) → ℂ :=
+  fun x => (((1 : ℝ) + ‖x‖ ^ 2 : ℝ) : ℂ)
+
+/-- The differentiating quadratic witness is genuinely C∞. -/
+theorem quadraticFieldD_smooth (d : ℕ) :
+    ContDiff ℝ ⊤ (quadraticFieldD d) := by
+  unfold quadraticFieldD
+  fun_prop
+
+/-- The raw real squared norm has the exact Hessian trace 2d on
+the d-dimensional Euclidean vector space. -/
+theorem squared_norm_laplacian_D (d : ℕ)
+    (x : EuclideanSpace ℝ (Fin d)) :
+    InnerProductSpace.laplacian
+      (fun y : EuclideanSpace ℝ (Fin d) => ‖y‖ ^ 2) x =
+      2 * (d : ℝ) := by
+  let E := EuclideanSpace ℝ (Fin d)
+  let L : E →L[ℝ] (E →L[ℝ] ℝ) := innerSL ℝ
+  have hd (y : E) :
+      fderiv ℝ (fun z : E => ‖z‖ ^ 2) y = (2 : ℝ) • L y := by
+    simpa [L] using (fderiv_norm_sq_apply y)
+  have hfun :
+      fderiv ℝ (fun z : E => ‖z‖ ^ 2) =
+        fun y => (2 : ℝ) • L y := funext hd
+  have htwo (y : E) :
+      fderiv ℝ (fderiv ℝ (fun z : E => ‖z‖ ^ 2)) y =
+        (2 : ℝ) • L := by
+    rw [hfun]
+    simpa using (fderiv_const_smul (L.differentiableAt) (2 : ℝ))
+  rw [InnerProductSpace.laplacian_eq_iteratedFDeriv_stdOrthonormalBasis
+    (fun y : E => ‖y‖ ^ 2)]
+  simp only [iteratedFDeriv_two_apply]
+  simp_rw [htwo]
+  simp [L, innerSL_apply, real_inner_self_eq_norm_sq,
+    OrthonormalBasis.norm_eq_one, finrank_euclideanSpace]
+
+end ReyesMath.M6B
