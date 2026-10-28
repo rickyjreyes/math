@@ -48,7 +48,7 @@ theorem smooth_concentration_scaling_obstruction (n : ℕ)
     dsimp [F]
     fun_prop
   have hn2 : 0 < n - 2 := Nat.sub_pos_of_lt hn
-  have hz : F 0 = 0 := by simp [F, zero_pow hn2]
+  have hz : F 0 = 0 := by simp [F, Nat.ne_of_gt hn2]
   exact obstruction_of_vanishing F A hA hc hz h
 
 /-- The dimension-one large-radius obstruction: a fixed nonzero
@@ -86,7 +86,7 @@ theorem high_dimensional_H2_scaling_obstruction (n : ℕ)
     dsimp [F]
     fun_prop
   have hn4 : 0 < n - 4 := Nat.sub_pos_of_lt hn
-  have hz : F 0 = 0 := by simp [F, zero_pow hn4]
+  have hz : F 0 = 0 := by simp [F, Nat.ne_of_gt hn4]
   apply obstruction_of_vanishing F A hA hc hz
   intro R hR
   have he : n - 2 = (n - 4) + 2 := by omega
