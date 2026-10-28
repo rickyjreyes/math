@@ -23,7 +23,10 @@ def compactProfile (n : ℕ) :
 theorem compactProfile_smooth (n : ℕ) :
     ContDiff ℝ ⊤ (fun x : EuclideanSpace ℝ (Fin n) =>
       compactProfile n x) :=
-  (compactProfile n).contDiff (n := ⊤)
+by
+  apply contDiff_infty.mpr
+  intro k
+  simpa using (compactProfile n).contDiff (n := (k : ℕ∞))
 
 theorem compactProfile_hasCompactSupport (n : ℕ) :
     HasCompactSupport (fun x : EuclideanSpace ℝ (Fin n) =>
@@ -57,7 +60,10 @@ def compactOneDim : ContDiffBump (0 : ℝ) :=
   ⟨1 / 4, 1 / 2, by norm_num, by norm_num⟩
 
 theorem compactOneDim_smooth : ContDiff ℝ ⊤ (fun x : ℝ => compactOneDim x) :=
-  compactOneDim.contDiff (n := ⊤)
+by
+  apply contDiff_infty.mpr
+  intro k
+  simpa using compactOneDim.contDiff (n := (k : ℕ∞))
 
 theorem compactOneDim_hasCompactSupport :
     HasCompactSupport (fun x : ℝ => compactOneDim x) :=
