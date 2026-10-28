@@ -2,11 +2,11 @@
 
 **Status:** Proposed precisely scoped research problems, **not** claims of novelty, unsolved status, difficulty, or independence. Several are classification problems, some have known elementary answers or obstructions, and several require additional modeling choices before a definitive theorem can be stated. The word “determine” explicitly permits a negative answer or a counterexample. Mathematical statements are research specifications, not verified results. Literature reviews are pending.
 
-**Shared notation:** R^d is Euclidean space, T^d=(R/2πZ)^d, Δ is the Laplacian, H^s denotes the L² Sobolev space, and all solutions use the natural strong/mild solution concept where it exists. Parameters and operators not fixed by a question must be frozen in its dedicated problem dossier before attempting a proof.
+**Shared notation:** $\mathbb R^d$ is Euclidean space, $\mathbb T^d=(\mathbb R/2\pi\mathbb Z)^d$, $\Delta$ is the Laplacian, $H^s$ denotes the $L^2$ Sobolev space, and all solutions use the natural strong/mild solution concept where it exists. Parameters and operators not fixed by a question must be frozen in its dedicated problem dossier before attempting a proof.
 
 ## GC01: Universal orbital stability
 
-**Problem.** Classify all standing waves φ∈H²(R²) of i u_t=(Δ+k²)²u−β|u|²u+γ|u|⁴u, β,γ>0, whose phase-translation orbits are stable in H². Give necessary and sufficient spectral/variational conditions, including excited states.
+**Problem.** Classify all standing waves φ∈H²(R²) of $i\partial_t u=(\Delta+k^2)^2u-\beta|u|^2u+\gamma|u|^4u$, β,γ>0, whose phase-translation orbits are stable in H². Give necessary and sufficient spectral/variational conditions, including excited states.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
@@ -18,7 +18,7 @@
 
 ## GC03: Global existence versus blow-up
 
-**Problem.** For i u_t=(−Δ)^p u−β|u|^{r−1}u+γ|u|^{s−1}u on R^d, p∈N, 1<r<s, β,γ>0, classify (d,p,r,s) for which every H^p datum generates a global solution, and exhibit finite-time blow-up whenever the universal claim fails.
+**Problem.** For $i\partial_tu=(-\Delta)^pu-\beta|u|^{r-1}u+\gamma|u|^{s-1}u$ on R^d, p∈N, 1<r<s, β,γ>0, classify (d,p,r,s) for which every H^p datum generates a global solution, and exhibit finite-time blow-up whenever the universal claim fails.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
@@ -36,19 +36,19 @@
 
 ## GC06: Self-confinement criteria
 
-**Problem.** For E(u)=∫R² (|(Δ+k²)u|²−β|u|⁴/2+γ|u|⁶/3) dx at fixed ∥u∥²₂=m, determine exactly which (k,β,γ,m) admit an attained infimum and characterize loss of compactness.
+**Problem.** For $E(u)=\int_{\mathbb R^2}\left(|(\Delta+k^2)u|^2-\frac\beta2|u|^4+\frac\gamma3|u|^6\right)\,dx$ at fixed ∥u∥²₂=m, determine exactly which (k,β,γ,m) admit an attained infimum and characterize loss of compactness.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
 ## GC07: Curvature-induced localization
 
-**Problem.** Let H_V=(Δ+k²)²+V(x) on L²(R²), with real smooth V(x)→0. Characterize potentials V for which H_V has a nonzero exponentially decaying eigenfunction with eigenvalue strictly below its essential spectrum.
+**Problem.** Let $H_V=(\Delta+k^2)^2+V(x)$ on L²(R²), with real smooth V(x)→0. Characterize potentials V for which H_V has a nonzero exponentially decaying eigenfunction with eigenvalue strictly below its essential spectrum.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
 ## GC08: Admissible curvature closures
 
-**Problem.** Fix ε>0 and K_ε(u)=div(Im(conj(u)∇u)/(ε+|u|²)) on smooth complex fields. Classify all local differential operators C(u) of order ≤2 invariant under u↦e^{iθ}u, translation and rotation, agreeing with K_ε on nonvanishing constant-amplitude plane waves; determine uniqueness or give inequivalent examples.
+**Problem.** Fix ε>0 and $K_\varepsilon(u)=\nabla\cdot\left(\frac{\operatorname{Im}(\bar u\nabla u)}{\varepsilon+|u|^2}\right)$ on smooth complex fields. Classify all local differential operators C(u) of order ≤2 invariant under u↦e^{iθ}u, translation and rotation, agreeing with K_ε on nonvanishing constant-amplitude plane waves; determine uniqueness or give inequivalent examples.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
@@ -60,7 +60,7 @@
 
 ## GC10: Dimensional localized-energy classification
 
-**Problem.** For E_d(u)=∫R^d (|Δu|²+|u|²−|u|⁴+|u|⁶) dx, determine dimensions d and constraints m>0 for which there exists a nonzero finite-energy minimizer of E_d on {∥u∥²₂=m}.
+**Problem.** For $E_d(u)=\int_{\mathbb R^d}(|\Delta u|^2+|u|^2-|u|^4+|u|^6)\,dx$, determine dimensions d and constraints m>0 for which there exists a nonzero finite-energy minimizer of E_d on {∥u∥²₂=m}.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
@@ -72,7 +72,7 @@
 
 ## GC12: Nonlinear spectral-gap persistence
 
-**Problem.** Let L=−(1+Δ)²+μ−3u_*²+5u_*⁴ be the linearization at a periodic stationary solution u_* of u_t=μu−(1+Δ)²u−u³+u⁵. Determine when a spectral gap in a fixed Floquet fiber persists under all sufficiently small periodic perturbations of u_*.
+**Problem.** Let $L=-(1+\Delta)^2+\mu-3u_*^2+5u_*^4$ be the linearization at a periodic stationary solution u_* of $\partial_tu=\mu u-(1+\Delta)^2u-u^3+u^5$. Determine when a spectral gap in a fixed Floquet fiber persists under all sufficiently small periodic perturbations of u_*.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
@@ -96,7 +96,7 @@
 
 ## GC16: Strict binding across masses
 
-**Problem.** For the energy in GC06, determine all masses m>0 satisfying strict subadditivity I(m)<I(a)+I(m−a) for every 0<a<m, where I(m)=inf_{∥u∥²₂=m}E(u).
+**Problem.** For the energy in GC06, determine all masses m>0 satisfying strict subadditivity $I(m)<I(a)+I(m-a)$ for every 0<a<m, where $I(m)=\inf_{\|u\|_{L^2}^2=m}E(u)$.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
@@ -120,31 +120,31 @@
 
 ## GC20: Metastable energy landscapes
 
-**Problem.** For the gradient flow u_t=−δE/δu associated with E(u)=∫T² (|(Δ+1)u|²−μu²/2+u⁴/4) dx, characterize all non-global local minima and compute whether arbitrarily long metastable lifetimes occur for bounded-energy initial data.
+**Problem.** For the gradient flow $\partial_tu=-\delta E/\delta u$ associated with $E(u)=\int_{\mathbb T^2}(|(\Delta+1)u|^2-\frac\mu2u^2+\frac14u^4)\,dx$, characterize all non-global local minima and compute whether arbitrarily long metastable lifetimes occur for bounded-energy initial data.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
 ## GC21: Ghost-free higher-derivative dynamics
 
-**Problem.** For real scalar Lagrangians L(φ,∂φ,∂²φ) polynomial of total degree ≤4 and invariant under spacetime translations, classify nondegenerate models with bounded-below canonical Hamiltonian after all constraints; establish whether any genuinely fourth-order time dynamics remain.
+**Problem.** For real scalar Lagrangians $L(\phi,\partial\phi,\partial^2\phi)$ polynomial of total degree ≤4 and invariant under spacetime translations, classify nondegenerate models with bounded-below canonical Hamiltonian after all constraints; establish whether any genuinely fourth-order time dynamics remain.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
 ## GC22: UV well-posedness classification
 
-**Problem.** For linear constant-coefficient scalar PDEs P(∂t,∇)u=0 of temporal order ≤4 and spatial order ≤4, give an algebraic necessary and sufficient condition on the polynomial symbol for Hadamard well-posedness in a specified Sobolev energy space.
+**Problem.** For linear constant-coefficient scalar PDEs $P(\partial_t,\nabla)u=0$ of temporal order ≤4 and spatial order ≤4, give an algebraic necessary and sufficient condition on the polynomial symbol for Hadamard well-posedness in a specified Sobolev energy space.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
 ## GC23: Physically stable wavelength selection
 
-**Problem.** For a translation-invariant quadratic scalar field theory with positive Hamiltonian and finite-order local spatial derivatives, determine the minimal derivative order permitting a stable dispersion relation ω²(q)>0 whose unique global minimum occurs at q>0.
+**Problem.** For a translation-invariant quadratic scalar field theory with positive Hamiltonian and finite-order local spatial derivatives, determine the minimal derivative order permitting a stable dispersion relation $\omega^2(q)>0$ whose unique global minimum occurs at $q>0$.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
 ## GC24: Hamiltonian constraint classification
 
-**Problem.** For L=1/2(∂μφ∂^μφ)−a/2(□φ)²−V(φ), a≠0, compute the full Dirac constraint structure after introducing auxiliary variables and determine whether the reduced Hamiltonian is bounded below for any smooth V.
+**Problem.** For $L=\frac12\partial_\mu\phi\partial^\mu\phi-\frac a2(\Box\phi)^2-V(\phi)$, a≠0, compute the full Dirac constraint structure after introducing auxiliary variables and determine whether the reduced Hamiltonian is bounded below for any smooth V.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
@@ -156,7 +156,7 @@
 
 ## GC26: Local versus global identifiability
 
-**Problem.** For an analytic map F:Θ⊂R³¹→R^N representing a fixed clipped spectral observation model, characterize the points θ where F is locally injective, and decide whether generic full-rank Jacobian implies global injectivity on Θ.
+**Problem.** For an analytic map $F:\Theta\subset\mathbb R^{31}\to\mathbb R^N$ representing a fixed clipped spectral observation model, characterize the points θ where F is locally injective, and decide whether generic full-rank Jacobian implies global injectivity on Θ.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
@@ -174,25 +174,25 @@
 
 ## GC29: Noise-stable reconstruction
 
-**Problem.** For the clipped spectral map F of GC26, determine whether there exist C,α>0 such that ∥θ−θ'∥≤C∥F(θ)−F(θ')∥^α on a prescribed compact identifiable subset; find optimal α or prove no uniform estimate.
+**Problem.** For the clipped spectral map F of GC26, determine whether there exist C,α>0 such that $\|\theta-\theta'\|\le C\|F(\theta)-F(\theta')\|^\alpha$ on a prescribed compact identifiable subset; find optimal α or prove no uniform estimate.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
 ## GC30: Partial-data spectral uniqueness
 
-**Problem.** For a fourth-order elliptic operator H=(Δ+k²)²+V on a bounded smooth domain, determine whether eigenvalues measured on a specified boundary subset uniquely determine smooth real V; construct counterexamples if uniqueness fails.
+**Problem.** For a fourth-order elliptic operator $H=(\Delta+k^2)^2+V$ on a bounded smooth domain, determine whether eigenvalues measured on a specified boundary subset uniquely determine smooth real V; construct counterexamples if uniqueness fails.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
 ## GC31: Nonlinear Swift–Hohenberg attractors
 
-**Problem.** For u_t=μu−(1+Δ)²u−u³ on T², characterize the global attractor in H² for μ>0, including its finite-dimensionality and whether every complete bounded trajectory converges to a stationary state.
+**Problem.** For $\partial_tu=\mu u-(1+\Delta)^2u-u^3$ on T², characterize the global attractor in H² for μ>0, including its finite-dimensionality and whether every complete bounded trajectory converges to a stationary state.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
 ## GC32: Coarsening versus wavelength locking
 
-**Problem.** For u_t=μu−(1+Δ)²u−u³ on T², determine whether every solution starting sufficiently near a stripe equilibrium converges to a stripe of the same wavelength or may undergo wavelength-changing defects.
+**Problem.** For $\partial_tu=\mu u-(1+\Delta)^2u-u^3$ on T², determine whether every solution starting sufficiently near a stripe equilibrium converges to a stripe of the same wavelength or may undergo wavelength-changing defects.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
@@ -210,13 +210,13 @@
 
 ## GC35: Infinite-domain pattern selection
 
-**Problem.** For u_t=μu−(1+Δ)²u−u³ on R², determine whether there exist finite-energy perturbations of a periodic stripe that converge locally to a stripe with a uniquely determined wavelength independent of the perturbation.
+**Problem.** For $\partial_tu=\mu u-(1+\Delta)^2u-u^3$ on R², determine whether there exist finite-energy perturbations of a periodic stripe that converge locally to a stripe with a uniquely determined wavelength independent of the perturbation.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
 ## GC36: Stable knotted wave configurations
 
-**Problem.** For smooth u:R³→C² approaching a fixed unit vector at infinity, normalize to S³ and consider its Hopf degree after an explicitly fixed projection to S². Determine whether a coercive local energy with fourth-order gradients admits a stable stationary solution of each nonzero Hopf class.
+**Problem.** For smooth $u:\mathbb R^3\to\mathbb C^2$ approaching a fixed unit vector at infinity, normalize to S³ and consider its Hopf degree after an explicitly fixed projection to S². Determine whether a coercive local energy with fourth-order gradients admits a stable stationary solution of each nonzero Hopf class.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
@@ -228,7 +228,7 @@
 
 ## GC38: Quantized winding conservation
 
-**Problem.** For smooth nonvanishing complex fields u:T²→C\{0}, determine whether winding numbers along the two fundamental cycles are conserved by the cubic–quintic Schrödinger flow for as long as the solution remains nonvanishing, and whether winding can change at a finite-energy zero.
+**Problem.** For smooth nonvanishing complex fields $u:\mathbb T^2\to\mathbb C\setminus\{0\}$, determine whether winding numbers along the two fundamental cycles are conserved by the cubic–quintic Schrödinger flow for as long as the solution remains nonvanishing, and whether winding can change at a finite-energy zero.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
@@ -240,7 +240,7 @@
 
 ## GC40: Topology-changing singularities
 
-**Problem.** For smooth maps u(t):R³→S² of finite Skyrme-type energy, determine whether a global smooth energy-decreasing flow can change Hopf degree; if not, characterize the singularity or loss of boundary control required.
+**Problem.** For smooth maps $u(t):\mathbb R^3\to S^2$ of finite Skyrme-type energy, determine whether a global smooth energy-decreasing flow can change Hopf degree; if not, characterize the singularity or loss of boundary control required.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
@@ -288,7 +288,7 @@
 
 ## GC48: Certified spectral semigroups
 
-**Problem.** Formalize in Lean 4 the spectral mapping and resolvent bounds needed to generate a strongly continuous semigroup for L=−(1+Δ)²+μ on L²(R²), including exact Fourier multiplier correspondence.
+**Problem.** Formalize in Lean 4 the spectral mapping and resolvent bounds needed to generate a strongly continuous semigroup for $L=-(1+\Delta)^2+\mu$ on L²(R²), including exact Fourier multiplier correspondence.
 
 **Resolution criterion.** Supply a theorem with all quantifiers, domains, topologies and parameters fixed, together with a proof or an explicit counterexample. Compare against existing results and verify only the exact encoded claims in Lean where applicable.
 
