@@ -16,7 +16,6 @@ theorem sin_sq_one_integral :
     (∫ x in (0 : ℝ)..Real.pi, Real.sin x ^ 2) = Real.pi / 2 := by
   rw [integral_sin_sq]
   simp
-  ring
 
 theorem sin_sq_two_integral :
     (∫ x in (0 : ℝ)..Real.pi, Real.sin (2 * x) ^ 2) = Real.pi / 2 := by
@@ -30,7 +29,6 @@ theorem sin_sq_two_integral :
       (∫ x in (0 : ℝ)..2 * Real.pi, Real.sin x ^ 2) = Real.pi := by
     rw [integral_sin_sq]
     simp
-    ring
   rw [hdouble] at hscale
   linarith
 
