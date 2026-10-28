@@ -12,6 +12,7 @@ specific profiles.
 -/
 
 noncomputable section
+open scoped ContDiff
 
 namespace ReyesMath.E68
 
