@@ -21,12 +21,9 @@ def compactProfile (n : ℕ) :
   ⟨1 / 4, 1 / 2, by norm_num, by norm_num⟩
 
 theorem compactProfile_smooth (n : ℕ) :
-    ContDiff ℝ ⊤ (fun x : EuclideanSpace ℝ (Fin n) =>
+    ContDiff ℝ ∞ (fun x : EuclideanSpace ℝ (Fin n) =>
       compactProfile n x) :=
-by
-  apply contDiff_infty.mpr
-  intro k
-  simpa using (compactProfile n).contDiff (n := (k : ℕ∞))
+  (compactProfile n).contDiff (n := ⊤)
 
 theorem compactProfile_hasCompactSupport (n : ℕ) :
     HasCompactSupport (fun x : EuclideanSpace ℝ (Fin n) =>
@@ -43,11 +40,11 @@ def smoothConcentration (n : ℕ) (R : ℝ)
 /-- The scaled concentration function is genuinely C∞ in every
 dimension, not a formal scaling symbol. -/
 theorem smoothConcentration_smooth (n : ℕ) (R : ℝ) :
-    ContDiff ℝ ⊤ (smoothConcentration n R) := by
-  have hlin : ContDiff ℝ ⊤
+    ContDiff ℝ ∞ (smoothConcentration n R) := by
+  have hlin : ContDiff ℝ ∞
       (fun x : EuclideanSpace ℝ (Fin n) => (R⁻¹ : ℝ) • x) :=
     contDiff_const_smul _
-  have hb : ContDiff ℝ ⊤
+  have hb : ContDiff ℝ ∞
       (fun x : EuclideanSpace ℝ (Fin n) =>
         compactProfile n ((R⁻¹ : ℝ) • x)) :=
     (compactProfile_smooth n).comp hlin
@@ -59,11 +56,8 @@ whose support is in (-1,1), for the dimension-one case. -/
 def compactOneDim : ContDiffBump (0 : ℝ) :=
   ⟨1 / 4, 1 / 2, by norm_num, by norm_num⟩
 
-theorem compactOneDim_smooth : ContDiff ℝ ⊤ (fun x : ℝ => compactOneDim x) :=
-by
-  apply contDiff_infty.mpr
-  intro k
-  simpa using compactOneDim.contDiff (n := (k : ℕ∞))
+theorem compactOneDim_smooth : ContDiff ℝ ∞ (fun x : ℝ => compactOneDim x) :=
+  compactOneDim.contDiff (n := ⊤)
 
 theorem compactOneDim_hasCompactSupport :
     HasCompactSupport (fun x : ℝ => compactOneDim x) :=
