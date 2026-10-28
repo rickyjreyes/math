@@ -169,4 +169,44 @@ theorem distinct_closures_on_actual_fields_all_dimensions
   simpa only [fieldCurvatureD, quadraticFieldD_at_origin,
     quadraticFieldD_laplacian_at_origin, a] using hdistinct
 
+
+/-- All five structural properties in the original closure theorem,
+stated literally for the exact nonlinear complex-jet quotient. -/
+def IsAdmissibleRegularization (ε α lam S : ℝ) : Prop :=
+  ContDiff ℝ ⊤ (fun p : ℂ × ℂ =>
+    curvature ε α lam S p.1 p.2) ∧
+  (∀ s : ℝ, 0 ≤ s → 0 < denominator ε α lam S s) ∧
+  denominator ε α lam S 0 = ε ^ 2 ∧
+  (∀ w : ℂ, curvature ε α lam S 0 w = 0) ∧
+  (∀ u z w : ℂ, ‖u‖ = 1 →
+    curvature ε α lam S (u * z) (u * w) =
+      curvature ε α lam S z w) ∧
+  (∀ z w : ℂ, z ≠ 0 →
+    Filter.Tendsto (fun δ : ℝ => curvature δ α lam S z w)
+      (nhdsWithin 0 (Set.Ioi 0)) (nhds (-(w / z))))
+
+/-- The dimension-uniform original closure nonuniqueness theorem:
+every λ≥0 satisfies all enumerated analytic axioms; the closures
+form an infinite set; and distinct λ are separated by evaluation
+on an *actual smooth Cartesian field* in every d≥1. -/
+theorem manuscript_closure_nonuniqueness_all_dimensions
+    (d : ℕ) (hd : 1 ≤ d)
+    (ε α S : ℝ) (hε : 0 < ε) (hS : 0 < S) :
+    (∀ lam : ℝ, 0 ≤ lam → IsAdmissibleRegularization ε α lam S) ∧
+    Set.Infinite (Set.range
+      (fun k : ℕ => fun p : ℂ × ℂ =>
+        curvature ε α (k : ℝ) S p.1 p.2)) ∧
+    (∀ lam mu : ℝ, 0 ≤ lam → 0 ≤ mu → lam ≠ mu →
+      ∃ ψ : EuclideanSpace ℝ (Fin d) → ℂ,
+        ContDiff ℝ ⊤ ψ ∧
+        ∃ x : EuclideanSpace ℝ (Fin d),
+          fieldCurvatureD d ε α lam S ψ x ≠
+            fieldCurvatureD d ε α mu S ψ x) := by
+  refine ⟨?_, infinitely_many_distinct_closures ε α S hε hS, ?_⟩
+  · intro lam hlam
+    exact every_closure_is_admissible ε α S hε hS lam hlam
+  · intro lam mu _ _ hne
+    exact distinct_closures_on_actual_fields_all_dimensions
+      d hd ε α S lam mu hε hS hne
+
 end ReyesMath.M6B
