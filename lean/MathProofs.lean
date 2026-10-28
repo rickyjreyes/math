@@ -54,3 +54,4 @@ import MathProofs.FourierShellL2
 import MathProofs.TorusFourier
 import MathProofs.SpectralConcentration
 import MathProofs.BandPassFlow
+import MathProofs.RegularizedCurvatureL2

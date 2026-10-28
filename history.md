@@ -1,5 +1,15 @@
 # Version history
 
+## 2026-10-28 — Lean formalization of E26 (F12)
+
+- Formalized the E26 manuscript in `lean/MathProofs/RegularizedCurvatureL2.lean`, for open sets in any finite-dimensional real inner product space (including `ℝ^d`).
+  - Setup: `H²(Ω)` defined by weak derivatives tested against `C_c^∞(Ω)`, and the weak Laplacian, which exists in `L²(Ω)` and is unique a.e.
+  - Theorem E26: under `ess inf |D_ε[ψ]| ≥ δ > 0`, `Θ_ε[ψ] ∈ L²(Ω)` and `‖Θ_ε[ψ]‖ ≤ δ⁻¹‖Δψ‖`.
+  - Both corollaries (fields bounded away from zero; nonnegative real fields with `δ_ε`) and the whole-space remark.
+  - The counterexample `ψ = x² − ε` on `(−1, 1)` (`∫|Θ|² = ∞`, `‖Δψ‖² = 8`).
+  - The corrected M2/E17 multiplier bound, and the fact that `δ` cannot be replaced by `ε`.
+- `lean/formalization.yaml` now marks F12 as formalized.
+
 ## 2026-10-27 — Lean formalization of E13/E14 (F11 complete)
 
 - Formalized the band-pass gradient-flow manuscript (E13) and its E14 companion on the flat torus `(ℝ/Lℤ)^d`, `d ≤ 3`, in `lean/MathProofs/BandPassFlow.lean`.

@@ -60,6 +60,12 @@ This Mathlib v4.23.0 project integrates main-line supporting modules with newer 
   Fourier shell (linearisation, growing band, ultraviolet damping, lattice maximisers,
   non-invariance of finite shells), the `β > 0` lower bound with finite total dissipation, and
   stationarity of time-periodic solutions.
+- [RegularizedCurvatureL2](MathProofs/RegularizedCurvatureL2.lean) — F12 (E26): `H²(Ω)` on open
+  sets via weak derivatives, the weak Laplacian (existence in `L²`, a.e. uniqueness), and the
+  conditional `L²` estimate under the denominator bound. It also proves both sufficient-bound
+  corollaries, the whole-space remark, the `x² − ε` counterexample on `(−1, 1)`, the
+  unconditional bound for the corrected M2/E17 multiplier, and the fact that `δ` cannot be
+  replaced by `ε`.
 - [CurvatureNonattainment](MathProofs/CurvatureNonattainment.lean) — F05, complete:
   whole-space nonattainment in every dimension and strict spreading for `1 ≤ d ≤ 4`.
 
@@ -132,7 +138,7 @@ is not yet committed.
 ## Gaps
 
 All four F01 manuscripts are formalized. The frozen v18 analytic Jacobian rank is separately source-pinned and interval-certified but not Lean formalized. All four F11
-manuscripts (E13/E14, E16, E59, E62) are formalized; F12 remains outside Lean.
+manuscripts (E13/E14, E16, E59, E62) and the F12 manuscript (E26) are formalized.
 
 The local-coordinate rank/signature obstruction (F08) **is formalized** for
 actual differentiable complex fields on four-coordinate charted spaces,
