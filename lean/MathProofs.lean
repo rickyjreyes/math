@@ -64,3 +64,4 @@ import MathProofs.V18FullForward
 import MathProofs.RemainingCores
 
 import MathProofs.E16SpectralCore
+import MathProofs.E62Discrete
