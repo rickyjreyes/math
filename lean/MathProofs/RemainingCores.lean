@@ -103,7 +103,7 @@ theorem shellDamping_off_shell (a t kStar q gap : ℝ)
 
 /-- E62: denominator-safe energy fraction. The Fourier/Parseval
 construction of the numerator and denominator remains to be done. -/
-def energyFraction (selected total : ℝ) : ℝ := selected / total
+noncomputable def energyFraction (selected total : ℝ) : ℝ := selected / total
 
 theorem energyFraction_bounds (selected total : ℝ)
     (hselected : 0 ≤ selected)
