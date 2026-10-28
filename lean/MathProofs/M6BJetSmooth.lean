@@ -28,7 +28,9 @@ theorem curvature_contDiff (ε α lam S : ℝ)
       (fun p : ℂ × ℂ =>
         lam * Complex.normSq p.1 / (S + Complex.normSq p.1)) := by
     have ha := ContDiff.const_smul lam hn
-    have hb := (contDiff_const.add hn)
+    have hb : ContDiff ℝ ⊤
+        (fun p : ℂ × ℂ => S + Complex.normSq p.1) :=
+      (contDiff_const (c := S)).add hn
     have hc := ContDiff.div ha hb hSpos
     simpa only [smul_eq_mul] using hc
   have hExp : ContDiff ℝ ⊤
@@ -37,8 +39,10 @@ theorem curvature_contDiff (ε α lam S : ℝ)
     simpa only [smul_eq_mul] using h.exp
   have hden : ContDiff ℝ ⊤
       (fun p : ℂ × ℂ => denominator ε α lam S (Complex.normSq p.1)) := by
-    have hmul := (ContDiff.const_smul (ε ^ 2) hExp).mul
-      (contDiff_const.add hfrac)
+    have hfac : ContDiff ℝ ⊤
+        (fun p : ℂ × ℂ => 1 + lam * Complex.normSq p.1 / (S + Complex.normSq p.1)) :=
+      (contDiff_const (c := (1 : ℝ))).add hfrac
+    have hmul := (ContDiff.const_smul (ε ^ 2) hExp).mul hfac
     have h := hn.add hmul
     simpa [denominator, smul_eq_mul] using h
   have hdenNZ : ∀ p : ℂ × ℂ,
