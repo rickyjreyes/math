@@ -19,9 +19,17 @@ namespace ReyesMath.M6B
 at its first interior witness point. -/
 private theorem actual_field_at_P :
     squarePlus 1 (Real.pi / 2) (Real.pi / 4) = 1 := by
-  have ha : (2 : ℝ) * (Real.pi / 4) = Real.pi / 2 := by ring
-  have hb : (2 : ℝ) * (Real.pi / 2) = Real.pi := by ring
-  simp [squarePlus, squareModeF, squareModeG, ha, hb]
+  have hf : squareModeF (Real.pi / 2) (Real.pi / 4) = 1 := by
+    unfold squareModeF
+    have h : (2 : ℝ) * (Real.pi / 4) = Real.pi / 2 := by ring
+    rw [h]
+    norm_num
+  have hg : squareModeG (Real.pi / 2) (Real.pi / 4) = 0 := by
+    unfold squareModeG
+    have h : (2 : ℝ) * (Real.pi / 2) = Real.pi := by ring
+    rw [h, Real.sin_pi]
+    ring
+  simpa [squarePlus, hf, hg]
 
 /-- The real-linear source-slot dependence of the exact curvature
 quotient is a derived identity of its actual formula. -/
