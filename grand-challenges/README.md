@@ -239,6 +239,8 @@ That refutes uniqueness under the unrestricted conditions. The interesting remai
 
 ---
 
+**Live flagship research discussions:** [GC01 · #54](https://github.com/rickyjreyes/math/issues/54) · [GC06 · #55](https://github.com/rickyjreyes/math/issues/55) · [GC11 · #56](https://github.com/rickyjreyes/math/issues/56) · [GC36 · #57](https://github.com/rickyjreyes/math/issues/57) · [GC43 · #58](https://github.com/rickyjreyes/math/issues/58).
+
 ## How this free problem book works
 
 **Capture** ideas in the [candidate notebook](./NOTEBOOK.md). **Screen** them using the [precision and prior-art rubric](./METHOD.md). **Compare** nearby established theorems in the [literature ledger](./LITERATURE.md). **Work** on one of the [five flagship dossiers](#start-here-five-questions-worth-exploring). **Contribute** a proof, counterexample, model correction, or verified Lean theorem through GitHub. **Record** the exact result in the [status register](./STATUS.md), preserving withdrawn and refuted questions.
