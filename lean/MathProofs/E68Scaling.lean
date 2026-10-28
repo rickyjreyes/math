@@ -61,12 +61,10 @@ theorem large_radius_one_dimensional_obstruction
   let R : ℝ := max 1 (C * H / A + 1)
   have hR : 1 ≤ R := le_max_left _ _
   have hRpos : 0 < R := by linarith
-  have hRne : R ≠ 0 := ne_of_gt hRpos
   have hRlower : C * H / A + 1 ≤ R := le_max_right _ _
   have hbound := h R hR
   have hproduct : A * R ≤ C * H :=
     (le_div_iff₀ hRpos).mp hbound
-    |>.trans_eq (by ring)
   have hlower : A * (C * H / A + 1) ≤ A * R :=
     mul_le_mul_of_nonneg_left hRlower (le_of_lt hA)
   have hcancel : A * (C * H / A) = C * H := by
