@@ -2,20 +2,17 @@ import Mathlib
 import MathProofs.M6BCurvature
 
 /-!
-# M6B structural smoothness of the actual complex two-jet constitutive map
+# Exact C∞ regularity of the nonlinear M6B complex jet closure
 
-The jet coordinates (z,w) are the field value and its Cartesian
-Laplacian.  This proves the full C∞ real-differentiable regularized
-closure on all complex jets, including nodes. All denominators are
-proved positive; no nonvanishing-field hypothesis is needed.
+The real-smooth jet map is (z,w) ↦ -w conjugate(z)/D(|z|²).
+The proof uses the strictly positive regularization denominator and
+the real-linear continuous complex structure; node values are allowed.
 -/
 
 noncomputable section
 
 namespace ReyesMath.M6B
 
-/-- For admissible λ≥0, the exact nonlinear quotient is C∞ as a
-real map from the complex field/Laplacian jet ℂ×ℂ to ℂ. -/
 theorem curvature_contDiff (ε α lam S : ℝ)
     (hε : 0 < ε) (hlam : 0 ≤ lam) (hS : 0 < S) :
     ContDiff ℝ ⊤ (fun p : ℂ × ℂ => curvature ε α lam S p.1 p.2) := by
@@ -23,37 +20,49 @@ theorem curvature_contDiff (ε α lam S : ℝ)
   have hw : ContDiff ℝ ⊤ (fun p : ℂ × ℂ => p.2) := by fun_prop
   have hn : ContDiff ℝ ⊤ (fun p : ℂ × ℂ => Complex.normSq p.1) := by
     simpa only [Complex.normSq_eq_norm_sq] using hz.norm_sq
-  have hA : ContDiff ℝ ⊤
-      (fun p : ℂ × ℂ =>
-        Real.exp (-2 * α * Complex.normSq p.1)) :=
-    (hn.const_mul (-2 * α)).exp
-  have hSden : ∀ p : ℂ × ℂ, S + Complex.normSq p.1 ≠ 0 := by
+  have hSpos : ∀ p : ℂ × ℂ, S + Complex.normSq p.1 ≠ 0 := by
     intro p
-    have hn0 := Complex.normSq_nonneg p.1
+    have hnonneg := Complex.normSq_nonneg p.1
     exact ne_of_gt (by linarith)
   have hfrac : ContDiff ℝ ⊤
       (fun p : ℂ × ℂ =>
-        lam * Complex.normSq p.1 / (S + Complex.normSq p.1)) :=
-    (hn.const_mul lam).div (contDiff_const.add hn) hSden
-  have hD : ContDiff ℝ ⊤
+        lam * Complex.normSq p.1 / (S + Complex.normSq p.1)) := by
+    have ha := ContDiff.const_smul lam hn
+    have hb := (contDiff_const.add hn)
+    have hc := ContDiff.div ha hb hSpos
+    simpa only [smul_eq_mul] using hc
+  have hExp : ContDiff ℝ ⊤
+      (fun p : ℂ × ℂ => Real.exp (-2 * α * Complex.normSq p.1)) := by
+    have h := ContDiff.const_smul (-2 * α) hn
+    simpa only [smul_eq_mul] using h.exp
+  have hden : ContDiff ℝ ⊤
       (fun p : ℂ × ℂ => denominator ε α lam S (Complex.normSq p.1)) := by
-    unfold denominator
-    exact hn.add ((hA.const_mul (ε ^ 2)).mul (contDiff_const.add hfrac))
-  have hDc : ContDiff ℝ ⊤
-      (fun p : ℂ × ℂ =>
-        ((denominator ε α lam S (Complex.normSq p.1) : ℝ) : ℂ)) := by
-    exact Complex.ofRealCLM.contDiff.comp hD
-  have hDne : ∀ p : ℂ × ℂ,
-      (((denominator ε α lam S (Complex.normSq p.1) : ℝ) : ℂ)) ≠ 0 := by
+    have hmul := (ContDiff.const_smul (ε ^ 2) hExp).mul
+      (contDiff_const.add hfrac)
+    have h := hn.add hmul
+    simpa [denominator, smul_eq_mul] using h
+  have hdenNZ : ∀ p : ℂ × ℂ,
+      denominator ε α lam S (Complex.normSq p.1) ≠ 0 := by
     intro p
-    have h := denominator_pos ε α lam S (Complex.normSq p.1)
-      hε hlam hS (Complex.normSq_nonneg p.1)
-    exact_mod_cast h.ne'
-  have hconj : ContDiff ℝ ⊤ (fun p : ℂ × ℂ => (starRingEnd ℂ) p.1) := by
+    exact ne_of_gt (denominator_pos ε α lam S (Complex.normSq p.1)
+      hε hlam hS (Complex.normSq_nonneg p.1))
+  have hdenInv : ContDiff ℝ ⊤
+      (fun p : ℂ × ℂ =>
+        (denominator ε α lam S (Complex.normSq p.1))⁻¹) :=
+    ContDiff.inv hden hdenNZ
+  have hdenComplex : ContDiff ℝ ⊤
+      (fun p : ℂ × ℂ =>
+        (((denominator ε α lam S (Complex.normSq p.1))⁻¹ : ℝ) : ℂ)) :=
+    Complex.ofRealCLM.contDiff.comp hdenInv
+  have hconj : ContDiff ℝ ⊤
+      (fun p : ℂ × ℂ => (starRingEnd ℂ) p.1) := by
     simpa using (Complex.conjCLE.contDiff.comp hz)
   have hnum : ContDiff ℝ ⊤
       (fun p : ℂ × ℂ => -(p.2 * (starRingEnd ℂ) p.1)) :=
     (hw.mul hconj).neg
-  simpa only [curvature, neg_div] using hnum.div hDc hDne
+  have hresult := hnum.mul hdenComplex
+  convert hresult using 1
+  funext p
+  simp [curvature, div_eq_mul_inv]
 
 end ReyesMath.M6B
