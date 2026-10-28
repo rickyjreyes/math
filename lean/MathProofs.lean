@@ -60,3 +60,5 @@ import MathProofs.V18BlockJacobian
 import MathProofs.V18MiddleJacobian
 import MathProofs.V18MiddleDerivatives
 import MathProofs.V18FullForward
+import MathProofs.M6BCurvature
+import MathProofs.E68Scaling
