@@ -29,7 +29,7 @@ private theorem actual_field_at_P :
     have h : (2 : ℝ) * (Real.pi / 2) = Real.pi := by ring
     rw [h, Real.sin_pi]
     ring
-  simpa [squarePlus, hf, hg]
+  apply Complex.ext <;> norm_num [squarePlus, hf, hg]
 
 /-- The real-linear source-slot dependence of the exact curvature
 quotient is a derived identity of its actual formula. -/
