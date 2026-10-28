@@ -67,8 +67,13 @@ def quadraticFieldD (d : ℕ) :
 /-- The differentiating quadratic witness is genuinely C∞. -/
 theorem quadraticFieldD_smooth (d : ℕ) :
     ContDiff ℝ ⊤ (quadraticFieldD d) := by
-  unfold quadraticFieldD
-  fun_prop
+  let E := EuclideanSpace ℝ (Fin d)
+  have hnorm : ContDiff ℝ ⊤ (fun x : E => ‖x‖ ^ 2) :=
+    (contDiff_id (E := E)).norm_sq ℝ
+  have hsum : ContDiff ℝ ⊤ (fun x : E => (1 : ℝ) + ‖x‖ ^ 2) :=
+    (contDiff_const (c := (1 : ℝ))).add hnorm
+  simpa [quadraticFieldD, Function.comp_def] using
+    (Complex.ofRealCLM.contDiff.comp hsum)
 
 /-- The raw real squared norm has the exact Hessian trace 2d on
 the d-dimensional Euclidean vector space. -/
@@ -111,13 +116,15 @@ theorem quadraticFieldD_laplacian_at_origin (d : ℕ) :
       (0 : EuclideanSpace ℝ (Fin d)) = ((2 * (d : ℝ) : ℝ) : ℂ) := by
   let E := EuclideanSpace ℝ (Fin d)
   let f : E → ℝ := fun y => 1 + ‖y‖ ^ 2
+  have hnorm : ContDiff ℝ 2 (fun y : E => ‖y‖ ^ 2) :=
+    (contDiff_id (E := E)).norm_sq ℝ
   have hf : ContDiff ℝ 2 f := by
     dsimp [f]
-    fun_prop
-  have hconst : ContDiffAt ℝ 2 (fun _ : E => (1 : ℝ)) 0 := by
-    fun_prop
-  have hsq : ContDiffAt ℝ 2 (fun y : E => ‖y‖ ^ 2) 0 := by
-    fun_prop
+    exact (contDiff_const (c := (1 : ℝ))).add hnorm
+  have hconst : ContDiffAt ℝ 2 (fun _ : E => (1 : ℝ)) 0 :=
+    (contDiff_const (c := (1 : ℝ))).contDiffAt 0
+  have hsq : ContDiffAt ℝ 2 (fun y : E => ‖y‖ ^ 2) 0 :=
+    hnorm.contDiffAt 0
   have hreal : InnerProductSpace.laplacian f (0 : E) = 2 * (d : ℝ) := by
     have h := hconst.laplacian_add hsq
     change InnerProductSpace.laplacian f 0 =
