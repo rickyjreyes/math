@@ -97,4 +97,70 @@ theorem squared_norm_laplacian_D (d : ℕ)
   simp [L, innerSL_apply, real_inner_self_eq_norm_sq,
     OrthonormalBasis.norm_eq_one, finrank_euclideanSpace]
 
+
+/-- The polynomial witness has the nonzero field value one at the
+origin in every Euclidean spatial dimension. -/
+theorem quadraticFieldD_at_origin (d : ℕ) :
+    quadraticFieldD d (0 : EuclideanSpace ℝ (Fin d)) = 1 := by
+  simp [quadraticFieldD]
+
+/-- The global complex quadratic test has the *actual* Laplacian
+2d, as obtained by the Mathlib second-Fréchet-derivative trace. -/
+theorem quadraticFieldD_laplacian_at_origin (d : ℕ) :
+    laplacianD d (quadraticFieldD d)
+      (0 : EuclideanSpace ℝ (Fin d)) = ((2 * (d : ℝ) : ℝ) : ℂ) := by
+  let E := EuclideanSpace ℝ (Fin d)
+  let f : E → ℝ := fun y => 1 + ‖y‖ ^ 2
+  have hf : ContDiff ℝ 2 f := by
+    dsimp [f]
+    fun_prop
+  have hconst : ContDiffAt ℝ 2 (fun _ : E => (1 : ℝ)) 0 := by
+    fun_prop
+  have hsq : ContDiffAt ℝ 2 (fun y : E => ‖y‖ ^ 2) 0 := by
+    fun_prop
+  have hreal : InnerProductSpace.laplacian f (0 : E) = 2 * (d : ℝ) := by
+    have h := hconst.laplacian_add hsq
+    change InnerProductSpace.laplacian f 0 =
+      InnerProductSpace.laplacian (fun _ : E => (1 : ℝ)) 0 +
+        InnerProductSpace.laplacian (fun y : E => ‖y‖ ^ 2) 0 at h
+    simpa [InnerProductSpace.laplacian_const, squared_norm_laplacian_D] using h
+  have hc := (hf.contDiffAt (0 : E)).laplacian_CLM_comp_left
+    (l := Complex.ofRealCLM)
+  simpa [laplacianD, quadraticFieldD, f, Function.comp_def,
+    hreal] using hc
+
+/-- The manuscript's infinite family is genuinely nonunique on
+actual C-infinity complex fields for *every* spatial d >= 1.
+
+The distinguishing jet is derived, not assumed: ψ(0)=1 and
+Δψ(0)=2d, and 2d ≠ 0 in any permitted dimension. -/
+theorem distinct_closures_on_actual_fields_all_dimensions
+    (d : ℕ) (hd : 1 ≤ d)
+    (ε α S lam mu : ℝ)
+    (hε : 0 < ε) (hS : 0 < S) (hne : lam ≠ mu) :
+    ∃ ψ : EuclideanSpace ℝ (Fin d) → ℂ,
+      ContDiff ℝ ⊤ ψ ∧
+      ∃ x : EuclideanSpace ℝ (Fin d),
+        fieldCurvatureD d ε α lam S ψ x ≠
+          fieldCurvatureD d ε α mu S ψ x := by
+  let a : ℂ := ((2 * (d : ℝ) : ℝ) : ℂ)
+  have ha : a ≠ 0 := by
+    have hr : 2 * (d : ℝ) ≠ 0 := by
+      have hdpos : (0 : ℝ) < d := by exact_mod_cast (Nat.lt_of_lt_of_le (by omega : 0 < 1) hd)
+      exact ne_of_gt (mul_pos (by norm_num) hdpos)
+    exact_mod_cast hr
+  have hlinear (k : ℝ) :
+      curvature ε α k S 1 a = a * curvature ε α k S 1 1 := by
+    unfold curvature
+    ring
+  have hdistinct :
+      curvature ε α lam S 1 a ≠ curvature ε α mu S 1 a := by
+    intro he
+    rw [hlinear lam, hlinear mu] at he
+    exact (curvature_family_pairwise_distinct ε α S lam mu hε hS hne)
+      (mul_left_cancel₀ ha he)
+  refine ⟨quadraticFieldD d, quadraticFieldD_smooth d, 0, ?_⟩
+  simpa only [fieldCurvatureD, quadraticFieldD_at_origin,
+    quadraticFieldD_laplacian_at_origin, a] using hdistinct
+
 end ReyesMath.M6B
