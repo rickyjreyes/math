@@ -112,4 +112,46 @@ theorem equal_intensity_eigenjets (ε α λ S : ℝ)
         rw [Complex.normSq_eq_norm_sq]
   rw [eigen_formula z₁, eigen_formula z₂, h]
 
+/-- The family denominators are injectively parametrized by λ even
+when examined at the single, physically admissible intensity s=1. -/
+theorem denominator_injective_at_one (ε α S : ℝ)
+    (hε : 0 < ε) (hS : 0 < S) :
+    Function.Injective (fun λ : ℝ => denominator ε α λ S 1) := by
+  intro λ μ heq
+  have hs : S + 1 ≠ 0 := ne_of_gt (by linarith)
+  have he : ε ^ 2 * Real.exp (-2 * α) ≠ 0 := ne_of_gt (by positivity)
+  have hh : 1 + (ε ^ 2 * Real.exp (-2 * α)) *
+        (1 + λ / (S + 1)) =
+      1 + (ε ^ 2 * Real.exp (-2 * α)) *
+        (1 + μ / (S + 1)) := by
+    simpa [denominator] using heq
+  have hm : (ε ^ 2 * Real.exp (-2 * α)) *
+        (1 + λ / (S + 1)) =
+      (ε ^ 2 * Real.exp (-2 * α)) *
+        (1 + μ / (S + 1)) := add_left_cancel hh
+  have hfac : 1 + λ / (S + 1) = 1 + μ / (S + 1) :=
+    mul_left_cancel₀ he hm
+  have hdiv : λ / (S + 1) = μ / (S + 1) := by linarith
+  have hfinal := congrArg (fun a : ℝ => a * (S + 1)) hdiv
+  field_simp [hs] at hfinal
+  exact hfinal
+
+/-- Actual curvature closures indexed by different λ give different
+outputs already at the nonzero jet (ψ,Δψ)=(1,1). -/
+theorem curvature_family_pairwise_distinct (ε α S λ μ : ℝ)
+    (hε : 0 < ε) (hS : 0 < S) (hne : λ ≠ μ) :
+    curvature ε α λ S 1 1 ≠ curvature ε α μ S 1 1 := by
+  intro heq
+  have hinv :
+      (((denominator ε α λ S 1 : ℝ) : ℂ)⁻¹) =
+        (((denominator ε α μ S 1 : ℝ) : ℂ)⁻¹) := by
+    simpa [curvature, div_eq_mul_inv] using heq
+  have hdenC : ((denominator ε α λ S 1 : ℝ) : ℂ) =
+      ((denominator ε α μ S 1 : ℝ) : ℂ) := by
+    have h := congrArg (fun z : ℂ => z⁻¹) hinv
+    simpa using h
+  have hdenR : denominator ε α λ S 1 =
+      denominator ε α μ S 1 := by exact_mod_cast hdenC
+  exact hne (denominator_injective_at_one ε α S hε hS hdenR)
+
 end ReyesMath.M6B
