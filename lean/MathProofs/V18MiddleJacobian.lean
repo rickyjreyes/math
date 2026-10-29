@@ -43,8 +43,9 @@ follows from a middle-block inequality. The unconditional version is
 exported by `V18MiddleDeterminant.determinant_product_nonzero`.
 The general `V18BlockJacobian.det_three_blocks` theorem establishes
 the product as the determinant of an arbitrary three-sector block
-matrix. Direct kernel instantiation on the concrete 11×11 index is
-left out because it exhausts the pinned build's recursion limits. -/
+matrix. V18Rank instantiates a generic invertibility consequence and proves
+nonvanishing of the actual eleven-column derivative restriction without
+expanding its concrete permutation enumeration. -/
 theorem determinant_product_nonzero_of_middle
     (alpha epsilon : ℝ)
     (hmiddle : middle.det ≠ 0) :

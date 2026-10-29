@@ -1,7 +1,8 @@
 # Exact analytic rank of the frozen v18 31-to-11 sensitivity map
 
 **Status:** reproducible interval-arithmetic certificate and exact symbolic block
-factorization; **not Lean-kernel formalized**. The input data are pinned to
+factorization, accompanied by an independent Lean proof for the exact-decimal
+model. The interval execution itself is not a Lean proof. The input data are pinned to
 [the frozen v18 source at commit 5a4c58a](https://github.com/rickyjreyes/geometry_of_resonance/blob/5a4c58a4206005ad9d46ee2951069186490b01f1/SM_Spectrum/_terms_perfection_v18.py).
 The original [finite-difference audit](https://github.com/rickyjreyes/geometry_of_resonance/blob/5a4c58a4206005ad9d46ee2951069186490b01f1/SM_Spectrum/audit_v18_identifiability.py)
 reported numerical rank 11; the present certificate uses **analytic derivatives**, not
@@ -126,11 +127,22 @@ their respective modules. `V18MiddleDeterminant.lean` now proves
 `18,000,000 < middle.det < 24,000,000` for the exact matrix definition,
 using rational enclosures, Mathlib Taylor remainders, and an exact determinant
 expansion. The full active-branch Fréchet derivative and C¹ neighborhood regularity
-are now proved in `V18Frechet` and `V18Regularity`. Identification of its
-selected restriction with these blocks, and therefore the exact rank theorem,
-remain to be checked in Lean. The conditional nonlinear level-set proposition also
-remains unformalized. F09 therefore stays `main_theorem_formalized: false`.
+are proved in `V18Frechet` and `V18Regularity`. The actual selected
+restriction, exact full-model rank, and C¹ local level-set chart now have
+kernel-checked proofs as described below. Final repository-wide validation
+of the completion revision is pending.
 
 The previous decimal-only input intervals did not enclose the exact stored
 binary64 coefficients. The wider enclosures above repair that mismatch and
 retain the strict nonzero-minor conclusion.
+
+## Lean completion chain
+
+The external certificate remains a regression check. It is not a premise of
+the Lean proofs. `V18Forward.selectedMinor_frozen_eq` in `V18SelectedJacobian` identifies
+every entry of the selected restriction of the actual Fréchet derivative.
+`V18Rank` proves its nonzero determinant and the full derivative's rank 11,
+nullity 20, and surjectivity. `V18Forward.f09_completion` in `V18Identifiability` connects
+those results to the C¹ local level-set chart, with a C¹ inverse and a
+twenty-dimensional kernel model. All active input coordinates are retained.
+Final repository-wide validation of this completion revision is pending.

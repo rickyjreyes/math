@@ -14,9 +14,9 @@ The rational 3x3 base determinant is exactly 9; hence the light-sector
 Jacobian block has strictly positive determinant for *every* real
 alpha and epsilon, not just the historically optimized fitted values.
 
-This is an exact Lean proof of one of the three diagonal blocks of
-the source-pinned 11x11 minor. The middle (trigonometric) and heavy
-nonzero determinant intervals still require independent Lean bounds.
+This certifies one diagonal block. The middle and heavy determinants
+are proved nonzero in V18MiddleDeterminant and V18HeavyJacobian, and
+V18SelectedJacobian identifies all three as blocks of the actual derivative.
 -/
 
 noncomputable section

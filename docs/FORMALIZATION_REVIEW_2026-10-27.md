@@ -1,6 +1,6 @@
 # Formalization review — 2026-10-27
 
-The maintained library contains **88 project modules and 1,697 source theorem/lemma
+The maintained library contains **90 project modules and 1,704 source theorem/lemma
 declarations**, including private lemmas. **13 of the 14 original manuscripts are
 complete** under the manifest's manuscript-wide criterion. F09 remains partial.
 The declaration count is an inventory, not a measure of mathematical novelty or
@@ -80,10 +80,10 @@ All unqualified declaration names below are in the `ReyesMath` namespace.
 | 10 | S004 constraint count | [`S004.constraint_count`](../lean/MathProofs/S004ConstraintCount.lean) | [PASS][review-ci] | Complete | None for the regular fixed-background sector |
 | 11 | Weighted phase locking | [`phase_locking_exact_minimum`](../lean/MathProofs/PhaseLockingContinuous.lean) | [PASS][review-ci] | Complete | None |
 | 12 | Global scalar-metric obstruction | [`ManifoldScalarMetric.main`](../lean/MathProofs/ManifoldScalarMetric.lean) | [PASS][review-ci] | Complete | None for the positive-sign tensor construction |
-| 13 | Spectral identifiability | [`V18Forward.local_identifiability`, `null_direction`](../lean/MathProofs/V18FullForward.lean) | [PASS][review-ci] | Supporting proofs verified | Conditional nonlinear C¹ local level-set theorem |
+| 13 | Spectral identifiability | [`V18Forward.local_identifiability`, `null_direction`](../lean/MathProofs/V18FullForward.lean) | [PASS][review-ci] | Supporting proofs verified | Final verification of the complete theorem chain |
 | 14 | Fourier-shell exclusion | [`FourierShell.shell_theorem`, `helmholtz`, `poly_dispersion`, `packets`](../lean/MathProofs/FourierShellL2.lean) | [PASS][review-ci] | Complete | None for the F10 manuscript statements |
 
-## Exact remaining F09 work
+## F09 completion proof chain
 
 The actual forward map and its Jacobian are defined, and at every point where
 that map is differentiable the rank is at most 11 and its kernel dimension is
@@ -100,11 +100,11 @@ with the full-parameter smooth formulas. `V18Frechet` proves
 `hasFDerivAt_observed_frozen`, `hasFDerivAt_observed_near_frozen`, and
 `jacobian_frozen_eq`, with every active parameter retained.
 
-`V18SelectedJacobian.selectedMinor_frozen_eq` now identifies all 121 entries
+`V18Forward.selectedMinor_frozen_eq` in `V18SelectedJacobian` now identifies all 121 entries
 of the eleven-column restriction of this verified derivative with the
 3+5+3 block matrix. All six cross-sector blocks vanish at the verified local
 branches; in particular, the heavy inner light floor removes the light-to-heavy
-coupling. `V18Rank.selectedMinor_det_ne_zero`, `jacobian_rank`,
+coupling. `V18Forward.selectedMinor_det_ne_zero` in `V18Rank`, `jacobian_rank`,
 `jacobian_nullity`, and `jacobian_surjective` prove actual selected-minor
 nonsingularity, full derivative rank 11, kernel dimension 20, and surjectivity.
 The generic block argument is packaged as matrix invertibility before concrete
@@ -118,8 +118,22 @@ enclosures and a 60-term exact determinant expansion; Python only generates
 Lean proof scripts and supplies no assumptions. The local targeted Lean build
 passes on v4.23.0. The full-model rank-11/nullity-20 theorem now follows from the
 selected-block identification above.
-The manuscript's separate conditional C¹ local level-set proposition still
-requires a formal application of the implicit-function/submersion theorem.
+The conditional proposition is now proved as `ReyesMath.conditional_local_level_set`.
+The bridge constructs Mathlib's implicit-function chart, proves the inverse
+is C¹, and restricts both sides to open sets of C¹ regularity.
+`V18Forward.observed_local_level_set` applies it to the actual observation
+map: the chart sends the complete local fiber exactly onto the vertical
+slice in its target, with transverse model space the twenty-dimensional
+kernel of the actual derivative. `observed_locally_nonidentifiable` proves
+that every ambient neighborhood contains a distinct equal-output vector.
+`f09_completion` exports the entire chain under `alpha ∈ [5.172,5.173]`
+and frozen epsilon 5. Its targeted Lean build passes.
+
+Final full-repository validation and signature/dependency review are in
+progress. The original-manuscript count remains 13/14 until those checks pass.
+The manuscript has been aligned with the exact certified column selection;
+the earlier numerical diagnostic used different light and heavy columns.
+The parameter map itself has not been replaced or simplified.
 
 F11 and F12 are additional families outside the original fourteen. Their
 unmerged developments do not change this completion count.
