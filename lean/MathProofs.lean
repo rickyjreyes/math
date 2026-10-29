@@ -102,3 +102,4 @@ import MathProofs.E61WholeSpaceGrowth
 import MathProofs.E62ProjectionOperator
 import MathProofs.E62ParsevalProjectorBridge
 import MathProofs.E62TorusSharpness
+import MathProofs.E62TorusPhysicalProjector
