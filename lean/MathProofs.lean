@@ -95,3 +95,4 @@ import MathProofs.E26HistoricalCounterexample
 import MathProofs.E17Canonical
 import MathProofs.E17PhaseRegularizer
 import MathProofs.E26SeparatedL2
+import MathProofs.E57WholeSpaceDamping
