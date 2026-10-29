@@ -53,13 +53,16 @@ jobs:
             MathProofs/E62TorusSharpness.lean \
             MathProofs/E62TorusPhysicalProjector.lean \
             MathProofs/E62TrigonometricScope.lean \
-            MathProofs/E62TorusProjectorTheorem.lean; then exit 1; fi
+            MathProofs/E62TorusProjectorTheorem.lean \
+            MathProofs/E62LebesgueFraction.lean; then exit 1; fi
       - name: Kernel check E16 exact modal power dominance
         run: lake build MathProofs.E16ModalPower
       - name: Kernel check E62 infinite-mode dependency first
         run: lake build MathProofs.E62Discrete
       - name: Kernel check existing E62 torus one-dimensional and coefficient projector
         run: lake build MathProofs.E62Projector MathProofs.E62Torus1D
+      - name: Kernel check E62 arbitrary Lebesgue-measurable continuum bands
+        run: lake build MathProofs.E62LebesgueFraction
       - name: Kernel check E62 full physical torus orthogonal projection theorem
         run: lake build MathProofs.E62TorusProjectorTheorem
       - name: Kernel check E62 exact cos-squared nonmonotonic example
