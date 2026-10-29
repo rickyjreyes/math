@@ -41,8 +41,12 @@ theorem symbol_norm_le (r a kStar t : ℝ)
   have he : Real.exp (t * linearGrowth r a kStar (Sobolev.qS ξ)) ≤
       Real.exp (t * r) :=
     Real.exp_le_exp.mpr hm
-  simpa [symbol, Complex.norm_real, Real.norm_eq_abs,
-    abs_of_pos (Real.exp_pos _)] using he
+  calc
+    ‖symbol r a kStar t ξ‖ =
+        Real.exp (t * linearGrowth r a kStar (Sobolev.qS ξ)) := by
+      change ‖((Real.exp (t * linearGrowth r a kStar (Sobolev.qS ξ)) : ℝ) : ℂ)‖ = _
+      rw [Complex.norm_real, Real.norm_eq_abs, abs_of_pos (Real.exp_pos _)]
+    _ ≤ Real.exp (t * r) := he
 
 theorem growing_product_memLp (r a kStar t : ℝ)
     (ha : 0 ≤ a) (ht : 0 ≤ t) (f : Sobolev.L2 d) :
