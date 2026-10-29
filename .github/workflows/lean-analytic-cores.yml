@@ -69,13 +69,16 @@ jobs:
             MathProofs/E58GreenFunction.lean \
             MathProofs/E57L2Semigroup.lean \
             MathProofs/E26Certification.lean \
-            MathProofs/E17GlobalBound.lean; then exit 1; fi
+            MathProofs/E17GlobalBound.lean \
+            MathProofs/E61ExactNorm.lean; then exit 1; fi
       - name: Kernel check E57 whole-space L2 operator semigroup law
         run: lake build MathProofs.E57L2Semigroup
       - name: Kernel check full E26 historical L2 certification
         run: lake build MathProofs.E26Certification
       - name: Kernel check global E17 regularizer bound for arbitrary alpha
         run: lake build MathProofs.E17GlobalBound
+      - name: Kernel check E61 exact L2 semigroup norm and threshold
+        run: lake build MathProofs.E61ExactNorm
       - name: Kernel check E16 exact modal power dominance
         run: lake build MathProofs.E16ModalPower
       - name: Kernel check E62 infinite-mode dependency first
