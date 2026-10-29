@@ -84,3 +84,4 @@ import MathProofs.E62Discrete
 import MathProofs.E58Sharpness
 import MathProofs.E62Projector
 import MathProofs.SpectralSharpness
+import MathProofs.E62Continuous
