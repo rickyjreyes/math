@@ -25,7 +25,7 @@ theorem greenMultiplier_eq_bound_iff (r a kStar q : ℝ)
   · intro h
     have hcross : (1 : ℝ) * r =
         (1 : ℝ) * (r + a * shellSymbol kStar q) := by
-      apply (div_eq_div_iff₀ hd hr).mp
+      apply (div_eq_div_iff (ne_of_gt hd) (ne_of_gt hr)).mp
       simpa [greenMultiplier] using h
     have hmul : a * shellSymbol kStar q = 0 := by linarith
     have hs : shellSymbol kStar q = 0 :=
