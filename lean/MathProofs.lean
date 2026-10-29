@@ -100,3 +100,4 @@ import MathProofs.E57SemigroupSymbol
 import MathProofs.E16ModalPower
 import MathProofs.E61WholeSpaceGrowth
 import MathProofs.E62ProjectionOperator
+import MathProofs.E62ParsevalProjectorBridge
