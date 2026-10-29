@@ -69,6 +69,33 @@ theorem totalEnergy_eq_L2_integral
   simpa only [totalEnergy, coefficients] using
     (tsum_sq_fourierCoeff f)
 
+/-- Physical-space Parseval energy is exactly the sum of the
+selected and rejected coefficient energies for every set of modes. -/
+theorem physical_L2_energy_split
+    (f : Lp ℂ 2 (AddCircle.haarAddCircle (T := T)))
+    (S : Set ℤ) :
+    (∫ x : AddCircle T, ‖(f : AddCircle T → ℂ) x‖ ^ 2 ∂
+        (AddCircle.haarAddCircle (T := T))) =
+      selectedEnergy (coefficients f) S +
+        selectedEnergy (coefficients f) Sᶜ := by
+  calc
+    _ = totalEnergy (coefficients f) :=
+      (totalEnergy_eq_L2_integral f).symm
+    _ = selectedEnergy (coefficients f) S +
+        selectedEnergy (coefficients f) Sᶜ :=
+      totalEnergy_split (coefficients f) S (coefficients_summable f)
+
+/-- Nonzero physical L² fields have strictly positive total Fourier
+energy and thus a nonzero normalization denominator. -/
+theorem physical_L2_energy_pos
+    (f : Lp ℂ 2 (AddCircle.haarAddCircle (T := T)))
+    (hf : f ≠ 0) :
+    0 < (∫ x : AddCircle T, ‖(f : AddCircle T → ℂ) x‖ ^ 2 ∂
+        (AddCircle.haarAddCircle (T := T))) := by
+  rw [← totalEnergy_eq_L2_integral f]
+  exact totalEnergy_pos (coefficients f) (coefficients_summable f)
+    (coefficients_nontrivial_of_nonzero f hf)
+
 /-- Bounds for a genuinely nonzero Fourier-defined L² field on T¹.
 Nontrivial Fourier support follows from the proved Fourier basis theorem. -/
 theorem actual_fourier_fraction_bounds
