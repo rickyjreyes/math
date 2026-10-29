@@ -52,7 +52,9 @@ def main():
     readme = read(ROOT / "README.md")
     shortlist = read(ROOT / "FOUNDATIONAL_SHORTLIST.md")
     folder_index = read(ROOT / "problems" / "README.md")
-    require(table_ids(roadmap) == IDS, "Roadmap must link all 300 entries exactly once")
+    roadmap_ids = table_ids(roadmap)
+    require(len(roadmap_ids) == 300 and set(roadmap_ids) == set(IDS),
+            "Roadmap must contain each of GC01..GC300 once; thematic order is allowed")
     require(table_ids(status) == IDS, "STATUS must list all 300 entries exactly once")
     old_anchors = {slug(f"{i}-{title}") for i, title in original_titles.items()}
     found_anchors = set(re.findall(r"FORMAL_PROBLEMS\.md#(gc\d{2}-[a-z0-9-]+)", readme))
