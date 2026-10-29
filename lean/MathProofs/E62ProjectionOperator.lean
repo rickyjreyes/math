@@ -31,7 +31,10 @@ theorem maskedL2_add (μ : Measure α) (S : Set α) (hS : MeasurableSet S)
   rw [hfg, hmask]
   simp only [Pi.add_apply]
   rw [hf, hg]
-  by_cases hx : x ∈ S <;> simp [hx, hsum]
+  by_cases hx : x ∈ S
+  · simp only [Set.indicator_of_mem hx]
+    simpa only [Pi.add_apply] using hsum
+  · simp [hx]
 
 theorem maskedL2_smul (μ : Measure α) (S : Set α) (hS : MeasurableSet S)
     (c : ℂ) (f : Lp ℂ 2 μ) :
