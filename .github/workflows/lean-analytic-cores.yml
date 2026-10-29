@@ -64,7 +64,8 @@ jobs:
             MathProofs/E58Certification.lean \
             MathProofs/E58GreenFunction.lean \
             MathProofs/E57L2Semigroup.lean \
-            MathProofs/E26Certification.lean; then exit 1; fi
+            MathProofs/E26Certification.lean \
+            MathProofs/E17GlobalBound.lean; then exit 1; fi
       - name: Kernel check E16 exact modal power dominance
         run: lake build MathProofs.E16ModalPower
       - name: Kernel check E62 infinite-mode dependency first
@@ -125,6 +126,8 @@ jobs:
         run: lake build MathProofs.E57L2Semigroup
       - name: Kernel check full E26 historical L2 certification
         run: lake build MathProofs.E26Certification
+      - name: Kernel check global E17 regularizer bound for arbitrary alpha
+        run: lake build MathProofs.E17GlobalBound
       - name: Kernel check analytic declarations
         run: |
           lake build MathProofs.RemainingCores MathProofs.E16SpectralCore \
