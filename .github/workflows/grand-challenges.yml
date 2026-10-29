@@ -5,6 +5,8 @@ on:
     paths:
       - "reyes-problem-repository/**"
       - ".github/ISSUE_TEMPLATE/grand_challenge.yml"
+      - ".github/ISSUE_TEMPLATE/gc_problem.yml"
+      - ".github/PULL_REQUEST_TEMPLATE.md"
       - ".github/workflows/grand-challenges.yml"
   pull_request:
     paths:
@@ -23,3 +25,14 @@ jobs:
       - uses: actions/checkout@v4
       - name: Validate catalogue, links, and math fences
         run: python3 reyes-problem-repository/scripts/validate_catalog.py
+      - name: Validate GC adoption and completion evidence references
+        run: python3 reyes-problem-repository/scripts/validate_completion_records.py
+      - name: Check issue template preview and existing-issue guard
+        run: |
+          python3 reyes-problem-repository/scripts/render_gc_issue.py GC52 > /tmp/gc52-issue-preview.md
+          grep -q "GC52" /tmp/gc52-issue-preview.md
+          if python3 reyes-problem-repository/scripts/render_gc_issue.py GC01 > /tmp/existing-issue-preview.md 2>/tmp/existing-issue-warning.log; then
+            echo "ERROR: Existing GC01 issue was not guarded" >&2
+            exit 1
+          fi
+          grep -q "issue #54" /tmp/existing-issue-warning.log
