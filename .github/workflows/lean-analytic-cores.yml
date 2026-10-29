@@ -43,7 +43,9 @@ jobs:
       - name: Kernel check E62 infinite-mode dependency first
         run: lake build MathProofs.E62Discrete
       - name: Kernel check E62 physical Fourier bridge next
-        run: lake build MathProofs.E62Projector MathProofs.E62Torus1D MathProofs.E62TorusND MathProofs.E62ContinuumL2 \
+        run: |
+          lake build MathProofs.E62Projector MathProofs.E62Torus1D \
+            MathProofs.E62TorusND MathProofs.E62ContinuumL2 \
             MathProofs.E58WholeSpaceL2
       - name: Kernel check analytic declarations
         run: |
