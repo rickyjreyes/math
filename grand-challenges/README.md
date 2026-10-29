@@ -1,10 +1,10 @@
-# 50 Grand Challenges in Wave Mathematics
+# The Reyes Problem Repository
 
 > **Can a wave confine itself, form a stable knot, select its own wavelength, or perform universal computation?**
 
-**50 proposed mathematical research problems. 10 areas of mathematics. Every proposed claim is open to proof, counterexample, or refinement.**
+**An evolving, open-source collection of mathematical challenges.** Currently 50 proposed problems across 10 research areas, developed through questions, counterexamples, proofs, and formal verification.
 
-These questions connect nonlinear partial differential equations, variational analysis, spectral geometry, topological fields, computation, and formal verification. They are invitations to investigate, not claims of 50 previously unknown theorems.
+The Reyes Problem Repository is a living, version-controlled research collection built around **GitHub, human collaboration, LLM-assisted exploration, and Lean 4 proof checking**. Problems can grow, branch, be corrected, or be resolved as evidence develops. Its questions connect nonlinear PDEs, variational analysis, spectral geometry, topological fields, computation, and formal verification. No generated conjecture becomes a theorem merely because an LLM proposed it.
 
 **[Formal problems](./FORMAL_PROBLEMS.md)** · **[Live research status](./STATUS.md)** · **[Five flagship dossiers](#start-here-five-questions-worth-exploring)** · **[Candidate notebook](./NOTEBOOK.md)** · **[How to contribute](./CONTRIBUTING.md)**
 
@@ -245,7 +245,7 @@ That refutes uniqueness under the unrestricted conditions. The interesting remai
 
 **Capture** ideas in the [candidate notebook](./NOTEBOOK.md). **Screen** them using the [precision and prior-art rubric](./METHOD.md). **Compare** nearby established theorems in the [literature ledger](./LITERATURE.md). **Work** on one of the [five flagship dossiers](#start-here-five-questions-worth-exploring). **Contribute** a proof, counterexample, model correction, or verified Lean theorem through GitHub. **Record** the exact result in the [status register](./STATUS.md), preserving withdrawn and refuted questions.
 
-The registry distinguishes **candidate**, **scoping**, **literature-checked**, **partially resolved**, **resolved**, and **withdrawn** work. This is an open mathematical notebook, not a claim that every listed item is a globally recognized open conjecture.
+The registry distinguishes **candidate**, **scoping**, **literature-checked**, **partially resolved**, **resolved**, and **withdrawn** work. This is an evolving mathematical research repository, not a claim that every listed item is a globally recognized open conjecture.
 
 ---
 
