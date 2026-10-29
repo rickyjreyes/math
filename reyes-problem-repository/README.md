@@ -2,16 +2,19 @@
 
 > **Can a wave confine itself, form a stable knot, select its own wavelength, or perform universal computation?**
 
-**An evolving, open-source collection of mathematical challenges.** Currently 65 proposed problems across 13 research areas, developed through questions, counterexamples, proofs, and formal verification.
+**An evolving, open-source corpus of 300 mathematical research candidates in 12 subject folders.** GC01–GC65 preserve existing formal question statements; GC66–GC300 are newly outlined problems awaiting rigorous mathematical scoping and prior-art review.
 
 The Reyes Problem Repository is a living, version-controlled research collection built around **GitHub, human collaboration, LLM-assisted exploration, and Lean 4 proof checking**. Problems can grow, branch, be corrected, or be resolved as evidence develops. Its questions connect nonlinear PDEs, variational analysis, spectral geometry, topological fields, computation, and formal verification. No generated conjecture becomes a theorem merely because an LLM proposed it.
 
-**[Formal problems](./FORMAL_PROBLEMS.md)** · **[Live research status](./STATUS.md)** · **[Five flagship dossiers](#start-here-five-questions-worth-exploring)** · **[Candidate notebook](./NOTEBOOK.md)** · **[How to contribute](./CONTRIBUTING.md)**
+**[Browse all 300 questions](./ROADMAP_300.md)** · **[12 research folders](./problems/README.md)** · **[Foundational shortlist](./FOUNDATIONAL_SHORTLIST.md)** · **[Original 65 formal problems](./FORMAL_PROBLEMS.md)** · **[Live research status](./STATUS.md)** · **[Five flagship dossiers](#start-here-five-questions-worth-exploring)** · **[Candidate notebook](./NOTEBOOK.md)** · **[How to contribute](./CONTRIBUTING.md)**
 
 **[Screening and editorial method](./METHOD.md)** · [Initial literature ledger](./LITERATURE.md) · [Flagship screening](./SCREENING.md) · [Existing papers](../papers) · [Lean 4 source](../lean/MathProofs) · [Submit a research contribution](https://github.com/rickyjreyes/math/issues/new?template=grand_challenge.yml)
 
 > [!IMPORTANT]
 > **Research status:** This is a proposed challenge catalogue, **not** an established list of unsolved problems comparable in standing to the Millennium Prize Problems. No prizes are offered. Novelty and open status have not been established through comprehensive literature review. Some statements have partial results or counterexamples; others require sharper assumptions. See [research standards](#what-counts-as-a-solution).
+
+> [!NOTE]
+> **Corpus scope:** The 300 entries form a research agenda, not a verified list of 300 unsolved problems. Existing GC01–GC65 mathematical statements remain separately archived. New GC66–GC300 entries are drafts with first proof-or-counterexample targets, not full formal theorems. The [25 foundational candidates](./FOUNDATIONAL_SHORTLIST.md) are only a screening shortlist.
 
 ---
 
@@ -75,11 +78,11 @@ Related starting points: [orbital stability](../papers/orbital-stability-fourth-
 
 ---
 
-## The complete challenge catalogue
+## Original 65-question catalogue
 
-**Choose a question.** Each title links to its mathematical problem statement, including a proof-or-counterexample resolution criterion. The plain-language prompts below are guides, not replacements for the formal statements.
+**Original problem statements (GC01–GC65).** This section preserves the earlier mathematically scoped catalogue. The expanded [300-problem roadmap](./ROADMAP_300.md) and [folder index](./problems/README.md) include GC66–GC300, whose formulations require further refinement. The plain-language prompts below are guides, not replacements for the formal statements.
 
-**Status key:** All entries remain **candidate research questions** unless specifically documented. **GC08** has a partial negative resolution (the unrestricted uniqueness condition fails). The fifteen new additions GC51–GC65 are unreviewed proposals. The five featured dossiers include initial literature leads, not exhaustive novelty clearance. [Track all 65 statuses](./STATUS.md) and [see how problems are screened](./METHOD.md).
+**Status key:** All entries remain **candidate research questions** unless specifically documented. **GC08** has a partial negative resolution (the unrestricted uniqueness condition fails). GC51–GC300 are research candidates, and GC66–GC300 are exploratory outlines requiring additional precision. The five featured dossiers include initial literature leads, not exhaustive novelty clearance. [Track all 300 statuses](./STATUS.md) and [see how problems are screened](./METHOD.md).
 
 <details open>
 <summary><strong>Nonlinear wave dynamics</strong> · 5 challenges</summary>
@@ -307,7 +310,7 @@ To resolve a mathematical problem:
 
 ### Want to work on one?
 
-Pick any **GC01–GC65**, read its [formal statement](./FORMAL_PROBLEMS.md), and [submit a structured research contribution](https://github.com/rickyjreyes/math/issues/new?template=grand_challenge.yml). The [contribution guide](./CONTRIBUTING.md) describes how to document proofs, counterexamples, existing literature, and corrected hypotheses. No prizes or paid services are required. A [versioned JSON register](./problem_registry.json) tracks every entry, and a [standard-library validation script](./scripts/validate_catalog.py) checks catalogue integrity.
+Pick any **GC01–GC300**, read its [problem file](./ROADMAP_300.md), and [submit a structured research contribution](https://github.com/rickyjreyes/math/issues/new?template=grand_challenge.yml). The [contribution guide](./CONTRIBUTING.md) describes how to document proofs, counterexamples, existing literature, and corrected hypotheses. No prizes or paid services are required. A [versioned JSON register](./problem_registry.json) tracks every entry, and a [standard-library validation script](./scripts/validate_catalog.py) checks catalogue integrity.
 
 **A good challenge is not one that sounds impossible. It is one whose answer changes what we can rigorously say about waves.**
 
