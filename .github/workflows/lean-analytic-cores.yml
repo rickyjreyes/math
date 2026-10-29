@@ -44,11 +44,18 @@ jobs:
             MathProofs/E26HistoricalCounterexample.lean; then exit 1; fi
       - name: Kernel check E62 infinite-mode dependency first
         run: lake build MathProofs.E62Discrete
-      - name: Kernel check E62 physical Fourier bridge next
-        run: |
-          lake build MathProofs.E62Projector MathProofs.E62Torus1D \
-            MathProofs.E62TorusND MathProofs.E62ContinuumL2 \
-            MathProofs.E58WholeSpaceL2 MathProofs.E62ProjectorL2 MathProofs.E26HistoricalCounterexample
+      - name: Kernel check existing E62 torus one-dimensional and coefficient projector
+        run: lake build MathProofs.E62Projector MathProofs.E62Torus1D
+      - name: Kernel check whole-space E62 masked L2 classes
+        run: lake build MathProofs.E62ContinuumL2
+      - name: Kernel check whole-space E58 Fourier Green resolvent
+        run: lake build MathProofs.E58WholeSpaceL2
+      - name: Kernel check E26 historical denominator counterexample
+        run: lake build MathProofs.E26HistoricalCounterexample
+      - name: Kernel check true continuum E62 orthogonal projection
+        run: lake build MathProofs.E62ProjectorL2
+      - name: Kernel check higher-dimensional torus Fourier Parseval
+        run: lake build MathProofs.E62TorusND
       - name: Kernel check analytic declarations
         run: |
           lake build MathProofs.RemainingCores MathProofs.E16SpectralCore \
