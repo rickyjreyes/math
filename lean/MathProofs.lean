@@ -98,3 +98,4 @@ import MathProofs.E26SeparatedL2
 import MathProofs.E57WholeSpaceDamping
 import MathProofs.E57SemigroupSymbol
 import MathProofs.E16ModalPower
+import MathProofs.E61WholeSpaceGrowth
