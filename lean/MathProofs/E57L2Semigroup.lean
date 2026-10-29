@@ -41,8 +41,7 @@ def S (a kStar t : ℝ) (ha : 0 ≤ a) (ht : 0 ≤ t) :
 theorem fourier_S (a kStar t : ℝ) (ha : 0 ≤ a) (ht : 0 ≤ t)
     (f : Sobolev.L2 d) :
     (Sobolev.fourierL2 (S a kStar t ha ht f) : Rd → ℂ) =ᵐ[volume]
-      fun ξ => symbol a t kStar ξ * Sobolev.fourierL2 f ξ :=
-by
+      fun ξ => symbol a t kStar ξ * Sobolev.fourierL2 f ξ := by
   change (Sobolev.fourierL2
       ((Sobolev.fourierL2).symm
         (SpectralConc.mulL2 (symbol a t kStar)
@@ -66,8 +65,7 @@ theorem symbol_add (a kStar s t : ℝ) (ξ : Rd) :
     (shellDamping a s kStar (Sobolev.qS ξ) : ℂ) *
       (shellDamping a t kStar (Sobolev.qS ξ) : ℂ)
   rw [damping_semigroup]
-  push_cast
-  rfl
+  push_cast <;> rfl
 
 /-- The zero-time operator is exactly the identity map on physical L². -/
 theorem S_zero (a kStar : ℝ) (ha : 0 ≤ a) :
