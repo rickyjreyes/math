@@ -48,35 +48,88 @@ def repo_file(value: str, prefix: str, extension: str) -> Path:
 
 
 def validate_adoption(data: dict, ids: set[str], registry: dict) -> None:
-    require(data.get("schema_version") == 1, "Unexpected adoption schema")
+    """Check original GC source bridges, not semantic theorem-to-GC correspondence."""
+    require(data.get("schema_version") == 2, "Unexpected adoption schema")
     rows = data.get("entries")
-    require(isinstance(rows, list), "Missing adoption list")
+    original_ids = [f"GC{i:02d}" for i in range(1, 66)]
+    require(isinstance(rows, list)
+            and [r.get("id") for r in rows] == original_ids,
+            "Adoption inventory must list GC01..GC65 in original order")
+    manifest = (REPO / "lean" / "formalization.yaml").read_text(encoding="utf-8")
+    human = (ROOT / "GC65_ADOPTION.md").read_text(encoding="utf-8")
+    human_ids = re.findall(r"^\| \[GC(\d{2}):", human, re.MULTILINE)
+    require(["GC" + n for n in human_ids] == original_ids,
+            "Human GC65 table must list all original IDs, exactly once in order")
+    require((ROOT / "CANDIDATE_ACTIVATION.md").is_file(),
+            "Scope-first activation guide for GC66..GC300 is missing")
     seen, linked_issues = set(), set()
+    allowed = {"direct_partial", "adjacent", "candidate_counterexample",
+               "candidate_full_match", "unmapped_initial_pass"}
     for row in rows:
         pid = row.get("id")
-        require(pid in ids and pid not in seen, f"Duplicate or invalid GC adoption ID: {pid}")
+        require(pid in ids and pid not in seen, f"Duplicate or invalid ID: {pid}")
         seen.add(pid)
+        kind = row.get("relation_kind")
+        require(kind in allowed, f"{pid}: invalid research relation kind")
         issue_num = row.get("issue_number")
-        require(issue_num is None or (isinstance(issue_num, int) and issue_num > 0),
+        require(issue_num is None or (type(issue_num) is int and issue_num > 0),
                 f"{pid}: invalid issue number")
         require(row.get("issue_scope") in ("milestone", "whole_problem", "not_created"),
                 f"{pid}: invalid issue scope")
         require((issue_num is None) == (row["issue_scope"] == "not_created"),
                 f"{pid}: inconsistent issue scope and issue number")
+        official_url = registry[pid].get("discussion_issue")
+        if official_url:
+            require(issue_num is not None and
+                    official_url == f"https://github.com/rickyjreyes/math/issues/{issue_num}",
+                    f"{pid}: adopted issue disagrees with catalogue")
         if issue_num is not None:
-            require(issue_num not in linked_issues, f"Duplicate adopted issue #{issue_num}")
+            require(issue_num not in linked_issues, f"Duplicate issue #{issue_num}")
             linked_issues.add(issue_num)
-            official_url = registry[pid].get("discussion_issue")
-            if official_url:
-                require(official_url == f"https://github.com/rickyjreyes/math/issues/{issue_num}",
-                        f"{pid}: adopted issue differs from original catalogue")
+            require(f"https://github.com/rickyjreyes/math/issues/{issue_num}" in human,
+                    f"{pid}: issue missing from human index")
         require(row.get("correspondence") == "not_audited",
-                f"{pid}: adoption links alone cannot assert proof correspondence")
-        for item in row.get("related_lean", []):
+                f"{pid}: thematic adoption cannot certify a GC proof")
+        gap = row.get("scope_gap")
+        require(isinstance(gap, str) and len(gap.strip()) >= 20,
+                f"{pid}: missing explicit scope limitation")
+        artifacts = row.get("artifact_keys")
+        require(isinstance(artifacts, list) and
+                all(isinstance(x, str) and x for x in artifacts),
+                f"{pid}: malformed source keys")
+        lean_files = row.get("related_lean")
+        papers = row.get("related_papers")
+        require(isinstance(lean_files, list) and isinstance(papers, list),
+                f"{pid}: missing source file inventories")
+        require(len(lean_files) == len(set(lean_files)) and
+                len(papers) == len(set(papers)),
+                f"{pid}: duplicate source path")
+        for item in lean_files:
             repo_file(item, "lean", ".lean")
-        for item in row.get("related_papers", []):
+            require(f"(../{item})" in human, f"{pid}: Lean link missing from human map")
+        for item in papers:
             repo_file(item, "papers", ".tex")
-    require(len(seen) == len(rows), "Inconsistent adopted problem count")
+            require(f"(../{item})" in human, f"{pid}: paper link missing from human map")
+        related = row.get("related_issues")
+        require(isinstance(related, list) and
+                len(related) == len(set(related)) and
+                all(type(x) is int and x > 0 for x in related),
+                f"{pid}: invalid related issue references")
+        decls = row.get("candidate_declarations")
+        require(isinstance(decls, list) and len(decls) == len(set(decls)),
+                f"{pid}: invalid declaration list")
+        for decl in decls:
+            require(isinstance(decl, str) and DECL.fullmatch(decl) is not None,
+                    f"{pid}: invalid Lean declaration")
+            require(decl in manifest and bool(lean_files),
+                    f"{pid}: declaration not in existing formalization manifest")
+        if kind == "unmapped_initial_pass":
+            require(not (artifacts or lean_files or papers or decls or related),
+                    f"{pid}: no-match label conflicts with artifact pointers")
+        else:
+            require(bool(lean_files or papers),
+                    f"{pid}: mapped row lacks an existing source")
+    require(len(seen) == 65, "Expected 65 original problem bridges")
 
 
 def validate_completed(rec: dict, ids: set[str], adopted: dict) -> None:

@@ -6,9 +6,9 @@ This is an **open invitation**, not a requirement for the research to progress. 
 
 ## Before starting a problem
 
-1. Choose a GC ID from [the roadmap](ROADMAP_300.md) and inspect its [problem folder](problems/README.md). GC01–GC65 have existing mathematical statements; GC66–GC300 are preliminary prompts that require a precise scope before declaring a theorem.
+1. Choose a GC ID from [the roadmap](ROADMAP_300.md) and inspect its [problem folder](problems/README.md). GC01–GC65 have existing mathematical statements; GC66–GC300 are preliminary prompts that require [scope-first activation](CANDIDATE_ACTIVATION.md) before declaring a theorem.
 2. Search GitHub **issues and PRs** for the GC ID and for related mathematical formalization issues. In particular, GC01, GC06, GC11, GC36 and GC43 already have research tasks. **Do not open a duplicate.**
-3. Check existing Lean modules and manuscripts using the [adoption inventory](EXISTING_WORK.md), [Lean source](../lean/MathProofs) and [manuscript catalogue](../CONTENTS.md). An existing theorem can be cited and adopted by reference. Do not reprove it just to satisfy an issue.
+3. Check existing Lean modules and manuscripts using the [complete 65-problem adoption index](GC65_ADOPTION.md), [adoption inventory](EXISTING_WORK.md), [Lean source](../lean/MathProofs) and [manuscript catalogue](../CONTENTS.md). An existing theorem can be cited and adopted by reference. Do not reprove it just to satisfy an issue.
 4. Check the closest established mathematical literature and natural counterexamples. Preserve a record of what has or has not been reviewed.
 
 ## Contribute like a software engineer
