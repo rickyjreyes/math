@@ -88,3 +88,4 @@ import MathProofs.E62Continuous
 import MathProofs.E26L2
 import MathProofs.E62Torus1D
 import MathProofs.E62TorusND
+import MathProofs.E62ContinuumL2
