@@ -17,6 +17,8 @@ continuous-spectrum counterpart are separate E62 obligations.
 namespace ReyesMath
 namespace E62Discrete
 
+attribute [local instance] Classical.propDecidable
+
 open ReyesMath.RemainingCores
 
 variable {ι : Type*}
