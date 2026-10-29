@@ -100,6 +100,18 @@ theorem maskedNull_pythagoras (μ : Measure α)
   rw [maskedNull_orthogonal μ f S hS] at h
   simpa [maskedNull_add_complement μ f S hS] using h
 
+/-- The Fourier mask norm does not exceed the actual physical L² norm,
+for any Lebesgue-measurable set, including non-Borel representatives. -/
+theorem actual_fourier_mask_norm_le {d : ℕ} (u : Sobolev.L2 d)
+    (S : Set (EuclideanSpace ℝ (Fin d)))
+    (hS : NullMeasurableSet S volume) :
+    ‖maskedNull volume (Sobolev.fourierL2 u) S hS‖ ≤ ‖u‖ := by
+  calc
+    ‖maskedNull volume (Sobolev.fourierL2 u) S hS‖ ≤
+      ‖Sobolev.fourierL2 u‖ :=
+      maskedNull_norm_le volume (Sobolev.fourierL2 u) S hS
+    _ = ‖u‖ := (Sobolev.fourierL2).norm_map u
+
 /-- The exact E62 fraction for an arbitrary Lebesgue-measurable
 spectral band S on whole-space Fourier L²(ℝᵈ). -/
 noncomputable def fraction {d : ℕ} (u : Sobolev.L2 d)
@@ -115,8 +127,7 @@ theorem fraction_bounds {d : ℕ} (u : Sobolev.L2 d)
     0 ≤ fraction u S hS ∧ fraction u S hS ≤ 1 := by
   apply energyFraction_bounds
   · exact sq_nonneg _
-  · nlinarith [maskedNull_norm_le volume (Sobolev.fourierL2 u) S hS,
-      (Sobolev.fourierL2).norm_map u,
+  · nlinarith [actual_fourier_mask_norm_le u S hS,
       norm_nonneg u,
       norm_nonneg (maskedNull volume (Sobolev.fourierL2 u) S hS)]
   · exact sq_pos_of_pos (norm_pos_iff.mpr hu)
