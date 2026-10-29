@@ -23,7 +23,7 @@ theorem spectral_mask_eLpNorm_le
     {α : Type*} [MeasurableSpace α] (μ : Measure α)
     (f : α → ℂ) (S : Set α) (hS : MeasurableSet S) :
     eLpNorm (S.indicator f) 2 μ ≤ eLpNorm f 2 μ := by
-  exact eLpNorm_indicator_le f 2 hS.nullMeasurableSet
+  exact eLpNorm_indicator_le f
 
 /-- The Fourier mask on an arbitrary measurable subset of R^d has
 no more L² energy than the original Plancherel representative. -/
