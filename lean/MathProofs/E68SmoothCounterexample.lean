@@ -1,5 +1,6 @@
 import Mathlib
 import MathProofs.E68ScaledGradient
+import MathProofs.E68Scaling
 
 /-!
 # E68: continuum smooth concentration obstruction in dimensions n > 2
@@ -38,16 +39,31 @@ theorem smoothConcentration_tsupport_inside_ball
           simpa only [smoothConcentration] using hx)
   have hp : (R⁻¹ : ℝ) • x ∈
       tsupport (fun y : EuclideanSpace ℝ (Fin n) =>
-        compactProfile n y) :=
-    tsupport_comp_subset_preimage
-      (f := fun y : EuclideanSpace ℝ (Fin n) => (R⁻¹ : ℝ) • y)
-      (fun y : EuclideanSpace ℝ (Fin n) => compactProfile n y)
-      (by fun_prop) hs
+        compactProfile n y) := by
+    have hclosed : IsClosed
+        ((fun y : EuclideanSpace ℝ (Fin n) =>
+            (R⁻¹ : ℝ) • y) ⁻¹'
+          tsupport (fun y : EuclideanSpace ℝ (Fin n) =>
+            compactProfile n y)) :=
+      isClosed_closure.preimage (by fun_prop)
+    have hsupport : Function.support
+        (fun y : EuclideanSpace ℝ (Fin n) =>
+          compactProfile n ((R⁻¹ : ℝ) • y)) ⊆
+        ((fun y : EuclideanSpace ℝ (Fin n) =>
+            (R⁻¹ : ℝ) • y) ⁻¹'
+          tsupport (fun y : EuclideanSpace ℝ (Fin n) =>
+            compactProfile n y)) := by
+      intro y hy
+      have hy' : (R⁻¹ : ℝ) • y ∈
+          Function.support (fun z : EuclideanSpace ℝ (Fin n) =>
+            compactProfile n z) := hy
+      exact subset_closure hy'
+    exact (closure_minimal hsupport hclosed) hs
   rw [(compactProfile n).tsupport_eq] at hp
   have hnorm : ‖(R⁻¹ : ℝ) • x‖ ≤ (1 / 2 : ℝ) := by
     simpa [Metric.mem_closedBall, dist_zero, compactProfile] using hp
   have hnorm' : R⁻¹ * ‖x‖ ≤ (1 / 2 : ℝ) := by
-    simpa [norm_smul, Real.norm_eq_abs, abs_of_pos (inv_pos.mpr hR)] using hnorm
+    simpa only [norm_smul, Real.norm_eq_abs, abs_inv, abs_of_pos hR] using hnorm
   have hrunit : R * R⁻¹ = 1 := mul_inv_cancel₀ (ne_of_gt hR)
   have hsmall : ‖x‖ ≤ R / 2 := by
     calc
