@@ -106,8 +106,9 @@ theorem no_uniform_E68_for_smooth_concentrations
     (compactProfile n x) ^ 2
   have hA : 0 < A := by
     exact compactProfile_gradient_energy_positive n (by omega)
+  intro hmain
   apply (smooth_concentration_scaling_obstruction n hn A B hA)
-  rintro ⟨C, hC⟩
+  obtain ⟨C, hC⟩ := hmain
   refine ⟨C, ?_⟩
   intro R hR
   have hh := hC R hR
