@@ -32,16 +32,18 @@ noncomputable def coefficients
 theorem coefficients_summable
     (f : Lp ℂ 2 (volume : Measure (UnitAddTorus d))) :
     Summable (fun n : d → ℤ => ‖coefficients f n‖ ^ 2) := by
-  simpa only [coefficients] using
-    (UnitAddTorus.hasSum_sq_mFourierCoeff f).summable
+  change Summable (fun n : d → ℤ =>
+    ‖UnitAddTorus.mFourierCoeff f n‖ ^ 2)
+  exact (UnitAddTorus.hasSum_sq_mFourierCoeff f).summable
 
 /-- Exact Parseval identity for the actual multivariate Fourier coefficients. -/
 theorem parseval
     (f : Lp ℂ 2 (volume : Measure (UnitAddTorus d))) :
     totalEnergy (coefficients f) =
       ∫ x : UnitAddTorus d, ‖(f : UnitAddTorus d → ℂ) x‖ ^ 2 := by
-  simpa only [totalEnergy, coefficients] using
-    (UnitAddTorus.hasSum_sq_mFourierCoeff f).tsum_eq
+  change (∑' n : d → ℤ, ‖UnitAddTorus.mFourierCoeff f n‖ ^ 2) =
+    ∫ x : UnitAddTorus d, ‖(f : UnitAddTorus d → ℂ) x‖ ^ 2
+  exact (UnitAddTorus.hasSum_sq_mFourierCoeff f).tsum_eq
 
 /-- Fourier completeness: every nonzero L² class has a nonzero coefficient. -/
 theorem coefficients_nontrivial_of_nonzero
