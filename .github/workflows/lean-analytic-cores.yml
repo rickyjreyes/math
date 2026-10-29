@@ -1,0 +1,43 @@
+name: Lean analytic cores (focused)
+on:
+  pull_request:
+    paths:
+      - 'lean/**'
+      - '.github/workflows/lean-analytic-cores.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  analytic-cores:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: lean
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Lean toolchain
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch pinned Mathlib and its cache
+        run: |
+          lake update
+          lake exe cache get
+      - name: Reject unfinished proof markers
+        run: |
+          if grep -rnE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' \
+            MathProofs/RemainingCores.lean \
+            MathProofs/E16SpectralCore.lean \
+            MathProofs/E62Discrete.lean \
+            MathProofs/E58Sharpness.lean \
+            MathProofs/E62Projector.lean \
+            MathProofs/E62Continuous.lean \
+            MathProofs/SpectralSharpness.lean; then exit 1; fi
+      - name: Kernel check analytic declarations
+        run: |
+          lake build MathProofs.RemainingCores MathProofs.E16SpectralCore \
+            MathProofs.E62Discrete MathProofs.E58Sharpness \
+            MathProofs.E62Projector MathProofs.E62Continuous \
+            MathProofs.SpectralSharpness
