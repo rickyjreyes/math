@@ -188,4 +188,67 @@ theorem smoothConcentration_gradient_energy_exact
       (R ^ (1 - (n : ℝ) / 2))
       (fun y : EuclideanSpace ℝ (Fin n) => compactProfile n y)
 
+/-- The E68 concentration amplitude has exactly the inverse squared
+gradient-energy scaling. This is ordinary real-exponent algebra for
+positive radii, not an analytic or asymptotic estimate. -/
+theorem smoothConcentration_gradient_factor_one
+    (n : ℕ) (hn : 2 ≤ n) (R : ℝ) (hR : 0 < R) :
+    (R ^ (1 - (n : ℝ) / 2)) ^ 2 * R ^ (n - 2) = 1 := by
+  have hnat : (((n - 2 : ℕ) : ℝ)) = (n : ℝ) - 2 :=
+    Nat.cast_sub hn
+  have he : (1 - (n : ℝ) / 2) * (2 : ℝ) +
+      ((n - 2 : ℕ) : ℝ) = 0 := by
+    rw [hnat]
+    ring
+  have hsq :
+      (R ^ (1 - (n : ℝ) / 2)) ^ 2 =
+        R ^ ((1 - (n : ℝ) / 2) * (2 : ℝ)) := by
+    rw [← Real.rpow_natCast, Real.rpow_mul hR.le]
+  calc
+    (R ^ (1 - (n : ℝ) / 2)) ^ 2 * R ^ (n - 2) =
+        R ^ ((1 - (n : ℝ) / 2) * (2 : ℝ)) *
+          R ^ (((n - 2 : ℕ) : ℝ)) := by
+          rw [hsq, Real.rpow_natCast]
+    _ = R ^ ((1 - (n : ℝ) / 2) * (2 : ℝ) +
+          ((n - 2 : ℕ) : ℝ)) := by
+          rw [Real.rpow_add hR.le]
+    _ = 1 := by rw [he]; simp
+
+/-- The full-space squared gradient integral of the specific smooth
+E68 concentrating field is an EXACT positive constant, independent
+of the radius, in every dimension n>=2. -/
+theorem smoothConcentration_gradient_energy_constant
+    (n : ℕ) (hn : 2 ≤ n) (R : ℝ) (hR : 0 < R) :
+    (∫ x : EuclideanSpace ℝ (Fin n),
+      ‖fderiv ℝ (smoothConcentration n R) x‖ ^ 2) =
+      (∫ x : EuclideanSpace ℝ (Fin n),
+        ‖fderiv ℝ (fun y => compactProfile n y) x‖ ^ 2) := by
+  rw [smoothConcentration_gradient_energy_exact n hn R hR,
+      smoothConcentration_gradient_factor_one n hn R hR,
+      one_mul]
+
+/-- The normalized smooth E68 family has squared L2 mass exactly
+R² times the base bump's actual Lebesgue squared mass. -/
+theorem smoothConcentration_mass_R_sq
+    (n : ℕ) (hn : 2 ≤ n) (R : ℝ) (hR : 0 < R) :
+    (∫ x : EuclideanSpace ℝ (Fin n),
+      (smoothConcentration n R x) ^ 2) =
+      R ^ 2 *
+        (∫ x : EuclideanSpace ℝ (Fin n),
+          (compactProfile n x) ^ 2) := by
+  have hpow : R ^ n = R ^ (n - 2) * R ^ 2 := by
+    conv_lhs => rw [← Nat.sub_add_cancel hn]
+    rw [pow_add]
+  rw [smoothConcentration_mass_exact n R hR, hpow]
+  calc
+    (R ^ (1 - (n : ℝ) / 2)) ^ 2 * (R ^ (n - 2) * R ^ 2) *
+        (∫ x : EuclideanSpace ℝ (Fin n),
+          (compactProfile n x) ^ 2) =
+      ((R ^ (1 - (n : ℝ) / 2)) ^ 2 * R ^ (n - 2)) *
+        (R ^ 2 * (∫ x : EuclideanSpace ℝ (Fin n),
+          (compactProfile n x) ^ 2)) := by ring
+    _ = R ^ 2 * (∫ x : EuclideanSpace ℝ (Fin n),
+          (compactProfile n x) ^ 2) := by
+            rw [smoothConcentration_gradient_factor_one n hn R hR, one_mul]
+
 end ReyesMath.E68
