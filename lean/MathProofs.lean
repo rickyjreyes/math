@@ -120,3 +120,5 @@ import MathProofs.RegularizedCurvatureL2
 import MathProofs.FourierMultiplierL2
 import MathProofs.E62Certification
 import MathProofs.E16TorusRemark
+import MathProofs.E58Certification
+import MathProofs.E58GreenFunction
