@@ -66,3 +66,4 @@ import MathProofs.RemainingCores
 import MathProofs.E16SpectralCore
 import MathProofs.E62Discrete
 import MathProofs.E58Sharpness
+import MathProofs.E62Projector
