@@ -130,4 +130,62 @@ theorem smoothConcentration_mass_exact
       (R ^ (1 - (n : ℝ) / 2))
       (fun x : EuclideanSpace ℝ (Fin n) => compactProfile n x)
 
+/-- Scaling with an independent real amplitude preserves the exact
+squared Fréchet gradient-energy integral, including the Jacobian.
+This holds even for nonsmooth base maps because the derivative
+convention and Mathlib's constant-scalar identity are total. -/
+theorem integral_scaled_gradient_with_amplitude
+    (n : ℕ) (hn : 2 ≤ n) (R : ℝ) (hR : 0 < R)
+    (a : ℝ) (f : EuclideanSpace ℝ (Fin n) → ℝ) :
+    (∫ x : EuclideanSpace ℝ (Fin n),
+      ‖fderiv ℝ (fun y => a * f ((R⁻¹ : ℝ) • y)) x‖ ^ 2) =
+      a ^ 2 * R ^ (n - 2) *
+        (∫ x : EuclideanSpace ℝ (Fin n), ‖fderiv ℝ f x‖ ^ 2) := by
+  have hp (x : EuclideanSpace ℝ (Fin n)) :
+      ‖fderiv ℝ (fun y => a * f ((R⁻¹ : ℝ) • y)) x‖ ^ 2 =
+        a ^ 2 *
+          ‖fderiv ℝ (fun y => f ((R⁻¹ : ℝ) • y)) x‖ ^ 2 := by
+    have hd :
+        fderiv ℝ (fun y => a * f ((R⁻¹ : ℝ) • y)) x =
+          a • fderiv ℝ (fun y => f ((R⁻¹ : ℝ) • y)) x := by
+      simpa only [Pi.smul_apply, smul_eq_mul] using
+        congrFun (fderiv_const_smul_of_field
+          (𝕜 := ℝ) (f := fun y : EuclideanSpace ℝ (Fin n) =>
+            f ((R⁻¹ : ℝ) • y)) a) x
+    rw [hd, norm_smul, Real.norm_eq_abs, mul_pow, sq_abs]
+  calc
+    (∫ x : EuclideanSpace ℝ (Fin n),
+      ‖fderiv ℝ (fun y => a * f ((R⁻¹ : ℝ) • y)) x‖ ^ 2) =
+        (∫ x : EuclideanSpace ℝ (Fin n),
+          a ^ 2 * ‖fderiv ℝ (fun y => f ((R⁻¹ : ℝ) • y)) x‖ ^ 2) := by
+            congr 1
+            funext x
+            exact hp x
+    _ = a ^ 2 * (∫ x : EuclideanSpace ℝ (Fin n),
+          ‖fderiv ℝ (fun y => f ((R⁻¹ : ℝ) • y)) x‖ ^ 2) := by
+            rw [integral_const_mul]
+    _ = a ^ 2 * (R ^ (n - 2) *
+          (∫ x : EuclideanSpace ℝ (Fin n),
+            ‖fderiv ℝ f x‖ ^ 2)) := by
+            rw [integral_scaled_gradient_energy n hn R hR f]
+    _ = a ^ 2 * R ^ (n - 2) *
+          (∫ x : EuclideanSpace ℝ (Fin n),
+            ‖fderiv ℝ f x‖ ^ 2) := by ring
+
+/-- The actual smooth concentration profile in the E68 manuscript
+obeys the exact amplitude-weighted continuum gradient-energy law.
+The remaining algebraic simplification to constant energy and the
+uniform-local-ball contradiction are separate lemmas. -/
+theorem smoothConcentration_gradient_energy_exact
+    (n : ℕ) (hn : 2 ≤ n) (R : ℝ) (hR : 0 < R) :
+    (∫ x : EuclideanSpace ℝ (Fin n),
+      ‖fderiv ℝ (smoothConcentration n R) x‖ ^ 2) =
+      (R ^ (1 - (n : ℝ) / 2)) ^ 2 * R ^ (n - 2) *
+        (∫ x : EuclideanSpace ℝ (Fin n),
+          ‖fderiv ℝ (fun y => compactProfile n y) x‖ ^ 2) := by
+  simpa only [smoothConcentration] using
+    integral_scaled_gradient_with_amplitude n hn R hR
+      (R ^ (1 - (n : ℝ) / 2))
+      (fun y : EuclideanSpace ℝ (Fin n) => compactProfile n y)
+
 end ReyesMath.E68
