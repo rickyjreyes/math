@@ -32,7 +32,7 @@ theorem greenMultiplier_eq_bound_iff (r a kStar q : ℝ)
       (mul_eq_zero.mp hmul).resolve_left (ne_of_gt ha)
     have hsq : (q - kStar ^ 2) ^ 2 = 0 := by
       simpa [shellSymbol] using hs
-    nlinarith [sq_nonneg (q - kStar ^ 2)]
+    exact sub_eq_zero.mp (pow_eq_zero hsq)
   · intro h
     rw [h]
     exact greenMultiplier_at_shell r a kStar (ne_of_gt hr)
@@ -60,7 +60,7 @@ theorem greenMultiplier_norm_eq_bound_iff {d : ℕ}
   rw [greenMultiplier_eq_bound_iff r a kStar (‖ξ‖ ^ 2) hr ha]
   constructor
   · intro h
-    nlinarith [norm_nonneg ξ]
+    exact (sq_eq_sq₀ (norm_nonneg ξ) hk).mp h
   · intro h
     rw [h]
 
