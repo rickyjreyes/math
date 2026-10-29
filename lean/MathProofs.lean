@@ -62,6 +62,7 @@ import MathProofs.V18MiddleDerivatives
 import MathProofs.V18FullForward
 import MathProofs.V18MiddleFloor
 import MathProofs.V18MiddleClipped
+import MathProofs.V18MiddleDeterminant
 import MathProofs.M6BCurvature
 import MathProofs.M6BStationary
 import MathProofs.M6BDirichletLaplacian
@@ -78,3 +79,12 @@ import MathProofs.M6BManuscript
 import MathProofs.M6BPhaseNonEquivariance
 import MathProofs.M6BClosureFieldWitness
 import MathProofs.M6BDimensionalField
+import MathProofs.V18BranchBounds
+import MathProofs.V18Regularity
+import MathProofs.V18Frechet
+
+import MathProofs.V18SelectedJacobian
+import MathProofs.V18Rank
+
+import MathProofs.LocalLevelSet
+import MathProofs.V18Identifiability
