@@ -33,6 +33,9 @@ jobs:
         run: |
           python3 reyes-problem-repository/scripts/render_gc_issue.py GC52 > /tmp/gc52-issue-preview.md
           grep -q "GC52" /tmp/gc52-issue-preview.md
+          grep -q "SCOPING REQUIRED" /tmp/gc52-issue-preview.md
+          python3 reyes-problem-repository/scripts/render_gc_issue.py GC15 > /tmp/gc15-adoption-preview.md
+          grep -q "ReyesMath.FourierLeakage.classification" /tmp/gc15-adoption-preview.md
           if python3 reyes-problem-repository/scripts/render_gc_issue.py GC01 > /tmp/existing-issue-preview.md 2>/tmp/existing-issue-warning.log; then
             echo "ERROR: Existing GC01 issue was not guarded" >&2
             exit 1

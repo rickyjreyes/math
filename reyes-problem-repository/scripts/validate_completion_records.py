@@ -48,9 +48,16 @@ def repo_file(value: str, prefix: str, extension: str) -> Path:
 
 
 def validate_adoption(data: dict, ids: set[str], registry: dict) -> None:
-    require(data.get("schema_version") == 1, "Unexpected adoption schema")
+    require(data.get("schema_version") == 2, "Unexpected adoption schema")
     rows = data.get("entries")
     require(isinstance(rows, list), "Missing adoption list")
+    expected = [f"GC{i:02d}" for i in range(1, 66)]
+    require([row.get("id") for row in rows] == expected,
+            "Adoption map must contain GC01..GC65 exactly once in ID order")
+    index = (ROOT / "EXISTING_WORK_65.md").read_text(encoding="utf-8")
+    indexed = re.findall(r"^\\| \\[(GC\\d{2})\\]", index, re.MULTILINE)
+    require(indexed == expected, "65-item readable index differs from adopted GC links")
+    lean_inventory = (REPO / "lean" / "formalization.yaml").read_text(encoding="utf-8")
     seen, linked_issues = set(), set()
     for row in rows:
         pid = row.get("id")
@@ -72,6 +79,26 @@ def validate_adoption(data: dict, ids: set[str], registry: dict) -> None:
                         f"{pid}: adopted issue differs from original catalogue")
         require(row.get("correspondence") == "not_audited",
                 f"{pid}: adoption links alone cannot assert proof correspondence")
+        relationship = row.get("relationship")
+        require(relationship in ("direct_scope_to_review", "adjacent_foundation", "unmapped"),
+                f"{pid}: invalid research alignment category")
+        text_field(row, "scope_assessment")
+        decls = row.get("anchor_declarations")
+        require(isinstance(decls, list) and
+                all(isinstance(d, str) and DECL.fullmatch(d) and d in lean_inventory
+                    for d in decls), f"{pid}: invalid source-inventory Lean declaration")
+        if relationship == "direct_scope_to_review":
+            require(bool(decls) and bool(row.get("related_lean")),
+                    f"{pid}: direct scope needs an identified source and declaration")
+        if relationship == "unmapped":
+            require(not decls and not row.get("related_lean") and
+                    not row.get("related_papers"),
+                    f"{pid}: unmapped entry includes unqualified source links")
+        page = (ROOT / registry[pid]["file_path"]).read_text(encoding="utf-8")
+        require("## Existing research alignment" in page and
+                row["scope_assessment"] in page and
+                "../../EXISTING_WORK_65.md" in page,
+                f"{pid}: per-problem alignment section is missing or stale")
         for item in row.get("related_lean", []):
             repo_file(item, "lean", ".lean")
         for item in row.get("related_papers", []):
@@ -91,10 +118,15 @@ def validate_completed(rec: dict, ids: set[str], adopted: dict) -> None:
     require(match is not None and int(match.group(1)) == number,
             f"{pid}: issue number and URL disagree")
     if pid in adopted and adopted[pid]["issue_number"] is not None:
-        require(number == adopted[pid]["issue_number"],
-                f"{pid}: completion record conflicts with adopted issue")
-        require(rec["issue_scope"] == adopted[pid]["issue_scope"],
-                f"{pid}: issue scope differs from original milestone")
+        original = adopted[pid]
+        if rec["issue_scope"] == original["issue_scope"]:
+            require(number == original["issue_number"],
+                    f"{pid}: completion does not match the tracked milestone issue")
+        else:
+            require(original["issue_scope"] == "milestone" and
+                    rec["issue_scope"] == "whole_problem" and
+                    number != original["issue_number"],
+                    f"{pid}: full GC must use a distinct whole-problem issue")
     require(rec.get("outcome") in ("proved", "refuted"), f"{pid}: invalid outcome")
     obligations = rec.get("acceptance_criteria")
     require(isinstance(obligations, list) and len(obligations) > 0 and
@@ -158,7 +190,12 @@ def main() -> None:
         key = (row["gc_id"], row["issue_number"], row["lean_declaration"])
         require(key not in seen, f"Duplicate completion record: {key}")
         seen.add(key)
-    print(f"PASS: {len(adoption['entries'])} adoption links, {len(rs)} completion records; source paths and evidence fields structurally valid.")
+    kinds = {name: sum(row["relationship"] == name for row in adoption["entries"])
+             for name in ("direct_scope_to_review", "adjacent_foundation", "unmapped")}
+    print(f"PASS: {len(adoption['entries'])} original GC adoption links "
+          f"(direct/adjacent/unmapped={kinds['direct_scope_to_review']}/"
+          f"{kinds['adjacent_foundation']}/{kinds['unmapped']}), "
+          f"{len(rs)} completion records.")
     print("NOTE: This does not validate CI conclusions or theorem-to-issue semantic equivalence.")
 
 

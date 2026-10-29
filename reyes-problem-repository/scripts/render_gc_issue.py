@@ -57,8 +57,21 @@ def main() -> int:
     if old:
         print("Related Lean files: " + (", ".join(old["related_lean"]) or "not mapped"))
         print("Related papers: " + (", ".join(old["related_papers"]) or "not mapped"))
+        print("Research relation: " + old.get("relationship", "unreviewed"))
+        print("Candidate Lean declarations: " +
+              (", ".join(old.get("anchor_declarations", [])) or "no exact declaration mapped"))
+        print("Important unresolved distinction: " +
+              old.get("scope_assessment", "not yet audited"))
+        print("Issue-to-Lean correspondence: NOT AUDITED")
     else:
         print("Not yet audited. Search the existing Lean, manuscript, and issue inventories.")
+    if entry["source_class"] == "roadmap_candidate":
+        print("Parent GC questions: " +
+              (", ".join(entry.get("parent_problems", [])) or "not indexed"))
+        print("**Activation:** SCOPING REQUIRED. Freeze the model, parameters,")
+        print("quantifiers, closest literature and an exact theorem or counterexample")
+        print("target before calling this a formally specified open problem.")
+        print("Guide: " + BASE + "/SCOPING_235.md")
     print("Exact declarations and overlap with this GC: [fill in after audit]")
     print()
     print("## Frozen acceptance criteria")
