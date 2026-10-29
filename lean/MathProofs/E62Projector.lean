@@ -71,6 +71,19 @@ normalized fraction that need not be monotone as t changes. -/
 noncomputable def twoModeFraction (t : ℝ) : ℝ :=
   energyFraction (t ^ 2) (t ^ 2 + (1 - t) ^ 2)
 
+theorem twoModeFraction_at_zero : twoModeFraction 0 = 0 := by
+  norm_num [twoModeFraction, energyFraction]
+
+/-- The energy ratio is not forced to decrease with the parameter either. -/
+theorem twoModeFraction_not_antitone : ¬ Antitone twoModeFraction := by
+  intro h
+  have h01 := h (show (0 : ℝ) ≤ 1 by norm_num)
+  rw [twoModeFraction_at_zero] at h01
+  have h1 : twoModeFraction 1 = 1 := by
+    norm_num [twoModeFraction, energyFraction]
+  rw [h1] at h01
+  norm_num at h01
+
 theorem twoModeFraction_at_one : twoModeFraction 1 = 1 := by
   norm_num [twoModeFraction, energyFraction]
 
