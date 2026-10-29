@@ -93,6 +93,12 @@ def validate_adoption(data: dict, ids: set[str], registry: dict) -> None:
         gap = row.get("scope_gap")
         require(isinstance(gap, str) and len(gap.strip()) >= 20,
                 f"{pid}: missing explicit scope limitation")
+        page = (ROOT / registry[pid]["file_path"]).read_text(encoding="utf-8")
+        require(page.count("## Existing research alignment") == 1
+                and "**GC-to-Lean correspondence:** not yet audited" in page
+                and "../../GC65_ADOPTION.md" in page
+                and gap in page,
+                f"{pid}: source link or unresolved scope missing from individual GC page")
         artifacts = row.get("artifact_keys")
         require(isinstance(artifacts, list) and
                 all(isinstance(x, str) and x for x in artifacts),
@@ -107,9 +113,13 @@ def validate_adoption(data: dict, ids: set[str], registry: dict) -> None:
         for item in lean_files:
             repo_file(item, "lean", ".lean")
             require(f"(../{item})" in human, f"{pid}: Lean link missing from human map")
+            require(f"(../../../{item})" in page,
+                    f"{pid}: Lean link missing from individual GC page")
         for item in papers:
             repo_file(item, "papers", ".tex")
             require(f"(../{item})" in human, f"{pid}: paper link missing from human map")
+            require(f"(../../../{item})" in page,
+                    f"{pid}: paper link missing from individual GC page")
         related = row.get("related_issues")
         require(isinstance(related, list) and
                 len(related) == len(set(related)) and
@@ -123,6 +133,8 @@ def validate_adoption(data: dict, ids: set[str], registry: dict) -> None:
                     f"{pid}: invalid Lean declaration")
             require(decl in manifest and bool(lean_files),
                     f"{pid}: declaration not in existing formalization manifest")
+            require(f"`{decl}`" in page,
+                    f"{pid}: candidate declaration missing from individual GC page")
         if kind == "unmapped_initial_pass":
             require(not (artifacts or lean_files or papers or decls or related),
                     f"{pid}: no-match label conflicts with artifact pointers")

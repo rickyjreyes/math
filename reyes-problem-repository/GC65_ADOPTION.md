@@ -2,6 +2,8 @@
 
 **Purpose:** Provide an *adoption map*, not a second manuscript inventory or a declaration that the 65 problems are solved. The underlying Lean modules, original mathematical statements, manuscripts, and their existing verification status remain untouched.
 
+**Each original GC01–GC65 problem page now includes a local research-alignment section** linking its existing Lean modules, optional papers, GitHub issues and scope limitations. These are source pointers only, not solved-status claims. The validator checks the page links against the machine map.
+
 **How to read:** The **existing issue** column gives an already open GC milestone, if any. **Related research** lists previously created source files, not a verified implication. **Scope gap** explicitly states what the linked work does not settle, or what requires checking. Every row currently has **GC correspondence not audited**, even where the [Lean formalization manifest](../lean/formalization.yaml) independently reports a completed manuscript. A matched paper may itself remain analytically supported but not Lean complete.
 
 [300-problem roadmap](ROADMAP_300.md) · [Original statements](FORMAL_PROBLEMS.md) · [Research workflow](WORKFLOW.md) · [Existing manuscript verification status](../lean/formalization.yaml) · [Machine adoption links](existing_work_links.json)
