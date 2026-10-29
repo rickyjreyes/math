@@ -27,7 +27,9 @@ theorem mask_add_complement (μ : Measure α) (f : Lp ℂ 2 μ)
   filter_upwards [Lp.coeFn_add (maskedL2 μ f S hS)
     (maskedL2 μ f Sᶜ hS.compl),
     maskedL2_ae μ f S hS, maskedL2_ae μ f Sᶜ hS.compl] with x hsum hs hc
-  rw [hsum, hs, hc]
+  rw [hsum]
+  simp only [Pi.add_apply]
+  rw [hs, hc]
   by_cases hx : x ∈ S <;> simp [hx]
 
 /-- The two Fourier masks are orthogonal in the *actual* L² Hilbert space. -/
@@ -47,7 +49,7 @@ theorem norm_sq_eq_selected_add_complement (μ : Measure α) (f : Lp ℂ 2 μ)
     ‖f‖ ^ 2 =
       ‖maskedL2 μ f S hS‖ ^ 2 +
         ‖maskedL2 μ f Sᶜ hS.compl‖ ^ 2 := by
-  have h := norm_add_sq
+  have h := norm_add_sq (𝕜 := ℂ)
     (maskedL2 μ f S hS) (maskedL2 μ f Sᶜ hS.compl)
   rw [mask_orthogonal_complement μ f S hS] at h
   simpa [mask_add_complement μ f S hS] using h
@@ -91,8 +93,7 @@ theorem actual_fourier_fraction_one_iff {d : ℕ}
     have hz : maskedL2 volume (Sobolev.fourierL2 u) Sᶜ hS.compl = 0 :=
       hc.mpr h
     rw [hz] at hp
-    simp only [norm_zero, zero_pow (by norm_num), add_zero] at hp
-    exact hp.symm
+    simpa using hp.symm
 
 end E62ProjectorL2
 end ReyesMath
