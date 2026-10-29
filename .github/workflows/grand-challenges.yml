@@ -1,0 +1,25 @@
+name: Grand Challenges catalogue integrity
+
+on:
+  push:
+    paths:
+      - "grand-challenges/**"
+      - ".github/ISSUE_TEMPLATE/grand_challenge.yml"
+      - ".github/workflows/grand-challenges.yml"
+  pull_request:
+    paths:
+      - "grand-challenges/**"
+      - ".github/ISSUE_TEMPLATE/grand_challenge.yml"
+      - ".github/workflows/grand-challenges.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-problem-book:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate catalogue, links, and math fences
+        run: python3 grand-challenges/scripts/validate_catalog.py
