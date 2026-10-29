@@ -1,6 +1,6 @@
 # The Reyes Problem Repository: Research Status
 
-**As of 2026-10-28.** The current set of 50 problems is a growing collection. The catalogue is a **proposed research program**, not a verified inventory of open problems. Every problem defaults to `candidate` unless the evidence record specifies otherwise.
+**As of 2026-10-29.** The current set of 65 problems is a growing collection. The catalogue is a **proposed research program**, not a verified inventory of open problems. Every problem defaults to `candidate` unless the evidence record specifies otherwise.
 
 **Source of truth:** [problem_registry.json](problem_registry.json). The table is an accessible snapshot. An initial literature lead does **not** certify open status; no problem is presently tagged `open_verified`.
 
@@ -57,10 +57,27 @@
 | GC49 | [Checked PDE counterexamples](FORMAL_PROBLEMS.md#gc49-checked-pde-counterexamples) | candidate | not reviewed | — | — |
 | GC50 | [Proof-carrying numerical certificates](FORMAL_PROBLEMS.md#gc50-proof-carrying-numerical-certificates) | candidate | not reviewed | — | — |
 
+| GC51 | [Soliton resolution and asymptotic completeness](FORMAL_PROBLEMS.md#gc51-soliton-resolution-and-asymptotic-completeness) | candidate | not reviewed | — | — |
+| GC52 | [Rigorous emergence of effective wave equations](FORMAL_PROBLEMS.md#gc52-rigorous-emergence-of-effective-wave-equations) | candidate | not reviewed | — | — |
+| GC53 | [Universal confinement and stability thresholds](FORMAL_PROBLEMS.md#gc53-universal-confinement-and-stability-thresholds) | candidate | not reviewed | — | — |
+| GC54 | [Nonlinear scattering and threshold resonances](FORMAL_PROBLEMS.md#gc54-nonlinear-scattering-and-threshold-resonances) | candidate | not reviewed | — | — |
+| GC55 | [Scaling universality and critical phenomena](FORMAL_PROBLEMS.md#gc55-scaling-universality-and-critical-phenomena) | candidate | not reviewed | — | — |
+| GC56 | [Global bifurcation of localized states](FORMAL_PROBLEMS.md#gc56-global-bifurcation-of-localized-states) | candidate | not reviewed | — | — |
+| GC57 | [Stability under stochastic forcing](FORMAL_PROBLEMS.md#gc57-stability-under-stochastic-forcing) | candidate | not reviewed | — | — |
+| GC58 | [Multicomponent and vector confinement](FORMAL_PROBLEMS.md#gc58-multicomponent-and-vector-confinement) | candidate | not reviewed | — | — |
+| GC59 | [Nonlinear observability and control](FORMAL_PROBLEMS.md#gc59-nonlinear-observability-and-control) | candidate | not reviewed | — | — |
+| GC60 | [Singular limits and multiscale consistency](FORMAL_PROBLEMS.md#gc60-singular-limits-and-multiscale-consistency) | candidate | not reviewed | — | — |
+| GC61 | [Formation and breakdown of coherent structures](FORMAL_PROBLEMS.md#gc61-formation-and-breakdown-of-coherent-structures) | candidate | not reviewed | — | — |
+| GC62 | [Chaotic dynamics and transport barriers](FORMAL_PROBLEMS.md#gc62-chaotic-dynamics-and-transport-barriers) | candidate | not reviewed | — | — |
+| GC63 | [Physical information and energy limits of wave computation](FORMAL_PROBLEMS.md#gc63-physical-information-and-energy-limits-of-wave-computation) | candidate | not reviewed | — | — |
+| GC64 | [Identifiability of competing physical theories](FORMAL_PROBLEMS.md#gc64-identifiability-of-competing-physical-theories) | candidate | not reviewed | — | — |
+| GC65 | [Verified mathematical model reduction](FORMAL_PROBLEMS.md#gc65-verified-mathematical-model-reduction) | candidate | not reviewed | — | — |
+
 ## What counts as progress?
 
 - **GC08:** one unrestricted uniqueness assertion is refuted by an explicit operator family; a refined classification problem remains.
 - **Five highlighted dossiers:** closest literature leads and proof milestones exist. This is **not** a proof of novelty.
+- **GC51–GC65:** newly added research candidates, without novelty clearance or full individual literature screening.
 - **Others:** status remains `candidate`, pending exact-model and literature checks.
 
 Changes should be recorded by pull request, citing the theorem or counterexample and updating the machine register. See [METHOD.md](METHOD.md).
