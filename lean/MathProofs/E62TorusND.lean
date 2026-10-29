@@ -17,7 +17,7 @@ namespace ReyesMath
 namespace E62TorusND
 
 -- Large product-torus typeclass elaboration needs a higher deterministic budget.
-set_option maxHeartbeats 2000000
+set_option maxHeartbeats 500000
 
 open MeasureTheory E62Discrete UnitAddTorus
 
