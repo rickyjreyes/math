@@ -31,18 +31,27 @@ local notation "Rd" => EuclideanSpace ℝ (Fin d)
 /-- The genuine bounded whole-space Fourier-shell evolution at time t ≥ 0. -/
 def S (a kStar t : ℝ) (ha : 0 ≤ a) (ht : 0 ≤ t) :
     Sobolev.L2 d →L[ℂ] Sobolev.L2 d :=
-  FMult.fmul (symbol a t kStar)
-    (symbol_measurable a t kStar).aestronglyMeasurable
-    (symbol_norm_le_one a t kStar ha ht)
+  (Sobolev.fourierL2 (d := d)).symm.toContinuousLinearEquiv.toContinuousLinearMap.comp
+    ((SpectralConc.mulL2 (symbol a t kStar)
+      (symbol_measurable a t kStar).aestronglyMeasurable
+      (symbol_norm_le_one a t kStar ha ht)).comp
+      (Sobolev.fourierL2 (d := d)).toContinuousLinearEquiv.toContinuousLinearMap)
 
 /-- Fourier characterisation of the bounded operator, including L² classes. -/
 theorem fourier_S (a kStar t : ℝ) (ha : 0 ≤ a) (ht : 0 ≤ t)
     (f : Sobolev.L2 d) :
-    (Sobolev.FU (S a kStar t ha ht f) : Rd → ℂ) =ᵐ[volume]
-      fun ξ => symbol a t kStar ξ * Sobolev.FU f ξ :=
-  FMult.coeFn_FU_fmul (symbol a t kStar)
+    (Sobolev.fourierL2 (S a kStar t ha ht f) : Rd → ℂ) =ᵐ[volume]
+      fun ξ => symbol a t kStar ξ * Sobolev.fourierL2 f ξ :=
+by
+  change (Sobolev.fourierL2
+      ((Sobolev.fourierL2).symm
+        (SpectralConc.mulL2 (symbol a t kStar)
+          (symbol_measurable a t kStar).aestronglyMeasurable
+          (symbol_norm_le_one a t kStar ha ht) (Sobolev.fourierL2 f))) : Rd → ℂ) =ᵐ[volume] _
+  rw [LinearIsometryEquiv.apply_symm_apply]
+  exact SpectralConc.coeFn_mulL2
     (symbol_measurable a t kStar).aestronglyMeasurable
-    (symbol_norm_le_one a t kStar ha ht) f
+    (symbol_norm_le_one a t kStar ha ht) (Sobolev.fourierL2 f)
 
 theorem symbol_at_zero (a kStar : ℝ) (ξ : Rd) :
     symbol a 0 kStar ξ = 1 := by
@@ -65,8 +74,8 @@ theorem S_zero (a kStar : ℝ) (ha : 0 ≤ a) :
     S (d := d) a kStar 0 ha le_rfl = ContinuousLinearMap.id ℂ (Sobolev.L2 d) := by
   apply ContinuousLinearMap.ext
   intro f
-  apply (Sobolev.FU (d := d)).injective
-  change Sobolev.FU (S a kStar 0 ha le_rfl f) = Sobolev.FU f
+  apply (Sobolev.fourierL2 (d := d)).injective
+  change Sobolev.fourierL2 (S a kStar 0 ha le_rfl f) = Sobolev.fourierL2 f
   apply Lp.ext
   filter_upwards [fourier_S a kStar 0 ha le_rfl f] with ξ hξ
   simpa [symbol_at_zero] using hξ
@@ -79,21 +88,21 @@ theorem S_add (a kStar s t : ℝ) (ha : 0 ≤ a)
       (S a kStar s ha hs).comp (S a kStar t ha ht) := by
   apply ContinuousLinearMap.ext
   intro f
-  apply (Sobolev.FU (d := d)).injective
-  change Sobolev.FU (S a kStar (s + t) ha (add_nonneg hs ht) f) =
-    Sobolev.FU (S a kStar s ha hs (S a kStar t ha ht f))
+  apply (Sobolev.fourierL2 (d := d)).injective
+  change Sobolev.fourierL2 (S a kStar (s + t) ha (add_nonneg hs ht) f) =
+    Sobolev.fourierL2 (S a kStar s ha hs (S a kStar t ha ht f))
   apply Lp.ext
   filter_upwards
     [fourier_S a kStar (s + t) ha (add_nonneg hs ht) f,
      fourier_S a kStar s ha hs (S a kStar t ha ht f),
      fourier_S a kStar t ha ht f] with ξ hadd hsξ htξ
   calc
-    (Sobolev.FU (S a kStar (s + t) ha (add_nonneg hs ht) f) : Rd → ℂ) ξ =
-        symbol a (s + t) kStar ξ * Sobolev.FU f ξ := hadd
-    _ = symbol a s kStar ξ * (symbol a t kStar ξ * Sobolev.FU f ξ) := by
+    (Sobolev.fourierL2 (S a kStar (s + t) ha (add_nonneg hs ht) f) : Rd → ℂ) ξ =
+        symbol a (s + t) kStar ξ * Sobolev.fourierL2 f ξ := hadd
+    _ = symbol a s kStar ξ * (symbol a t kStar ξ * Sobolev.fourierL2 f ξ) := by
       rw [symbol_add]
       ring
-    _ = (Sobolev.FU (S a kStar s ha hs (S a kStar t ha ht f)) : Rd → ℂ) ξ := by
+    _ = (Sobolev.fourierL2 (S a kStar s ha hs (S a kStar t ha ht f)) : Rd → ℂ) ξ := by
       rw [hsξ, htξ]
 
 end E57L2Semigroup
