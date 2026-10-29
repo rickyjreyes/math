@@ -17,6 +17,7 @@ continuous-spectrum equality cases, and time evolution are separate.
 -- AddCircleMulti Fourier/Parseval development. Without these local
 -- instances, ambient volume uses a different circle measure and even
 -- equivalent-looking L² types do not elaborate against the theorem.
+noncomputable section
 open MeasureTheory
 attribute [local instance] Real.fact_zero_lt_one
 local instance : MeasureSpace UnitAddCircle := ⟨AddCircle.haarAddCircle⟩
