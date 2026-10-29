@@ -205,6 +205,7 @@ theorem smoothConcentration_gradient_factor_one
         R ^ ((1 - (n : ℝ) / 2) * (2 : ℝ)) := by
     rw [← Real.rpow_natCast, Real.rpow_mul hR.le]
     simp only [Real.rpow_natCast]
+    rfl
   calc
     (R ^ (1 - (n : ℝ) / 2)) ^ 2 * R ^ (n - 2) =
         R ^ ((1 - (n : ℝ) / 2) * (2 : ℝ)) *
