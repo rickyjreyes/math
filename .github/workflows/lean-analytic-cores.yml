@@ -40,14 +40,15 @@ jobs:
             MathProofs/E62TorusND.lean \
             MathProofs/E62ContinuumL2.lean \
             MathProofs/E58WholeSpaceL2.lean \
-            MathProofs/E62ProjectorL2.lean; then exit 1; fi
+            MathProofs/E62ProjectorL2.lean \
+            MathProofs/E26HistoricalCounterexample.lean; then exit 1; fi
       - name: Kernel check E62 infinite-mode dependency first
         run: lake build MathProofs.E62Discrete
       - name: Kernel check E62 physical Fourier bridge next
         run: |
           lake build MathProofs.E62Projector MathProofs.E62Torus1D \
             MathProofs.E62TorusND MathProofs.E62ContinuumL2 \
-            MathProofs.E58WholeSpaceL2 MathProofs.E62ProjectorL2
+            MathProofs.E58WholeSpaceL2 MathProofs.E62ProjectorL2 MathProofs.E26HistoricalCounterexample
       - name: Kernel check analytic declarations
         run: |
           lake build MathProofs.RemainingCores MathProofs.E16SpectralCore \
