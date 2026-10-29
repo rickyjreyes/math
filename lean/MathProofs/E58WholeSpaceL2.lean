@@ -24,19 +24,19 @@ local notation "Rd" => EuclideanSpace ℝ (Fin d)
 
 /-- The exact scalar Green multiplier evaluated at squared Euclidean frequency. -/
 noncomputable def symbol (r a kStar : ℝ) (ξ : Rd) : ℂ :=
-  (greenMultiplier r a kStar (‖ξ‖ ^ 2) : ℝ)
+  (greenMultiplier r a kStar (Sobolev.qS ξ) : ℝ)
 
 /-- The physical Green multiplier is a Borel-measurable complex function. -/
 theorem symbol_measurable (r a kStar : ℝ) :
     Measurable (symbol (d := d) r a kStar) := by
-  unfold symbol greenMultiplier shellSymbol
+  unfold symbol greenMultiplier shellSymbol Sobolev.qS
   fun_prop
 
 /-- The multiplier has the correct sharp pointwise L∞ majorant. -/
 theorem symbol_norm_le (r a kStar : ℝ)
     (hr : 0 < r) (ha : 0 ≤ a) (ξ : Rd) :
     ‖symbol r a kStar ξ‖ ≤ 1 / r := by
-  have hb := greenMultiplier_bounds r a kStar (‖ξ‖ ^ 2) hr ha
+  have hb := greenMultiplier_bounds r a kStar (Sobolev.qS ξ) hr ha
   simpa [symbol, Complex.norm_real, Real.norm_eq_abs, abs_of_pos hb.1] using hb.2
 
 /-- Multiplication by the exact Green symbol sends each genuine
