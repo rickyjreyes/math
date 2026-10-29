@@ -95,7 +95,7 @@ theorem nonpositive_growth_contraction (r a kStar t : ℝ)
     rw [← Real.exp_zero]
     exact Real.exp_le_exp.mpr (mul_nonpos_of_nonneg_of_nonpos ht hr)
   have hmul := mul_le_mul_of_nonneg_right he (norm_nonneg f)
-  nlinarith
+  exact hb.trans (by simpa using hmul)
 
 end E61WholeSpaceGrowth
 end ReyesMath
