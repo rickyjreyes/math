@@ -28,7 +28,9 @@ theorem maskedL2_add (μ : Measure α) (S : Set α) (hS : MeasurableSet S)
      Lp.coeFn_add f g,
      Lp.coeFn_add (maskedL2 μ f S hS) (maskedL2 μ g S hS)]
     with x hfg hf hg hsum hmask
-  rw [hfg, hmask, hf, hg]
+  rw [hfg, hmask]
+  simp only [Pi.add_apply]
+  rw [hf, hg]
   by_cases hx : x ∈ S <;> simp [hx, hsum]
 
 theorem maskedL2_smul (μ : Measure α) (S : Set α) (hS : MeasurableSet S)
@@ -41,7 +43,9 @@ theorem maskedL2_smul (μ : Measure α) (S : Set α) (hS : MeasurableSet S)
      Lp.coeFn_smul c f,
      Lp.coeFn_smul c (maskedL2 μ f S hS)]
     with x hcf hf hsmul hmask
-  rw [hcf, hmask, hf]
+  rw [hcf, hmask]
+  simp only [Pi.smul_apply]
+  rw [hf]
   by_cases hx : x ∈ S <;> simp [hx, hsmul]
 
 /-- Complex-linear characteristic-function multiplication on true L² classes. -/
