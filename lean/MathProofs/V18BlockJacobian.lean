@@ -14,9 +14,10 @@ no dependence of middle observations on heavy coefficients. The selected
 11-by-11 derivative minor is therefore block lower triangular.
 
 The full determinant factorizes exactly into its three diagonal block
-determinants. This Lean statement does not yet certify the nonzero
-real-trigonometric middle and heavy block determinants. Those still
-have a reproducible external outward-rounded interval certificate.
+determinants. V18SelectedJacobian proves the concrete restriction of the
+actual derivative has this form, with both lower off-diagonal blocks zero
+on the verified frozen branch. V18Rank packages the generic determinant
+argument as invertibility before concrete instantiation.
 -/
 
 /- The nested Sum index for 3+5+3 determinant synthesis needs more
@@ -62,11 +63,10 @@ theorem det_three_blocks
 /-!
 The universal theorem `det_three_blocks` is the formal
 determinant factorization for *every* finite three-sector block system.
-Applying this result to the concrete 11-element Sum index is a
-mathematical instance, but on the pinned Lean/Mathlib build the kernel's
-normalization of that specific 11×11 determinant exceeds recursion
-limits. Keep this generic theorem in the trusted kernel rather than
-introducing a surrogate numerical determinant or an axiom.
+Direct rewriting of a concrete determinant can force normalization of its
+large permutation enumeration on the pinned build. V18Rank avoids that
+expansion by first proving generic block invertibility, then instantiating
+it and exporting the actual selected determinant's nonvanishing.
 -/
 
 end ReyesMath.V18BlockJacobian

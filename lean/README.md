@@ -3,7 +3,7 @@
 This Mathlib v4.23.0 project integrates main-line supporting modules with newer full H² manuscript formalizations and conditional bridges. All declarations must pass Lean CI on the exact revision before being called kernel-checked. Manuscript-level status (which papers are formalized end to end) is in
 [formalization.yaml](formalization.yaml).
 
-The maintained import tree contains **64 project modules and 1,515 theorem/lemma declarations** (including private source lemmas). **13 of the 14 original manuscripts are complete** under the audit criterion; F09 remains partial. Declaration totals do not measure manuscript completeness. The [review and theorem table](../docs/FORMALIZATION_REVIEW_2026-10-27.md) records the remaining obligations.
+The maintained import tree contains **90 project modules and 1,704 theorem/lemma declarations** (including private source lemmas). **14 of the 14 original manuscripts are complete** under the audit criterion. Declaration totals do not measure manuscript completeness. The [review and theorem table](../docs/FORMALIZATION_REVIEW_2026-10-27.md) records exact declarations, restrictions, and passing verification runs.
 
 ### Manuscript formalizations
 
@@ -43,7 +43,7 @@ The maintained import tree contains **64 project modules and 1,515 theorem/lemma
 - [FourierShellL2](MathProofs/FourierShellL2.lean) — F10, full manuscript formalization:
   Plancherel on `L²`, Fourier integral agreement, essential and distributional
   shell exclusion, Helmholtz and polynomial-multiplier corollaries, and
-  fixed-carrier variable-envelope wave packets. Integration CI must pass before certification.
+  fixed-carrier variable-envelope wave packets, checked in the full maintained build.
 - [CurvatureNonattainment](MathProofs/CurvatureNonattainment.lean) — F05, complete:
   whole-space nonattainment in every dimension and strict spreading for `1 ≤ d ≤ 4`.
 
@@ -59,19 +59,25 @@ The maintained import tree contains **64 project modules and 1,515 theorem/lemma
 
 - [ManifoldScalarMetric](MathProofs/ManifoldScalarMetric.lean) — full F08 global scalar-gradient manifold tensor and smooth tangent-bundle obstruction: actual mfderiv, bilinear form, positivity, nullity, det=0, covariance and nonnegative multiplets (CI passed).
 - [L2Fourier](MathProofs/L2Fourier.lean) — canonical L² Fourier from Schwartz density and Plancherel, plus exact-shell exclusion (kernel-checked together with the F10 corollaries).
-- [ExactSensitivityNullity](MathProofs/ExactSensitivityNullity.lean) — conditional exact-nullity-20 corollary for a full-row-rank 31-to-11 derivative (CI passed). The frozen v18 determinant remains externally interval-certified, not Lean-certified.
+- [ExactSensitivityNullity](MathProofs/ExactSensitivityNullity.lean) — conditional exact-nullity-20 corollary for a full-row-rank 31-to-11 derivative (CI passed). The concrete frozen-v18 hypotheses are discharged by [V18Rank](MathProofs/V18Rank.lean).
 
-### Frozen v18 F09 checked partial results
+### Frozen v18 F09 complete theorem chain
 
 - [V18LightJacobian](MathProofs/V18LightJacobian.lean): exact nonzero source light 3×3 minor.
 - [V18HeavyJacobian](MathProofs/V18HeavyJacobian.lean): positive heavy 3×3 minor with rational π bounds.
 - [V18BlockJacobian](MathProofs/V18BlockJacobian.lean): generic lower-block-triangular determinant factorization.
 - [V18MiddleDerivatives](MathProofs/V18MiddleDerivatives.lean): analytically derives all five selected derivatives of the frozen middle predictor, identifies their matrix entries.
-- [V18MiddleJacobian](MathProofs/V18MiddleJacobian.lean): source-specific 5×5 real trigonometric matrix; exact rank-11 reduction is still **conditional** on `middle.det ≠ 0`.
+- [V18MiddleJacobian](MathProofs/V18MiddleJacobian.lean): source-specific 5×5 real trigonometric matrix. [V18MiddleDeterminant](MathProofs/V18MiddleDeterminant.lean) proves `18000000 < middle.det < 24000000` using [V18MiddleEnclosures](MathProofs/V18MiddleEnclosures.lean) and [V18Interval](MathProofs/V18Interval.lean).
 - [V18FullForward](MathProofs/V18FullForward.lean): all 31 real parameters, including both variable middle frequencies; its actual Jacobian and the model-specific structural nullity theorem.
 - [V18MiddleFloor](MathProofs/V18MiddleFloor.lean), [V18MiddleClipped](MathProofs/V18MiddleClipped.lean): strict floor inactivity for all five frozen middle observations, and derivatives of the clipped outputs in all seven middle coordinate directions.
 
-**F09 is not complete:** proving the middle determinant's sign inside Lean and formally identifying the complete clipped 31-parameter v18 Jacobian are still required. The conditional nonlinear local level-set proposition also remains unformalized. An external interval certificate does not discharge these kernel obligations.
+- [V18BranchBounds](MathProofs/V18BranchBounds.lean) and [V18Regularity](MathProofs/V18Regularity.lean): verified light/heavy clipping branches and C¹ neighborhood regularity of the original clipped map.
+- [V18Frechet](MathProofs/V18Frechet.lean): explicit Fréchet derivative throughout a neighborhood, retaining all 31 parameter dependencies.
+- [V18SelectedJacobian](MathProofs/V18SelectedJacobian.lean) and [V18Rank](MathProofs/V18Rank.lean): all 121 entries of the selected 3+5+3 restriction, its nonzero determinant, actual derivative rank 11, nullity 20, and surjectivity.
+- [LocalLevelSet](MathProofs/LocalLevelSet.lean): the general conditional C¹ level-set theorem, a C¹ ambient chart with C¹ inverse, and exact local-fiber image.
+- [V18Identifiability](MathProofs/V18Identifiability.lean): `ReyesMath.V18Forward.f09_completion` connects the complete proof chain for `alpha ∈ [5.172,5.173]` and frozen `epsilon = 5`. `observed_locally_nonidentifiable` supplies a distinct equal-output point in every ambient neighborhood.
+
+All three F09 obligations are discharged for the actual exact-decimal real model. The geometry concerns an open ambient parameter domain; it does not classify distant fibers or identify the constrained optimizer box with a manifold. External certificates remain independent regression checks. The [signature and dependency audit](F09Audit.lean) prints the exported statements and their axioms; the audited declarations use only `propext`, `Classical.choice`, and `Quot.sound`.
 
 ### Supporting modules
 
@@ -124,6 +130,10 @@ cd lean
 lake update
 lake exe cache get
 lake build
+
+# Optional focused F09 build and exported-signature/dependency audit
+lake build MathProofs.V18Identifiability
+lake env lean F09Audit.lean
 ```
 
 Lean and Mathlib release are pinned to v4.23.0. A dependency lockfile
@@ -131,9 +141,9 @@ is not yet committed.
 
 ## Gaps
 
-All four F01 manuscripts and the F08 scalar-manifold obstruction are formalized. The frozen-v18 Jacobian rank is source-pinned and interval-certified but not yet Lean formalized. The canonical transform, distributional corollaries and wavepacket theorem now have imported Lean declarations; the combined maintained build has passed Lean CI. F11/F12 also remain outside Lean.
+All fourteen original manuscripts are complete under the manifest's criterion. F11/F12 are additional families outside that inventory and remain partial; their separate developments do not change the original-manuscript count.
 
-The F08 obstruction on a smooth four-manifold is fully formalized for an actual global complex scalar, including its covariant fiberwise tensor, nonnegativity, rank/nullity, determinant, pullback covariance, and continuous/C^m tangent-bundle evaluation. The model-independent differential nullity core of F09 and its exact-nullity corollary are in Lean, but the source-pinned frozen-v18 transcendental determinant is still a separate numerical interval certificate.
+The F08 obstruction on a smooth four-manifold is fully formalized for an actual global complex scalar, including its covariant fiberwise tensor, nonnegativity, rank/nullity, determinant, pullback covariance, and continuous/C^m tangent-bundle evaluation. The F09 exact determinant, complete clipped derivative, rank, nullity, and C¹ local fiber are now proved together in Lean.
 
 Separate research-grade Lean work lives in [wct-lean](https://github.com/rickyjreyes/wct-lean);
 do not conflate its theorem count with this repository.

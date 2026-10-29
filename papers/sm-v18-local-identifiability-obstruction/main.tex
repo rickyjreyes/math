@@ -29,20 +29,22 @@ for the 31-Coefficient v18 Spectral Model}
 \maketitle
 
 \begin{abstract}
-We consider the eleven-nonzero-observable sensitivity map of a spectral
-model with twenty-nine stored scalar coefficients and two additional
-historically optimized parameters. At every parameter point at which the
-31-parameter forward map is differentiable, its Jacobian has eleven rows,
-so rank--nullity yields an exact lower bound of twenty on the dimension of
-its first-order null space. We give a full proof, spell out the precise
-perturbative interpretation, and distinguish the structural theorem from
-the repository's finite-difference singular-value-decomposition (SVD)
-result reporting numerical rank eleven. A block-structured 11-by-11 minor
-provides an independent numerical diagnostic. We also state the stronger
-local level-set result that follows \emph{conditionally} from an exact
-full-row-rank certificate and suitable smoothness. The result is an audit
-of parameter identifiability, not a derivation of particle masses or an
-independent physical spectral prediction.
+We consider the eleven-nonzero-observable map of the v18 spectral
+model with twenty-nine stored scalar coefficients and two historically
+optimized parameters. At every differentiability point, rank--nullity
+implies at least twenty first-order null directions. For the exact-decimal
+frozen coefficients, $\epsilon=5$, and
+$\alpha\in[5.172,5.173]$, we additionally prove that the actual clipped
+31-parameter map is $C^1$ near the frozen vector, its derivative has rank
+exactly eleven and nullity exactly twenty, and its local equal-output
+fiber is a twenty-dimensional $C^1$ embedded submanifold. The proof uses
+a selected minor of the full Fr\'echet derivative, a kernel-checked
+trigonometric determinant enclosure, and the implicit-function theorem.
+The theorem, proposition, and corollary statements below are formalized
+in Lean 4 with Mathlib v4.23.0.
+The historical finite-difference SVD remains a separate numerical
+diagnostic. This is an audit of parameter identifiability, not an
+independent physical prediction of particle masses.
 \end{abstract}
 
 \section{Model and hypotheses}
@@ -88,6 +90,17 @@ uses the index set
 \end{equation}
 The corresponding eleven outputs are evaluated without refitting the
 stored coefficients or reassigning particle labels.
+
+For the concrete certificate, $\theta_0$ is the vector
+\texttt{V18Forward.frozen alpha 5}. Its twenty-nine stored coefficients
+are the published finite decimals, interpreted as exact real numbers;
+$\alpha\in[5.172,5.173]$. The Lean function \texttt{V18Forward.observed}
+retains all thirty-one input coordinates, including both middle-sector
+frequencies, both suppression parameters, all heavy powers, and the W/Z
+frequency and phase. It includes the original floors, exponential and
+power clipping, and routing. No equivalence with arbitrary NumPy
+floating-point executions is claimed.
+
 
 \section{Exact structural theorem}
 
@@ -219,118 +232,105 @@ This is \emph{numerical} full row rank. By contrast, the lower bound
 \(\dim\Null J\geq20\) in Theorem~\ref{thm:structural} is an exact
 consequence of dimensions, even if the true rank were below eleven.
 
-\section{Independent block-minor diagnostic}
+\section{Exact selected-minor certificate}
 \label{sec:minor}
 
-The piecewise v18 model allows an independent check of the reported
-row-rank result. Order the output rows as three light, five middle, and
-three heavy targets. Select the following eleven \emph{stored}
-parameter columns:
-\begin{align*}
- \text{light:}&\quad m_0,\,\beta,\,\gamma,\\
- \text{middle:}&\quad A,\,\phi,\,h,\,c,\,d,\\
- \text{heavy:}&\quad \omega,\,\varphi,\,b_H.
-\end{align*}
-Here \(\gamma\) is the cubic-index coefficient in the light formula,
-\(A,\phi,h,c,d\) are respectively the middle sinusoidal amplitude,
-phase, second-harmonic coefficient, constant offset, and quadratic
-coefficient, and \(\omega,\varphi,b_H\) are the W/Z-break angle, phase,
-and Higgs offset.
-
-At the frozen smooth branches the selected minor has the form
+The proof selects the following zero-based coordinates of the complete
+31-dimensional parameter vector, ordered by light, middle, and heavy sector:
 \begin{equation}
-  J_{\mathrm{minor}}
-   =\begin{pmatrix}
-       L&0&0\\
-       0&M&0\\
-       B&0&H
-     \end{pmatrix},
-  \qquad
-  \det J_{\mathrm{minor}}=\det L\,\det M\,\det H.
-  \label{eq:block}
+ (0,3,4;\ 14,15,9,12,13;\ 20,24,28).
+ \label{eq:selected}
 \end{equation}
-The unspecified block \(B\) represents dependence of heavy predictions
-on light-sector coefficients, and does not affect the determinant.
+These are, respectively, $(m_0,\theta,\gamma)$, middle
+$(c,d,A,\phi,h)$, and heavy (first nonlinear boson scale, W/Z-break
+scale, Higgs offset). This selection differs from the earlier
+finite-difference diagnostic's columns. It changes neither the forward
+map nor its active parameters; it selects directions only \emph{after}
+differentiating the complete map.
+
+Strict inequalities at the frozen vector fix every relevant clipping
+branch on an open neighborhood. All three light outputs and all five
+middle outputs exceed their floors strictly. At the three heavy indices,
+the inner light prediction is strictly below its floor, so that inner
+term is locally the constant $10^{-12}$; each heavy outer prediction
+is strictly above its floor. The relevant exponential and power clips
+are also strictly inside, or strictly on the verified saturated side of,
+their thresholds. Continuity propagates these inequalities locally.
+
+Consequently, the selected restriction of the actual Fr\'echet derivative is
+\begin{equation}
+ J_{\mathrm{minor}}=
+ \begin{pmatrix}L&0&0\\0&M&0\\0&0&H\end{pmatrix},
+ \qquad \det J_{\mathrm{minor}}=\det L\,\det M\,\det H.
+ \label{eq:block}
+\end{equation}
+All 121 entries, including all six off-diagonal blocks, are identified
+in Lean. In particular, the heavy outputs' dependence on light coefficients
+vanishes because of the verified inner floor, not because those coefficients
+have been held fixed in the full derivative.
 
 \subsection{Light sector}
-In the v18 light formula, away from an active prediction floor, the
-selected partial derivatives are a nonzero diagonal row rescaling of
+The selected light block is $L=\diag(D_1,D_2,D_3)L_0$, where
 \begin{equation}
-  L_0=
-  \begin{pmatrix}
-    1/2&0&1\\
-    2/3&1&8\\
-    3/4&1&27
-  \end{pmatrix}.
+ L_0=\begin{pmatrix}1/2&1&1\\2/3&4&8\\3/4&9&27\end{pmatrix},
+ \qquad D_n=\frac{\eta_n}{1+\exp(\alpha(n-5))},
+ \qquad (\eta_1,\eta_2,\eta_3)=(1,1,0.0048).
 \end{equation}
-Direct expansion yields
+Exact rational expansion gives
 \begin{equation}
-  \det L_0
-   =\frac12(27-8)+\left(\frac23-\frac34\right)
-   =\boxed{\frac{113}{12}\ne0}.
-  \label{eq:lightdet}
+ \det L_0=9,\qquad \det L=9D_1D_2D_3>0.
+ \label{eq:lightdet}
 \end{equation}
-The multipliers are the positive logistic suppression factors and the
-nonzero special \(n=3\) neutrino factor, so \(\det L\ne0\) on the
-stated unclipped branch.
 
 \subsection{Middle sector}
-The middle mass formula is
+The unfloored formula is
 \begin{equation}
- f(n)= A\sin(sn+\phi)+h\sin(tn)+c+dn^2,
+ f(n)=c+dn^2+h\sin(tn)+A\sin(sn+\phi).
 \end{equation}
-up to its inactive positive-mass floor. For
-\(n\in\{12,19,53,73,91\}\), the five selected derivative columns are
+For $n\in\{12,19,53,73,91\}$, the selected derivative rows are
 \begin{equation}
- M_n=\left(
-   \sin(sn+\phi),\,
-   A\cos(sn+\phi),\,
-   \sin(tn),\,1,\,n^2
- \right).
+ M_n=(1,n^2,\sin(sn+\phi),A\cos(sn+\phi),\sin(tn)),
  \label{eq:middle}
 \end{equation}
-Using the stored decimal coefficient values
+with $(A,s,t,\phi)=(2241.1,5.0632,9.4062,1.6469)$ at the frozen
+vector. The frequencies remain active in the complete derivative.
+The kernel-checked result for this exact matrix is
 \begin{equation}
-  (A,s,t,\phi)=(2241.1,5.0632,9.4062,1.6469),
+ \boxed{18{,}000{,}000<\det M<24{,}000{,}000}.
+ \label{eq:middledet}
 \end{equation}
-ordinary floating-point evaluation gives
-\begin{equation}
-  \det M\approx 2.1220606421\times10^7.
-  \label{eq:middledet}
-\end{equation}
-This is a numerical nonsingularity witness, not a rigorous interval
-certificate of the transcendental determinant.
+The proof uses rational bounds on $\pi$, exact period reduction,
+Mathlib sine and cosine Taylor remainder estimates, and rational interval
+propagation through an exact 60-term determinant expansion. External
+Python certificates are regression checks and supply no Lean premises.
 
 \subsection{Heavy sector}
-The v18 source adds a W/Z correction \(S\sin(\omega n+\varphi)\)
-for \(n=95,96\), and a separate Higgs offset at \(n=123\).
-On the corresponding unclipped branches,
+Let $a_n=(n/100)^{-1.189}$. The selected heavy block is
 \begin{equation}
  H=\begin{pmatrix}
- 95S\cos(95\omega+\varphi)&S\cos(95\omega+\varphi)&0\\
- 96S\cos(96\omega+\varphi)&S\cos(96\omega+\varphi)&0\\
- 0&0&1
+ a_{95}&\sin(-115.395)&0\\
+ a_{96}&\sin(-116.659)&0\\
+ a_{123}&0&1
  \end{pmatrix}.
 \end{equation}
-Therefore
+Here the first column differentiates the first nonlinear boson scale,
+the second the W/Z-break amplitude, and the third the Higgs offset.
+The full derivative also retains the power, frequency, and phase derivatives.
+Period reduction with certified rational bounds on $\pi$ proves
+$\sin(-115.395)<0<\sin(-116.659)$. Since $a_{95},a_{96}>0$,
 \begin{equation}
- \det H=-S^2\cos(95\omega+\varphi)\cos(96\omega+\varphi).
+ \det H=a_{95}\sin(-116.659)-a_{96}\sin(-115.395)>0.
  \label{eq:heavydet}
 \end{equation}
-The source values \(S=8624\), \(\omega=-1.264\), and
-\(\varphi=4.685\) give
+Thus the actual selected derivative restriction is nonsingular. Its rank
+is eleven and cannot exceed the rank of the full derivative. The latter
+has eleven output coordinates, so
 \begin{equation}
- \det H\approx-4.5126633137\times10^7.
+ \boxed{\rank DF(\theta_0)=11},\qquad
+ \boxed{\dim\ker DF(\theta_0)=20}.
 \end{equation}
-The two nonzero numerical determinants in
-\eqref{eq:middledet} and \eqref{eq:heavydet}, together with the exact
-light determinant \eqref{eq:lightdet}, support the numerical full-row-rank
-result. A formal exact-rank certification can be obtained by replacing
-these floating-point evaluations with verified interval enclosures that
-exclude zero, while also verifying the relevant branches remain smooth.
-This certification is not claimed here.
 
-\section{What exact full row rank would additionally prove}
+\section{Local level-set geometry}
 
 \begin{proposition}[Conditional nonlinear local level set]
 \label{prop:levelset}
@@ -352,14 +352,46 @@ The fiber over \(F(\theta_0)\) is locally described by fixing those
 eleven coordinates, leaving \(31-11=20\) free coordinates.
 \end{proof}
 
+\begin{corollary}[The concrete frozen fiber]
+For the exact frozen vector with $\alpha\in[5.172,5.173]$ and
+$\epsilon=5$, all hypotheses of Proposition~\ref{prop:levelset} hold.
+More precisely, writing $K=\ker DF(\theta_0)$, there is an ambient
+partial homeomorphism $\Psi$ between open neighborhoods in
+$\R^{31}$ and $\R^{11}\times K$ such that
+\begin{equation}
+ \Psi(\theta_0)=(F(\theta_0),0),\qquad
+ \pi_1\Psi(\theta)=F(\theta),\qquad \dim K=20.
+\end{equation}
+Both $\Psi$ and $\Psi^{-1}$ are $C^1$ on their open domains. The chart
+maps the entire local fiber exactly onto
+\[
+ \{(y,k)\in\operatorname{target}(\Psi):y=F(\theta_0)\}.
+\]
+Every ambient neighborhood of $\theta_0$ contains a distinct parameter
+vector with exactly the same eleven predictions.
+\end{corollary}
+\begin{proof}
+The verified strict branches give $C^1$ regularity on an open
+neighborhood. The certified minor proves surjectivity of the full
+Fr\'echet derivative. Mathlib's implicit-function chart is restricted to
+open sets where the chart and its inverse are $C^1$; the inverse
+regularity follows from its inverse-function theorem. The first chart
+coordinate is the actual observation map, and the second takes values
+in its twenty-dimensional derivative kernel. Varying a nonzero kernel
+coordinate slightly proves the final assertion. These steps are
+exported by \texttt{V18Forward.f09\_completion} and
+\texttt{V18Forward.observed\_locally\_nonidentifiable}.
+\end{proof}
+
+
 \begin{remark}[Active bounds]
 The historical live parameter \(\epsilon_{\mathrm{cutoff}}\) sits at an
 optimizer upper bound. Proposition~\ref{prop:levelset} is therefore
 stated for a smooth extension to an \emph{open} ambient domain; it does
 not automatically imply that every direction in the full twenty-dimensional
-fiber respects the fitted parameter constraints. Since the proposed
-numerically nonsingular minor in Section~\ref{sec:minor} uses eleven
-\emph{stored} parameters, certifying that minor would also permit a
+fiber respects the fitted parameter constraints. Since the certified
+minor in Section~\ref{sec:minor} uses eleven
+\emph{stored} parameters, it also permits a
 restricted implicit-function analysis with the two live parameters fixed.
 In that case the remaining twenty-nine stored parameters would support
 a local \(29-11=18\)-dimensional equal-prediction level set, without
@@ -379,7 +411,7 @@ physical normalization converting eigenvalues into measured mass units.
 
 The logical status of the main statements is:
 \begin{center}
-\begin{tabular}{p{0.69\linewidth}p{0.20\linewidth}}
+\begin{tabular}{p{0.63\linewidth}p{0.29\linewidth}}
 \toprule
 Statement & Status\\
 \midrule
@@ -387,7 +419,8 @@ Statement & Status\\
 \(\dim\Null J\geq20\) & Exact theorem\\
 At least twenty zero first-order sensitivities & Exact when differentiable\\
 The frozen audit's reported numerical rank eleven & Numerical diagnostic\\
-Exactly twenty-dimensional smooth local fibers & Conditional on exact rank and regularity\\
+Frozen rank eleven and nullity twenty & Kernel-checked exact result\\
+Exactly twenty-dimensional smooth local fibers & Kernel-checked at the frozen vectors\\
 Independent spectral prediction of particle masses & Not established\\
 \bottomrule
 \end{tabular}
@@ -405,8 +438,11 @@ nonzero observables, the first-order structural obstruction is
   \dim\Null J\geq20.
  }
 \end{equation}
-The unconditional conclusion is a local sensitivity obstruction, not an
-independently validated physical spectrum. The corresponding v18 research
+The concrete frozen result additionally establishes a twenty-dimensional
+nonlinear local fiber. It does not classify distant solutions, determine
+the global topology of a fiber, or make a physically constrained parameter
+box into an open manifold. None of these mathematical results constitutes
+an independently validated physical spectrum. The corresponding v18 research
 classification remains \texttt{EMPIRICAL\_FIT\_ONLY}.
 
 \section*{Sources and reproducibility}
@@ -428,7 +464,20 @@ python SM_Spectrum/audit_v18_identifiability.py \
 \end{verbatim}
 It records coefficient and CSV file hashes, package versions, the
 11-by-31 scaled sensitivity, its SVD, and the declared numerical-rank
-threshold. This document reports the repository's rank result; it does
-not claim a new executed holdout test.
+threshold. The historical numerical result is reported separately from the Lean
+certificate above. No new executed holdout test is claimed.
+
+The main formalization modules in \texttt{lean/MathProofs/} are:
+\begin{itemize}
+\item \texttt{V18MiddleDeterminant}: the exact trigonometric enclosure.
+\item \texttt{V18Regularity} and \texttt{V18Frechet}: local branches and the full derivative.
+\item \texttt{V18SelectedJacobian} and \texttt{V18Rank}: the actual minor, rank and nullity.
+\item \texttt{LocalLevelSet} and \texttt{V18Identifiability}: the $C^1$ chart and completion theorem.
+\end{itemize}
+The aggregate command is
+\begin{verbatim}
+lake build MathProofs.V18Identifiability
+\end{verbatim}
+The complete repository is checked with \texttt{lake build}.
 
 \end{document}

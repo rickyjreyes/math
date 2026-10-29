@@ -4,6 +4,8 @@ on:
     paths:
       - 'lean/MathProofs/V18*.lean'
       - 'lean/MathProofs.lean'
+      - 'lean/MathProofs/LocalLevelSet.lean'
+      - 'lean/F09Audit.lean'
       - '.github/workflows/f09-derivative-ci.yml'
   workflow_dispatch:
 permissions:
@@ -29,4 +31,6 @@ jobs:
           if grep -rnE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' MathProofs; then exit 1; fi
       - name: Kernel-check source derivative and determinant modules
         run: |
-          lake build MathProofs.V18LightJacobian MathProofs.V18HeavyJacobian MathProofs.V18BlockJacobian MathProofs.V18MiddleJacobian MathProofs.V18MiddleDerivatives MathProofs.V18FullForward MathProofs.V18MiddleFloor MathProofs.V18MiddleClipped
+          lake build MathProofs.V18LightJacobian MathProofs.V18HeavyJacobian MathProofs.V18BlockJacobian MathProofs.V18MiddleJacobian MathProofs.V18MiddleDeterminant MathProofs.V18MiddleDerivatives MathProofs.V18FullForward MathProofs.V18MiddleFloor MathProofs.V18MiddleClipped MathProofs.V18BranchBounds MathProofs.V18Regularity MathProofs.V18Frechet MathProofs.V18SelectedJacobian MathProofs.V18Rank MathProofs.LocalLevelSet MathProofs.V18Identifiability
+      - name: Audit exported theorem signatures and dependencies
+        run: lake env lean F09Audit.lean

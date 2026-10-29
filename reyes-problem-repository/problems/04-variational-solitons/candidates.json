@@ -1,0 +1,344 @@
+[
+  {
+    "id": "GC120",
+    "title": "Sharp mass-energy inequality",
+    "question": "For the fourth-order cubic–quintic energy, find the best constant in the inequality controlling the focusing quartic term by mass, dispersion, and sextic energy.",
+    "first_test": "Prove optimality and characterize extremizers.",
+    "area": "04-variational-solitons",
+    "parent_problems": [
+      "GC06",
+      "GC16",
+      "GC17",
+      "GC18",
+      "GC19",
+      "GC55"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC121",
+    "title": "Ground-state nondegeneracy",
+    "question": "Determine whether the kernel of the constrained ground-state Hessian consists only of translation and phase symmetries.",
+    "first_test": "Prove nondegeneracy in a fixed parameter regime or construct an extra neutral mode.",
+    "area": "04-variational-solitons",
+    "parent_problems": [
+      "GC06",
+      "GC16",
+      "GC17",
+      "GC18",
+      "GC19",
+      "GC55"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC122",
+    "title": "Binding at the critical mass",
+    "question": "Determine whether the infimum at the first mass supporting a localized minimizer is attained or approached only by splitting sequences.",
+    "first_test": "Prove attainment or explicit noncompactness at the endpoint.",
+    "area": "04-variational-solitons",
+    "parent_problems": [
+      "GC06",
+      "GC16",
+      "GC17",
+      "GC18",
+      "GC19",
+      "GC55"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC123",
+    "title": "Orbital stability from quantitative coercivity",
+    "question": "Find a sharp modulus connecting mass-energy deficit to distance from the constrained minimizer orbit.",
+    "first_test": "Prove a global or local stability inequality with the correct exponent.",
+    "area": "04-variational-solitons",
+    "parent_problems": [
+      "GC06",
+      "GC16",
+      "GC17",
+      "GC18",
+      "GC19",
+      "GC55"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC124",
+    "title": "Competing radial and stripe minimizers",
+    "question": "Determine when radial localized states and periodically modulated states exchange energetic optimality under a fixed mass constraint.",
+    "first_test": "Compare the branches rigorously and locate any crossing.",
+    "area": "04-variational-solitons",
+    "parent_problems": [
+      "GC06",
+      "GC16",
+      "GC17",
+      "GC18",
+      "GC19",
+      "GC55"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC125",
+    "title": "Mass partition in vector solitons",
+    "question": "For a two-component focusing–defocusing energy, determine whether the minimizing mass allocation is unique under fixed total mass.",
+    "first_test": "Prove a unique partition or construct symmetry-related distinct optima.",
+    "area": "04-variational-solitons",
+    "parent_problems": [
+      "GC06",
+      "GC16",
+      "GC17",
+      "GC18",
+      "GC19",
+      "GC55"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC126",
+    "title": "Concentration-compactness without radial symmetry",
+    "question": "Establish a profile decomposition that tracks anisotropic translations and Fourier-shell concentration for minimizing sequences.",
+    "first_test": "Prove an exact concentration alternative with mass and energy decoupling.",
+    "area": "04-variational-solitons",
+    "parent_problems": [
+      "GC06",
+      "GC16",
+      "GC17",
+      "GC18",
+      "GC19",
+      "GC55"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC127",
+    "title": "Barycentric pinning of minimizers",
+    "question": "After fixing phase and center of mass, determine when the ground-state minimizing sequence becomes strongly compact without quotient ambiguity.",
+    "first_test": "Prove a pinned compactness theorem or show residual loss of compactness.",
+    "area": "04-variational-solitons",
+    "parent_problems": [
+      "GC06",
+      "GC16",
+      "GC17",
+      "GC18",
+      "GC19",
+      "GC55"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC128",
+    "title": "Sharp strict-subadditivity transition",
+    "question": "Locate changes from binding to nonbinding as a mass parameter crosses an explicitly defined threshold.",
+    "first_test": "Prove strict inequalities on one side and equality sequences on the other.",
+    "area": "04-variational-solitons",
+    "parent_problems": [
+      "GC06",
+      "GC16",
+      "GC17",
+      "GC18",
+      "GC19",
+      "GC55"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC129",
+    "title": "Soliton branch turning-point stability",
+    "question": "Determine whether a Vakhitov–Kolokolov-type slope condition predicts stability through a fold in the fourth-order model.",
+    "first_test": "Derive an index-based criterion or construct a counterexample.",
+    "area": "04-variational-solitons",
+    "parent_problems": [
+      "GC06",
+      "GC16",
+      "GC17",
+      "GC18",
+      "GC19",
+      "GC55"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC130",
+    "title": "Constrained minimizers with angular momentum",
+    "question": "At fixed mass and prescribed nonzero angular momentum, determine whether the energy infimum is attained by rotating coherent states.",
+    "first_test": "Prove existence and orbital stability or nonattainment.",
+    "area": "04-variational-solitons",
+    "parent_problems": [
+      "GC06",
+      "GC16",
+      "GC17",
+      "GC18",
+      "GC19",
+      "GC55"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC131",
+    "title": "Energy landscape Morse index",
+    "question": "Compute or bound the Morse index of excited stationary configurations in a finite-energy class.",
+    "first_test": "Establish an index theorem and connect index changes to bifurcation.",
+    "area": "04-variational-solitons",
+    "parent_problems": [
+      "GC06",
+      "GC16",
+      "GC17",
+      "GC18",
+      "GC19",
+      "GC55"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC132",
+    "title": "Mountain-pass localized states",
+    "question": "Determine whether the same energy admits nonminimizing localized critical points selected by a mountain-pass minimax level.",
+    "first_test": "Prove a Palais–Smale condition or identify an obstruction.",
+    "area": "04-variational-solitons",
+    "parent_problems": [
+      "GC06",
+      "GC16",
+      "GC17",
+      "GC18",
+      "GC19",
+      "GC55"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC133",
+    "title": "Uniform minimizer bounds near zero dispersion",
+    "question": "Determine the asymptotic profile of constrained minimizers as the coefficient of the fourth-order term tends to zero.",
+    "first_test": "Prove rescaled convergence or loss of compactness.",
+    "area": "04-variational-solitons",
+    "parent_problems": [
+      "GC06",
+      "GC16",
+      "GC17",
+      "GC18",
+      "GC19",
+      "GC55"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC134",
+    "title": "Large-mass saturation profiles",
+    "question": "Characterize the spatial scale and amplitude of minimizers as mass tends to infinity under quintic defocusing saturation.",
+    "first_test": "Derive asymptotics and rule out competing shape families.",
+    "area": "04-variational-solitons",
+    "parent_problems": [
+      "GC06",
+      "GC16",
+      "GC17",
+      "GC18",
+      "GC19",
+      "GC55"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC135",
+    "title": "Variational gap under weak external fields",
+    "question": "Bound how a weak localized potential shifts the energy difference between bound and separated soliton configurations.",
+    "first_test": "Prove continuity and sharp first-order variation.",
+    "area": "04-variational-solitons",
+    "parent_problems": [
+      "GC06",
+      "GC16",
+      "GC17",
+      "GC18",
+      "GC19",
+      "GC55"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC136",
+    "title": "Multiplicity of symmetry-related local minima",
+    "question": "Classify distinct local minimizer orbits under discrete rotational symmetry and determine which bifurcate as a control parameter changes.",
+    "first_test": "Produce a complete local bifurcation and energy ordering.",
+    "area": "04-variational-solitons",
+    "parent_problems": [
+      "GC06",
+      "GC16",
+      "GC17",
+      "GC18",
+      "GC19",
+      "GC55"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC137",
+    "title": "Energy quantization in concentrating sequences",
+    "question": "Determine whether a bounded sequence of nearly critical waves can concentrate into finitely many profiles with quantized positive energy.",
+    "first_test": "Prove bubble energy decoupling or construct a diffuse counterexample.",
+    "area": "04-variational-solitons",
+    "parent_problems": [
+      "GC06",
+      "GC16",
+      "GC17",
+      "GC18",
+      "GC19",
+      "GC55"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC138",
+    "title": "Dynamical stability of constrained excited minima",
+    "question": "Characterize when a constrained local minimum that is not the global minimum remains orbitally stable under the Hamiltonian flow.",
+    "first_test": "Prove stability from a localized coercivity estimate or find unstable directions.",
+    "area": "04-variational-solitons",
+    "parent_problems": [
+      "GC06",
+      "GC16",
+      "GC17",
+      "GC18",
+      "GC19",
+      "GC55"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  }
+]

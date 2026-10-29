@@ -2,19 +2,38 @@
 
 > **Can a wave confine itself, form a stable knot, select its own wavelength, or perform universal computation?**
 
-**An evolving, open-source collection of mathematical challenges.** Currently 50 proposed problems across 10 research areas, developed through questions, counterexamples, proofs, and formal verification.
+**An evolving, open-source corpus of 300 mathematical research candidates in 12 subject folders.** GC01–GC65 preserve existing formal question statements; GC66–GC300 are newly outlined problems awaiting rigorous mathematical scoping and prior-art review.
 
-The Reyes Problem Repository is a living, version-controlled research collection built around **GitHub, human collaboration, LLM-assisted exploration, and Lean 4 proof checking**. Problems can grow, branch, be corrected, or be resolved as evidence develops. Its questions connect nonlinear PDEs, variational analysis, spectral geometry, topological fields, computation, and formal verification. No generated conjecture becomes a theorem merely because an LLM proposed it.
+The Reyes Problem Repository is a living, version-controlled research collection built around **GitHub issues, research pull requests, existing Lean 4 proofs, optional mathematical papers, and an open invitation to contribute**. The research program continues regardless of outside participation. Problems can grow, branch, be corrected, or be resolved as evidence develops. Its questions connect nonlinear PDEs, variational analysis, spectral geometry, topological fields, computation, and formal verification. No generated conjecture becomes a theorem merely because an LLM proposed it.
 
-**[Formal problems](./FORMAL_PROBLEMS.md)** · **[Live research status](./STATUS.md)** · **[Five flagship dossiers](#start-here-five-questions-worth-exploring)** · **[Candidate notebook](./NOTEBOOK.md)** · **[How to contribute](./CONTRIBUTING.md)**
+**[Browse all 300 questions](./ROADMAP_300.md)** · **[12 research folders](./problems/README.md)** · **[Foundational shortlist](./FOUNDATIONAL_SHORTLIST.md)** · **[Original 65 formal problems](./FORMAL_PROBLEMS.md)** · **[Live research status](./STATUS.md)** · **[Five flagship dossiers](#start-here-five-questions-worth-exploring)** · **[Candidate notebook](./NOTEBOOK.md)** · **[How to contribute](./CONTRIBUTING.md)**
 
-**[Screening and editorial method](./METHOD.md)** · [Initial literature ledger](./LITERATURE.md) · [Flagship screening](./SCREENING.md) · [Existing papers](../papers) · [Lean 4 source](../lean/MathProofs) · [Submit a research contribution](https://github.com/rickyjreyes/math/issues/new?template=grand_challenge.yml)
+**[GC01–GC65 research and proof links](./GC65_ADOPTION.md)** · **[GC66–GC300 activation](./CANDIDATE_ACTIVATION.md)** · **[Workflow and proof contract](./WORKFLOW.md)** · **[Existing Lean and paper adoption](./EXISTING_WORK.md)** · **[Screening and editorial method](./METHOD.md)** · [Initial literature ledger](./LITERATURE.md) · [Flagship screening](./SCREENING.md) · [Existing papers](../papers) · [Lean 4 source](../lean/MathProofs) · [Submit a research contribution](https://github.com/rickyjreyes/math/issues/new?template=grand_challenge.yml)
 
 > [!IMPORTANT]
 > **Research status:** This is a proposed challenge catalogue, **not** an established list of unsolved problems comparable in standing to the Millennium Prize Problems. No prizes are offered. Novelty and open status have not been established through comprehensive literature review. Some statements have partial results or counterexamples; others require sharper assumptions. See [research standards](#what-counts-as-a-solution).
 
+> [!NOTE]
+> **Corpus scope:** The 300 entries form a research agenda, not a verified list of 300 unsolved problems. Existing GC01–GC65 mathematical statements remain separately archived. New GC66–GC300 entries are drafts with first proof-or-counterexample targets, not full formal theorems. The [25 foundational candidates](./FOUNDATIONAL_SHORTLIST.md) are only a screening shortlist.
+
 ---
 
+
+## Research like an open-source software project
+
+**Each mathematical research task belongs in a GitHub issue, contributions arrive through PRs, and Lean checks the exact formal theorem.** Existing mathematics is respected: no proof or manuscript needs to be copied, moved, reopened or rewritten to join this workflow. Papers are optional, but claims described as Lean verified must match the underlying theorem and its assumptions.
+
+- **Find existing work first.** The [GC01–GC65 adoption index](./GC65_ADOPTION.md) maps existing proof modules and papers for the original 65 questions, without presenting narrower results as full solutions. The [candidate activation guide](./CANDIDATE_ACTIVATION.md) keeps GC66–GC300 as drafts until selected and mathematically scoped.
+- **Choose an existing or carefully scoped issue.** An unreviewed GC entry is not automatically a formally stated open problem. Search for existing GC and Lean formalization issues before creating a duplicate. [Preview a draft issue locally](./WORKFLOW.md).
+- **Propose a solution by PR.** Identify the exact theorem or counterexample and its assumptions, Lean declaration, successful existing CI run, and what remains unresolved. A milestone issue may close while its parent GC remains open.
+- **Publish when useful.** Link an optional paper with its exact claim reference. Clearly identify any analytical argument, simulation or physical interpretation that was not established by the Lean theorem.
+- **Credit the contributor.** Original and external contributors retain attribution for their results; disproofs and corrections advance the research program too.
+
+**Start here:** [Issue, PR, Lean and paper contract](./WORKFLOW.md) · [Existing research adoption](./EXISTING_WORK.md) · [Contribution guide](./CONTRIBUTING.md) · [Open a scoped GC issue](https://github.com/rickyjreyes/math/issues/new?template=gc_problem.yml) · [Submit a research finding](https://github.com/rickyjreyes/math/issues/new?template=grand_challenge.yml).
+
+**Non-regression rule:** Formal verification through the GC process applies to newly claimed GC resolutions; it does not retroactively invalidate or rewrite any earlier manuscript, theorem, or unrelated research issue.
+
+---
 ## Start here: five questions worth exploring
 
 ### [**GC06 · Can a wave confine itself?**](./FORMAL_PROBLEMS.md#gc06-self-confinement-criteria)
@@ -75,11 +94,11 @@ Related starting points: [orbital stability](../papers/orbital-stability-fourth-
 
 ---
 
-## The complete challenge catalogue
+## Original 65-question catalogue
 
-**Choose a question.** Each title links to its mathematical problem statement, including a proof-or-counterexample resolution criterion. The plain-language prompts below are guides, not replacements for the formal statements.
+**Original problem statements (GC01–GC65).** This section preserves the earlier mathematically scoped catalogue. The expanded [300-problem roadmap](./ROADMAP_300.md) and [folder index](./problems/README.md) include GC66–GC300, whose formulations require further refinement. The plain-language prompts below are guides, not replacements for the formal statements.
 
-**Status key:** All entries remain **candidate research questions** unless specifically documented. **GC08** has a partial negative resolution (the unrestricted uniqueness condition fails). The five featured dossiers include initial literature leads, not exhaustive novelty clearance. [Track all 50 statuses](./STATUS.md) and [see how problems are screened](./METHOD.md).
+**Status key:** All entries remain **candidate research questions** unless specifically documented. **GC08** has a partial negative resolution (the unrestricted uniqueness condition fails). GC51–GC300 are research candidates, and GC66–GC300 are exploratory outlines requiring additional precision. The five featured dossiers include initial literature leads, not exhaustive novelty clearance. [Track all 300 statuses](./STATUS.md) and [see how problems are screened](./METHOD.md).
 
 <details open>
 <summary><strong>Nonlinear wave dynamics</strong> · 5 challenges</summary>
@@ -213,6 +232,50 @@ Related starting points: [orbital stability](../papers/orbital-stability-fourth-
 
 ---
 
+
+## Fifteen newly proposed foundational directions
+
+**GC51–GC65, added 2026-10-29.** These research candidates extend the original fifty. The questions below lead to full mathematical statements but have **not** passed prior-art clearance or independent novelty review. Some have model choices still to freeze. Every conjecture can be corrected or refuted.
+
+<details open>
+<summary><strong>Foundational emergence and scaling</strong> · 5 candidate challenges</summary>
+
+| Problem | The question |
+|:--|:--|
+| [**GC51 · Soliton resolution and asymptotic completeness**](./FORMAL_PROBLEMS.md#gc51-soliton-resolution-and-asymptotic-completeness) | Does a general finite-energy wave eventually separate into coherent structures and radiation? |
+| [**GC52 · Rigorous emergence of effective wave equations**](./FORMAL_PROBLEMS.md#gc52-rigorous-emergence-of-effective-wave-equations) | Can a fourth-order nonlinear envelope equation be derived from an underlying Hamiltonian system? |
+| [**GC53 · Universal confinement and stability thresholds**](./FORMAL_PROBLEMS.md#gc53-universal-confinement-and-stability-thresholds) | Can one exact mathematical criterion separate dispersion, localization, and instability? |
+| [**GC54 · Nonlinear scattering and threshold resonances**](./FORMAL_PROBLEMS.md#gc54-nonlinear-scattering-and-threshold-resonances) | Which spectral thresholds separate trapped modes from dispersive radiation? |
+| [**GC55 · Scaling universality and critical phenomena**](./FORMAL_PROBLEMS.md#gc55-scaling-universality-and-critical-phenomena) | Do different confinement models share the same critical exponents? |
+
+</details>
+
+<details open>
+<summary><strong>Extended dynamics and inference</strong> · 5 candidate challenges</summary>
+
+| Problem | The question |
+|:--|:--|
+| [**GC56 · Global bifurcation of localized states**](./FORMAL_PROBLEMS.md#gc56-global-bifurcation-of-localized-states) | How do branches of confined states appear, fold, and disappear? |
+| [**GC57 · Stability under stochastic forcing**](./FORMAL_PROBLEMS.md#gc57-stability-under-stochastic-forcing) | How long can a coherent structure persist when random perturbations never stop? |
+| [**GC58 · Multicomponent and vector confinement**](./FORMAL_PROBLEMS.md#gc58-multicomponent-and-vector-confinement) | When do interacting wave components form stable bound states that scalar waves cannot? |
+| [**GC59 · Nonlinear observability and control**](./FORMAL_PROBLEMS.md#gc59-nonlinear-observability-and-control) | Can a nonlinear pattern be reconstructed and controlled from measurements on a small region? |
+| [**GC60 · Singular limits and multiscale consistency**](./FORMAL_PROBLEMS.md#gc60-singular-limits-and-multiscale-consistency) | How long does a reduced numerical wave model track the original infinite-dimensional system? |
+
+</details>
+
+<details open>
+<summary><strong>Information, structure and verification</strong> · 5 candidate challenges</summary>
+
+| Problem | The question |
+|:--|:--|
+| [**GC61 · Formation and breakdown of coherent structures**](./FORMAL_PROBLEMS.md#gc61-formation-and-breakdown-of-coherent-structures) | Can a localized wave spontaneously emerge from far-from-equilibrium initial data? |
+| [**GC62 · Chaotic dynamics and transport barriers**](./FORMAL_PROBLEMS.md#gc62-chaotic-dynamics-and-transport-barriers) | Can nonlinear wave dynamics be chaotic yet suppress long-range energy transport? |
+| [**GC63 · Physical information and energy limits of wave computation**](./FORMAL_PROBLEMS.md#gc63-physical-information-and-energy-limits-of-wave-computation) | What are the energy, noise, and reliability costs of computing with physical waves? |
+| [**GC64 · Identifiability of competing physical theories**](./FORMAL_PROBLEMS.md#gc64-identifiability-of-competing-physical-theories) | What measurements can definitively distinguish two different wave models? |
+| [**GC65 · Verified mathematical model reduction**](./FORMAL_PROBLEMS.md#gc65-verified-mathematical-model-reduction) | Can a finite-dimensional model be proved to represent the dynamics of an infinite-dimensional PDE? |
+
+</details>
+
 ## Where the mathematics already begins
 
 The catalogue is grounded in an existing research repository. The links below are **related starting points**, not certificates that the broader challenge has been solved.
@@ -241,7 +304,7 @@ That refutes uniqueness under the unrestricted conditions. The interesting remai
 
 **Live flagship research discussions:** [GC01 · #54](https://github.com/rickyjreyes/math/issues/54) · [GC06 · #55](https://github.com/rickyjreyes/math/issues/55) · [GC11 · #56](https://github.com/rickyjreyes/math/issues/56) · [GC36 · #57](https://github.com/rickyjreyes/math/issues/57) · [GC43 · #58](https://github.com/rickyjreyes/math/issues/58).
 
-## How this free problem book works
+## How this living research repository works
 
 **Capture** ideas in the [candidate notebook](./NOTEBOOK.md). **Screen** them using the [precision and prior-art rubric](./METHOD.md). **Compare** nearby established theorems in the [literature ledger](./LITERATURE.md). **Work** on one of the [five flagship dossiers](#start-here-five-questions-worth-exploring). **Contribute** a proof, counterexample, model correction, or verified Lean theorem through GitHub. **Record** the exact result in the [status register](./STATUS.md), preserving withdrawn and refuted questions.
 
@@ -258,12 +321,12 @@ To resolve a mathematical problem:
 1. **State it precisely.** Freeze the equation, function space, domain, parameter ranges, quantifiers, and meaning of stability or computation.
 2. **Check the literature and attack it.** Identify closest known results, inspect special cases, seek counterexamples, and distinguish genuine gaps from already settled questions.
 3. **Prove or refute the claim.** Give a reproducible mathematical argument with explicit hypotheses. A correct counterexample is a valid resolution.
-4. **Formalize when feasible.** Link Lean 4 source to the exact theorem being claimed, without treating formal verification as evidence of novelty or physical realization.
+4. **Verify GC completion in Lean.** For a newly claimed GC issue resolution, link the exact Lean theorem or counterexample, a successful full Lean build, and a reviewed correspondence to the issue's frozen acceptance criteria. Preliminary and partial research can be shared without calling the GC resolved.
 5. **Document the result.** Record the theorem or counterexample, assumptions, limitations, and relevant numerical or experimental checks in a linked paper or issue.
 
 ### Want to work on one?
 
-Pick any **GC01–GC50**, read its [formal statement](./FORMAL_PROBLEMS.md), and [submit a structured research contribution](https://github.com/rickyjreyes/math/issues/new?template=grand_challenge.yml). The [contribution guide](./CONTRIBUTING.md) describes how to document proofs, counterexamples, existing literature, and corrected hypotheses. No prizes or paid services are required. A [versioned JSON register](./problem_registry.json) tracks every entry, and a [standard-library validation script](./scripts/validate_catalog.py) checks catalogue integrity.
+Pick any **GC01–GC300**, read its [problem file](./ROADMAP_300.md), and [submit a structured research contribution](https://github.com/rickyjreyes/math/issues/new?template=grand_challenge.yml). The [contribution guide](./CONTRIBUTING.md) describes how to document proofs, counterexamples, existing literature, and corrected hypotheses. No prizes or paid services are required. A [versioned JSON register](./problem_registry.json) tracks every entry, and a [standard-library validation script](./scripts/validate_catalog.py) checks catalogue integrity.
 
 **A good challenge is not one that sounds impossible. It is one whose answer changes what we can rigorously say about waves.**
 

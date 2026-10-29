@@ -1,0 +1,363 @@
+[
+  {
+    "id": "GC196",
+    "title": "Hopf charge and coercive energy bounds",
+    "question": "For a normalized two-component field on compactified three-space, determine sharp lower bounds on a fixed Skyrme-type energy in each Hopf class.",
+    "first_test": "Prove a charge-dependent inequality and characterize possible equality.",
+    "area": "08-topology-multicomponent",
+    "parent_problems": [
+      "GC09",
+      "GC36",
+      "GC37",
+      "GC38",
+      "GC39",
+      "GC40",
+      "GC58"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC197",
+    "title": "Knot type versus Hopf degree",
+    "question": "Determine whether two stationary knotted configurations with equal Hopf degree but different knot type can be connected through finite-energy deformations.",
+    "first_test": "Give a path or demonstrate an additional conserved invariant.",
+    "area": "08-topology-multicomponent",
+    "parent_problems": [
+      "GC09",
+      "GC36",
+      "GC37",
+      "GC38",
+      "GC39",
+      "GC40",
+      "GC58"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC198",
+    "title": "Linked vortex stability",
+    "question": "For a two-component nonlinear wave model, determine whether a pair of linked vortex rings has an orbitally stable energy minimum.",
+    "first_test": "Construct a stable linked branch or a destabilizing perturbation.",
+    "area": "08-topology-multicomponent",
+    "parent_problems": [
+      "GC09",
+      "GC36",
+      "GC37",
+      "GC38",
+      "GC39",
+      "GC40",
+      "GC58"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC199",
+    "title": "Topology of nodal lines under evolution",
+    "question": "Determine the conditions under which nodal lines of a smooth complex field can reconnect without loss of PDE regularity.",
+    "first_test": "Prove a generic reconnection mechanism or a topological exclusion.",
+    "area": "08-topology-multicomponent",
+    "parent_problems": [
+      "GC09",
+      "GC36",
+      "GC37",
+      "GC38",
+      "GC39",
+      "GC40",
+      "GC58"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC200",
+    "title": "Minimal energy for fixed winding pair",
+    "question": "On a two-dimensional torus, minimize a phase-gradient energy within a prescribed pair of integer winding classes.",
+    "first_test": "Compute the sharp minimum and stability of its representatives.",
+    "area": "08-topology-multicomponent",
+    "parent_problems": [
+      "GC09",
+      "GC36",
+      "GC37",
+      "GC38",
+      "GC39",
+      "GC40",
+      "GC58"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC201",
+    "title": "Knotted-field symmetry breaking",
+    "question": "Determine whether energy-minimizing Hopf configurations must lose rotational symmetry above a threshold topological charge.",
+    "first_test": "Prove a symmetry-breaking criterion or construct symmetric minimizers.",
+    "area": "08-topology-multicomponent",
+    "parent_problems": [
+      "GC09",
+      "GC36",
+      "GC37",
+      "GC38",
+      "GC39",
+      "GC40",
+      "GC58"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC202",
+    "title": "Vector-soliton polarization dynamics",
+    "question": "For coupled cubic–quintic waves, derive the effective dynamics of relative component polarization near a bound state.",
+    "first_test": "Prove a modulation equation with quantified errors.",
+    "area": "08-topology-multicomponent",
+    "parent_problems": [
+      "GC09",
+      "GC36",
+      "GC37",
+      "GC38",
+      "GC39",
+      "GC40",
+      "GC58"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC203",
+    "title": "Topological obstruction to scalarization",
+    "question": "Determine whether a two-component wave in a nontrivial topological class can be continuously deformed to a one-component state without crossing zero intensity.",
+    "first_test": "Prove a homotopy obstruction or construct an admissible deformation.",
+    "area": "08-topology-multicomponent",
+    "parent_problems": [
+      "GC09",
+      "GC36",
+      "GC37",
+      "GC38",
+      "GC39",
+      "GC40",
+      "GC58"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC204",
+    "title": "Vortex collision and reconnection energy",
+    "question": "Quantify the minimal energy barrier for two vortex filaments to reconnect under a specified dissipative geometric flow.",
+    "first_test": "Prove a lower barrier or an explicit finite-energy path.",
+    "area": "08-topology-multicomponent",
+    "parent_problems": [
+      "GC09",
+      "GC36",
+      "GC37",
+      "GC38",
+      "GC39",
+      "GC40",
+      "GC58"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC205",
+    "title": "Topological mode trapping in waveguides",
+    "question": "For a periodic coupled-mode waveguide with a nontrivial band invariant, determine whether robust localized edge modes survive local defects.",
+    "first_test": "Establish bulk-boundary correspondence for the exact operator or a counterexample.",
+    "area": "08-topology-multicomponent",
+    "parent_problems": [
+      "GC09",
+      "GC36",
+      "GC37",
+      "GC38",
+      "GC39",
+      "GC40",
+      "GC58"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC206",
+    "title": "Higher Hopf-class minimizer compactness",
+    "question": "Determine whether minimizing sequences in fixed nonzero Hopf class are precompact modulo translations or split into charge-carrying clusters.",
+    "first_test": "Prove a binding criterion or classify dichotomy.",
+    "area": "08-topology-multicomponent",
+    "parent_problems": [
+      "GC09",
+      "GC36",
+      "GC37",
+      "GC38",
+      "GC39",
+      "GC40",
+      "GC58"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC207",
+    "title": "Knotted-wave oscillation spectra",
+    "question": "For a stationary Hopf soliton, characterize its localized internal vibration frequencies and resonance with ambient waves.",
+    "first_test": "Derive a spectral stability or radiation-damping theorem.",
+    "area": "08-topology-multicomponent",
+    "parent_problems": [
+      "GC09",
+      "GC36",
+      "GC37",
+      "GC38",
+      "GC39",
+      "GC40",
+      "GC58"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC208",
+    "title": "Defect interactions in multicomponent condensates",
+    "question": "Determine whether fractional vortices in a specified two-component energy are linearly confined or separate at finite energy.",
+    "first_test": "Prove an interaction-energy asymptotic.",
+    "area": "08-topology-multicomponent",
+    "parent_problems": [
+      "GC09",
+      "GC36",
+      "GC37",
+      "GC38",
+      "GC39",
+      "GC40",
+      "GC58"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC209",
+    "title": "Quantization without imposed topology",
+    "question": "Determine whether a scalar nonlinear wave equation admits isolated conserved integer charges generated dynamically rather than imposed through fixed boundary conditions.",
+    "first_test": "Construct an invariant or prove all such charges trivial in a restricted class.",
+    "area": "08-topology-multicomponent",
+    "parent_problems": [
+      "GC09",
+      "GC36",
+      "GC37",
+      "GC38",
+      "GC39",
+      "GC40",
+      "GC58"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC210",
+    "title": "Topology-preserving numerical schemes",
+    "question": "Construct a convergent finite-element or spectral discretization that exactly preserves a chosen discrete winding or Hopf invariant.",
+    "first_test": "Prove convergence and preservation or identify an unavoidable tradeoff.",
+    "area": "08-topology-multicomponent",
+    "parent_problems": [
+      "GC09",
+      "GC36",
+      "GC37",
+      "GC38",
+      "GC39",
+      "GC40",
+      "GC58"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC211",
+    "title": "Creation of knot pairs under forcing",
+    "question": "Determine whether a localized forcing protocol can nucleate two opposite-charge knotted structures while preserving total topological charge.",
+    "first_test": "Construct a controlled dynamical path or establish an energy obstruction.",
+    "area": "08-topology-multicomponent",
+    "parent_problems": [
+      "GC09",
+      "GC36",
+      "GC37",
+      "GC38",
+      "GC39",
+      "GC40",
+      "GC58"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC212",
+    "title": "Topological charge under weak noise",
+    "question": "For a stochastic geometric field flow with continuous nonvanishing sample paths, determine whether topological charge remains almost surely constant.",
+    "first_test": "Prove conservation and characterize breakdown when regularity fails.",
+    "area": "08-topology-multicomponent",
+    "parent_problems": [
+      "GC09",
+      "GC36",
+      "GC37",
+      "GC38",
+      "GC39",
+      "GC40",
+      "GC58"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC213",
+    "title": "Coupled-field vortex lattice phases",
+    "question": "Classify periodic vortex-lattice minimizers of a two-component wave energy as coupling and mean density vary.",
+    "first_test": "Prove a phase-boundary result or construct competing lattice energies.",
+    "area": "08-topology-multicomponent",
+    "parent_problems": [
+      "GC09",
+      "GC36",
+      "GC37",
+      "GC38",
+      "GC39",
+      "GC40",
+      "GC58"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC214",
+    "title": "Topology of moduli spaces of confined waves",
+    "question": "Determine the homotopy type of the family of localized minimizers after quotienting translation and global phase symmetries.",
+    "first_test": "Compute a moduli-space invariant in a fixed parameter regime.",
+    "area": "08-topology-multicomponent",
+    "parent_problems": [
+      "GC09",
+      "GC36",
+      "GC37",
+      "GC38",
+      "GC39",
+      "GC40",
+      "GC58"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  }
+]
