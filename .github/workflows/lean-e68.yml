@@ -24,8 +24,8 @@ jobs:
           lake exe cache get
       - name: Forbid proof holes
         run: |
-          if grep -rnE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' MathProofs/E68Scaling.lean MathProofs/E68CriticalGradient.lean MathProofs/E68SmoothProfiles.lean MathProofs/E68WeakH1.lean MathProofs/E68OneDimEnergy.lean MathProofs/E68HigherDimEnergy.lean MathProofs/E68ChangeVariables.lean; then exit 1; fi
+          if grep -rnE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' MathProofs/E68Scaling.lean MathProofs/E68CriticalGradient.lean MathProofs/E68SmoothProfiles.lean MathProofs/E68WeakH1.lean MathProofs/E68OneDimEnergy.lean MathProofs/E68HigherDimEnergy.lean MathProofs/E68ChangeVariables.lean MathProofs/E68ScaledGradient.lean; then exit 1; fi
       - name: Kernel-check exact issue modules
-        run: lake build MathProofs.E68Scaling MathProofs.E68CriticalGradient MathProofs.E68SmoothProfiles MathProofs.E68WeakH1 MathProofs.E68OneDimEnergy MathProofs.E68HigherDimEnergy MathProofs.E68ChangeVariables
+        run: lake build MathProofs.E68Scaling MathProofs.E68CriticalGradient MathProofs.E68SmoothProfiles MathProofs.E68WeakH1 MathProofs.E68OneDimEnergy MathProofs.E68HigherDimEnergy MathProofs.E68ChangeVariables MathProofs.E68ScaledGradient
       - name: Kernel-check complete project
         run: lake build
