@@ -28,6 +28,7 @@ local instance : IsProbabilityMeasure (volume : Measure UnitAddCircle) :=
 namespace ReyesMath
 namespace E62TorusPhysicalProjector
 
+attribute [local instance] Classical.propDecidable
 open MeasureTheory UnitAddTorus E62Discrete
 
 variable {d : Type*} [Fintype d]
@@ -37,8 +38,7 @@ private abbrev CoeffSpace (d : Type*) := lp (fun _ : d → ℤ => ℂ) 2
 /-- Every Hilbert ℓ² coefficient sequence has a summable square modulus. -/
 theorem coefficient_summable (f : CoeffSpace d) :
     Summable (fun k : d → ℤ => ‖f k‖ ^ 2) := by
-  have hp : (0 : ℝ) < (2 : ℝ≥0∞).toReal := by norm_num
-  have hh := (lp.memℓp f).summable hp
+  have hh := (lp.memℓp f).summable (by norm_num)
   simpa using hh
 
 /-- A selected set of coordinates of an ℓ² vector is again ℓ². -/
@@ -83,9 +83,8 @@ theorem selectedCoefficients_idempotent (S : Set (d → ℤ))
 
 theorem coefficient_norm_sq (f : CoeffSpace d) :
     ‖f‖ ^ 2 = E62Discrete.totalEnergy (f : (d → ℤ) → ℂ) := by
-  have hp : (0 : ℝ) < (2 : ℝ≥0∞).toReal := by norm_num
   simpa [E62Discrete.totalEnergy] using
-    (lp.norm_rpow_eq_tsum hp f)
+    (lp.norm_rpow_eq_tsum (by norm_num) f)
 
 theorem selectedCoefficients_norm_sq (S : Set (d → ℤ))
     (f : CoeffSpace d) :
@@ -142,10 +141,11 @@ noncomputable def torusProjection (S : Set (d → ℤ)) :
     change ‖(UnitAddTorus.mFourierBasis (d := d)).repr.symm
         (selectedCoefficients S
           ((UnitAddTorus.mFourierBasis (d := d)).repr f))‖ ≤ 1 * ‖f‖
-    rw [(UnitAddTorus.mFourierBasis (d := d)).repr.symm.norm_map,
-        (UnitAddTorus.mFourierBasis (d := d)).repr.norm_map]
-    simpa using selectedCoefficients_norm_le S
-      ((UnitAddTorus.mFourierBasis (d := d)).repr f))
+    rw [(UnitAddTorus.mFourierBasis (d := d)).repr.symm.norm_map]
+    have hh := selectedCoefficients_norm_le S
+      ((UnitAddTorus.mFourierBasis (d := d)).repr f)
+    simpa only [one_mul,
+      (UnitAddTorus.mFourierBasis (d := d)).repr.norm_map] using hh)
 
 /-- The physical Fourier projector really masks the Fourier coefficients
 of every complex L² torus field. -/
@@ -195,7 +195,7 @@ theorem torusProjection_norm_sq (S : Set (d → ℤ))
     selectedCoefficients_norm_sq]
   congr 1
   funext k
-  exact (UnitAddTorus.mFourierBasis_repr f k).symm
+  exact UnitAddTorus.mFourierBasis_repr f k
 
 end E62TorusPhysicalProjector
 end ReyesMath
