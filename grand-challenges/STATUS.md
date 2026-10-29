@@ -1,6 +1,6 @@
-# Current status of all 50 challenges
+# The Reyes Problem Repository: Research Status
 
-**As of 2026-10-28.** The catalogue is a **proposed research program**, not a verified inventory of open problems. Every problem defaults to `candidate` unless the evidence record specifies otherwise.
+**As of 2026-10-28.** The current set of 50 problems is a growing collection. The catalogue is a **proposed research program**, not a verified inventory of open problems. Every problem defaults to `candidate` unless the evidence record specifies otherwise.
 
 **Source of truth:** [problem_registry.json](problem_registry.json). The table is an accessible snapshot. An initial literature lead does **not** certify open status; no problem is presently tagged `open_verified`.
 
