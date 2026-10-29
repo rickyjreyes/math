@@ -1,0 +1,434 @@
+[
+  {
+    "id": "GC277",
+    "title": "Interference-based XOR robustness",
+    "question": "For a two-input interferometric XOR gate with uncertain phases and detector noise, determine the largest perturbation interval preserving the full truth table.",
+    "first_test": "Prove optimal noise margins given fixed optical power and threshold.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC278",
+    "title": "Passive optical logic universality constraints",
+    "question": "Determine whether a network of strictly passive linear optical elements and intensity thresholds can implement a complete classical logic basis without external nonlinear feedback.",
+    "first_test": "Construct a universal gate network or prove a resource impossibility theorem.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC279",
+    "title": "Cascadability of photonic logic gates",
+    "question": "Determine whether detector outputs from one optical logic stage can drive another stage with bounded error over arbitrary circuit depth.",
+    "first_test": "Prove a regeneration condition or show noise accumulation prevents cascades.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC280",
+    "title": "Optical phase memory retention",
+    "question": "For a coupled-ring photonic memory model, quantify how phase noise and dissipation limit the duration of distinguishable stored states.",
+    "first_test": "Prove a storage-time bound at fixed error probability.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC281",
+    "title": "Photonic reversible gate synthesis",
+    "question": "Construct a finite optical scattering network implementing a specified reversible Boolean transformation with explicit loss and detector assumptions.",
+    "first_test": "Prove functional correctness and count required nonlinear resources.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC282",
+    "title": "Wave-based arithmetic precision",
+    "question": "For interferometric addition of bounded integers, determine how detector resolution and phase accuracy scale with input bit width.",
+    "first_test": "Establish sufficient and necessary precision bounds for one architecture.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC283",
+    "title": "Optical fan-out energy limits",
+    "question": "Determine the minimum optical energy needed to copy a classical intensity-encoded bit into N reliably distinguishable outputs at fixed noise and loss.",
+    "first_test": "Prove a power-splitting lower bound or give an active regeneration protocol.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC284",
+    "title": "Error accumulation in phase-coded circuits",
+    "question": "Determine the scaling of worst-case output error in a depth-D cascade of phase-coded optical arithmetic operations.",
+    "first_test": "Prove an error propagation theorem with saturation or correction conditions.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC285",
+    "title": "Photonic neural operator stability",
+    "question": "For an optical circuit approximating a finite-dimensional linear or nonlinear operator, quantify robustness of its output to fabrication phase offsets.",
+    "first_test": "Prove operator-norm error bounds and identify poorly conditioned circuits.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC286",
+    "title": "Optical versus electronic energy accounting",
+    "question": "Define a full system-level energy metric including sources, modulators, detectors, memory and control, and compare one optical computation to a fixed electronic reference.",
+    "first_test": "Prove an accounting identity and obtain an experimentally measurable crossover criterion.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC287",
+    "title": "Integrated photonic wavelength selection",
+    "question": "Determine whether a coupled-resonator array can select a unique stable optical wavelength under a chosen saturating nonlinearity.",
+    "first_test": "Prove existence and local stability of a single-mode attractor or multimode coexistence.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC288",
+    "title": "Thermal drift compensation in optical logic",
+    "question": "For slowly varying temperature-dependent phase shifts, determine whether closed-loop calibration guarantees correctness of a specified optical truth table.",
+    "first_test": "Prove stability of the calibration controller and failure bounds.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC289",
+    "title": "Hybrid electro-optical feedback lower bounds",
+    "question": "Determine the minimum electronic feedback rate required to stabilize a noisy nonlinear optical computation against drift.",
+    "first_test": "Derive a control-bandwidth condition or instability counterexample.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC290",
+    "title": "Multimode optical interference capacity",
+    "question": "For M coherent input modes and bounded detector resolution, determine how many reliably distinguishable output patterns a passive network supports.",
+    "first_test": "Prove an information-capacity bound under fixed photon budget.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC291",
+    "title": "Optical routing with curvature-controlled media",
+    "question": "For a designed spatial refractive-index gradient, determine whether nonlinear localized pulses follow stable curved paths under perturbations.",
+    "first_test": "Derive a path-tracking theorem and quantify radiation loss.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC292",
+    "title": "Wavelet-inspired optical memory addressing",
+    "question": "For an optical memory array indexed by mutually overlapping resonant modes, determine whether addresses remain identifiable under mode coupling.",
+    "first_test": "Prove a cross-talk bound or produce ambiguous states.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC293",
+    "title": "Pulse collision as a logic primitive",
+    "question": "For two nonlinear optical pulses, determine whether their controlled collision can realize a reproducible Boolean switching operation.",
+    "first_test": "Prove a robust input-output map for a fixed nonlinear waveguide model.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC294",
+    "title": "Optical error correction by redundancy",
+    "question": "For a specified photonic logic channel, determine whether redundant phase encoding and thresholding suppress independent component errors with polynomial overhead.",
+    "first_test": "Construct a decoder with a certified error bound or an impossibility result.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC295",
+    "title": "Photonic compiler correctness",
+    "question": "Specify a typed intermediate representation for optical phase operations and prove that compilation preserves Boolean semantics in an idealized device model.",
+    "first_test": "Formalize source-to-device equivalence with explicit physical assumptions.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC296",
+    "title": "Proof-carrying optical circuit calibration",
+    "question": "Develop a machine-checkable certificate that measured phase and power intervals guarantee the logic table of a fabricated photonic circuit.",
+    "first_test": "Prove soundness of a finite interval checker and its measurement assumptions.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC297",
+    "title": "Scaling of optical cross-talk in dense chips",
+    "question": "For an array of closely spaced photonic waveguides, determine the largest density supporting an error target over a fixed propagation length.",
+    "first_test": "Prove a coupling bound and derive a spacing criterion.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC298",
+    "title": "Synchronization of independent optical clocks",
+    "question": "Determine whether two weakly coupled optical oscillators can maintain phase-locked computing states under bounded frequency drift.",
+    "first_test": "Prove a capture-range stability condition and noise tolerance.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC299",
+    "title": "Thermodynamic efficiency of optical state reset",
+    "question": "For an optical memory element coupled to a specified thermal environment, determine minimum work and photon loss required for reliable reset.",
+    "first_test": "Derive a reversible-to-irreversible reset tradeoff with declared protocol constraints.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC300",
+    "title": "Full-stack verified photonic arithmetic",
+    "question": "For a selected small optical arithmetic circuit, combine compiler semantics, physical noise margins and sensor calibration into an end-to-end certified correctness theorem.",
+    "first_test": "Build and formally check a compositional certificate from input encoding to detected output.",
+    "area": "12-photonic-wave-computing",
+    "parent_problems": [
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC58",
+      "GC63",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  }
+]

@@ -1,0 +1,362 @@
+[
+  {
+    "id": "GC139",
+    "title": "Degenerate higher-time-derivative Hamiltonians",
+    "question": "Classify polynomial scalar Lagrangians whose Hessian in highest time derivatives is degenerate enough to avoid an extra propagating degree of freedom.",
+    "first_test": "Derive a complete Dirac constraint count for a restricted polynomial family.",
+    "area": "05-higher-derivative-fields",
+    "parent_problems": [
+      "GC21",
+      "GC22",
+      "GC23",
+      "GC24",
+      "GC25",
+      "GC52"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC140",
+    "title": "Constraint preservation under nonlinear evolution",
+    "question": "Determine whether a primary degeneracy constraint in a higher-derivative scalar theory is preserved under a nonlinear interaction.",
+    "first_test": "Prove secondary consistency or exhibit a constraint-breaking flow.",
+    "area": "05-higher-derivative-fields",
+    "parent_problems": [
+      "GC21",
+      "GC22",
+      "GC23",
+      "GC24",
+      "GC25",
+      "GC52"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC141",
+    "title": "Finite-wavelength stability with Lorentz breaking",
+    "question": "For a stable quadratic scalar theory with preferred-frame spatial derivatives, determine the minimal derivative structure producing a unique nonzero wave-number minimum.",
+    "first_test": "Derive positivity and uniqueness conditions for its full dispersion symbol.",
+    "area": "05-higher-derivative-fields",
+    "parent_problems": [
+      "GC21",
+      "GC22",
+      "GC23",
+      "GC24",
+      "GC25",
+      "GC52"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC142",
+    "title": "Ghost elimination by auxiliary fields",
+    "question": "Classify when introducing one auxiliary scalar rewrites a fourth-order effective action into a positive-energy second-order system.",
+    "first_test": "Prove exact equivalence or a no-go result under frozen interaction assumptions.",
+    "area": "05-higher-derivative-fields",
+    "parent_problems": [
+      "GC21",
+      "GC22",
+      "GC23",
+      "GC24",
+      "GC25",
+      "GC52"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC143",
+    "title": "Causal propagation in dispersive field theories",
+    "question": "Determine whether a fourth-order spatial derivative field equation admits finite signal speed or only a specified dispersive propagation bound.",
+    "first_test": "Establish a sharp propagation estimate for compactly supported data.",
+    "area": "05-higher-derivative-fields",
+    "parent_problems": [
+      "GC21",
+      "GC22",
+      "GC23",
+      "GC24",
+      "GC25",
+      "GC52"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC144",
+    "title": "Hyperbolicity under parameter continuation",
+    "question": "Classify regions where a real fourth-order temporal symbol remains strongly hyperbolic as its coefficients vary.",
+    "first_test": "Prove an algebraic criterion and identify instability boundaries.",
+    "area": "05-higher-derivative-fields",
+    "parent_problems": [
+      "GC21",
+      "GC22",
+      "GC23",
+      "GC24",
+      "GC25",
+      "GC52"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC145",
+    "title": "Higher-derivative effective field theory cutoff",
+    "question": "For a prescribed low-energy derivative expansion, find the largest frequency window where the truncated fourth-order model approximates a stable parent evolution.",
+    "first_test": "Prove a cutoff-dependent error bound and an example of breakdown.",
+    "area": "05-higher-derivative-fields",
+    "parent_problems": [
+      "GC21",
+      "GC22",
+      "GC23",
+      "GC24",
+      "GC25",
+      "GC52"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC146",
+    "title": "Energy positivity for coupled scalar fields",
+    "question": "For a two-field quadratic Lagrangian with mixed time and spatial derivatives, classify positive Hamiltonian conditions after eliminating constraints.",
+    "first_test": "Produce a matrix positivity test necessary and sufficient in a specified gauge.",
+    "area": "05-higher-derivative-fields",
+    "parent_problems": [
+      "GC21",
+      "GC22",
+      "GC23",
+      "GC24",
+      "GC25",
+      "GC52"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC147",
+    "title": "Derivative nonlinearities and local well-posedness",
+    "question": "Determine Sobolev regularity thresholds for a fourth-order dispersive equation with a quadratic derivative coupling.",
+    "first_test": "Prove a contraction estimate or norm-inflation counterexample.",
+    "area": "05-higher-derivative-fields",
+    "parent_problems": [
+      "GC21",
+      "GC22",
+      "GC23",
+      "GC24",
+      "GC25",
+      "GC52"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC148",
+    "title": "Gauge compatibility of phase curvature interactions",
+    "question": "Determine which local phase-curvature couplings can be inserted into a gauge-covariant wave Lagrangian without breaking gauge invariance.",
+    "first_test": "Classify operators under a fixed derivative cutoff.",
+    "area": "05-higher-derivative-fields",
+    "parent_problems": [
+      "GC21",
+      "GC22",
+      "GC23",
+      "GC24",
+      "GC25",
+      "GC52"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC149",
+    "title": "Hamiltonian reduction near a spectral degeneracy",
+    "question": "Determine when eliminating a heavy stable mode produces a controlled quartic spatial dispersion for a remaining light field.",
+    "first_test": "Derive the reduced symbol and error estimate to fixed order.",
+    "area": "05-higher-derivative-fields",
+    "parent_problems": [
+      "GC21",
+      "GC22",
+      "GC23",
+      "GC24",
+      "GC25",
+      "GC52"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC150",
+    "title": "Boundary conditions for fourth-order field energy",
+    "question": "Classify self-adjoint and energy-conserving boundary conditions for a fourth-order spatial scalar operator on a bounded smooth domain.",
+    "first_test": "Relate boundary forms to positive quadratic energy.",
+    "area": "05-higher-derivative-fields",
+    "parent_problems": [
+      "GC21",
+      "GC22",
+      "GC23",
+      "GC24",
+      "GC25",
+      "GC52"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC151",
+    "title": "Nonlocal parent actions and stable effective dispersion",
+    "question": "Determine whether a positive nonlocal parent kernel can yield an effective finite-wavelength minimum without ghost degrees of freedom.",
+    "first_test": "Construct a spectral representation or prove positivity restrictions.",
+    "area": "05-higher-derivative-fields",
+    "parent_problems": [
+      "GC21",
+      "GC22",
+      "GC23",
+      "GC24",
+      "GC25",
+      "GC52"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC152",
+    "title": "Spectral factorization of stable field symbols",
+    "question": "Characterize positive quartic-in-frequency dispersion polynomials that admit a factorization into healthy lower-order branches.",
+    "first_test": "Prove necessity and sufficiency with explicit coefficients.",
+    "area": "05-higher-derivative-fields",
+    "parent_problems": [
+      "GC21",
+      "GC22",
+      "GC23",
+      "GC24",
+      "GC25",
+      "GC52"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC153",
+    "title": "Vacuum stability under higher-gradient interactions",
+    "question": "Determine whether nontrivial spatially patterned vacua minimize a positive-energy higher-gradient scalar field theory.",
+    "first_test": "Prove a modulated-vacuum existence theorem or restore homogeneous minimality.",
+    "area": "05-higher-derivative-fields",
+    "parent_problems": [
+      "GC21",
+      "GC22",
+      "GC23",
+      "GC24",
+      "GC25",
+      "GC52"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC154",
+    "title": "Higher-order Noether currents",
+    "question": "For a fourth-order spatial Lagrangian with continuous symmetries, derive conserved currents and determine their coercive control of solutions.",
+    "first_test": "Prove conservation identities and expose boundary terms.",
+    "area": "05-higher-derivative-fields",
+    "parent_problems": [
+      "GC21",
+      "GC22",
+      "GC23",
+      "GC24",
+      "GC25",
+      "GC52"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC155",
+    "title": "Quasilinear fourth-order continuation criteria",
+    "question": "Determine whether bounded critical Sobolev norms prevent finite-time loss of regularity in a specified quasilinear fourth-order wave system.",
+    "first_test": "Prove a continuation theorem with exact norm assumptions.",
+    "area": "05-higher-derivative-fields",
+    "parent_problems": [
+      "GC21",
+      "GC22",
+      "GC23",
+      "GC24",
+      "GC25",
+      "GC52"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC156",
+    "title": "Constrained Hamiltonian numerical integrators",
+    "question": "Construct a discrete evolution scheme preserving the Dirac constraint manifold and approximating the corresponding stable field dynamics.",
+    "first_test": "Prove discrete constraint preservation and convergence.",
+    "area": "05-higher-derivative-fields",
+    "parent_problems": [
+      "GC21",
+      "GC22",
+      "GC23",
+      "GC24",
+      "GC25",
+      "GC52"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC157",
+    "title": "Coupled dispersion crossing and mode conversion",
+    "question": "For two stable scalar branches with a tunable avoided crossing, quantify nonlinear energy transfer near their resonance.",
+    "first_test": "Derive a finite-dimensional normal form with error bounds.",
+    "area": "05-higher-derivative-fields",
+    "parent_problems": [
+      "GC21",
+      "GC22",
+      "GC23",
+      "GC24",
+      "GC25",
+      "GC52"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC158",
+    "title": "Physical observables after field redefinitions",
+    "question": "Determine which scattering or spectral observables remain invariant under invertible local derivative field redefinitions at a fixed EFT order.",
+    "first_test": "Prove the equivalence and quantify truncation errors.",
+    "area": "05-higher-derivative-fields",
+    "parent_problems": [
+      "GC21",
+      "GC22",
+      "GC23",
+      "GC24",
+      "GC25",
+      "GC52"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  }
+]

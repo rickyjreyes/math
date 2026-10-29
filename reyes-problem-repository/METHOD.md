@@ -77,3 +77,13 @@ The machine-readable [problem_registry.json](problem_registry.json) is the sourc
 ## Attribution
 
 Cite the original article for an earlier theorem, credit the person discovering a counterexample, and record external corrections without changing authorship of pre-existing results. Do not misrepresent a suggested problem as a theorem already proved or as a discovery with century-scale difficulty.
+
+## Three-hundred-question folder corpus (2026-10-29)
+
+- **Original scoped statements, GC01–GC65:** Canonical text remains in [FORMAL_PROBLEMS.md](FORMAL_PROBLEMS.md), with mirrored individual files.
+- **New research sketches, GC66–GC300:** Each has its own file in one of [12 subject folders](problems/README.md) containing a question and first decisive proof or counterexample target. Neither model completeness nor novelty is claimed.
+- **Screening shortlist, 25:** [FOUNDATIONAL_SHORTLIST.md](FOUNDATIONAL_SHORTLIST.md) tracks prospective foundational importance, without promoting problem status.
+- **One source of machine truth:** [problem_registry.json](problem_registry.json) contains all 300 permanent IDs, paths, and evidence statuses; the index and status table mirror it.
+- **Quality gate:** A plausible prompt cannot become `open_verified` solely because an LLM proposes it, because its computation runs, or because a formal proof of a *different* theorem compiles. Each promotion requires exact hypotheses, prior work, a falsification test, and mathematical review.
+
+Adding more topics is not itself scientific progress. Favor stronger mathematical connections, precise disproofs and new theorems rather than maximizing the number of entries.
