@@ -21,15 +21,25 @@ variable {α : Type*} [MeasurableSpace α]
 
 /-- Indicator masks of arbitrary μ-Lebesgue-measurable sets define
 actual L² equivalence classes, not just pointwise symbolic functions. -/
+/-- An explicit membership witness avoids ambiguous elaboration of the
+Lebesgue-measurable indicator during L² quotient construction. -/
+private theorem maskedNull_memLp (μ : Measure α)
+    (f : Lp ℂ 2 μ) (S : Set α)
+    (hS : NullMeasurableSet S μ) :
+    MemLp (S.indicator (f : α → ℂ)) 2 μ := by
+  exact MemLp.indicator hS (Lp.memLp f)
+
 noncomputable def maskedNull (μ : Measure α)
     (f : Lp ℂ 2 μ) (S : Set α)
     (hS : NullMeasurableSet S μ) : Lp ℂ 2 μ :=
-  (MemLp.indicator hS (Lp.memLp f)).toLp (S.indicator (f : α → ℂ))
+  MemLp.toLp (S.indicator (f : α → ℂ))
+    (maskedNull_memLp μ f S hS)
 
 theorem maskedNull_ae (μ : Measure α)
     (f : Lp ℂ 2 μ) (S : Set α) (hS : NullMeasurableSet S μ) :
-    (maskedNull μ f S hS : α → ℂ) =ᵐ[μ] S.indicator (f : α → ℂ) :=
-  MemLp.coeFn_toLp _
+    (maskedNull μ f S hS : α → ℂ) =ᵐ[μ] S.indicator (f : α → ℂ) := by
+  unfold maskedNull
+  exact MemLp.coeFn_toLp (maskedNull_memLp μ f S hS)
 
 theorem maskedNull_norm_le (μ : Measure α)
     (f : Lp ℂ 2 μ) (S : Set α) (hS : NullMeasurableSet S μ) :
@@ -42,9 +52,9 @@ theorem maskedNull_norm_le (μ : Measure α)
   calc
     ‖maskedNull μ f S hS‖ =
         (eLpNorm (S.indicator (f : α → ℂ)) 2 μ).toReal := by
-      simpa only [maskedNull] using
-        (Lp.norm_toLp (S.indicator (f : α → ℂ))
-          (MemLp.indicator hS (Lp.memLp f)))
+      unfold maskedNull
+      exact Lp.norm_toLp (S.indicator (f : α → ℂ))
+        (maskedNull_memLp μ f S hS)
     _ ≤ (eLpNorm (f : α → ℂ) 2 μ).toReal := ht
     _ = ‖f‖ := (Lp.norm_def f).symm
 
