@@ -42,7 +42,8 @@ jobs:
             MathProofs/E58WholeSpaceL2.lean \
             MathProofs/E62ProjectorL2.lean \
             MathProofs/E26HistoricalCounterexample.lean \
-            MathProofs/E17Canonical.lean; then exit 1; fi
+            MathProofs/E17Canonical.lean \
+            MathProofs/E26SeparatedL2.lean; then exit 1; fi
       - name: Kernel check E62 infinite-mode dependency first
         run: lake build MathProofs.E62Discrete
       - name: Kernel check existing E62 torus one-dimensional and coefficient projector
@@ -53,6 +54,8 @@ jobs:
         run: lake build MathProofs.E58WholeSpaceL2
       - name: Kernel check E26 historical denominator counterexample
         run: lake build MathProofs.E26HistoricalCounterexample
+      - name: Kernel check E26 separated L2 membership
+        run: lake build MathProofs.E26SeparatedL2
       - name: Kernel check corrected M2 E17 phase covariance
         run: lake build MathProofs.E17PhaseRegularizer
       - name: Kernel check true continuum E62 orthogonal projection
