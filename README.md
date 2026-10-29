@@ -6,7 +6,7 @@ A collection of mathematical manuscripts on **fourth-order partial differential 
 
 Results are organized by mathematical subject rather than by a single overarching physical interpretation. **Analytical proofs, Lean-checked statements, and physical claims are distinct levels of evidence.**
 
-**Explore:** [Complete manuscript catalogue](CONTENTS.md) · [Compiled PDFs](preprints/) · [Overview](overview.pdf) · [Lean formalization status](lean/formalization.yaml) · [Revision history](history.md)
+**Explore:** [The Reyes Problem Repository](grand-challenges/README.md) · [Complete manuscript catalogue](CONTENTS.md) · [Compiled PDFs](preprints/) · [Overview](overview.pdf) · [Lean formalization status](lean/formalization.yaml) · [Revision history](history.md)
 
 ## Selected mathematical results
 
