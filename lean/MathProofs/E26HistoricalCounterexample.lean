@@ -33,5 +33,32 @@ theorem no_global_separation_for_historical_denominator (ε : ℝ)
   rw [additiveDenominator_zero_at_negative, norm_zero] at h
   linarith
 
+/-- The actual smooth polynomial field ψ(x)=x²−ε produces
+the historical additive denominator D(x)=x² at α=0. -/
+theorem polynomial_model_denominator (ε x : ℝ) :
+    (x ^ 2 - ε) + ε * Real.exp (-0 * (x ^ 2 - ε) ^ 2) = x ^ 2 := by
+  simp
+
+/-- The genuine inverse-fourth-power energy density diverges
+on the positive half of the bounded interval (-1,1).
+This is an analytic part of the historical E26 smooth-field
+counterexample; the full H² quotient-to-this-density bridge
+must be proved before the manuscript can be certified. -/
+theorem inverse_quartic_not_integrable :
+    ¬ MeasureTheory.IntegrableOn
+        (fun x : ℝ => x ^ (-4 : ℝ)) (Set.Ioo 0 1) := by
+  intro hi
+  have hc := (intervalIntegral.integrableOn_Ioo_rpow_iff
+    (s := (-4 : ℝ)) (t := 1) (by norm_num)).mp hi
+  norm_num at hc
+
+/-- Away from its singularity, the exact polynomial counterexample
+curvature has a quartic square, matching the divergent integrand. -/
+theorem polynomial_curvature_square (x : ℝ) (hx : x ≠ 0) :
+    (-2 / x ^ 2) ^ 2 = 4 / x ^ 4 := by
+  field_simp [hx]
+  ring
+
+
 end E26HistoricalCounterexample
 end ReyesMath
