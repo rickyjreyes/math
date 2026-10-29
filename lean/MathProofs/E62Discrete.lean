@@ -24,8 +24,9 @@ variable {ι : Type*}
 noncomputable def totalEnergy (c : ι → ℂ) : ℝ :=
   ∑' k, ‖c k‖ ^ 2
 
-noncomputable def selectedEnergy (c : ι → ℂ) (S : Set ι) : ℝ :=
-  ∑' k, if k ∈ S then ‖c k‖ ^ 2 else 0
+noncomputable def selectedEnergy (c : ι → ℂ) (S : Set ι) : ℝ := by
+  classical
+  exact ∑' k, if k ∈ S then ‖c k‖ ^ 2 else 0
 
 noncomputable def fraction (c : ι → ℂ) (S : Set ι) : ℝ :=
   energyFraction (selectedEnergy c S) (totalEnergy c)
