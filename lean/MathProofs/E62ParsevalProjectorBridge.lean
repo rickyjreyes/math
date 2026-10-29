@@ -14,10 +14,10 @@ Hilbert basis and the denominator is the genuine Parseval integral.
 noncomputable section
 open MeasureTheory
 attribute [local instance] Real.fact_zero_lt_one
-local instance : MeasureSpace UnitAddCircle := ⟨AddCircle.haarAddCircle⟩
-local instance : Measure.IsAddHaarMeasure (volume : Measure UnitAddCircle) :=
+local instance e62ParsevalProjectorBridgeMeasureSpace : MeasureSpace UnitAddCircle := ⟨AddCircle.haarAddCircle⟩
+local instance e62ParsevalProjectorBridgeIsAddHaar : Measure.IsAddHaarMeasure (volume : Measure UnitAddCircle) :=
   inferInstanceAs (Measure.IsAddHaarMeasure AddCircle.haarAddCircle)
-local instance : IsProbabilityMeasure (volume : Measure UnitAddCircle) :=
+local instance e62ParsevalProjectorBridgeIsProbability : IsProbabilityMeasure (volume : Measure UnitAddCircle) :=
   inferInstanceAs (IsProbabilityMeasure AddCircle.haarAddCircle)
 
 namespace ReyesMath

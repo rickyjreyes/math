@@ -19,10 +19,10 @@ merely masking untyped Fourier coefficient functions.
 noncomputable section
 open MeasureTheory
 attribute [local instance] Real.fact_zero_lt_one
-local instance : MeasureSpace UnitAddCircle := ⟨AddCircle.haarAddCircle⟩
-local instance : Measure.IsAddHaarMeasure (volume : Measure UnitAddCircle) :=
+local instance e62TorusPhysicalProjectorMeasureSpace : MeasureSpace UnitAddCircle := ⟨AddCircle.haarAddCircle⟩
+local instance e62TorusPhysicalProjectorIsAddHaar : Measure.IsAddHaarMeasure (volume : Measure UnitAddCircle) :=
   inferInstanceAs (Measure.IsAddHaarMeasure AddCircle.haarAddCircle)
-local instance : IsProbabilityMeasure (volume : Measure UnitAddCircle) :=
+local instance e62TorusPhysicalProjectorIsProbability : IsProbabilityMeasure (volume : Measure UnitAddCircle) :=
   inferInstanceAs (IsProbabilityMeasure AddCircle.haarAddCircle)
 
 namespace ReyesMath

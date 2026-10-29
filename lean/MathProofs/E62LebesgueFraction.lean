@@ -19,15 +19,14 @@ open MeasureTheory RemainingCores
 
 variable {α : Type*} [MeasurableSpace α]
 
-/-- Indicator masks of arbitrary μ-Lebesgue-measurable sets define
-actual L² equivalence classes, not just pointwise symbolic functions. -/
-/-- An explicit membership witness avoids ambiguous elaboration of the
-Lebesgue-measurable indicator during L² quotient construction. -/
+/-- Indicator masks of arbitrary `μ`-Lebesgue-measurable (null-measurable) sets define actual
+`L²` classes: the indicator agrees a.e. with the indicator of the measurable hull. -/
 private theorem maskedNull_memLp (μ : Measure α)
     (f : Lp ℂ 2 μ) (S : Set α)
     (hS : NullMeasurableSet S μ) :
-    MemLp (S.indicator (f : α → ℂ)) 2 μ := by
-  exact MemLp.indicator hS (Lp.memLp f)
+    MemLp (S.indicator (f : α → ℂ)) 2 μ :=
+  (MemLp.indicator (measurableSet_toMeasurable μ S) (Lp.memLp f)).ae_eq
+    (indicator_ae_eq_of_ae_eq_set hS.toMeasurable_ae_eq)
 
 noncomputable def maskedNull (μ : Measure α)
     (f : Lp ℂ 2 μ) (S : Set α)

@@ -20,10 +20,10 @@ continuous-spectrum equality cases, and time evolution are separate.
 noncomputable section
 open MeasureTheory
 attribute [local instance] Real.fact_zero_lt_one
-local instance : MeasureSpace UnitAddCircle := ⟨AddCircle.haarAddCircle⟩
-local instance : Measure.IsAddHaarMeasure (volume : Measure UnitAddCircle) :=
+local instance e62TorusNDMeasureSpace : MeasureSpace UnitAddCircle := ⟨AddCircle.haarAddCircle⟩
+local instance e62TorusNDIsAddHaar : Measure.IsAddHaarMeasure (volume : Measure UnitAddCircle) :=
   inferInstanceAs (Measure.IsAddHaarMeasure AddCircle.haarAddCircle)
-local instance : IsProbabilityMeasure (volume : Measure UnitAddCircle) :=
+local instance e62TorusNDIsProbability : IsProbabilityMeasure (volume : Measure UnitAddCircle) :=
   inferInstanceAs (IsProbabilityMeasure AddCircle.haarAddCircle)
 
 namespace ReyesMath
