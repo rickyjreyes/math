@@ -68,6 +68,11 @@ theorem totalEnergy_split (c : ι → ℂ) (S : Set ι)
                   convert hadd using 1 <;>
                     (try { apply tsum_congr; intro k
                            by_cases hk : k ∈ S <;> simp [hk] })
+                  all_goals
+                    congr 1 <;>
+                      (apply tsum_congr
+                       intro k
+                       by_cases hk : k ∈ S <;> simp [hk])
             _ = selectedEnergy c S + selectedEnergy c Sᶜ := by
                   congr 1 <;> (
                     unfold selectedEnergy
