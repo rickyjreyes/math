@@ -1,0 +1,344 @@
+[
+  {
+    "id": "GC159",
+    "title": "Minimal sensor geometry for wave identification",
+    "question": "For a fixed finite-parameter wave model on a bounded domain, determine the smallest spatial sensor configuration providing local parameter identifiability.",
+    "first_test": "Prove a rank condition for one explicit sensor family.",
+    "area": "06-inverse-observation-control",
+    "parent_problems": [
+      "GC26",
+      "GC27",
+      "GC28",
+      "GC29",
+      "GC30",
+      "GC59",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC160",
+    "title": "Global aliasing in clipped spectral measurements",
+    "question": "Classify parameter transformations that leave every clipped spectral datum unchanged on a fixed frequency grid.",
+    "first_test": "Construct an equivalence group or prove injectivity modulo it.",
+    "area": "06-inverse-observation-control",
+    "parent_problems": [
+      "GC26",
+      "GC27",
+      "GC28",
+      "GC29",
+      "GC30",
+      "GC59",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC161",
+    "title": "Robust identifiability under sensor dropout",
+    "question": "Quantify how many measurement channels may fail before a full-rank inverse problem loses stable reconstruction.",
+    "first_test": "Establish worst-case singular value bounds or construct indistinguishable parameters.",
+    "area": "06-inverse-observation-control",
+    "parent_problems": [
+      "GC26",
+      "GC27",
+      "GC28",
+      "GC29",
+      "GC30",
+      "GC59",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC162",
+    "title": "Optimal experiment design for competing dispersion laws",
+    "question": "For two given polynomial dispersion families, determine the measurement frequencies that maximize minimum model separation under bounded noise.",
+    "first_test": "Prove a minimax design bound on a finite experiment set.",
+    "area": "06-inverse-observation-control",
+    "parent_problems": [
+      "GC26",
+      "GC27",
+      "GC28",
+      "GC29",
+      "GC30",
+      "GC59",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC163",
+    "title": "Boundary observation for fourth-order operators",
+    "question": "Determine whether measurements on a proper boundary arc recover initial wave states in a fixed fourth-order evolution model.",
+    "first_test": "Prove observability or construct nonobservable modes.",
+    "area": "06-inverse-observation-control",
+    "parent_problems": [
+      "GC26",
+      "GC27",
+      "GC28",
+      "GC29",
+      "GC30",
+      "GC59",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC164",
+    "title": "Inverse recovery of nonlinear coupling strength",
+    "question": "From small-amplitude input-output data, determine whether the cubic and quintic coefficients of a dispersive PDE are separately identifiable.",
+    "first_test": "Derive the first informative nonlinear response coefficients.",
+    "area": "06-inverse-observation-control",
+    "parent_problems": [
+      "GC26",
+      "GC27",
+      "GC28",
+      "GC29",
+      "GC30",
+      "GC59",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC165",
+    "title": "Local uniqueness versus parameter clipping",
+    "question": "Determine exactly which clipping regions force a rank loss in a 31-parameter spectral observation map.",
+    "first_test": "Prove piecewise rank formulas and construct full-rank subregions.",
+    "area": "06-inverse-observation-control",
+    "parent_problems": [
+      "GC26",
+      "GC27",
+      "GC28",
+      "GC29",
+      "GC30",
+      "GC59",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC166",
+    "title": "Noise amplification near nonidentifiable sets",
+    "question": "Quantify how the reconstruction condition number diverges near an analytic rank-deficient parameter variety.",
+    "first_test": "Prove an optimal Łojasiewicz-type exponent or a counterexample.",
+    "area": "06-inverse-observation-control",
+    "parent_problems": [
+      "GC26",
+      "GC27",
+      "GC28",
+      "GC29",
+      "GC30",
+      "GC59",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC167",
+    "title": "Reconstruction from sparse wave interferograms",
+    "question": "Determine whether a complex wave field can be recovered up to global phase from a specified finite family of intensity interferograms.",
+    "first_test": "Prove phase retrieval uniqueness with an explicit mask family.",
+    "area": "06-inverse-observation-control",
+    "parent_problems": [
+      "GC26",
+      "GC27",
+      "GC28",
+      "GC29",
+      "GC30",
+      "GC59",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC168",
+    "title": "Boundary potential recovery with eigenfunction traces",
+    "question": "For a fourth-order elliptic operator, determine whether adding partial boundary eigenfunction traces resolves spectral nonuniqueness.",
+    "first_test": "State sufficient trace data and prove or refute unique recovery.",
+    "area": "06-inverse-observation-control",
+    "parent_problems": [
+      "GC26",
+      "GC27",
+      "GC28",
+      "GC29",
+      "GC30",
+      "GC59",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC169",
+    "title": "Stable recovery of curvature regularization",
+    "question": "Determine whether the regularization parameter epsilon in the GC08 curvature map is identifiable from finitely many controlled field probes.",
+    "first_test": "Construct a distinguishability bound or parameter alias.",
+    "area": "06-inverse-observation-control",
+    "parent_problems": [
+      "GC26",
+      "GC27",
+      "GC28",
+      "GC29",
+      "GC30",
+      "GC59",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC170",
+    "title": "Control of a localized solitary wave position",
+    "question": "Find a localized forcing control that steers a stable solitary wave's center while bounding radiation production.",
+    "first_test": "Prove local controllability of modulation coordinates.",
+    "area": "06-inverse-observation-control",
+    "parent_problems": [
+      "GC26",
+      "GC27",
+      "GC28",
+      "GC29",
+      "GC30",
+      "GC59",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC171",
+    "title": "Minimum control energy for pattern stabilization",
+    "question": "For a linearization around a Swift–Hohenberg stripe, derive the minimum distributed-control energy that stabilizes an unstable eigenmode.",
+    "first_test": "Prove a Gramian formula and admissibility bounds.",
+    "area": "06-inverse-observation-control",
+    "parent_problems": [
+      "GC26",
+      "GC27",
+      "GC28",
+      "GC29",
+      "GC30",
+      "GC59",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC172",
+    "title": "Observer design for nonlinear wave modes",
+    "question": "Construct a finite-dimensional estimator for a few dominant wave amplitudes using local observations of a dissipative PDE.",
+    "first_test": "Prove convergence and robust error estimates.",
+    "area": "06-inverse-observation-control",
+    "parent_problems": [
+      "GC26",
+      "GC27",
+      "GC28",
+      "GC29",
+      "GC30",
+      "GC59",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC173",
+    "title": "Distinguishing noise from model discrepancy",
+    "question": "Given two calibrated nonlinear wave models, quantify when observation residuals identify structural mismatch rather than measurement noise.",
+    "first_test": "Prove a hypothesis-separation or impossibility result with explicit distributions.",
+    "area": "06-inverse-observation-control",
+    "parent_problems": [
+      "GC26",
+      "GC27",
+      "GC28",
+      "GC29",
+      "GC30",
+      "GC59",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC174",
+    "title": "Adaptive sensing of solitary-wave bifurcations",
+    "question": "Determine whether sequentially selected sensors reduce the number of measurements needed to detect a fold in a localized solution branch.",
+    "first_test": "Prove a sample-complexity bound under stated observation noise.",
+    "area": "06-inverse-observation-control",
+    "parent_problems": [
+      "GC26",
+      "GC27",
+      "GC28",
+      "GC29",
+      "GC30",
+      "GC59",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC175",
+    "title": "Inverse recovery from scattering phase shifts",
+    "question": "Determine when a specified low-dimensional defect potential can be reconstructed from finite-frequency wave scattering phases.",
+    "first_test": "Prove exact uniqueness or construct isoscattering parameters.",
+    "area": "06-inverse-observation-control",
+    "parent_problems": [
+      "GC26",
+      "GC27",
+      "GC28",
+      "GC29",
+      "GC30",
+      "GC59",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC176",
+    "title": "Confidence-certified physical parameter bounds",
+    "question": "Develop computable confidence or feasible sets for spectral parameters using bounded deterministic measurement errors.",
+    "first_test": "Prove enclosure validity and characterize nonidentifiability at the boundary.",
+    "area": "06-inverse-observation-control",
+    "parent_problems": [
+      "GC26",
+      "GC27",
+      "GC28",
+      "GC29",
+      "GC30",
+      "GC59",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  }
+]
