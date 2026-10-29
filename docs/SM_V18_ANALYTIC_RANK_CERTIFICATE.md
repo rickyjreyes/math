@@ -129,8 +129,9 @@ using rational enclosures, Mathlib Taylor remainders, and an exact determinant
 expansion. The full active-branch Fréchet derivative and C¹ neighborhood regularity
 are proved in `V18Frechet` and `V18Regularity`. The actual selected
 restriction, exact full-model rank, and C¹ local level-set chart now have
-kernel-checked proofs as described below. Final repository-wide validation
-of the completion revision is pending.
+kernel-checked proofs as described below. The completion revision passed
+the full Lean build and all six repository verification workflows; the
+[completion audit](FORMALIZATION_REVIEW_2026-10-27.md) records the runs.
 
 The previous decimal-only input intervals did not enclose the exact stored
 binary64 coefficients. The wider enclosures above repair that mismatch and
@@ -145,4 +146,7 @@ every entry of the selected restriction of the actual Fréchet derivative.
 nullity 20, and surjectivity. `V18Forward.f09_completion` in `V18Identifiability` connects
 those results to the C¹ local level-set chart, with a C¹ inverse and a
 twenty-dimensional kernel model. All active input coordinates are retained.
-Final repository-wide validation of this completion revision is pending.
+The Lean result uses the published exact decimals, `alpha ∈ [5.172,5.173]`,
+and frozen `epsilon = 5`. It concerns the open ambient parameter space.
+The wider decimal/binary64 enclosures of this external certificate remain
+a separate check, not an assertion about floating-point differentiation.

@@ -40,7 +40,8 @@ exactly eleven and nullity exactly twenty, and its local equal-output
 fiber is a twenty-dimensional $C^1$ embedded submanifold. The proof uses
 a selected minor of the full Fr\'echet derivative, a kernel-checked
 trigonometric determinant enclosure, and the implicit-function theorem.
-All mathematical claims are formalized in Lean 4 with Mathlib v4.23.0.
+The theorem, proposition, and corollary statements below are formalized
+in Lean 4 with Mathlib v4.23.0.
 The historical finite-difference SVD remains a separate numerical
 diagnostic. This is an audit of parameter identifiability, not an
 independent physical prediction of particle masses.
@@ -264,9 +265,9 @@ Consequently, the selected restriction of the actual Fr\'echet derivative is
  \label{eq:block}
 \end{equation}
 All 121 entries, including all six off-diagonal blocks, are identified
-in Lean. In particular, the heavy-to-light coupling vanishes because
-of the verified inner floor, not because light coefficients have been
-held fixed in the full derivative.
+in Lean. In particular, the heavy outputs' dependence on light coefficients
+vanishes because of the verified inner floor, not because those coefficients
+have been held fixed in the full derivative.
 
 \subsection{Light sector}
 The selected light block is $L=\diag(D_1,D_2,D_3)L_0$, where

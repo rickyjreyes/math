@@ -6,7 +6,7 @@ import MathProofs.LocalLevelSet
 
 The fiber statement below is the ambient-chart formulation of a C¹ embedded
 submanifold. Its chart and inverse are C¹ on open sets; its image is exactly
-the vertical slice with the eleven observed outputs fixed. The transverse
+the vertical slice with the eleven observed outputs fixed. The fiber
 coordinate space is the kernel of the actual observation derivative, of
 dimension twenty. This concerns the open ambient parameter space, including
 the specified center epsilon = 5, not an optimizer's closed constraint box.
