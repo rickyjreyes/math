@@ -41,7 +41,14 @@ theorem maskedL2_norm_le (μ : Measure α)
   have ht : (eLpNorm (S.indicator (f : α → ℂ)) 2 μ).toReal ≤
       (eLpNorm (f : α → ℂ) 2 μ).toReal :=
     ENNReal.toReal_mono (Lp.eLpNorm_ne_top f) hle
-  simpa only [maskedL2, Lp.norm_toLp, Lp.norm_def] using ht
+  calc
+    ‖maskedL2 μ f S hS‖ =
+        (eLpNorm (S.indicator (f : α → ℂ)) 2 μ).toReal := by
+      simpa only [maskedL2] using
+        (Lp.norm_toLp (S.indicator (f : α → ℂ))
+          (MemLp.indicator hS (Lp.memLp f)))
+    _ ≤ (eLpNorm (f : α → ℂ) 2 μ).toReal := ht
+    _ = ‖f‖ := (Lp.norm_def f).symm
 
 /-- A masked L² class vanishes precisely when the original
 representative vanishes almost everywhere inside the selected band. -/
