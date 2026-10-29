@@ -27,7 +27,7 @@ theorem linearGrowth_eq_max_iff (r a kStar q : ℝ)
       (mul_eq_zero.mp hmul).resolve_left (ne_of_gt ha)
     have hsq : (q - kStar ^ 2) ^ 2 = 0 := by
       simpa [shellSymbol] using hz
-    nlinarith [sq_nonneg (q - kStar ^ 2)]
+    exact sub_eq_zero.mp (pow_eq_zero hsq)
   · intro h
     rw [h]
     exact linearGrowth_at_shell r a kStar
