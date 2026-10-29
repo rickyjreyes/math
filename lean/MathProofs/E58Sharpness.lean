@@ -64,5 +64,21 @@ theorem greenMultiplier_norm_eq_bound_iff {d : ℕ}
   · intro h
     rw [h]
 
+/-- The pointwise supremum is exactly 1/r, because the selected
+    squared frequency is actually in the continuous frequency domain. -/
+theorem greenMultiplier_sup (r a kStar : ℝ)
+    (hr : 0 < r) (ha : 0 ≤ a) :
+    sSup (Set.range (greenMultiplier r a kStar)) = 1 / r := by
+  apply le_antisymm
+  · apply csSup_le
+    · exact ⟨_, ⟨kStar ^ 2, rfl⟩⟩
+    · rintro _ ⟨q, rfl⟩
+      exact (greenMultiplier_bounds r a kStar q hr ha).2
+  · apply le_csSup
+    · refine ⟨1 / r, ?_⟩
+      rintro _ ⟨q, rfl⟩
+      exact (greenMultiplier_bounds r a kStar q hr ha).2
+    · exact ⟨kStar ^ 2, greenMultiplier_at_shell r a kStar (ne_of_gt hr)⟩
+
 end E58Sharpness
 end ReyesMath
