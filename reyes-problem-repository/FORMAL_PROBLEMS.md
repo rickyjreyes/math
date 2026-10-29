@@ -1,6 +1,6 @@
-# Fifty formally stated research problems
+# The Reyes Problem Repository: Mathematical Problem Statements
 
-**Status:** Proposed precisely scoped research problems, **not** claims of novelty, unsolved status, difficulty, or independence. Several are classification problems, some have known elementary answers or obstructions, and several require additional modeling choices before a definitive theorem can be stated. The word “determine” explicitly permits a negative answer or a counterexample. Mathematical statements are research specifications, not verified results. Literature reviews are pending.
+**Current collection:** 50 proposed research problems, with room to grow. **Status:** Proposed precisely scoped research problems, **not** claims of novelty, unsolved status, difficulty, or independence. Several are classification problems, some have known elementary answers or obstructions, and several require additional modeling choices before a definitive theorem can be stated. The word “determine” explicitly permits a negative answer or a counterexample. Mathematical statements are research specifications, not verified results. Literature reviews are pending.
 
 **Shared notation:** $\mathbb R^d$ is Euclidean space, $\mathbb T^d=(\mathbb R/2\pi\mathbb Z)^d$, $\Delta$ is the Laplacian, $H^s$ denotes the $L^2$ Sobolev space, and all solutions use the natural strong/mild solution concept where it exists. Parameters and operators not fixed by a question must be frozen in its dedicated problem dossier before attempting a proof.
 

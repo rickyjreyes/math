@@ -1,6 +1,6 @@
-# Contributing to the Grand Challenges
+# Contributing to the Reyes Problem Repository
 
-This is an open, no-prize mathematical problem book. **Criticism, prior-art corrections, counterexamples and strengthened problem statements are as valuable as proposed proofs.**
+This is an open, no-prize, continuously evolving mathematical research repository. **Criticism, prior-art corrections, counterexamples and strengthened problem statements are as valuable as proposed proofs.**
 
 [Catalogue](README.md) · [Precise questions](FORMAL_PROBLEMS.md) · [Method and promotion rules](METHOD.md) · [Status register](STATUS.md)
 

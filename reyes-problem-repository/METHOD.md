@@ -1,6 +1,6 @@
 # Method: from candidate questions to rigorous research problems
 
-[Problem book](README.md) · [Current register](STATUS.md) · [Candidate notebook](NOTEBOOK.md) · [Literature ledger](LITERATURE.md) · [How to contribute](CONTRIBUTING.md)
+[The Reyes Problem Repository](README.md) · [Current register](STATUS.md) · [Candidate notebook](NOTEBOOK.md) · [Literature ledger](LITERATURE.md) · [How to contribute](CONTRIBUTING.md)
 
 This is a **free and open mathematical research workflow**, borrowing useful organizational ideas from collaborative problem notebooks, selective landmark problem lists, and referenced research surveys. It does not claim any historical mathematician endorsed the questions in this repository.
 
