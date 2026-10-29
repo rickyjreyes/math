@@ -110,8 +110,8 @@ theorem S_apply_eq_dampedResponse (a kStar t : ℝ) (ha : 0 ≤ a) (ht : 0 ≤ t
     (f : Sobolev.L2 d) :
     S a kStar t ha ht f = dampedResponse a t kStar ha ht f := by
   apply (Sobolev.fourierL2 (d := d)).injective
-  change Sobolev.fourierL2 (S a kStar t ha ht f) =
-    (damped_product_memLp a t kStar ha ht (Sobolev.fourierL2 f)).toLp _
+  unfold dampedResponse
+  rw [LinearIsometryEquiv.apply_symm_apply]
   apply Lp.ext
   filter_upwards
     [fourier_S a kStar t ha ht f,
