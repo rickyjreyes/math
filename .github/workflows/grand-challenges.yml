@@ -1,14 +1,14 @@
-name: Grand Challenges catalogue integrity
+name: Reyes Problem Repository catalogue integrity
 
 on:
   push:
     paths:
-      - "grand-challenges/**"
+      - "reyes-problem-repository/**"
       - ".github/ISSUE_TEMPLATE/grand_challenge.yml"
       - ".github/workflows/grand-challenges.yml"
   pull_request:
     paths:
-      - "grand-challenges/**"
+      - "reyes-problem-repository/**"
       - ".github/ISSUE_TEMPLATE/grand_challenge.yml"
       - ".github/workflows/grand-challenges.yml"
   workflow_dispatch:
@@ -22,4 +22,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Validate catalogue, links, and math fences
-        run: python3 grand-challenges/scripts/validate_catalog.py
+        run: python3 reyes-problem-repository/scripts/validate_catalog.py
