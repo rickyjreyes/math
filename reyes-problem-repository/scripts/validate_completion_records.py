@@ -55,7 +55,7 @@ def validate_adoption(data: dict, ids: set[str], registry: dict) -> None:
     require([row.get("id") for row in rows] == expected,
             "Adoption map must contain GC01..GC65 exactly once in ID order")
     index = (ROOT / "EXISTING_WORK_65.md").read_text(encoding="utf-8")
-    indexed = re.findall(r"^\\| \\[(GC\\d{2})\\]", index, re.MULTILINE)
+    indexed = re.findall(r"^\| \[(GC\d{2})\]", index, re.MULTILINE)
     require(indexed == expected, "65-item readable index differs from adopted GC links")
     lean_inventory = (REPO / "lean" / "formalization.yaml").read_text(encoding="utf-8")
     seen, linked_issues = set(), set()

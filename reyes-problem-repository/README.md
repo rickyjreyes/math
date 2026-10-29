@@ -8,7 +8,7 @@ The Reyes Problem Repository is a living, version-controlled research collection
 
 **[Browse all 300 questions](./ROADMAP_300.md)** · **[12 research folders](./problems/README.md)** · **[Foundational shortlist](./FOUNDATIONAL_SHORTLIST.md)** · **[Original 65 formal problems](./FORMAL_PROBLEMS.md)** · **[Live research status](./STATUS.md)** · **[Five flagship dossiers](#start-here-five-questions-worth-exploring)** · **[Candidate notebook](./NOTEBOOK.md)** · **[How to contribute](./CONTRIBUTING.md)**
 
-**[Workflow and proof contract](./WORKFLOW.md)** · **[Existing Lean and paper adoption](./EXISTING_WORK.md)** · **[Screening and editorial method](./METHOD.md)** · [Initial literature ledger](./LITERATURE.md) · [Flagship screening](./SCREENING.md) · [Existing papers](../papers) · [Lean 4 source](../lean/MathProofs) · [Submit a research contribution](https://github.com/rickyjreyes/math/issues/new?template=grand_challenge.yml)
+**[Workflow and proof contract](./WORKFLOW.md)** · **[GC01–GC65 adoption map](./EXISTING_WORK_65.md)** · **[GC66–GC300 activation](./SCOPING_235.md)** · **[Original pilot](./EXISTING_WORK.md)** · **[Screening and editorial method](./METHOD.md)** · [Initial literature ledger](./LITERATURE.md) · [Flagship screening](./SCREENING.md) · [Existing papers](../papers) · [Lean 4 source](../lean/MathProofs) · [Submit a research contribution](https://github.com/rickyjreyes/math/issues/new?template=grand_challenge.yml)
 
 > [!IMPORTANT]
 > **Research status:** This is a proposed challenge catalogue, **not** an established list of unsolved problems comparable in standing to the Millennium Prize Problems. No prizes are offered. Novelty and open status have not been established through comprehensive literature review. Some statements have partial results or counterexamples; others require sharper assumptions. See [research standards](#what-counts-as-a-solution).
@@ -23,7 +23,7 @@ The Reyes Problem Repository is a living, version-controlled research collection
 
 **Each mathematical research task belongs in a GitHub issue, contributions arrive through PRs, and Lean checks the exact formal theorem.** Existing mathematics is respected: no proof or manuscript needs to be copied, moved, reopened or rewritten to join this workflow. Papers are optional, but claims described as Lean verified must match the underlying theorem and its assumptions.
 
-- **Find existing work first.** The [adoption inventory](./EXISTING_WORK.md) links the original five GC research issues to related existing proof modules and manuscripts, without treating narrower results as full solutions.
+- **Find existing work first.** The [all-65 adoption map](./EXISTING_WORK_65.md) links the original problems to existing proof modules and manuscripts where specifically identifiable, without treating narrower results as full solutions.
 - **Choose an existing or carefully scoped issue.** An unreviewed GC entry is not automatically a formally stated open problem. Search for existing GC and Lean formalization issues before creating a duplicate. [Preview a draft issue locally](./WORKFLOW.md).
 - **Propose a solution by PR.** Identify the exact theorem or counterexample and its assumptions, Lean declaration, successful existing CI run, and what remains unresolved. A milestone issue may close while its parent GC remains open.
 - **Publish when useful.** Link an optional paper with its exact claim reference. Clearly identify any analytical argument, simulation or physical interpretation that was not established by the Lean theorem.

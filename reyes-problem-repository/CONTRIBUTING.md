@@ -2,13 +2,13 @@
 
 This is an **open invitation**, not a requirement for the research to progress. The existing researcher continues working; outside mathematicians, physicists, computer scientists and AI-assisted collaborators can contribute whenever they have substantive results. Contributors receive attribution for their original work. **Proving a conjecture false is as welcome as proving it true.**
 
-[300 problems](ROADMAP_300.md) · [Issue, PR, Lean and paper workflow](WORKFLOW.md) · [Existing work](EXISTING_WORK.md) · [Editorial standards](METHOD.md) · [Research status](STATUS.md)
+[300 problems](ROADMAP_300.md) · [Issue, PR, Lean and paper workflow](WORKFLOW.md) · [GC01–GC65 source links](EXISTING_WORK_65.md) · [GC66–GC300 activation](SCOPING_235.md) · [Editorial standards](METHOD.md) · [Research status](STATUS.md)
 
 ## Before starting a problem
 
 1. Choose a GC ID from [the roadmap](ROADMAP_300.md) and inspect its [problem folder](problems/README.md). GC01–GC65 have existing mathematical statements; GC66–GC300 are preliminary prompts that require a precise scope before declaring a theorem.
 2. Search GitHub **issues and PRs** for the GC ID and for related mathematical formalization issues. In particular, GC01, GC06, GC11, GC36 and GC43 already have research tasks. **Do not open a duplicate.**
-3. Check existing Lean modules and manuscripts using the [adoption inventory](EXISTING_WORK.md), [Lean source](../lean/MathProofs) and [manuscript catalogue](../CONTENTS.md). An existing theorem can be cited and adopted by reference. Do not reprove it just to satisfy an issue.
+3. Check existing Lean modules and manuscripts using the [65-problem adoption map](EXISTING_WORK_65.md), [Lean source](../lean/MathProofs) and [manuscript catalogue](../CONTENTS.md). An existing theorem can be cited and adopted by reference. Do not reprove it just to satisfy an issue.
 4. Check the closest established mathematical literature and natural counterexamples. Preserve a record of what has or has not been reviewed.
 
 ## Contribute like a software engineer

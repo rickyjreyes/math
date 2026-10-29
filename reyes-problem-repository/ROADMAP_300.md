@@ -2,6 +2,8 @@
 
 **Research corpus, 2026-10-29.** 300 proposed questions organized into **12 folders of 25**. The first 65 retain their original formal statement catalogue; **GC66–GC300 are new AI-assisted research sketches awaiting precise model freezes, source comparisons, and independent review.** All 300 are not asserted to be original or unsolved. A counterexample or established prior result is a valid outcome.
 
+**Research activation:** [GC01–GC65 existing proof/paper links](EXISTING_WORK_65.md) · [GC66–GC300 scoping criteria](SCOPING_235.md). The original mathematical statements and exploratory sketches remain preserved.
+
 **Browse:** [Folder directory](./problems/README.md) · [Machine register](./problem_registry.json) · [Research status](./STATUS.md) · [Original 65 statements](./FORMAL_PROBLEMS.md) · [Foundational screening shortlist](./FOUNDATIONAL_SHORTLIST.md).
 
 ## [Nonlinear wave dynamics](./problems/01-wave-dynamics/README.md)

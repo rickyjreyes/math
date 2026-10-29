@@ -2,7 +2,7 @@
 
 **Purpose:** Link existing research to the GC corpus **without copying proof code, moving papers, changing theorem status, or creating duplicate GitHub issues**. Links below indicate *related material only*. They are **not** a completed issue-to-Lean correspondence audit, and none is presented as the full GC problem being solved.
 
-[Workflow](WORKFLOW.md) · [Original dossiers](flagship/) · [300 problems](ROADMAP_300.md) · [Manuscript catalogue](../CONTENTS.md) · [Lean source](../lean/MathProofs)
+[Full GC01–GC65 adoption map](EXISTING_WORK_65.md) · [Workflow](WORKFLOW.md) · [Original dossiers](flagship/) · [300 problems](ROADMAP_300.md) · [Manuscript catalogue](../CONTENTS.md) · [Lean source](../lean/MathProofs)
 
 | GC | Existing issue | Related Lean modules | Existing manuscript source | Adoption assessment |
 |:--|:--|:--|:--|:--|
@@ -13,7 +13,7 @@
 | [GC43](problems/09-computability-complexity/GC43.md) | [#58](https://github.com/rickyjreyes/math/issues/58), milestone | No matched module established in this repository audit | No matched manuscript established in this audit | Reversible conservative phase-cell universality is not certified by unrelated TM results |
 | [GC08](problems/02-confinement-curvature/GC08.md) | No dedicated GC issue linked yet | [M6BClosureTheorem.lean](../lean/MathProofs/M6BClosureTheorem.lean) | [Curvature closure nonuniqueness](../papers/m6b-nonlinear-curvature-nonuniqueness/main.tex) | Unrestricted uniqueness has a known counterexample; classification under further axioms remains open for review |
 
-Existing Lean modules, publications and other research issues in the repository may be relevant to additional GC problems. **No absence claim is made** for any unmapped problem. The table is a small pilot, not a comprehensive adoption audit of every Lean declaration or paper.
+Existing Lean modules, publications and other research issues in the repository may be relevant to additional GC problems. **No absence claim is made** for any unmapped problem. This is the original six-entry pilot. The [all-65 adoption table](EXISTING_WORK_65.md) now maps the other original GC entries as well, with explicit remaining mathematical scope. Neither map claims full issue-to-theorem correspondence or exhaustively audits every relevant external theorem.
 
 ## Adoption procedure
 

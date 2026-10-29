@@ -20,3 +20,7 @@
 ## Editing policy
 
 The ID is permanent. Edit the related individual file and update [the registry](../problem_registry.json) and [status](../STATUS.md) whenever evidence changes. New mathematical questions must pass independent relevance and duplication screens before promotion. Preserve counterexamples and prior-art corrections rather than silently deleting problem history.
+
+## Starting a research contribution
+
+For GC01–GC65, consult [existing Lean proofs and papers](../EXISTING_WORK_65.md) before opening a new issue or duplicating a theorem. For GC66–GC300, first follow the [scoping and literature review criteria](../SCOPING_235.md). Contributions run through GitHub issues and PRs, with Lean verifying precise formal claims and optional papers synchronized to those claims.

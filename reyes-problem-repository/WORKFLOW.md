@@ -6,7 +6,7 @@ The Reyes Problem Repository is an **open invitation** to work on mathematical q
 
 ## One research task, familiar developer workflow
 
-1. **Find the GC problem file.** Use [the 300-problem roadmap](ROADMAP_300.md), and check the [adoption inventory](EXISTING_WORK.md) for existing proof modules, papers and issues.
+1. **Find the GC problem file.** Use [the 300-problem roadmap](ROADMAP_300.md), and check the [65-problem adoption index](EXISTING_WORK_65.md) and [original pilot](EXISTING_WORK.md) for existing proof modules, papers and issues. For GC66–GC300, apply the [candidate scoping gate](SCOPING_235.md).
 2. **Reuse the existing issue.** Search GitHub for the exact `[GCxx]` identifier and related mathematical/formalization issues before creating one. GC01, GC06, GC11, GC36 and GC43 already have research issues. Do not bulk-create hundreds of issues for unreviewed questions.
 3. **Freeze the acceptance criterion.** A problem or subtask issue identifies a versioned statement, equation, parameters, spaces, quantifiers, claimed resolution (theorem or counterexample), and a list of obligations. A GC roadmap *candidate* may first need a scope/literature issue before it can be a solvable theorem.
 4. **Contribute via a pull request.** A PR cites the issue, describes exactly which obligation it addresses, compares earlier results, and points to the exact Lean module and theorem declaration. An existing verified theorem may be **adopted by reference**, without copying or reproving it.

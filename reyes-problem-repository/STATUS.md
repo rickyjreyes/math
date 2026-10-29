@@ -2,6 +2,8 @@
 
 **As of 2026-10-29.** This registry tracks 300 candidate problems across 12 research folders. GC01–GC65 retain their prior statements and review status. GC66–GC300 are initial research sketches awaiting formal scoping and literature review. The catalogue is a **proposed research program**, not a verified inventory of open problems. Every problem defaults to `candidate` unless the evidence record specifies otherwise.
 
+**Existing research alignment:** [GC01–GC65 adoption map](EXISTING_WORK_65.md) records relevant Lean/paper material without changing evidence status. [GC66–GC300 activation](SCOPING_235.md) requires issue scoping. These references do not change completion scores or registry statuses.
+
 **Source of truth:** [problem_registry.json](problem_registry.json). [Browse all 300](ROADMAP_300.md). The table is an accessible snapshot. An initial literature lead does **not** certify open status; no problem is presently tagged `open_verified`.
 
 | ID | Problem | Stage | Review | Flagship dossier | Discussion |
