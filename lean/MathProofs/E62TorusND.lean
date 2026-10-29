@@ -16,6 +16,9 @@ continuous-spectrum equality cases, and time evolution are separate.
 namespace ReyesMath
 namespace E62TorusND
 
+-- Large product-torus typeclass elaboration needs a higher deterministic budget.
+set_option maxHeartbeats 2000000
+
 open MeasureTheory E62Discrete UnitAddTorus
 
 variable {d : Type*} [Fintype d]
@@ -58,7 +61,10 @@ theorem coefficients_nontrivial_of_nonzero
     simp [hz n]
   have hs := UnitAddTorus.hasSum_mFourier_series_L2 f
   rw [hterm] at hs
-  exact hf (hs.unique hasSum_zero)
+  have hzsum : HasSum
+      (fun _ : d → ℤ => (0 : Lp ℂ 2 (volume : Measure (UnitAddTorus d)))) 0 :=
+    hasSum_zero
+  exact hf (hs.unique hzsum)
 
 /-- Physical L² energy splits into selected and complementary regions. -/
 theorem physical_energy_split
