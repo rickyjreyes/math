@@ -13,11 +13,23 @@ The independent physical-space orthogonal projector, full whole-space
 continuous-spectrum equality cases, and time evolution are separate.
 -/
 
+-- Match the *normalized Haar measure* instances used in Mathlib's
+-- AddCircleMulti Fourier/Parseval development. Without these local
+-- instances, ambient volume uses a different circle measure and even
+-- equivalent-looking L² types do not elaborate against the theorem.
+open MeasureTheory
+attribute [local instance] Real.fact_zero_lt_one
+local instance : MeasureSpace UnitAddCircle := ⟨AddCircle.haarAddCircle⟩
+local instance : Measure.IsAddHaarMeasure (volume : Measure UnitAddCircle) :=
+  inferInstanceAs (Measure.IsAddHaarMeasure AddCircle.haarAddCircle)
+local instance : IsProbabilityMeasure (volume : Measure UnitAddCircle) :=
+  inferInstanceAs (IsProbabilityMeasure AddCircle.haarAddCircle)
+
 namespace ReyesMath
 namespace E62TorusND
 
 -- Large product-torus typeclass elaboration needs a higher deterministic budget.
-set_option maxHeartbeats 500000
+set_option maxHeartbeats 200000
 
 open MeasureTheory E62Discrete UnitAddTorus
 
