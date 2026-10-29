@@ -53,8 +53,10 @@ jobs:
         run: lake build MathProofs.E58WholeSpaceL2
       - name: Kernel check E26 historical denominator counterexample
         run: lake build MathProofs.E26HistoricalCounterexample
+      - name: Kernel check corrected M2 E17 phase covariance
+        run: lake build MathProofs.E17PhaseRegularizer
       - name: Kernel check true continuum E62 orthogonal projection
-        run: lake build MathProofs.E62ProjectorL2
+        run: lake build MathProofs.E62ProjectorL2 MathProofs.E17PhaseRegularizer
       - name: Kernel check higher-dimensional torus Fourier Parseval
         run: lake build MathProofs.E62TorusND
       - name: Kernel check analytic declarations
