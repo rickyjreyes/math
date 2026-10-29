@@ -23,7 +23,7 @@ theorem spectral_mask_eLpNorm_le
     {α : Type*} [MeasurableSpace α] (μ : Measure α)
     (f : α → ℂ) (S : Set α) (hS : MeasurableSet S) :
     eLpNorm (S.indicator f) 2 μ ≤ eLpNorm f 2 μ := by
-  exact eLpNorm_indicator_le f hS.nullMeasurableSet
+  exact eLpNorm_indicator_le f 2 hS.nullMeasurableSet
 
 /-- The Fourier mask on an arbitrary measurable subset of R^d has
 no more L² energy than the original Plancherel representative. -/
@@ -49,7 +49,7 @@ theorem exact_shell_mask_ae_zero
     (Metric.sphere (0 : EuclideanSpace ℝ (Fin (d + 1))) k)
     (euclidean_frequency_shell_measure_zero d k)
   intro ξ hξ
-  exact Set.indicator_of_not_mem hξ _
+  exact Set.indicator_of_notMem hξ _
 
 end E62Continuous
 end ReyesMath
