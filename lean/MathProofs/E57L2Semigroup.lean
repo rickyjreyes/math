@@ -23,7 +23,7 @@ noncomputable section
 namespace ReyesMath
 namespace E57L2Semigroup
 
-open E57WholeSpaceDamping E57SemigroupSymbol
+open E57WholeSpaceDamping E57SemigroupSymbol RemainingCores
 
 variable {d : ℕ}
 local notation "Rd" => EuclideanSpace ℝ (Fin d)
