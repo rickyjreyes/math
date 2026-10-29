@@ -63,7 +63,8 @@ jobs:
             MathProofs/E16TorusRemark.lean \
             MathProofs/E58Certification.lean \
             MathProofs/E58GreenFunction.lean \
-            MathProofs/E57L2Semigroup.lean; then exit 1; fi
+            MathProofs/E57L2Semigroup.lean \
+            MathProofs/E26Certification.lean; then exit 1; fi
       - name: Kernel check E16 exact modal power dominance
         run: lake build MathProofs.E16ModalPower
       - name: Kernel check E62 infinite-mode dependency first
@@ -122,6 +123,8 @@ jobs:
         run: lake build MathProofs.E58GreenFunction
       - name: Kernel check E57 whole-space L2 operator semigroup law
         run: lake build MathProofs.E57L2Semigroup
+      - name: Kernel check full E26 historical L2 certification
+        run: lake build MathProofs.E26Certification
       - name: Kernel check analytic declarations
         run: |
           lake build MathProofs.RemainingCores MathProofs.E16SpectralCore \
