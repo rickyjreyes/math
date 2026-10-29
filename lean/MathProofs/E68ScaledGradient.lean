@@ -87,4 +87,47 @@ theorem compactProfile_scaled_gradient_energy
           ‖fderiv ℝ (fun y => compactProfile n y) x‖ ^ 2) :=
   integral_scaled_gradient_energy n hn R hR (fun y => compactProfile n y)
 
+/-- The squared L2 mass of an arbitrary real field, under spatial
+inverse dilation and an independent real amplitude, has the exact
+continuum Jacobian and amplitude factor. No discrete surrogate is
+involved, and no differentiability is needed for this identity. -/
+theorem integral_scaled_field_mass
+    (n : ℕ) (R : ℝ) (hR : 0 < R) (a : ℝ)
+    (f : EuclideanSpace ℝ (Fin n) → ℝ) :
+    (∫ x : EuclideanSpace ℝ (Fin n),
+      (a * f ((R⁻¹ : ℝ) • x)) ^ 2) =
+      a ^ 2 * R ^ n *
+        (∫ x : EuclideanSpace ℝ (Fin n), (f x) ^ 2) := by
+  calc
+    (∫ x : EuclideanSpace ℝ (Fin n),
+      (a * f ((R⁻¹ : ℝ) • x)) ^ 2) =
+        (∫ x : EuclideanSpace ℝ (Fin n),
+          a ^ 2 * (f ((R⁻¹ : ℝ) • x)) ^ 2) := by
+            congr 1
+            funext x
+            ring
+    _ = a ^ 2 * (∫ x : EuclideanSpace ℝ (Fin n),
+            (f ((R⁻¹ : ℝ) • x)) ^ 2) := by
+          rw [integral_const_mul]
+    _ = a ^ 2 * (R ^ n *
+          (∫ x : EuclideanSpace ℝ (Fin n), (f x) ^ 2)) := by
+          rw [integral_inverse_smul_exact n R hR
+            (fun x : EuclideanSpace ℝ (Fin n) => (f x) ^ 2)]
+    _ = a ^ 2 * R ^ n *
+          (∫ x : EuclideanSpace ℝ (Fin n), (f x) ^ 2) := by ring
+
+/-- The actual paper's normalized concentration family satisfies the
+exact global squared-mass integral identity in every dimension. -/
+theorem smoothConcentration_mass_exact
+    (n : ℕ) (R : ℝ) (hR : 0 < R) :
+    (∫ x : EuclideanSpace ℝ (Fin n),
+      (smoothConcentration n R x) ^ 2) =
+      (R ^ (1 - (n : ℝ) / 2)) ^ 2 * R ^ n *
+        (∫ x : EuclideanSpace ℝ (Fin n),
+          (compactProfile n x) ^ 2) := by
+  simpa only [smoothConcentration] using
+    integral_scaled_field_mass n R hR
+      (R ^ (1 - (n : ℝ) / 2))
+      (fun x : EuclideanSpace ℝ (Fin n) => compactProfile n x)
+
 end ReyesMath.E68
