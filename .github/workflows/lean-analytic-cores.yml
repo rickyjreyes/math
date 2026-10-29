@@ -47,13 +47,16 @@ jobs:
             MathProofs/E57WholeSpaceDamping.lean \
             MathProofs/E57SemigroupSymbol.lean \
             MathProofs/E16ModalPower.lean \
-            MathProofs/E61WholeSpaceGrowth.lean; then exit 1; fi
+            MathProofs/E61WholeSpaceGrowth.lean \
+            MathProofs/E62ProjectionOperator.lean; then exit 1; fi
       - name: Kernel check E16 exact modal power dominance
         run: lake build MathProofs.E16ModalPower
       - name: Kernel check E62 infinite-mode dependency first
         run: lake build MathProofs.E62Discrete
       - name: Kernel check existing E62 torus one-dimensional and coefficient projector
         run: lake build MathProofs.E62Projector MathProofs.E62Torus1D
+      - name: Kernel check bounded E62 spectral projection and self-adjointness
+        run: lake build MathProofs.E62ProjectionOperator
       - name: Kernel check higher-dimensional torus Fourier Parseval
         run: lake build MathProofs.E62TorusND
       - name: Kernel check whole-space E62 masked L2 classes
@@ -82,4 +85,4 @@ jobs:
             MathProofs.SpectralSharpness MathProofs.E26L2 \
             MathProofs.E62Torus1D MathProofs.E62TorusND \
             MathProofs.E62ContinuumL2 MathProofs.E58WholeSpaceL2 \
-            MathProofs.E62ProjectorL2
+            MathProofs.E62ProjectorL2 MathProofs.E62ProjectionOperator
