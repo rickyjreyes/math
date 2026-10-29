@@ -34,10 +34,11 @@ jobs:
             MathProofs/E58Sharpness.lean \
             MathProofs/E62Projector.lean \
             MathProofs/E62Continuous.lean \
-            MathProofs/SpectralSharpness.lean; then exit 1; fi
+            MathProofs/SpectralSharpness.lean \
+            MathProofs/E26L2.lean; then exit 1; fi
       - name: Kernel check analytic declarations
         run: |
           lake build MathProofs.RemainingCores MathProofs.E16SpectralCore \
             MathProofs.E62Discrete MathProofs.E58Sharpness \
             MathProofs.E62Projector MathProofs.E62Continuous \
-            MathProofs.SpectralSharpness
+            MathProofs.SpectralSharpness MathProofs.E26L2
