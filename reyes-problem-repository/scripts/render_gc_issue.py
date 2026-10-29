@@ -55,11 +55,20 @@ def main() -> int:
     print()
     print("## Pre-existing proof and paper audit")
     if old:
+        print("Initial relation: " + old["relation_kind"] + " (GC correspondence not audited)")
         print("Related Lean files: " + (", ".join(old["related_lean"]) or "not mapped"))
         print("Related papers: " + (", ".join(old["related_papers"]) or "not mapped"))
+        if old.get("candidate_declarations"):
+            print("Candidate Lean declarations requiring review: "
+                  + ", ".join(old["candidate_declarations"]))
+        if old.get("related_issues"):
+            print("Related formalization issues: "
+                  + ", ".join("#" + str(n) for n in old["related_issues"]))
+        print("Scope gap: " + old["scope_gap"])
     else:
-        print("Not yet audited. Search the existing Lean, manuscript, and issue inventories.")
-    print("Exact declarations and overlap with this GC: [fill in after audit]")
+        print("GC66-GC300: unreviewed outline; scope the model and compare sources first.")
+        print("Activation guide: " + BASE + "/CANDIDATE_ACTIVATION.md")
+    print("Exact declarations and overlap with this GC: [confirm in review]")
     print()
     print("## Frozen acceptance criteria")
     print("1. [FIX MODEL, SPACES, PARAMETERS, QUANTIFIERS]")

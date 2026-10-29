@@ -158,8 +158,10 @@ def main():
     for md in ROOT.rglob("*.md"):
         check_fences(md)
     for name in ("METHOD.md", "LITERATURE.md", "NOTEBOOK.md",
-                 "CONTRIBUTING.md", "SCREENING.md",
-                 "ROADMAP_300.md", "FOUNDATIONAL_SHORTLIST.md"):
+                 "CONTRIBUTING.md", "SCREENING.md", "WORKFLOW.md",
+                 "EXISTING_WORK.md", "GC65_ADOPTION.md",
+                 "CANDIDATE_ACTIVATION.md", "ROADMAP_300.md",
+                 "FOUNDATIONAL_SHORTLIST.md"):
         require((ROOT / name).is_file(), f"Missing required file: {name}")
     require((REPO / ".github/ISSUE_TEMPLATE/grand_challenge.yml").is_file(),
             "Missing GitHub issue template")
