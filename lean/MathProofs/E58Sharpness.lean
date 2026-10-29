@@ -80,5 +80,29 @@ theorem greenMultiplier_sup (r a kStar : ℝ)
       exact (greenMultiplier_bounds r a kStar q hr ha).2
     · exact ⟨kStar ^ 2, greenMultiplier_at_shell r a kStar (ne_of_gt hr)⟩
 
+/-- Quantitative near-shell lower bound, uniform on every band
+whose squared-frequency detuning is at most ε².
+
+This is the ingredient needed for the *lower* L² operator-norm
+inequality once nontrivial Fourier test functions supported in thin
+annuli have been constructed. -/
+theorem greenMultiplier_near_shell_lower
+    (r a kStar q ε : ℝ)
+    (hr : 0 < r) (ha : 0 ≤ a)
+    (hband : shellSymbol kStar q ≤ ε ^ 2) :
+    1 / (r + a * ε ^ 2) ≤ greenMultiplier r a kStar q := by
+  have hsmall : a * shellSymbol kStar q ≤ a * ε ^ 2 :=
+    mul_le_mul_of_nonneg_left hband ha
+  have hd : 0 < r + a * shellSymbol kStar q := by
+    have hnonneg := mul_nonneg ha (shellSymbol_nonneg kStar q)
+    linarith
+  have he : 0 < r + a * ε ^ 2 := by
+    have hnonneg := mul_nonneg ha (sq_nonneg ε)
+    linarith
+  unfold greenMultiplier
+  apply (div_le_div_iff₀ he hd).2
+  nlinarith
+
+
 end E58Sharpness
 end ReyesMath
