@@ -114,3 +114,9 @@ import MathProofs.E62TorusPhysicalProjector
 import MathProofs.E62TrigonometricScope
 import MathProofs.E62TorusProjectorTheorem
 import MathProofs.E62LebesgueFraction
+import MathProofs.TorusFourier
+import MathProofs.SpectralConcentration
+import MathProofs.RegularizedCurvatureL2
+import MathProofs.FourierMultiplierL2
+import MathProofs.E62Certification
+import MathProofs.E16TorusRemark

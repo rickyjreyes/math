@@ -54,7 +54,13 @@ jobs:
             MathProofs/E62TorusPhysicalProjector.lean \
             MathProofs/E62TrigonometricScope.lean \
             MathProofs/E62TorusProjectorTheorem.lean \
-            MathProofs/E62LebesgueFraction.lean; then exit 1; fi
+            MathProofs/E62LebesgueFraction.lean \
+            MathProofs/TorusFourier.lean \
+            MathProofs/SpectralConcentration.lean \
+            MathProofs/RegularizedCurvatureL2.lean \
+            MathProofs/FourierMultiplierL2.lean \
+            MathProofs/E62Certification.lean \
+            MathProofs/E16TorusRemark.lean; then exit 1; fi
       - name: Kernel check E16 exact modal power dominance
         run: lake build MathProofs.E16ModalPower
       - name: Kernel check E62 infinite-mode dependency first
@@ -95,6 +101,18 @@ jobs:
         run: lake build MathProofs.E17PhaseRegularizer
       - name: Kernel check true continuum E62 orthogonal projection
         run: lake build MathProofs.E62ProjectorL2 MathProofs.E17PhaseRegularizer
+      - name: Kernel check torus Fourier analysis (E59, E62 discrete)
+        run: lake build MathProofs.TorusFourier
+      - name: Kernel check whole-space spectral concentration (E16, E62 continuous)
+        run: lake build MathProofs.SpectralConcentration
+      - name: Kernel check E26 regularized curvature quotient
+        run: lake build MathProofs.RegularizedCurvatureL2
+      - name: Kernel check shared L2 Fourier multiplier layer
+        run: lake build MathProofs.FourierMultiplierL2
+      - name: Kernel check E62 certification theorem
+        run: lake build MathProofs.E62Certification
+      - name: Kernel check E16 torus remark
+        run: lake build MathProofs.E16TorusRemark
       - name: Kernel check analytic declarations
         run: |
           lake build MathProofs.RemainingCores MathProofs.E16SpectralCore \
