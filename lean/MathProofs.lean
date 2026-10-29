@@ -105,3 +105,4 @@ import MathProofs.E62TorusSharpness
 import MathProofs.E62TorusPhysicalProjector
 import MathProofs.E62TrigonometricScope
 import MathProofs.E62TorusProjectorTheorem
+import MathProofs.E62LebesgueFraction
