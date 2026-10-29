@@ -1,4 +1,5 @@
 import MathProofs.M6BClosureTheorem
+import MathProofs.M6BDimensionalField
 import MathProofs.RemainingCores
 
 /-!
@@ -84,6 +85,30 @@ theorem curvature_limit (α : ℝ) (z w : ℂ) (hz : z ≠ 0) :
       (fun ε : ℝ => M6B.curvature ε α 0 1 z w)
       (nhdsWithin 0 (Set.Ioi 0)) (nhds (-(w / z))) :=
   M6B.curvature_downarrow_zero α 0 1 z w hz
+
+/-- The original E17 phase-invariance property also holds for the
+*actual Cartesian Laplacian* of every C² complex field on ℝᵈ. -/
+theorem physical_curvature_phase_invariant (d : ℕ)
+    (ψ : EuclideanSpace ℝ (Fin d) → ℂ)
+    (hψ : ContDiff ℝ 2 ψ)
+    (u : ℂ) (hu : ‖u‖ = 1)
+    (ε α : ℝ) (x : EuclideanSpace ℝ (Fin d)) :
+    M6B.fieldCurvatureD d ε α 0 1 (fun y => u * ψ y) x =
+      M6B.fieldCurvatureD d ε α 0 1 ψ x :=
+  M6B.fieldCurvatureD_phase_invariant d ψ hψ u hu ε α 0 1 x
+
+/-- The corrected E17 curvature has the exact nonzero-field
+singular-regulation limit for genuine d-dimensional Laplacians. -/
+theorem physical_curvature_downarrow_zero (d : ℕ)
+    (α : ℝ)
+    (ψ : EuclideanSpace ℝ (Fin d) → ℂ)
+    (x : EuclideanSpace ℝ (Fin d)) (hψx : ψ x ≠ 0) :
+    Filter.Tendsto
+      (fun ε : ℝ => M6B.fieldCurvatureD d ε α 0 1 ψ x)
+      (nhdsWithin 0 (Set.Ioi 0))
+      (nhds (-(M6B.laplacianD d ψ x / ψ x))) :=
+  M6B.fieldCurvatureD_downarrow_zero d α 0 1 ψ x hψx
+
 
 end E17Canonical
 end ReyesMath
