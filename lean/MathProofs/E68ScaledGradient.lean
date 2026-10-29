@@ -203,7 +203,12 @@ theorem smoothConcentration_gradient_factor_one
   have hsq :
       (R ^ (1 - (n : ℝ) / 2)) ^ 2 =
         R ^ ((1 - (n : ℝ) / 2) * (2 : ℝ)) := by
-    rw [← Real.rpow_natCast, Real.rpow_mul hR.le, Real.rpow_two]
+    calc
+      (R ^ (1 - (n : ℝ) / 2)) ^ 2 =
+          (R ^ (1 - (n : ℝ) / 2)) ^ (2 : ℝ) :=
+            (Real.rpow_two _).symm
+      _ = R ^ ((1 - (n : ℝ) / 2) * (2 : ℝ)) := by
+            rw [← Real.rpow_mul hR.le]
   calc
     (R ^ (1 - (n : ℝ) / 2)) ^ 2 * R ^ (n - 2) =
         R ^ ((1 - (n : ℝ) / 2) * (2 : ℝ)) *
