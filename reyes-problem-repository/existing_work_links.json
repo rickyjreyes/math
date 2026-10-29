@@ -1,72 +1,966 @@
 {
-  "schema_version": 1,
-  "description": "Existing GC issue anchors and related pre-existing research artifacts. No record claims verified completion or full correspondence.",
+  "schema_version": 2,
+  "description": "GC01-GC65 crosswalk to existing source proofs and papers. Each association is unreviewed for mathematical correspondence and no GC-level completion is asserted.",
   "last_reviewed": "2026-10-29",
   "entries": [
     {
       "id": "GC01",
       "issue_number": 54,
       "issue_scope": "milestone",
+      "relationship": "direct_scope_to_review",
+      "scope_assessment": "The existing result stabilizes the full constrained minimizer set in a sufficient mass regime. GC01 also seeks necessary/sufficient criteria for individual standing waves, including excited states.",
       "related_lean": [
+        "lean/MathProofs/OrbitalStability.lean",
+        "lean/MathProofs/CubicQuinticFlow.lean"
+      ],
+      "related_papers": [
+        "papers/orbital-stability-fourth-order-cubic-quintic/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.OrbitalStability.main"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC02",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "Global flow and orbital stability do not prove asymptotic soliton-plus-radiation decomposition or sharp decay.",
+      "related_lean": [
+        "lean/MathProofs/CubicQuinticFlow.lean",
         "lean/MathProofs/OrbitalStability.lean"
       ],
       "related_papers": [
         "papers/orbital-stability-fourth-order-cubic-quintic/main.tex"
       ],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC03",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "One cubic-quintic global existence theorem does not classify the general dimension/power family or its blow-up regimes.",
+      "related_lean": [
+        "lean/MathProofs/CubicQuinticFlow.lean"
+      ],
+      "related_papers": [
+        "papers/orbital-stability-fourth-order-cubic-quintic/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.Sobolev.global_wellposed"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC04",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "unmapped",
+      "scope_assessment": "No stable, asymptotically separating two-wave theorem identified; specify exact profiles, velocities and stability topology.",
+      "related_lean": [],
+      "related_papers": [],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC05",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "unmapped",
+      "scope_assessment": "No localized breather classification identified; freeze time periodicity modulo symmetries and the allowed parameter regime.",
+      "related_lean": [],
+      "related_papers": [],
+      "anchor_declarations": [],
       "correspondence": "not_audited"
     },
     {
       "id": "GC06",
       "issue_number": 55,
       "issue_scope": "milestone",
+      "relationship": "direct_scope_to_review",
+      "scope_assessment": "Proved existence and binding within a sufficient mass interval do not classify all parameter quadruples, nonattainment and boundary regimes.",
       "related_lean": [
         "lean/MathProofs/WholeSpaceMinimizers.lean",
-        "lean/MathProofs/StrictBinding.lean"
+        "lean/MathProofs/StrictBinding.lean",
+        "lean/MathProofs/NegativeEnergy.lean"
       ],
       "related_papers": [
         "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex",
-        "papers/strict-subadditivity-fourth-order-cubic-quintic/main.tex"
+        "papers/strict-subadditivity-fourth-order-cubic-quintic/main.tex",
+        "papers/negative-constrained-energy-cubic-quintic/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.WholeSpace.main",
+        "ReyesMath.StrictBinding.strict_binding"
       ],
       "correspondence": "not_audited"
     },
     {
-      "id": "GC11",
-      "issue_number": 56,
-      "issue_scope": "milestone",
-      "related_lean": [
-        "lean/MathProofs/DispersionMinimum.lean"
-      ],
-      "related_papers": [
-        "papers/exact-positive-wavenumber-minimum/main.tex"
-      ],
-      "correspondence": "not_audited"
-    },
-    {
-      "id": "GC36",
-      "issue_number": 57,
-      "issue_scope": "milestone",
+      "id": "GC07",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "unmapped",
+      "scope_assessment": "No matching theorem for exponentially localized eigenstates of the fourth-order operator with decaying potential identified.",
       "related_lean": [],
       "related_papers": [],
-      "correspondence": "not_audited"
-    },
-    {
-      "id": "GC43",
-      "issue_number": 58,
-      "issue_scope": "milestone",
-      "related_lean": [],
-      "related_papers": [],
+      "anchor_declarations": [],
       "correspondence": "not_audited"
     },
     {
       "id": "GC08",
       "issue_number": null,
       "issue_scope": "not_created",
+      "relationship": "direct_scope_to_review",
+      "scope_assessment": "A known counterexample refutes unrestricted curvature-closure uniqueness, already marked partly resolved. Classification under further admissibility axioms remains.",
       "related_lean": [
-        "lean/MathProofs/M6BClosureTheorem.lean"
+        "lean/MathProofs/M6BClosureTheorem.lean",
+        "lean/MathProofs/M6BDimensionalField.lean"
       ],
       "related_papers": [
         "papers/m6b-nonlinear-curvature-nonuniqueness/main.tex"
       ],
+      "anchor_declarations": [
+        "ReyesMath.M6B.manuscript_closure_nonuniqueness_all_dimensions"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC09",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "unmapped",
+      "scope_assessment": "No exact topological protection theorem for the specified coercive energy and finite-energy dynamics mapped.",
+      "related_lean": [],
+      "related_papers": [],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC10",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "The dimension-dependent E68 local gradient-energy estimates use a different functional than GC10's constrained fourth-order energy.",
+      "related_lean": [],
+      "related_papers": [
+        "papers/localized-gradient-energy-e68/main.tex"
+      ],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC11",
+      "issue_number": 56,
+      "issue_scope": "milestone",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "The existing exact linear dispersion minimum is not a nonlinear unique-wavelength selection or stability theorem.",
+      "related_lean": [
+        "lean/MathProofs/DispersionMinimum.lean"
+      ],
+      "related_papers": [
+        "papers/exact-positive-wavenumber-minimum/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.Dispersion.exact_positive_wavenumber_minimum"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC12",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "Linear Swift–Hohenberg threshold results do not establish persistence of the Floquet gap about a nonlinear periodic equilibrium.",
+      "related_lean": [],
+      "related_papers": [
+        "papers/e61-pattern-formation-threshold/main.tex"
+      ],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC13",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "Finite Fourier-mode leakage is relevant but not yet a quantitative uniform interband energy-transfer theorem.",
+      "related_lean": [
+        "lean/MathProofs/FourierLeakage.lean"
+      ],
+      "related_papers": [
+        "papers/finite-fourier-coordinate-subspace-noninvariance/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.FourierLeakage.noninvariance"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC14",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "The exact-sphere Fourier support nonexistence theorem is narrower than exponential spatial localization plus compact annular spectral support.",
+      "related_lean": [
+        "lean/MathProofs/FourierShellL2.lean"
+      ],
+      "related_papers": [
+        "papers/isolated-fourier-shell-no-l2-bound-state/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.FourierShell.shell_theorem"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC15",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "direct_scope_to_review",
+      "scope_assessment": "The manuscript inventory records a classification of finite Fourier coordinate subspaces for the cubic-quintic torus flow. Audit exact GC15 equivalence before marking resolved.",
+      "related_lean": [
+        "lean/MathProofs/FourierLeakage.lean",
+        "lean/MathProofs/FourierLeakageWellPosed.lean"
+      ],
+      "related_papers": [
+        "papers/finite-fourier-coordinate-subspace-noninvariance/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.FourierLeakage.classification"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC16",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "direct_scope_to_review",
+      "scope_assessment": "Strict binding is proved for a sufficient range 0<m≤m_B; GC16 asks which masses satisfy it in the entire allowed range.",
+      "related_lean": [
+        "lean/MathProofs/StrictBinding.lean",
+        "lean/MathProofs/NegativeEnergy.lean"
+      ],
+      "related_papers": [
+        "papers/strict-subadditivity-fourth-order-cubic-quintic/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.StrictBinding.strict_binding"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC17",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "Existence/compactness of constrained minimizers does not prove uniqueness modulo translation and phase.",
+      "related_lean": [
+        "lean/MathProofs/WholeSpaceMinimizers.lean"
+      ],
+      "related_papers": [
+        "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.WholeSpace.exists_minimizer"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC18",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "Minimizer existence alone does not provide radial symmetry, symmetry breaking or an exact transition mass.",
+      "related_lean": [
+        "lean/MathProofs/WholeSpaceMinimizers.lean"
+      ],
+      "related_papers": [
+        "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex"
+      ],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC19",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "direct_scope_to_review",
+      "scope_assessment": "Minimizing-sequence compactness is proved in a sufficient mass interval; GC19 asks for the exact full mass set and counterexamples elsewhere.",
+      "related_lean": [
+        "lean/MathProofs/WholeSpaceMinimizers.lean"
+      ],
+      "related_papers": [
+        "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.WholeSpace.compactness"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC20",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "Band-pass gradient-flow dissipation is a related but distinct functional from GC20's metastable torus energy.",
+      "related_lean": [],
+      "related_papers": [
+        "papers/band-pass-amplitude-negative-gradient-flow/main.tex"
+      ],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC21",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "One constrained complex-scalar model and UV examples do not classify all nondegenerate real polynomial Lagrangians.",
+      "related_lean": [
+        "lean/MathProofs/S004ConstraintCount.lean",
+        "lean/MathProofs/UVIllPosedness.lean"
+      ],
+      "related_papers": [
+        "papers/s004-complex-scalar-constraint-count/main.tex",
+        "papers/uv-sobolev-ill-posedness-fourth-order-wave/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.S004.Hphys_unbounded_below"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC22",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "A specific Sobolev ill-posed PDE does not establish an algebraic if-and-only-if criterion for the entire GC22 symbol class.",
+      "related_lean": [
+        "lean/MathProofs/UVIllPosedness.lean",
+        "lean/MathProofs/UVWholeSpace.lean"
+      ],
+      "related_papers": [
+        "papers/uv-sobolev-ill-posedness-fourth-order-wave/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.UVIllPosed.wave_whole_unbounded"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC23",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "Finite-wavenumber dispersion selection does not establish positive canonical Hamiltonian or minimal derivative order.",
+      "related_lean": [
+        "lean/MathProofs/DispersionMinimum.lean"
+      ],
+      "related_papers": [
+        "papers/exact-positive-wavenumber-minimum/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.Dispersion.exact_positive_wavenumber_minimum"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC24",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "S004 concerns a different complex scalar model, not automatically GC24's real scalar with (Box φ)^2 and arbitrary V.",
+      "related_lean": [
+        "lean/MathProofs/S004ConstraintCount.lean"
+      ],
+      "related_papers": [
+        "papers/s004-complex-scalar-constraint-count/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.S004.constraint_count"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC25",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "Known constraint and UV obstructions do not construct a ghost-free low-frequency parent theory for a specified effective branch.",
+      "related_lean": [
+        "lean/MathProofs/S004ConstraintCount.lean",
+        "lean/MathProofs/UVIllPosedness.lean"
+      ],
+      "related_papers": [
+        "papers/s004-complex-scalar-constraint-count/main.tex",
+        "papers/uv-sobolev-ill-posedness-fourth-order-wave/main.tex"
+      ],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC26",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "direct_scope_to_review",
+      "scope_assessment": "F09 proves supporting rank/nullity bounds but the frozen determinant, full derivative identification and local level-set proposition remain open in the recorded formalization.",
+      "related_lean": [
+        "lean/MathProofs/V18FullForward.lean",
+        "lean/MathProofs/V18MiddleClipped.lean",
+        "lean/MathProofs/ExactSensitivityNullity.lean"
+      ],
+      "related_papers": [
+        "papers/sm-v18-local-identifiability-obstruction/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.V18Forward.local_identifiability"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC27",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "The underdetermined 11-observation model does not prove a minimal locally identifying set of 31-parameter observations.",
+      "related_lean": [
+        "lean/MathProofs/V18FullForward.lean",
+        "lean/MathProofs/ExactSensitivityNullity.lean"
+      ],
+      "related_papers": [
+        "papers/sm-v18-local-identifiability-obstruction/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.V18Forward.jacobian"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC28",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "Stationary map noninjectivity with specific boundary data is not a classification of Kε fibers on T² or generic infinite-dimensionality.",
+      "related_lean": [
+        "lean/MathProofs/M6BClosureTheorem.lean",
+        "lean/MathProofs/M6BStationaryTheorem.lean"
+      ],
+      "related_papers": [
+        "papers/m6b-nonlinear-curvature-nonuniqueness/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.M6B.manuscript_stationary_noninjectivity"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC29",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "The F09 Jacobian obstruction does not yield a sharp uniform Hölder inverse estimate on an identifiable compact subset.",
+      "related_lean": [
+        "lean/MathProofs/V18FullForward.lean"
+      ],
+      "related_papers": [
+        "papers/sm-v18-local-identifiability-obstruction/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.V18Forward.local_identifiability"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC30",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "unmapped",
+      "scope_assessment": "No fourth-order partial-data boundary spectral inverse-uniqueness theorem mapped; clarify measurements and test isospectrality.",
+      "related_lean": [],
+      "related_papers": [],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC31",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "A linear pattern instability threshold does not classify the nonlinear Swift–Hohenberg attractor.",
+      "related_lean": [],
+      "related_papers": [
+        "papers/e61-pattern-formation-threshold/main.tex"
+      ],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC32",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "A linear threshold cannot establish stripe coarsening or nonlinear wavelength-changing defects.",
+      "related_lean": [],
+      "related_papers": [
+        "papers/e61-pattern-formation-threshold/main.tex"
+      ],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC33",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "unmapped",
+      "scope_assessment": "No matched persistence theorem for stripes under bounded stationary disorder.",
+      "related_lean": [],
+      "related_papers": [],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC34",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "unmapped",
+      "scope_assessment": "No theorem for phase-dislocation nucleation/annihilation identified; specify a defect observable that handles zeros.",
+      "related_lean": [],
+      "related_papers": [],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC35",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "Linear threshold analysis does not prove nonlinear infinite-domain stripe-wavelength selection.",
+      "related_lean": [],
+      "related_papers": [
+        "papers/e61-pattern-formation-threshold/main.tex"
+      ],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC36",
+      "issue_number": 57,
+      "issue_scope": "milestone",
+      "relationship": "unmapped",
+      "scope_assessment": "Existing GC36 issue #57 seeks the dynamical knot model and stability theorem; no exact same-model proof mapped.",
+      "related_lean": [],
+      "related_papers": [],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC37",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "direct_scope_to_review",
+      "scope_assessment": "Existence over a nontrivial continuous mass interval suggests mass non-discreteness in the same parameter regime. Check GC37's quantifiers and distinguish frequencies.",
+      "related_lean": [
+        "lean/MathProofs/WholeSpaceMinimizers.lean"
+      ],
+      "related_papers": [
+        "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.WholeSpace.exists_minimizer"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC38",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "unmapped",
+      "scope_assessment": "No matching winding-conservation Lean theorem identified; first prove invariance while the field stays nonvanishing.",
+      "related_lean": [],
+      "related_papers": [],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC39",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "unmapped",
+      "scope_assessment": "No rigorous separated-soliton effective interaction law with remainder estimate identified.",
+      "related_lean": [],
+      "related_papers": [],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC40",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "unmapped",
+      "scope_assessment": "No theorem for Hopf-degree change under a smooth Skyrme-type energy flow mapped.",
+      "related_lean": [],
+      "related_papers": [],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC41",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "unmapped",
+      "scope_assessment": "No decidability/undecidability result for the specified encoded PDE stability problem identified.",
+      "related_lean": [],
+      "related_papers": [],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC42",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "unmapped",
+      "scope_assessment": "No tight bit-complexity theorem for certified rational Galerkin evolution identified.",
+      "related_lean": [],
+      "related_papers": [],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC43",
+      "issue_number": 58,
+      "issue_scope": "milestone",
+      "relationship": "unmapped",
+      "scope_assessment": "Existing GC43 issue #58 scopes reversible radius-one wave-cell universality; no exact same-model Lean proof mapped here.",
+      "related_lean": [],
+      "related_papers": [],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC44",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "unmapped",
+      "scope_assessment": "No Ω(T) sequential lower-bound theorem for the exact GC43 automaton identified.",
+      "related_lean": [],
+      "related_papers": [],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC45",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "unmapped",
+      "scope_assessment": "No proven optimal precision versus time/noise bound for certified nonlinear wave computation mapped.",
+      "related_lean": [],
+      "related_papers": [],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC46",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "direct_scope_to_review",
+      "scope_assessment": "F01 inventories global H² well-posedness, continuous dependence, mass/energy conservation for the exact R² flow. Audit all GC46 clauses and trusted assumptions before declaring completion.",
+      "related_lean": [
+        "lean/MathProofs/CubicQuinticFlow.lean",
+        "lean/MathProofs/OrbitalStability.lean"
+      ],
+      "related_papers": [
+        "papers/orbital-stability-fourth-order-cubic-quintic/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.Sobolev.global_wellposed",
+        "ReyesMath.Sobolev.continuous_dependence",
+        "ReyesMath.Sobolev.conservation"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC47",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "Compactness for energy-minimizing sequences does not imply the general bounded H² trichotomy of GC47.",
+      "related_lean": [
+        "lean/MathProofs/WholeSpaceMinimizers.lean"
+      ],
+      "related_papers": [
+        "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.WholeSpace.compactness"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC48",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "Related analytic spectral papers do not constitute a Lean formalized L² semigroup and resolvent theorem for GC48.",
+      "related_lean": [],
+      "related_papers": [
+        "papers/e61-pattern-formation-threshold/main.tex",
+        "papers/band-selective-green-kernel-bound/main.tex"
+      ],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC49",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "Compactness on a sufficient mass range does not settle the universal claim or provide a failing-mass counterexample.",
+      "related_lean": [
+        "lean/MathProofs/WholeSpaceMinimizers.lean"
+      ],
+      "related_papers": [
+        "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.WholeSpace.compactness"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC50",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "unmapped",
+      "scope_assessment": "No verified soundness theorem for a rational Galerkin numerical-certificate parser identified.",
+      "related_lean": [],
+      "related_papers": [],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC51",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "Orbital stability near minimizers is not long-time soliton resolution with radiation and asymptotic completeness.",
+      "related_lean": [
+        "lean/MathProofs/OrbitalStability.lean"
+      ],
+      "related_papers": [
+        "papers/orbital-stability-fourth-order-cubic-quintic/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.OrbitalStability.orbital_stability"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC52",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "unmapped",
+      "scope_assessment": "No rigorous microscopic Hamiltonian lattice to fourth-order envelope limit mapped.",
+      "related_lean": [],
+      "related_papers": [],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC53",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "direct_scope_to_review",
+      "scope_assessment": "Binding, minimizer existence and stability in a sufficient regime do not give the sharp multidimensional parameter classification or universal one-scalar threshold.",
+      "related_lean": [
+        "lean/MathProofs/StrictBinding.lean",
+        "lean/MathProofs/WholeSpaceMinimizers.lean",
+        "lean/MathProofs/OrbitalStability.lean"
+      ],
+      "related_papers": [
+        "papers/strict-subadditivity-fourth-order-cubic-quintic/main.tex",
+        "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex",
+        "papers/orbital-stability-fourth-order-cubic-quintic/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.StrictBinding.strict_binding",
+        "ReyesMath.WholeSpace.main",
+        "ReyesMath.OrbitalStability.main"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC54",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "A free Fourier-shell L² obstruction does not classify perturbed-operator threshold resonances, weighted resolvents or decay.",
+      "related_lean": [
+        "lean/MathProofs/FourierShellL2.lean"
+      ],
+      "related_papers": [
+        "papers/isolated-fourier-shell-no-l2-bound-state/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.FourierShell.shell_theorem"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC55",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "Existing binding and minimizer results do not determine scaling-universal critical exponents across parameterized energy families.",
+      "related_lean": [
+        "lean/MathProofs/StrictBinding.lean",
+        "lean/MathProofs/WholeSpaceMinimizers.lean"
+      ],
+      "related_papers": [
+        "papers/strict-subadditivity-fourth-order-cubic-quintic/main.tex",
+        "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex"
+      ],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC56",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "Fixed-mass minimizer existence is not a global stationary-branch bifurcation classification.",
+      "related_lean": [
+        "lean/MathProofs/WholeSpaceMinimizers.lean"
+      ],
+      "related_papers": [
+        "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex"
+      ],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC57",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "Deterministic gradient-flow dissipation does not provide stochastic first-exit asymptotics.",
+      "related_lean": [],
+      "related_papers": [
+        "papers/band-pass-amplitude-negative-gradient-flow/main.tex"
+      ],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC58",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "One-component variational minimizers do not establish two-component coexistence or phase separation under coupling.",
+      "related_lean": [
+        "lean/MathProofs/WholeSpaceMinimizers.lean"
+      ],
+      "related_papers": [
+        "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex"
+      ],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC59",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "unmapped",
+      "scope_assessment": "No nonlinear regional observability/control theorem identified for GC59.",
+      "related_lean": [],
+      "related_papers": [],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC60",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "Continuum well-posedness does not quantify spectral Galerkin errors or maximum approximation time.",
+      "related_lean": [
+        "lean/MathProofs/CubicQuinticFlow.lean"
+      ],
+      "related_papers": [
+        "papers/orbital-stability-fourth-order-cubic-quintic/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.Sobolev.global_wellposed"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC61",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "Local stability near minimizing orbits does not establish formation from nonperturbative initial data.",
+      "related_lean": [
+        "lean/MathProofs/OrbitalStability.lean"
+      ],
+      "related_papers": [
+        "papers/orbital-stability-fourth-order-cubic-quintic/main.tex"
+      ],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC62",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "unmapped",
+      "scope_assessment": "No transverse homoclinic or transport-barrier theorem identified for the specified finite Hamiltonian system.",
+      "related_lean": [],
+      "related_papers": [],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC63",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "unmapped",
+      "scope_assessment": "No specific finite oscillator network thermodynamic computing theorem mapped in the mathematics repository.",
+      "related_lean": [],
+      "related_papers": [],
+      "anchor_declarations": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC64",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "One-model sensitivity results do not identify discrimination thresholds between two independently fixed theories.",
+      "related_lean": [
+        "lean/MathProofs/V18FullForward.lean"
+      ],
+      "related_papers": [
+        "papers/sm-v18-local-identifiability-obstruction/main.tex"
+      ],
+      "anchor_declarations": [
+        "ReyesMath.V18Forward.jacobian"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC65",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relationship": "adjacent_foundation",
+      "scope_assessment": "Linear pattern thresholds do not establish a nonlinear inertial manifold or its Lean-verified reduced dynamics.",
+      "related_lean": [],
+      "related_papers": [
+        "papers/e61-pattern-formation-threshold/main.tex"
+      ],
+      "anchor_declarations": [],
       "correspondence": "not_audited"
     }
   ]
