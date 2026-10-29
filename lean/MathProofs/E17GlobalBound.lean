@@ -27,7 +27,8 @@ theorem arbitrary_alpha_bound {ε : ℝ} (hε : 0 < ε) (α : ℝ) (z : ℂ) :
     ‖E26.Rε ε α z‖ ≤
       max 1 (Real.exp (2 * |α|) / ε ^ 2) := by
   rw [E26.norm_Rε hε]
-  have hden : 0 < ‖z‖ ^ 2 + ε ^ 2 * Real.exp (-2 * α * ‖z‖ ^ 2) := by positivity
+  have hden : 0 < ‖z‖ ^ 2 + ε ^ 2 * Real.exp (-2 * α * ‖z‖ ^ 2) :=
+      le_add_of_nonneg_right (by positivity)
   by_cases hz : ‖z‖ ≤ 1
   · have hz2 : ‖z‖ ^ 2 ≤ 1 := by nlinarith [norm_nonneg z]
     have he : -2 * |α| ≤ -2 * α * ‖z‖ ^ 2 := by
