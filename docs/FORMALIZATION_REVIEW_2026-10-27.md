@@ -1,6 +1,6 @@
 # Formalization review — 2026-10-27
 
-The maintained library contains **86 project modules and 1,673 source theorem/lemma
+The maintained library contains **88 project modules and 1,697 source theorem/lemma
 declarations**, including private lemmas. **13 of the 14 original manuscripts are
 complete** under the manifest's manuscript-wide criterion. F09 remains partial.
 The declaration count is an inventory, not a measure of mathematical novelty or
@@ -80,7 +80,7 @@ All unqualified declaration names below are in the `ReyesMath` namespace.
 | 10 | S004 constraint count | [`S004.constraint_count`](../lean/MathProofs/S004ConstraintCount.lean) | [PASS][review-ci] | Complete | None for the regular fixed-background sector |
 | 11 | Weighted phase locking | [`phase_locking_exact_minimum`](../lean/MathProofs/PhaseLockingContinuous.lean) | [PASS][review-ci] | Complete | None |
 | 12 | Global scalar-metric obstruction | [`ManifoldScalarMetric.main`](../lean/MathProofs/ManifoldScalarMetric.lean) | [PASS][review-ci] | Complete | None for the positive-sign tensor construction |
-| 13 | Spectral identifiability | [`V18Forward.local_identifiability`, `null_direction`](../lean/MathProofs/V18FullForward.lean) | [PASS][review-ci] | Supporting proofs verified | Selected-block identification and exact full-map rank, conditional nonlinear local level-set theorem |
+| 13 | Spectral identifiability | [`V18Forward.local_identifiability`, `null_direction`](../lean/MathProofs/V18FullForward.lean) | [PASS][review-ci] | Supporting proofs verified | Conditional nonlinear C¹ local level-set theorem |
 | 14 | Fourier-shell exclusion | [`FourierShell.shell_theorem`, `helmholtz`, `poly_dispersion`, `packets`](../lean/MathProofs/FourierShellL2.lean) | [PASS][review-ci] | Complete | None for the F10 manuscript statements |
 
 ## Exact remaining F09 work
@@ -100,17 +100,23 @@ with the full-parameter smooth formulas. `V18Frechet` proves
 `hasFDerivAt_observed_frozen`, `hasFDerivAt_observed_near_frozen`, and
 `jacobian_frozen_eq`, with every active parameter retained.
 
-The next analytic obligation is to identify the selected eleven-column
-restriction of this verified derivative with the 3+5+3 block matrix, including
-all cross-sector entries, and deduce exact rank eleven. Nonsingularity of
-separately defined matrices is insufficient.
+`V18SelectedJacobian.selectedMinor_frozen_eq` now identifies all 121 entries
+of the eleven-column restriction of this verified derivative with the
+3+5+3 block matrix. All six cross-sector blocks vanish at the verified local
+branches; in particular, the heavy inner light floor removes the light-to-heavy
+coupling. `V18Rank.selectedMinor_det_ne_zero`, `jacobian_rank`,
+`jacobian_nullity`, and `jacobian_surjective` prove actual selected-minor
+nonsingularity, full derivative rank 11, kernel dimension 20, and surjectivity.
+The generic block argument is packaged as matrix invertibility before concrete
+instantiation, avoiding expansion of the eleven-element permutation list.
+These are local Lean build results; the checkpoint is submitted to CI.
 
 The arithmetic obligation is discharged by the unconditional theorem
 `V18MiddleJacobian.middle_det_ne_zero`. Its stronger bound theorem proves
 `18,000,000 < middle.det < 24,000,000`. The proof checks ten trigonometric
 enclosures and a 60-term exact determinant expansion; Python only generates
 Lean proof scripts and supplies no assumptions. The local targeted Lean build
-passes on v4.23.0. The full-model rank-11/nullity-20 theorem still requires the
+passes on v4.23.0. The full-model rank-11/nullity-20 theorem now follows from the
 selected-block identification above.
 The manuscript's separate conditional C¹ local level-set proposition still
 requires a formal application of the implicit-function/submersion theorem.

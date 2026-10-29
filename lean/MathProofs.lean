@@ -82,3 +82,6 @@ import MathProofs.M6BDimensionalField
 import MathProofs.V18BranchBounds
 import MathProofs.V18Regularity
 import MathProofs.V18Frechet
+
+import MathProofs.V18SelectedJacobian
+import MathProofs.V18Rank
