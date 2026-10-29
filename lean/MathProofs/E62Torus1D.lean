@@ -32,7 +32,9 @@ actual coefficients, not just a stipulated summable sequence. -/
 theorem coefficients_summable
     (f : Lp ℂ 2 (AddCircle.haarAddCircle (T := T))) :
     Summable (fun n : ℤ => ‖coefficients f n‖ ^ 2) := by
-  exact (hasSum_sq_fourierCoeff f).summable
+  have hs := (lp.hasSum_norm (by norm_num)
+    ((fourierBasis (T := T)).repr f)).summable
+  simpa [coefficients, fourierBasis_repr] using hs
 
 /-- A nonzero torus L² class has a nonzero actual Fourier
 coefficient. This uses reconstruction from Mathlib's complete
