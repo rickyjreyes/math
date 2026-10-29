@@ -4,11 +4,11 @@
 
 **An evolving, open-source corpus of 300 mathematical research candidates in 12 subject folders.** GC01–GC65 preserve existing formal question statements; GC66–GC300 are newly outlined problems awaiting rigorous mathematical scoping and prior-art review.
 
-The Reyes Problem Repository is a living, version-controlled research collection built around **GitHub, human collaboration, LLM-assisted exploration, and Lean 4 proof checking**. Problems can grow, branch, be corrected, or be resolved as evidence develops. Its questions connect nonlinear PDEs, variational analysis, spectral geometry, topological fields, computation, and formal verification. No generated conjecture becomes a theorem merely because an LLM proposed it.
+The Reyes Problem Repository is a living, version-controlled research collection built around **GitHub issues, research pull requests, existing Lean 4 proofs, optional mathematical papers, and an open invitation to contribute**. The research program continues regardless of outside participation. Problems can grow, branch, be corrected, or be resolved as evidence develops. Its questions connect nonlinear PDEs, variational analysis, spectral geometry, topological fields, computation, and formal verification. No generated conjecture becomes a theorem merely because an LLM proposed it.
 
 **[Browse all 300 questions](./ROADMAP_300.md)** · **[12 research folders](./problems/README.md)** · **[Foundational shortlist](./FOUNDATIONAL_SHORTLIST.md)** · **[Original 65 formal problems](./FORMAL_PROBLEMS.md)** · **[Live research status](./STATUS.md)** · **[Five flagship dossiers](#start-here-five-questions-worth-exploring)** · **[Candidate notebook](./NOTEBOOK.md)** · **[How to contribute](./CONTRIBUTING.md)**
 
-**[Screening and editorial method](./METHOD.md)** · [Initial literature ledger](./LITERATURE.md) · [Flagship screening](./SCREENING.md) · [Existing papers](../papers) · [Lean 4 source](../lean/MathProofs) · [Submit a research contribution](https://github.com/rickyjreyes/math/issues/new?template=grand_challenge.yml)
+**[Workflow and proof contract](./WORKFLOW.md)** · **[Existing Lean and paper adoption](./EXISTING_WORK.md)** · **[Screening and editorial method](./METHOD.md)** · [Initial literature ledger](./LITERATURE.md) · [Flagship screening](./SCREENING.md) · [Existing papers](../papers) · [Lean 4 source](../lean/MathProofs) · [Submit a research contribution](https://github.com/rickyjreyes/math/issues/new?template=grand_challenge.yml)
 
 > [!IMPORTANT]
 > **Research status:** This is a proposed challenge catalogue, **not** an established list of unsolved problems comparable in standing to the Millennium Prize Problems. No prizes are offered. Novelty and open status have not been established through comprehensive literature review. Some statements have partial results or counterexamples; others require sharper assumptions. See [research standards](#what-counts-as-a-solution).
@@ -18,6 +18,22 @@ The Reyes Problem Repository is a living, version-controlled research collection
 
 ---
 
+
+## Research like an open-source software project
+
+**Each mathematical research task belongs in a GitHub issue, contributions arrive through PRs, and Lean checks the exact formal theorem.** Existing mathematics is respected: no proof or manuscript needs to be copied, moved, reopened or rewritten to join this workflow. Papers are optional, but claims described as Lean verified must match the underlying theorem and its assumptions.
+
+- **Find existing work first.** The [adoption inventory](./EXISTING_WORK.md) links the original five GC research issues to related existing proof modules and manuscripts, without treating narrower results as full solutions.
+- **Choose an existing or carefully scoped issue.** An unreviewed GC entry is not automatically a formally stated open problem. Search for existing GC and Lean formalization issues before creating a duplicate. [Preview a draft issue locally](./WORKFLOW.md).
+- **Propose a solution by PR.** Identify the exact theorem or counterexample and its assumptions, Lean declaration, successful existing CI run, and what remains unresolved. A milestone issue may close while its parent GC remains open.
+- **Publish when useful.** Link an optional paper with its exact claim reference. Clearly identify any analytical argument, simulation or physical interpretation that was not established by the Lean theorem.
+- **Credit the contributor.** Original and external contributors retain attribution for their results; disproofs and corrections advance the research program too.
+
+**Start here:** [Issue, PR, Lean and paper contract](./WORKFLOW.md) · [Existing research adoption](./EXISTING_WORK.md) · [Contribution guide](./CONTRIBUTING.md) · [Open a scoped GC issue](https://github.com/rickyjreyes/math/issues/new?template=gc_problem.yml) · [Submit a research finding](https://github.com/rickyjreyes/math/issues/new?template=grand_challenge.yml).
+
+**Non-regression rule:** Formal verification through the GC process applies to newly claimed GC resolutions; it does not retroactively invalidate or rewrite any earlier manuscript, theorem, or unrelated research issue.
+
+---
 ## Start here: five questions worth exploring
 
 ### [**GC06 · Can a wave confine itself?**](./FORMAL_PROBLEMS.md#gc06-self-confinement-criteria)
@@ -305,7 +321,7 @@ To resolve a mathematical problem:
 1. **State it precisely.** Freeze the equation, function space, domain, parameter ranges, quantifiers, and meaning of stability or computation.
 2. **Check the literature and attack it.** Identify closest known results, inspect special cases, seek counterexamples, and distinguish genuine gaps from already settled questions.
 3. **Prove or refute the claim.** Give a reproducible mathematical argument with explicit hypotheses. A correct counterexample is a valid resolution.
-4. **Formalize when feasible.** Link Lean 4 source to the exact theorem being claimed, without treating formal verification as evidence of novelty or physical realization.
+4. **Verify GC completion in Lean.** For a newly claimed GC issue resolution, link the exact Lean theorem or counterexample, a successful full Lean build, and a reviewed correspondence to the issue's frozen acceptance criteria. Preliminary and partial research can be shared without calling the GC resolved.
 5. **Document the result.** Record the theorem or counterexample, assumptions, limitations, and relevant numerical or experimental checks in a linked paper or issue.
 
 ### Want to work on one?

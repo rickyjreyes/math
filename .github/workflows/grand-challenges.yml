@@ -12,6 +12,8 @@ on:
     paths:
       - "reyes-problem-repository/**"
       - ".github/ISSUE_TEMPLATE/grand_challenge.yml"
+      - ".github/ISSUE_TEMPLATE/gc_problem.yml"
+      - ".github/PULL_REQUEST_TEMPLATE.md"
       - ".github/workflows/grand-challenges.yml"
   workflow_dispatch:
 

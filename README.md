@@ -6,6 +6,8 @@ A collection of mathematical manuscripts on **fourth-order partial differential 
 
 Results are organized by mathematical subject rather than by a single overarching physical interpretation. **Analytical proofs, Lean-checked statements, and physical claims are distinct levels of evidence.**
 
+**Open research invitation:** [The Reyes Problem Repository](reyes-problem-repository/README.md) organizes 300 proposed questions as a GitHub issue and pull-request research workflow. [Its proof contract](reyes-problem-repository/WORKFLOW.md) links, rather than replaces, the existing Lean declarations and papers. Researchers may contribute verified theorems or counterexamples with full attribution; ongoing work does not depend on outside participation.
+
 **Explore:** [The Reyes Problem Repository](reyes-problem-repository/README.md) · [Complete manuscript catalogue](CONTENTS.md) · [Compiled PDFs](preprints/) · [Overview](overview.pdf) · [Lean formalization status](lean/formalization.yaml) · [Revision history](history.md)
 
 ## Selected mathematical results
