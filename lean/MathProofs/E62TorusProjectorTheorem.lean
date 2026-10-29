@@ -73,6 +73,7 @@ theorem selectedCoefficients_add_complement (S : Set (d → ℤ))
     selectedCoefficients S f + selectedCoefficients Sᶜ f = f := by
   apply Subtype.ext
   funext k
+  rw [lp.coeFn_add, Pi.add_apply]
   change (if k ∈ S then f k else 0) +
       (if k ∈ Sᶜ then f k else 0) = f k
   by_cases hk : k ∈ S <;> simp [hk]
