@@ -46,7 +46,8 @@ jobs:
             MathProofs/E26SeparatedL2.lean \
             MathProofs/E57WholeSpaceDamping.lean \
             MathProofs/E57SemigroupSymbol.lean \
-            MathProofs/E16ModalPower.lean; then exit 1; fi
+            MathProofs/E16ModalPower.lean \
+            MathProofs/E61WholeSpaceGrowth.lean; then exit 1; fi
       - name: Kernel check E16 exact modal power dominance
         run: lake build MathProofs.E16ModalPower
       - name: Kernel check E62 infinite-mode dependency first
@@ -57,6 +58,8 @@ jobs:
         run: lake build MathProofs.E62ContinuumL2
       - name: Kernel check whole-space E58 Fourier Green resolvent
         run: lake build MathProofs.E58WholeSpaceL2
+      - name: Kernel check E61 whole-space growth bound
+        run: lake build MathProofs.E61WholeSpaceGrowth
       - name: Kernel check E57 exact Fourier semigroup symbol
         run: lake build MathProofs.E57SemigroupSymbol
       - name: Kernel check E57 continuum L2 contraction
