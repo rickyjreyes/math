@@ -54,4 +54,6 @@ jobs:
             MathProofs.E62Discrete MathProofs.E58Sharpness \
             MathProofs.E62Projector MathProofs.E62Continuous \
             MathProofs.SpectralSharpness MathProofs.E26L2 \
-            MathProofs.E62Torus1D MathProofs.E62TorusND
+            MathProofs.E62Torus1D MathProofs.E62TorusND \
+            MathProofs.E62ContinuumL2 MathProofs.E58WholeSpaceL2 \
+            MathProofs.E62ProjectorL2
