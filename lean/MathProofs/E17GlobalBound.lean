@@ -63,9 +63,10 @@ theorem arbitrary_alpha_bound {ε : ℝ} (hε : 0 < ε) (α : ℝ) (z : ℂ) :
         ‖z‖ / ‖z‖ ^ 2 :=
       div_le_div_of_nonneg_left (norm_nonneg z) (by positivity) hLower
     have hEq : ‖z‖ / ‖z‖ ^ 2 = (‖z‖)⁻¹ := by
-      field_simp
+      field_simp [ne_of_gt hz0]
     have hB : (‖z‖)⁻¹ ≤ 1 := by
-      exact inv_le_one₀ (by linarith) hz1.le
+      simpa only [one_div, inv_one] using
+        (one_div_le_one_div_of_le (by norm_num : (0 : ℝ) < 1) hz1.le)
     exact (hA.trans (by rw [hEq]; exact hB)).trans (le_max_left _ _)
 
 end E17GlobalBound
