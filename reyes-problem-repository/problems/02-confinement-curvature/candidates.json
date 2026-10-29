@@ -1,0 +1,344 @@
+[
+  {
+    "id": "GC82",
+    "title": "Curvature energy coercivity",
+    "question": "For the regularized curvature functional in GC08, determine whether adding its squared integral to a fourth-order wave energy yields coercivity modulo symmetries.",
+    "first_test": "Prove a lower energy bound or construct a bounded-energy escaping sequence.",
+    "area": "02-confinement-curvature",
+    "parent_problems": [
+      "GC06",
+      "GC07",
+      "GC08",
+      "GC09",
+      "GC10",
+      "GC53"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC83",
+    "title": "Zero-amplitude phase defects",
+    "question": "Classify when zeros of a complex wave prevent global phase reconstruction even if the regularized curvature remains bounded.",
+    "first_test": "Construct a nodal counterexample or prove phase recovery under explicit nonvanishing conditions.",
+    "area": "02-confinement-curvature",
+    "parent_problems": [
+      "GC06",
+      "GC07",
+      "GC08",
+      "GC09",
+      "GC10",
+      "GC53"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC84",
+    "title": "Vanishing-regularizer curvature limits",
+    "question": "Determine the distributional limits of the GC08 curvature operator as its regularization epsilon tends to zero for fields with isolated vortices.",
+    "first_test": "Identify possible defect measures and convergence topology.",
+    "area": "02-confinement-curvature",
+    "parent_problems": [
+      "GC06",
+      "GC07",
+      "GC08",
+      "GC09",
+      "GC10",
+      "GC53"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC85",
+    "title": "Curvature and confinement on curved surfaces",
+    "question": "Compare localized minimizers of a fourth-order wave energy on compact surfaces of different Gaussian curvature.",
+    "first_test": "Prove geometric dependence of the lowest localized branch or its absence.",
+    "area": "02-confinement-curvature",
+    "parent_problems": [
+      "GC06",
+      "GC07",
+      "GC08",
+      "GC09",
+      "GC10",
+      "GC53"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC86",
+    "title": "Anisotropic confinement thresholds",
+    "question": "Determine how weak anisotropy in fourth-order dispersion shifts existence and stability thresholds for localized states.",
+    "first_test": "Derive a first-order threshold expansion with uniform error control.",
+    "area": "02-confinement-curvature",
+    "parent_problems": [
+      "GC06",
+      "GC07",
+      "GC08",
+      "GC09",
+      "GC10",
+      "GC53"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC87",
+    "title": "Curvature-induced spectral traps",
+    "question": "Classify curvature-dependent effective potentials on a noncompact waveguide that support isolated bound states below a continuous band.",
+    "first_test": "Prove a sufficient criterion and an optimal counterexample.",
+    "area": "02-confinement-curvature",
+    "parent_problems": [
+      "GC06",
+      "GC07",
+      "GC08",
+      "GC09",
+      "GC10",
+      "GC53"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC88",
+    "title": "Localization under metric perturbations",
+    "question": "Determine whether localized minimizers persist when the Euclidean metric is changed by a small compactly supported perturbation.",
+    "first_test": "Establish variational convergence and stability of minimizers, or failure thereof.",
+    "area": "02-confinement-curvature",
+    "parent_problems": [
+      "GC06",
+      "GC07",
+      "GC08",
+      "GC09",
+      "GC10",
+      "GC53"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC89",
+    "title": "Sharp curvature gradient inequality",
+    "question": "Find the optimal constant in an inequality relating regularized phase curvature to amplitude and H2 norms on a specified domain.",
+    "first_test": "Prove the sharp inequality or give a sequence invalidating it.",
+    "area": "02-confinement-curvature",
+    "parent_problems": [
+      "GC06",
+      "GC07",
+      "GC08",
+      "GC09",
+      "GC10",
+      "GC53"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC90",
+    "title": "Quantitative confinement length scales",
+    "question": "Determine whether a stable minimizer's concentration radius can be bounded above and below by explicit dimensionless parameters.",
+    "first_test": "Prove two-sided bounds or exhibit parameter sequences with divergent width.",
+    "area": "02-confinement-curvature",
+    "parent_problems": [
+      "GC06",
+      "GC07",
+      "GC08",
+      "GC09",
+      "GC10",
+      "GC53"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC91",
+    "title": "Domain geometry and edge confinement",
+    "question": "Determine when boundaries of a smooth domain induce edge-localized fourth-order wave states absent in the whole-space model.",
+    "first_test": "Classify a fixed boundary condition and prove an edge-mode existence or absence theorem.",
+    "area": "02-confinement-curvature",
+    "parent_problems": [
+      "GC06",
+      "GC07",
+      "GC08",
+      "GC09",
+      "GC10",
+      "GC53"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC92",
+    "title": "Curvature closure selection by locality",
+    "question": "Among rotation- and phase-invariant second-order curvature closures, determine whether locality and a fixed conservation law select a finite family.",
+    "first_test": "Classify operators under stated axioms or exhibit an infinite remaining family.",
+    "area": "02-confinement-curvature",
+    "parent_problems": [
+      "GC06",
+      "GC07",
+      "GC08",
+      "GC09",
+      "GC10",
+      "GC53"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC93",
+    "title": "Optimal confinement with fixed curvature budget",
+    "question": "Given a wave energy and an upper bound on integrated curvature, determine the lowest possible localization radius at fixed mass.",
+    "first_test": "Prove attainment or a sharp concentration obstruction.",
+    "area": "02-confinement-curvature",
+    "parent_problems": [
+      "GC06",
+      "GC07",
+      "GC08",
+      "GC09",
+      "GC10",
+      "GC53"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC94",
+    "title": "Geometric confinement under weak disorder",
+    "question": "Determine whether weak bounded variations of the curvature coupling preserve a ground-state localization region.",
+    "first_test": "Establish perturbative existence with explicit disorder thresholds.",
+    "area": "02-confinement-curvature",
+    "parent_problems": [
+      "GC06",
+      "GC07",
+      "GC08",
+      "GC09",
+      "GC10",
+      "GC53"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC95",
+    "title": "Regularized curvature and Sobolev continuity",
+    "question": "Determine optimal Sobolev regularity for continuity of the GC08 curvature map between specified function spaces.",
+    "first_test": "Prove local Lipschitz bounds or construct sequences violating them.",
+    "area": "02-confinement-curvature",
+    "parent_problems": [
+      "GC06",
+      "GC07",
+      "GC08",
+      "GC09",
+      "GC10",
+      "GC53"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC96",
+    "title": "Multiple curvature wells and tunneling",
+    "question": "For two separated geometric traps in a fourth-order operator, derive the asymptotic eigenvalue splitting and localized-mode tunneling rate.",
+    "first_test": "Prove a splitting formula with separation-dependent remainder.",
+    "area": "02-confinement-curvature",
+    "parent_problems": [
+      "GC06",
+      "GC07",
+      "GC08",
+      "GC09",
+      "GC10",
+      "GC53"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC97",
+    "title": "Vortex core energy lower bounds",
+    "question": "Find sharp energy lower bounds for maps with prescribed winding and a regularized phase-curvature penalty.",
+    "first_test": "Prove a winding-dependent bound or construct an unwinding path.",
+    "area": "02-confinement-curvature",
+    "parent_problems": [
+      "GC06",
+      "GC07",
+      "GC08",
+      "GC09",
+      "GC10",
+      "GC53"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC98",
+    "title": "Local curvature data versus global confinement",
+    "question": "Decide whether finite-radius curvature measurements can certify whole-space localization for a restricted wave model.",
+    "first_test": "Construct indistinguishable localized and delocalized states or prove observability.",
+    "area": "02-confinement-curvature",
+    "parent_problems": [
+      "GC06",
+      "GC07",
+      "GC08",
+      "GC09",
+      "GC10",
+      "GC53"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC99",
+    "title": "Dimensional threshold under constrained curvature",
+    "question": "Determine how the critical dimensions for attained constrained minimizers change when a curvature-energy constraint is added.",
+    "first_test": "Establish a dimension-dependent existence threshold or nonattainment construction.",
+    "area": "02-confinement-curvature",
+    "parent_problems": [
+      "GC06",
+      "GC07",
+      "GC08",
+      "GC09",
+      "GC10",
+      "GC53"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC100",
+    "title": "Long-range geometric defects",
+    "question": "Classify whether slowly decaying curvature perturbations create localized spectral modes or only threshold resonances.",
+    "first_test": "Prove a decay-rate phase diagram for a specified defect family.",
+    "area": "02-confinement-curvature",
+    "parent_problems": [
+      "GC06",
+      "GC07",
+      "GC08",
+      "GC09",
+      "GC10",
+      "GC53"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  }
+]
