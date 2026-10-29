@@ -89,3 +89,4 @@ import MathProofs.E26L2
 import MathProofs.E62Torus1D
 import MathProofs.E62TorusND
 import MathProofs.E62ContinuumL2
+import MathProofs.E58WholeSpaceL2
