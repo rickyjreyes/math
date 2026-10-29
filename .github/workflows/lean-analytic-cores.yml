@@ -1,0 +1,147 @@
+name: Lean analytic cores (focused)
+on:
+  pull_request:
+    paths:
+      - 'lean/**'
+      - '.github/workflows/lean-analytic-cores.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  analytic-cores:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: lean
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Lean toolchain
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch pinned Mathlib and its cache
+        run: |
+          lake update
+          lake exe cache get
+      - name: Reject unfinished proof markers
+        run: |
+          if grep -rnE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' \
+            MathProofs/RemainingCores.lean \
+            MathProofs/E16SpectralCore.lean \
+            MathProofs/E62Discrete.lean \
+            MathProofs/E58Sharpness.lean \
+            MathProofs/E62Projector.lean \
+            MathProofs/E62Continuous.lean \
+            MathProofs/SpectralSharpness.lean \
+            MathProofs/E26L2.lean \
+            MathProofs/E62Torus1D.lean \
+            MathProofs/E62TorusND.lean \
+            MathProofs/E62ContinuumL2.lean \
+            MathProofs/E58WholeSpaceL2.lean \
+            MathProofs/E62ProjectorL2.lean \
+            MathProofs/E26HistoricalCounterexample.lean \
+            MathProofs/E17Canonical.lean \
+            MathProofs/E26SeparatedL2.lean \
+            MathProofs/E57WholeSpaceDamping.lean \
+            MathProofs/E57SemigroupSymbol.lean \
+            MathProofs/E16ModalPower.lean \
+            MathProofs/E61WholeSpaceGrowth.lean \
+            MathProofs/E62ProjectionOperator.lean \
+            MathProofs/E62ParsevalProjectorBridge.lean \
+            MathProofs/E62TorusSharpness.lean \
+            MathProofs/E62TorusPhysicalProjector.lean \
+            MathProofs/E62TrigonometricScope.lean \
+            MathProofs/E62TorusProjectorTheorem.lean \
+            MathProofs/E62LebesgueFraction.lean \
+            MathProofs/TorusFourier.lean \
+            MathProofs/SpectralConcentration.lean \
+            MathProofs/RegularizedCurvatureL2.lean \
+            MathProofs/FourierMultiplierL2.lean \
+            MathProofs/E62Certification.lean \
+            MathProofs/E16TorusRemark.lean \
+            MathProofs/E58Certification.lean \
+            MathProofs/E58GreenFunction.lean \
+            MathProofs/E57L2Semigroup.lean \
+            MathProofs/E26Certification.lean \
+            MathProofs/E17GlobalBound.lean \
+            MathProofs/E61ExactNorm.lean; then exit 1; fi
+      - name: Kernel check E57 whole-space L2 operator semigroup law
+        run: lake build MathProofs.E57L2Semigroup
+      - name: Kernel check full E26 historical L2 certification
+        run: lake build MathProofs.E26Certification
+      - name: Kernel check global E17 regularizer bound for arbitrary alpha
+        run: lake build MathProofs.E17GlobalBound
+      - name: Kernel check E61 exact L2 semigroup norm and threshold
+        run: lake build MathProofs.E61ExactNorm
+      - name: Kernel check E16 exact modal power dominance
+        run: lake build MathProofs.E16ModalPower
+      - name: Kernel check E62 infinite-mode dependency first
+        run: lake build MathProofs.E62Discrete
+      - name: Kernel check existing E62 torus one-dimensional and coefficient projector
+        run: lake build MathProofs.E62Projector MathProofs.E62Torus1D
+      - name: Kernel check E62 full physical torus orthogonal projection theorem
+        run: lake build MathProofs.E62TorusProjectorTheorem
+      - name: Kernel check E62 arbitrary Lebesgue-measurable continuum bands
+        run: lake build MathProofs.E62LebesgueFraction
+      - name: Kernel check E62 exact cos-squared nonmonotonic example
+        run: lake build MathProofs.E62TrigonometricScope
+      - name: Kernel check E62 genuine physical torus Fourier projector
+        run: lake build MathProofs.E62TorusPhysicalProjector
+      - name: Kernel check E62 actual torus endpoint sharpness
+        run: lake build MathProofs.E62TorusSharpness
+      - name: Kernel check E62 torus Parseval/projector fraction correspondence
+        run: lake build MathProofs.E62ParsevalProjectorBridge
+      - name: Kernel check bounded E62 spectral projection and self-adjointness
+        run: lake build MathProofs.E62ProjectionOperator
+      - name: Kernel check higher-dimensional torus Fourier Parseval
+        run: lake build MathProofs.E62TorusND
+      - name: Kernel check whole-space E62 masked L2 classes
+        run: lake build MathProofs.E62ContinuumL2
+      - name: Kernel check whole-space E58 Fourier Green resolvent
+        run: lake build MathProofs.E58WholeSpaceL2
+      - name: Kernel check E61 whole-space growth bound
+        run: lake build MathProofs.E61WholeSpaceGrowth
+      - name: Kernel check E57 exact Fourier semigroup symbol
+        run: lake build MathProofs.E57SemigroupSymbol
+      - name: Kernel check E57 continuum L2 contraction
+        run: lake build MathProofs.E57WholeSpaceDamping
+      - name: Kernel check E26 historical denominator counterexample
+        run: lake build MathProofs.E26HistoricalCounterexample
+      - name: Kernel check E26 separated L2 membership
+        run: lake build MathProofs.E26SeparatedL2
+      - name: Kernel check corrected M2 E17 phase covariance
+        run: lake build MathProofs.E17PhaseRegularizer
+      - name: Kernel check true continuum E62 orthogonal projection
+        run: lake build MathProofs.E62ProjectorL2 MathProofs.E17PhaseRegularizer
+      - name: Kernel check torus Fourier analysis (E59, E62 discrete)
+        run: lake build MathProofs.TorusFourier
+      - name: Kernel check whole-space spectral concentration (E16, E62 continuous)
+        run: lake build MathProofs.SpectralConcentration
+      - name: Kernel check E26 regularized curvature quotient
+        run: lake build MathProofs.RegularizedCurvatureL2
+      - name: Kernel check shared L2 Fourier multiplier layer
+        run: lake build MathProofs.FourierMultiplierL2
+      - name: Kernel check E62 certification theorem
+        run: lake build MathProofs.E62Certification
+      - name: Kernel check E16 torus remark
+        run: lake build MathProofs.E16TorusRemark
+      - name: Kernel check E58 sharp resolvent norm and periodic box
+        run: lake build MathProofs.E58Certification
+      - name: Kernel check E58 one-dimensional physical Green function
+        run: lake build MathProofs.E58GreenFunction
+      - name: Kernel check analytic declarations
+        run: |
+          lake build MathProofs.RemainingCores MathProofs.E16SpectralCore \
+            MathProofs.E62Discrete MathProofs.E58Sharpness \
+            MathProofs.E62Projector MathProofs.E62Continuous \
+            MathProofs.SpectralSharpness MathProofs.E26L2 \
+            MathProofs.E62Torus1D MathProofs.E62TorusND \
+            MathProofs.E62ContinuumL2 MathProofs.E58WholeSpaceL2 \
+            MathProofs.E62ProjectorL2 MathProofs.E62ProjectionOperator \
+            MathProofs.E62ParsevalProjectorBridge
