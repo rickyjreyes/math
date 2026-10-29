@@ -38,8 +38,8 @@ theorem summable_selected (c : ι → ℂ) (S : Set ι)
     Summable (fun k => if k ∈ S then ‖c k‖ ^ 2 else 0) := by
   classical
   apply Summable.of_nonneg_of_le
-    (fun k => by split_ifs <;> positivity)
-    (fun k => by split_ifs <;> positivity) hc
+    (fun k => by by_cases hk : k ∈ S <;> simp [hk, sq_nonneg])
+    (fun k => by by_cases hk : k ∈ S <;> simp [hk, sq_nonneg]) hc
 
 theorem selectedEnergy_nonneg (c : ι → ℂ) (S : Set ι) :
     0 ≤ selectedEnergy c S := by
@@ -60,7 +60,20 @@ theorem totalEnergy_split (c : ι → ℂ) (S : Set ι)
             intro k
             by_cases hk : k ∈ S <;> simp [hk]
     _ = selectedEnergy c S + selectedEnergy c Sᶜ := by
-          exact (summable_selected c S hc).tsum_add (summable_selected c Sᶜ hc)
+          have hadd := (summable_selected c S hc).tsum_add
+            (summable_selected c Sᶜ hc)
+          calc
+            _ = (∑' k, if k ∈ S then ‖c k‖ ^ 2 else 0) +
+                (∑' k, if k ∈ Sᶜ then ‖c k‖ ^ 2 else 0) := by
+                  convert hadd using 1 <;>
+                    (try { apply tsum_congr; intro k
+                           by_cases hk : k ∈ S <;> simp [hk] })
+            _ = selectedEnergy c S + selectedEnergy c Sᶜ := by
+                  congr 1 <;> (
+                    unfold selectedEnergy
+                    apply tsum_congr
+                    intro k
+                    by_cases hk : k ∈ S <;> simp [hk])
 
 theorem selectedEnergy_le_total (c : ι → ℂ) (S : Set ι)
     (hc : Summable (fun k => ‖c k‖ ^ 2)) :
