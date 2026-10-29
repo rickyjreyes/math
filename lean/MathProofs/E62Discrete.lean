@@ -147,10 +147,12 @@ theorem zero_field_total_energy :
 
 theorem zero_field_selected_energy (S : Set ι) :
     selectedEnergy (fun _ : ι => (0 : ℂ)) S = 0 := by
+  classical
   simp [selectedEnergy]
 
 theorem zero_field_fraction (S : Set ι) :
     fraction (fun _ : ι => (0 : ℂ)) S = 0 := by
+  classical
   simp [fraction, energyFraction, zero_field_total_energy,
     zero_field_selected_energy]
 
