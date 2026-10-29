@@ -35,7 +35,8 @@ jobs:
             MathProofs/E62Projector.lean \
             MathProofs/E62Continuous.lean \
             MathProofs/SpectralSharpness.lean \
-            MathProofs/E26L2.lean; then exit 1; fi
+            MathProofs/E26L2.lean \
+            MathProofs/E62Torus1D.lean; then exit 1; fi
       - name: Kernel check E62 infinite-mode dependency first
         run: lake build MathProofs.E62Discrete
       - name: Kernel check analytic declarations
@@ -43,4 +44,5 @@ jobs:
           lake build MathProofs.RemainingCores MathProofs.E16SpectralCore \
             MathProofs.E62Discrete MathProofs.E58Sharpness \
             MathProofs.E62Projector MathProofs.E62Continuous \
-            MathProofs.SpectralSharpness MathProofs.E26L2
+            MathProofs.SpectralSharpness MathProofs.E26L2 \
+            MathProofs.E62Torus1D
