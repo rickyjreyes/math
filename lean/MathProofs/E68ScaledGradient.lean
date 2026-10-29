@@ -64,7 +64,9 @@ theorem integral_scaled_gradient_energy
           rw [integral_const_mul]
     _ = (R⁻¹) ^ 2 * (R ^ n *
           (∫ x : EuclideanSpace ℝ (Fin n), ‖fderiv ℝ f x‖ ^ 2)) := by
-          rw [integral_inverse_smul_exact n R hR]
+          have hInt := integral_inverse_smul_exact n R hR
+            (fun z : EuclideanSpace ℝ (Fin n) => ‖fderiv ℝ f z‖ ^ 2)
+          exact congrArg (fun t : ℝ => (R⁻¹) ^ 2 * t) hInt
     _ = R ^ (n - 2) *
           (∫ x : EuclideanSpace ℝ (Fin n), ‖fderiv ℝ f x‖ ^ 2) := by
           have hpow : R ^ n = R ^ (n - 2) * R ^ 2 := by
