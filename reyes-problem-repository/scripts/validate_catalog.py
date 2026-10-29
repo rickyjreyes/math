@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the 50-problem catalogue, using only Python's standard library."""
+"""Validate the 65-problem catalogue, using only Python's standard library."""
 from __future__ import annotations
 
 import json
@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REPO = ROOT.parent
-IDS = [f"GC{i:02d}" for i in range(1, 51)]
+IDS = [f"GC{i:02d}" for i in range(1, 66)]
 STATUSES = {"candidate", "scoping", "literature_checked", "open_verified",
             "partially_resolved", "resolved", "withdrawn"}
 REVIEWS = {"not_reviewed", "initial_review", "focused_review", "independent_review"}
@@ -37,7 +37,7 @@ def check_fences(path: Path) -> None:
 def main() -> None:
     registry = json.loads((ROOT / "problem_registry.json").read_text(encoding="utf-8"))
     entries = registry["entries"]
-    require([e["id"] for e in entries] == IDS, "Registry must contain GC01..GC50 in ascending order")
+    require([e["id"] for e in entries] == IDS, "Registry must contain GC01..GC65 in ascending order")
     formal = (ROOT / "FORMAL_PROBLEMS.md").read_text(encoding="utf-8")
     headings = re.findall(r"^## (GC\d\d): (.+)$", formal, re.MULTILINE)
     require([i for i, _ in headings] == IDS, "Formal statements must have exactly GC01..GC50")
@@ -47,9 +47,10 @@ def main() -> None:
     status = (ROOT / "STATUS.md").read_text(encoding="utf-8")
     valid_anchors = {slug(f"{i}-{title}") for i, title in headings}
     anchors = re.findall(r"FORMAL_PROBLEMS\.md#(gc\d\d-[a-z0-9-]+)", readme)
-    require(set(anchors) == valid_anchors, "README links must cover all 50 problem sections exactly")
-    require(len(re.findall(r"^\| GC\d\d \|", status, re.MULTILINE)) == 50,
-            "STATUS table must have 50 entries")
+    require(set(anchors) == valid_anchors, "README links must cover all 65 problem sections exactly")
+    require(len(set(anchors)) == 65, "Expected 65 unique catalogue links")
+    status_ids = re.findall(r"^\| (GC\d\d) \|", status, re.MULTILINE)
+    require(status_ids == IDS, "STATUS rows must cover GC01..GC65 exactly once, in order")
 
     count_featured = 0
     for entry in entries:
@@ -83,8 +84,8 @@ def main() -> None:
     require((REPO / ".github/ISSUE_TEMPLATE/grand_challenge.yml").is_file(),
             "Missing GitHub issue template")
 
-    print("PASS: 50 statement headings, registry entries, and status rows;")
-    print("      50 anchors, five dossier links, balanced Markdown fences, workflow files.")
+    print("PASS: 65 statement headings, registry entries, and status rows;")
+    print("      65 anchors, five dossier links, balanced Markdown fences, workflow files.")
     print("NOTE: This does not check mathematical validity, novelty, or open status.")
 
 
