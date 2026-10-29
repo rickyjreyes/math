@@ -42,7 +42,7 @@ theorem symbol_norm_le_one (a t kStar : ℝ)
 theorem damped_product_memLp (a t kStar : ℝ)
     (ha : 0 ≤ a) (ht : 0 ≤ t) (f : Sobolev.L2 d) :
     MemLp (fun ξ : Rd => symbol a t kStar ξ * f ξ) 2 volume := by
-  apply MemLp.of_le_mul (Lp.memLp f)
+  apply MemLp.of_le_mul (c := (1 : ℝ)) (Lp.memLp f)
   · exact (symbol_measurable a t kStar).aestronglyMeasurable.mul
       (Lp.aestronglyMeasurable f)
   · filter_upwards [] with ξ
