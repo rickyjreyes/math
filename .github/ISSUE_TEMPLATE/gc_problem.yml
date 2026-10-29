@@ -1,0 +1,74 @@
+name: "GC problem or milestone issue (after adoption review)"
+description: "Open a scoped canonical GC research issue only if an existing issue does not cover the task."
+title: "[GCxx] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template **only after searching** for an existing GC problem or milestone and reviewing relevant Lean modules and papers.
+        No problem is automatically a verified open conjecture. New GC66-GC300 entries are preliminary prompts.
+        [Workflow](https://github.com/rickyjreyes/math/blob/main/reyes-problem-repository/WORKFLOW.md) | [Adoption inventory](https://github.com/rickyjreyes/math/blob/main/reyes-problem-repository/EXISTING_WORK.md)
+  - type: input
+    id: gc
+    attributes:
+      label: "GC problem ID"
+      placeholder: "GC52"
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: "Canonical versioned problem file"
+      placeholder: "https://github.com/rickyjreyes/math/blob/<commit>/reyes-problem-repository/problems/.../GC52.md"
+    validations:
+      required: true
+  - type: dropdown
+    id: scope
+    attributes:
+      label: "Issue scope"
+      options:
+        - "Whole GC problem (full frozen claim)"
+        - "Scoped mathematical milestone (parent GC remains separate)"
+        - "Scoping / prior-art adoption task (not ready for a proof claim)"
+    validations:
+      required: true
+  - type: textarea
+    id: requirements
+    attributes:
+      label: "Frozen mathematical model and acceptance criteria"
+      description: "Give the equation, function spaces, parameters and quantifiers. Number each independent proof-or-counterexample obligation; write SCOPING if still not frozen."
+      placeholder: "1. ... 2. ...
+A complete answer must establish..."
+    validations:
+      required: true
+  - type: textarea
+    id: existing
+    attributes:
+      label: "Known Lean declarations, papers and other issues"
+      description: "Identify exact existing results and their limitations; link related artifacts instead of duplicating them."
+      placeholder: "Known related theorem / declaration and existing issue #..."
+    validations:
+      required: true
+  - type: textarea
+    id: literature
+    attributes:
+      label: "Closest established mathematical results and counterexample tests"
+      description: "If not audited, state 'not reviewed'; do not claim novelty by default."
+    validations:
+      required: true
+  - type: textarea
+    id: review
+    attributes:
+      label: "Lean proof and paper synchronization plan"
+      description: "Identify what theorem would be checked, how scope correspondence will be reviewed, and any optional paper."
+    validations:
+      required: false
+  - type: checkboxes
+    id: guard
+    attributes:
+      label: "Before opening"
+      options:
+        - label: "I searched this repository's existing GC and Lean issues and found no duplicate issue covering this exact task."
+          required: true
+        - label: "I reviewed related published work and existing formalizations, or explicitly identified the necessary review as unfinished work."
+          required: true

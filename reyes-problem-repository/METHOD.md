@@ -10,7 +10,7 @@ This is a **free and open mathematical research workflow**, borrowing useful org
 2. **Candidate research problem:** a mathematical question with a proposed model and falsifiable tests.
 3. **Literature-checked problem:** terms frozen and closest prior work inspected sufficiently to make a qualified scope statement. One or two citations are only an *initial* review.
 4. **Verified open problem:** a narrowly formulated statement not settled by the literature examined, with explicit search scope, date, and independent critical review. This label does not guarantee global novelty.
-5. **Resolved problem:** a full proof, counterexample, impossibility theorem, or established existing result answering the **specific frozen statement**. Lean validation concerns the encoded theorem only.
+5. **Resolved problem:** a full proof, counterexample, impossibility theorem, or established existing result answering the **specific frozen statement**. For any *newly claimed formally completed GC issue*, the [GC proof contract](WORKFLOW.md) additionally requires a Lean-checked result and reviewed issue-to-theorem correspondence. This contract is not retroactive to pre-existing manuscripts.
 
 Do not promote an item by popularity, AI confidence, a graph, a numeric simulation, or passing CI alone.
 
@@ -52,7 +52,7 @@ Use free GitHub issues (one topic per issue), discussions if the repository owne
 
 ### 7. Record resolution
 
-A problem is closed only when its exact version is answered. Store the theorem or counterexample, source, proof assumptions, verification status, and a link to the issue/PR. If a stronger generalization remains, create a **new** problem version rather than quietly changing the goalposts.
+A newly claimed **formally completed GC task** is closed only when its exact frozen issue scope is answered by a Lean-checked result and reviewer-confirmed correspondence. A narrow milestone issue may close even if the larger GC problem remains open. Record the theorem or counterexample, source, proof assumptions, Lean build, correspondence review, and issue/PR. Preserve existing established mathematical results without reclassifying them retroactively. If a stronger generalization remains, create a **new** problem version rather than quietly changing the goalposts.
 
 ## Explicit status transitions
 
@@ -87,3 +87,7 @@ Cite the original article for an earlier theorem, credit the person discovering 
 - **Quality gate:** A plausible prompt cannot become `open_verified` solely because an LLM proposes it, because its computation runs, or because a formal proof of a *different* theorem compiles. Each promotion requires exact hypotheses, prior work, a falsification test, and mathematical review.
 
 Adding more topics is not itself scientific progress. Favor stronger mathematical connections, precise disproofs and new theorems rather than maximizing the number of entries.
+
+## The issue / PR / Lean integration layer
+
+[WORKFLOW.md](WORKFLOW.md) is the canonical non-disruptive contract. [EXISTING_WORK.md](EXISTING_WORK.md) links already-existing source modules and papers to a small pilot of existing GC issues without declaring the broader problems solved. New [completion records](completion_records.json) start empty and require exact Lean declaration, commit, CI and issue-to-theorem review. The workflow supplements existing Lean and paper conventions; it does not relocate, duplicate or modify completed mathematics. Outside participation is welcome but optional, and contributor attribution is preserved.

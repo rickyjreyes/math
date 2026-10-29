@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "description": "Existing GC issue anchors and related pre-existing research artifacts. No record claims verified completion or full correspondence.",
+  "last_reviewed": "2026-10-29",
+  "entries": [
+    {
+      "id": "GC01",
+      "issue_number": 54,
+      "issue_scope": "milestone",
+      "related_lean": [
+        "lean/MathProofs/OrbitalStability.lean"
+      ],
+      "related_papers": [
+        "papers/orbital-stability-fourth-order-cubic-quintic/main.tex"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC06",
+      "issue_number": 55,
+      "issue_scope": "milestone",
+      "related_lean": [
+        "lean/MathProofs/WholeSpaceMinimizers.lean",
+        "lean/MathProofs/StrictBinding.lean"
+      ],
+      "related_papers": [
+        "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex",
+        "papers/strict-subadditivity-fourth-order-cubic-quintic/main.tex"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC11",
+      "issue_number": 56,
+      "issue_scope": "milestone",
+      "related_lean": [
+        "lean/MathProofs/DispersionMinimum.lean"
+      ],
+      "related_papers": [
+        "papers/exact-positive-wavenumber-minimum/main.tex"
+      ],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC36",
+      "issue_number": 57,
+      "issue_scope": "milestone",
+      "related_lean": [],
+      "related_papers": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC43",
+      "issue_number": 58,
+      "issue_scope": "milestone",
+      "related_lean": [],
+      "related_papers": [],
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC08",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "related_lean": [
+        "lean/MathProofs/M6BClosureTheorem.lean"
+      ],
+      "related_papers": [
+        "papers/m6b-nonlinear-curvature-nonuniqueness/main.tex"
+      ],
+      "correspondence": "not_audited"
+    }
+  ]
+}

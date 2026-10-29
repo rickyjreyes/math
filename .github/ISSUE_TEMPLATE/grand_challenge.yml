@@ -1,13 +1,26 @@
 name: "Reyes Problem Repository research contribution"
-description: "Submit a proof, counterexample, prior-art finding, or precise correction for GC01-GC50"
+description: "GC01-GC300: report a proof, counterexample, prior-art result, or scoped task. Search existing GC issues first."
 title: "[GCxx] "
 body:
+  - type: markdown
+    attributes:
+      value: |
+        **Search the existing issues before submitting.** Comment on an existing GC task or link a PR when possible. This form is for a research finding that needs its own issue, not a duplicate canonical GC problem.
+        Existing Lean proofs and papers stay in their original locations. See the [proof workflow](https://github.com/rickyjreyes/math/blob/main/reyes-problem-repository/WORKFLOW.md).
   - type: input
     id: gc_id
     attributes:
-      label: "Challenge ID"
-      description: "Use a valid challenge ID, for example GC08."
-      placeholder: "GC08"
+      label: "GC identifier"
+      description: "Exact ID between GC01 and GC300."
+      placeholder: "GC06"
+    validations:
+      required: true
+  - type: input
+    id: existing_issue
+    attributes:
+      label: "Existing related issue or PR"
+      description: "Link the existing GC issue, related Lean issue or PR. Write none if you've searched and none applies."
+      placeholder: "https://github.com/rickyjreyes/math/issues/55"
     validations:
       required: true
   - type: dropdown
@@ -15,50 +28,52 @@ body:
     attributes:
       label: "Contribution type"
       options:
-        - "Existing result / literature correction"
+        - "Prior mathematical result / literature correction"
         - "Counterexample / impossibility"
-        - "Mathematical proof"
+        - "Partial theorem or proof"
         - "Lean 4 formalization"
+        - "Exact solution with Lean correspondence"
         - "Model or hypothesis correction"
-        - "Numerical falsification test"
-        - "Other research question"
+        - "Numerical or physical falsification"
+        - "Scope / adoption review"
     validations:
       required: true
   - type: textarea
     id: exact
     attributes:
-      label: "Exact statement and hypotheses"
-      description: "Identify the version, model, parameters, spaces, and quantifiers."
-      placeholder: "I address the claim that ... under the assumptions ..."
+      label: "Exact mathematical statement and scope"
+      description: "Cite the GC file and identify the equation, parameter ranges, spaces, quantifiers, version and which obligations are addressed."
+      placeholder: "Theorem under ... This resolves obligation A, but not B or C."
     validations:
       required: true
+  - type: textarea
+    id: existing_work
+    attributes:
+      label: "Prior Lean proofs, papers and existing results"
+      description: "Link existing source modules and manuscripts first. Do not reprove or copy already verified theorems merely to satisfy this issue."
+      placeholder: "Related module: lean/MathProofs/...; paper: papers/...; exact theorem declaration if known."
+    validations:
+      required: false
   - type: textarea
     id: evidence
     attributes:
       label: "Proof, counterexample, or evidence"
-      description: "Provide reproducible derivations, theorem references, links, or source code."
+      description: "Link theorem declarations, proof commits, CI runs, exact earlier publications or reproducible calculations."
     validations:
       required: true
   - type: textarea
-    id: literature
-    attributes:
-      label: "Closest known results"
-      description: "Give citations and explain precisely how this differs, or say if review is incomplete."
-    validations:
-      required: false
-  - type: textarea
     id: limitations
     attributes:
-      label: "Limitations and what is not proved"
-      description: "Distinguish analytic, Lean-verified, numerical, and physical claims."
+      label: "What remains unresolved"
+      description: "Distinguish partial from full results, formal claims from paper discussion, and mathematical from physical evidence."
     validations:
-      required: false
+      required: true
   - type: checkboxes
     id: integrity
     attributes:
-      label: "Research integrity"
+      label: "Integrity and attribution"
       options:
-        - label: "I have stated which exact claim the evidence addresses."
+        - label: "I searched existing issues, Lean sources and papers to avoid duplicate work."
           required: true
-        - label: "I have not presented simulation or unverified novelty as a completed mathematical proof."
+        - label: "I will not present a simulation, a narrower Lean theorem or a paper as verified resolution of a broader claim."
           required: true
