@@ -91,3 +91,4 @@ import MathProofs.E62TorusND
 import MathProofs.E62ContinuumL2
 import MathProofs.E58WholeSpaceL2
 import MathProofs.E62ProjectorL2
+import MathProofs.E26HistoricalCounterexample
