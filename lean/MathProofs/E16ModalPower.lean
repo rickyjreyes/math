@@ -54,7 +54,9 @@ theorem powerGain_le_preferred (r a b q t : ℝ)
   have he : Real.exp (-(2 * b * t * (q - preferredQ a b) ^ 2)) ≤ 1 := by
     rw [← Real.exp_zero]
     exact Real.exp_le_exp.mpr (neg_nonpos.mpr hp)
-  nlinarith [Real.exp_pos (2 * t * growth r a b (preferredQ a b))]
+  exact (mul_le_mul_of_nonneg_left he
+    (le_of_lt (Real.exp_pos (2 * t * growth r a b (preferredQ a b))))).trans_eq
+      (mul_one _)
 
 /-- At every strictly positive time, any off-shell mode has
 strictly less modal power amplification than the preferred shell. -/
@@ -69,7 +71,7 @@ theorem powerGain_strict_off_shell (r a b q t : ℝ)
     mul_pos (mul_pos (mul_pos (by norm_num) hb) ht) hdiff
   have he : Real.exp (-(2 * b * t * (q - preferredQ a b) ^ 2)) < 1 := by
     rw [← Real.exp_zero]
-    exact Real.exp_lt_exp.mpr (neg_neg_of_pos hp)
+    exact Real.exp_lt_exp.mpr (by linarith)
   exact (mul_lt_mul_of_pos_left he (Real.exp_pos _)).trans_eq (mul_one _)
 
 end E16ModalPower
