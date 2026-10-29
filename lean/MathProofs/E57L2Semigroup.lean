@@ -105,5 +105,27 @@ theorem S_add (a kStar s t : ℝ) (ha : 0 ≤ a)
     _ = (Sobolev.fourierL2 (S a kStar s ha hs (S a kStar t ha ht f)) : Rd → ℂ) ξ := by
       rw [hsξ, htξ]
 
+/-- The linear operator agrees with the pre-existing Fourier-response
+construction pointwise on physical L². In particular the 2π frequency
+normalization is not silently changed by passing to an operator. -/
+theorem S_apply_eq_dampedResponse (a kStar t : ℝ) (ha : 0 ≤ a) (ht : 0 ≤ t)
+    (f : Sobolev.L2 d) :
+    S a kStar t ha ht f = dampedResponse a t kStar ha ht f := by
+  apply (Sobolev.fourierL2 (d := d)).injective
+  change Sobolev.fourierL2 (S a kStar t ha ht f) =
+    (damped_product_memLp a t kStar ha ht (Sobolev.fourierL2 f)).toLp _
+  apply Lp.ext
+  filter_upwards
+    [fourier_S a kStar t ha ht f,
+     (damped_product_memLp a t kStar ha ht (Sobolev.fourierL2 f)).coeFn_toLp]
+    with ξ h1 h2
+  exact h1.trans h2.symm
+
+/-- The bounded physical L² semigroup is contractive for a≥0 and t≥0. -/
+theorem S_contracts (a kStar t : ℝ) (ha : 0 ≤ a) (ht : 0 ≤ t)
+    (f : Sobolev.L2 d) : ‖S a kStar t ha ht f‖ ≤ ‖f‖ := by
+  rw [S_apply_eq_dampedResponse]
+  exact dampedResponse_norm_le a t kStar ha ht f
+
 end E57L2Semigroup
 end ReyesMath
