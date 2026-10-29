@@ -93,3 +93,4 @@ import MathProofs.E58WholeSpaceL2
 import MathProofs.E62ProjectorL2
 import MathProofs.E26HistoricalCounterexample
 import MathProofs.E17Canonical
+import MathProofs.E17PhaseRegularizer
