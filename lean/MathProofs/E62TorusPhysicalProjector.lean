@@ -37,9 +37,9 @@ private abbrev CoeffSpace (d : Type*) := lp (fun _ : d → ℤ => ℂ) 2
 /-- Every Hilbert ℓ² coefficient sequence has a summable square modulus. -/
 theorem coefficient_summable (f : CoeffSpace d) :
     Summable (fun k : d → ℤ => ‖f k‖ ^ 2) := by
-  have hh := (lp.memℓp f).summable
-    (by norm_num : 0 < (2 : ℝ≥0∞).toReal)
-  simpa only [ENNReal.toReal_ofNat] using hh
+  have hp : (0 : ℝ) < (2 : ℝ≥0∞).toReal := by norm_num
+  have hh := (lp.memℓp f).summable hp
+  simpa using hh
 
 /-- A selected set of coordinates of an ℓ² vector is again ℓ². -/
 noncomputable def selectedCoefficients (S : Set (d → ℤ))
@@ -58,9 +58,11 @@ theorem selectedCoefficients_add (S : Set (d → ℤ))
     selectedCoefficients S (f + g) =
       selectedCoefficients S f + selectedCoefficients S g := by
   classical
-  ext k
-  by_cases hk : k ∈ S <;>
-    simp [selectedCoefficients, hk, lp.coeFn_add, Pi.add_apply]
+  apply Subtype.ext
+  funext k
+  change (if k ∈ S then f k + g k else 0) =
+    (if k ∈ S then f k else 0) + (if k ∈ S then g k else 0)
+  by_cases hk : k ∈ S <;> simp [hk]
 
 theorem selectedCoefficients_smul (S : Set (d → ℤ))
     (c : ℂ) (f : CoeffSpace d) :
@@ -81,9 +83,9 @@ theorem selectedCoefficients_idempotent (S : Set (d → ℤ))
 
 theorem coefficient_norm_sq (f : CoeffSpace d) :
     ‖f‖ ^ 2 = E62Discrete.totalEnergy (f : (d → ℤ) → ℂ) := by
-  simpa only [E62Discrete.totalEnergy, ENNReal.toReal_ofNat] using
-    (lp.norm_rpow_eq_tsum
-      (by norm_num : 0 < (2 : ℝ≥0∞).toReal) f)
+  have hp : (0 : ℝ) < (2 : ℝ≥0∞).toReal := by norm_num
+  simpa [E62Discrete.totalEnergy] using
+    (lp.norm_rpow_eq_tsum hp f)
 
 theorem selectedCoefficients_norm_sq (S : Set (d → ℤ))
     (f : CoeffSpace d) :
@@ -122,13 +124,28 @@ noncomputable def selectedCLM (S : Set (d → ℤ)) :
     intro f
     simpa using selectedCoefficients_norm_le S f)
 
+/-- The Fourier conjugate of the coefficient mask as an actual
+complex-linear operator on the physical torus space. -/
+noncomputable def torusLinear (S : Set (d → ℤ)) :
+    Lp ℂ 2 (volume : Measure (UnitAddTorus d)) →ₗ[ℂ]
+      Lp ℂ 2 (volume : Measure (UnitAddTorus d)) :=
+  (UnitAddTorus.mFourierBasis (d := d)).repr.symm.toLinearMap.comp
+    ((selectedLinear S).comp
+      (UnitAddTorus.mFourierBasis (d := d)).repr.toLinearMap)
+
 /-- Actual bounded Fourier projector P_S on the Hilbert L² torus. -/
 noncomputable def torusProjection (S : Set (d → ℤ)) :
     Lp ℂ 2 (volume : Measure (UnitAddTorus d)) →L[ℂ]
       Lp ℂ 2 (volume : Measure (UnitAddTorus d)) :=
-  (UnitAddTorus.mFourierBasis (d := d)).repr.symm.toContinuousLinearMap.comp
-    ((selectedCLM S).comp
-      (UnitAddTorus.mFourierBasis (d := d)).repr.toContinuousLinearMap)
+  (torusLinear S).mkContinuous 1 (by
+    intro f
+    change ‖(UnitAddTorus.mFourierBasis (d := d)).repr.symm
+        (selectedCoefficients S
+          ((UnitAddTorus.mFourierBasis (d := d)).repr f))‖ ≤ 1 * ‖f‖
+    rw [(UnitAddTorus.mFourierBasis (d := d)).repr.symm.norm_map,
+        (UnitAddTorus.mFourierBasis (d := d)).repr.norm_map]
+    simpa using selectedCoefficients_norm_le S
+      ((UnitAddTorus.mFourierBasis (d := d)).repr f))
 
 /-- The physical Fourier projector really masks the Fourier coefficients
 of every complex L² torus field. -/
@@ -137,6 +154,7 @@ theorem torusProjection_coefficients (S : Set (d → ℤ))
     (k : d → ℤ) :
     E62TorusND.coefficients (torusProjection S f) k =
       if k ∈ S then E62TorusND.coefficients f k else 0 := by
+  classical
   rw [show E62TorusND.coefficients (torusProjection S f) k =
       (UnitAddTorus.mFourierBasis (d := d)).repr (torusProjection S f) k
       from (UnitAddTorus.mFourierBasis_repr (torusProjection S f) k).symm]
