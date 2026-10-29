@@ -61,10 +61,10 @@ jobs:
         run: lake build MathProofs.E62Discrete
       - name: Kernel check existing E62 torus one-dimensional and coefficient projector
         run: lake build MathProofs.E62Projector MathProofs.E62Torus1D
-      - name: Kernel check E62 arbitrary Lebesgue-measurable continuum bands
-        run: lake build MathProofs.E62LebesgueFraction
       - name: Kernel check E62 full physical torus orthogonal projection theorem
         run: lake build MathProofs.E62TorusProjectorTheorem
+      - name: Kernel check E62 arbitrary Lebesgue-measurable continuum bands
+        run: lake build MathProofs.E62LebesgueFraction
       - name: Kernel check E62 exact cos-squared nonmonotonic example
         run: lake build MathProofs.E62TrigonometricScope
       - name: Kernel check E62 genuine physical torus Fourier projector
