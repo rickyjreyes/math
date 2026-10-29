@@ -29,4 +29,4 @@ jobs:
           if grep -rnE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' MathProofs; then exit 1; fi
       - name: Kernel-check source derivative and determinant modules
         run: |
-          lake build MathProofs.V18LightJacobian MathProofs.V18HeavyJacobian MathProofs.V18BlockJacobian MathProofs.V18MiddleJacobian MathProofs.V18MiddleDeterminant MathProofs.V18MiddleDerivatives MathProofs.V18FullForward MathProofs.V18MiddleFloor MathProofs.V18MiddleClipped MathProofs.V18BranchBounds
+          lake build MathProofs.V18LightJacobian MathProofs.V18HeavyJacobian MathProofs.V18BlockJacobian MathProofs.V18MiddleJacobian MathProofs.V18MiddleDeterminant MathProofs.V18MiddleDerivatives MathProofs.V18FullForward MathProofs.V18MiddleFloor MathProofs.V18MiddleClipped MathProofs.V18BranchBounds MathProofs.V18Regularity MathProofs.V18Frechet

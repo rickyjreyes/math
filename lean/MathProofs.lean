@@ -80,3 +80,5 @@ import MathProofs.M6BPhaseNonEquivariance
 import MathProofs.M6BClosureFieldWitness
 import MathProofs.M6BDimensionalField
 import MathProofs.V18BranchBounds
+import MathProofs.V18Regularity
+import MathProofs.V18Frechet

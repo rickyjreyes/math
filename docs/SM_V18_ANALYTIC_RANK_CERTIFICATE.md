@@ -125,8 +125,10 @@ directions. The exact light and heavy block determinants are proved in
 their respective modules. `V18MiddleDeterminant.lean` now proves
 `18,000,000 < middle.det < 24,000,000` for the exact matrix definition,
 using rational enclosures, Mathlib Taylor remainders, and an exact determinant
-expansion. Identification of the full active-branch Jacobian with these
-blocks remains unproved in Lean. The conditional nonlinear level-set proposition also
+expansion. The full active-branch Fréchet derivative and C¹ neighborhood regularity
+are now proved in `V18Frechet` and `V18Regularity`. Identification of its
+selected restriction with these blocks, and therefore the exact rank theorem,
+remain to be checked in Lean. The conditional nonlinear level-set proposition also
 remains unformalized. F09 therefore stays `main_theorem_formalized: false`.
 
 The previous decimal-only input intervals did not enclose the exact stored
