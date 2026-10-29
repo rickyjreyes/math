@@ -38,11 +38,13 @@ jobs:
             MathProofs/E26L2.lean \
             MathProofs/E62Torus1D.lean \
             MathProofs/E62TorusND.lean \
-            MathProofs/E62ContinuumL2.lean; then exit 1; fi
+            MathProofs/E62ContinuumL2.lean \
+            MathProofs/E58WholeSpaceL2.lean; then exit 1; fi
       - name: Kernel check E62 infinite-mode dependency first
         run: lake build MathProofs.E62Discrete
       - name: Kernel check E62 physical Fourier bridge next
-        run: lake build MathProofs.E62Projector MathProofs.E62Torus1D MathProofs.E62TorusND MathProofs.E62ContinuumL2
+        run: lake build MathProofs.E62Projector MathProofs.E62Torus1D MathProofs.E62TorusND MathProofs.E62ContinuumL2 \
+            MathProofs.E58WholeSpaceL2
       - name: Kernel check analytic declarations
         run: |
           lake build MathProofs.RemainingCores MathProofs.E16SpectralCore \
