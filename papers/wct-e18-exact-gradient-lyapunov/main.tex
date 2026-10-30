@@ -93,6 +93,115 @@ The derivative of the curvature weight is
  \label{eq:Fprime}
 \end{align}
 
+
+\begin{proposition}[Real Fr\'echet differentiability on $H^2$]
+\label{prop:frechet}
+For fixed $1\le d\le3$, $\varepsilon>0$, $\alpha\in\RR$, and real
+$c_1,c_2$, the energy \eqref{eq:energy} is a continuously Fr\'echet
+differentiable map
+\[
+  \EE:H^2(\mathbb T^d;\CC)_{\RR}\longrightarrow\RR.
+\]
+Its derivative, taken over the real scalar field, is the bounded
+real-linear functional
+\begin{equation}\label{eq:frechet}
+\begin{split}
+\DD\EE(\psi)[h]
+={}&2c_1\Rea\int_\Om
+       \nabla\psi\cdot\nabla\overline h\,dx\\
+ &+2c_2\Rea\int_\Om
+       F(|\psi|^2)\Delta\psi\,\Delta\overline h\,dx\\
+ &+2c_2\Rea\int_\Om
+       F'(|\psi|^2)\psi|\Delta\psi|^2\overline h\,dx .
+\end{split}
+\end{equation}
+More precisely, for each $M<\infty$ there is $C_M<\infty$, depending
+on the fixed parameters and the torus, such that whenever
+$\|\psi\|_{H^2}\le M$ and $\|h\|_{H^2}\le1$,
+\begin{equation}\label{eq:frechet-remainder}
+ \bigl|\EE[\psi+h]-\EE[\psi]-\DD\EE(\psi)[h]\bigr|
+ \le C_M\|h\|_{H^2}^2.
+\end{equation}
+The derivative is locally Lipschitz in the operator norm of
+$\mathcal L_{\RR}(H^2,\RR)$.
+\end{proposition}
+\begin{proof}
+Write $\delta=\|h\|_{H^2}$ and use the embedding
+$H^2(\mathbb T^d)\hookrightarrow L^\infty$ for $d\le3$.
+Let $q=\Delta\psi$, $r=\Delta h$, $\rho=|\psi|^2$,
+$\eta=\psi\overline h+\overline\psi h$, and $\zeta=|h|^2$.
+Then
+\[
+ |\psi+h|^2=\rho+\eta+\zeta,\qquad
+ |\Delta(\psi+h)|^2
+ =|q|^2+2\Rea(q\overline r)+|r|^2.
+\]
+On the prescribed bounded $H^2$ ball,
+\[
+ \|\eta\|_\infty\le C_M\delta,\quad
+ \|\zeta\|_\infty\le C_M\delta^2,\quad
+ \|r\|_2\le\delta,\quad
+ \|q\|_2\le M.
+\]
+Both $\rho$ and $\rho+\eta+\zeta$ belong to a fixed compact subset
+of $[0,\infty)$; positivity of $D$ implies that $F,F',F''$ are
+bounded there. Taylor's theorem on the segment between these
+nonnegative endpoints therefore gives
+\[
+ F(\rho+\eta+\zeta)=F(\rho)+F'(\rho)\eta+B,\qquad
+ \|B\|_\infty\le C_M\delta^2.
+\]
+The linear part of
+$F(\rho+\eta+\zeta)|q+r|^2-F(\rho)|q|^2$ is
+\[
+ 2F(\rho)\Rea(q\overline r)
+       +F'(\rho)\eta|q|^2.
+\]
+After subtracting it, the remaining terms are exactly
+\[
+ F(\rho)|r|^2
+ +2F'(\rho)\eta\Rea(q\overline r)
+ +F'(\rho)\eta|r|^2
+ +B|q|^2+2B\Rea(q\overline r)+B|r|^2.
+\]
+Their integrals are bounded by $C_M\delta^2$ using
+Cauchy--Schwarz, the displayed $L^\infty$ bounds, and $\delta\le1$.
+The gradient part expands exactly as
+\[
+ |\nabla(\psi+h)|^2
+ =|\nabla\psi|^2
+   +2\Rea(\nabla\psi\cdot\nabla\overline h)
+   +|\nabla h|^2;
+\]
+its remainder is likewise $O(\delta^2)$.
+Since
+$F'(\rho)\eta|q|^2
+ =2\Rea(F'(\rho)\psi|q|^2\overline h)$,
+this proves both \eqref{eq:frechet} and
+\eqref{eq:frechet-remainder}. Each term in
+\eqref{eq:frechet} is bounded by $C_M\|h\|_{H^2}$,
+so the displayed formula is a real bounded linear functional.
+
+For completeness, if $\psi,\varphi$ lie in a bounded $H^2$ ball,
+the smooth scalar compositions satisfy
+\[
+ \|F(|\psi|^2)-F(|\varphi|^2)\|_\infty+
+ \|F'(|\psi|^2)\psi-F'(|\varphi|^2)\varphi\|_\infty
+ \le C_M\|\psi-\varphi\|_{H^2}.
+\]
+Furthermore,
+\[
+ \bigl\||\Delta\psi|^2-|\Delta\varphi|^2\bigr\|_1
+ \le(\|\Delta\psi\|_2+\|\Delta\varphi\|_2)
+       \|\Delta(\psi-\varphi)\|_2 .
+\]
+Insert these estimates into \eqref{eq:frechet}, using
+$\|h\|_\infty\le C\|h\|_{H^2}$, to obtain
+$\|\DD\EE(\psi)-\DD\EE(\varphi)\|_{\mathrm{op}}
+ \le C_M\|\psi-\varphi\|_{H^2}$.
+Thus $\EE$ is $C^1$ as a real Banach-space functional.
+\end{proof}
+
 \begin{proposition}[Full complex variational derivative]\label{prop:variation}
 For $\psi\in H^4(\Om;\CC)$, the $L^2$ representative of the
 variational derivative in convention \eqref{eq:convention} is
