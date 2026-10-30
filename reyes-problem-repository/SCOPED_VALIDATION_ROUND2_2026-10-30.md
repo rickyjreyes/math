@@ -15,6 +15,7 @@ This round independently examined GC167, GC196, GC201, and GC278. It identifies 
 
 - R. S. Ward, *Hopf solitons on compact manifolds*, J. Math. Phys. 59, 022904 (2018), https://doi.org/10.1063/1.5006891 : compact domain features a **linear topological lower bound**, unlike the \(3/4\) noncompact scaling.
 - A. Guerra, X. Lamy, K. Zemas, *Global Minimality of the Hopf Map in the Faddeev–Skyrme Model with Large Coupling Constant*, Commun. Math. Phys. 407, 171 (2026), https://doi.org/10.1007/s00220-026-05702-5 : charge-one Hopf minimization under stated coupling assumptions.
+- M. Fickus, D. Mixon, A. Nelson and Y. Wang, *Phase Retrieval from Very Few Measurements* (2014), https://arxiv.org/abs/1307.7176 : established four-intensity phase retrieval in complex dimension two within general measurement-frame theory.
 - W. D. Montgomery, *Phase retrieval and the polarization identity*, Opt. Lett. 2 (1978), 120–121, https://doi.org/10.1364/OL.2.000120 : classical interference phase retrieval.
 
 ## Publication implications
