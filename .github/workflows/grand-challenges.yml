@@ -31,6 +31,8 @@ jobs:
         run: python3 reyes-problem-repository/scripts/validate_completion_records.py
       - name: Validate all 236 scoped mathematical problem files
         run: python3 reyes-problem-repository/scripts/validate_scoped_problems.py
+      - name: Verify exact finite scoped mathematical witnesses
+        run: python3 reyes-problem-repository/scripts/check_scoped_finite_witnesses.py
       - name: Check issue template preview and existing-issue guard
         run: |
           python3 reyes-problem-repository/scripts/render_gc_issue.py GC52 > /tmp/gc52-issue-preview.md
