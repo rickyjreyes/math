@@ -1,33 +1,17 @@
 # Version history
 
-## 2026-10-28 — Lean formalization of E26 (F12)
+## 2026-10-27 — Review and correct the full v18 parameter map
 
-- Formalized the E26 manuscript in `lean/MathProofs/RegularizedCurvatureL2.lean`, for open sets in any finite-dimensional real inner product space (including `ℝ^d`).
-  - Setup: `H²(Ω)` defined by weak derivatives tested against `C_c^∞(Ω)`, and the weak Laplacian, which exists in `L²(Ω)` and is unique a.e.
-  - Theorem E26: under `ess inf |D_ε[ψ]| ≥ δ > 0`, `Θ_ε[ψ] ∈ L²(Ω)` and `‖Θ_ε[ψ]‖ ≤ δ⁻¹‖Δψ‖`.
-  - Both corollaries (fields bounded away from zero; nonnegative real fields with `δ_ε`) and the whole-space remark.
-  - The counterexample `ψ = x² − ε` on `(−1, 1)` (`∫|Θ|² = ∞`, `‖Δψ‖² = 8`).
-  - The corrected M2/E17 multiplier bound, and the fact that `δ` cannot be replaced by `ε`.
-- `lean/formalization.yaml` now marks F12 as formalized.
+- Restored middle-frequency coordinates 10 and 11 in the 31-parameter real forward map, proved their coordinate derivatives, and defined the actual Fréchet Jacobian with its structural nullity and directional-derivative theorems.
+- Proved strict floor inactivity at all five frozen middle observations and derivatives of the clipped outputs in all seven middle coordinates. Removed an accidentally inherited auxiliary hypothesis from the frozen-output aggregate theorem.
+- Widened the external interval certificate to enclose nominal decimals and exact stored binary64 inputs, and verified the inner heavy light-floor branch. The nonzero-minor conclusion survives; it remains outside Lean.
+- Recorded 64 imported project modules, 1,515 theorem/lemma declarations, and 13/14 complete original manuscripts. F09 remains incomplete, including its full derivative identification, middle determinant proof and conditional nonlinear level-set proposition.
 
-## 2026-10-27 — Lean formalization of E13/E14 (F11 complete)
+## 2026-10-27 — Frozen v18 analytic Jacobian formalization (partial)
 
-- Formalized the band-pass gradient-flow manuscript (E13) and its E14 companion on the flat torus `(ℝ/Lℤ)^d`, `d ≤ 3`, in `lean/MathProofs/BandPassFlow.lean`.
-  - Setup: `H^{2k}` as a weighted `ℓ²` space, Fourier-multiplier derivatives, the Sobolev embedding `H² ⊂ C`, and the energy as a `C¹` functional on `H²`.
-  - Theorem E13: the first variation with the Wirtinger derivative, the negative gradient flow, `dE/dt = −2‖∂ₜA‖²`, the balance law on every subinterval, and the equality case.
-  - The real-gradient and half-energy normalisations.
-  - The centred Swift–Hohenberg operator and energy identities.
-  - The preferred shell: linearisation, `λ = μ − b(q − k⋆²)²`, the unique maximiser, the growing band, ultraviolet damping, lattice maximisers, a torus with no lattice mode on the shell, and non-invariance of finite shells under the nonlinear flow.
-  - For `β > 0`: the energy lower bound and finite total dissipation.
-  - Time-periodic solutions are stationary.
-- `lean/formalization.yaml` now marks the E13/E14 manuscript, and with it the F11 family, as formalized.
+- Imported kernel-checked light and heavy 3×3 blocks; generic 3+5+3 block determinant identity; derived the five selected middle-sector source partial derivatives and recorded their exact 5×5 matrix.
+- The interval-certified trigonometric middle determinant and full clipped 31-parameter source-model derivative remain to be proved inside Lean. F09 completion flag remains false.
 
-## 2026-10-27 — Lean formalization of E59, E62 and E16 (F11)
-
-- Built the Fourier Hilbert basis of `L²((ℝ/Lℤ)^d)` and bounded Fourier multipliers, and formalized E59 (the dominant-annulus projection is a bounded, idempotent, self-adjoint contraction, the orthogonal projection onto the band-limited subspace, with the energy decomposition, unique best approximation and operator norm; the discrete FFT identity; the smooth-multiplier and annulus-convention remarks).
-- Formalized E62: the discrete spectral energy fraction and its equality cases, the projector formulation, sharpness and the non-monotone example, and the continuous-spectrum proposition on `L²(ℝ^d)` with the zero-width-shell remark.
-- Formalized E16 on `L²(ℝ^d)`: existence and uniqueness of mild solutions of `∂ₜA = (r − aΔ − bΔ²)A` with the exact modal power law, the strict gap lemma, exponential concentration of the normalized spectral measure under the essential-support hypothesis, argmax convergence and the `t^{-1/2}` rate, the radial spectral density with polar integration and its corollary, and the counterexample without spectral access.
-- The E13/E14 band-pass gradient-flow manuscript was not yet formalized at this point (see the entry above).
 
 ## 2026-10-27 — Lean formalization of the isolated Fourier shell (F10)
 

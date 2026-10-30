@@ -1,0 +1,362 @@
+[
+  {
+    "id": "GC215",
+    "title": "Undecidability of nonlinear attractor membership",
+    "question": "For an effectively encoded family of dissipative polynomial PDEs, determine whether membership of a rational initial state in a designated attractor basin is decidable.",
+    "first_test": "Construct a uniform reduction from a known undecidable language or a terminating decision procedure.",
+    "area": "09-computability-complexity",
+    "parent_problems": [
+      "GC41",
+      "GC42",
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC63"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC216",
+    "title": "Prediction hardness for reversible local waves",
+    "question": "For a specified finite-alphabet reversible radius-one automaton, classify the complexity of predicting one cell after binary-encoded time.",
+    "first_test": "Prove completeness for a precisely named complexity class or provide a faster simulation.",
+    "area": "09-computability-complexity",
+    "parent_problems": [
+      "GC41",
+      "GC42",
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC63"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC217",
+    "title": "Uniform simulation overhead for local wave rules",
+    "question": "Determine the minimal polynomial overhead for one fixed local update rule to emulate arbitrary bounded-tape Turing computations.",
+    "first_test": "Prove explicit lower and upper overhead bounds under a uniform encoding.",
+    "area": "09-computability-complexity",
+    "parent_problems": [
+      "GC41",
+      "GC42",
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC63"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC218",
+    "title": "Communication complexity of wave evolution",
+    "question": "Partition initial data of a local wave cellular automaton between two observers and determine the minimum communication needed to predict a designated output.",
+    "first_test": "Prove a communication lower bound or give a protocol.",
+    "area": "09-computability-complexity",
+    "parent_problems": [
+      "GC41",
+      "GC42",
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC63"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC219",
+    "title": "Parallel prefix shortcuts for homogeneous wave rules",
+    "question": "Identify reversible cellular automata whose T-step global evolution admits polylogarithmic-depth circuits.",
+    "first_test": "Construct a uniform parallel algorithm and prove its correctness.",
+    "area": "09-computability-complexity",
+    "parent_problems": [
+      "GC41",
+      "GC42",
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC63"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC220",
+    "title": "P-completeness of local-wave reachability",
+    "question": "For a fixed finite-state wave automaton, decide whether reachability of a target pattern is P-complete under logspace reductions.",
+    "first_test": "Give a full reduction or identify an easier decision class.",
+    "area": "09-computability-complexity",
+    "parent_problems": [
+      "GC41",
+      "GC42",
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC63"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC221",
+    "title": "Precision complexity near unstable manifolds",
+    "question": "Quantify how the input bits required for a certified prediction grow when trajectories approach a hyperbolic unstable set.",
+    "first_test": "Prove a sharp dependence on Lyapunov rate and horizon.",
+    "area": "09-computability-complexity",
+    "parent_problems": [
+      "GC41",
+      "GC42",
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC63"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC222",
+    "title": "Certified integration without global Lipschitz constants",
+    "question": "Determine whether local a posteriori error bounds yield polynomial-time validated integration for a finite-dimensional nonlinear wave truncation.",
+    "first_test": "Provide an algorithm with explicit complexity or an obstruction family.",
+    "area": "09-computability-complexity",
+    "parent_problems": [
+      "GC41",
+      "GC42",
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC63"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC223",
+    "title": "Bit complexity of fourth-order spectral solvers",
+    "question": "Establish upper and lower arithmetic complexity for certified resolvent computation on an N-by-N periodic spectral grid.",
+    "first_test": "Prove precision-aware algorithmic bounds with stated conditioning assumptions.",
+    "area": "09-computability-complexity",
+    "parent_problems": [
+      "GC41",
+      "GC42",
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC63"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC224",
+    "title": "Complexity of deciding discrete soliton existence",
+    "question": "For a finite rational lattice energy, classify the complexity of deciding whether a nontrivial stable localized equilibrium exists below a rational energy level.",
+    "first_test": "Prove NP-hardness or tractability in a frozen lattice family.",
+    "area": "09-computability-complexity",
+    "parent_problems": [
+      "GC41",
+      "GC42",
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC63"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC225",
+    "title": "Memory lower bounds for reversible computation",
+    "question": "Determine the minimal reversible workspace for simulating a prescribed finite-alphabet local wave rule without erasing information.",
+    "first_test": "Prove a space-time tradeoff or exhibit a compact reversible interpreter.",
+    "area": "09-computability-complexity",
+    "parent_problems": [
+      "GC41",
+      "GC42",
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC63"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC226",
+    "title": "Algorithmic verification of invariants",
+    "question": "For polynomial wave-cell updates over a finite field, determine the complexity of deciding whether a supplied polynomial is a global invariant.",
+    "first_test": "Construct an algebraic decision method or a hardness reduction.",
+    "area": "09-computability-complexity",
+    "parent_problems": [
+      "GC41",
+      "GC42",
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC63"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC227",
+    "title": "Certified stopping rules for dissipative evolution",
+    "question": "Determine whether a computable error certificate can always decide when a dissipative wave simulation has entered a chosen invariant neighborhood.",
+    "first_test": "Prove termination under explicit spectral-gap promises or impossibility without them.",
+    "area": "09-computability-complexity",
+    "parent_problems": [
+      "GC41",
+      "GC42",
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC63"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC228",
+    "title": "Circuit depth versus locality radius",
+    "question": "For bounded-fan-in circuits simulating radius-r cellular updates, determine which information-light-cone arguments force depth and when algebraic shortcuts defeat them.",
+    "first_test": "Prove sharp depth bounds for a chosen rule family.",
+    "area": "09-computability-complexity",
+    "parent_problems": [
+      "GC41",
+      "GC42",
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC63"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC229",
+    "title": "Noise tolerance of universal wave automata",
+    "question": "For a universal cellular rule with independent symbol noise per step, determine whether fault-tolerant simulation is possible with polynomial overhead.",
+    "first_test": "Construct an error-correcting simulation or prove breakdown under a fixed noise model.",
+    "area": "09-computability-complexity",
+    "parent_problems": [
+      "GC41",
+      "GC42",
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC63"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC230",
+    "title": "Computable stability radius",
+    "question": "Given rational coefficients of a discretized wave energy and a rational equilibrium, determine whether the largest guaranteed perturbation radius can be approximated to arbitrary precision.",
+    "first_test": "Provide an effective modulus or an undecidability reduction.",
+    "area": "09-computability-complexity",
+    "parent_problems": [
+      "GC41",
+      "GC42",
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC63"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC231",
+    "title": "Formal complexity of proof-producing simulation",
+    "question": "Quantify the cost of producing and checking a proof certificate for each step of a rational wave evolution.",
+    "first_test": "Establish asymptotic proof-size upper bounds and a matching adversarial family.",
+    "area": "09-computability-complexity",
+    "parent_problems": [
+      "GC41",
+      "GC42",
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC63"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC232",
+    "title": "Resource-bounded equivalence of wave models",
+    "question": "Determine whether two fixed finite-state local wave models simulate each other with polynomially bounded time and space overhead.",
+    "first_test": "Construct uniform compilers in both directions or prove a separation under specified resources.",
+    "area": "09-computability-complexity",
+    "parent_problems": [
+      "GC41",
+      "GC42",
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC63"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC233",
+    "title": "Complexity of exact spectral gap detection",
+    "question": "For a family of rational sparse Hermitian matrices derived from wave lattices, classify the complexity of deciding whether a designated rational spectral gap is positive.",
+    "first_test": "Prove a promise-problem classification using an explicit encoding.",
+    "area": "09-computability-complexity",
+    "parent_problems": [
+      "GC41",
+      "GC42",
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC63"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC234",
+    "title": "Thermodynamic cost versus computational depth",
+    "question": "In an explicitly driven noisy finite-state wave device, determine whether low-depth computation imposes a nontrivial minimum expected dissipated work.",
+    "first_test": "Prove a time-energy-error tradeoff or an admissible reversible counterprotocol.",
+    "area": "09-computability-complexity",
+    "parent_problems": [
+      "GC41",
+      "GC42",
+      "GC43",
+      "GC44",
+      "GC45",
+      "GC63"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  }
+]

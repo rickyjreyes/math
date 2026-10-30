@@ -1,0 +1,1302 @@
+{
+  "schema_version": 2,
+  "description": "Conservative evidence pointers for original GC01-GC65 only. Related papers and declarations are neither a GC issue resolution nor a theorem-to-problem correspondence certification. Existing Lean formalization.yaml remains the authority for its own manuscript statuses.",
+  "last_reviewed": "2026-10-29",
+  "entries": [
+    {
+      "id": "GC01",
+      "issue_number": 54,
+      "issue_scope": "milestone",
+      "relation_kind": "direct_partial",
+      "artifact_keys": [
+        "ORBIT"
+      ],
+      "related_lean": [
+        "lean/MathProofs/OrbitalStability.lean",
+        "lean/MathProofs/CubicQuinticFlow.lean"
+      ],
+      "related_papers": [
+        "papers/orbital-stability-fourth-order-cubic-quintic/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.OrbitalStability.main",
+        "ReyesMath.Sobolev.global_wellposed"
+      ],
+      "scope_gap": "Minimizer-set orbital stability under a sufficient mass bound does not classify excited standing waves.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC02",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "ORBIT"
+      ],
+      "related_lean": [
+        "lean/MathProofs/OrbitalStability.lean",
+        "lean/MathProofs/CubicQuinticFlow.lean"
+      ],
+      "related_papers": [
+        "papers/orbital-stability-fourth-order-cubic-quintic/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.OrbitalStability.main",
+        "ReyesMath.Sobolev.global_wellposed"
+      ],
+      "scope_gap": "Global flow and stable minimizers do not establish asymptotic completeness or decay of perturbations.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC03",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "direct_partial",
+      "artifact_keys": [
+        "ORBIT"
+      ],
+      "related_lean": [
+        "lean/MathProofs/OrbitalStability.lean",
+        "lean/MathProofs/CubicQuinticFlow.lean"
+      ],
+      "related_papers": [
+        "papers/orbital-stability-fourth-order-cubic-quintic/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.OrbitalStability.main",
+        "ReyesMath.Sobolev.global_wellposed"
+      ],
+      "scope_gap": "Global well-posedness is established for the specific two-dimensional fourth-order cubic–quintic model, not the requested classification of all (d,p,r,s).",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC04",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC05",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC06",
+      "issue_number": 55,
+      "issue_scope": "milestone",
+      "relation_kind": "direct_partial",
+      "artifact_keys": [
+        "MIN",
+        "BIND",
+        "NEG"
+      ],
+      "related_lean": [
+        "lean/MathProofs/WholeSpaceMinimizers.lean",
+        "lean/MathProofs/StrictBinding.lean",
+        "lean/MathProofs/NegativeEnergy.lean"
+      ],
+      "related_papers": [
+        "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex",
+        "papers/strict-subadditivity-fourth-order-cubic-quintic/main.tex",
+        "papers/negative-constrained-energy-cubic-quintic/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.WholeSpace.main",
+        "ReyesMath.StrictBinding.strict_binding",
+        "ReyesMath.NegativeEnergy.negative_constrained_energy"
+      ],
+      "scope_gap": "Existence and strict binding in a sufficient mass range do not classify all mass and parameter regimes.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC07",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC08",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "candidate_counterexample",
+      "artifact_keys": [
+        "M6B"
+      ],
+      "related_lean": [
+        "lean/MathProofs/M6BClosureTheorem.lean",
+        "lean/MathProofs/M6BManuscript.lean"
+      ],
+      "related_papers": [
+        "papers/m6b-nonlinear-curvature-nonuniqueness/main.tex"
+      ],
+      "related_issues": [
+        42
+      ],
+      "candidate_declarations": [
+        "ReyesMath.M6B.manuscript_closure_nonuniqueness_all_dimensions",
+        "ReyesMath.M6B.manuscript_stationary_noninjectivity"
+      ],
+      "scope_gap": "Existing admissible-closure nonuniqueness is a potential refutation of the unrestricted uniqueness claim; compare the exact GC08 axiom list and regularization before certifying the GC verdict.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC09",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC10",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC11",
+      "issue_number": 56,
+      "issue_scope": "milestone",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "DISP"
+      ],
+      "related_lean": [
+        "lean/MathProofs/DispersionMinimum.lean"
+      ],
+      "related_papers": [
+        "papers/exact-positive-wavenumber-minimum/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.Dispersion.exact_positive_wavenumber_minimum"
+      ],
+      "scope_gap": "An exact linear dispersion minimum is not unique nonlinear pattern selection or nonlinear stability.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC12",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "E61"
+      ],
+      "related_lean": [],
+      "related_papers": [
+        "papers/e61-pattern-formation-threshold/main.tex"
+      ],
+      "related_issues": [
+        39
+      ],
+      "candidate_declarations": [],
+      "scope_gap": "The linear Swift–Hohenberg threshold does not establish robustness of a Floquet gap for perturbed nonlinear periodic states.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC13",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "candidate_counterexample",
+      "artifact_keys": [
+        "LEAK"
+      ],
+      "related_lean": [
+        "lean/MathProofs/FourierLeakage.lean",
+        "lean/MathProofs/FourierLeakageWellPosed.lean"
+      ],
+      "related_papers": [
+        "papers/finite-fourier-coordinate-subspace-noninvariance/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.FourierLeakage.classification"
+      ],
+      "scope_gap": "Nonlinear Fourier leakage supplies possible counterexamples to no-transfer shell bounds, but the exact two shells, time and F quantifiers must be checked.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC14",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "SHELL",
+        "E62"
+      ],
+      "related_lean": [
+        "lean/MathProofs/FourierShellL2.lean"
+      ],
+      "related_papers": [
+        "papers/isolated-fourier-shell-no-l2-bound-state/main.tex",
+        "papers/spectral-energy-concentration-e62/main.tex"
+      ],
+      "related_issues": [
+        34
+      ],
+      "candidate_declarations": [
+        "ReyesMath.FourierShell.shell_theorem"
+      ],
+      "scope_gap": "Zero L² states supported on a measure-zero Fourier sphere and spectral energy fractions do not settle the compact-annulus plus exponential-localization question.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC15",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "candidate_full_match",
+      "artifact_keys": [
+        "LEAK"
+      ],
+      "related_lean": [
+        "lean/MathProofs/FourierLeakage.lean",
+        "lean/MathProofs/FourierLeakageWellPosed.lean"
+      ],
+      "related_papers": [
+        "papers/finite-fourier-coordinate-subspace-noninvariance/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.FourierLeakage.classification"
+      ],
+      "scope_gap": "A Lean-checked classification of finite Fourier-coordinate invariant subspaces is highly relevant; independently compare dimension, Fourier subsets, all-data invariance and GC15 quantifiers before any closure.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC16",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "direct_partial",
+      "artifact_keys": [
+        "BIND",
+        "NEG"
+      ],
+      "related_lean": [
+        "lean/MathProofs/StrictBinding.lean",
+        "lean/MathProofs/NegativeEnergy.lean"
+      ],
+      "related_papers": [
+        "papers/strict-subadditivity-fourth-order-cubic-quintic/main.tex",
+        "papers/negative-constrained-energy-cubic-quintic/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.StrictBinding.strict_binding",
+        "ReyesMath.NegativeEnergy.negative_constrained_energy"
+      ],
+      "scope_gap": "Strict subadditivity is formalized over a sufficient small-mass regime; GC16 requests every mass.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC17",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "MIN"
+      ],
+      "related_lean": [
+        "lean/MathProofs/WholeSpaceMinimizers.lean"
+      ],
+      "related_papers": [
+        "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.WholeSpace.main"
+      ],
+      "scope_gap": "Minimizer existence and compactness do not imply uniqueness up to phase and translation.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC18",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "MIN"
+      ],
+      "related_lean": [
+        "lean/MathProofs/WholeSpaceMinimizers.lean"
+      ],
+      "related_papers": [
+        "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.WholeSpace.main"
+      ],
+      "scope_gap": "Existence of minimizers does not locate or classify symmetry-breaking bifurcations.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC19",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "direct_partial",
+      "artifact_keys": [
+        "MIN",
+        "BIND"
+      ],
+      "related_lean": [
+        "lean/MathProofs/WholeSpaceMinimizers.lean",
+        "lean/MathProofs/StrictBinding.lean"
+      ],
+      "related_papers": [
+        "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex",
+        "papers/strict-subadditivity-fourth-order-cubic-quintic/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.WholeSpace.main",
+        "ReyesMath.StrictBinding.strict_binding"
+      ],
+      "scope_gap": "Compactness of minimizing sequences modulo translations is proved in a sufficient mass range, not at every mass nor for every failure regime.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC20",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "E13"
+      ],
+      "related_lean": [],
+      "related_papers": [
+        "papers/band-pass-amplitude-negative-gradient-flow/main.tex"
+      ],
+      "related_issues": [
+        31
+      ],
+      "candidate_declarations": [],
+      "scope_gap": "Exact negative-gradient-flow dissipation for a related band-pass model does not classify non-global local minima or metastable lifetimes.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC21",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "direct_partial",
+      "artifact_keys": [
+        "S004",
+        "UV"
+      ],
+      "related_lean": [
+        "lean/MathProofs/S004ConstraintCount.lean",
+        "lean/MathProofs/UVIllPosedness.lean"
+      ],
+      "related_papers": [
+        "papers/s004-complex-scalar-constraint-count/main.tex",
+        "papers/uv-sobolev-ill-posedness-fourth-order-wave/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.S004.constraint_count",
+        "ReyesMath.S004.Hphys_unbounded_below",
+        "ReyesMath.UVIllPosed.torus_unbounded"
+      ],
+      "scope_gap": "A specific constrained higher-derivative Hamiltonian obstruction and UV ill-posed model are not a classification of all polynomial Lagrangians.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC22",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "direct_partial",
+      "artifact_keys": [
+        "UV"
+      ],
+      "related_lean": [
+        "lean/MathProofs/UVIllPosedness.lean"
+      ],
+      "related_papers": [
+        "papers/uv-sobolev-ill-posedness-fourth-order-wave/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.UVIllPosed.torus_unbounded"
+      ],
+      "scope_gap": "A concrete UV instability and unbounded Sobolev propagator do not give a necessary-and-sufficient algebraic symbol classification.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC23",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "DISP"
+      ],
+      "related_lean": [
+        "lean/MathProofs/DispersionMinimum.lean"
+      ],
+      "related_papers": [
+        "papers/exact-positive-wavenumber-minimum/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.Dispersion.exact_positive_wavenumber_minimum"
+      ],
+      "scope_gap": "A finite-wavenumber minimum for an exact higher-derivative dispersion branch does not settle minimal derivative order among all positive-Hamiltonian local theories.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC24",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "S004"
+      ],
+      "related_lean": [
+        "lean/MathProofs/S004ConstraintCount.lean"
+      ],
+      "related_papers": [
+        "papers/s004-complex-scalar-constraint-count/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.S004.constraint_count",
+        "ReyesMath.S004.Hphys_unbounded_below"
+      ],
+      "scope_gap": "Existing S004 complex-scalar constraint analysis is not automatically the Dirac analysis of the distinct real-scalar GC24 Lagrangian.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC25",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "UV",
+        "S004",
+        "SCALAR"
+      ],
+      "related_lean": [
+        "lean/MathProofs/UVIllPosedness.lean",
+        "lean/MathProofs/S004ConstraintCount.lean",
+        "lean/MathProofs/ManifoldScalarMetric.lean"
+      ],
+      "related_papers": [
+        "papers/uv-sobolev-ill-posedness-fourth-order-wave/main.tex",
+        "papers/s004-complex-scalar-constraint-count/main.tex",
+        "papers/scalar-gradient-lorentzian-no-go/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.UVIllPosed.torus_unbounded",
+        "ReyesMath.S004.constraint_count",
+        "ReyesMath.S004.Hphys_unbounded_below",
+        "ReyesMath.ManifoldScalarMetric.main"
+      ],
+      "scope_gap": "Obstruction results in particular derivative and scalar models do not construct or rule out the entire second-order parent-theory class.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC26",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "direct_partial",
+      "artifact_keys": [
+        "F09"
+      ],
+      "related_lean": [
+        "lean/MathProofs/V18FullForward.lean",
+        "lean/MathProofs/V18MiddleJacobian.lean"
+      ],
+      "related_papers": [
+        "papers/sm-v18-local-identifiability-obstruction/main.tex"
+      ],
+      "related_issues": [
+        30
+      ],
+      "candidate_declarations": [
+        "ReyesMath.V18Forward.jacobian",
+        "ReyesMath.V18Forward.null_direction"
+      ],
+      "scope_gap": "The 31-parameter clipped spectral model has a checked differential-rank/nullity obstruction, but the exact full Jacobian rank and global injectivity classification are not thereby settled.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC27",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "direct_partial",
+      "artifact_keys": [
+        "F09"
+      ],
+      "related_lean": [
+        "lean/MathProofs/V18FullForward.lean",
+        "lean/MathProofs/V18MiddleJacobian.lean"
+      ],
+      "related_papers": [
+        "papers/sm-v18-local-identifiability-obstruction/main.tex"
+      ],
+      "related_issues": [
+        30
+      ],
+      "candidate_declarations": [
+        "ReyesMath.V18Forward.jacobian",
+        "ReyesMath.V18Forward.null_direction"
+      ],
+      "scope_gap": "The same forward-model work helps constrain observations but does not exhibit or prove the minimum number for an injectable observation design.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC28",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "M6B"
+      ],
+      "related_lean": [
+        "lean/MathProofs/M6BClosureTheorem.lean",
+        "lean/MathProofs/M6BManuscript.lean"
+      ],
+      "related_papers": [
+        "papers/m6b-nonlinear-curvature-nonuniqueness/main.tex"
+      ],
+      "related_issues": [
+        42
+      ],
+      "candidate_declarations": [
+        "ReyesMath.M6B.manuscript_closure_nonuniqueness_all_dimensions",
+        "ReyesMath.M6B.manuscript_stationary_noninjectivity"
+      ],
+      "scope_gap": "Stationary curvature noninjectivity on a Dirichlet square is not a classification of fibers of the GC08 map on a torus.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC29",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "F09"
+      ],
+      "related_lean": [
+        "lean/MathProofs/V18FullForward.lean",
+        "lean/MathProofs/V18MiddleJacobian.lean"
+      ],
+      "related_papers": [
+        "papers/sm-v18-local-identifiability-obstruction/main.tex"
+      ],
+      "related_issues": [
+        30
+      ],
+      "candidate_declarations": [
+        "ReyesMath.V18Forward.jacobian",
+        "ReyesMath.V18Forward.null_direction"
+      ],
+      "scope_gap": "Known Jacobian null directions motivate inverse-instability tests but do not settle optimal uniform Hölder reconstruction bounds on identifiable sets.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC30",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC31",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "E61",
+        "E13"
+      ],
+      "related_lean": [],
+      "related_papers": [
+        "papers/e61-pattern-formation-threshold/main.tex",
+        "papers/band-pass-amplitude-negative-gradient-flow/main.tex"
+      ],
+      "related_issues": [
+        31,
+        39
+      ],
+      "candidate_declarations": [],
+      "scope_gap": "A linear spectral threshold and a separate gradient identity do not classify nonlinear global attractors on the torus.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC32",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "E13",
+        "M3"
+      ],
+      "related_lean": [],
+      "related_papers": [
+        "papers/band-pass-amplitude-negative-gradient-flow/main.tex",
+        "papers/swift-hohenberg-fourier-shell-damping/main.tex"
+      ],
+      "related_issues": [
+        31,
+        43
+      ],
+      "candidate_declarations": [],
+      "scope_gap": "Deterministic gradient-flow and linear shell-damping identities are not a theorem about defect-mediated wavelength change.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC33",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "E61"
+      ],
+      "related_lean": [],
+      "related_papers": [
+        "papers/e61-pattern-formation-threshold/main.tex"
+      ],
+      "related_issues": [
+        39
+      ],
+      "candidate_declarations": [],
+      "scope_gap": "The linear homogeneous threshold does not prove disorder-robust persistence of a nonlinear stripe.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC34",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC35",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "E61",
+        "M3"
+      ],
+      "related_lean": [],
+      "related_papers": [
+        "papers/e61-pattern-formation-threshold/main.tex",
+        "papers/swift-hohenberg-fourier-shell-damping/main.tex"
+      ],
+      "related_issues": [
+        39,
+        43
+      ],
+      "candidate_declarations": [],
+      "scope_gap": "Linear shell selection/damping does not prove nonlinear infinite-domain wavelength selection.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC36",
+      "issue_number": 57,
+      "issue_scope": "milestone",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC37",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "MIN"
+      ],
+      "related_lean": [
+        "lean/MathProofs/WholeSpaceMinimizers.lean"
+      ],
+      "related_papers": [
+        "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.WholeSpace.main"
+      ],
+      "scope_gap": "Existence of fixed-mass minimizers does not force discrete allowed masses or frequencies.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC38",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC39",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC40",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC41",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC42",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC43",
+      "issue_number": 58,
+      "issue_scope": "milestone",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC44",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC45",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC46",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "candidate_full_match",
+      "artifact_keys": [
+        "ORBIT"
+      ],
+      "related_lean": [
+        "lean/MathProofs/OrbitalStability.lean",
+        "lean/MathProofs/CubicQuinticFlow.lean"
+      ],
+      "related_papers": [
+        "papers/orbital-stability-fourth-order-cubic-quintic/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.OrbitalStability.main",
+        "ReyesMath.Sobolev.global_wellposed"
+      ],
+      "scope_gap": "The existing global-well-posedness and conservation results may match much of GC46; verify exact Lean imports, solution sense, hypotheses and the full no-new-axioms acceptance criterion.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC47",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "direct_partial",
+      "artifact_keys": [
+        "MIN"
+      ],
+      "related_lean": [
+        "lean/MathProofs/WholeSpaceMinimizers.lean"
+      ],
+      "related_papers": [
+        "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.WholeSpace.main"
+      ],
+      "scope_gap": "The minimizer proof uses concentration-compactness style arguments but does not automatically expose the requested general H² trichotomy theorem as a Lean declaration.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC48",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "E16",
+        "E58",
+        "E61"
+      ],
+      "related_lean": [],
+      "related_papers": [
+        "papers/e16-linear-spectral-concentration/main.tex",
+        "papers/band-selective-green-kernel-bound/main.tex",
+        "papers/e61-pattern-formation-threshold/main.tex"
+      ],
+      "related_issues": [
+        32,
+        38,
+        39
+      ],
+      "candidate_declarations": [],
+      "scope_gap": "The listed continuum spectral and resolvent manuscripts are analytically relevant but their full requested infinite-dimensional Lean semigroup bridge remains to be checked.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC49",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "MIN"
+      ],
+      "related_lean": [
+        "lean/MathProofs/WholeSpaceMinimizers.lean"
+      ],
+      "related_papers": [
+        "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.WholeSpace.main"
+      ],
+      "scope_gap": "Compactness in a sufficient mass range neither supplies a counterexample outside that range nor proves universal compactness.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC50",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC51",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "ORBIT"
+      ],
+      "related_lean": [
+        "lean/MathProofs/OrbitalStability.lean",
+        "lean/MathProofs/CubicQuinticFlow.lean"
+      ],
+      "related_papers": [
+        "papers/orbital-stability-fourth-order-cubic-quintic/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.OrbitalStability.main",
+        "ReyesMath.Sobolev.global_wellposed"
+      ],
+      "scope_gap": "Stability of the minimizing set is not general soliton resolution or asymptotic completeness.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC52",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC53",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "direct_partial",
+      "artifact_keys": [
+        "BIND",
+        "MIN",
+        "ORBIT"
+      ],
+      "related_lean": [
+        "lean/MathProofs/StrictBinding.lean",
+        "lean/MathProofs/WholeSpaceMinimizers.lean",
+        "lean/MathProofs/OrbitalStability.lean",
+        "lean/MathProofs/CubicQuinticFlow.lean"
+      ],
+      "related_papers": [
+        "papers/strict-subadditivity-fourth-order-cubic-quintic/main.tex",
+        "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex",
+        "papers/orbital-stability-fourth-order-cubic-quintic/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.StrictBinding.strict_binding",
+        "ReyesMath.WholeSpace.main",
+        "ReyesMath.OrbitalStability.main",
+        "ReyesMath.Sobolev.global_wellposed"
+      ],
+      "scope_gap": "Existing sufficient binding, existence and stability theorems contribute pieces but do not classify the universal threshold boundaries.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC54",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "SHELL",
+        "E58"
+      ],
+      "related_lean": [
+        "lean/MathProofs/FourierShellL2.lean"
+      ],
+      "related_papers": [
+        "papers/isolated-fourier-shell-no-l2-bound-state/main.tex",
+        "papers/band-selective-green-kernel-bound/main.tex"
+      ],
+      "related_issues": [
+        38
+      ],
+      "candidate_declarations": [
+        "ReyesMath.FourierShell.shell_theorem"
+      ],
+      "scope_gap": "Free-space shell obstructions and a different Green multiplier do not settle threshold resonances of the perturbed fourth-order Schrödinger operator.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC55",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "BIND",
+        "MIN"
+      ],
+      "related_lean": [
+        "lean/MathProofs/StrictBinding.lean",
+        "lean/MathProofs/WholeSpaceMinimizers.lean"
+      ],
+      "related_papers": [
+        "papers/strict-subadditivity-fourth-order-cubic-quintic/main.tex",
+        "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.StrictBinding.strict_binding",
+        "ReyesMath.WholeSpace.main"
+      ],
+      "scope_gap": "Known mass thresholds in one model are not universality exponents across an entire parameterized class.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC56",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "MIN",
+        "ORBIT"
+      ],
+      "related_lean": [
+        "lean/MathProofs/WholeSpaceMinimizers.lean",
+        "lean/MathProofs/OrbitalStability.lean",
+        "lean/MathProofs/CubicQuinticFlow.lean"
+      ],
+      "related_papers": [
+        "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex",
+        "papers/orbital-stability-fourth-order-cubic-quintic/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.WholeSpace.main",
+        "ReyesMath.OrbitalStability.main",
+        "ReyesMath.Sobolev.global_wellposed"
+      ],
+      "scope_gap": "A nonempty minimizing set does not classify the global stationary-solution bifurcation diagram.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC57",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "E13"
+      ],
+      "related_lean": [],
+      "related_papers": [
+        "papers/band-pass-amplitude-negative-gradient-flow/main.tex"
+      ],
+      "related_issues": [
+        31
+      ],
+      "candidate_declarations": [],
+      "scope_gap": "A deterministic Lyapunov identity does not quantify noise-driven first-exit times.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC58",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC59",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC60",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "LEAK",
+        "E59"
+      ],
+      "related_lean": [
+        "lean/MathProofs/FourierLeakage.lean",
+        "lean/MathProofs/FourierLeakageWellPosed.lean"
+      ],
+      "related_papers": [
+        "papers/finite-fourier-coordinate-subspace-noninvariance/main.tex",
+        "papers/e59-dominant-annulus-projection/main.tex"
+      ],
+      "related_issues": [
+        33
+      ],
+      "candidate_declarations": [
+        "ReyesMath.FourierLeakage.classification"
+      ],
+      "scope_gap": "Finite-mode noninvariance and sharp Fourier projection identities do not prove Galerkin convergence over diverging time scales.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC61",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "ORBIT"
+      ],
+      "related_lean": [
+        "lean/MathProofs/OrbitalStability.lean",
+        "lean/MathProofs/CubicQuinticFlow.lean"
+      ],
+      "related_papers": [
+        "papers/orbital-stability-fourth-order-cubic-quintic/main.tex"
+      ],
+      "related_issues": [],
+      "candidate_declarations": [
+        "ReyesMath.OrbitalStability.main",
+        "ReyesMath.Sobolev.global_wellposed"
+      ],
+      "scope_gap": "Orbital stability after perturbing a minimizer is not a theorem on spontaneous structure formation from nonperturbative data.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC62",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC63",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "unmapped_initial_pass",
+      "artifact_keys": [],
+      "related_lean": [],
+      "related_papers": [],
+      "related_issues": [],
+      "candidate_declarations": [],
+      "scope_gap": "No specific source-to-GC overlap identified in this initial conservative audit. This does not establish that no related Lean proof or manuscript exists.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC64",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "F09"
+      ],
+      "related_lean": [
+        "lean/MathProofs/V18FullForward.lean",
+        "lean/MathProofs/V18MiddleJacobian.lean"
+      ],
+      "related_papers": [
+        "papers/sm-v18-local-identifiability-obstruction/main.tex"
+      ],
+      "related_issues": [
+        30
+      ],
+      "candidate_declarations": [
+        "ReyesMath.V18Forward.jacobian",
+        "ReyesMath.V18Forward.null_direction"
+      ],
+      "scope_gap": "One clipped forward-model identifiability obstruction does not compare it to a separately specified competing physical model.",
+      "correspondence": "not_audited"
+    },
+    {
+      "id": "GC65",
+      "issue_number": null,
+      "issue_scope": "not_created",
+      "relation_kind": "adjacent",
+      "artifact_keys": [
+        "E59",
+        "LEAK"
+      ],
+      "related_lean": [
+        "lean/MathProofs/FourierLeakage.lean",
+        "lean/MathProofs/FourierLeakageWellPosed.lean"
+      ],
+      "related_papers": [
+        "papers/e59-dominant-annulus-projection/main.tex",
+        "papers/finite-fourier-coordinate-subspace-noninvariance/main.tex"
+      ],
+      "related_issues": [
+        33
+      ],
+      "candidate_declarations": [
+        "ReyesMath.FourierLeakage.classification"
+      ],
+      "scope_gap": "A fixed Fourier projector and a nonlinear finite-mode leakage theorem do not yield an invariant exponentially attracting manifold.",
+      "correspondence": "not_audited"
+    }
+  ]
+}

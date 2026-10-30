@@ -1,0 +1,416 @@
+[
+  {
+    "id": "GC254",
+    "title": "Degenerate band-edge envelope derivation",
+    "question": "Starting from a specified finite-range lattice with a quartic band minimum, determine whether a fourth-order nonlinear envelope equation follows under controlled modulation scaling.",
+    "first_test": "Derive an approximation theorem with explicit amplitude and time exponents.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC255",
+    "title": "Discrete-to-continuum confinement persistence",
+    "question": "Determine whether localized lattice equilibria converge to genuine confined solutions of a fourth-order continuum energy as lattice spacing vanishes.",
+    "first_test": "Prove compactness and identify the continuum limiting equation.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC256",
+    "title": "Uniform modulation error over long times",
+    "question": "For a weakly nonlinear multiscale wave ansatz, determine whether the approximation error stays small over a power-law-in-epsilon time horizon.",
+    "first_test": "Prove a uniform error bound or a resonant failure example.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC257",
+    "title": "Microscopic origin of cubic–quintic saturation",
+    "question": "Classify lattice onsite potentials whose small-amplitude envelope expansion has focusing cubic and defocusing quintic coefficients with fixed signs.",
+    "first_test": "Derive the expansion and identify an explicit nonempty coupling region.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC258",
+    "title": "Scale separation near an avoided crossing",
+    "question": "For a two-band oscillator lattice, determine which detuning scalings produce a closed scalar rather than vector envelope equation.",
+    "first_test": "Prove a reduced model and quantify mode-leakage error.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC259",
+    "title": "Effective geometric curvature from microstructure",
+    "question": "Determine whether anisotropic microscopic coupling generates a nontrivial curvature-dependent effective operator in the continuum limit.",
+    "first_test": "Derive the operator and give a convergence or homogenization theorem.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC260",
+    "title": "Homogenization of periodically patterned media",
+    "question": "For a fourth-order wave equation with rapidly oscillating coefficients, identify the homogenized dispersion and its preferred wavelength.",
+    "first_test": "Prove resolvent or evolution convergence with boundary-layer corrections.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC261",
+    "title": "Disorder-induced failure of effective equations",
+    "question": "Determine the threshold of random microscopic disorder beyond which a deterministic envelope approximation ceases to hold on fixed mesoscopic times.",
+    "first_test": "Prove an error breakdown or convergence in probability.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC262",
+    "title": "Boundary-layer corrections to wave confinement",
+    "question": "Derive leading corrections to confined profiles when a continuum limit is taken near a physical boundary.",
+    "first_test": "Prove a matched asymptotic expansion with controlled remainders.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC263",
+    "title": "Finite-size scaling of confinement thresholds",
+    "question": "Determine how the threshold mass for localized states in finite lattice domains converges to its infinite-volume value.",
+    "first_test": "Prove finite-size error estimates and characterize boundary dependence.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC264",
+    "title": "Conservation law transfer across model scales",
+    "question": "Determine whether microscopic Hamiltonian invariants converge to the mass and energy invariants of a nonlinear continuum envelope.",
+    "first_test": "Prove asymptotic conservation with quantified defect terms.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC265",
+    "title": "Noncommuting continuum and long-time limits",
+    "question": "Determine whether taking lattice spacing to zero before time to infinity yields a different confinement conclusion than reversing the order.",
+    "first_test": "Construct a counterexample or prove commutation under explicit uniform estimates.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC266",
+    "title": "Strong versus weak convergence of physical observables",
+    "question": "Determine which experimental observables converge strongly when microscopic states only converge weakly to an effective wave field.",
+    "first_test": "Prove a measurement-stability theorem for a specified observable.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC267",
+    "title": "Inverse calibration of effective coupling coefficients",
+    "question": "Determine whether continuum cubic–quintic coupling constants can be uniquely recovered from a finite set of microscopic scattering tests.",
+    "first_test": "Prove an identifiability result or explicit aliasing.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC268",
+    "title": "Multiscale topological charge preservation",
+    "question": "Determine whether a lattice topological invariant converges to the winding or Hopf degree of a continuum field.",
+    "first_test": "Prove charge stability under a nonvanishing interpolation hypothesis.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC269",
+    "title": "Error bounds for reduced three-dimensional models",
+    "question": "For a thin physical waveguide, justify reducing a full three-dimensional wave equation to a two-dimensional effective fourth-order model.",
+    "first_test": "Prove confinement of transverse modes and a dimension-reduction error.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC270",
+    "title": "Competing effective Hamiltonians from the same lattice",
+    "question": "Determine whether two mathematically distinct nonlinear continuum models can produce identical leading-order predictions for one microscopic wave system.",
+    "first_test": "Construct an equivalence class or identify discriminating higher-order terms.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC271",
+    "title": "Emergent wave speed and stiffness constants",
+    "question": "Determine which microscopic stiffness parameters control group velocity and fourth-order dispersion in the continuum wave approximation.",
+    "first_test": "Prove a coefficient-identification formula and stability bounds.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC272",
+    "title": "Breakdown of adiabatic mode elimination",
+    "question": "Determine when a fast auxiliary mode in a coupled wave system cannot be eliminated without losing energy stability or predictive accuracy.",
+    "first_test": "Construct a resonance counterexample and bound error away from resonance.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC273",
+    "title": "Uniform regularity from microscopic energy bounds",
+    "question": "Determine whether lattice energy and mass estimates yield continuum H2 regularity uniformly as spacing tends to zero.",
+    "first_test": "Prove a discrete Sobolev bound or identify concentration counterexamples.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC274",
+    "title": "Experimental falsification thresholds for envelope laws",
+    "question": "Given a proposed effective wave equation, determine the minimum measurement resolution required to distinguish it from a specified alternative model.",
+    "first_test": "Prove a noise-dependent distinguishability margin.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC275",
+    "title": "Rigorous correspondence between lattice and optical phases",
+    "question": "For a phase-modulated photonic lattice, determine how phase-shifter settings map to coefficients in a slowly varying effective field equation.",
+    "first_test": "Derive an invertible calibration map or show parameter nonidentifiability.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC276",
+    "title": "Long-wavelength stability versus microscopic instabilities",
+    "question": "Determine whether spectral stability of an effective envelope guarantees stability of its corresponding microscopic lattice wave.",
+    "first_test": "Prove transfer with a spectral-gap assumption or exhibit an invisible short-wave instability.",
+    "area": "11-physical-emergence-multiscale",
+    "parent_problems": [
+      "GC25",
+      "GC52",
+      "GC53",
+      "GC55",
+      "GC60",
+      "GC64"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  }
+]

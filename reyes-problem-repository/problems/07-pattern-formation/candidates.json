@@ -1,0 +1,363 @@
+[
+  {
+    "id": "GC177",
+    "title": "Stripe stability boundaries in two dimensions",
+    "question": "For the cubic Swift–Hohenberg equation on a two-dimensional torus, classify sideband instabilities of a specified stripe family.",
+    "first_test": "Derive the Bloch eigenvalue expansion and the sharp Eckhaus-type boundary.",
+    "area": "07-pattern-formation",
+    "parent_problems": [
+      "GC11",
+      "GC31",
+      "GC32",
+      "GC33",
+      "GC34",
+      "GC35",
+      "GC57"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC178",
+    "title": "Hexagon versus stripe selection",
+    "question": "For a quadratic-cubic Swift–Hohenberg extension, determine when hexagonal patterns minimize energy relative to stripes.",
+    "first_test": "Prove a weakly nonlinear energy comparison with error control.",
+    "area": "07-pattern-formation",
+    "parent_problems": [
+      "GC11",
+      "GC31",
+      "GC32",
+      "GC33",
+      "GC34",
+      "GC35",
+      "GC57"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC179",
+    "title": "Pattern pinning by weak heterogeneity",
+    "question": "Determine whether a small periodic substrate force selects a discrete set of translated stripe phases.",
+    "first_test": "Prove pinning intervals and their dependence on forcing amplitude.",
+    "area": "07-pattern-formation",
+    "parent_problems": [
+      "GC11",
+      "GC31",
+      "GC32",
+      "GC33",
+      "GC34",
+      "GC35",
+      "GC57"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC180",
+    "title": "Defect mobility laws",
+    "question": "Derive a reduced motion law for a single phase dislocation in a slowly evolving two-dimensional stripe pattern.",
+    "first_test": "Justify an effective mobility coefficient and error estimate.",
+    "area": "07-pattern-formation",
+    "parent_problems": [
+      "GC11",
+      "GC31",
+      "GC32",
+      "GC33",
+      "GC34",
+      "GC35",
+      "GC57"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC181",
+    "title": "Disorder-induced wavelength shift",
+    "question": "Quantify how a small random or deterministic spatial modulation changes the selected wave number of a stable pattern.",
+    "first_test": "Prove a deterministic perturbation bound or a stochastic limiting law.",
+    "area": "07-pattern-formation",
+    "parent_problems": [
+      "GC11",
+      "GC31",
+      "GC32",
+      "GC33",
+      "GC34",
+      "GC35",
+      "GC57"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC182",
+    "title": "Coarsening exponent classification",
+    "question": "For a fixed class of scalar pattern-forming gradient flows, determine whether defect density decays with a common algebraic exponent.",
+    "first_test": "Prove an exponent in a controlled regime or demonstrate nonuniversality.",
+    "area": "07-pattern-formation",
+    "parent_problems": [
+      "GC11",
+      "GC31",
+      "GC32",
+      "GC33",
+      "GC34",
+      "GC35",
+      "GC57"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC183",
+    "title": "Finite-box versus infinite-plane pattern selection",
+    "question": "Determine whether preferred wave numbers on growing periodic tori converge to those selected by the whole-plane dynamics.",
+    "first_test": "Prove a thermodynamic-limit statement or show dependence on box sequence.",
+    "area": "07-pattern-formation",
+    "parent_problems": [
+      "GC11",
+      "GC31",
+      "GC32",
+      "GC33",
+      "GC34",
+      "GC35",
+      "GC57"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC184",
+    "title": "Localized patches of periodic structure",
+    "question": "Determine whether bounded spots of periodic stripes can coexist with a homogeneous background as stationary fourth-order states.",
+    "first_test": "Construct a spatially localized patch and prove its spectral stability.",
+    "area": "07-pattern-formation",
+    "parent_problems": [
+      "GC11",
+      "GC31",
+      "GC32",
+      "GC33",
+      "GC34",
+      "GC35",
+      "GC57"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC185",
+    "title": "Front speed between competing patterns",
+    "question": "Classify propagation speed and direction of fronts connecting distinct periodic equilibria in a Swift–Hohenberg-type gradient flow.",
+    "first_test": "Construct a heteroclinic front and establish a speed-selection criterion.",
+    "area": "07-pattern-formation",
+    "parent_problems": [
+      "GC11",
+      "GC31",
+      "GC32",
+      "GC33",
+      "GC34",
+      "GC35",
+      "GC57"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC186",
+    "title": "Phase diffusion coefficient sign changes",
+    "question": "Determine how nonlinear amplitude affects the phase-diffusion coefficient of a stripe branch near onset.",
+    "first_test": "Calculate the leading coefficient and locate its sign-change threshold.",
+    "area": "07-pattern-formation",
+    "parent_problems": [
+      "GC11",
+      "GC31",
+      "GC32",
+      "GC33",
+      "GC34",
+      "GC35",
+      "GC57"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC187",
+    "title": "Nonlinear pattern selection under slow parameter ramps",
+    "question": "When a bifurcation parameter varies slowly in time, determine whether the final wavelength tracks the instantaneous stable band.",
+    "first_test": "Prove adiabatic tracking or hysteresis with sharp ramp scaling.",
+    "area": "07-pattern-formation",
+    "parent_problems": [
+      "GC11",
+      "GC31",
+      "GC32",
+      "GC33",
+      "GC34",
+      "GC35",
+      "GC57"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC188",
+    "title": "Stochastic creation of phase dislocations",
+    "question": "For a weakly noisy pattern-forming PDE, quantify the rate of defect-pair nucleation from a spectrally stable stripe.",
+    "first_test": "Establish a large-deviation barrier or a zero-rate obstruction.",
+    "area": "07-pattern-formation",
+    "parent_problems": [
+      "GC11",
+      "GC31",
+      "GC32",
+      "GC33",
+      "GC34",
+      "GC35",
+      "GC57"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC189",
+    "title": "Pattern inheritance across interfaces",
+    "question": "For two adjoining media with distinct preferred wavelengths, determine which stationary grain-boundary configurations have finite interfacial energy.",
+    "first_test": "Construct a compatible interface or prove an incompatibility bound.",
+    "area": "07-pattern-formation",
+    "parent_problems": [
+      "GC11",
+      "GC31",
+      "GC32",
+      "GC33",
+      "GC34",
+      "GC35",
+      "GC57"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC190",
+    "title": "Aperiodic stable textures",
+    "question": "Determine whether quasiperiodic or aperiodic stationary patterns can be orbitally stable in a local fourth-order scalar PDE.",
+    "first_test": "Produce a stable aperiodic example or prove rigidity under a stated condition.",
+    "area": "07-pattern-formation",
+    "parent_problems": [
+      "GC11",
+      "GC31",
+      "GC32",
+      "GC33",
+      "GC34",
+      "GC35",
+      "GC57"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC191",
+    "title": "Gradient-flow convergence rates",
+    "question": "Determine sharp convergence rates to a stationary pattern for initial data near a degenerate equilibrium of a fourth-order gradient flow.",
+    "first_test": "Prove a Łojasiewicz–Simon rate and construct sharp cases.",
+    "area": "07-pattern-formation",
+    "parent_problems": [
+      "GC11",
+      "GC31",
+      "GC32",
+      "GC33",
+      "GC34",
+      "GC35",
+      "GC57"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC192",
+    "title": "Topological defect charge balance",
+    "question": "For a smooth complex amplitude description of stripes, derive conservation laws for signed phase-dislocation charge while defects remain isolated.",
+    "first_test": "Prove charge balance through nucleation and annihilation events.",
+    "area": "07-pattern-formation",
+    "parent_problems": [
+      "GC11",
+      "GC31",
+      "GC32",
+      "GC33",
+      "GC34",
+      "GC35",
+      "GC57"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC193",
+    "title": "Pattern memory after forcing removal",
+    "question": "Determine whether a transient spatial forcing can leave a stable wavelength or orientation change after it is removed.",
+    "first_test": "Establish a permanent switch under an explicit forcing protocol.",
+    "area": "07-pattern-formation",
+    "parent_problems": [
+      "GC11",
+      "GC31",
+      "GC32",
+      "GC33",
+      "GC34",
+      "GC35",
+      "GC57"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC194",
+    "title": "Coupled pattern synchronization",
+    "question": "For two weakly coupled Swift–Hohenberg fields, classify stable phase-locked stripe solutions and synchronization thresholds.",
+    "first_test": "Prove existence and stability or show phase slips prevent locking.",
+    "area": "07-pattern-formation",
+    "parent_problems": [
+      "GC11",
+      "GC31",
+      "GC32",
+      "GC33",
+      "GC34",
+      "GC35",
+      "GC57"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC195",
+    "title": "Anisotropic grain-boundary energy",
+    "question": "Derive the minimal interfacial energy between stripes with two prescribed orientations for a fourth-order pattern functional.",
+    "first_test": "Prove existence of a minimizing boundary and angular asymptotics.",
+    "area": "07-pattern-formation",
+    "parent_problems": [
+      "GC11",
+      "GC31",
+      "GC32",
+      "GC33",
+      "GC34",
+      "GC35",
+      "GC57"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  }
+]

@@ -11,11 +11,18 @@ scope: >
   {(phi, grad phi, Laplacian phi) : phi Schwartz} in L^2 x (L^2)^d x L^2).
 proof_policy:
   build: "cd lean && lake update && lake exe cache get && lake build"
-  excluded: ["sorry", "admit", "axiom"]
+  excluded: ["sorry", "admit", "axiom", "native_decide"]
   note: "Passing CI certifies only the precise statements in the imported Lean source."
+verification_counts:
+  imported_project_modules: 90
+  source_theorem_lemma_declarations: 1704
+  completed_original_manuscripts: 14
+  original_manuscripts: 14
+  note: "Declaration inventory includes private source lemmas; it is not a count of distinct mathematical results."
 families:
   F01:
     main_theorem_formalized: true
+    status: MAIN_THEOREM_VERIFIED
     manuscripts:
       strict-subadditivity-fourth-order-cubic-quintic:
         main_theorem_formalized: true
@@ -41,6 +48,7 @@ families:
     legacy_supporting_declarations: [ReyesMath.negativeEnergy_strictGap]
   F02:
     main_theorem_formalized: true
+    status: MAIN_THEOREM_VERIFIED
     manuscripts:
       uv-sobolev-ill-posedness-fourth-order-wave:
         main_theorem_formalized: true
@@ -55,6 +63,7 @@ families:
     legacy_supporting_declarations: [ReyesMath.s004_acceleration_hessian_det, ReyesMath.s004_acceleration_hessian_det_pos, ReyesMath.ultraviolet_plus_root_exact, ReyesMath.ultraviolet_minus_root_exact]
   F03:
     main_theorem_formalized: true
+    status: MAIN_THEOREM_VERIFIED
     manuscripts:
       spectral-rms-averaged-curvature:
         main_theorem_formalized: true
@@ -64,6 +73,7 @@ families:
     legacy_supporting_declarations: [ReyesMath.varianceDeficit_nonnegative, ReyesMath.finite_weighted_variance_identity, ReyesMath.finite_weighted_mean_square_bound]
   F04:
     main_theorem_formalized: true
+    status: MAIN_THEOREM_VERIFIED
     manuscripts:
       finite-fourier-coordinate-subspace-noninvariance:
         main_theorem_formalized: true
@@ -73,6 +83,7 @@ families:
     legacy_supporting_declarations: [ReyesMath.quintic_frequency_above_cutoff, ReyesMath.quintic_frequency_below_cutoff, ReyesMath.multidimensional_quintic_frequency_escape]
   F05:
     main_theorem_formalized: true
+    status: MAIN_THEOREM_VERIFIED
     manuscripts:
       positive-curvature-whole-space-nonattainment:
         main_theorem_formalized: true
@@ -81,6 +92,7 @@ families:
         declarations: [ReyesMath.Curvature.global_nonattainment, ReyesMath.Curvature.strict_spreading, ReyesMath.Curvature.no_local_minimizer, ReyesMath.Curvature.hasDerivAt_eDil, ReyesMath.Curvature.log_deriv_ge, ReyesMath.Curvature.virial_weight, ReyesMath.Curvature.Ec_eq_zero_iff, ReyesMath.Sobolev.H2.val_eq_zero_of_K_eq_zero, ReyesMath.Sobolev.H2.tendsto_distH2_dilR]
   F06:
     main_theorem_formalized: true
+    status: MAIN_THEOREM_VERIFIED
     manuscripts:
       exact-positive-wavenumber-minimum:
         main_theorem_formalized: true
@@ -90,6 +102,7 @@ families:
     legacy_supporting_declarations: [ReyesMath.dispersion_discriminant_identity, ReyesMath.dispersion_tangent_square_identity, ReyesMath.dispersion_unique_minimum_at_stationary]
   F07:
     main_theorem_formalized: true
+    status: MAIN_THEOREM_VERIFIED
     manuscripts:
       weighted-closed-loop-phase-locking:
         main_theorem_formalized: true
@@ -98,47 +111,70 @@ families:
         declarations: [ReyesMath.phase_locking_exact_minimum, ReyesMath.exact_lock_criterion, ReyesMath.optimalPhase_perturbation, ReyesMath.optimalPhase_second_variation, ReyesMath.perturbation_weight_eq_zero_iff, ReyesMath.sector_selection, ReyesMath.nearest_integers_unique, ReyesMath.nearest_integers_tie, ReyesMath.uniform_weight_example]
     legacy_supporting_declarations: [ReyesMath.squaredMismatch_nonnegative, ReyesMath.finite_weighted_phase_bound, ReyesMath.finite_weighted_phase_remainder, ReyesMath.finite_weighted_phase_exact_gap, ReyesMath.finite_weighted_phase_sharp_bound]
   F08:
-    main_theorem_formalized: false
+    main_theorem_formalized: true
+    status: MAIN_THEOREM_VERIFIED
     algebraic_no_go_core_formalized: true
-    covered: "Actual differentiable complex field on Euclidean 4-charts and arbitrary four-chart spaces: tensor equals Gram matrix, rank ≤2, and matrix contraction is nonnegative. IntrinsicScalarMetric.lean adds covector-based pointwise tensor, positivity/nullity on arbitrary tangent fibers and exact linear frame-change covariance. Smooth global cotangent-bundle construction from a complex scalar is still open."
-    declarations: [ReyesMath.scalarGradientGram_nonnegative, ReyesMath.scalarGradientGram_psd, ReyesMath.scalarGradientGram_no_timelike, ReyesMath.scalarGradientCarrier_gram_entry, ReyesMath.scalarGradientCarrier_rank_le_two, ReyesMath.positive_weighted_gradient_family_psd, ReyesMath.gradient_gram_rank_le_carriers, ReyesMath.complex_gradient_real_identity, ReyesMath.complex_gradient_tensor_eq_gram, ReyesMath.complex_gradient_tensor_rank_le_two, ReyesMath.complex_field_metric_is_gram, ReyesMath.complex_field_metric_rank_le_two, ReyesMath.complex_field_metric_quadratic_nonnegative, ReyesMath.complex_field_metric_no_timelike, ReyesMath.charted_complex_metric_rank_le_two, ReyesMath.charted_complex_metric_no_timelike, ReyesMath.charted_complex_metric_everywhere_obstruction, ReyesMath.charted_complex_metric_matrix_psd, ReyesMath.charted_complex_metric_full_pointwise_obstruction, ReyesMath.gradient_gram_matrix_quadratic, ReyesMath.complex_field_matrix_psd, ReyesMath.complex_field_matrix_no_timelike]
+    manifold_module: MathProofs/ManifoldScalarMetric.lean
+    covered: "Actual global C¹ complex scalar field on a real smooth four-manifold: the bilinear covariant Gram tensor obtained from mfderiv has rank ≤2, a kernel of dimension ≥2, a positive-semidefinite quadratic form and vanishing determinant in every basis. Pullback naturality under differentiable manifold maps, continuous tangent-bundle tensor evaluation for C¹ fields, C^m evaluation under C^(m+1) regularity, and nonnegative weighted multiplet rank/positivity obstructions are formalized in ManifoldScalarMetric.lean. The same module passed Lean CI on source branch codex/manifold-scalar-metric."
+    declarations: [ReyesMath.ManifoldScalarMetric.main, ReyesMath.ManifoldScalarMetric.tensor_det_zero, ReyesMath.ManifoldScalarMetric.tensor_pullback, ReyesMath.ManifoldScalarMetric.tensorEval_continuous, ReyesMath.ManifoldScalarMetric.tensorEval_contMDiff, ReyesMath.ManifoldScalarMetric.multiplet_obstruction, ReyesMath.ManifoldScalarMetric.multiplet_rank_budget, ReyesMath.ManifoldScalarMetric.gram_rank_le_two, ReyesMath.ManifoldScalarMetric.gram_nullity, ReyesMath.ManifoldScalarMetric.gram_degenerate]
   F09:
-    main_theorem_formalized: false
+    main_theorem_formalized: true
+    status: MAIN_THEOREM_VERIFIED
+    manuscripts:
+      sm-v18-local-identifiability-obstruction:
+        main_theorem_formalized: true
+        completion_theorem: ReyesMath.V18Forward.f09_completion
+    verified_light_block: MathProofs/V18LightJacobian.lean
+    verified_heavy_block: MathProofs/V18HeavyJacobian.lean
+    verified_three_block_factorization: MathProofs/V18BlockJacobian.lean
+    source_middle_derivatives: MathProofs/V18MiddleDerivatives.lean
+    verified_full_frechet_derivative: MathProofs/V18Frechet.lean
+    verified_local_c1_regularity: MathProofs/V18Regularity.lean
+    verified_light_heavy_branch_bounds: MathProofs/V18BranchBounds.lean
+    verified_middle_floor: MathProofs/V18MiddleFloor.lean
+    verified_clipped_middle_derivatives: MathProofs/V18MiddleClipped.lean
+    complete_frozen_forward_model: MathProofs/V18FullForward.lean
+    exact_middle_block_source: MathProofs/V18MiddleJacobian.lean
+    verified_middle_determinant: MathProofs/V18MiddleDeterminant.lean
+    verified_middle_enclosures: MathProofs/V18MiddleEnclosures.lean
+    verified_interval_arithmetic: MathProofs/V18Interval.lean
+    verified_selected_minor: MathProofs/V18SelectedJacobian.lean
+    verified_full_model_rank: MathProofs/V18Rank.lean
+    verified_c1_level_set: MathProofs/LocalLevelSet.lean
+    completion_theorem: ReyesMath.V18Forward.f09_completion
+    completion_module: MathProofs/V18Identifiability.lean
+    verification_revision: 2e64e34023be231d4307b98dd0abb71fe513adf4
+    verification_audit: docs/FORMALIZATION_REVIEW_2026-10-27.md
+    remaining: "None for the manuscript's theorem, proposition and corollary statements. The concrete result uses exact-decimal frozen coefficients, alpha in [5.172,5.173], epsilon = 5, and an open ambient parameter domain; it does not classify distant fibers or assert NumPy execution equivalence."
     matrix_nullity_core_formalized: true
+    exact_nullity_surjectivity_corollary: MathProofs/ExactSensitivityNullity.lean
     analytic_rank_certificate: docs/SM_V18_ANALYTIC_RANK_CERTIFICATE.md
     analytic_rank_ci: .github/workflows/v18-rank.yml
-    covered: "Lean proves nullity >= 20 for every differentiable 31-to-11 map. Separately, a source-pinned model-specific interval-arithmetic certificate proves a nonzero analytic 11x11 Jacobian minor, exact rank 11 and nullity 20 on the frozen v18 active branch. The 31-parameter model and transcendental interval bounds are not yet encoded in Lean."
-    declarations: [ReyesMath.elevenByThirtyone_nullity_bound, ReyesMath.nullityBound_arithmetic, ReyesMath.elevenByThirtyOne_matrix_nullity, ReyesMath.rectangular_sensitivity_nullity, ReyesMath.differential_local_identifiability_obstruction]
+    covered: "V18FullForward encodes the real-arithmetic source formula with all 31 coordinates, including variable middle frequencies at coordinates 10 and 11, the clipping and dispatch. It defines the actual Frechet Jacobian, proves rank <= 11, nullity = 31 - rank >= 20, and vanishing directional derivatives for its kernel vectors at differentiability points. All seven middle coordinate derivatives are proved. V18Regularity proves equality with the full-parameter smooth branches on an open neighborhood and C1 regularity of the actual map. V18Frechet identifies its full derivative throughout a neighborhood, retaining all active coefficient, frequency, exponent and suppression dependencies. V18BranchBounds proves strict light and heavy floor inequalities, the heavy inner light floor, and exponential/power clipping bounds at the frozen vector. V18MiddleFloor and V18MiddleClipped discharge the floor premise at all five frozen middle observations, for both the five selected columns and the two frequency columns. Frozen Lean constants represent the published exact decimals, not NumPy rounding semantics. Separately, the source-pinned interval certificate now encloses both the nominal decimals and exact stored binary64 inputs, verifies the strict branches, and certifies a nonzero analytic minor outside Lean. The actual middle determinant is now kernel-proved to lie strictly between 18000000 and 24000000, using exact rational interval arithmetic and Mathlib Taylor remainders. V18SelectedJacobian identifies all 121 entries of the selected restriction of the actual Frechet derivative with these blocks, including all six off-diagonal blocks. V18Rank proves the actual selected minor is nonsingular, the full derivative has rank exactly 11, its kernel has dimension 20, and it is surjective. LocalLevelSet proves the conditional C1 submersion chart with C1 inverse on open source and target. V18Identifiability applies it to the actual frozen observation map, identifies the local fiber exactly with a vertical slice over the twenty-dimensional derivative kernel, and proves an equal-output distinct point exists in every ambient neighborhood. The targeted and full Lean builds, both certificate workflows, PDF compilation and M6B regression workflow passed on the recorded verification revision. Exported dependency audits contain only propext, Classical.choice and Quot.sound."
+    declarations: [ReyesMath.elevenByThirtyone_nullity_bound, ReyesMath.nullityBound_arithmetic, ReyesMath.elevenByThirtyOne_matrix_nullity, ReyesMath.rectangular_sensitivity_nullity, ReyesMath.differential_local_identifiability_obstruction, ReyesMath.conditional_local_level_set, ReyesMath.exists_c1_level_set_chart, ReyesMath.V18Forward.f09_completion, ReyesMath.V18Forward.observed_local_level_set, ReyesMath.V18Forward.observed_locally_nonidentifiable, ReyesMath.V18Forward.selectedMinor_frozen_eq, ReyesMath.V18Forward.selectedMinor_det_ne_zero, ReyesMath.V18Forward.jacobian_rank, ReyesMath.V18Forward.jacobian_nullity, ReyesMath.V18Forward.jacobian_surjective, ReyesMath.V18Forward.rank_nullity_on_alpha_interval, ReyesMath.V18Forward.hasFDerivAt_observed_frozen, ReyesMath.V18Forward.hasFDerivAt_observed_near_frozen, ReyesMath.V18Forward.jacobian_frozen_eq, ReyesMath.V18Forward.observed_regular_on_alpha_interval, ReyesMath.V18Forward.frozen_light_floor_lt, ReyesMath.V18Forward.frozen_heavy_light_floor, ReyesMath.V18Forward.frozen_heavy_floor_lt, ReyesMath.V18MiddleJacobian.middle_det_bounds, ReyesMath.V18MiddleJacobian.middle_det_pos, ReyesMath.V18MiddleJacobian.middle_det_ne_zero, ReyesMath.V18MiddleJacobian.determinant_product_nonzero, ReyesMath.V18Forward.local_identifiability, ReyesMath.V18Forward.null_direction, ReyesMath.V18Forward.jacobian, ReyesMath.V18Forward.middle_scale1_coordinate_derivative, ReyesMath.V18Forward.middle_scale2_coordinate_derivative, ReyesMath.V18Forward.frozen_middleRaw, ReyesMath.V18MiddleFloor.every_middle_observable_unclipped, ReyesMath.V18MiddleClipped.all_frozen_middle_coordinate_derivatives, ReyesMath.V18MiddleClipped.all_frozen_middle_frequency_derivatives]
   F10:
     main_theorem_formalized: true
+    status: MAIN_THEOREM_VERIFIED
     modules: [MathProofs/FourierSupport.lean, MathProofs/SphereNull.lean, MathProofs/FourierShellL2.lean]
     covered: "Theorem (zero L^2 state on an isolated Fourier shell) on L^2(R^d), d >= 1, every k_0: for the unitary Fourier transform hat u(xi) = (2 pi)^(-d/2) int u(x) e^(-i x.xi) dx on L^1 cap L^2, extended to L^2 by Plancherel (constructed as the unitary extension of the Schwartz-space transform and identified with the Fourier integral on L^1 cap L^2), supp hat u in the shell |xi| = k_0 implies u = 0, with the support hypothesis read either as essential support or as distributional support. Corollary (free-space Helmholtz equation) for distributional solutions tested against smooth compactly supported functions (via a cutoff approximation of Schwartz functions in the graph norm of the Laplacian); Corollary (nonconstant polynomial dispersion P(-Delta) u = lambda u in S'); the general-multiplier remark; Proposition (fixed carrier, freely varying envelope: mass, Fourier transform, support and width of the modulated packets, and the radial bandwidth bound). The Schwartz-class and supplied-isometry versions (SchwartzShell.lean, L2FourierShellBridge.lean) are retained."
     declarations: [ReyesMath.FourierShell.plancherel, ReyesMath.FourierShell.shell_theorem, ReyesMath.FourierShell.shell_theorem_distrib, ReyesMath.FourierShell.helmholtz, ReyesMath.FourierShell.poly_dispersion, ReyesMath.FourierShell.multiplier, ReyesMath.FourierShell.packets, ReyesMath.Sobolev.fourierL2, ReyesMath.Sobolev.fourierL2_toL2, ReyesMath.Sobolev.fourierL2_ae_eq_fourier, ReyesMath.Sobolev.integral_mul_fourierL2, ReyesMath.Sobolev.FU, ReyesMath.Sobolev.FU_ae_eq, ReyesMath.Sobolev.fourierU, ReyesMath.Sobolev.exists_cutoff_seq, ReyesMath.Sobolev.polyLapS, ReyesMath.Sobolev.fS_polyLapS, ReyesMath.Sobolev.polyZero_null, ReyesMath.Sobolev.packet, ReyesMath.zero_ae_of_null_support, ReyesMath.euclidean_frequency_shell_measure_zero, ReyesMath.euclidean_frequency_shell_ae_zero, ReyesMath.schwartz_fourier_shell_no_bound_state, ReyesMath.l2_fourier_shell_no_bound_state_of_isometry]
   F11:
-    main_theorem_formalized: true
-    manuscripts:
-      e59-dominant-annulus-projection:
-        main_theorem_formalized: true
-        modules: [MathProofs/TorusFourier.lean]
-        covered: "Theorem E59 on T^d = (R/2piZ)^d with the normalized inner product, for the fixed annulus {k in Z^d : ||k| - k_star| <= Delta_k} and any k_star, Delta_k: the projection P A = sum over the annulus of hat A_k e^(ik.x), defined by its L^2-convergent series, is a bounded operator with P^2 = P, P* = P and ||PA|| <= ||A||; it is the orthogonal projection onto H = {B : hat B_k = 0 off the annulus}, which is its range; ||A||^2 = ||PA||^2 + ||(I-P)A||^2; PA is the unique best L^2 approximation to A from H; ||P||_op = 1 if the annulus is nonempty and P = 0 if it is empty. Also the spectral-concentration section (eta = ||PA||^2/||A||^2 in [0,1], eta = 1 iff PA = A), the discrete FFT identity (P = F*DF with F F* = I and a 0/1 diagonal mask is idempotent and self-adjoint), the smooth-multiplier remark (a bounded multiplier is idempotent iff w(k) in {0,1}) and the annulus-convention remark. All operator statements are proved for an arbitrary mask S in Z^d. The Fourier Hilbert basis of L^2((R/LZ)^d) is transported from Mathlib's basis on (R/Z)^d along t -> Lt."
-        declarations: [ReyesMath.TorusL2.e59, ReyesMath.TorusL2.e59_fraction, ReyesMath.TorusL2.fft_projector, ReyesMath.TorusL2.mult_idem_iff_mem, ReyesMath.TorusL2.zero_mem_oneSided_not_mem_annulus, ReyesMath.TorusL2.Pk, ReyesMath.TorusL2.Hk, ReyesMath.TorusL2.annulus, ReyesMath.TorusL2.knorm, ReyesMath.TorusL2.P, ReyesMath.TorusL2.H, ReyesMath.TorusL2.P_eq_starProjection, ReyesMath.TorusL2.range_P, ReyesMath.TorusL2.best_approx, ReyesMath.TorusL2.pythagoras, ReyesMath.TorusL2.opNorm_P, ReyesMath.TorusL2.P_empty, ReyesMath.TorusL2.mult, ReyesMath.TorusL2.coef_mult, ReyesMath.TorusL2.adjoint_mult, ReyesMath.TorusL2.basis, ReyesMath.TorusL2.coef, ReyesMath.TorusL2.coef_eq_volume, ReyesMath.TorusL2.emode, ReyesMath.TorusL2.emode_two_pi, ReyesMath.TorusL2.hasSum_series, ReyesMath.TorusL2.hasSum_inner, ReyesMath.TorusL2.hasSum_sq, ReyesMath.TorusL2.ext_coef, ReyesMath.TorusL2.volume_eq_smul_μ]
-      spectral-energy-concentration-e62:
-        main_theorem_formalized: true
-        modules: [MathProofs/TorusFourier.lean, MathProofs/SpectralConcentration.lean]
-        covered: "Theorem E62 (discrete spectral concentration): for nonzero A in L^2(T^d) and an arbitrary set of modes, eta is well defined (both series summable, 0 < E_tot), 0 <= eta <= 1, eta = 0 iff hat A_k = 0 on the set, and eta = 1 iff hat A_k = 0 off the set; the Parseval normalization ||A||^2_(L^2(dx)) = (2pi)^d sum |hat A_k|^2 with hat A_k = (2pi)^(-d) int A e^(-ik.x) dx; the projector formulation (eta = ||PA||^2/||A||^2, Pythagoras and the endpoint cases PA = 0, (I-P)A = 0); the sharpness remark; Proposition (continuous spectrum) on L^2(R^d) for the unitary Fourier transform and any measurable B (0 <= eta_B <= 1, eta_B = 0 iff hat A = 0 a.e. on B, eta_B = 1 iff hat A = 0 a.e. off B); the zero-width-shell remark (eta of an exact sphere is 0); the no-monotonicity example eta(t) = cos^2 t."
-        declarations: [ReyesMath.TorusL2.e62, ReyesMath.TorusL2.e62_parseval, ReyesMath.TorusL2.eta, ReyesMath.TorusL2.Estar, ReyesMath.TorusL2.Etot, ReyesMath.TorusL2.eta_eq, ReyesMath.TorusL2.eta_proj, ReyesMath.TorusL2.eta_basis_mem, ReyesMath.TorusL2.eta_basis_not_mem, ReyesMath.TorusL2.eta_not_monotone, ReyesMath.SpectralConc.e62_continuous, ReyesMath.SpectralConc.etaC, ReyesMath.SpectralConc.etaC_sphere]
-      e16-linear-spectral-concentration:
-        main_theorem_formalized: true
-        modules: [MathProofs/SpectralConcentration.lean]
-        covered: "For a, b > 0, r real and L^2(R^d) data with the unitary Fourier transform: the operator r - a Delta - b Delta^2 on Schwartz space with symbol lambda(xi) = r + a|xi|^2 - b|xi|^4, its weak (maximal) L^2 realization and the Fourier characterization; Proposition (exact modal power law: existence and uniqueness on [0,inf) of the mild solution A in C([0,inf); L^2) with int_0^t A in D(L) and L int_0^t A = A(t) - A_0, hat A(t) = e^(lambda t) hat A_0 and P(xi,t) = P(xi,0) e^(2 lambda t) a.e.); Lemma (the maximizers of lambda are exactly the shell |xi| = k_star for d >= 1, and the strict gap mu - lambda >= b k_star^2 delta^2); Z(t) > 0 and nu_t is a probability measure; Theorem E16 (nu_t(E_delta) <= C_delta e^(-b k_star^2 delta^2 t), nu_t(E_delta) -> 0, nu_t(||xi| - k_star| < delta) -> 1 under the essential-support hypothesis (H)); the mu = 0 remark (||A(t)|| -> 0); Theorem (argmax convergence for a nonnegative C_0 representative of |hat A_0|^2, including existence of maximizers); Corollary (explicit t^(-1/2) rate); the radial spectral density k^(d-1) int_(S^(d-1)) P(k omega, t) d omega (Mathlib's surface measure), polar integration, the radial power law for a.e. k > 0 and Corollary (radial concentration, radial argmax convergence and rate); Proposition (failure without spectral access: a nonzero Schwartz datum whose maximizers all satisfy |xi_t| > k_star + 1)."
-        declarations: [ReyesMath.SpectralConc.lam, ReyesMath.SpectralConc.mu, ReyesMath.SpectralConc.kstar, ReyesMath.SpectralConc.qf, ReyesMath.SpectralConc.Lop, ReyesMath.SpectralConc.Lop_apply, ReyesMath.SpectralConc.IsGen, ReyesMath.SpectralConc.isGen_iff, ReyesMath.SpectralConc.IsMild, ReyesMath.SpectralConc.sol, ReyesMath.SpectralConc.isMild_sol, ReyesMath.SpectralConc.mild_unique, ReyesMath.SpectralConc.exact_modal_law, ReyesMath.SpectralConc.gap_lemma, ReyesMath.SpectralConc.SpecAccess, ReyesMath.SpectralConc.nu, ReyesMath.SpectralConc.nuM, ReyesMath.SpectralConc.Z_pos, ReyesMath.SpectralConc.nuM_prob, ReyesMath.SpectralConc.concentration, ReyesMath.SpectralConc.decay_of_mu_zero, ReyesMath.SpectralConc.argmax_convergence, ReyesMath.SpectralConc.argmax_rate, ReyesMath.SpectralConc.σS, ReyesMath.SpectralConc.radP, ReyesMath.SpectralConc.lamR, ReyesMath.SpectralConc.integral_polar, ReyesMath.SpectralConc.integral_radP, ReyesMath.SpectralConc.setIntegral_radial, ReyesMath.SpectralConc.radial_law, ReyesMath.SpectralConc.radial_corollary, ReyesMath.SpectralConc.counterexample]
-      band-pass-amplitude-negative-gradient-flow:
-        main_theorem_formalized: true
-        modules: [MathProofs/TorusFourier.lean, MathProofs/BandPassFlow.lean]
-        covered: "Theorem E13 on the flat torus T_L^d = (R/LZ)^d, d <= 3, with Lebesgue measure (|Omega| = L^d), for all real r, a, b, beta: H^(2k) is realized as sum (1+|xi_n|^2)^(2k) |hat A_n|^2 < inf (isometric to l^2), Delta and the partial derivatives are Fourier multipliers agreeing with the classical derivatives of the modes, and H^2 embeds in C(T^d) for d <= 3 (sum (1+|xi_n|^2)^(-2) < inf), so E[A] = int(-r|A|^2 - a|grad A|^2 + b|Delta A|^2 + (beta/2)|A|^4) is C^1 on H^2; for A in C^1([0,T]; H^2) with A(t) in H^4 solving dA/dt = (r - a Delta - b Delta^2)A - beta|A|^2 A in L^2: the first variation DE[A](h) = 2 Re int (dE/dAbar) hbar for every h in H^2 with dE/dAbar = -rA + a Delta A + b Delta^2 A + beta|A|^2 A, dA/dt = -dE/dAbar, dE/dt = -2||dA/dt||^2 <= 0, the energy balance on [0,T] and on every subinterval [t1,t2], and equality iff dA/dt = 0 iff the stationary equation holds. Real-gradient normalization: grad_R E = 2 dE/dAbar (unique), and F = E/2 has grad_R F = dE/dAbar, dA/dt = -grad_R F, dF/dt = -||dA/dt||^2. Centered Swift-Hohenberg representation (k_star^2 = a/(2b), mu = r + a^2/(4b)): r - a Delta - b Delta^2 = mu - b(Delta + k_star^2)^2 on H^4, the centered flow and Wirtinger derivative, periodic integration by parts Re int (Delta A) Abar = -||grad A||^2, ||(Delta + k_star^2)A||^2 = ||Delta A||^2 - 2 k_star^2 ||grad A||^2 + k_star^4 ||A||^2, E_SH = E exactly on H^2, and the centered first variation. Preferred Fourier shell: the linearization at A = 0 acts on modes by lambda(|xi_n|^2), lambda(q) = r + aq - bq^2 = mu - b(q - k_star^2)^2, lambda' = a - 2bq, lambda'' = -2b; for a, b > 0 the unique maximizer is q = k_star^2, i.e. the sphere |k| = k_star > 0 on R^d; the growing band |q - k_star^2| < sqrt(mu/b) (an equivalence, nonempty iff mu > 0); ultraviolet damping lambda -> -inf, and growth for the opposite sign; a fastest lattice mode exists, an explicit torus has no lattice mode on the shell, and for beta != 0 the nonlinear flow leaves every finite shell |xi|^2 = |xi_n|^2 (n != 0) instantly. Corollary (b, beta > 0): E[A] >= -(|Omega|/(2 beta)) max(mu,0)^2 on H^2, and a global solution has int_0^inf ||dA/dt||^2 dt <= (E[A(0)] + (|Omega|/(2 beta)) max(mu,0)^2)/2 < inf. E14 companion: the same identities, the lower-bound proposition, and the remark that time-periodic solutions are stationary."
-        declarations: [ReyesMath.BandPass.e13, ReyesMath.BandPass.balance_interval, ReyesMath.BandPass.energy, ReyesMath.BandPass.wirt, ReyesMath.BandPass.rhs, ReyesMath.BandPass.rhs_eq_neg_wirt, ReyesMath.BandPass.InH, ReyesMath.BandPass.inH_iff, ReyesMath.BandPass.iota, ReyesMath.BandPass.dpart, ReyesMath.BandPass.lap, ReyesMath.BandPass.hasDerivAt_emode, ReyesMath.BandPass.dpart_basis, ReyesMath.BandPass.lap_basis, ReyesMath.BandPass.Phi, ReyesMath.BandPass.norm_Phi_le, ReyesMath.BandPass.summable_wt_inv_sq, ReyesMath.BandPass.hasFDerivAt_Nq, ReyesMath.BandPass.DE_eq, ReyesMath.BandPass.rinner, ReyesMath.BandPass.real_gradient, ReyesMath.BandPass.halfEnergy, ReyesMath.BandPass.half_gradient, ReyesMath.BandPass.half_flow, ReyesMath.BandPass.kstar2, ReyesMath.BandPass.muSH, ReyesMath.BandPass.shiftOp, ReyesMath.BandPass.energySH, ReyesMath.BandPass.centred_operator, ReyesMath.BandPass.rhs_centred, ReyesMath.BandPass.wirt_centred, ReyesMath.BandPass.re_integral_lap_conj, ReyesMath.BandPass.norm_shiftOp_sq, ReyesMath.BandPass.energySH_eq, ReyesMath.BandPass.centred_first_variation, ReyesMath.BandPass.lamq, ReyesMath.BandPass.lamq_eq, ReyesMath.BandPass.coef_linear, ReyesMath.BandPass.linearization, ReyesMath.BandPass.deriv_lamq, ReyesMath.BandPass.deriv2_lamq, ReyesMath.BandPass.preferred_shell, ReyesMath.BandPass.growing_band, ReyesMath.BandPass.growing_band_nonempty, ReyesMath.BandPass.uv_damping, ReyesMath.BandPass.opposite_sign_growth, ReyesMath.BandPass.lattice_maximiser, ReyesMath.BandPass.shell_not_attained, ReyesMath.BandPass.shell_not_invariant, ReyesMath.BandPass.energy_lower, ReyesMath.BandPass.finite_dissipation, ReyesMath.BandPass.periodic_stationary]
+    main_theorem_formalized: false
+    covered: "E13/E14 band-pass gradient-flow identity and E62 Fourier energy fraction proved analytically; neither main result is Lean-formalized."
+    declarations: []
   F12:
+    main_theorem_formalized: false
+    covered: "E26 historical additive-denominator conditional L2 estimate and counterexample proved analytically; no Lean encoding. The corrected M2/E17 regularization is a separate operator."
+    declarations: []
+
+open_manuscripts:
+  m6b-nonlinear-curvature-nonuniqueness:
+    issue: "https://github.com/rickyjreyes/math/issues/42"
     main_theorem_formalized: true
-    modules: [MathProofs/RegularizedCurvatureL2.lean]
-    covered: "Theorem E26 for every open Omega in a finite-dimensional real inner product space (R^d = EuclideanSpace R (Fin d), Lebesgue measure; every d, no boundary condition), all real epsilon, alpha: H^2(Omega; C) is defined by weak derivatives (psi in L^2(Omega) and, for every order k <= 2 and all directions, a weak derivative in L^2(Omega) against C_c^infty(Omega) test functions); Delta psi is the weak Laplacian (tested against Mathlib's Laplacian), which exists in L^2(Omega) for psi in H^2 and is unique a.e. (fundamental lemma of the calculus of variations). If ess inf |D_epsilon[psi]| >= delta > 0 with D_epsilon[psi] = psi + epsilon e^(-alpha|psi|^2), then Delta psi in L^2, D_epsilon[psi] != 0 a.e., ||1/D_epsilon[psi]||_inf <= 1/delta, Theta_epsilon[psi] = -Delta psi/D_epsilon[psi] is in L^2(Omega) and ||Theta_epsilon[psi]||_L2 <= delta^(-1) ||Delta psi||_L2 (also squared-integral form). Corollary (|psi| >= m > epsilon a.e., epsilon > 0, alpha >= 0: bound with (m - epsilon)^(-1)); the remark that no L^2 function on all of R^d (d >= 1) satisfies |psi| >= m > 0 a.e.; Corollary (real psi >= 0 a.e.: bound with delta_epsilon = min(epsilon/2, epsilon e^(-alpha epsilon^2/4)) > 0); Counterexample on (-1,1) with alpha = 0 and psi = x^2 - epsilon in H^2: D = x^2, Delta psi = 2, Theta = -2/x^2, int |Theta|^2 = +infinity (Theta not in L^2) while ||Delta psi||^2 = 8, so no finite constant works and the denominator hypothesis fails for every delta > 0; the corrected phase-covariant multiplier R_epsilon(z) = conj z/(|z|^2 + epsilon^2 e^(-2 alpha |z|^2)) of M2/E17 satisfies |R| <= 1/|z| <= 2/epsilon for |z| >= epsilon/2 and |R| <= |z| e^(2 alpha |z|^2)/epsilon^2 <= e^(alpha epsilon^2/2)/(2 epsilon) otherwise, hence the unconditional bound ||(Delta psi) R_epsilon(psi)||_L2 <= epsilon^(-1) max(2, e^(alpha epsilon^2/2)/2) ||Delta psi||_L2 on H^2; and the scope statement that delta cannot be replaced by epsilon (an explicit H^2 field on (-1,1) satisfying the hypothesis with ||Theta|| > epsilon^(-1) ||Delta psi||)."
-    declarations: [ReyesMath.E26.e26, ReyesMath.E26.e26_Rd, ReyesMath.E26.MemH2, ReyesMath.E26.IsWeakDeriv, ReyesMath.E26.IsWeakLaplacian, ReyesMath.E26.IsTest, ReyesMath.E26.MemH2.exists_weakLaplacian, ReyesMath.E26.IsWeakLaplacian.ae_eq, ReyesMath.E26.Den, ReyesMath.E26.Theta, ReyesMath.E26.cor_modulus, ReyesMath.E26.not_ae_norm_ge_of_memLp, ReyesMath.E26.deltaEps, ReyesMath.E26.deltaEps_pos, ReyesMath.E26.cor_nonneg, ReyesMath.E26.counterexample, ReyesMath.E26.quad, ReyesMath.E26.memH2_quad, ReyesMath.E26.isWeakLaplacian_quad, ReyesMath.E26.Rε, ReyesMath.E26.norm_Rε_cases, ReyesMath.E26.norm_Rε_le, ReyesMath.E26.corrected_bound, ReyesMath.E26.delta_not_replaceable]
+    latest_fully_checked_revision: "dff7b31e40d8bf25bac79a9cdeefa25b8b293f1a"
+    focused_full_build: "https://github.com/rickyjreyes/math/actions/runs/40711828745"
+    supporting_theorems_full_build: "https://github.com/rickyjreyes/math/actions/runs/40711983195"
+    modules: [MathProofs/M6BCurvature.lean, MathProofs/M6BStationary.lean, MathProofs/M6BDirichletLaplacian.lean, MathProofs/M6BLimit.lean, MathProofs/M6BMass.lean, MathProofs/M6BSmooth.lean, MathProofs/M6BSquareMass.lean, MathProofs/M6BStationaryTheorem.lean, MathProofs/M6BForcing.lean, MathProofs/M6BJetSmooth.lean, MathProofs/M6BClosureTheorem.lean, MathProofs/M6BFubini.lean, MathProofs/M6BManuscript.lean, MathProofs/M6BPhaseNonEquivariance.lean, MathProofs/M6BClosureFieldWitness.lean, MathProofs/M6BDimensionalField.lean]
+    declarations: [ReyesMath.M6B.denominator_pos, ReyesMath.M6B.curvature_phase_invariant, ReyesMath.M6B.curvature_family_pairwise_distinct, ReyesMath.M6B.square_intensity_eq, ReyesMath.M6B.square_fields_dirichlet, ReyesMath.M6B.square_not_related_by_constant_phase, ReyesMath.M6B.laplace_sineMode, ReyesMath.M6B.squarePlus_laplace, ReyesMath.M6B.squareMinus_laplace, ReyesMath.M6B.stationary_curvature_equal, ReyesMath.M6B.curvature_downarrow_zero, ReyesMath.M6B.sin_sq_one_integral, ReyesMath.M6B.sin_sq_two_integral, ReyesMath.M6B.squarePlus_smooth, ReyesMath.M6B.squareMinus_smooth, ReyesMath.M6B.squarePlus_prescribed_mass, ReyesMath.M6B.squareMinus_prescribed_mass, ReyesMath.M6B.exact_stationary_counterexample, ReyesMath.M6B.prescribedForcing_smooth, ReyesMath.M6B.stationary_plus_has_prescribed_forcing, ReyesMath.M6B.stationary_minus_has_prescribed_forcing, ReyesMath.M6B.curvature_contDiff, ReyesMath.M6B.every_closure_is_admissible, ReyesMath.M6B.two_distinct_admissible_closures, ReyesMath.M6B.infinitely_many_distinct_closures, ReyesMath.M6B.squareMass_eq_planarSquareMass, ReyesMath.M6B.squarePlus_planar_prescribed_mass, ReyesMath.M6B.squareMinus_planar_prescribed_mass, ReyesMath.M6B.stationary_not_phase_related_on_square, ReyesMath.M6B.manuscript_stationary_noninjectivity, ReyesMath.M6B.phase_invariant_not_equivariant, ReyesMath.M6B.planarSquareMass_eq_sq_norm, ReyesMath.M6B.distinct_closures_on_actual_smooth_field, ReyesMath.M6B.laplacianD_phase, ReyesMath.M6B.fieldCurvatureD_phase_invariant, ReyesMath.M6B.quadraticFieldD_smooth, ReyesMath.M6B.squared_norm_laplacian_D, ReyesMath.M6B.quadraticFieldD_laplacian_at_origin, ReyesMath.M6B.distinct_closures_on_actual_fields_all_dimensions, ReyesMath.M6B.manuscript_closure_nonuniqueness_all_dimensions, ReyesMath.M6B.laplacianD_phase_at, ReyesMath.M6B.laplacianD_phase_on_open, ReyesMath.M6B.fieldCurvatureD_phase_invariant_on_open]
+    covered: "All 16 M6B modules kernel-checked with pinned Lean 4.23.0 / Mathlib 4.23.0; Fubini product Lebesgue L2 mass on open square; all-dimension d>=1 five-axiom closure family and real Cartesian Laplacian phase covariance on C2 fields, quadratic smooth distinguishing witness; arbitrary positive mass smooth Dirichlet stationary noninjectivity with common smooth forcing; phase-invariance/non-equivariance distinction. Exact manuscript contains two theorems and two propositions, all mapped and checked. No time-dependent PDE evolution nonuniqueness is asserted."
+    remaining: "No M6B manuscript theorem/proposition proof obligations remain. PR integration, review approvals, and final-head CI after the inventory update remain separate workflow requirements."

@@ -1,0 +1,344 @@
+[
+  {
+    "id": "GC235",
+    "title": "Lean-certified Fourier transform on Sobolev spaces",
+    "question": "Formalize Fourier-Plancherel correspondence for H2 functions on the plane with the exact normalization needed by fourth-order PDEs.",
+    "first_test": "Prove the isometric isomorphism and derivative multiplier lemmas in Lean.",
+    "area": "10-lean-certified-analysis",
+    "parent_problems": [
+      "GC46",
+      "GC47",
+      "GC48",
+      "GC49",
+      "GC50",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC236",
+    "title": "Verified nonlinear energy differentiability",
+    "question": "Formalize Fréchet differentiability of a cubic–quintic Hamiltonian on a declared Sobolev function space.",
+    "first_test": "Kernel-check the derivative formula and continuity assumptions.",
+    "area": "10-lean-certified-analysis",
+    "parent_problems": [
+      "GC46",
+      "GC47",
+      "GC48",
+      "GC49",
+      "GC50",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC237",
+    "title": "Certified constrained minimizer existence",
+    "question": "Formalize a conditional direct-method existence theorem for fixed-mass fourth-order energy minimizers.",
+    "first_test": "Prove weak lower semicontinuity and compactness hypotheses without hidden axioms.",
+    "area": "10-lean-certified-analysis",
+    "parent_problems": [
+      "GC46",
+      "GC47",
+      "GC48",
+      "GC49",
+      "GC50",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC238",
+    "title": "Lean orbital-distance quotient topology",
+    "question": "Construct a metric or pseudometric for phase-translation orbit distance in H2 and prove its basic invariance properties.",
+    "first_test": "Verify symmetry, triangle inequality and continuity of the group action.",
+    "area": "10-lean-certified-analysis",
+    "parent_problems": [
+      "GC46",
+      "GC47",
+      "GC48",
+      "GC49",
+      "GC50",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC239",
+    "title": "Formal semigroup smoothing estimates",
+    "question": "Kernel-check fourth-order parabolic semigroup bounds between fractional Sobolev spaces.",
+    "first_test": "Prove operator-norm decay with explicit exponents.",
+    "area": "10-lean-certified-analysis",
+    "parent_problems": [
+      "GC46",
+      "GC47",
+      "GC48",
+      "GC49",
+      "GC50",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC240",
+    "title": "Verified Fourier-mode projectors",
+    "question": "Define finite spectral projectors on a torus in Lean and prove orthogonality and convergence for square-summable coefficients.",
+    "first_test": "Prove Parseval-compatible strong convergence and frequency cutoff identities.",
+    "area": "10-lean-certified-analysis",
+    "parent_problems": [
+      "GC46",
+      "GC47",
+      "GC48",
+      "GC49",
+      "GC50",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC241",
+    "title": "Lean proof of spectral gap persistence",
+    "question": "Formalize perturbation bounds for a bounded self-adjoint operator with a fixed isolated spectral interval.",
+    "first_test": "Prove persistence and a quantitative distance-to-spectrum estimate.",
+    "area": "10-lean-certified-analysis",
+    "parent_problems": [
+      "GC46",
+      "GC47",
+      "GC48",
+      "GC49",
+      "GC50",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC242",
+    "title": "Certified local implicit-function branches",
+    "question": "Formalize a parameter-dependent Banach-space implicit-function theorem and apply it to a frozen stationary wave equation.",
+    "first_test": "Kernel-check differentiability, inverse conditions and local branch uniqueness.",
+    "area": "10-lean-certified-analysis",
+    "parent_problems": [
+      "GC46",
+      "GC47",
+      "GC48",
+      "GC49",
+      "GC50",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC243",
+    "title": "Verified mass and energy conservation laws",
+    "question": "Formalize the integration-by-parts identities used to prove conservation for sufficiently smooth fourth-order Schrödinger solutions.",
+    "first_test": "Prove exact identities and then state the density extension assumptions.",
+    "area": "10-lean-certified-analysis",
+    "parent_problems": [
+      "GC46",
+      "GC47",
+      "GC48",
+      "GC49",
+      "GC50",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC244",
+    "title": "Formal concentration radius inequalities",
+    "question": "Construct a Lean proof of quantitative concentration inequalities controlling mass outside a ball for suitable Sobolev functions.",
+    "first_test": "Kernel-check a radius estimate with all measure-theoretic hypotheses.",
+    "area": "10-lean-certified-analysis",
+    "parent_problems": [
+      "GC46",
+      "GC47",
+      "GC48",
+      "GC49",
+      "GC50",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC245",
+    "title": "Lean Hamiltonian constraint matrix rank",
+    "question": "Formalize Dirac constraint rank and nullity calculations for a finite polynomial auxiliary-field model.",
+    "first_test": "Prove matrix ranks from symbolic coefficient hypotheses, avoiding numerical certificates alone.",
+    "area": "10-lean-certified-analysis",
+    "parent_problems": [
+      "GC46",
+      "GC47",
+      "GC48",
+      "GC49",
+      "GC50",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC246",
+    "title": "Verified parameter identifiability ranks",
+    "question": "Formalize rank and nullspace statements for the clipped spectral map's frozen derivative matrix.",
+    "first_test": "Prove the conditional rank theorem and certificate validity.",
+    "area": "10-lean-certified-analysis",
+    "parent_problems": [
+      "GC46",
+      "GC47",
+      "GC48",
+      "GC49",
+      "GC50",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC247",
+    "title": "Proof-assistant validated scattering normalization",
+    "question": "Formalize unitarity of an abstract scattering operator under precisely stated wave-operator completeness assumptions.",
+    "first_test": "Kernel-check the chain of functional-analytic implications.",
+    "area": "10-lean-certified-analysis",
+    "parent_problems": [
+      "GC46",
+      "GC47",
+      "GC48",
+      "GC49",
+      "GC50",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC248",
+    "title": "Formal topological winding invariance",
+    "question": "Formalize invariance of the integer degree of a nonvanishing continuous torus map under homotopy.",
+    "first_test": "Prove the winding lemma without conflating it with PDE nonvanishing.",
+    "area": "10-lean-certified-analysis",
+    "parent_problems": [
+      "GC46",
+      "GC47",
+      "GC48",
+      "GC49",
+      "GC50",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC249",
+    "title": "Certified error propagation for Galerkin ODEs",
+    "question": "Implement an interval or rational certificate checker whose acceptance implies an explicit trajectory-error bound.",
+    "first_test": "Prove the checker sound in Lean for a fixed polynomial ODE.",
+    "area": "10-lean-certified-analysis",
+    "parent_problems": [
+      "GC46",
+      "GC47",
+      "GC48",
+      "GC49",
+      "GC50",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC250",
+    "title": "Lean-displayed counterexample provenance",
+    "question": "Develop a machine-checkable format linking an explicit counterexample witness to the exact false theorem schema it refutes.",
+    "first_test": "Prove sound extraction of the witness and test it on a concrete false claim.",
+    "area": "10-lean-certified-analysis",
+    "parent_problems": [
+      "GC46",
+      "GC47",
+      "GC48",
+      "GC49",
+      "GC50",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC251",
+    "title": "Validated spectral eigenvalue enclosures",
+    "question": "Construct rational interval certificates for isolated eigenvalues of a finite Fourier-Galerkin matrix.",
+    "first_test": "Prove inclusion and separation using verified matrix inequalities.",
+    "area": "10-lean-certified-analysis",
+    "parent_problems": [
+      "GC46",
+      "GC47",
+      "GC48",
+      "GC49",
+      "GC50",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC252",
+    "title": "Formal long-time Lyapunov descent",
+    "question": "Formalize a strict Lyapunov function argument that guarantees convergence to an invariant set under compactness assumptions.",
+    "first_test": "Kernel-check invariance and an exact proof of asymptotic approach.",
+    "area": "10-lean-certified-analysis",
+    "parent_problems": [
+      "GC46",
+      "GC47",
+      "GC48",
+      "GC49",
+      "GC50",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC253",
+    "title": "Machine-checked model-to-model error theorem",
+    "question": "Prove a generic numerical perturbation theorem transferring bounded residuals and stability constants to trajectory-error estimates.",
+    "first_test": "Instantiate the theorem on a finite-dimensional fourth-order wave discretization.",
+    "area": "10-lean-certified-analysis",
+    "parent_problems": [
+      "GC46",
+      "GC47",
+      "GC48",
+      "GC49",
+      "GC50",
+      "GC65"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  }
+]
