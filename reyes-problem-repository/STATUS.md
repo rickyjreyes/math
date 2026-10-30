@@ -2,6 +2,8 @@
 
 **As of 2026-10-29.** This registry tracks 300 candidate problems across 12 research folders. GC01–GC65 retain their prior statements and review status. GC66–GC300 are initial research sketches awaiting formal scoping and literature review. The catalogue is a **proposed research program**, not a verified inventory of open problems. Every problem defaults to `candidate` unless the evidence record specifies otherwise.
 
+**Interpretation:** Each status refers to a specified mathematical question. Do not treat partial obstructions as universal WCT no-go theorems or mathematical success as physical confirmation; keep constructive open questions visible. [Research direction](../RESEARCH_DIRECTION.md).
+
 **Source of truth:** [problem_registry.json](problem_registry.json). **Related existing proofs and papers:** [GC01–GC65 cross-reference](GC65_ADOPTION.md). Linked sources do not by themselves change any GC status. **New sketches:** [GC66–GC300 scope-first activation](CANDIDATE_ACTIVATION.md). [Browse all 300](ROADMAP_300.md). The table is an accessible snapshot. An initial literature lead does **not** certify open status; no problem is presently tagged `open_verified`.
 
 | ID | Problem | Stage | Review | Flagship dossier | Discussion |

@@ -1,6 +1,6 @@
 # Foundational research screening shortlist
 
-**25 priority candidates, not 25 independently verified grand open problems.** These entries were chosen to prioritize cross-domain significance and reusable mathematical foundations. Initial mathematical statements, scientific novelty, and formal correctness remain subject to independent review. This designation does not imply a prize, proof of unsolved status, or promise of century-long difficulty.
+**25 priority candidates, not 25 independently verified grand open problems.** These candidates prioritize mathematically tractable steps toward the continuing WCT foundational research objective, including self-confinement, stable dynamics, consistent parent theories and physical discrimination. The math can stand independently, but neither its verification nor model-specific obstructions automatically validate or refute WCT physics. Initial mathematical statements, novelty and formal correctness require independent review. This designation does not imply a prize, unsolved status or exceptional difficulty. See [research direction](../RESEARCH_DIRECTION.md).
 
 | ID | Research question | Theme | Evidence stage |
 |:--|:--|:--|:--|

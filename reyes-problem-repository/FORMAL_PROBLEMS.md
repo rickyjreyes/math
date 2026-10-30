@@ -2,6 +2,8 @@
 
 **Original mathematically scoped collection:** GC01–GC65. The full living [300-problem roadmap](./ROADMAP_300.md) contains GC66–GC300 as preliminary research-question sketches, not yet formally quantified mathematical statements. **Status:** Proposed precisely scoped research problems, **not** claims of novelty, unsolved status, difficulty, or independence. Several are classification problems, some have known elementary answers or obstructions, and several require additional modeling choices before a definitive theorem can be stated. The word “determine” explicitly permits a negative answer or a counterexample. Mathematical statements are research specifications, not verified results. Literature reviews are pending.
 
+**Interpretation:** Mathematical resolutions apply to their frozen quantified statements, not all possible WCT models. A negative result should identify the next constructive research question where one exists, without obscuring a genuine failure. A positive theorem alone does not establish physical reality. See [research direction](../RESEARCH_DIRECTION.md).
+
 **Shared notation:** $\mathbb R^d$ is Euclidean space, $\mathbb T^d=(\mathbb R/2\pi\mathbb Z)^d$, $\Delta$ is the Laplacian, $H^s$ denotes the $L^2$ Sobolev space, and all solutions use the natural strong/mild solution concept where it exists. Parameters and operators not fixed by a question must be frozen in its dedicated problem dossier before attempting a proof.
 
 ## GC01: Universal orbital stability
