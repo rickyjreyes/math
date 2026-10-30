@@ -156,3 +156,4 @@ import MathProofs.E69Remarks
 import MathProofs.E69Torus
 import MathProofs.E69Certification
 import MathProofs.E18FourierEnergy
+import MathProofs.E18WeightDerivative
