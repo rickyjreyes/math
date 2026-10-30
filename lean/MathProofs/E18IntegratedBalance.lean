@@ -61,4 +61,20 @@ theorem actual_energy_balance (hd : d ≤ 3) (c₁ c₂ ε α : ℝ)
   rw [intervalIntegral.integral_const_mul] at hftc
   linarith
 
+
+/-- Nonnegative curvature energy and the exact integrated balance bound the
+total dissipation on every finite interval of a regular trajectory. -/
+theorem finite_interval_dissipation_bound (hd : d ≤ 3)
+    (c₁ c₂ ε α : ℝ) (hc₁ : 0 ≤ c₁) (hc₂ : 0 ≤ c₂)
+    (T : ℝ) (γ : ℝ → ell2 d) (G : ℝ → L2 L d)
+    (hbalance :
+      energy (L := L) hd c₁ c₂ ε α (γ T) +
+        2 * L ^ d * ∫ t in (0 : ℝ)..T, ‖G t‖ ^ 2 =
+          energy (L := L) hd c₁ c₂ ε α (γ 0)) :
+    2 * L ^ d * ∫ t in (0 : ℝ)..T, ‖G t‖ ^ 2 ≤
+      energy (L := L) hd c₁ c₂ ε α (γ 0) := by
+  have hpositive : 0 ≤ energy (L := L) hd c₁ c₂ ε α (γ T) :=
+    energy_nonneg (L := L) hd c₁ c₂ ε α hc₁ hc₂ (γ T)
+  linarith
+
 end ReyesMath.E18IntegratedBalance
