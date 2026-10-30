@@ -15,7 +15,7 @@ standard definition of `H¹ = W^{1,2}`. The pointwise gradient energy is the Euc
 * `IsH1.congr_ae`, `h1sq_congr_ae`: membership and the `H¹` energies depend only on the
   a.e. classes of the field and of its gradient.
 * `isH1_of_contDiff`: every `C¹` compactly supported field is in `H¹`, and its classical
-  gradient is the weak gradient; `norm_gradVec_ofReal` identifies the gradient energy of a
+  gradient is the weak gradient; `norm_gradVec_ofRealFn` identifies the gradient energy of a
   real field with `‖fderiv‖²`.
 * `WeakH1Field.isH1`, `IsH1.toWeakH1Field`: correspondence with the directional
   distributional structure `WeakH1Field` of `E68WeakH1`.
