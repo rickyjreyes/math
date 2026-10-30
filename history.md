@@ -1,5 +1,12 @@
 # Version history
 
+## 2026-10-30 — Foundational WCT research framing
+
+- Clarified the purpose of mathematical formalization and adversarial testing as advancing the continuing foundational WCT program, without a compulsory engineering-only pivot.
+- Added an interpretation policy for affirmative results, scoped no-go statements, constructive next tests and physical-bridge obligations.
+- Applied that policy across the entry-point documentation, overview and GC research workflow and templates, without changing mathematical proofs or statuses. Tracking issue [#70](https://github.com/rickyjreyes/math/issues/70).
+
+
 ## 2026-10-30 — Lean certification of seven analytic manuscripts and families F11, F12
 
 - Certified E62, E58, M2/E17, E26, M3/E57, E61 and E16, together with the F11 companions E13/E14 and E59. Every theorem, proposition, corollary and lemma is an exported Lean declaration about the manuscript's actual objects, and so is every remark that makes a mathematical assertion. The objects are the unitary Fourier transform on `L²(ℝ^d)`, `H^{2k}` by Fourier weights, `H²(Ω)` by weak derivatives, unbounded operators with their natural domains, and the torus Fourier basis.

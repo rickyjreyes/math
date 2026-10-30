@@ -2,13 +2,19 @@
 
 **Richard J. Reyes** · Independent Researcher
 
-A collection of mathematical manuscripts on **fourth-order partial differential equations, spectral dynamics, variational analysis, geometric constraints, and nonlinear operators**. The emphasis is on explicit hypotheses, self-contained arguments, counterexamples where claims fail, and reproducible source material.
+This repository develops independently checkable mathematics relevant to the continuing **Wave Confinement Theory (WCT)** research program, investigating whether confinement, resonance, phase dynamics, curvature and nonlinear fields can support a consistent, experimentally testable physical framework. The mathematics also has independent value in fourth-order PDEs, spectral dynamics, variational analysis and geometric constraints.
 
-Results are organized by mathematical subject rather than by a single overarching physical interpretation. **Analytical proofs, Lean-checked statements, and physical claims are distinct levels of evidence.**
+Results are organized by mathematical subject so exact claims can be assessed without accepting a physical interpretation. **That separation is a verification strategy, not a retreat from WCT's foundational objectives.** Analytical proofs, Lean-checked statements, numerical evidence and physical hypotheses remain distinct levels of evidence.
 
 **Open research invitation:** [The Reyes Problem Repository](reyes-problem-repository/README.md) organizes 300 proposed questions as a GitHub issue and pull-request research workflow. [Its proof contract](reyes-problem-repository/WORKFLOW.md) links, rather than replaces, the existing Lean declarations and papers. Researchers may contribute verified theorems or counterexamples with full attribution; ongoing work does not depend on outside participation.
 
 **Explore:** [The Reyes Problem Repository](reyes-problem-repository/README.md) · [Complete manuscript catalogue](CONTENTS.md) · [Compiled PDFs](preprints/) · [Overview](overview.pdf) · [Lean formalization status](lean/formalization.yaml) · [Revision history](history.md)
+
+## Research purpose and interpretation
+
+The objective is to **advance and critically test WCT's foundational physics research**, while developing rigorous mathematics that stands independently. Engineering and control applications are complementary, not a compulsory replacement for this objective. Neither a mathematical success nor an obstruction settles WCT's physical validity without a corresponding physical derivation or experiment.
+
+**Constructive scope rule:** an impossibility result excludes only its quantified model class. When a route fails, identify the exact assumption or formulation excluded, what wider hypotheses remain open, and the next meaningful proof, model construction or empirical test. Do not invent a successful alternative or conceal a genuine broad failure. See the [repository-wide research-direction policy](RESEARCH_DIRECTION.md) and [problem research workflow](reyes-problem-repository/WORKFLOW.md).
 
 ## Selected mathematical results
 
@@ -32,7 +38,7 @@ $$
 T_{\mu\nu} = \mathrm{Re}\!\left( \partial_\mu \overline{\psi}\,\partial_\nu \psi \right).
 $$
 
-The rank and signature obstruction applies to this **specific positive-sign construction**, not to every possible metric built using scalar fields.
+The rank and signature obstruction applies to this **specific positive-sign construction**, not to every possible metric built using scalar fields. Constructing a consistent alternative remains an open research task, not a presumed solution.
 
 ## Research map
 
@@ -92,7 +98,7 @@ GitHub Actions also runs the [PDF compilation workflow](.github/workflows/pdfs.y
 
 ## Scope and prior work
 
-- **Model separation:** The F01 Hamiltonian is studied as an independent mathematical model. Its results do not establish a derivation from a ghost-free parent field theory.
+- **Model separation and research direction:** The F01 Hamiltonian is studied as an independent mathematical model. Its results do not establish a derivation from a ghost-free parent field theory. Establishing or ruling out a consistent parent construction remains a research target, not a declaration that the wider program is abandoned.
 - **Dimensional notation:** “D4” in the corresponding variational analyses denotes **square symmetry in two spatial dimensions**; it is not a theorem about lifetimes in four spatial dimensions.
 - **Operator versions:** E26 concerns a historical additive-denominator curvature operator under a uniform separation hypothesis. M2/E17 analyzes a different, corrected phase-covariant regularization.
 - **Earlier literature:** For the related single-power fourth-order problem, see Fernández, Jeanjean, Mandel and Mariş, *Journal of Differential Equations* **330** (2022), [doi:10.1016/j.jde.2022.04.037](https://doi.org/10.1016/j.jde.2022.04.037). The combined cubic–quintic results should be read with this distinction in mind.
