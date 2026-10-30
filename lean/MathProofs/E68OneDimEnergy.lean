@@ -121,4 +121,21 @@ theorem compactOneDim_forbids_uniform_inverse_radius_energy :
   intro R hR
   simpa only [compactOneDim_deriv_ball_energy_eq_global R hR] using hall R hR
 
+
+/-- The actual compact bump rules out a radius-uniform E68 constant
+on the entire smooth compactly supported real-field class in dimension
+one, uniformly in all field choices and ball centers. -/
+theorem no_uniform_E68_on_smooth_fields_one_dimensional :
+    ¬ ∃ C : ℝ, ∀ (ψ : ℝ → ℝ),
+      ContDiff ℝ ∞ ψ → HasCompactSupport ψ →
+      ∀ (center R : ℝ), 0 < R →
+        (∫ x in Metric.ball center R, (deriv ψ x) ^ 2) ≤
+          C * ((∫ x : ℝ, (ψ x) ^ 2) +
+               (∫ x : ℝ, (deriv ψ x) ^ 2)) / R := by
+  rintro ⟨C, hall⟩
+  apply compactOneDim_forbids_uniform_inverse_radius_energy
+  refine ⟨C, ?_⟩
+  intro R hR
+  exact hall bump1 bump1_smooth bump1_compact 0 R (by linarith)
+
 end ReyesMath.E68
