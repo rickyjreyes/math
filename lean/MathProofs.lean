@@ -131,3 +131,4 @@ import MathProofs.SwiftHohenbergL2
 import MathProofs.E61Certification
 import MathProofs.E57Certification
 import MathProofs.E17Certification
+import MathProofs.E26QuotientDomain
