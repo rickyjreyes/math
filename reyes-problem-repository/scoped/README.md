@@ -1,23 +1,19 @@
-# Scoped GC problems, phase 1
+# GC65–GC300: concrete scoped mathematical versions
 
-This folder contains concrete versioned mathematical targets rather than the shorter research sketches. The original problem files are retained unchanged. Definitions and chosen parameter values are **proposals** subject to independent mathematical correction and prior-art review, not certificates of novelty or truth.
+**2026-10-30.** These **236 versioned specifications** replace vague research sketches with proposed models, domains, operators, hypotheses and proof/counterexample targets. The original files in `../problems/` are intentionally unchanged. All candidate IDs are present.
 
-[Shared definitions](COMMON_MODELS.md)
+**Important:** This is a draft specification collection undergoing mathematical review. Not every statement is certified fully sound, nonvacuous, novel, open, or Lean verified. Some are elementary known benchmarks, others conditional on the existence of a base solution, and some ask a potentially difficult classification question. Do not promote to `open_verified` until independent subject-matter and source review, and do not claim that a displayed theorem has been proved merely because it is precisely stated.
 
-- [GC65: Swift–Hohenberg inertial-manifold existence](GC65.md)
-- [GC66: Internal-mode radiation damping](GC66.md)
-- [GC67: Traveling-wave velocity set](GC67.md)
-- [GC68: Two-wave asymptotic scattering](GC68.md)
-- [GC69: Hamiltonian spectral instability index](GC69.md)
-- [GC70: Nonradial solitary waves](GC70.md)
-- [GC71: Dynamical fission versus mass-energy](GC71.md)
-- [GC72: Radiation tail asymptotics](GC72.md)
-- [GC73: Quasiperiodic localized wave torus](GC73.md)
-- [GC74: Defect capture and transmission](GC74.md)
-- [GC75: Phase-dependent effective interaction](GC75.md)
-- [GC76: Embedded-mode persistence](GC76.md)
-- [GC77: Logarithmic nonlinear escape time](GC77.md)
-- [GC78: Unbounded high-Sobolev growth](GC78.md)
-- [GC79: Genuine three-body energy term](GC79.md)
-- [GC80: Periodic-orbit persistence under defects](GC80.md)
-- [GC81: Uniform orbital stability near a branch end](GC81.md)
+[Shared PDE/spectral conventions](COMMON_MODELS.md) · [Issue/PR review](../WORKFLOW.md) · [Initial risk audit](../SCOPING_AUDIT_GC65_GC300_2026-10-30.md)
+
+## Individual models
+
+[GC65](GC65.md) · [GC66](GC66.md) · [GC67](GC67.md) · [GC68](GC68.md) · [GC69](GC69.md) · [GC70](GC70.md) · [GC71](GC71.md) · [GC72](GC72.md) · [GC73](GC73.md) · [GC74](GC74.md) · [GC75](GC75.md) · [GC76](GC76.md) · [GC77](GC77.md) · [GC78](GC78.md) · [GC79](GC79.md) · [GC80](GC80.md) · [GC81](GC81.md) · [GC82](GC82.md) · [GC83](GC83.md) · [GC84](GC84.md) · [GC85](GC85.md) · [GC86](GC86.md) · [GC87](GC87.md) · [GC88](GC88.md) · [GC89](GC89.md) · [GC90](GC90.md) · [GC91](GC91.md) · [GC92](GC92.md) · [GC93](GC93.md) · [GC94](GC94.md) · [GC95](GC95.md) · [GC96](GC96.md) · [GC97](GC97.md) · [GC98](GC98.md) · [GC99](GC99.md) · [GC100](GC100.md) · [GC101](GC101.md) · [GC102](GC102.md) · [GC103](GC103.md) · [GC104](GC104.md) · [GC105](GC105.md) · [GC106](GC106.md) · [GC107](GC107.md) · [GC108](GC108.md) · [GC109](GC109.md) · [GC110](GC110.md) · [GC111](GC111.md) · [GC112](GC112.md) · [GC113](GC113.md) · [GC114](GC114.md) · [GC115](GC115.md) · [GC116](GC116.md) · [GC117](GC117.md) · [GC118](GC118.md) · [GC119](GC119.md) · [GC120](GC120.md) · [GC121](GC121.md) · [GC122](GC122.md) · [GC123](GC123.md) · [GC124](GC124.md) · [GC125](GC125.md) · [GC126](GC126.md) · [GC127](GC127.md) · [GC128](GC128.md) · [GC129](GC129.md) · [GC130](GC130.md) · [GC131](GC131.md) · [GC132](GC132.md) · [GC133](GC133.md) · [GC134](GC134.md) · [GC135](GC135.md) · [GC136](GC136.md) · [GC137](GC137.md) · [GC138](GC138.md) · [GC139](GC139.md) · [GC140](GC140.md) · [GC141](GC141.md) · [GC142](GC142.md) · [GC143](GC143.md) · [GC144](GC144.md) · [GC145](GC145.md) · [GC146](GC146.md) · [GC147](GC147.md) · [GC148](GC148.md) · [GC149](GC149.md) · [GC150](GC150.md) · [GC151](GC151.md) · [GC152](GC152.md) · [GC153](GC153.md) · [GC154](GC154.md) · [GC155](GC155.md) · [GC156](GC156.md) · [GC157](GC157.md) · [GC158](GC158.md) · [GC159](GC159.md) · [GC160](GC160.md) · [GC161](GC161.md) · [GC162](GC162.md) · [GC163](GC163.md) · [GC164](GC164.md) · [GC165](GC165.md) · [GC166](GC166.md) · [GC167](GC167.md) · [GC168](GC168.md) · [GC169](GC169.md) · [GC170](GC170.md) · [GC171](GC171.md) · [GC172](GC172.md) · [GC173](GC173.md) · [GC174](GC174.md) · [GC175](GC175.md) · [GC176](GC176.md) · [GC177](GC177.md) · [GC178](GC178.md) · [GC179](GC179.md) · [GC180](GC180.md) · [GC181](GC181.md) · [GC182](GC182.md) · [GC183](GC183.md) · [GC184](GC184.md) · [GC185](GC185.md) · [GC186](GC186.md) · [GC187](GC187.md) · [GC188](GC188.md) · [GC189](GC189.md) · [GC190](GC190.md) · [GC191](GC191.md) · [GC192](GC192.md) · [GC193](GC193.md) · [GC194](GC194.md) · [GC195](GC195.md) · [GC196](GC196.md) · [GC197](GC197.md) · [GC198](GC198.md) · [GC199](GC199.md) · [GC200](GC200.md) · [GC201](GC201.md) · [GC202](GC202.md) · [GC203](GC203.md) · [GC204](GC204.md) · [GC205](GC205.md) · [GC206](GC206.md) · [GC207](GC207.md) · [GC208](GC208.md) · [GC209](GC209.md) · [GC210](GC210.md) · [GC211](GC211.md) · [GC212](GC212.md) · [GC213](GC213.md) · [GC214](GC214.md) · [GC215](GC215.md) · [GC216](GC216.md) · [GC217](GC217.md) · [GC218](GC218.md) · [GC219](GC219.md) · [GC220](GC220.md) · [GC221](GC221.md) · [GC222](GC222.md) · [GC223](GC223.md) · [GC224](GC224.md) · [GC225](GC225.md) · [GC226](GC226.md) · [GC227](GC227.md) · [GC228](GC228.md) · [GC229](GC229.md) · [GC230](GC230.md) · [GC231](GC231.md) · [GC232](GC232.md) · [GC233](GC233.md) · [GC234](GC234.md) · [GC235](GC235.md) · [GC236](GC236.md) · [GC237](GC237.md) · [GC238](GC238.md) · [GC239](GC239.md) · [GC240](GC240.md) · [GC241](GC241.md) · [GC242](GC242.md) · [GC243](GC243.md) · [GC244](GC244.md) · [GC245](GC245.md) · [GC246](GC246.md) · [GC247](GC247.md) · [GC248](GC248.md) · [GC249](GC249.md) · [GC250](GC250.md) · [GC251](GC251.md) · [GC252](GC252.md) · [GC253](GC253.md) · [GC254](GC254.md) · [GC255](GC255.md) · [GC256](GC256.md) · [GC257](GC257.md) · [GC258](GC258.md) · [GC259](GC259.md) · [GC260](GC260.md) · [GC261](GC261.md) · [GC262](GC262.md) · [GC263](GC263.md) · [GC264](GC264.md) · [GC265](GC265.md) · [GC266](GC266.md) · [GC267](GC267.md) · [GC268](GC268.md) · [GC269](GC269.md) · [GC270](GC270.md) · [GC271](GC271.md) · [GC272](GC272.md) · [GC273](GC273.md) · [GC274](GC274.md) · [GC275](GC275.md) · [GC276](GC276.md) · [GC277](GC277.md) · [GC278](GC278.md) · [GC279](GC279.md) · [GC280](GC280.md) · [GC281](GC281.md) · [GC282](GC282.md) · [GC283](GC283.md) · [GC284](GC284.md) · [GC285](GC285.md) · [GC286](GC286.md) · [GC287](GC287.md) · [GC288](GC288.md) · [GC289](GC289.md) · [GC290](GC290.md) · [GC291](GC291.md) · [GC292](GC292.md) · [GC293](GC293.md) · [GC294](GC294.md) · [GC295](GC295.md) · [GC296](GC296.md) · [GC297](GC297.md) · [GC298](GC298.md) · [GC299](GC299.md) · [GC300](GC300.md)
+
+## Review gate for each scoped version
+
+1. Verify consistent definitions, equation signs, function-space mapping, boundary conditions, units and dimensions.
+2. Check nonempty antecedents and appropriate quantifiers, limit/infimum existence and elementary counterexamples.
+3. Search prior theorems and existing Lean/papers, then distinguish known benchmark, false conjecture, genuinely open question, and conditional theorem.
+4. Prove the exact target, or record an exact counterexample, and independently audit its theorem-to-model match.
+5. Only after passing those checks update registry status and point the original GC page to the accepted version.
