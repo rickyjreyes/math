@@ -1,5 +1,14 @@
 # Version history
 
+## 2026-10-30 — Lean certification of seven analytic manuscripts and families F11, F12
+
+- Certified E62, E58, M2/E17, E26, M3/E57, E61 and E16, together with the F11 companions E13/E14 and E59. Every theorem, proposition, corollary and lemma is an exported Lean declaration about the manuscript's actual objects, and so is every remark that makes a mathematical assertion. The objects are the unitary Fourier transform on `L²(ℝ^d)`, `H^{2k}` by Fourier weights, `H²(Ω)` by weak derivatives, unbounded operators with their natural domains, and the torus Fourier basis.
+- Added a shared Swift–Hohenberg layer: `(Δ + k⋆²)²` is self-adjoint on `H⁴`, `σ(r − a(Δ + k⋆²)²) = (−∞, r]`, and the semigroup has exactly this generator with `‖e^{tL_r}‖ = e^{rt}`. The E61 and M3/E57 certifications are built on it.
+- Ported the E13/E14 band-pass module. Restored the main build after the [PR #60](https://github.com/rickyjreyes/math/pull/60) merge by fixing E61ExactNorm and E17GlobalBound.
+- No manuscript statement was false, so no manuscript text changed. Beyond the manuscripts, the E26 constant `1/δ` is proved sharp.
+- `AnalyticCertificationAudit.lean` audits all 135 declarations cited in the certification report. Each uses only `propext`, `Classical.choice` and `Quot.sound`. The focused workflow now runs this audit.
+- `lean/formalization.yaml` now marks F11 and F12 complete and records the E58, E61, M3/E57 and M2/E17 manuscripts. The inventory is 136 modules and 2,522 theorem/lemma declarations. Correspondence tables are in `docs/ANALYTIC_CERTIFICATION_2026-10-30.md`.
+
 ## 2026-10-27 — Review and correct the full v18 parameter map
 
 - Restored middle-frequency coordinates 10 and 11 in the 31-parameter real forward map, proved their coordinate derivatives, and defined the actual Fréchet Jacobian with its structural nullity and directional-derivative theorems.

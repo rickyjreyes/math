@@ -1,0 +1,344 @@
+[
+  {
+    "id": "GC101",
+    "title": "Threshold resonance multiplicity",
+    "question": "For a fourth-order radial operator with a compactly supported potential, classify the geometric multiplicity of zero-energy threshold resonances.",
+    "first_test": "Construct a nontrivial multiplicity example or prove a radial upper bound.",
+    "area": "03-spectral-scattering",
+    "parent_problems": [
+      "GC07",
+      "GC11",
+      "GC12",
+      "GC13",
+      "GC14",
+      "GC54"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC102",
+    "title": "Embedded eigenvalues in fourth-order media",
+    "question": "Determine which decaying real potentials permit eigenvalues embedded in the nonnegative continuous spectrum of a shifted bi-Laplacian.",
+    "first_test": "Prove an absence criterion and construct a complementary example.",
+    "area": "03-spectral-scattering",
+    "parent_problems": [
+      "GC07",
+      "GC11",
+      "GC12",
+      "GC13",
+      "GC14",
+      "GC54"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC103",
+    "title": "Sharp resolvent bounds near band minima",
+    "question": "For a dispersion with a nonzero-frequency minimizing shell, determine the optimal weighted resolvent growth approaching the spectral edge.",
+    "first_test": "Derive leading singular order and a limiting absorption estimate.",
+    "area": "03-spectral-scattering",
+    "parent_problems": [
+      "GC07",
+      "GC11",
+      "GC12",
+      "GC13",
+      "GC14",
+      "GC54"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC104",
+    "title": "Spectral stability of perturbed periodic stripes",
+    "question": "Quantify the shift of Floquet eigenvalues when the coefficients of a stable periodic fourth-order operator are perturbed.",
+    "first_test": "Prove a uniform spectral-bound perturbation theorem under gap assumptions.",
+    "area": "03-spectral-scattering",
+    "parent_problems": [
+      "GC07",
+      "GC11",
+      "GC12",
+      "GC13",
+      "GC14",
+      "GC54"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC105",
+    "title": "Nonlinear Fermi golden rule at a band edge",
+    "question": "Find explicit conditions under which a discrete internal mode irreversibly couples to radiation at a degenerate fourth-order threshold.",
+    "first_test": "Calculate a nonzero coupling integral and justify the induced amplitude law.",
+    "area": "03-spectral-scattering",
+    "parent_problems": [
+      "GC07",
+      "GC11",
+      "GC12",
+      "GC13",
+      "GC14",
+      "GC54"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC106",
+    "title": "Localization near quasi-periodic coefficients",
+    "question": "Determine whether small quasiperiodic modulations of a fourth-order operator yield localized modes or extended states.",
+    "first_test": "Prove a localization or reducibility result for a fixed analytic modulation.",
+    "area": "03-spectral-scattering",
+    "parent_problems": [
+      "GC07",
+      "GC11",
+      "GC12",
+      "GC13",
+      "GC14",
+      "GC54"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC107",
+    "title": "Spectral flow under curvature coupling",
+    "question": "Track isolated eigenvalues of a fourth-order wave operator as a smooth curvature-induced potential is increased.",
+    "first_test": "Prove monotonicity or establish a spectral crossing counterexample.",
+    "area": "03-spectral-scattering",
+    "parent_problems": [
+      "GC07",
+      "GC11",
+      "GC12",
+      "GC13",
+      "GC14",
+      "GC54"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC108",
+    "title": "Band-gap solitons for finite-amplitude lattices",
+    "question": "Determine whether a localized nonlinear mode can bifurcate from a finite-wavelength gap edge of a periodic fourth-order operator.",
+    "first_test": "Prove a gap-soliton branch with a controlled envelope approximation.",
+    "area": "03-spectral-scattering",
+    "parent_problems": [
+      "GC07",
+      "GC11",
+      "GC12",
+      "GC13",
+      "GC14",
+      "GC54"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC109",
+    "title": "Energy transfer across sparse Fourier shells",
+    "question": "For cubic–quintic evolution on a torus, bound leakage from one sparse shell family into a disjoint shell family over a finite time.",
+    "first_test": "Prove a quantitative leakage rate or construct fast transfer.",
+    "area": "03-spectral-scattering",
+    "parent_problems": [
+      "GC07",
+      "GC11",
+      "GC12",
+      "GC13",
+      "GC14",
+      "GC54"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC110",
+    "title": "Inverse resonance reconstruction",
+    "question": "Determine when a finite collection of threshold resonances identifies the coefficients of a restricted fourth-order potential family.",
+    "first_test": "Construct a stable reconstruction or exhibit nonunique potentials.",
+    "area": "03-spectral-scattering",
+    "parent_problems": [
+      "GC07",
+      "GC11",
+      "GC12",
+      "GC13",
+      "GC14",
+      "GC54"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC111",
+    "title": "Spectral measures of localized wave defects",
+    "question": "Characterize how a compactly supported nonlinear equilibrium defect modifies the absolutely continuous spectral measure.",
+    "first_test": "Prove a scattering phase formula or identify a singular component.",
+    "area": "03-spectral-scattering",
+    "parent_problems": [
+      "GC07",
+      "GC11",
+      "GC12",
+      "GC13",
+      "GC14",
+      "GC54"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC112",
+    "title": "Pseudospectral growth in nonnormal wave linearizations",
+    "question": "For a dissipative fourth-order linearization, determine whether large transient amplification can occur despite negative spectral bound.",
+    "first_test": "Establish a resolvent-to-semigroup bound or construct an explicit amplifying example.",
+    "area": "03-spectral-scattering",
+    "parent_problems": [
+      "GC07",
+      "GC11",
+      "GC12",
+      "GC13",
+      "GC14",
+      "GC54"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC113",
+    "title": "High-frequency resolvent smoothing",
+    "question": "Determine the optimal derivative gain for the forced fourth-order Schrödinger resolvent on a weighted Sobolev scale.",
+    "first_test": "Prove a uniform estimate or show sharp failure with wavepackets.",
+    "area": "03-spectral-scattering",
+    "parent_problems": [
+      "GC07",
+      "GC11",
+      "GC12",
+      "GC13",
+      "GC14",
+      "GC54"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC114",
+    "title": "Nonlinear harmonic generation thresholds",
+    "question": "Find quantitative conditions ensuring emergence of a second or third harmonic from a finite-amplitude periodic wave.",
+    "first_test": "Derive a resonant normal form and nonzero transfer coefficient.",
+    "area": "03-spectral-scattering",
+    "parent_problems": [
+      "GC07",
+      "GC11",
+      "GC12",
+      "GC13",
+      "GC14",
+      "GC54"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC115",
+    "title": "Anisotropic shell degeneracy",
+    "question": "Classify the number and geometry of global dispersion minima after introducing a small anisotropic fourth-order term.",
+    "first_test": "Establish a bifurcation diagram for isolated minima versus minimizing curves.",
+    "area": "03-spectral-scattering",
+    "parent_problems": [
+      "GC07",
+      "GC11",
+      "GC12",
+      "GC13",
+      "GC14",
+      "GC54"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC116",
+    "title": "Scattering by topological wave defects",
+    "question": "Determine how a static vortex or winding defect changes the scattering matrix of a specified linear wave operator.",
+    "first_test": "Prove partial-wave scattering identities or a no-effect theorem.",
+    "area": "03-spectral-scattering",
+    "parent_problems": [
+      "GC07",
+      "GC11",
+      "GC12",
+      "GC13",
+      "GC14",
+      "GC54"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC117",
+    "title": "Spectral pollution under Galerkin truncation",
+    "question": "Classify when finite Fourier truncations create spurious eigenvalues near the essential spectrum of a fourth-order wave operator.",
+    "first_test": "Give an exclusion criterion or exhibit a spectral pollution sequence.",
+    "area": "03-spectral-scattering",
+    "parent_problems": [
+      "GC07",
+      "GC11",
+      "GC12",
+      "GC13",
+      "GC14",
+      "GC54"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC118",
+    "title": "Resonant mode counting under confinement",
+    "question": "For bounded-domain fourth-order waves, derive asymptotically sharp counts of frequencies supporting weakly localized resonant modes.",
+    "first_test": "Prove a Weyl-type count with a confinement correction.",
+    "area": "03-spectral-scattering",
+    "parent_problems": [
+      "GC07",
+      "GC11",
+      "GC12",
+      "GC13",
+      "GC14",
+      "GC54"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC119",
+    "title": "Nonlinear persistence of embedded solitary modes",
+    "question": "Determine whether a small nonlinear interaction preserves a solitary mode whose linear frequency lies inside a continuous band.",
+    "first_test": "Establish structural persistence or a generic radiation obstruction.",
+    "area": "03-spectral-scattering",
+    "parent_problems": [
+      "GC07",
+      "GC11",
+      "GC12",
+      "GC13",
+      "GC14",
+      "GC54"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  }
+]

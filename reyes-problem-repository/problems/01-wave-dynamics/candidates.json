@@ -1,0 +1,274 @@
+[
+  {
+    "id": "GC66",
+    "title": "Internal-mode radiation damping",
+    "question": "For the fourth-order cubic–quintic NLS near a specified localized excited state, determine whether an isolated internal mode sheds energy into the continuous spectrum.",
+    "first_test": "Derive a nonzero resonance coefficient or exhibit a symmetry that forbids coupling.",
+    "area": "01-wave-dynamics",
+    "parent_problems": [
+      "GC01",
+      "GC02",
+      "GC03",
+      "GC05",
+      "GC51"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC67",
+    "title": "Traveling-wave velocity bounds",
+    "question": "Classify velocities for which exponentially decaying traveling waves solve the fourth-order cubic–quintic NLS on the plane.",
+    "first_test": "Identify an admissible traveling ansatz and prove existence or an exact velocity obstruction.",
+    "area": "01-wave-dynamics",
+    "parent_problems": [
+      "GC01",
+      "GC02",
+      "GC03",
+      "GC05",
+      "GC51"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC68",
+    "title": "Two-soliton collision outcomes",
+    "question": "For two initially separated coherent profiles with prescribed incoming phases and velocities, characterize elastic scattering, capture, or fragmentation in the full fourth-order flow.",
+    "first_test": "Prove one asymptotic collision channel or construct a controlled inelastic example.",
+    "area": "01-wave-dynamics",
+    "parent_problems": [
+      "GC01",
+      "GC02",
+      "GC03",
+      "GC05",
+      "GC51"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC69",
+    "title": "Excited-state spectral instability index",
+    "question": "Relate the negative directions of a solitary-wave Hessian to unstable eigenvalues of the linearized Hamiltonian flow.",
+    "first_test": "Produce an index equality under explicit kernel and essential-spectrum assumptions.",
+    "area": "01-wave-dynamics",
+    "parent_problems": [
+      "GC01",
+      "GC02",
+      "GC03",
+      "GC05",
+      "GC51"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC70",
+    "title": "Nonradial solitary-wave families",
+    "question": "Determine which nonradial profiles exist at fixed mass for the fourth-order cubic–quintic model and whether they bifurcate from radial branches.",
+    "first_test": "Construct a nonsymmetric branch or prove rigidity in a fixed parameter regime.",
+    "area": "01-wave-dynamics",
+    "parent_problems": [
+      "GC01",
+      "GC02",
+      "GC03",
+      "GC05",
+      "GC51"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC71",
+    "title": "Fission thresholds for coherent packets",
+    "question": "Determine whether energetic and momentum constraints predict splitting of a localized wave into two or more persistent profiles.",
+    "first_test": "Prove a sufficient fission criterion or construct a counterexample to a proposed criterion.",
+    "area": "01-wave-dynamics",
+    "parent_problems": [
+      "GC01",
+      "GC02",
+      "GC03",
+      "GC05",
+      "GC51"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC72",
+    "title": "Nonlinear radiation tail asymptotics",
+    "question": "Classify the sharp pointwise and weighted-space decay of radiation emitted by perturbations of a stable fourth-order solitary wave.",
+    "first_test": "Establish a dispersive expansion including its leading coefficient and remainder.",
+    "area": "01-wave-dynamics",
+    "parent_problems": [
+      "GC01",
+      "GC02",
+      "GC03",
+      "GC05",
+      "GC51"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC73",
+    "title": "Quasiperiodic localized dynamics",
+    "question": "Determine whether genuinely localized solutions with two incommensurate temporal frequencies exist near a spectrally isolated coherent state.",
+    "first_test": "Construct an invariant torus or prove a nonresonance obstruction.",
+    "area": "01-wave-dynamics",
+    "parent_problems": [
+      "GC01",
+      "GC02",
+      "GC03",
+      "GC05",
+      "GC51"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC74",
+    "title": "Wavepacket capture versus passage",
+    "question": "In a fixed localized defect potential, classify when a traveling wavepacket is trapped, reflected, or transmitted by nonlinear dynamics.",
+    "first_test": "Prove one sharp scattering threshold for a frozen defect and incident family.",
+    "area": "01-wave-dynamics",
+    "parent_problems": [
+      "GC01",
+      "GC02",
+      "GC03",
+      "GC05",
+      "GC51"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC75",
+    "title": "Phase-dependent interaction forces",
+    "question": "Derive a controlled leading-order interaction force between two well-separated solitary profiles and determine how it changes with relative phase.",
+    "first_test": "Establish a separation-dependent effective force with a quantified remainder.",
+    "area": "01-wave-dynamics",
+    "parent_problems": [
+      "GC01",
+      "GC02",
+      "GC03",
+      "GC05",
+      "GC51"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC76",
+    "title": "Dynamics near an embedded internal eigenvalue",
+    "question": "Determine whether a localized mode embedded in a radiation band persists under small Hamiltonian perturbations.",
+    "first_test": "Find a structural protection theorem or derive its dissolution into a resonance.",
+    "area": "01-wave-dynamics",
+    "parent_problems": [
+      "GC01",
+      "GC02",
+      "GC03",
+      "GC05",
+      "GC51"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC77",
+    "title": "Orbital instability growth rates",
+    "question": "For an explicitly chosen unstable excited standing wave, determine the sharp nonlinear departure time as perturbation size tends to zero.",
+    "first_test": "Match spectral exponential growth with a nonlinear bootstrap lower and upper bound.",
+    "area": "01-wave-dynamics",
+    "parent_problems": [
+      "GC01",
+      "GC02",
+      "GC03",
+      "GC05",
+      "GC51"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC78",
+    "title": "High-frequency wave cascade obstruction",
+    "question": "Determine whether finite-energy data can transfer arbitrarily much Sobolev mass to high frequencies while conserving mass and Hamiltonian.",
+    "first_test": "Construct a cascade or prove a uniform high-norm bound in a stated regime.",
+    "area": "01-wave-dynamics",
+    "parent_problems": [
+      "GC01",
+      "GC02",
+      "GC03",
+      "GC05",
+      "GC51"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC79",
+    "title": "Long-time interaction of three solitons",
+    "question": "Classify whether three separated waves can exhibit persistent three-body interactions not captured by pairwise effective forces.",
+    "first_test": "Derive a genuine three-body correction or prove pairwise reduction at leading order.",
+    "area": "01-wave-dynamics",
+    "parent_problems": [
+      "GC01",
+      "GC02",
+      "GC03",
+      "GC05",
+      "GC51"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC80",
+    "title": "Breather persistence under model perturbations",
+    "question": "For a specified small perturbation of an exactly periodic localized orbit, determine whether the orbit persists or radiates away.",
+    "first_test": "Prove a persistence criterion or a radiation-induced obstruction.",
+    "area": "01-wave-dynamics",
+    "parent_problems": [
+      "GC01",
+      "GC02",
+      "GC03",
+      "GC05",
+      "GC51"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  },
+  {
+    "id": "GC81",
+    "title": "Uniform stability near a bifurcation endpoint",
+    "question": "Determine whether orbital-stability constants remain bounded as a solitary-wave branch approaches a fold or essential-spectrum edge.",
+    "first_test": "Quantify degeneration of coercivity or establish a uniform neighborhood estimate.",
+    "area": "01-wave-dynamics",
+    "parent_problems": [
+      "GC01",
+      "GC02",
+      "GC03",
+      "GC05",
+      "GC51"
+    ],
+    "status": "candidate",
+    "literature": "not_reviewed",
+    "novelty_established": false
+  }
+]

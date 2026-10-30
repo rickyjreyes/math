@@ -4,6 +4,6 @@
 
 Family: F11 (E13/E14). The complex Swift--Hohenberg amplitude equation is the negative Wirtinger gradient flow of its Lyapunov functional on a periodic torus, with the exact identity `dE/dt = -2 ||A_t||_2^2` for sufficiently regular solutions. The real `L^2` gradient uses the half-energy normalization. This theorem does not establish global well-posedness, nonlinear Fourier-shell invariance, or physical derivation from WCT.
 
-Research manuscript; not independently peer-reviewed or Lean-formalized. PDFs are compiled reproducibly by the repository's [build script](../../scripts/build_pdfs.sh) and [workflow](../../.github/workflows/pdfs.yml).
+Research manuscript; not independently peer-reviewed. The theorem, the normalization, the centred representation, the preferred-shell statements and the β > 0 corollary (with the E14 companion) are Lean-formalized in [BandPassFlow](../../lean/MathProofs/BandPassFlow.lean) (`ReyesMath.BandPass.e13`; see the [certification report](../../docs/ANALYTIC_CERTIFICATION_2026-10-30.md) and [lean/formalization.yaml](../../lean/formalization.yaml)). PDFs are compiled reproducibly by the repository's [build script](../../scripts/build_pdfs.sh) and [workflow](../../.github/workflows/pdfs.yml).
 
 The companion E14 file is a separate, standalone LaTeX derivation of the same flow and includes the periodic-domain lower bound for \(\beta>0\). It is not counted as an additional manuscript and is not automatically compiled by the main-PDF workflow.
