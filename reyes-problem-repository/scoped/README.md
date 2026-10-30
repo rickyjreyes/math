@@ -1,19 +1,301 @@
-# GC65–GC300: concrete scoped mathematical versions
+# Scoped mathematical statements: GC65–GC300
 
-**2026-10-30.** These **236 versioned specifications** replace vague research sketches with proposed models, domains, operators, hypotheses and proof/counterexample targets. The original files in `../problems/` are intentionally unchanged. All candidate IDs are present.
+**Prepared 2026-10-30 for [draft PR #69](https://github.com/rickyjreyes/math/pull/69).**
 
-**Important:** This is a draft specification collection undergoing mathematical review. Not every statement is certified fully sound, nonvacuous, novel, open, or Lean verified. Some are elementary known benchmarks, others conditional on the existence of a base solution, and some ask a potentially difficult classification question. Do not promote to `open_verified` until independent subject-matter and source review, and do not claim that a displayed theorem has been proved merely because it is precisely stated.
+This directory contains **236 separately versioned, more precise mathematical or formal-verification targets** derived from the original problem sketches. The historical questions remain unchanged in [../problems](../problems/README.md); none has been renamed or deleted.
 
-[Shared PDE/spectral conventions](COMMON_MODELS.md) · [Issue/PR review](../WORKFLOW.md) · [Initial risk audit](../SCOPING_AUDIT_GC65_GC300_2026-10-30.md)
+The scope files select explicit equations, admissible spaces or algorithms, parameters, observations and a falsifiable target. **Their existence is not a mathematical peer-review certificate, a full prior-art search, evidence that the conjecture is unsolved, a proved theorem, or physical validation.** The registry statuses remain `candidate` until mathematical review justifies promotion. Existing, classical or readily refutable formulations should be recorded as such, not marketed as newly unsolved.
 
-## Individual models
+Use [common model conventions](COMMON_MODELS.md) where referenced; the exact model written in an individual GC file takes precedence. Some files are intentionally conditional, and the existence of any hypothesized standing wave, minimizer, invariant manifold or physical component must be established before drawing a non-vacuous conclusion.
 
-[GC65](GC65.md) · [GC66](GC66.md) · [GC67](GC67.md) · [GC68](GC68.md) · [GC69](GC69.md) · [GC70](GC70.md) · [GC71](GC71.md) · [GC72](GC72.md) · [GC73](GC73.md) · [GC74](GC74.md) · [GC75](GC75.md) · [GC76](GC76.md) · [GC77](GC77.md) · [GC78](GC78.md) · [GC79](GC79.md) · [GC80](GC80.md) · [GC81](GC81.md) · [GC82](GC82.md) · [GC83](GC83.md) · [GC84](GC84.md) · [GC85](GC85.md) · [GC86](GC86.md) · [GC87](GC87.md) · [GC88](GC88.md) · [GC89](GC89.md) · [GC90](GC90.md) · [GC91](GC91.md) · [GC92](GC92.md) · [GC93](GC93.md) · [GC94](GC94.md) · [GC95](GC95.md) · [GC96](GC96.md) · [GC97](GC97.md) · [GC98](GC98.md) · [GC99](GC99.md) · [GC100](GC100.md) · [GC101](GC101.md) · [GC102](GC102.md) · [GC103](GC103.md) · [GC104](GC104.md) · [GC105](GC105.md) · [GC106](GC106.md) · [GC107](GC107.md) · [GC108](GC108.md) · [GC109](GC109.md) · [GC110](GC110.md) · [GC111](GC111.md) · [GC112](GC112.md) · [GC113](GC113.md) · [GC114](GC114.md) · [GC115](GC115.md) · [GC116](GC116.md) · [GC117](GC117.md) · [GC118](GC118.md) · [GC119](GC119.md) · [GC120](GC120.md) · [GC121](GC121.md) · [GC122](GC122.md) · [GC123](GC123.md) · [GC124](GC124.md) · [GC125](GC125.md) · [GC126](GC126.md) · [GC127](GC127.md) · [GC128](GC128.md) · [GC129](GC129.md) · [GC130](GC130.md) · [GC131](GC131.md) · [GC132](GC132.md) · [GC133](GC133.md) · [GC134](GC134.md) · [GC135](GC135.md) · [GC136](GC136.md) · [GC137](GC137.md) · [GC138](GC138.md) · [GC139](GC139.md) · [GC140](GC140.md) · [GC141](GC141.md) · [GC142](GC142.md) · [GC143](GC143.md) · [GC144](GC144.md) · [GC145](GC145.md) · [GC146](GC146.md) · [GC147](GC147.md) · [GC148](GC148.md) · [GC149](GC149.md) · [GC150](GC150.md) · [GC151](GC151.md) · [GC152](GC152.md) · [GC153](GC153.md) · [GC154](GC154.md) · [GC155](GC155.md) · [GC156](GC156.md) · [GC157](GC157.md) · [GC158](GC158.md) · [GC159](GC159.md) · [GC160](GC160.md) · [GC161](GC161.md) · [GC162](GC162.md) · [GC163](GC163.md) · [GC164](GC164.md) · [GC165](GC165.md) · [GC166](GC166.md) · [GC167](GC167.md) · [GC168](GC168.md) · [GC169](GC169.md) · [GC170](GC170.md) · [GC171](GC171.md) · [GC172](GC172.md) · [GC173](GC173.md) · [GC174](GC174.md) · [GC175](GC175.md) · [GC176](GC176.md) · [GC177](GC177.md) · [GC178](GC178.md) · [GC179](GC179.md) · [GC180](GC180.md) · [GC181](GC181.md) · [GC182](GC182.md) · [GC183](GC183.md) · [GC184](GC184.md) · [GC185](GC185.md) · [GC186](GC186.md) · [GC187](GC187.md) · [GC188](GC188.md) · [GC189](GC189.md) · [GC190](GC190.md) · [GC191](GC191.md) · [GC192](GC192.md) · [GC193](GC193.md) · [GC194](GC194.md) · [GC195](GC195.md) · [GC196](GC196.md) · [GC197](GC197.md) · [GC198](GC198.md) · [GC199](GC199.md) · [GC200](GC200.md) · [GC201](GC201.md) · [GC202](GC202.md) · [GC203](GC203.md) · [GC204](GC204.md) · [GC205](GC205.md) · [GC206](GC206.md) · [GC207](GC207.md) · [GC208](GC208.md) · [GC209](GC209.md) · [GC210](GC210.md) · [GC211](GC211.md) · [GC212](GC212.md) · [GC213](GC213.md) · [GC214](GC214.md) · [GC215](GC215.md) · [GC216](GC216.md) · [GC217](GC217.md) · [GC218](GC218.md) · [GC219](GC219.md) · [GC220](GC220.md) · [GC221](GC221.md) · [GC222](GC222.md) · [GC223](GC223.md) · [GC224](GC224.md) · [GC225](GC225.md) · [GC226](GC226.md) · [GC227](GC227.md) · [GC228](GC228.md) · [GC229](GC229.md) · [GC230](GC230.md) · [GC231](GC231.md) · [GC232](GC232.md) · [GC233](GC233.md) · [GC234](GC234.md) · [GC235](GC235.md) · [GC236](GC236.md) · [GC237](GC237.md) · [GC238](GC238.md) · [GC239](GC239.md) · [GC240](GC240.md) · [GC241](GC241.md) · [GC242](GC242.md) · [GC243](GC243.md) · [GC244](GC244.md) · [GC245](GC245.md) · [GC246](GC246.md) · [GC247](GC247.md) · [GC248](GC248.md) · [GC249](GC249.md) · [GC250](GC250.md) · [GC251](GC251.md) · [GC252](GC252.md) · [GC253](GC253.md) · [GC254](GC254.md) · [GC255](GC255.md) · [GC256](GC256.md) · [GC257](GC257.md) · [GC258](GC258.md) · [GC259](GC259.md) · [GC260](GC260.md) · [GC261](GC261.md) · [GC262](GC262.md) · [GC263](GC263.md) · [GC264](GC264.md) · [GC265](GC265.md) · [GC266](GC266.md) · [GC267](GC267.md) · [GC268](GC268.md) · [GC269](GC269.md) · [GC270](GC270.md) · [GC271](GC271.md) · [GC272](GC272.md) · [GC273](GC273.md) · [GC274](GC274.md) · [GC275](GC275.md) · [GC276](GC276.md) · [GC277](GC277.md) · [GC278](GC278.md) · [GC279](GC279.md) · [GC280](GC280.md) · [GC281](GC281.md) · [GC282](GC282.md) · [GC283](GC283.md) · [GC284](GC284.md) · [GC285](GC285.md) · [GC286](GC286.md) · [GC287](GC287.md) · [GC288](GC288.md) · [GC289](GC289.md) · [GC290](GC290.md) · [GC291](GC291.md) · [GC292](GC292.md) · [GC293](GC293.md) · [GC294](GC294.md) · [GC295](GC295.md) · [GC296](GC296.md) · [GC297](GC297.md) · [GC298](GC298.md) · [GC299](GC299.md) · [GC300](GC300.md)
+## Problem acceptance gates
 
-## Review gate for each scoped version
+1. **Definition check:** operator/energy or algorithm, domain, parameters, data, observables, symmetries, topology, quantifiers and relevant negative answer all have one consistent meaning.
+2. **Nonvacuity and standard counterexamples:** test existence of admissible objects, trivial/zero cases, boundary regimes, dimension/units, and exact classical solutions.
+3. **Prior-art collision:** compare the precise frozen claim with existing theorems and Lean declarations. Formalizing classical results is valuable but is not automatically new mathematical discovery.
+4. **Proof readiness:** write the exact positive theorem and its negation, identify verification methods, and decide what an independent reviewer must inspect.
+5. **Evidence gate:** advance status only after the corresponding work is performed. No Lean or paper claims follow merely from a mathematically worded task.
 
-1. Verify consistent definitions, equation signs, function-space mapping, boundary conditions, units and dimensions.
-2. Check nonempty antecedents and appropriate quantifiers, limit/infimum existence and elementary counterexamples.
-3. Search prior theorems and existing Lean/papers, then distinguish known benchmark, false conjecture, genuinely open question, and conditional theorem.
-4. Prove the exact target, or record an exact counterexample, and independently audit its theorem-to-model match.
-5. Only after passing those checks update registry status and point the original GC page to the accepted version.
+Inventory and link validation command from repository root:
+
+```bash
+python3 reyes-problem-repository/scripts/validate_scoped_problems.py
+```
+
+## Individual scoped files
+
+### Exact theorem targets and Lean formalization (20)
+
+- [GC65: Verified mathematical model reduction](GC65.md), [historical candidate](../problems/10-lean-certified-analysis/GC65.md)
+- [GC235: Lean-certified Fourier transform on Sobolev spaces](GC235.md), [historical candidate](../problems/10-lean-certified-analysis/GC235.md)
+- [GC236: Verified nonlinear energy differentiability](GC236.md), [historical candidate](../problems/10-lean-certified-analysis/GC236.md)
+- [GC237: Certified constrained minimizer existence](GC237.md), [historical candidate](../problems/10-lean-certified-analysis/GC237.md)
+- [GC238: Lean orbital-distance quotient topology](GC238.md), [historical candidate](../problems/10-lean-certified-analysis/GC238.md)
+- [GC239: Formal semigroup smoothing estimates](GC239.md), [historical candidate](../problems/10-lean-certified-analysis/GC239.md)
+- [GC240: Verified Fourier-mode projectors](GC240.md), [historical candidate](../problems/10-lean-certified-analysis/GC240.md)
+- [GC241: Lean proof of spectral gap persistence](GC241.md), [historical candidate](../problems/10-lean-certified-analysis/GC241.md)
+- [GC242: Certified local implicit-function branches](GC242.md), [historical candidate](../problems/10-lean-certified-analysis/GC242.md)
+- [GC243: Verified mass and energy conservation laws](GC243.md), [historical candidate](../problems/10-lean-certified-analysis/GC243.md)
+- [GC244: Formal concentration radius inequalities](GC244.md), [historical candidate](../problems/10-lean-certified-analysis/GC244.md)
+- [GC245: Lean Hamiltonian constraint matrix rank](GC245.md), [historical candidate](../problems/10-lean-certified-analysis/GC245.md)
+- [GC246: Verified parameter identifiability ranks](GC246.md), [historical candidate](../problems/10-lean-certified-analysis/GC246.md)
+- [GC247: Proof-assistant validated scattering normalization](GC247.md), [historical candidate](../problems/10-lean-certified-analysis/GC247.md)
+- [GC248: Formal topological winding invariance](GC248.md), [historical candidate](../problems/10-lean-certified-analysis/GC248.md)
+- [GC249: Certified error propagation for Galerkin ODEs](GC249.md), [historical candidate](../problems/10-lean-certified-analysis/GC249.md)
+- [GC250: Lean-displayed counterexample provenance](GC250.md), [historical candidate](../problems/10-lean-certified-analysis/GC250.md)
+- [GC251: Validated spectral eigenvalue enclosures](GC251.md), [historical candidate](../problems/10-lean-certified-analysis/GC251.md)
+- [GC252: Formal long-time Lyapunov descent](GC252.md), [historical candidate](../problems/10-lean-certified-analysis/GC252.md)
+- [GC253: Machine-checked model-to-model error theorem](GC253.md), [historical candidate](../problems/10-lean-certified-analysis/GC253.md)
+
+### Waves, radiation and nonlinear orbital dynamics (16)
+
+- [GC66: Internal-mode radiation damping](GC66.md), [historical candidate](../problems/01-wave-dynamics/GC66.md)
+- [GC67: Traveling-wave velocity bounds](GC67.md), [historical candidate](../problems/01-wave-dynamics/GC67.md)
+- [GC68: Two-soliton collision outcomes](GC68.md), [historical candidate](../problems/01-wave-dynamics/GC68.md)
+- [GC69: Excited-state spectral instability index](GC69.md), [historical candidate](../problems/01-wave-dynamics/GC69.md)
+- [GC70: Nonradial solitary-wave families](GC70.md), [historical candidate](../problems/01-wave-dynamics/GC70.md)
+- [GC71: Fission thresholds for coherent packets](GC71.md), [historical candidate](../problems/01-wave-dynamics/GC71.md)
+- [GC72: Nonlinear radiation tail asymptotics](GC72.md), [historical candidate](../problems/01-wave-dynamics/GC72.md)
+- [GC73: Quasiperiodic localized dynamics](GC73.md), [historical candidate](../problems/01-wave-dynamics/GC73.md)
+- [GC74: Wavepacket capture versus passage](GC74.md), [historical candidate](../problems/01-wave-dynamics/GC74.md)
+- [GC75: Phase-dependent interaction forces](GC75.md), [historical candidate](../problems/01-wave-dynamics/GC75.md)
+- [GC76: Dynamics near an embedded internal eigenvalue](GC76.md), [historical candidate](../problems/01-wave-dynamics/GC76.md)
+- [GC77: Orbital instability growth rates](GC77.md), [historical candidate](../problems/01-wave-dynamics/GC77.md)
+- [GC78: High-frequency wave cascade obstruction](GC78.md), [historical candidate](../problems/01-wave-dynamics/GC78.md)
+- [GC79: Long-time interaction of three solitons](GC79.md), [historical candidate](../problems/01-wave-dynamics/GC79.md)
+- [GC80: Breather persistence under model perturbations](GC80.md), [historical candidate](../problems/01-wave-dynamics/GC80.md)
+- [GC81: Uniform stability near a bifurcation endpoint](GC81.md), [historical candidate](../problems/01-wave-dynamics/GC81.md)
+
+### Localization and nonlinear curvature (19)
+
+- [GC82: Curvature energy coercivity](GC82.md), [historical candidate](../problems/02-confinement-curvature/GC82.md)
+- [GC83: Zero-amplitude phase defects](GC83.md), [historical candidate](../problems/02-confinement-curvature/GC83.md)
+- [GC84: Vanishing-regularizer curvature limits](GC84.md), [historical candidate](../problems/02-confinement-curvature/GC84.md)
+- [GC85: Curvature and confinement on curved surfaces](GC85.md), [historical candidate](../problems/02-confinement-curvature/GC85.md)
+- [GC86: Anisotropic confinement thresholds](GC86.md), [historical candidate](../problems/02-confinement-curvature/GC86.md)
+- [GC87: Curvature-induced spectral traps](GC87.md), [historical candidate](../problems/02-confinement-curvature/GC87.md)
+- [GC88: Localization under metric perturbations](GC88.md), [historical candidate](../problems/02-confinement-curvature/GC88.md)
+- [GC89: Sharp curvature gradient inequality](GC89.md), [historical candidate](../problems/02-confinement-curvature/GC89.md)
+- [GC90: Quantitative confinement length scales](GC90.md), [historical candidate](../problems/02-confinement-curvature/GC90.md)
+- [GC91: Domain geometry and edge confinement](GC91.md), [historical candidate](../problems/02-confinement-curvature/GC91.md)
+- [GC92: Curvature closure selection by locality](GC92.md), [historical candidate](../problems/02-confinement-curvature/GC92.md)
+- [GC93: Optimal confinement with fixed curvature budget](GC93.md), [historical candidate](../problems/02-confinement-curvature/GC93.md)
+- [GC94: Geometric confinement under weak disorder](GC94.md), [historical candidate](../problems/02-confinement-curvature/GC94.md)
+- [GC95: Regularized curvature and Sobolev continuity](GC95.md), [historical candidate](../problems/02-confinement-curvature/GC95.md)
+- [GC96: Multiple curvature wells and tunneling](GC96.md), [historical candidate](../problems/02-confinement-curvature/GC96.md)
+- [GC97: Vortex core energy lower bounds](GC97.md), [historical candidate](../problems/02-confinement-curvature/GC97.md)
+- [GC98: Local curvature data versus global confinement](GC98.md), [historical candidate](../problems/02-confinement-curvature/GC98.md)
+- [GC99: Dimensional threshold under constrained curvature](GC99.md), [historical candidate](../problems/02-confinement-curvature/GC99.md)
+- [GC100: Long-range geometric defects](GC100.md), [historical candidate](../problems/02-confinement-curvature/GC100.md)
+
+### Spectral thresholds, defects and scattering (19)
+
+- [GC101: Threshold resonance multiplicity](GC101.md), [historical candidate](../problems/03-spectral-scattering/GC101.md)
+- [GC102: Embedded eigenvalues in fourth-order media](GC102.md), [historical candidate](../problems/03-spectral-scattering/GC102.md)
+- [GC103: Sharp resolvent bounds near band minima](GC103.md), [historical candidate](../problems/03-spectral-scattering/GC103.md)
+- [GC104: Spectral stability of perturbed periodic stripes](GC104.md), [historical candidate](../problems/03-spectral-scattering/GC104.md)
+- [GC105: Nonlinear Fermi golden rule at a band edge](GC105.md), [historical candidate](../problems/03-spectral-scattering/GC105.md)
+- [GC106: Localization near quasi-periodic coefficients](GC106.md), [historical candidate](../problems/03-spectral-scattering/GC106.md)
+- [GC107: Spectral flow under curvature coupling](GC107.md), [historical candidate](../problems/03-spectral-scattering/GC107.md)
+- [GC108: Band-gap solitons for finite-amplitude lattices](GC108.md), [historical candidate](../problems/03-spectral-scattering/GC108.md)
+- [GC109: Energy transfer across sparse Fourier shells](GC109.md), [historical candidate](../problems/03-spectral-scattering/GC109.md)
+- [GC110: Inverse resonance reconstruction](GC110.md), [historical candidate](../problems/03-spectral-scattering/GC110.md)
+- [GC111: Spectral measures of localized wave defects](GC111.md), [historical candidate](../problems/03-spectral-scattering/GC111.md)
+- [GC112: Pseudospectral growth in nonnormal wave linearizations](GC112.md), [historical candidate](../problems/03-spectral-scattering/GC112.md)
+- [GC113: High-frequency resolvent smoothing](GC113.md), [historical candidate](../problems/03-spectral-scattering/GC113.md)
+- [GC114: Nonlinear harmonic generation thresholds](GC114.md), [historical candidate](../problems/03-spectral-scattering/GC114.md)
+- [GC115: Anisotropic shell degeneracy](GC115.md), [historical candidate](../problems/03-spectral-scattering/GC115.md)
+- [GC116: Scattering by topological wave defects](GC116.md), [historical candidate](../problems/03-spectral-scattering/GC116.md)
+- [GC117: Spectral pollution under Galerkin truncation](GC117.md), [historical candidate](../problems/03-spectral-scattering/GC117.md)
+- [GC118: Resonant mode counting under confinement](GC118.md), [historical candidate](../problems/03-spectral-scattering/GC118.md)
+- [GC119: Nonlinear persistence of embedded solitary modes](GC119.md), [historical candidate](../problems/03-spectral-scattering/GC119.md)
+
+### Constrained mass, binding and minimizers (19)
+
+- [GC120: Sharp mass-energy inequality](GC120.md), [historical candidate](../problems/04-variational-solitons/GC120.md)
+- [GC121: Ground-state nondegeneracy](GC121.md), [historical candidate](../problems/04-variational-solitons/GC121.md)
+- [GC122: Binding at the critical mass](GC122.md), [historical candidate](../problems/04-variational-solitons/GC122.md)
+- [GC123: Orbital stability from quantitative coercivity](GC123.md), [historical candidate](../problems/04-variational-solitons/GC123.md)
+- [GC124: Competing radial and stripe minimizers](GC124.md), [historical candidate](../problems/04-variational-solitons/GC124.md)
+- [GC125: Mass partition in vector solitons](GC125.md), [historical candidate](../problems/04-variational-solitons/GC125.md)
+- [GC126: Concentration-compactness without radial symmetry](GC126.md), [historical candidate](../problems/04-variational-solitons/GC126.md)
+- [GC127: Barycentric pinning of minimizers](GC127.md), [historical candidate](../problems/04-variational-solitons/GC127.md)
+- [GC128: Sharp strict-subadditivity transition](GC128.md), [historical candidate](../problems/04-variational-solitons/GC128.md)
+- [GC129: Soliton branch turning-point stability](GC129.md), [historical candidate](../problems/04-variational-solitons/GC129.md)
+- [GC130: Constrained minimizers with angular momentum](GC130.md), [historical candidate](../problems/04-variational-solitons/GC130.md)
+- [GC131: Energy landscape Morse index](GC131.md), [historical candidate](../problems/04-variational-solitons/GC131.md)
+- [GC132: Mountain-pass localized states](GC132.md), [historical candidate](../problems/04-variational-solitons/GC132.md)
+- [GC133: Uniform minimizer bounds near zero dispersion](GC133.md), [historical candidate](../problems/04-variational-solitons/GC133.md)
+- [GC134: Large-mass saturation profiles](GC134.md), [historical candidate](../problems/04-variational-solitons/GC134.md)
+- [GC135: Variational gap under weak external fields](GC135.md), [historical candidate](../problems/04-variational-solitons/GC135.md)
+- [GC136: Multiplicity of symmetry-related local minima](GC136.md), [historical candidate](../problems/04-variational-solitons/GC136.md)
+- [GC137: Energy quantization in concentrating sequences](GC137.md), [historical candidate](../problems/04-variational-solitons/GC137.md)
+- [GC138: Dynamical stability of constrained excited minima](GC138.md), [historical candidate](../problems/04-variational-solitons/GC138.md)
+
+### Hamiltonians, auxiliary fields and constraints (20)
+
+- [GC139: Degenerate higher-time-derivative Hamiltonians](GC139.md), [historical candidate](../problems/05-higher-derivative-fields/GC139.md)
+- [GC140: Constraint preservation under nonlinear evolution](GC140.md), [historical candidate](../problems/05-higher-derivative-fields/GC140.md)
+- [GC141: Finite-wavelength stability with Lorentz breaking](GC141.md), [historical candidate](../problems/05-higher-derivative-fields/GC141.md)
+- [GC142: Ghost elimination by auxiliary fields](GC142.md), [historical candidate](../problems/05-higher-derivative-fields/GC142.md)
+- [GC143: Causal propagation in dispersive field theories](GC143.md), [historical candidate](../problems/05-higher-derivative-fields/GC143.md)
+- [GC144: Hyperbolicity under parameter continuation](GC144.md), [historical candidate](../problems/05-higher-derivative-fields/GC144.md)
+- [GC145: Higher-derivative effective field theory cutoff](GC145.md), [historical candidate](../problems/05-higher-derivative-fields/GC145.md)
+- [GC146: Energy positivity for coupled scalar fields](GC146.md), [historical candidate](../problems/05-higher-derivative-fields/GC146.md)
+- [GC147: Derivative nonlinearities and local well-posedness](GC147.md), [historical candidate](../problems/05-higher-derivative-fields/GC147.md)
+- [GC148: Gauge compatibility of phase curvature interactions](GC148.md), [historical candidate](../problems/05-higher-derivative-fields/GC148.md)
+- [GC149: Hamiltonian reduction near a spectral degeneracy](GC149.md), [historical candidate](../problems/05-higher-derivative-fields/GC149.md)
+- [GC150: Boundary conditions for fourth-order field energy](GC150.md), [historical candidate](../problems/05-higher-derivative-fields/GC150.md)
+- [GC151: Nonlocal parent actions and stable effective dispersion](GC151.md), [historical candidate](../problems/05-higher-derivative-fields/GC151.md)
+- [GC152: Spectral factorization of stable field symbols](GC152.md), [historical candidate](../problems/05-higher-derivative-fields/GC152.md)
+- [GC153: Vacuum stability under higher-gradient interactions](GC153.md), [historical candidate](../problems/05-higher-derivative-fields/GC153.md)
+- [GC154: Higher-order Noether currents](GC154.md), [historical candidate](../problems/05-higher-derivative-fields/GC154.md)
+- [GC155: Quasilinear fourth-order continuation criteria](GC155.md), [historical candidate](../problems/05-higher-derivative-fields/GC155.md)
+- [GC156: Constrained Hamiltonian numerical integrators](GC156.md), [historical candidate](../problems/05-higher-derivative-fields/GC156.md)
+- [GC157: Coupled dispersion crossing and mode conversion](GC157.md), [historical candidate](../problems/05-higher-derivative-fields/GC157.md)
+- [GC158: Physical observables after field redefinitions](GC158.md), [historical candidate](../problems/05-higher-derivative-fields/GC158.md)
+
+### Inverse problems, sensor design and identification (18)
+
+- [GC159: Minimal sensor geometry for wave identification](GC159.md), [historical candidate](../problems/06-inverse-observation-control/GC159.md)
+- [GC160: Global aliasing in clipped spectral measurements](GC160.md), [historical candidate](../problems/06-inverse-observation-control/GC160.md)
+- [GC161: Robust identifiability under sensor dropout](GC161.md), [historical candidate](../problems/06-inverse-observation-control/GC161.md)
+- [GC162: Optimal experiment design for competing dispersion laws](GC162.md), [historical candidate](../problems/06-inverse-observation-control/GC162.md)
+- [GC163: Boundary observation for fourth-order operators](GC163.md), [historical candidate](../problems/06-inverse-observation-control/GC163.md)
+- [GC164: Inverse recovery of nonlinear coupling strength](GC164.md), [historical candidate](../problems/06-inverse-observation-control/GC164.md)
+- [GC165: Local uniqueness versus parameter clipping](GC165.md), [historical candidate](../problems/06-inverse-observation-control/GC165.md)
+- [GC166: Noise amplification near nonidentifiable sets](GC166.md), [historical candidate](../problems/06-inverse-observation-control/GC166.md)
+- [GC167: Reconstruction from sparse wave interferograms](GC167.md), [historical candidate](../problems/06-inverse-observation-control/GC167.md)
+- [GC168: Boundary potential recovery with eigenfunction traces](GC168.md), [historical candidate](../problems/06-inverse-observation-control/GC168.md)
+- [GC169: Stable recovery of curvature regularization](GC169.md), [historical candidate](../problems/06-inverse-observation-control/GC169.md)
+- [GC170: Control of a localized solitary wave position](GC170.md), [historical candidate](../problems/06-inverse-observation-control/GC170.md)
+- [GC171: Minimum control energy for pattern stabilization](GC171.md), [historical candidate](../problems/06-inverse-observation-control/GC171.md)
+- [GC172: Observer design for nonlinear wave modes](GC172.md), [historical candidate](../problems/06-inverse-observation-control/GC172.md)
+- [GC173: Distinguishing noise from model discrepancy](GC173.md), [historical candidate](../problems/06-inverse-observation-control/GC173.md)
+- [GC174: Adaptive sensing of solitary-wave bifurcations](GC174.md), [historical candidate](../problems/06-inverse-observation-control/GC174.md)
+- [GC175: Inverse recovery from scattering phase shifts](GC175.md), [historical candidate](../problems/06-inverse-observation-control/GC175.md)
+- [GC176: Confidence-certified physical parameter bounds](GC176.md), [historical candidate](../problems/06-inverse-observation-control/GC176.md)
+
+### Swift–Hohenberg patterns and defects (19)
+
+- [GC177: Stripe stability boundaries in two dimensions](GC177.md), [historical candidate](../problems/07-pattern-formation/GC177.md)
+- [GC178: Hexagon versus stripe selection](GC178.md), [historical candidate](../problems/07-pattern-formation/GC178.md)
+- [GC179: Pattern pinning by weak heterogeneity](GC179.md), [historical candidate](../problems/07-pattern-formation/GC179.md)
+- [GC180: Defect mobility laws](GC180.md), [historical candidate](../problems/07-pattern-formation/GC180.md)
+- [GC181: Disorder-induced wavelength shift](GC181.md), [historical candidate](../problems/07-pattern-formation/GC181.md)
+- [GC182: Coarsening exponent classification](GC182.md), [historical candidate](../problems/07-pattern-formation/GC182.md)
+- [GC183: Finite-box versus infinite-plane pattern selection](GC183.md), [historical candidate](../problems/07-pattern-formation/GC183.md)
+- [GC184: Localized patches of periodic structure](GC184.md), [historical candidate](../problems/07-pattern-formation/GC184.md)
+- [GC185: Front speed between competing patterns](GC185.md), [historical candidate](../problems/07-pattern-formation/GC185.md)
+- [GC186: Phase diffusion coefficient sign changes](GC186.md), [historical candidate](../problems/07-pattern-formation/GC186.md)
+- [GC187: Nonlinear pattern selection under slow parameter ramps](GC187.md), [historical candidate](../problems/07-pattern-formation/GC187.md)
+- [GC188: Stochastic creation of phase dislocations](GC188.md), [historical candidate](../problems/07-pattern-formation/GC188.md)
+- [GC189: Pattern inheritance across interfaces](GC189.md), [historical candidate](../problems/07-pattern-formation/GC189.md)
+- [GC190: Aperiodic stable textures](GC190.md), [historical candidate](../problems/07-pattern-formation/GC190.md)
+- [GC191: Gradient-flow convergence rates](GC191.md), [historical candidate](../problems/07-pattern-formation/GC191.md)
+- [GC192: Topological defect charge balance](GC192.md), [historical candidate](../problems/07-pattern-formation/GC192.md)
+- [GC193: Pattern memory after forcing removal](GC193.md), [historical candidate](../problems/07-pattern-formation/GC193.md)
+- [GC194: Coupled pattern synchronization](GC194.md), [historical candidate](../problems/07-pattern-formation/GC194.md)
+- [GC195: Anisotropic grain-boundary energy](GC195.md), [historical candidate](../problems/07-pattern-formation/GC195.md)
+
+### Hopf fields, winding, vortices and linked states (19)
+
+- [GC196: Hopf charge and coercive energy bounds](GC196.md), [historical candidate](../problems/08-topology-multicomponent/GC196.md)
+- [GC197: Knot type versus Hopf degree](GC197.md), [historical candidate](../problems/08-topology-multicomponent/GC197.md)
+- [GC198: Linked vortex stability](GC198.md), [historical candidate](../problems/08-topology-multicomponent/GC198.md)
+- [GC199: Topology of nodal lines under evolution](GC199.md), [historical candidate](../problems/08-topology-multicomponent/GC199.md)
+- [GC200: Minimal energy for fixed winding pair](GC200.md), [historical candidate](../problems/08-topology-multicomponent/GC200.md)
+- [GC201: Knotted-field symmetry breaking](GC201.md), [historical candidate](../problems/08-topology-multicomponent/GC201.md)
+- [GC202: Vector-soliton polarization dynamics](GC202.md), [historical candidate](../problems/08-topology-multicomponent/GC202.md)
+- [GC203: Topological obstruction to scalarization](GC203.md), [historical candidate](../problems/08-topology-multicomponent/GC203.md)
+- [GC204: Vortex collision and reconnection energy](GC204.md), [historical candidate](../problems/08-topology-multicomponent/GC204.md)
+- [GC205: Topological mode trapping in waveguides](GC205.md), [historical candidate](../problems/08-topology-multicomponent/GC205.md)
+- [GC206: Higher Hopf-class minimizer compactness](GC206.md), [historical candidate](../problems/08-topology-multicomponent/GC206.md)
+- [GC207: Knotted-wave oscillation spectra](GC207.md), [historical candidate](../problems/08-topology-multicomponent/GC207.md)
+- [GC208: Defect interactions in multicomponent condensates](GC208.md), [historical candidate](../problems/08-topology-multicomponent/GC208.md)
+- [GC209: Quantization without imposed topology](GC209.md), [historical candidate](../problems/08-topology-multicomponent/GC209.md)
+- [GC210: Topology-preserving numerical schemes](GC210.md), [historical candidate](../problems/08-topology-multicomponent/GC210.md)
+- [GC211: Creation of knot pairs under forcing](GC211.md), [historical candidate](../problems/08-topology-multicomponent/GC211.md)
+- [GC212: Topological charge under weak noise](GC212.md), [historical candidate](../problems/08-topology-multicomponent/GC212.md)
+- [GC213: Coupled-field vortex lattice phases](GC213.md), [historical candidate](../problems/08-topology-multicomponent/GC213.md)
+- [GC214: Topology of moduli spaces of confined waves](GC214.md), [historical candidate](../problems/08-topology-multicomponent/GC214.md)
+
+### Cellular rules, algorithms and computation (20)
+
+- [GC215: Undecidability of nonlinear attractor membership](GC215.md), [historical candidate](../problems/09-computability-complexity/GC215.md)
+- [GC216: Prediction hardness for reversible local waves](GC216.md), [historical candidate](../problems/09-computability-complexity/GC216.md)
+- [GC217: Uniform simulation overhead for local wave rules](GC217.md), [historical candidate](../problems/09-computability-complexity/GC217.md)
+- [GC218: Communication complexity of wave evolution](GC218.md), [historical candidate](../problems/09-computability-complexity/GC218.md)
+- [GC219: Parallel prefix shortcuts for homogeneous wave rules](GC219.md), [historical candidate](../problems/09-computability-complexity/GC219.md)
+- [GC220: P-completeness of local-wave reachability](GC220.md), [historical candidate](../problems/09-computability-complexity/GC220.md)
+- [GC221: Precision complexity near unstable manifolds](GC221.md), [historical candidate](../problems/09-computability-complexity/GC221.md)
+- [GC222: Certified integration without global Lipschitz constants](GC222.md), [historical candidate](../problems/09-computability-complexity/GC222.md)
+- [GC223: Bit complexity of fourth-order spectral solvers](GC223.md), [historical candidate](../problems/09-computability-complexity/GC223.md)
+- [GC224: Complexity of deciding discrete soliton existence](GC224.md), [historical candidate](../problems/09-computability-complexity/GC224.md)
+- [GC225: Memory lower bounds for reversible computation](GC225.md), [historical candidate](../problems/09-computability-complexity/GC225.md)
+- [GC226: Algorithmic verification of invariants](GC226.md), [historical candidate](../problems/09-computability-complexity/GC226.md)
+- [GC227: Certified stopping rules for dissipative evolution](GC227.md), [historical candidate](../problems/09-computability-complexity/GC227.md)
+- [GC228: Circuit depth versus locality radius](GC228.md), [historical candidate](../problems/09-computability-complexity/GC228.md)
+- [GC229: Noise tolerance of universal wave automata](GC229.md), [historical candidate](../problems/09-computability-complexity/GC229.md)
+- [GC230: Computable stability radius](GC230.md), [historical candidate](../problems/09-computability-complexity/GC230.md)
+- [GC231: Formal complexity of proof-producing simulation](GC231.md), [historical candidate](../problems/09-computability-complexity/GC231.md)
+- [GC232: Resource-bounded equivalence of wave models](GC232.md), [historical candidate](../problems/09-computability-complexity/GC232.md)
+- [GC233: Complexity of exact spectral gap detection](GC233.md), [historical candidate](../problems/09-computability-complexity/GC233.md)
+- [GC234: Thermodynamic cost versus computational depth](GC234.md), [historical candidate](../problems/09-computability-complexity/GC234.md)
+
+### Lattice-to-continuum mathematical limits (23)
+
+- [GC254: Degenerate band-edge envelope derivation](GC254.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC254.md)
+- [GC255: Discrete-to-continuum confinement persistence](GC255.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC255.md)
+- [GC256: Uniform modulation error over long times](GC256.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC256.md)
+- [GC257: Microscopic origin of cubic–quintic saturation](GC257.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC257.md)
+- [GC258: Scale separation near an avoided crossing](GC258.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC258.md)
+- [GC259: Effective geometric curvature from microstructure](GC259.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC259.md)
+- [GC260: Homogenization of periodically patterned media](GC260.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC260.md)
+- [GC261: Disorder-induced failure of effective equations](GC261.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC261.md)
+- [GC262: Boundary-layer corrections to wave confinement](GC262.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC262.md)
+- [GC263: Finite-size scaling of confinement thresholds](GC263.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC263.md)
+- [GC264: Conservation law transfer across model scales](GC264.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC264.md)
+- [GC265: Noncommuting continuum and long-time limits](GC265.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC265.md)
+- [GC266: Strong versus weak convergence of physical observables](GC266.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC266.md)
+- [GC267: Inverse calibration of effective coupling coefficients](GC267.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC267.md)
+- [GC268: Multiscale topological charge preservation](GC268.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC268.md)
+- [GC269: Error bounds for reduced three-dimensional models](GC269.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC269.md)
+- [GC270: Competing effective Hamiltonians from the same lattice](GC270.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC270.md)
+- [GC271: Emergent wave speed and stiffness constants](GC271.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC271.md)
+- [GC272: Breakdown of adiabatic mode elimination](GC272.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC272.md)
+- [GC273: Uniform regularity from microscopic energy bounds](GC273.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC273.md)
+- [GC274: Experimental falsification thresholds for envelope laws](GC274.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC274.md)
+- [GC275: Rigorous correspondence between lattice and optical phases](GC275.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC275.md)
+- [GC276: Long-wavelength stability versus microscopic instabilities](GC276.md), [historical candidate](../problems/11-physical-emergence-multiscale/GC276.md)
+
+### Optical logic, robustness and photonic devices (24)
+
+- [GC277: Interference-based XOR robustness](GC277.md), [historical candidate](../problems/12-photonic-wave-computing/GC277.md)
+- [GC278: Passive optical logic universality constraints](GC278.md), [historical candidate](../problems/12-photonic-wave-computing/GC278.md)
+- [GC279: Cascadability of photonic logic gates](GC279.md), [historical candidate](../problems/12-photonic-wave-computing/GC279.md)
+- [GC280: Optical phase memory retention](GC280.md), [historical candidate](../problems/12-photonic-wave-computing/GC280.md)
+- [GC281: Photonic reversible gate synthesis](GC281.md), [historical candidate](../problems/12-photonic-wave-computing/GC281.md)
+- [GC282: Wave-based arithmetic precision](GC282.md), [historical candidate](../problems/12-photonic-wave-computing/GC282.md)
+- [GC283: Optical fan-out energy limits](GC283.md), [historical candidate](../problems/12-photonic-wave-computing/GC283.md)
+- [GC284: Error accumulation in phase-coded circuits](GC284.md), [historical candidate](../problems/12-photonic-wave-computing/GC284.md)
+- [GC285: Photonic neural operator stability](GC285.md), [historical candidate](../problems/12-photonic-wave-computing/GC285.md)
+- [GC286: Optical versus electronic energy accounting](GC286.md), [historical candidate](../problems/12-photonic-wave-computing/GC286.md)
+- [GC287: Integrated photonic wavelength selection](GC287.md), [historical candidate](../problems/12-photonic-wave-computing/GC287.md)
+- [GC288: Thermal drift compensation in optical logic](GC288.md), [historical candidate](../problems/12-photonic-wave-computing/GC288.md)
+- [GC289: Hybrid electro-optical feedback lower bounds](GC289.md), [historical candidate](../problems/12-photonic-wave-computing/GC289.md)
+- [GC290: Multimode optical interference capacity](GC290.md), [historical candidate](../problems/12-photonic-wave-computing/GC290.md)
+- [GC291: Optical routing with curvature-controlled media](GC291.md), [historical candidate](../problems/12-photonic-wave-computing/GC291.md)
+- [GC292: Wavelet-inspired optical memory addressing](GC292.md), [historical candidate](../problems/12-photonic-wave-computing/GC292.md)
+- [GC293: Pulse collision as a logic primitive](GC293.md), [historical candidate](../problems/12-photonic-wave-computing/GC293.md)
+- [GC294: Optical error correction by redundancy](GC294.md), [historical candidate](../problems/12-photonic-wave-computing/GC294.md)
+- [GC295: Photonic compiler correctness](GC295.md), [historical candidate](../problems/12-photonic-wave-computing/GC295.md)
+- [GC296: Proof-carrying optical circuit calibration](GC296.md), [historical candidate](../problems/12-photonic-wave-computing/GC296.md)
+- [GC297: Scaling of optical cross-talk in dense chips](GC297.md), [historical candidate](../problems/12-photonic-wave-computing/GC297.md)
+- [GC298: Synchronization of independent optical clocks](GC298.md), [historical candidate](../problems/12-photonic-wave-computing/GC298.md)
+- [GC299: Thermodynamic efficiency of optical state reset](GC299.md), [historical candidate](../problems/12-photonic-wave-computing/GC299.md)
+- [GC300: Full-stack verified photonic arithmetic](GC300.md), [historical candidate](../problems/12-photonic-wave-computing/GC300.md)
+
+## Revision and claim policy
+
+Retain each GC identifier and original text. Revisions that materially change assumptions or conclusion should be versioned explicitly and traceable; do not silently shift the goalposts after a counterexample. A well-defined target may be easy, already resolved, or false. Lean checks the **encoded statement**, not a prose interpretation or physical implementation. Evidence and novelty assessments are tracked independently of this scope inventory.
