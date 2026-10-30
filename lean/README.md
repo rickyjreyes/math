@@ -3,7 +3,7 @@
 This Mathlib v4.23.0 project integrates main-line supporting modules with newer full H² manuscript formalizations and conditional bridges. All declarations must pass Lean CI on the exact revision before being called kernel-checked. Manuscript-level status (which papers are formalized end to end) is in
 [formalization.yaml](formalization.yaml).
 
-The maintained import tree contains **136 project modules and 2,522 theorem/lemma declarations** (including private source lemmas). **14 of the 14 original manuscripts are complete** under the audit criterion. So are the five F11/F12 manuscripts and the supplementary M2/E17, E58, E61, M3/E57 and M6B manuscripts. Declaration totals do not measure manuscript completeness. The [review and theorem table](../docs/FORMALIZATION_REVIEW_2026-10-27.md) records exact declarations, restrictions, and passing verification runs. The [analytic certification](../docs/ANALYTIC_CERTIFICATION_2026-10-30.md) does the same for E62, E58, M2/E17, E26, M3/E57, E61, E16, E59 and E13/E14.
+The maintained import tree contains **154 project modules and 2,794 theorem/lemma declarations** (including private source lemmas). **14 of the 14 original manuscripts are complete** under the audit criterion. So are the five F11/F12 manuscripts and the supplementary M2/E17, E58, E61, M3/E57, M6B and E68 manuscripts. Declaration totals do not measure manuscript completeness. The [review and theorem table](../docs/FORMALIZATION_REVIEW_2026-10-27.md) records exact declarations, restrictions, and passing verification runs. The [analytic certification](../docs/ANALYTIC_CERTIFICATION_2026-10-30.md) does the same for E62, E58, M2/E17, E26, M3/E57, E61, E16, E59 and E13/E14.
 
 ### Manuscript formalizations
 
@@ -61,6 +61,17 @@ The [certification report](../docs/ANALYTIC_CERTIFICATION_2026-10-30.md) maps ev
 - [SwiftHohenbergL2](MathProofs/SwiftHohenbergL2.lean), [E61Certification](MathProofs/E61Certification.lean) — E61, complete: `L_r` on `H⁴`, `σ(L_r) = (−∞, r]`, the semigroup and its exact generator, `‖e^{tL_r}‖ = e^{rt}`, the three regimes, the annulus, the periodic box and the parameter translation.
 - [E57Certification](MathProofs/E57Certification.lean) — M3/E57, complete: `(Δ + k⋆²)²` self-adjoint on `H⁴`, the unique mild solution, off-shell damping, `‖S(t)‖ = 1`, the energy identities, the gradient-flow form, the torus gap and the sign-reversal scope.
 - [E17Certification](MathProofs/E17Certification.lean) with [E17Canonical](MathProofs/E17Canonical.lean), [E17GlobalBound](MathProofs/E17GlobalBound.lean) — M2/E17, complete: the corrected regularizer's positivity, analyticity, global bound, reciprocal limits, uniform and `L²` convergence, fixed-ε control, phase invariance and the node/gauge remarks.
+
+### E68 localized gradient-energy certification
+
+The [E68 mapping](../docs/E68_LEAN_MANUSCRIPT_MAPPING.md) maps every assertion of the manuscript to a declaration. [E68CertificationAudit.lean](E68CertificationAudit.lean) prints the axioms of its 71 declarations; all use only `propext`, `Classical.choice` and `Quot.sound`.
+
+- [E68Sobolev](MathProofs/E68Sobolev.lean), [E68H2](MathProofs/E68H2.lean) — `H¹(ℝⁿ)` and `H²(ℝⁿ)` by weak derivatives. The weak gradient is unique a.e. and the energies are invariant under a.e. changes. Smooth fields are included with classical = weak derivatives. Compatibility with `SobolevH2`, `E26.IsWeakDeriv` and `WeakH1Field` is proved.
+- [E68Classification](MathProofs/E68Classification.lean) — `E68(n) ↔ n = 2` for every `n ≥ 1`, uniformly over centers, at the center `0`, and on `L²` classes.
+- [E68Radial](MathProofs/E68Radial.lean), [E68Singular](MathProofs/E68Singular.lean) — polar integrals, and the fixed singular field `χ(|x|)|x|^{-a}`: in `H¹` (weak derivative across the origin), exact ball integrals, and blow-up at small radii.
+- [E68Corrected](MathProofs/E68Corrected.lean) — E68′ with `ω_n^{1−2/n}R^{n−2}`, the admissible-class corollary, and the remark that `H¹` does not give the a priori bound.
+- [E68SobolevEmbedding](MathProofs/E68SobolevEmbedding.lean) — `‖u‖_{p*} ≤ C_n‖∇u‖₂` for weak `H¹` (mollification, cutoff, Mathlib's GNS inequality, Fatou).
+- [E68H2](MathProofs/E68H2.lean), [E68Certification](MathProofs/E68Certification.lean) — the `H²` estimate for `n = 3, 4` (embeddings and `L²–L⁶` interpolation) and its failure for `n > 4` with exact scaling integrals; the certification interface.
 
 ### Integrated additional proofs and diagnostics
 
@@ -152,6 +163,9 @@ lake env lean F09Audit.lean
 
 # Dependency audit of the analytic manuscript certifications
 lake env lean AnalyticCertificationAudit.lean
+
+# Dependency audit of the E68 certification
+lake env lean E68CertificationAudit.lean
 ```
 
 Lean and Mathlib release are pinned to v4.23.0. A dependency lockfile
@@ -159,7 +173,7 @@ is not yet committed.
 
 ## Gaps
 
-All fourteen original manuscripts are complete under the manifest's criterion, and so are the additional families F11 and F12. Of the supplementary operator manuscripts, M2/E17, E58, E61, M3/E57 and M6B are complete. E18, E68 and E69 remain analytic only.
+All fourteen original manuscripts are complete under the manifest's criterion, and so are the additional families F11 and F12. Of the supplementary operator manuscripts, M2/E17, E58, E61, M3/E57, M6B and E68 are complete. E18 and E69 remain analytic only.
 
 The F08 obstruction on a smooth four-manifold is fully formalized for an actual global complex scalar, including its covariant fiberwise tensor, nonnegativity, rank/nullity, determinant, pullback covariance, and continuous/C^m tangent-bundle evaluation. The F09 exact determinant, complete clipped derivative, rank, nullity, and C¹ local fiber are now proved together in Lean.
 
