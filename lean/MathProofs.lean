@@ -87,3 +87,4 @@ import MathProofs.E68HigherDimEnergy
 import MathProofs.E68ChangeVariables
 import MathProofs.E68ScaledGradient
 import MathProofs.E68SmoothCounterexample
+import MathProofs.E68SmoothClassification
