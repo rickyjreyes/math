@@ -73,7 +73,8 @@ jobs:
             MathProofs/E61ExactNorm.lean \
             MathProofs/SwiftHohenbergL2.lean \
             MathProofs/E61Certification.lean \
-            MathProofs/E57Certification.lean; then exit 1; fi
+            MathProofs/E57Certification.lean \
+            MathProofs/E17Certification.lean; then exit 1; fi
       - name: Kernel check E57 whole-space L2 operator semigroup law
         run: lake build MathProofs.E57L2Semigroup
       - name: Kernel check full E26 historical L2 certification
@@ -144,6 +145,8 @@ jobs:
         run: lake build MathProofs.E61Certification
       - name: Kernel check M3/E57 shell-damping certification
         run: lake build MathProofs.E57Certification
+      - name: Kernel check M2/E17 corrected regularizer certification
+        run: lake build MathProofs.E17Certification
       - name: Kernel check analytic declarations
         run: |
           lake build MathProofs.RemainingCores MathProofs.E16SpectralCore \
