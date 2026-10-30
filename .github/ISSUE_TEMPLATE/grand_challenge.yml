@@ -6,7 +6,7 @@ body:
     attributes:
       value: |
         **Search the existing issues before submitting.** Comment on an existing GC task or link a PR when possible. This form is for a research finding that needs its own issue, not a duplicate canonical GC problem.
-        Existing Lean proofs and papers stay in their original locations. See the [proof workflow](https://github.com/rickyjreyes/math/blob/main/reyes-problem-repository/WORKFLOW.md).
+        Existing Lean proofs and papers stay in their original locations. See the [proof workflow](https://github.com/rickyjreyes/math/blob/main/reyes-problem-repository/WORKFLOW.md) and [research direction](https://github.com/rickyjreyes/math/blob/main/RESEARCH_DIRECTION.md). Mathematical verification helps test and develop the continuing WCT program, not declare physics validated or automatically refuted.
   - type: input
     id: gc_id
     attributes:
@@ -61,6 +61,20 @@ body:
       description: "Link theorem declarations, proof commits, CI runs, exact earlier publications or reproducible calculations."
     validations:
       required: true
+  - type: textarea
+    id: inference_scope
+    attributes:
+      label: "Scope of theorem or obstruction"
+      description: "Which exact construction or model class is proved or excluded? Does the finding genuinely reach a broader physical hypothesis? Do not infer theory-wide success or failure without evidence."
+    validations:
+      required: true
+  - type: textarea
+    id: constructive_next_test
+    attributes:
+      label: "Constructive next proof or discriminating test"
+      description: "Specify the next theorem, model construction, or experiment if one exists, or state why no plausible route is known. A proposed repair is not yet a result."
+    validations:
+      required: false
   - type: textarea
     id: limitations
     attributes:
