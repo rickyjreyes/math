@@ -160,3 +160,4 @@ import MathProofs.E18WeightDerivative
 import MathProofs.E18VariationAlgebra
 import MathProofs.E18EnergyGradient
 import MathProofs.E18FlowChainRule
+import MathProofs.E18IntegratedBalance
