@@ -41,5 +41,7 @@ jobs:
         run: lake build MathProofs.E18EnergyGradient
       - name: Kernel-check conditional rate from real variation and L2 flow
         run: lake build MathProofs.E18FlowChainRule
+      - name: Kernel-check exact integrated E18 balance reduction
+        run: lake build MathProofs.E18IntegratedBalance
       - name: Kernel-check registered project imports
         run: lake build MathProofs
