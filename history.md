@@ -6,7 +6,7 @@
 - Added a shared Swift–Hohenberg layer: `(Δ + k⋆²)²` is self-adjoint on `H⁴`, `σ(r − a(Δ + k⋆²)²) = (−∞, r]`, and the semigroup has exactly this generator with `‖e^{tL_r}‖ = e^{rt}`. The E61 and M3/E57 certifications are built on it.
 - Ported the E13/E14 band-pass module. Restored the main build after the [PR #60](https://github.com/rickyjreyes/math/pull/60) merge by fixing E61ExactNorm and E17GlobalBound.
 - No manuscript statement was false, so no manuscript text changed. Beyond the manuscripts, the E26 constant `1/δ` is proved sharp.
-- `AnalyticCertificationAudit.lean` audits 103 main declarations, which use only `propext`, `Classical.choice` and `Quot.sound`. The focused workflow now runs this audit.
+- `AnalyticCertificationAudit.lean` audits all 135 declarations cited in the certification report. Each uses only `propext`, `Classical.choice` and `Quot.sound`. The focused workflow now runs this audit.
 - `lean/formalization.yaml` now marks F11 and F12 complete and records the E58, E61, M3/E57 and M2/E17 manuscripts. The inventory is 136 modules and 2,522 theorem/lemma declarations. Correspondence tables are in `docs/ANALYTIC_CERTIFICATION_2026-10-30.md`.
 
 ## 2026-10-27 — Review and correct the full v18 parameter map

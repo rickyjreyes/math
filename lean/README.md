@@ -49,7 +49,7 @@ The maintained import tree contains **136 project modules and 2,522 theorem/lemm
 
 ### Analytic manuscript certifications
 
-The [certification report](../docs/ANALYTIC_CERTIFICATION_2026-10-30.md) maps every theorem, proposition, corollary and mathematical remark to these declarations. [AnalyticCertificationAudit.lean](AnalyticCertificationAudit.lean) prints the axioms of 103 main declarations; all use only `propext`, `Classical.choice` and `Quot.sound`.
+The [certification report](../docs/ANALYTIC_CERTIFICATION_2026-10-30.md) maps every theorem, proposition, corollary and mathematical remark to these declarations. [AnalyticCertificationAudit.lean](AnalyticCertificationAudit.lean) prints the axioms of all 135 declarations cited there; all use only `propext`, `Classical.choice` and `Quot.sound`.
 
 - [TorusFourier](MathProofs/TorusFourier.lean) — F11 (E59), complete: the Fourier Hilbert basis of `L²((ℝ/Lℤ)^d)`, bounded multipliers, the fixed-annulus orthogonal projection and the discrete E62 fraction.
 - [SpectralConcentration](MathProofs/SpectralConcentration.lean), [E16TorusRemark](MathProofs/E16TorusRemark.lean) — F11 (E16), complete: the mild `L²` flow of `r − aΔ − bΔ²`, the exact modal power law, shell concentration, argmax convergence with its `t^{-1/2}` rate, the radial versions, the counterexample, and the flat-torus remark.

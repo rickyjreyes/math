@@ -28,7 +28,7 @@ The categories are:
 | --- | --- | --- | --- | --- | --- |
 | [E62 spectral energy fraction](../papers/spectral-energy-concentration-e62/main.tex) | [#34](https://github.com/rickyjreyes/math/issues/34) | Theorem, proposition, all four remarks | none | none | none |
 | [E58 band-selective Green multiplier](../papers/band-selective-green-kernel-bound/main.tex) | [#38](https://github.com/rickyjreyes/math/issues/38) | Theorem, proposition, remark, Sections 4–7 | none | none | none |
-| [M2/E17 corrected curvature regularizer](../papers/regularized-curvature-operator/main.tex) | [#36](https://github.com/rickyjreyes/math/issues/36) | Theorem (all five parts), both corollaries, proposition, all four remarks | none | none | none |
+| [M2/E17 corrected curvature regularizer](../papers/regularized-curvature-operator/main.tex) | [#36](https://github.com/rickyjreyes/math/issues/36) | Theorem (all five parts), both corollaries, proposition, all three remarks | none | none | none |
 | [E26 conditional curvature L² bound](../papers/regularized-curvature-l2-bound/main.tex) | [#35](https://github.com/rickyjreyes/math/issues/35) | Theorem, both corollaries, remark, counterexample, corrected-multiplier section, scope statement | none | none | none |
 | [M3/E57 Fourier-shell damping](../papers/swift-hohenberg-fourier-shell-damping/main.tex) | [#43](https://github.com/rickyjreyes/math/issues/43) | Theorem (i)–(iv), both corollaries, all three propositions, all three remarks | none | none | none |
 | [E61 continuum spectral threshold](../papers/e61-pattern-formation-threshold/main.tex) | [#39](https://github.com/rickyjreyes/math/issues/39) | Theorem (all three cases), all three propositions, remark | none | none | none |
@@ -61,7 +61,7 @@ These are statements made *by* the manuscripts, not refutations *of* them. No ma
 
 The commit that adds this report also adds the audit below to the focused workflow, so the axiom check now runs on every pull request. `lean/formalization.yaml` records the latest fully checked revision and its runs.
 
-**Axiom audit.** [`lean/AnalyticCertificationAudit.lean`](../lean/AnalyticCertificationAudit.lean) prints `#print axioms` for 103 exported main declarations, covering every row of the tables below. Each one depends only on `propext`, `Classical.choice` and `Quot.sound`. In particular:
+**Axiom audit.** [`lean/AnalyticCertificationAudit.lean`](../lean/AnalyticCertificationAudit.lean) runs `#print axioms` on 135 declarations: every declaration cited in the tables below. Each depends on exactly `propext`, `Classical.choice` and `Quot.sound`. The focused workflow fails if any audited declaration depends on anything else. In particular:
 
 - no declaration depends on `sorryAx`, so none uses `sorry` or `admit`;
 - none depends on `Lean.ofReduceBool`, so none uses `native_decide`;

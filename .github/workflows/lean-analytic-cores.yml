@@ -158,8 +158,9 @@ jobs:
         run: |
           lake env lean AnalyticCertificationAudit.lean > audit.out 2>&1 || { cat audit.out; exit 1; }
           cat audit.out
-          test "$(grep -c 'depends on axioms: \[propext, Classical.choice, Quot.sound\]$' audit.out)" -eq "$(grep -c '^#print axioms' AnalyticCertificationAudit.lean)"
-          if grep -v 'depends on axioms: \[propext, Classical.choice, Quot.sound\]$' audit.out | grep -q .; then exit 1; fi
+          ok="^'[^']+' (depends on axioms: \[((propext|Classical\.choice|Quot\.sound)(, )?)+\]|does not depend on any axioms)$"
+          test "$(grep -cE "$ok" audit.out)" -eq "$(grep -c '^#print axioms' AnalyticCertificationAudit.lean)"
+          if grep -vE "$ok" audit.out | grep -q .; then exit 1; fi
       - name: Kernel check analytic declarations
         run: |
           lake build MathProofs.RemainingCores MathProofs.E16SpectralCore \

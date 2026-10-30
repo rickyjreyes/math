@@ -9,10 +9,11 @@ import MathProofs.BandPassFlow
 /-!
 Reproducible dependency audit of the seven analytic manuscript certifications
 (E62, E58, M2/E17, E26, M3/E57, E61, E16) and the F11 companions (E13/E14, E59).
+It covers every declaration cited in `docs/ANALYTIC_CERTIFICATION_2026-10-30.md`;
+each must depend on no axioms other than `propext`, `Classical.choice` and `Quot.sound`.
 Run `lake env lean AnalyticCertificationAudit.lean` after building the imported modules
 (the focused workflow `.github/workflows/lean-analytic-cores.yml` does this on every pull
-request). Every declaration below must depend only on `propext`, `Classical.choice` and
-`Quot.sound`. This file adds no declarations to the maintained library.
+request). This file adds no declarations to the maintained library.
 -/
 
 -- E62 (#34)
@@ -29,6 +30,7 @@ request). Every declaration below must depend only on `propext`, `Classical.choi
 #print axioms ReyesMath.E62LebesgueFraction.fraction_bounds
 #print axioms ReyesMath.E62LebesgueFraction.fraction_zero_iff
 #print axioms ReyesMath.E62LebesgueFraction.fraction_one_iff
+#print axioms ReyesMath.E62Cert.basis_eq_mode
 
 -- E58 (#38)
 #print axioms ReyesMath.E58Cert.theorem_e58
@@ -46,6 +48,8 @@ request). Every declaration below must depend only on `propext`, `Classical.choi
 #print axioms ReyesMath.E58Green.ode
 #print axioms ReyesMath.E58Green.sign_change
 #print axioms ReyesMath.E58Green.not_pointwise_bound
+#print axioms ReyesMath.E58Cert.Solves
+#print axioms ReyesMath.E58Cert.solves_iff
 
 -- M2/E17 (#36)
 #print axioms ReyesMath.E17Cert.main_theorem
@@ -76,6 +80,16 @@ request). Every declaration below must depend only on `propext`, `Classical.choi
 #print axioms ReyesMath.E26Certification.main_theorem
 #print axioms ReyesMath.E26Domain.quotient_domain
 #print axioms ReyesMath.E26Domain.sharp_constant
+#print axioms ReyesMath.E26.MemH2
+#print axioms ReyesMath.E26.IsWeakLaplacian
+#print axioms ReyesMath.E26.MemH2.exists_weakLaplacian
+#print axioms ReyesMath.E26.IsWeakLaplacian.ae_eq
+#print axioms ReyesMath.E26.Den
+#print axioms ReyesMath.E26.Theta
+#print axioms ReyesMath.E26Certification.away_from_nodes_corollary
+#print axioms ReyesMath.E26Certification.nonnegative_real_corollary
+#print axioms ReyesMath.E26Certification.smooth_counterexample
+#print axioms ReyesMath.E26Certification.separation_is_not_regularization
 
 -- M3/E57 (#43)
 #print axioms ReyesMath.E57Cert.part_i
@@ -92,6 +106,12 @@ request). Every declaration below must depend only on `propext`, `Classical.choi
 #print axioms ReyesMath.E57Cert.linear_threshold
 #print axioms ReyesMath.E57Cert.sign_reversal
 #print axioms ReyesMath.E57Cert.e57_eq_Sr
+#print axioms ReyesMath.SH.mild_iff
+#print axioms ReyesMath.SH.Aop_isSelfAdjoint
+#print axioms ReyesMath.SH.inner_Aop
+#print axioms ReyesMath.E57Cert.equivalence
+#print axioms ReyesMath.E57Cert.symbol_schwartz
+#print axioms ReyesMath.E57Cert.Pdelta_projection
 
 -- E61 (#39)
 #print axioms ReyesMath.E61Cert.theorem_e61
@@ -133,3 +153,16 @@ request). Every declaration below must depend only on `propext`, `Classical.choi
 #print axioms ReyesMath.BandPass.half_flow
 #print axioms ReyesMath.BandPass.centred_first_variation
 #print axioms ReyesMath.TorusL2.e59
+#print axioms ReyesMath.TorusL2.e59_fraction
+#print axioms ReyesMath.TorusL2.fft_projector
+#print axioms ReyesMath.TorusL2.zero_mem_oneSided_not_mem_annulus
+#print axioms ReyesMath.TorusL2.mult_idem_iff_mem
+#print axioms ReyesMath.BandPass.balance_interval
+#print axioms ReyesMath.BandPass.half_gradient
+#print axioms ReyesMath.BandPass.centred_operator
+#print axioms ReyesMath.BandPass.energySH_eq
+#print axioms ReyesMath.BandPass.preferred_shell
+#print axioms ReyesMath.BandPass.growing_band
+#print axioms ReyesMath.BandPass.energy_lower
+#print axioms ReyesMath.BandPass.finite_dissipation
+#print axioms ReyesMath.BandPass.periodic_stationary
