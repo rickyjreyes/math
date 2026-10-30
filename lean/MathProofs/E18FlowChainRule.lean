@@ -61,4 +61,29 @@ theorem hasDerivWithinAt_actual_negative_gradient
   rw [← hrate]
   exact hasDerivWithinAt_actual_energy (L := L) hd c₁ c₂ ε α hγ DE hDE
 
+
+/-- Exact pointwise stationary criterion for the E18 dissipation rate:
+its coefficient is strictly negative on every nonzero L² vector. -/
+theorem zero_dissipation_iff_stationary (G : L2 L d) :
+    -2 * L ^ d * ‖G‖ ^ 2 = 0 ↔ G = 0 := by
+  have hLd : 0 < L ^ d := pow_pos hL.out d
+  constructor
+  · intro h
+    have hprod : 2 * L ^ d * ‖G‖ ^ 2 = 0 := by linarith
+    have hcoef : 2 * L ^ d ≠ 0 :=
+      ne_of_gt (mul_pos (by norm_num) hLd)
+    have hnorm : ‖G‖ ^ 2 = 0 :=
+      (mul_eq_zero.mp hprod).resolve_left hcoef
+    have hz : ‖G‖ = 0 := (sq_eq_zero_iff).mp hnorm
+    exact norm_eq_zero.mp hz
+  · rintro rfl
+    simp
+
+/-- The declared negative-gradient equation identifies instantaneous
+stationarity with zero velocity, without assuming a PDE solution exists. -/
+theorem stationary_iff_zero_velocity (G V : L2 L d) (hflow : V = -G) :
+    V = 0 ↔ G = 0 := by
+  rw [hflow]
+  simp
+
 end ReyesMath.E18FlowChainRule
