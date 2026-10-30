@@ -4,6 +4,8 @@
 
 **Research direction:** The 300 candidates support rigorous investigation of the foundational WCT program, not a decision to restrict it to engineering. A counterexample defeats its scoped formulation, while a physical claim requires separate empirical tests. [Research interpretation](../RESEARCH_DIRECTION.md).
 
+**Cross-cutting synthesis:** [WCT Morphogenesis: selection → saturation → stability → propagation](./MORPHOGENESIS_PROGRAM.md) links GC11, GC257, GC61, GC185 and GC53 without creating a new numbered entry or changing any candidate status. [Scope issue #76](https://github.com/rickyjreyes/math/issues/76).
+
 **Research navigation:** [Existing Lean and paper links for GC01–GC65](./GC65_ADOPTION.md) · [Scope-first activation for GC66–GC300](./CANDIDATE_ACTIVATION.md) · [Issue/PR/Lean/paper workflow](./WORKFLOW.md).
 
 **Browse:** [Folder directory](./problems/README.md) · [Machine register](./problem_registry.json) · [Research status](./STATUS.md) · [Original 65 statements](./FORMAL_PROBLEMS.md) · [Foundational screening shortlist](./FOUNDATIONAL_SHORTLIST.md).
