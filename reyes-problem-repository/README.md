@@ -2,11 +2,11 @@
 
 > **Can a wave confine itself, form a stable knot, select its own wavelength, or perform universal computation?**
 
-**An evolving, open-source corpus of 300 mathematical research candidates in 12 subject folders.** GC01–GC65 preserve existing formal question statements; GC66–GC300 are newly outlined problems awaiting rigorous mathematical scoping and prior-art review.
+**An evolving, open-source corpus of 300 mathematical research candidates in 12 subject folders.** GC01–GC65 preserve existing formal question statements; GC66–GC300 originated as research sketches. **Versioned proposed mathematical scopes for every GC65–GC300 entry now appear in [the scoped problem index](./scoped/README.md),** with independent mathematical and prior-art review still required.
 
 The Reyes Problem Repository is a living, version-controlled research collection built around **GitHub issues, research pull requests, existing Lean 4 proofs, optional mathematical papers, and an open invitation to contribute**. The research program continues regardless of outside participation. Problems can grow, branch, be corrected, or be resolved as evidence develops. Its questions connect nonlinear PDEs, variational analysis, spectral geometry, topological fields, computation, and formal verification. No generated conjecture becomes a theorem merely because an LLM proposed it.
 
-**[Browse all 300 questions](./ROADMAP_300.md)** · **[12 research folders](./problems/README.md)** · **[Foundational shortlist](./FOUNDATIONAL_SHORTLIST.md)** · **[Original 65 formal problems](./FORMAL_PROBLEMS.md)** · **[Live research status](./STATUS.md)** · **[Five flagship dossiers](#start-here-five-questions-worth-exploring)** · **[Candidate notebook](./NOTEBOOK.md)** · **[How to contribute](./CONTRIBUTING.md)**
+**[Browse all 300 questions](./ROADMAP_300.md)** · **[GC65–GC300: 236 precise proposed models and proof targets](./scoped/README.md)** · **[12 research folders](./problems/README.md)** · **[Foundational shortlist](./FOUNDATIONAL_SHORTLIST.md)** · **[Original 65 formal problems](./FORMAL_PROBLEMS.md)** · **[Live research status](./STATUS.md)** · **[Five flagship dossiers](#start-here-five-questions-worth-exploring)** · **[Candidate notebook](./NOTEBOOK.md)** · **[How to contribute](./CONTRIBUTING.md)**
 
 **[GC01–GC65 research and proof links](./GC65_ADOPTION.md)** · **[GC66–GC300 activation](./CANDIDATE_ACTIVATION.md)** · **[Workflow and proof contract](./WORKFLOW.md)** · **[Existing Lean and paper adoption](./EXISTING_WORK.md)** · **[Screening and editorial method](./METHOD.md)** · [Initial literature ledger](./LITERATURE.md) · [Flagship screening](./SCREENING.md) · [Existing papers](../papers) · [Lean 4 source](../lean/MathProofs) · [Submit a research contribution](https://github.com/rickyjreyes/math/issues/new?template=grand_challenge.yml)
 
@@ -14,7 +14,7 @@ The Reyes Problem Repository is a living, version-controlled research collection
 > **Research status:** This is a proposed challenge catalogue, **not** an established list of unsolved problems comparable in standing to the Millennium Prize Problems. No prizes are offered. Novelty and open status have not been established through comprehensive literature review. Some statements have partial results or counterexamples; others require sharper assumptions. See [research standards](#what-counts-as-a-solution).
 
 > [!NOTE]
-> **Corpus scope:** The 300 entries form a research agenda, not a verified list of 300 unsolved problems. Existing GC01–GC65 mathematical statements remain separately archived. New GC66–GC300 entries are drafts with first proof-or-counterexample targets, not full formal theorems. The [25 foundational candidates](./FOUNDATIONAL_SHORTLIST.md) are only a screening shortlist.
+> **Corpus scope:** The 300 entries form a research agenda, not a verified list of 300 unsolved problems. GC01–GC65 retain their canonical archival statements; GC66–GC300 retain their historical drafts. The new [GC65–GC300 scoped collection](./scoped/README.md) supplies concrete candidate models and quantified proof targets, but **these are proposed statements pending independent technical checks and literature clearance**, not automatically correct, novel, or resolved theorems. The [25 foundational candidates](./FOUNDATIONAL_SHORTLIST.md) are only a screening shortlist.
 
 ---
 

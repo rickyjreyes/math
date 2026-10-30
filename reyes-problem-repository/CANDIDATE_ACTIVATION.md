@@ -1,8 +1,8 @@
 # Activating GC66–GC300 without rewriting the research
 
-**Current state:** GC66–GC300 are 235 early-stage research sketches in [the 12-folder roadmap](ROADMAP_300.md). Each has a proposed research question and first decisive target. They are **not** 235 globally certified novel open problems or fully quantified theorems.
+**Current state (2026-10-30):** GC66–GC300 retain 235 historical research sketches. The [new 236-file scoped collection for GC65–GC300](scoped/README.md) provides independently reviewable **proposed** mathematical formulations, not certification that every statement is correct, original or unsolved. The registry continues to label them candidates pending further scrutiny.
 
-**Policy:** Do not rewrite all 235 in advance. Select a candidate when the researcher or an outside contributor wants to work on it, and freeze the mathematical problem before labeling its issue solvable.
+**Policy:** Preserve the original drafts and use each versioned scoped model as a starting point. Review internal consistency, nonvacuity, nearest known mathematics and the exact theorem-to-issue match before declaring it frozen or solvable. Amend models explicitly by version rather than silently rewriting historical questions.
 
 ## Scope-first checklist
 
