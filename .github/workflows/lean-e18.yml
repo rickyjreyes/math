@@ -37,5 +37,7 @@ jobs:
         run: lake build MathProofs.E18WeightDerivative
       - name: Kernel-check exact complex first-variation algebra
         run: lake build MathProofs.E18VariationAlgebra
+      - name: Kernel-check gradient contribution of actual E18 energy
+        run: lake build MathProofs.E18EnergyGradient
       - name: Kernel-check registered project imports
         run: lake build MathProofs
