@@ -146,3 +146,4 @@ import MathProofs.E68Sobolev
 import MathProofs.E68Classification
 import MathProofs.E68Radial
 import MathProofs.E68Singular
+import MathProofs.E68Corrected
