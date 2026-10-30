@@ -1,0 +1,38 @@
+name: E69 bounded regularized curvature Lean proofs
+on:
+  pull_request:
+  workflow_dispatch:
+  push:
+    branches: [proofs/e69-issue-40-linf-curvature]
+permissions:
+  contents: read
+jobs:
+  proofs:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: lean
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch Mathlib cache
+        run: |
+          lake update
+          lake exe cache get
+      - name: Forbid proof holes
+        run: |
+          if grep -rnE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)|native_decide|\bsorry\b' MathProofs/E69Sobolev.lean MathProofs/E69Curvature.lean MathProofs/E69Remarks.lean MathProofs/E69Torus.lean MathProofs/E69Certification.lean E69CertificationAudit.lean; then exit 1; fi
+      - name: Kernel-check exact issue modules
+        run: lake build MathProofs.E69Sobolev MathProofs.E69Curvature MathProofs.E69Remarks MathProofs.E69Torus MathProofs.E69Certification
+      - name: Dependency audit of the E69 certification
+        run: |
+          lake env lean E69CertificationAudit.lean > audit.out 2>&1 || { cat audit.out; exit 1; }
+          cat audit.out
+          ok="^'[^']+' (depends on axioms: \[((propext|Classical\.choice|Quot\.sound)(, )?)+\]|does not depend on any axioms)$"
+          test "$(grep -cE "$ok" audit.out)" -eq "$(grep -c '^#print axioms' E69CertificationAudit.lean)"
+          if grep -vE "$ok" audit.out | grep -q .; then exit 1; fi
+      - name: Kernel-check complete project
+        run: lake build
