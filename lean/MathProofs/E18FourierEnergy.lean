@@ -10,7 +10,7 @@ The normalized measure in the curvature integral is converted to physical
 torus volume by the outside factor \`L ^ d\`.
 -/
 
-open MeasureTheory
+open Filter MeasureTheory
 open scoped Real
 
 noncomputable section
