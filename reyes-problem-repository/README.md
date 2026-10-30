@@ -6,7 +6,7 @@
 
 The Reyes Problem Repository is a living, version-controlled research collection built around **GitHub issues, research pull requests, existing Lean 4 proofs, optional mathematical papers, and an open invitation to contribute**. Its purpose is to rigorously develop and challenge foundational questions relevant to WCT, **not to retreat from WCT physics or substitute an engineering-only objective**. The research program continues regardless of outside participation. Problems can grow, branch, be corrected, or be resolved as evidence develops. Its questions connect nonlinear PDEs, variational analysis, spectral geometry, topological fields, physical emergence, computation, and formal verification. No generated conjecture becomes a theorem merely because an LLM proposed it.
 
-**[Browse all 300 questions](./ROADMAP_300.md)** · **[12 research folders](./problems/README.md)** · **[Foundational shortlist](./FOUNDATIONAL_SHORTLIST.md)** · **[Original 65 formal problems](./FORMAL_PROBLEMS.md)** · **[Live research status](./STATUS.md)** · **[Five flagship dossiers](#start-here-five-questions-worth-exploring)** · **[Candidate notebook](./NOTEBOOK.md)** · **[How to contribute](./CONTRIBUTING.md)**
+**[Browse all 300 questions](./ROADMAP_300.md)** · **[Four-stage morphogenesis research program](./MORPHOGENESIS_PROGRAM.md)** · **[12 research folders](./problems/README.md)** · **[Foundational shortlist](./FOUNDATIONAL_SHORTLIST.md)** · **[Original 65 formal problems](./FORMAL_PROBLEMS.md)** · **[Live research status](./STATUS.md)** · **[Five flagship dossiers](#start-here-five-questions-worth-exploring)** · **[Candidate notebook](./NOTEBOOK.md)** · **[How to contribute](./CONTRIBUTING.md)**
 
 **[GC01–GC65 research and proof links](./GC65_ADOPTION.md)** · **[GC66–GC300 activation](./CANDIDATE_ACTIVATION.md)** · **[Workflow and proof contract](./WORKFLOW.md)** · **[Existing Lean and paper adoption](./EXISTING_WORK.md)** · **[Screening and editorial method](./METHOD.md)** · [Initial literature ledger](./LITERATURE.md) · [Flagship screening](./SCREENING.md) · [Existing papers](../papers) · [Lean 4 source](../lean/MathProofs) · [Submit a research contribution](https://github.com/rickyjreyes/math/issues/new?template=grand_challenge.yml)
 
@@ -20,6 +20,12 @@ The Reyes Problem Repository is a living, version-controlled research collection
 
 ---
 
+
+## Cross-cutting research: selection, saturation, stability and propagation
+
+The [WCT morphogenesis research program](./MORPHOGENESIS_PROGRAM.md) connects existing GC11, GC257, GC61, GC185 and GC53 in a common-equation mathematical challenge: **which modes grow, what regulates growth, which structures persist, and how they propagate or regenerate?** It provides an explicit Swift–Hohenberg-type testbed, independent proof obligations, counterexample criteria, prior-art leads and a separate transfer path to the canonical WCT curvature equation. This is **not a new GC301 entry, Lean verification claim or asserted novel open problem**. Track the scope work in [issue #76](https://github.com/rickyjreyes/math/issues/76).
+
+---
 
 ## Research like an open-source software project
 
