@@ -105,7 +105,7 @@ If \(\psi\in H^s(\mathbb R^n)\), \(s>n/2+2\), and \(\varepsilon>0\), the correct
 
 **E58: Sharp band-selective Green multiplier bound** — [PDF](preprints/band-selective-green-kernel-bound/paper.pdf) · [LaTeX](papers/band-selective-green-kernel-bound/main.tex) · [Notes](preprints/band-selective-green-kernel-bound/README.md)
 
-For `r>0, a≥0`, proves `0<G(k)≤1/r`, shell equality, sharp continuum `L²` resolvent norm and a sign-changing physical-space example. The full continuum theorem is analytic, not Lean-formalized.
+For `r>0, a≥0`, proves `0<G(k)≤1/r`, shell equality, sharp continuum `L²` resolvent norm and a sign-changing physical-space example. Lean-formalized in full ([E58Certification](lean/MathProofs/E58Certification.lean), [E58GreenFunction](lean/MathProofs/E58GreenFunction.lean)).
 
 ## E61 — Linear Swift--Hohenberg spectral threshold
 

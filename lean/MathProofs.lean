@@ -126,3 +126,9 @@ import MathProofs.E57L2Semigroup
 import MathProofs.E26Certification
 import MathProofs.E17GlobalBound
 import MathProofs.E61ExactNorm
+import MathProofs.BandPassFlow
+import MathProofs.SwiftHohenbergL2
+import MathProofs.E61Certification
+import MathProofs.E57Certification
+import MathProofs.E17Certification
+import MathProofs.E26QuotientDomain

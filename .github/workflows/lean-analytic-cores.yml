@@ -70,7 +70,14 @@ jobs:
             MathProofs/E57L2Semigroup.lean \
             MathProofs/E26Certification.lean \
             MathProofs/E17GlobalBound.lean \
-            MathProofs/E61ExactNorm.lean; then exit 1; fi
+            MathProofs/E61ExactNorm.lean \
+            MathProofs/SwiftHohenbergL2.lean \
+            MathProofs/E61Certification.lean \
+            MathProofs/E57Certification.lean \
+            MathProofs/E17Certification.lean \
+            MathProofs/E26QuotientDomain.lean \
+            MathProofs/BandPassFlow.lean \
+            AnalyticCertificationAudit.lean; then exit 1; fi
       - name: Kernel check E57 whole-space L2 operator semigroup law
         run: lake build MathProofs.E57L2Semigroup
       - name: Kernel check full E26 historical L2 certification
@@ -135,6 +142,25 @@ jobs:
         run: lake build MathProofs.E58Certification
       - name: Kernel check E58 one-dimensional physical Green function
         run: lake build MathProofs.E58GreenFunction
+      - name: Kernel check Swift-Hohenberg operator, spectrum and generator
+        run: lake build MathProofs.SwiftHohenbergL2
+      - name: Kernel check E61 continuum threshold certification
+        run: lake build MathProofs.E61Certification
+      - name: Kernel check M3/E57 shell-damping certification
+        run: lake build MathProofs.E57Certification
+      - name: Kernel check M2/E17 corrected regularizer certification
+        run: lake build MathProofs.E17Certification
+      - name: Kernel check E26 quotient domain and sharp constant
+        run: lake build MathProofs.E26QuotientDomain
+      - name: Kernel check E13/E14 band-pass negative gradient flow
+        run: lake build MathProofs.BandPassFlow
+      - name: Dependency audit of the analytic certifications
+        run: |
+          lake env lean AnalyticCertificationAudit.lean > audit.out 2>&1 || { cat audit.out; exit 1; }
+          cat audit.out
+          ok="^'[^']+' (depends on axioms: \[((propext|Classical\.choice|Quot\.sound)(, )?)+\]|does not depend on any axioms)$"
+          test "$(grep -cE "$ok" audit.out)" -eq "$(grep -c '^#print axioms' AnalyticCertificationAudit.lean)"
+          if grep -vE "$ok" audit.out | grep -q .; then exit 1; fi
       - name: Kernel check analytic declarations
         run: |
           lake build MathProofs.RemainingCores MathProofs.E16SpectralCore \

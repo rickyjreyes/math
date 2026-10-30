@@ -8,4 +8,4 @@ The proof establishes the exact Fourier multiplier `(|ξ|² − k⋆²)²` of th
 
 **Scope:** The theorem concerns the **linear** flow `∂ₜu = −a(Δ + k⋆²)²u` with `a > 0`. It does not prove nonlinear pattern persistence, localization of whole-space bound states, or derivation from the physical WCT dynamics. It is classical Swift–Hohenberg spectral theory, not a claim of novelty or physical validation.
 
-**Verification:** Analytic proof in LaTeX. Not Lean-formalized or independently peer-reviewed. PDFs are compiled by [scripts/build_pdfs.sh](../../scripts/build_pdfs.sh) and [GitHub Actions](../../.github/workflows/pdfs.yml).
+**Verification:** Analytic proof in LaTeX, Lean-formalized in full ([E57Certification](../../lean/MathProofs/E57Certification.lean) on [SwiftHohenbergL2](../../lean/MathProofs/SwiftHohenbergL2.lean); `ReyesMath.E57Cert.main_theorem`; see the [certification report](../../docs/ANALYTIC_CERTIFICATION_2026-10-30.md) and [lean/formalization.yaml](../../lean/formalization.yaml)). Not independently peer-reviewed. PDFs are compiled by [scripts/build_pdfs.sh](../../scripts/build_pdfs.sh) and [GitHub Actions](../../.github/workflows/pdfs.yml).
