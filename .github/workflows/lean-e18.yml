@@ -47,5 +47,13 @@ jobs:
         run: lake build MathProofs.E18WeightBounds
       - name: Kernel-check Frechet derivative of the full nonlinear energy on H2
         run: lake build MathProofs.E18Frechet
+      - name: Kernel-check classical torus calculus and periodic integration by parts
+        run: lake build MathProofs.E18TorusCalculus
+      - name: Kernel-check Leibniz rule for the Fourier Laplacian
+        run: lake build MathProofs.E18Leibniz
+      - name: Kernel-check H4 regularity of the variational derivative
+        run: lake build MathProofs.E18Regularity
+      - name: Kernel-check L2 representative DE(psi)[h] = 2 Re int G h-bar
+        run: lake build MathProofs.E18Representative
       - name: Kernel-check registered project imports
         run: lake build MathProofs

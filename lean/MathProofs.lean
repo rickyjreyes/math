@@ -163,3 +163,7 @@ import MathProofs.E18FlowChainRule
 import MathProofs.E18IntegratedBalance
 import MathProofs.E18WeightBounds
 import MathProofs.E18Frechet
+import MathProofs.E18TorusCalculus
+import MathProofs.E18Leibniz
+import MathProofs.E18Regularity
+import MathProofs.E18Representative
