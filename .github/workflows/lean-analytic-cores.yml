@@ -70,7 +70,9 @@ jobs:
             MathProofs/E57L2Semigroup.lean \
             MathProofs/E26Certification.lean \
             MathProofs/E17GlobalBound.lean \
-            MathProofs/E61ExactNorm.lean; then exit 1; fi
+            MathProofs/E61ExactNorm.lean \
+            MathProofs/SwiftHohenbergL2.lean \
+            MathProofs/E61Certification.lean; then exit 1; fi
       - name: Kernel check E57 whole-space L2 operator semigroup law
         run: lake build MathProofs.E57L2Semigroup
       - name: Kernel check full E26 historical L2 certification
@@ -135,6 +137,10 @@ jobs:
         run: lake build MathProofs.E58Certification
       - name: Kernel check E58 one-dimensional physical Green function
         run: lake build MathProofs.E58GreenFunction
+      - name: Kernel check Swift-Hohenberg operator, spectrum and generator
+        run: lake build MathProofs.SwiftHohenbergL2
+      - name: Kernel check E61 continuum threshold certification
+        run: lake build MathProofs.E61Certification
       - name: Kernel check analytic declarations
         run: |
           lake build MathProofs.RemainingCores MathProofs.E16SpectralCore \
