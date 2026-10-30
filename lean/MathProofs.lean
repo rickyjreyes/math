@@ -142,3 +142,5 @@ import MathProofs.E68ChangeVariables
 import MathProofs.E68ScaledGradient
 import MathProofs.E68SmoothCounterexample
 import MathProofs.E68SmoothClassification
+import MathProofs.E68Sobolev
+import MathProofs.E68Classification
