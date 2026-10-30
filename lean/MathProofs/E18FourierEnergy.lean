@@ -74,12 +74,12 @@ theorem curvature_integrable (hd : d ≤ 3) {ε : ℝ} (hε : 0 < ε)
       pow_ne_zero 2 (ne_of_gt (D_pos hε (sq_nonneg _) α)))
   obtain ⟨C, hC⟩ := hw.norm.bounded_above_of_compact_support
     (HasCompactSupport.of_compactSpace _)
-  have hweighted : Integrable (fun x : Tor L d =>
-      ‖(DL L ψ : L2 L d) x‖ ^ 2 *
-        F ε α (‖Phi L hd ψ x‖ ^ 2)) (μ L d) :=
-    (BandPass.integrable_norm_sq (DL L ψ)).bdd_mul'
-      hw.aestronglyMeasurable (Eventually.of_forall hC)
-  exact hweighted.congr (Eventually.of_forall fun x => mul_comm _ _)
+  have hC' : ∀ x : Tor L d,
+      ‖F ε α (‖Phi L hd ψ x‖ ^ 2)‖ ≤ C := by
+    intro x
+    simpa using hC x
+  exact (BandPass.integrable_norm_sq (DL L ψ)).bdd_mul'
+    hw.aestronglyMeasurable (Eventually.of_forall hC')
 
 /-- Nonnegativity is proved for the *actual* Fourier H² energy expression. -/
 theorem energy_nonneg (hd : d ≤ 3) (c₁ c₂ ε α : ℝ)
