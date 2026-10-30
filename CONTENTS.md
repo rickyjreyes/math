@@ -127,4 +127,4 @@ The linear dissipative spectral estimate does not establish nonlinear WCT confin
 
 **E68: Counterexamples and corrected local energy estimate** — [PDF](preprints/localized-gradient-energy-e68/paper.pdf) · [LaTeX source](papers/localized-gradient-energy-e68/main.tex) · [Notes](preprints/localized-gradient-energy-e68/README.md)
 
-Unrestricted \(H^1\) estimate refuted for \(n>2\); the corrected \(R^{n-2}\) bound follows if \(\nabla\psi\in L^n\). Includes an \(H^2\) result for spatial dimensions three and four and counterexamples beyond four. Analytic proof, not Lean formalization or a PDE stability claim.
+Unrestricted \(H^1\) estimate refuted for \(n>2\); the corrected \(R^{n-2}\) bound follows if \(\nabla\psi\in L^n\). Includes an \(H^2\) result for spatial dimensions three and four and counterexamples beyond four. Lean-formalized in full over \(H^1\) and \(H^2\) defined by weak derivatives ([E68Certification](lean/MathProofs/E68Certification.lean), [mapping](docs/E68_LEAN_MANUSCRIPT_MAPPING.md)). Not a PDE stability claim.

@@ -92,7 +92,7 @@ All declarations are in `lean/MathProofs/`, imported by `lean/MathProofs.lean`, 
   * the complete project `lake build` (7370 jobs, exit 0, no warnings in E68 modules);
   * `lake env lean E68CertificationAudit.lean`, with 71 of 71 declarations on `[propext, Classical.choice, Quot.sound]`;
   * no `sorry`, `admit`, `axiom` or `native_decide` in any E68 module.
-* CI at the exact PR head is recorded in [PR #50](https://github.com/rickyjreyes/math/pull/50) and in `lean/formalization.yaml` (`latest_fully_checked_revision`). It covers:
+* Exact-head CI at `4d6f1fda30a2b9160deaab5c384aca7577cc8a3e`: [focused E68 workflow](https://github.com/rickyjreyes/math/actions/runs/41031962271) and [complete-project `lean.yml`](https://github.com/rickyjreyes/math/actions/runs/41031962266). Later revisions are recorded in [PR #50](https://github.com/rickyjreyes/math/pull/50) and in `lean/formalization.yaml` (`latest_fully_checked_revision`). The CI covers:
   * the focused E68 workflow (hole check, focused build, axiom audit, complete project);
   * the full `lean.yml` build;
   * the M6B, F09, analytic-cores and PDF workflows.
