@@ -64,8 +64,8 @@ theorem shell_value (r a kStar t : ℝ) (ξ : Rd)
     (hξ : ‖ξ‖ = kStar) :
     ‖symbol r a kStar t ξ‖ = Real.exp (t * r) := by
   unfold symbol growth
-  rw [hξ]
-  simp [Complex.norm_real, Real.norm_eq_abs, abs_of_pos (Real.exp_pos (t * r))]
+  rw [hξ, sub_self, zero_pow two_ne_zero, mul_zero, sub_zero, Complex.norm_real,
+    Real.norm_of_nonneg (Real.exp_pos _).le]
 
 /-- Exact operator norm in every positive spatial dimension.
 No plane wave is asserted to lie in the whole-space L² space. -/
