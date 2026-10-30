@@ -31,7 +31,7 @@ The additional mechanisms are not universally ordered stages. **Chaos is not ran
 
 ### Directed transition graph to investigate
 
-\`\`\`text
+```text
 small perturbations / noise / imposed heterogeneity
        |                    |
        v                    v
@@ -56,7 +56,7 @@ finite-k instability     disorder-dependent response
        +---------------+----------------+
                        |
           new state / new perturbation
-\`\`\`
+```
 
 This is a taxonomy of **candidate transitions**. There is no theorem yet that every arrow is realized, and many arrows may be forbidden for a particular equation.
 
@@ -66,22 +66,22 @@ This is a taxonomy of **candidate transitions**. There is no theorem yet that ev
 
 Continue with the **same** one-dimensional real Swift–Hohenberg-type equation frozen in the [core program](MORPHOGENESIS_PROGRAM.md):
 
-\`\`\`math
+$$
 \partial_t u=\mu u-a(\partial_x^2+k_\star^2)^2u+b u^3-c u^5,
 \qquad a,b,c,k_\star>0,\quad 0<\mu<a k_\star^4.
-\`\`\`
+$$
 
 Use a periodic domain for finite-energy attractor, bifurcation and stability questions, and the real line for localized patches/fronts. These are **different settings** and may need different norms and theorems.
 
 For smooth periodic solutions the existing energy candidate obeys the formal identity
 
-\`\`\`math
+$$
 \frac{d}{dt}\mathcal E_L(u(t))=-\|\partial_tu(t)\|_{L^2}^2.
-\`\`\`
+$$
 
 Once justified, this is a **gradient-flow restriction**: a nonstationary periodic orbit cannot return exactly to its initial state with unchanged energy. Thus do not promise a persistent nonstationary recurrent chaotic attractor for this autonomous, strictly energy-descending flow. Long transients, spatially complex states, unstable equilibria, and transitions between equilibria are separate possibilities. An infinite-domain global-gradient argument additionally requires a valid finite/relative-energy framework.
 
-**First precise deterministic target:** choose one \(L>0\), a fixed parameter tuple, a Sobolev phase space \(H^2_{\mathrm{per}}(0,L)\), and prove or refute:
+**First precise deterministic target:** choose one $L>0$, a fixed parameter tuple, a Sobolev phase space $H^2_{\mathrm{per}}(0,L)$, and prove or refute:
 - global well-posedness with an explicit absorbing estimate;
 - formation of a **nonconstant** stable stationary pattern from a nonempty open set of initial states (not from the exactly zero state, which remains zero in the deterministic equation);
 - branch selection or nonuniqueness with the precise translation symmetry accounted for;
@@ -93,28 +93,28 @@ The word "chaos" must **not** be applied merely because the transient solution i
 
 On the periodic domain, an **additional model**, not the unchanged deterministic equation, is
 
-\`\`\`math
+$$
 du_t=F(u_t)\,dt+
 \sigma\sum_{j=1}^{J} g_j\,dW_t^j,
 \qquad
 F(u)=\mu u-a(\partial_x^2+k_\star^2)^2u+bu^3-cu^5.
-\`\`\`
+$$
 
-Freeze \(J\in\mathbb N\), independent real Brownian motions \(W^j\), smooth real periodic \(g_j\), \(\sigma\ge0\), probability space, filtration, state space and solution notion. Use [GC57](problems/07-pattern-formation/GC57.md) as the directly relevant stochastic-stability question. A forcing profile may vanish on important unstable Fourier modes, so noise-triggered organization is **not automatic**.
+Freeze $J\in\mathbb N$, independent real Brownian motions $W^j$, smooth real periodic $g_j$, $\sigma\ge0$, probability space, filtration, state space and solution notion. Use [GC57](problems/07-pattern-formation/GC57.md) as the directly relevant stochastic-stability question. A forcing profile may vanish on important unstable Fourier modes, so noise-triggered organization is **not automatic**.
 
 When the required second differentiability and infinite-dimensional Itô formula are justified, the energy evolves as
 
-\`\`\`math
+$$
 d\mathcal E_L(u_t)
 =
 -\|F(u_t)\|_{L^2}^2\,dt
 +\sigma\sum_j D\mathcal E_L(u_t)[g_j]\,dW_t^j
 +\frac{\sigma^2}{2}\sum_jD^2\mathcal E_L(u_t)[g_j,g_j]\,dt.
-\`\`\`
+$$
 
 The deterministic descent law **does not** carry over pathwise unchanged. A stationary measure, metastable residence time, noise-induced transition, or quasipotential requires additional hypotheses and proof. Under nondegenerate continuing noise, do not assume almost-sure confinement near a pattern for all future time.
 
-**First precise stochastic target:** for a selected deterministic stable branch, prove a quantitative finite-time probability of remaining in a neighborhood of the branch, or the asymptotics of the first exit time as \(\sigma\downarrow0\); construct a counterexample if the chosen noise fails to couple to the modes needed for a claimed effect.
+**First precise stochastic target:** for a selected deterministic stable branch, prove a quantitative finite-time probability of remaining in a neighborhood of the branch, or the asymptotics of the first exit time as $\sigma\downarrow0$; construct a counterexample if the chosen noise fails to couple to the modes needed for a claimed effect.
 
 For new-structure creation, also compare [GC188](problems/07-pattern-formation/GC188.md) (stochastic defect-pair nucleation).
 
@@ -122,13 +122,13 @@ For new-structure creation, also compare [GC188](problems/07-pattern-formation/G
 
 The independent F01 model is the fourth-order cubic–quintic Schrödinger equation in two spatial dimensions:
 
-\`\`\`math
+$$
 i\partial_t\psi=(\Delta+k^2)^2\psi
 -\beta|\psi|^2\psi+\gamma|\psi|^4\psi,
 \qquad \beta,\gamma>0,\quad x\in\mathbb R^2.
-\`\`\`
+$$
 
-The [verified F01 Lean mathematics](../lean/formalization.yaml) establishes mass/energy conservation, global \(H^2\) evolution, whole-space energy-minimizer existence and orbital stability within its stated range. These facts **do not** prove attraction from generic data, spontaneous soliton creation, universal soliton-resolution behavior, integrability, elastic collisions, or chaos.
+The [verified F01 Lean mathematics](../lean/formalization.yaml) establishes mass/energy conservation, global $H^2$ evolution, whole-space energy-minimizer existence and orbital stability within its stated range. These facts **do not** prove attraction from generic data, spontaneous soliton creation, universal soliton-resolution behavior, integrability, elastic collisions, or chaos.
 
 - **Localization:** establish a spatial concentration/decay statement for a precisely defined class, distinct from an extended periodic pattern. [GC06](problems/02-confinement-curvature/GC06.md).
 - **Solitons versus solitary waves:** use "localized standing wave" or "solitary wave" unless the stronger behavior intended by "soliton" (for example elastic scattering or integrability) has been shown. [GC51](problems/01-wave-dynamics/GC51.md), [GC68](problems/01-wave-dynamics/GC68.md).
@@ -143,15 +143,15 @@ The [verified F01 Lean mathematics](../lean/formalization.yaml) establishes mass
 
 Start with [GC52](problems/11-physical-emergence-multiscale/GC52.md) (parent-lattice to effective wave equation), [GC255](problems/11-physical-emergence-multiscale/GC255.md) (discrete-to-continuum localization), and [GC257](problems/11-physical-emergence-multiscale/GC257.md) (signs of cubic/quintic saturation).
 
-Fix a small parameter \(\varepsilon\), an interpolation \(J_\varepsilon\), times \(0\le t\le T\varepsilon^{-p}\) and a norm \(X_\varepsilon\). The illustrative target has the form
+Fix a small parameter $\varepsilon$, an interpolation $J_\varepsilon$, times $0\le t\le T\varepsilon^{-p}$ and a norm $X_\varepsilon$. The illustrative target has the form
 
-\`\`\`math
+$$
 \sup_{0\le t\le T\varepsilon^{-p}}
 \|u_{\mathrm{micro}}^\varepsilon(t)
       -J_\varepsilon u_{\mathrm{eff}}(t)\|_{X_\varepsilon}
 \le C\varepsilon^\alpha,
 \qquad \alpha,p,T>0.
-\`\`\`
+$$
 
 A full emergence theorem would also identify which stability, selection, localization or propagation statements transfer under the estimate, and for which time horizon. Long-time and continuum limits may fail to commute. This does not select a physical universe or derive WCT's foundational action unless the parent dynamics are separately specified and validated.
 
@@ -161,15 +161,15 @@ For each claimed transition, **first** freeze a domain, time interval, norm, ini
 
 | Claim | Measure or mathematical predicate | What invalidates a stronger claim |
 | --- | --- | --- |
-| Mode selection | \(\eta_B(t)=\|P_Bu(t)\|_2^2/\|u(t)\|_2^2\), for \(u(t)\ne0\) and a fixed band \(B\) | Growth in a band is not proof of a unique nonlinear wavelength |
-| Saturation | \(\sup_{t\ge0}\|u(t)\|_{H^2}\le C(\|u_0\|_{H^2})\), or an explicitly defined absorbing bound | A finite simulation window is not a global bound |
+| Mode selection | $\eta_B(t)=\|P_Bu(t)\|_2^2/\|u(t)\|_2^2$, for $u(t)\ne0$ and a fixed band $B$ | Growth in a band is not proof of a unique nonlinear wavelength |
+| Saturation | $\sup_{t\ge0}\|u(t)\|_{H^2}\le C(\|u_0\|_{H^2})$, or an explicitly defined absorbing bound | A finite simulation window is not a global bound |
 | Formation | a nonempty basin with a stated convergence notion toward nonzero coherent states | Stability near a pre-existing wave is not formation from distant data |
-| Localization | \(\sup_x\int_{|y-x|\le R}|\psi(t,y)|^2dy\) relative to conserved total mass, with \(R\) fixed | A finite-box peak is not whole-space concentration |
-| Persistence | \(\sup_{t\ge0}\inf_{g\in G}\|u(t)-g p\|_X<\delta\) with a declared symmetry group and small-data premise | Orbital stability is not convergence or attraction |
+| Localization | $\sup_x\int_{|y-x|\le R}|\psi(t,y)|^2dy$ relative to conserved total mass, with $R$ fixed | A finite-box peak is not whole-space concentration |
+| Persistence | $\sup_{t\ge0}\inf_{g\in G}\|u(t)-g p\|_X<\delta$ with a declared symmetry group and small-data premise | Orbital stability is not convergence or attraction |
 | Chaos | a rigorous invariant-set criterion with sensitive/shift-like dynamics or an explicit positive-entropy theorem | Irregular plots, positive *estimated* Lyapunov exponent, or random forcing alone |
-| Propagation | \(X(t)/t\to v\), with a nonambiguous front locator \(X\), or a modulating-front construction | Group velocity and causal signal speed are different quantities |
+| Propagation | $X(t)/t\to v$, with a nonambiguous front locator $X$, or a modulating-front construction | Group velocity and causal signal speed are different quantities |
 | Reorganization | transition between mathematically distinct states/branches, defect winding change or scattering channels | A changing plot alone does not identify a new asymptotic state |
-| Stochastic survival | \(\mathbb P(\tau_\delta>T)\) or a theorem for \(\mathbb E[\tau_\delta]\) | Continuing noise generally prevents unconditional forever-persistence |
+| Stochastic survival | $\mathbb P(\tau_\delta>T)$ or a theorem for $\mathbb E[\tau_\delta]$ | Continuing noise generally prevents unconditional forever-persistence |
 | Emergence | a uniform error bound between stated microscopic and effective evolutions | Agreement of a few selected trajectories is not a derivation |
 
 **Topological constraint:** winding numbers of smooth nonvanishing complex fields remain unchanged under a smooth nonvanishing homotopy. A winding change requires a zero, loss of regularity, or failure of the boundary/nonvanishing assumptions. See [GC38](problems/08-topology-multicomponent/GC38.md) and [GC40](problems/08-topology-multicomponent/GC40.md).
