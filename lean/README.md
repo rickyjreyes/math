@@ -5,7 +5,7 @@ This Mathlib v4.23.0 project integrates main-line supporting modules with newer 
 
 These proofs advance the mathematical study of WCT-related models without by themselves validating WCT physics. Model-specific no-go statements must not be generalized to an entire program without proof, and independent stability results do not establish a ghost-free physical parent theory. See [research direction](../RESEARCH_DIRECTION.md).
 
-The maintained import tree contains **154 project modules and 2,794 theorem/lemma declarations** (including private source lemmas). **14 of the 14 original manuscripts are complete** under the audit criterion. So are the five F11/F12 manuscripts and the supplementary M2/E17, E58, E61, M3/E57, M6B and E68 manuscripts. Declaration totals do not measure manuscript completeness. The [review and theorem table](../docs/FORMALIZATION_REVIEW_2026-10-27.md) records exact declarations, restrictions, and passing verification runs. The [analytic certification](../docs/ANALYTIC_CERTIFICATION_2026-10-30.md) does the same for E62, E58, M2/E17, E26, M3/E57, E61, E16, E59 and E13/E14.
+The maintained import tree contains **159 project modules and 2,945 theorem/lemma declarations** (including private source lemmas). **14 of the 14 original manuscripts are complete** under the audit criterion. So are the five F11/F12 manuscripts and the supplementary M2/E17, E58, E61, M3/E57, M6B, E68 and E69 manuscripts. Declaration totals do not measure manuscript completeness. The [review and theorem table](../docs/FORMALIZATION_REVIEW_2026-10-27.md) records exact declarations, restrictions, and passing verification runs. The [analytic certification](../docs/ANALYTIC_CERTIFICATION_2026-10-30.md) does the same for E62, E58, M2/E17, E26, M3/E57, E61, E16, E59 and E13/E14.
 
 ### Manuscript formalizations
 
@@ -74,6 +74,14 @@ The [E68 mapping](../docs/E68_LEAN_MANUSCRIPT_MAPPING.md) maps every assertion o
 - [E68Corrected](MathProofs/E68Corrected.lean) — E68′ with `ω_n^{1−2/n}R^{n−2}`, the admissible-class corollary, and the remark that `H¹` does not give the a priori bound.
 - [E68SobolevEmbedding](MathProofs/E68SobolevEmbedding.lean) — `‖u‖_{p*} ≤ C_n‖∇u‖₂` for weak `H¹` (mollification, cutoff, Mathlib's GNS inequality, Fatou).
 - [E68H2](MathProofs/E68H2.lean), [E68Certification](MathProofs/E68Certification.lean) — the `H²` estimate for `n = 3, 4` (embeddings and `L²–L⁶` interpolation) and its failure for `n > 4` with exact scaling integrals; the certification interface.
+
+### E69 bounded regularized curvature certification
+
+The [E69 mapping](../docs/E69_LEAN_MANUSCRIPT_MAPPING.md) maps every assertion of the manuscript to a declaration. [E69CertificationAudit.lean](E69CertificationAudit.lean) prints the axioms of its 96 declarations; all use only `propext`, `Classical.choice` and `Quot.sound`.
+
+- [E69Sobolev](MathProofs/E69Sobolev.lean) — `H^s(ℝⁿ; ℂ)` of every real order by the unitary Fourier transform, a normed subspace of `L²`; the Laplacian `𝓕⁻¹(−|ξ|²𝓕)`, proved to be the classical and the unique weak Laplacian; `‖Δψ‖_{H^{s−2}} ≤ ‖ψ‖_{H^s}`; Fourier inversion on `L¹ ∩ L²`; the embedding `H^r ↪ L^∞` for `r > n/2`.
+- [E69Curvature](MathProofs/E69Curvature.lean) — `Θ_ε[ψ] = −(Δψ)R_ε(ψ)` and Theorem E69 for every `n`, `ε > 0`, real `α` and real `s > n/2 + 2`, with the explicit constant `C_{n,s}`.
+- [E69Remarks](MathProofs/E69Remarks.lean), [E69Torus](MathProofs/E69Torus.lean), [E69Certification](MathProofs/E69Certification.lean) — the four remarks: `H²` does not suffice (`1 ≤ n ≤ 3`), other domains and the flat torus in every dimension, no bound uniform in `ε`, and the vanishing older denominator; the certification interface.
 
 ### Integrated additional proofs and diagnostics
 
@@ -168,6 +176,9 @@ lake env lean AnalyticCertificationAudit.lean
 
 # Dependency audit of the E68 certification
 lake env lean E68CertificationAudit.lean
+
+# Dependency audit of the E69 certification
+lake env lean E69CertificationAudit.lean
 ```
 
 Lean and Mathlib release are pinned to v4.23.0. A dependency lockfile
@@ -175,7 +186,7 @@ is not yet committed.
 
 ## Gaps
 
-All fourteen original manuscripts are complete under the manifest's criterion, and so are the additional families F11 and F12. Of the supplementary operator manuscripts, M2/E17, E58, E61, M3/E57, M6B and E68 are complete. E18 and E69 remain analytic only.
+All fourteen original manuscripts are complete under the manifest's criterion, and so are the additional families F11 and F12. Of the supplementary operator manuscripts, M2/E17, E58, E61, M3/E57, M6B, E68 and E69 are complete. E18 remains analytic only.
 
 The F08 obstruction on a smooth four-manifold is fully formalized for an actual global complex scalar, including its covariant fiberwise tensor, nonnegativity, rank/nullity, determinant, pullback covariance, and continuous/C^m tangent-bundle evaluation. The F09 exact determinant, complete clipped derivative, rank, nullity, and C¹ local fiber are now proved together in Lean.
 

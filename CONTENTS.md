@@ -101,7 +101,7 @@ For sufficiently regular solutions of the **specified exact negative-gradient fl
 
 **E69: Bounded corrected regularized curvature** — [PDF](preprints/high-regularity-bounded-curvature-e69/paper.pdf) · [LaTeX source](papers/high-regularity-bounded-curvature-e69/main.tex) · [Notes](preprints/high-regularity-bounded-curvature-e69/README.md)
 
-If \(\psi\in H^s(\mathbb R^n)\), \(s>n/2+2\), and \(\varepsilon>0\), the corrected regularized curvature lies in \(L^\infty\). This is an analytic result, not yet formalized in Lean.
+If \(\psi\in H^s(\mathbb R^n)\), \(s>n/2+2\), and \(\varepsilon>0\), the corrected regularized curvature lies in \(L^\infty\). Lean-formalized in full over the Fourier-defined Sobolev spaces \(H^s(\mathbb R^n)\) of real order, in every dimension ([E69Certification](lean/MathProofs/E69Certification.lean), [mapping](docs/E69_LEAN_MANUSCRIPT_MAPPING.md)). Not a uniform-in-\(\varepsilon\) or PDE well-posedness claim.
 
 ## WCT E58 — Band-selective Green multiplier
 

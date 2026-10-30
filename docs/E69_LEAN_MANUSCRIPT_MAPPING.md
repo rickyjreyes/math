@@ -1,6 +1,6 @@
 # E69: manuscript-to-Lean certification
 
-**Issue:** [#40](https://github.com/rickyjreyes/math/issues/40) · **Manuscript:** [`papers/high-regularity-bounded-curvature-e69/main.tex`](../papers/high-regularity-bounded-curvature-e69/main.tex) (unchanged).
+**Issue:** [#40](https://github.com/rickyjreyes/math/issues/40) · **PR:** [#74](https://github.com/rickyjreyes/math/pull/74) · **Manuscript:** [`papers/high-regularity-bounded-curvature-e69/main.tex`](../papers/high-regularity-bounded-curvature-e69/main.tex) (unchanged).
 
 Pinned versions: Lean 4.23.0, Mathlib v4.23.0. Entry point: [`lean/MathProofs/E69Certification.lean`](../lean/MathProofs/E69Certification.lean) (namespace `ReyesMath.E69Cert`). Dependency audit: [`lean/E69CertificationAudit.lean`](../lean/E69CertificationAudit.lean).
 
@@ -92,6 +92,18 @@ All declarations are in `lean/MathProofs/`, imported by `lean/MathProofs.lean`. 
   4. There `|Δψ| ≥ |h| − C` exceeds every level on a punctured ball of positive measure.
 * **No uniform bound in `ε`.** Take `q = (|x|²−1)b` with `b = 1` on `B̄(0,2)`. On the annulus `1+ε/2 < |x|² < 1+ε`, `Δq = 2n` (from `M6B.squared_norm_laplacian_D`) and `q ∈ (ε/2, ε)`, so `|Θ_ε[q]| ≥ n/(ε(1+e^{2|α|}))` on an open set.
 * **Torus.** The lattice sum `Σ_{ℤ^d}(1+|ξ_k|²)^{−r}` converges for `r > d/2` in every dimension, via `(1+Σk_j²)^{−r} ≤ Π_j(1+k_j²)^{−r/d}`. The Fourier series of `A ∈ H^r(𝕋^d)` then converges absolutely and uniformly to a continuous representative.
+
+## Verification
+
+* Local, pinned toolchain:
+  * `lake build MathProofs.E69Certification`;
+  * the complete project `lake build` (7375 jobs, exit 0, no warnings in E69 modules);
+  * `lake env lean E69CertificationAudit.lean`, with 96 of 96 declarations on `[propext, Classical.choice, Quot.sound]`;
+  * no `sorry`, `admit`, `axiom` or `native_decide` in any E69 module.
+* Exact-head CI at `fb9e92829112d2598a6f3d72f87db8b3ec1bcc85`: [focused E69 workflow](https://github.com/rickyjreyes/math/actions/runs/41114874006) (also on [push](https://github.com/rickyjreyes/math/actions/runs/41114745328)) and [complete-project `lean.yml`](https://github.com/rickyjreyes/math/actions/runs/41114873524). Later revisions are recorded in [PR #74](https://github.com/rickyjreyes/math/pull/74) and in `lean/formalization.yaml` (`latest_fully_checked_revision`). The CI covers:
+  * the focused E69 workflow (hole check, focused build, axiom audit, complete project);
+  * the full `lean.yml` build;
+  * the E68, M6B, F09, analytic-cores and PDF workflows.
 
 ## Lean conventions that differ in form from the manuscript
 
