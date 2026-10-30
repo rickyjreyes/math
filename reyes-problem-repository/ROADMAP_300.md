@@ -4,6 +4,8 @@
 
 **Research direction:** The 300 candidates support rigorous investigation of the foundational WCT program, not a decision to restrict it to engineering. A counterexample defeats its scoped formulation, while a physical claim requires separate empirical tests. [Research interpretation](../RESEARCH_DIRECTION.md).
 
+**New mathematical formulations (2026-10-30):** [236 separately scoped candidates GC65–GC300](./scoped/README.md) now specify concrete model choices and decisive theorem-or-counterexample targets. The original roadmap sketches are retained. Mathematical correctness, prior-art novelty, and proof completion are **not** inferred from having a scope file.
+
 **Research navigation:** [Existing Lean and paper links for GC01–GC65](./GC65_ADOPTION.md) · [Scope-first activation for GC66–GC300](./CANDIDATE_ACTIVATION.md) · [Issue/PR/Lean/paper workflow](./WORKFLOW.md).
 
 **Browse:** [Folder directory](./problems/README.md) · [Machine register](./problem_registry.json) · [Research status](./STATUS.md) · [Original 65 statements](./FORMAL_PROBLEMS.md) · [Foundational screening shortlist](./FOUNDATIONAL_SHORTLIST.md).

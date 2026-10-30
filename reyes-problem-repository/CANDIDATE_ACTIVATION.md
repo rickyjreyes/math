@@ -1,8 +1,8 @@
 # Activating GC66–GC300 without rewriting the research
 
-**Current state:** GC66–GC300 are 235 early-stage research sketches in [the 12-folder roadmap](ROADMAP_300.md). Each has a proposed research question and first decisive target. They are **not** 235 globally certified novel open problems or fully quantified theorems.
+**Current state (2026-10-30):** GC66–GC300 retain 235 historical sketch files in [the roadmap](ROADMAP_300.md). All GC65–GC300 entries now also have [versioned candidate mathematical scopes](scoped/README.md) with explicit models, quantifiers and proof-or-counterexample objectives. These are **not** 235 globally certified novel open problems or verified theorems.
 
-**Policy:** Do not rewrite all 235 in advance. Select a candidate when the researcher or an outside contributor wants to work on it, and freeze the mathematical problem before labeling its issue solvable. This precision serves the continuing WCT research program without assuming its physical hypotheses are true or treating a model-specific failure as a universal defeat. [Research direction](../RESEARCH_DIRECTION.md).
+**Policy:** Preserve the original 235 sketches and their identifiers. Use the versioned proposed scope as a starting point, then independently review nonvacuity, assumptions, existing literature and the exact claimed theorem before treating the problem as fully frozen or its issue solvable. This precision serves the continuing WCT research program without assuming its physical hypotheses are true or treating a model-specific failure as a universal defeat. [Research direction](../RESEARCH_DIRECTION.md).
 
 ## Scope-first checklist
 
