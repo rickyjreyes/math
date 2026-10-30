@@ -1,4 +1,4 @@
-# WCT Morphogenesis: A Four-Stage Unified Research Problem
+# WCT Morphogenesis: Four-Stage Core and the Dynamics of Organization
 
 **Status:** cross-cutting research candidate; **not a verified open problem, completed theorem, or new numbered GC entry**.  
 **Issue:** [#76: Unify selection, saturation, stability and propagation](https://github.com/rickyjreyes/math/issues/76).  
@@ -17,6 +17,22 @@ The four distinct obligations are:
 4. **Propagation:** can a coherent state move, invade an unstable background, or regenerate its organization at new spatial locations? What selects its speed?
 
 The objective is a **common-equation theorem** (or a mathematically decisive obstruction), not an inference assembled from proofs about different models.
+
+## Expansion: dynamics of organization and change
+
+The four stages above are the **common-equation core**. The companion [Organization Dynamics research dossier](ORGANIZATION_DYNAMICS.md) expands the research agenda to include **variation/noise, chaotic regimes, self-organization, localization and solitary waves, reorganization, memory, and emergence across scales**.
+
+These are not assumed to form a compulsory sequence. In particular, deterministic chaos is distinct from stochastic forcing; an autonomous gradient flow with strictly decreasing energy differs from a Hamiltonian solitary-wave evolution; orbital stability does not imply attraction; periodic patterns need not be localized; and propagation of a front does not establish a physical causal signal speed.
+
+| Expansion track | Primary mathematical target | GC starting points |
+| --- | --- | --- |
+| **M6: Fluctuations and noise** | Quantify access to unstable modes and stochastic residence or transition times | [GC57](problems/07-pattern-formation/GC57.md), [GC188](problems/07-pattern-formation/GC188.md) |
+| **M7: Emergent organization and localization** | Prove a formation basin and genuine spatial concentration when claimed | [GC61](problems/01-wave-dynamics/GC61.md), [GC06](problems/02-confinement-curvature/GC06.md) |
+| **M8: Chaos and transport** | Establish rigorous chaotic dynamics and a quantitative transport barrier in a specified model | [GC62](problems/01-wave-dynamics/GC62.md) |
+| **M9: Reorganization and memory** | Prove a branch switch, defect-mediated transition, collision channel or memory effect | [GC32](problems/07-pattern-formation/GC32.md), [GC34](problems/07-pattern-formation/GC34.md), [GC193](problems/07-pattern-formation/GC193.md) |
+| **M10: Effective-law emergence** | Derive a parent-to-effective dynamics limit with error bounds and a transferred structural property | [GC52](problems/11-physical-emergence-multiscale/GC52.md), [GC255](problems/11-physical-emergence-multiscale/GC255.md) |
+
+**Resolution discipline:** M6–M10 are additional independent tracks; they do not change M0–M5 or assert that all behaviors coexist in one equation. A claim of unified organization must explicitly prove compatible coexistence or give scoped obstructions. See the [full definitions, alternative models, quantitative diagnostics, and falsifiers](ORGANIZATION_DYNAMICS.md). All 300 existing GC candidate statuses remain unchanged.
 
 ## Relationship to the existing GC catalogue
 
