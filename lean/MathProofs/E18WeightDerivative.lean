@@ -51,7 +51,8 @@ theorem F_hasDerivAt_raw {ε ρ : ℝ} (hε : 0 < ε) (hρ : 0 ≤ ρ) (α : ℝ
     pow_ne_zero 2 (ne_of_gt (D_pos hε hρ α))
   have h := (hasDerivAt_id ρ).div hD2 hden
   convert h using 1 <;> simp only [F, FprimeRaw, one_mul, Pi.pow_apply, id,
-    Nat.reduceSub, pow_one] <;> ring
+    Nat.reduceSub, pow_one] <;>
+    field_simp [ne_of_gt (D_pos hε hρ α)] <;> ring
 
 /-- Algebraic cancellation of the positive denominator gives the boxed
 F'(ρ) formula in the E18 manuscript. -/
