@@ -203,8 +203,9 @@ Thus $\EE$ is $C^1$ as a real Banach-space functional.
 \end{proof}
 
 \begin{proposition}[Full complex variational derivative]\label{prop:variation}
-For $\psi\in H^4(\Om;\CC)$, the $L^2$ representative of the
-variational derivative in convention \eqref{eq:convention} is
+For $\psi\in H^4(\Om;\CC)$, the real Fr\'echet derivative of
+Proposition~\ref{prop:frechet} has the following $L^2$ representative in
+convention \eqref{eq:convention}:
 \begin{equation}\label{eq:G}
 \boxed{\displaystyle
  G[\psi]:=\frac{\delta\EE}{\delta\overline\psi}
@@ -251,9 +252,16 @@ Combining this with \eqref{eq:first-gradient} and
 \begin{equation}
  \DD\EE(\psi)[h]=2\Rea\int_\Om G[\psi]\overline h\,dx.
 \end{equation}
-This is \eqref{eq:G}.  The $H^4$ assumption, together with the
-Sobolev algebra property in $d\le3$ and the smoothness of $F$,
-ensures that every term of $G[\psi]$ lies in $L^2$.
+This is \eqref{eq:G}. More precisely, $H^4$ regularity and
+smooth composition imply $F(|\psi|^2)\in H^2$; also
+$\Delta\psi\in H^2$. Since $H^2$ is an algebra for $d\le3$,
+$F(|\psi|^2)\Delta\psi\in H^2$, and its Laplacian belongs to $L^2$.
+The remaining nonlinear summand belongs to $L^2$ because
+$F'(|\psi|^2)\psi$ and $\Delta\psi$ are bounded and
+$\Delta\psi\in L^2$. The periodic integration-by-parts identities
+extend by density from smooth $h$ to all $h\in H^2$.
+Thus the displayed representation holds for the full Fr\'echet
+derivative, not merely its smooth directional restrictions.
 \end{proof}
 
 \section{Exact gradient-flow dissipation theorem}
@@ -285,9 +293,11 @@ For any $0\le t_1\le t_2\le T$,
 In particular, $\EE[\psi(t_2)]\le\EE[\psi(t_1)]$.
 \end{theorem}
 \begin{proof}
-Since the solution is classical in the stated Sobolev class,
-the real Banach-space chain rule and Proposition~\ref{prop:variation}
-give
+The continuous embedding $H^4\hookrightarrow H^2$ makes the
+trajectory $C^1$ as an $H^2$-valued map. Proposition~\ref{prop:frechet}
+proves that $\EE:H^2_{\RR}\to\RR$ is $C^1$; hence the genuine
+real Banach-space chain rule, followed by
+Proposition~\ref{prop:variation}, gives
 \begin{align}
  \frac{d}{dt}\EE[\psi(t)]
  &=\DD\EE(\psi(t))[\partial_t\psi(t)]\\
