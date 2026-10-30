@@ -27,6 +27,11 @@ structure WeakH1Field (n : ℕ) where
   weakGradient :
     EuclideanSpace ℝ (Fin n) →
       (EuclideanSpace ℝ (Fin n) →L[ℝ] ℂ)
+  fieldAEStronglyMeasurable :
+    AEStronglyMeasurable ψ (volume : Measure (EuclideanSpace ℝ (Fin n)))
+  gradientAEStronglyMeasurable :
+    AEStronglyMeasurable weakGradient
+      (volume : Measure (EuclideanSpace ℝ (Fin n)))
   squareIntegrable :
     Integrable (fun x => ‖ψ x‖ ^ 2)
   gradientSquareIntegrable :
@@ -56,5 +61,38 @@ theorem weakH1_two_dimensional_local_energy
   have hpos : 0 ≤ (∫ x, ‖u.ψ x‖ ^ 2) :=
     integral_nonneg (fun x => sq_nonneg (‖u.ψ x‖))
   linarith
+
+
+/-- The weak Sobolev field is genuinely in whole-space L², rather
+than having only a measurable squared norm. -/
+theorem WeakH1Field.field_memLp (n : ℕ) (u : WeakH1Field n) :
+    MemLp u.ψ 2 (volume : Measure (EuclideanSpace ℝ (Fin n))) :=
+  (memLp_two_iff_integrable_sq_norm u.fieldAEStronglyMeasurable).2
+    u.squareIntegrable
+
+/-- The distributional gradient has a bona fide L² equivalence class. -/
+theorem WeakH1Field.gradient_memLp (n : ℕ) (u : WeakH1Field n) :
+    MemLp u.weakGradient 2
+      (volume : Measure (EuclideanSpace ℝ (Fin n))) :=
+  (memLp_two_iff_integrable_sq_norm u.gradientAEStronglyMeasurable).2
+    u.gradientSquareIntegrable
+
+/-- Both whole-space Sobolev energy integrals depend only on the
+almost-everywhere equivalence classes of the field and weak gradient.
+Uniqueness of distributional derivatives is a separate obligation. -/
+theorem WeakH1Field.energies_eq_of_ae_eq
+    (n : ℕ) (u v : WeakH1Field n)
+    (hfield : u.ψ =ᵐ[volume] v.ψ)
+    (hgradient : u.weakGradient =ᵐ[volume] v.weakGradient) :
+    (∫ x, ‖u.ψ x‖ ^ 2) = (∫ x, ‖v.ψ x‖ ^ 2) ∧
+    (∫ x, ‖u.weakGradient x‖ ^ 2) =
+      (∫ x, ‖v.weakGradient x‖ ^ 2) := by
+  constructor
+  · apply integral_congr_ae
+    filter_upwards [hfield] with x hx
+    rw [hx]
+  · apply integral_congr_ae
+    filter_upwards [hgradient] with x hx
+    rw [hx]
 
 end ReyesMath.E68
