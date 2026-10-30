@@ -159,3 +159,4 @@ import MathProofs.E18FourierEnergy
 import MathProofs.E18WeightDerivative
 import MathProofs.E18VariationAlgebra
 import MathProofs.E18EnergyGradient
+import MathProofs.E18FlowChainRule
