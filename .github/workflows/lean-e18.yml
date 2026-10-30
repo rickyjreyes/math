@@ -35,5 +35,7 @@ jobs:
         run: lake build MathProofs.E18FourierEnergy
       - name: Kernel-check corrected nonlinear weight derivative
         run: lake build MathProofs.E18WeightDerivative
+      - name: Kernel-check exact complex first-variation algebra
+        run: lake build MathProofs.E18VariationAlgebra
       - name: Kernel-check registered project imports
         run: lake build MathProofs
