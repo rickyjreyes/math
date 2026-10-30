@@ -3,6 +3,8 @@
 This Mathlib v4.23.0 project integrates main-line supporting modules with newer full H² manuscript formalizations and conditional bridges. All declarations must pass Lean CI on the exact revision before being called kernel-checked. Manuscript-level status (which papers are formalized end to end) is in
 [formalization.yaml](formalization.yaml).
 
+These proofs advance the mathematical study of WCT-related models without by themselves validating WCT physics. Model-specific no-go statements must not be generalized to an entire program without proof, and independent stability results do not establish a ghost-free physical parent theory. See [research direction](../RESEARCH_DIRECTION.md).
+
 The maintained import tree contains **154 project modules and 2,794 theorem/lemma declarations** (including private source lemmas). **14 of the 14 original manuscripts are complete** under the audit criterion. So are the five F11/F12 manuscripts and the supplementary M2/E17, E58, E61, M3/E57, M6B and E68 manuscripts. Declaration totals do not measure manuscript completeness. The [review and theorem table](../docs/FORMALIZATION_REVIEW_2026-10-27.md) records exact declarations, restrictions, and passing verification runs. The [analytic certification](../docs/ANALYTIC_CERTIFICATION_2026-10-30.md) does the same for E62, E58, M2/E17, E26, M3/E57, E61, E16, E59 and E13/E14.
 
 ### Manuscript formalizations

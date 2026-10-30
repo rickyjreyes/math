@@ -1,6 +1,6 @@
 # Candidate question notebook
 
-**Purpose:** Capture research ideas without prematurely declaring them open conjectures. Numbered GC entries remain in [the problem register](STATUS.md); notebook entries are exploratory, may be wrong, and can be rejected without creating a new grand challenge.
+**Purpose:** Capture research ideas without prematurely declaring them open conjectures. Use the notebook to develop constructive WCT-related questions and record exact limitations when one mechanism fails, without claiming an unproven alternative succeeds. Numbered GC entries remain in [the problem register](STATUS.md); notebook entries are exploratory, may be wrong, and can be rejected without creating a new grand challenge. [Research direction](../RESEARCH_DIRECTION.md).
 
 ## N001 · Curvature closure selection after nonuniqueness
 
@@ -32,7 +32,8 @@
 **Observation or motivation:**
 **Exact candidate equation/model:**
 **Question or conjectural statement:**
-**Fastest possible counterexample:**
+**Fastest possible counterexample and what it would exclude:**
+**Constructive theorem or alternative formulation to test:**
 **Closest known results to check:**
 **First proof milestone:**
 **Status:** Candidate / refuted / superseded / promoted

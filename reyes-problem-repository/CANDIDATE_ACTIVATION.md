@@ -2,7 +2,7 @@
 
 **Current state:** GC66–GC300 are 235 early-stage research sketches in [the 12-folder roadmap](ROADMAP_300.md). Each has a proposed research question and first decisive target. They are **not** 235 globally certified novel open problems or fully quantified theorems.
 
-**Policy:** Do not rewrite all 235 in advance. Select a candidate when the researcher or an outside contributor wants to work on it, and freeze the mathematical problem before labeling its issue solvable.
+**Policy:** Do not rewrite all 235 in advance. Select a candidate when the researcher or an outside contributor wants to work on it, and freeze the mathematical problem before labeling its issue solvable. This precision serves the continuing WCT research program without assuming its physical hypotheses are true or treating a model-specific failure as a universal defeat. [Research direction](../RESEARCH_DIRECTION.md).
 
 ## Scope-first checklist
 
@@ -10,7 +10,7 @@
 2. **Search existing sources:** First check [the original 65 source adoption map](GC65_ADOPTION.md), [Lean formalization status](../lean/formalization.yaml), [manuscripts](../CONTENTS.md), existing GitHub issues and scholarly literature. Search across other research repositories where relevant, without assuming a similarly named theorem establishes the claim.
 3. **Freeze the model and hypotheses:** Specify the exact equation or operator, domain, initial/boundary conditions, function spaces, parameter ranges and all quantifiers. Separate physical hypotheses from purely mathematical statements.
 4. **Choose the issue type:** If the model is not yet precise, open a **scoping task**. When precise, create a **whole-problem issue** or a smaller verifiable milestone, citing the GC source and searching for duplicates first. Never label a newly generated conjecture as already verified open.
-5. **Define success in advance:** A proof or counterexample must meet an explicit acceptance checklist. Include the small cases that could refute the claim, and avoid changing the target merely because an attempt fails.
+5. **Define success in advance:** A proof or counterexample must meet an explicit acceptance checklist. Include small cases that could refute the claim and define what a positive construction would establish. When a claim fails, record the exact scope and next meaningful construction or test rather than silently moving the target or declaring all WCT models disproven.
 6. **Contribute in either direction:** Paper → Lean or Lean → optional paper. A PR can add a partial analytic result without calling the full issue verified. For *formal completion*, provide the exact Lean declaration and successful CI run, plus independent review that it meets the frozen issue statement.
 7. **Preserve history and attribution:** Corrections and new subproblems belong in linked issues and PRs. Do not move or replace existing papers or formal proofs. A milestone can close even when the parent GC stays open.
 

@@ -2,6 +2,8 @@
 
 **Research corpus, 2026-10-29.** 300 proposed questions organized into **12 folders of 25**. The first 65 retain their original formal statement catalogue; **GC66–GC300 are new AI-assisted research sketches awaiting precise model freezes, source comparisons, and independent review.** All 300 are not asserted to be original or unsolved. A counterexample or established prior result is a valid outcome.
 
+**Research direction:** The 300 candidates support rigorous investigation of the foundational WCT program, not a decision to restrict it to engineering. A counterexample defeats its scoped formulation, while a physical claim requires separate empirical tests. [Research interpretation](../RESEARCH_DIRECTION.md).
+
 **Research navigation:** [Existing Lean and paper links for GC01–GC65](./GC65_ADOPTION.md) · [Scope-first activation for GC66–GC300](./CANDIDATE_ACTIVATION.md) · [Issue/PR/Lean/paper workflow](./WORKFLOW.md).
 
 **Browse:** [Folder directory](./problems/README.md) · [Machine register](./problem_registry.json) · [Research status](./STATUS.md) · [Original 65 statements](./FORMAL_PROBLEMS.md) · [Foundational screening shortlist](./FOUNDATIONAL_SHORTLIST.md).

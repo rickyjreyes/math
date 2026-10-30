@@ -2,7 +2,7 @@
 
 [The Reyes Problem Repository](README.md) · [Current register](STATUS.md) · [Candidate notebook](NOTEBOOK.md) · [Literature ledger](LITERATURE.md) · [How to contribute](CONTRIBUTING.md)
 
-This is a **free and open mathematical research workflow**, borrowing useful organizational ideas from collaborative problem notebooks, selective landmark problem lists, and referenced research surveys. It does not claim any historical mathematician endorsed the questions in this repository.
+This is a **free and open mathematical research workflow** for developing and critically testing mathematical foundations of the continuing WCT program. Independent proof does not require endorsing WCT's physical claims; it is a way to advance, correct and constrain them, not to replace the founding objective. It borrows organizational ideas from collaborative problem notebooks, selective landmark problem lists and research surveys. It does not claim any historical mathematician endorsed the questions. See [research direction](../RESEARCH_DIRECTION.md).
 
 ## Separate five layers
 
@@ -28,9 +28,9 @@ Create a dossier with **equations, domains, parameter intervals, initial/boundar
 
 Search publisher sites, arXiv, MathSciNet/zbMATH when accessible, Google Scholar or free alternatives, and existing repository sources. Record each paper's exact model, assumptions, result, and differences in [LITERATURE.md](LITERATURE.md) or the dossier. Citation ≠ proof of novelty.
 
-### 4. Try to disprove it
+### 4. Test, challenge and refine the model
 
-Check zero/constant states, scaling, dimensions, parameter boundaries, symmetries, loss of compactness, degenerate cases, and limiting regimes. A found counterexample is a positive result. Retain withdrawn claims in the historical record.
+Seek affirmative existence or construction proofs alongside counterexamples. Check zero/constant states, scaling, dimensions, parameter boundaries, symmetries, loss of compactness, degenerate cases, and limiting regimes. A valid counterexample is a result, but it refutes only the quantified claim. Record the failed assumptions, the broader questions still unsettled and the next constructive test. Retain withdrawn claims in the historical record; do not quietly change the frozen target.
 
 ### 5. Apply a Smale-style quality screen
 
@@ -53,6 +53,10 @@ Use free GitHub issues (one topic per issue), discussions if the repository owne
 ### 7. Record resolution
 
 A newly claimed **formally completed GC task** is closed only when its exact frozen issue scope is answered by a Lean-checked result and reviewer-confirmed correspondence. A narrow milestone issue may close even if the larger GC problem remains open. Record the theorem or counterexample, source, proof assumptions, Lean build, correspondence review, and issue/PR. Preserve existing established mathematical results without reclassifying them retroactively. If a stronger generalization remains, create a **new** problem version rather than quietly changing the goalposts.
+
+## Constructive interpretation of negative findings
+
+For significant obstructions, record the exact statement and scope; whether it defeats a particular construction, a whole defined model class or the intended physical hypothesis; any **unresolved** alternatives; and the next concrete mathematical or empirical test. If no plausible alternative is known, state this clearly. Do not relabel a refuted theory as successful, and do not generalize a special-case obstruction into a universal WCT no-go. The same standard applies to positive results: mathematical existence, stability or spectral properties require a separate physical bridge before being described as experimentally valid.
 
 ## Explicit status transitions
 

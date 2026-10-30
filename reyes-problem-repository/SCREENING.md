@@ -14,7 +14,7 @@
 
 - **Gate A: Well-posed statement.** All terms and quantifiers are explicit, or deficits are recorded.
 - **Gate B: Collision search.** Find prior theorems that may already imply the claim.
-- **Gate C: Disproof search.** Record the simplest counterexample attempt.
+- **Gate C: Adversarial and constructive tests.** Record the simplest counterexample attempt, what its exact scope would exclude, and a positive theorem or alternative construction worth testing.
 - **Gate D: Consequence.** Explain what mathematical understanding changes on either a yes or no answer.
 - **Gate E: Verified milestone.** Specify a reproducible first proof or refutation task.
 

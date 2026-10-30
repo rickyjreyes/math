@@ -7,7 +7,7 @@ body:
       value: |
         Use this template **only after searching** for an existing GC problem or milestone and reviewing relevant Lean modules and papers.
         No problem is automatically a verified open conjecture. New GC66-GC300 entries are preliminary prompts.
-        [Workflow](https://github.com/rickyjreyes/math/blob/main/reyes-problem-repository/WORKFLOW.md) | [Adoption inventory](https://github.com/rickyjreyes/math/blob/main/reyes-problem-repository/EXISTING_WORK.md)
+        [Workflow](https://github.com/rickyjreyes/math/blob/main/reyes-problem-repository/WORKFLOW.md) | [Adoption inventory](https://github.com/rickyjreyes/math/blob/main/reyes-problem-repository/EXISTING_WORK.md) | [Research direction](https://github.com/rickyjreyes/math/blob/main/RESEARCH_DIRECTION.md)
   - type: input
     id: gc
     attributes:
@@ -56,6 +56,13 @@ A complete answer must establish..."
       description: "If not audited, state 'not reviewed'; do not claim novelty by default."
     validations:
       required: true
+  - type: textarea
+    id: broader_research_scope
+    attributes:
+      label: "Wider research implication of positive or negative results"
+      description: "What foundational WCT-related mathematical or physical question motivates this issue, if any? Explain what a proof or counterexample would actually decide and which broader questions it would leave open."
+    validations:
+      required: false
   - type: textarea
     id: review
     attributes:

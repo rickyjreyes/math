@@ -1,8 +1,8 @@
 # Mathematics manuscript catalogue
 
-**Manuscripts and supplementary proofs organized below.** [Overview PDF](overview.pdf) · [Lean formalization status](lean/formalization.yaml) · [History](history.md)
+**Manuscripts and supplementary proofs organized below.** [Research direction](RESEARCH_DIRECTION.md) · [Overview PDF](overview.pdf) · [Lean formalization status](lean/formalization.yaml) · [History](history.md)
 
-A PDF here is an analytic manuscript, **not** a claim of peer review or Lean kernel certification.
+A PDF here is an analytic manuscript, **not** a claim of peer review or Lean kernel certification. This catalogue supports an ongoing foundational WCT research program: exact mathematical results, whether affirmative or obstructive, must not be generalized beyond their hypotheses or mistaken for physical validation. See [research direction](RESEARCH_DIRECTION.md).
 
 ## Compendium — Reference mathematics (separate from F-series)
 
@@ -49,6 +49,8 @@ Twenty-five corrected WCT registry IDs: Sobolev embeddings, entropy and counting
 ## F08 — Rank and signature of scalar tensors
 
 **Scalar-gradient rank and signature obstruction** — [PDF](preprints/scalar-gradient-lorentzian-no-go/paper.pdf) · [LaTeX source](papers/scalar-gradient-lorentzian-no-go/main.tex) · [Notes](preprints/scalar-gradient-lorentzian-no-go/README.md)
+
+**F08 scope:** the positive-sign scalar-gradient construction is ruled out as a standalone Lorentzian metric, not every possible field geometry. A revised construction requires its own mathematical and physical tests.
 
 ## F09 — Spectral inverse problems
 

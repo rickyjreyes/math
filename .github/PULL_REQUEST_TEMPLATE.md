@@ -11,6 +11,16 @@
 - **Previously available Lean declarations, papers, and earlier results reused:** 
 - **What remains unproved or unchanged:** 
 
+## Research interpretation and constructive follow-through
+
+- **For a negative result, which exact construction and quantified claim fail?**
+- **Does that obstruction cover a special case, a defined model class, or a whole physical hypothesis? Why?**
+- **Which wider mathematical and physical questions remain unproved or unrefuted?**
+- **Next constructive theorem, alternative formulation or experiment (or why none is known):**
+- **What physical claim, if any, is *not* established by these mathematics?**
+
+[Research framing policy](../RESEARCH_DIRECTION.md). This section does not excuse failures or require contributors to endorse WCT. Write *not applicable* for unrelated changes.
+
 ## Lean verification, when formal resolution is claimed
 
 - **Lean file(s), without relocating existing modules:** 
@@ -37,5 +47,6 @@ If this PR is documentation, prior-art review, or partial research, write *not c
 - [ ] Any proposed status update is synchronized with `reyes-problem-repository/problem_registry.json` and `STATUS.md`.
 - [ ] For formal completion, the existing Lean build passed and mathematical correspondence was reviewed.
 - [ ] Contributor and earlier author attribution is preserved.
+- [ ] I scoped any no-go conclusion to the actual theorem and distinguished constructive open questions from established alternatives.
 
 **Evidence rule:** A passing Lean build proves the encoded proposition, not automatically the full GitHub issue or physical model. Papers are optional, but any claims of formal verification must be aligned with the recorded exact Lean declarations.

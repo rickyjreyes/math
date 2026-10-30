@@ -4,11 +4,13 @@
 
 **An evolving, open-source corpus of 300 mathematical research candidates in 12 subject folders.** GC01–GC65 preserve existing formal question statements; GC66–GC300 are newly outlined problems awaiting rigorous mathematical scoping and prior-art review.
 
-The Reyes Problem Repository is a living, version-controlled research collection built around **GitHub issues, research pull requests, existing Lean 4 proofs, optional mathematical papers, and an open invitation to contribute**. The research program continues regardless of outside participation. Problems can grow, branch, be corrected, or be resolved as evidence develops. Its questions connect nonlinear PDEs, variational analysis, spectral geometry, topological fields, computation, and formal verification. No generated conjecture becomes a theorem merely because an LLM proposed it.
+The Reyes Problem Repository is a living, version-controlled research collection built around **GitHub issues, research pull requests, existing Lean 4 proofs, optional mathematical papers, and an open invitation to contribute**. Its purpose is to rigorously develop and challenge foundational questions relevant to WCT, **not to retreat from WCT physics or substitute an engineering-only objective**. The research program continues regardless of outside participation. Problems can grow, branch, be corrected, or be resolved as evidence develops. Its questions connect nonlinear PDEs, variational analysis, spectral geometry, topological fields, physical emergence, computation, and formal verification. No generated conjecture becomes a theorem merely because an LLM proposed it.
 
 **[Browse all 300 questions](./ROADMAP_300.md)** · **[12 research folders](./problems/README.md)** · **[Foundational shortlist](./FOUNDATIONAL_SHORTLIST.md)** · **[Original 65 formal problems](./FORMAL_PROBLEMS.md)** · **[Live research status](./STATUS.md)** · **[Five flagship dossiers](#start-here-five-questions-worth-exploring)** · **[Candidate notebook](./NOTEBOOK.md)** · **[How to contribute](./CONTRIBUTING.md)**
 
 **[GC01–GC65 research and proof links](./GC65_ADOPTION.md)** · **[GC66–GC300 activation](./CANDIDATE_ACTIVATION.md)** · **[Workflow and proof contract](./WORKFLOW.md)** · **[Existing Lean and paper adoption](./EXISTING_WORK.md)** · **[Screening and editorial method](./METHOD.md)** · [Initial literature ledger](./LITERATURE.md) · [Flagship screening](./SCREENING.md) · [Existing papers](../papers) · [Lean 4 source](../lean/MathProofs) · [Submit a research contribution](https://github.com/rickyjreyes/math/issues/new?template=grand_challenge.yml)
+
+**Interpretation rule:** a proof or counterexample resolves the precise frozen mathematical claim, not every related physical possibility. After a no-go result, record the assumptions that failed, the unresolved alternatives and the next constructive or experimental test, without assuming any proposed repair will work. Mathematical independence is a verification method, not an abandonment of WCT. [Research direction](../RESEARCH_DIRECTION.md) · [Method](METHOD.md) · [Workflow](WORKFLOW.md).
 
 > [!IMPORTANT]
 > **Research status:** This is a proposed challenge catalogue, **not** an established list of unsolved problems comparable in standing to the Millennium Prize Problems. No prizes are offered. Novelty and open status have not been established through comprehensive literature review. Some statements have partial results or counterexamples; others require sharper assumptions. See [research standards](#what-counts-as-a-solution).
@@ -290,6 +292,8 @@ The catalogue is grounded in an existing research repository. The links below ar
 | Spectral concentration | [Fourier-shell exclusion](../papers/isolated-fourier-shell-no-l2-bound-state) | [FourierShellL2.lean](../lean/MathProofs/FourierShellL2.lean) |
 
 ### A counterexample is a result
+
+A counterexample is a valid resolution of its exact quantified statement, not automatically a verdict on every WCT model. Describe what was excluded, whether the larger hypothesis was actually tested, and the next meaningful theorem, model construction or discriminating experiment. Preserve an unsalvageable failure rather than inventing an escape route. See [research direction](../RESEARCH_DIRECTION.md).
 
 For **[GC08: admissible curvature closures](./FORMAL_PROBLEMS.md#gc08-admissible-curvature-closures)**, the broad symmetry and plane-wave assumptions already admit inequivalent operators. In particular, adding a multiple of the Laplacian of the intensity gives a simple nonuniqueness example:
 
