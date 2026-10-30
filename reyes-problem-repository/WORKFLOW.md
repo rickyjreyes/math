@@ -1,6 +1,6 @@
 # GitHub Issue, Lean, and Paper Workflow
 
-The Reyes Problem Repository is an **open invitation** to work on mathematical questions connected to an ongoing, independently conducted research program. Its 300 entries are research candidates, not 300 certified novel open problems. Work continues whether or not outside contributors join. Contributors receive credit for their own work, including results that disprove or narrow an original conjecture.
+The Reyes Problem Repository is an **open invitation** to investigate mathematical questions connected to the ongoing foundational WCT research program. It is for rigorous construction, proof, counterexamples and revision, not a physics retreat. Its 300 entries are research candidates, not 300 certified novel open problems. Work continues whether or not outside contributors join. Contributors receive credit for their work, including results that disprove or narrow an original conjecture. See [research direction](../RESEARCH_DIRECTION.md).
 
 **No replacement architecture:** The existing source files under `lean/`, `papers/`, and `preprints/` remain where they are. Existing papers and verified results are not reclassified as incomplete just because a broader GC question remains open. The GC layer tracks questions, evidence and remaining obligations. It never silently edits a Lean theorem or manuscript to match a GC issue.
 
@@ -11,7 +11,7 @@ The Reyes Problem Repository is an **open invitation** to work on mathematical q
 3. **Freeze the acceptance criterion.** A problem or subtask issue identifies a versioned statement, equation, parameters, spaces, quantifiers, claimed resolution (theorem or counterexample), and a list of obligations. A GC roadmap *candidate* may first need a scope/literature issue before it can be a solvable theorem.
 4. **Contribute via a pull request.** A PR cites the issue, describes exactly which obligation it addresses, compares earlier results, and points to the exact Lean module and theorem declaration. An existing verified theorem may be **adopted by reference**, without copying or reproving it.
 5. **Run existing Lean CI.** The existing `lean/` project and its full `lake build` checks remain the source for machine-checking. The proof must not depend on `sorry`, `admit`, or new unreviewed axioms. A green build establishes the encoded theorem, not by itself that the issue's entire mathematical claim has been proved.
-6. **Review correspondence.** A reviewer compares every issue obligation against the exact Lean declaration, including hypotheses and direction of implication. Check that a counterexample really refutes the quantified statement. A solution to a special case is recorded as partial progress, not a full resolution.
+6. **Review correspondence and scope.** A reviewer compares every issue obligation against the exact Lean declaration, including hypotheses and direction of implication. Check that a counterexample actually refutes the quantified statement without extrapolating to models not covered. A special-case result is partial progress, not a full resolution.
 7. **Optional paper.** A paper is welcome but not mandatory. If used, it should cite a specific Lean declaration and commit, identify its formally verified claims, and clearly distinguish extra analytic, numerical, or physical discussion. It cannot silently present a stronger theorem as Lean verified. Existing manuscripts are linked, not rewritten merely to satisfy this process.
 8. **Update status, then close the correct issue.** A milestone/task issue can close when its own frozen scope has been checked; the parent GC may remain open. Close a whole-problem issue only after every full-scope acceptance criterion is satisfied, its Lean verification and correspondence review are documented, and the [problem registry](problem_registry.json) is updated in the same reviewed PR.
 
@@ -20,6 +20,12 @@ The Reyes Problem Repository is an **open invitation** to work on mathematical q
 The repository already has issues [#54](https://github.com/rickyjreyes/math/issues/54), [#55](https://github.com/rickyjreyes/math/issues/55), [#56](https://github.com/rickyjreyes/math/issues/56), [#57](https://github.com/rickyjreyes/math/issues/57) and [#58](https://github.com/rickyjreyes/math/issues/58). Their titles and closure criteria concern *research milestones*. Finishing such a milestone does **not** automatically finish GC01, GC06, GC11, GC36 or GC43 as a whole.
 
 A valid contribution may be a formal lemma, special-case theorem, negative result, corrected hypothesis, prior-art comparison, or a complete solution. Do not write `Closes #N` on a PR unless **that exact issue's** acceptance criteria are fully met. Use `Refs #N` or `Part of #N` otherwise.
+
+## Scoped conclusions and constructive next tests
+
+When a theorem excludes a route, an issue or PR must identify **(1) the exact failed construction or hypothesis, (2) whether wider WCT formulations are covered, (3) what remains unresolved, and (4) a meaningful next mathematical construction or empirical test, or why none is presently known**. If the result genuinely rules out an entire model class, say that plainly. Proposed alternatives are not presumed to work. Avoid both hiding a failed hypothesis and declaring the whole program refuted without relevant evidence.
+
+This research framing does not weaken the proof contract or permit moving a frozen goalpost. Engineering applications are complementary to the foundational physical objective.
 
 ## Evidence and verification contract
 

@@ -1,6 +1,6 @@
 # Contributing to The Reyes Problem Repository
 
-This is an **open invitation**, not a requirement for the research to progress. The existing researcher continues working; outside mathematicians, physicists, computer scientists and AI-assisted collaborators can contribute whenever they have substantive results. Contributors receive attribution for their original work. **Proving a conjecture false is as welcome as proving it true.**
+This is an **open invitation**, not a requirement for the research to progress. The continuing foundational WCT program welcomes independent proof, criticism and constructive model development; contributors do not have to endorse its physical hypotheses. The existing researcher continues working; outside mathematicians, physicists, computer scientists and AI-assisted collaborators can contribute when they have substantive results. Contributors receive attribution for their original work. **Proving a conjecture false is as welcome as proving it true, with the precise scope of that falsification recorded.** [Research direction](../RESEARCH_DIRECTION.md).
 
 [300 problems](ROADMAP_300.md) · [Issue, PR, Lean and paper workflow](WORKFLOW.md) · [Existing work](EXISTING_WORK.md) · [Editorial standards](METHOD.md) · [Research status](STATUS.md)
 
@@ -40,6 +40,10 @@ This is an **open invitation**, not a requirement for the research to progress. 
 6. Close **only the matched issue scope**. Preserve unresolved parent questions and historic revisions.
 
 The [workflow contract](WORKFLOW.md) defines the final evidence fields. The structural [record checker](scripts/validate_completion_records.py) validates links and metadata, **not** mathematical correctness. Existing Lean CI continues to check compiled theorems; reviewers are responsible for semantic correspondence.
+
+## Interpreting a proof or counterexample
+
+Document exactly which assumptions and model class a negative result excludes, what broader physical or mathematical hypotheses remain unresolved, and a follow-up proof or experiment where possible. If none is known, say so. Do not use this requirement to shield a refuted claim or manufacture an unsupported repair. Positive mathematical results also require independent physical evidence for physical conclusions.
 
 ## Authorship and integrity
 
