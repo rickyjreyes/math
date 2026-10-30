@@ -3,7 +3,7 @@
 This Mathlib v4.23.0 project integrates main-line supporting modules with newer full H² manuscript formalizations and conditional bridges. All declarations must pass Lean CI on the exact revision before being called kernel-checked. Manuscript-level status (which papers are formalized end to end) is in
 [formalization.yaml](formalization.yaml).
 
-The maintained import tree contains **90 project modules and 1,704 theorem/lemma declarations** (including private source lemmas). **14 of the 14 original manuscripts are complete** under the audit criterion. Declaration totals do not measure manuscript completeness. The [review and theorem table](../docs/FORMALIZATION_REVIEW_2026-10-27.md) records exact declarations, restrictions, and passing verification runs.
+The maintained import tree contains **136 project modules and 2,522 theorem/lemma declarations** (including private source lemmas). **14 of the 14 original manuscripts are complete** under the audit criterion. So are the five F11/F12 manuscripts and the supplementary M2/E17, E58, E61, M3/E57 and M6B manuscripts. Declaration totals do not measure manuscript completeness. The [review and theorem table](../docs/FORMALIZATION_REVIEW_2026-10-27.md) records exact declarations, restrictions, and passing verification runs. The [analytic certification](../docs/ANALYTIC_CERTIFICATION_2026-10-30.md) does the same for E62, E58, M2/E17, E26, M3/E57, E61, E16, E59 and E13/E14.
 
 ### Manuscript formalizations
 
@@ -46,6 +46,21 @@ The maintained import tree contains **90 project modules and 1,704 theorem/lemma
   fixed-carrier variable-envelope wave packets, checked in the full maintained build.
 - [CurvatureNonattainment](MathProofs/CurvatureNonattainment.lean) — F05, complete:
   whole-space nonattainment in every dimension and strict spreading for `1 ≤ d ≤ 4`.
+
+### Analytic manuscript certifications
+
+The [certification report](../docs/ANALYTIC_CERTIFICATION_2026-10-30.md) maps every theorem, proposition, corollary and mathematical remark to these declarations. [AnalyticCertificationAudit.lean](AnalyticCertificationAudit.lean) prints the axioms of 103 main declarations; all use only `propext`, `Classical.choice` and `Quot.sound`.
+
+- [TorusFourier](MathProofs/TorusFourier.lean) — F11 (E59), complete: the Fourier Hilbert basis of `L²((ℝ/Lℤ)^d)`, bounded multipliers, the fixed-annulus orthogonal projection and the discrete E62 fraction.
+- [SpectralConcentration](MathProofs/SpectralConcentration.lean), [E16TorusRemark](MathProofs/E16TorusRemark.lean) — F11 (E16), complete: the mild `L²` flow of `r − aΔ − bΔ²`, the exact modal power law, shell concentration, argmax convergence with its `t^{-1/2}` rate, the radial versions, the counterexample, and the flat-torus remark.
+- [E62Certification](MathProofs/E62Certification.lean) with [E62LebesgueFraction](MathProofs/E62LebesgueFraction.lean) — F11 (E62), complete: the theorem with the manuscript's coefficient normalization, the projector form, Lebesgue-measurable continuous bands and all remarks.
+- [BandPassFlow](MathProofs/BandPassFlow.lean) — F11 (E13/E14), complete: the negative gradient flow on `𝕋_L^d`, `d ≤ 3`, with exact dissipation, the centred Swift–Hohenberg form and the preferred shell.
+- [RegularizedCurvatureL2](MathProofs/RegularizedCurvatureL2.lean), [E26Certification](MathProofs/E26Certification.lean), [E26QuotientDomain](MathProofs/E26QuotientDomain.lean) — F12 (E26), complete: `H²(Ω)` by weak derivatives, the conditional estimate on every open set, both corollaries, the counterexample, and the quotient on its a.e. domain. Sharpness of `1/δ` is proved in addition to the manuscript.
+- [FourierMultiplierL2](MathProofs/FourierMultiplierL2.lean) — shared layer: Fourier multipliers on `L²(ℝ^d)`, `H^{2k}` by Fourier weights, unbounded realizations, resolvent and spectrum.
+- [E58Certification](MathProofs/E58Certification.lean), [E58GreenFunction](MathProofs/E58GreenFunction.lean) — E58, complete: the sharp resolvent norm `1/r`, coercivity, band selectivity, the periodic box, and the one-dimensional sign-changing Green function.
+- [SwiftHohenbergL2](MathProofs/SwiftHohenbergL2.lean), [E61Certification](MathProofs/E61Certification.lean) — E61, complete: `L_r` on `H⁴`, `σ(L_r) = (−∞, r]`, the semigroup and its exact generator, `‖e^{tL_r}‖ = e^{rt}`, the three regimes, the annulus, the periodic box and the parameter translation.
+- [E57Certification](MathProofs/E57Certification.lean) — M3/E57, complete: `(Δ + k⋆²)²` self-adjoint on `H⁴`, the unique mild solution, off-shell damping, `‖S(t)‖ = 1`, the energy identities, the gradient-flow form, the torus gap and the sign-reversal scope.
+- [E17Certification](MathProofs/E17Certification.lean) with [E17Canonical](MathProofs/E17Canonical.lean), [E17GlobalBound](MathProofs/E17GlobalBound.lean) — M2/E17, complete: the corrected regularizer's positivity, analyticity, global bound, reciprocal limits, uniform and `L²` convergence, fixed-ε control, phase invariance and the node/gauge remarks.
 
 ### Integrated additional proofs and diagnostics
 
@@ -134,6 +149,9 @@ lake build
 # Optional focused F09 build and exported-signature/dependency audit
 lake build MathProofs.V18Identifiability
 lake env lean F09Audit.lean
+
+# Dependency audit of the analytic manuscript certifications
+lake env lean AnalyticCertificationAudit.lean
 ```
 
 Lean and Mathlib release are pinned to v4.23.0. A dependency lockfile
@@ -141,7 +159,7 @@ is not yet committed.
 
 ## Gaps
 
-All fourteen original manuscripts are complete under the manifest's criterion. F11/F12 are additional families outside that inventory and remain partial; their separate developments do not change the original-manuscript count.
+All fourteen original manuscripts are complete under the manifest's criterion, and so are the additional families F11 and F12. Of the supplementary operator manuscripts, M2/E17, E58, E61, M3/E57 and M6B are complete. E18, E68 and E69 remain analytic only.
 
 The F08 obstruction on a smooth four-manifold is fully formalized for an actual global complex scalar, including its covariant fiberwise tensor, nonnegativity, rank/nullity, determinant, pullback covariance, and continuous/C^m tangent-bundle evaluation. The F09 exact determinant, complete clipped derivative, rank, nullity, and C¹ local fiber are now proved together in Lean.
 
