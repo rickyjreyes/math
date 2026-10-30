@@ -10,20 +10,23 @@ scope: >
   spaces use the H^2(R^d; C) construction of MathProofs/SobolevH2.lean (closure of
   {(phi, grad phi, Laplacian phi) : phi Schwartz} in L^2 x (L^2)^d x L^2). E68 uses H^1 and H^2
   of R^n by weak derivatives (MathProofs/E68Sobolev.lean, MathProofs/E68H2.lean), with proved
-  compatibility with SobolevH2, E26.IsWeakDeriv and WeakH1Field.
+  compatibility with SobolevH2, E26.IsWeakDeriv and WeakH1Field. E69 uses H^s(R^n; C) of every real
+  order s by the unitary Fourier transform (MathProofs/E69Sobolev.lean), whose Laplacian is proved to be
+  the classical Laplacian on Schwartz functions and the unique weak Laplacian, and H^s of the flat torus
+  by Fourier coefficients (MathProofs/E69Torus.lean).
 proof_policy:
   build: "cd lean && lake update && lake exe cache get && lake build"
   excluded: ["sorry", "admit", "axiom", "native_decide"]
   note: "Passing CI certifies only the precise statements in the imported Lean source."
 verification_counts:
-  imported_project_modules: 154
-  source_theorem_lemma_declarations: 2794
+  imported_project_modules: 159
+  source_theorem_lemma_declarations: 2945
   completed_original_manuscripts: 14
   original_manuscripts: 14
   completed_additional_family_manuscripts: 5
   additional_family_manuscripts: 5
-  formalized_supplementary_manuscripts: [m6b-nonlinear-curvature-nonuniqueness, band-selective-green-kernel-bound, e61-pattern-formation-threshold, swift-hohenberg-fourier-shell-damping, regularized-curvature-operator, localized-gradient-energy-e68]
-  unformalized_supplementary_manuscripts: [wct-e18-exact-gradient-lyapunov, high-regularity-bounded-curvature-e69]
+  formalized_supplementary_manuscripts: [m6b-nonlinear-curvature-nonuniqueness, band-selective-green-kernel-bound, e61-pattern-formation-threshold, swift-hohenberg-fourier-shell-damping, regularized-curvature-operator, localized-gradient-energy-e68, high-regularity-bounded-curvature-e69]
+  unformalized_supplementary_manuscripts: [wct-e18-exact-gradient-lyapunov]
   note: "Declaration inventory includes private source lemmas; it is not a count of distinct mathematical results. Counted as lines of lean/MathProofs/*.lean that begin with theorem or lemma, optionally after one attribute and private or protected (see docs/ANALYTIC_CERTIFICATION_2026-10-30.md). The additional families are F11 (E13/E14, E16, E59, E62) and F12 (E26)."
 families:
   F01:
@@ -279,3 +282,18 @@ open_manuscripts:
     declarations: [ReyesMath.E68Cert.bridge, ReyesMath.E68Cert.classification, ReyesMath.E68Cert.classification_center, ReyesMath.E68Cert.classification_L2, ReyesMath.E68Cert.dimension_two, ReyesMath.E68Cert.dimension_one, ReyesMath.E68Cert.singular_field, ReyesMath.E68Cert.smooth_concentration, ReyesMath.E68Cert.corrected, ReyesMath.E68Cert.admissible, ReyesMath.E68Cert.remark_3_3, ReyesMath.E68Cert.sobolev_three, ReyesMath.E68Cert.sobolev_four, ReyesMath.E68Cert.h2_localized, ReyesMath.E68Cert.h2_failure_smooth, ReyesMath.E68Cert.h2_failure, ReyesMath.E68Cert.h2_scaling, ReyesMath.E68.IsH1, ReyesMath.E68.IsH2, ReyesMath.E68.E68Holds, ReyesMath.E68.E68Holds0, ReyesMath.E68.e68_iff_two, ReyesMath.E68.e68Holds0_iff_two, ReyesMath.E68.e68L2_iff_two, ReyesMath.E68.Singular.isH1, ReyesMath.E68.Singular.weak_deriv, ReyesMath.E68.Singular.blowup, ReyesMath.E68.Singular.no_constant, ReyesMath.E68.e68_corrected, ReyesMath.E68.e68_admissible, ReyesMath.E68.no_apriori_bound_on_H1, ReyesMath.E68.sobolev_H1, ReyesMath.E68.e68_H2, ReyesMath.E68.not_e68_H2]
     covered: "Theorem 1.1 for every n >= 1 on H^1(R^n; C) defined by weak derivatives (IsH1: psi, g in L^2 and int psi d_i phi = -int g_i phi for all real phi in C_c^inf), with the a.e.-uniqueness of the weak gradient, a.e.-class invariance of the energies, smooth inclusion with classical = weak gradient, and compatibility with WeakH1Field, E26.IsWeakDeriv and Sobolev.H2 proved: a constant C, independent of field, center and radius, with int_{B_R(x0)} |grad psi|^2 <= C R^(n-2) ||psi||_{H^1}^2 exists iff n = 2 (uniformly over centers, at the center 0, and on L^2 classes); C_2 = 1; the n = 1 compact bump with constant ball energy for R >= 1; for n > 2 and 0 < a < (n-2)/2 the fixed field chi(|x|)|x|^(-a) is C^inf off 0 with gradient -a|x|^(-a-2)x on 0 < |x| < 1, is in H^1 with its classical gradient as weak gradient across the origin, has int_{B_1}|psi|^2 = sigma/(n-2a), int_{B_R}|grad psi|^2 = sigma a^2 R^(n-2-2a)/(n-2-2a) (sigma the surface measure of S^(n-1) = n omega_n), R^(2-n) int_{B_R}|grad psi|^2 -> inf and defeats every constant at arbitrarily small radii. Proposition 2.1 (smooth concentration, each witness an H^1 field). Theorem 3.1 (E68'): for n > 2, psi in H^1 with grad psi in L^n, int_{B_R(x0)} |grad psi|^2 <= omega_n^(1-2/n) R^(n-2) (int |grad psi|^n)^(2/n). Corollary 3.2 (admissible class, constant omega_n^(1-2/n) K^2) and Remark 3.3 (no such K on all of H^1). The Sobolev embedding ||u||_{p*} <= C_n ||grad u||_2 (1/p* = 1/2 - 1/n) for weak H^1 fields, by mollification, cutoff, Mathlib's GNS inequality and Fatou. Corollary 4.1 for H^2(R^n) = W^{2,2} by weak derivatives, n in {3, 4}: H^1 -> L^4 (n = 4) and H^1 -> L^6 with L^2-L^6 interpolation to L^3 (n = 3), applied to the weak gradient and inserted into E68'. Proposition 4.2 for n > 4 on C_c^inf and on H^2, with u_R(x) = R^(2-n/2) phi(x/R) and the exact identities ||u_R||^2 = R^4 ||phi||^2, ||grad u_R||^2 = R^2 ||grad phi||^2, ||D^2 u_R||^2 = ||D^2 phi||^2."
     remaining: "No E68 theorem, proposition, corollary or remark remains. No PDE existence, stability or physical confinement claim is asserted; Corollary 3.2 keeps its a priori L^n bound as an explicit hypothesis (Remark 3.3 proves it does not follow from H^1)."
+
+  high-regularity-bounded-curvature-e69:
+    issue: "https://github.com/rickyjreyes/math/issues/40"
+    pr: "https://github.com/rickyjreyes/math/pull/74"
+    main_theorem_formalized: true
+    status: MAIN_THEOREM_VERIFIED
+    latest_fully_checked_revision: "fb9e92829112d2598a6f3d72f87db8b3ec1bcc85"
+    focused_full_build: "https://github.com/rickyjreyes/math/actions/runs/41114874006"
+    supporting_theorems_full_build: "https://github.com/rickyjreyes/math/actions/runs/41114873524"
+    verification_audit: docs/E69_LEAN_MANUSCRIPT_MAPPING.md
+    axiom_audit: lean/E69CertificationAudit.lean
+    modules: [MathProofs/E69Sobolev.lean, MathProofs/E69Curvature.lean, MathProofs/E69Remarks.lean, MathProofs/E69Torus.lean, MathProofs/E69Certification.lean]
+    declarations: [ReyesMath.E69Cert.main_theorem, ReyesMath.E69Cert.reciprocal, ReyesMath.E69Cert.sobolev_space, ReyesMath.E69Cert.laplacian, ReyesMath.E69Cert.fourier_inversion, ReyesMath.E69Cert.embedding, ReyesMath.E69Cert.remark_dimensions, ReyesMath.E69Cert.remark_domains, ReyesMath.E69Cert.remark_fixed_regularization, ReyesMath.E69Cert.remark_regularizer, ReyesMath.E69.MemHs, ReyesMath.E69.hsNorm, ReyesMath.E69.Hs, ReyesMath.E69.lap, ReyesMath.E69.Theta, ReyesMath.E69.Mea, ReyesMath.E69.Cns, ReyesMath.E69.e69, ReyesMath.E69.embedding, ReyesMath.E69.hsNorm_lap_le, ReyesMath.E69.isWeakLaplacian_lap, ReyesMath.E69.ae_eq_fourierUinv, ReyesMath.E69.h2_insufficient, ReyesMath.E69.not_uniform_bound, ReyesMath.E69.oldDen_vanishes, ReyesMath.E69Torus.e69_torus]
+    covered: "Theorem E69 for every n in N (in particular every n >= 1), every eps > 0, every real alpha and every real s > n/2 + 2, over H^s(R^n; C) = {u in L^2 : int (1+|xi|^2)^s |u^(xi)|^2 dxi < inf} with the unitary Fourier transform u^ = Sobolev.FU u (a normed subspace of L^2 for every real s: triangle inequality, homogeneity, definiteness, Plancherel at s = 0, monotone in s, Schwartz functions in every H^s): Theta_eps[psi] = -(Delta psi) R_eps(psi), R_eps(z) = conj z/(|z|^2 + eps^2 e^(-2 alpha |z|^2)), is in L^inf (essential supremum) with ||Theta_eps[psi]||_inf <= C_(n,s) M_(eps,alpha) ||psi||_(H^s), where M = max{1, e^(2 max(alpha,0))/eps^2} and C_(n,s) = (2 pi)^(-n/2) (int (1+|xi|^2)^(-(s-2)) dxi)^(1/2) is finite, positive and independent of psi, eps and alpha. Proved on the way: the denominator is positive on C (also at z = 0), R_eps(0) = 0, the regimes |z| <= 1 and |z| >= 1, sup |R_eps| <= M; Delta = F^(-1)(-|xi|^2 F) on H^2 equals the classical Laplacian on Schwartz functions and is the unique weak Laplacian (E26.IsWeakLaplacian against real C_c^inf); ||Delta psi||_(H^(s-2)) <= ||psi||_(H^s); Fourier inversion u(x) = (2 pi)^(-n/2) int u^(xi) e^(i x.xi) dxi a.e. when u^ in L^1; the embedding H^r -> L^inf for r > n/2 by Cauchy-Schwarz and Fourier inversion, with a bounded continuous representative. Remarks: the thresholds 5/2, 3, 7/2, 4, 9/2; H^2 -> L^inf for n <= 3; for every 1 <= n <= 3 an H^2 field, bounded, with Delta psi and Theta_eps[psi] not in L^inf for every eps > 0 and alpha (H^2 regularity alone does not yield Theorem E69); on any measure space an available L^inf bound for Delta psi gives the bound for Theta (constant depending on the domain), and on the flat torus T_L^d (every d >= 1, real s > d/2 + 2) Theorem E69 with the periodic embedding; the Schwartz field q = (|x|^2 - 1) b has ||Theta_eps[q]||_inf >= n/(eps(1 + e^(2|alpha|))), so no estimate is uniform in eps in (0, 1); the older denominator z + eps e^(-alpha|z|^2) vanishes (z = -eps at alpha = 0, and some z = -t, 0 < t <= eps, for every alpha >= 0) and its reciprocal is unbounded."
+    remaining: "No E69 theorem or remark remains. The bound is for fixed eps > 0; no uniform-in-eps estimate (refuted in Lean) and no PDE existence, uniqueness or stability statement is asserted."

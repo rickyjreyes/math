@@ -150,3 +150,8 @@ import MathProofs.E68Corrected
 import MathProofs.E68SobolevEmbedding
 import MathProofs.E68H2
 import MathProofs.E68Certification
+import MathProofs.E69Sobolev
+import MathProofs.E69Curvature
+import MathProofs.E69Remarks
+import MathProofs.E69Torus
+import MathProofs.E69Certification
