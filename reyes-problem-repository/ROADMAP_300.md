@@ -4,7 +4,7 @@
 
 **Research direction:** The 300 candidates support rigorous investigation of the foundational WCT program, not a decision to restrict it to engineering. A counterexample defeats its scoped formulation, while a physical claim requires separate empirical tests. [Research interpretation](../RESEARCH_DIRECTION.md).
 
-**Cross-cutting synthesis:** [WCT Morphogenesis: selection → saturation → stability → propagation](./MORPHOGENESIS_PROGRAM.md) links GC11, GC257, GC61, GC185 and GC53 without creating a new numbered entry or changing any candidate status. [Scope issue #76](https://github.com/rickyjreyes/math/issues/76).
+**Cross-cutting synthesis:** [WCT Morphogenesis: selection → saturation → stability → propagation](./MORPHOGENESIS_PROGRAM.md) links GC11, GC257, GC61, GC185 and GC53. Its [organization-dynamics extension](./ORGANIZATION_DYNAMICS.md) links chaos, randomness, self-organization, localization, solitary waves, emergence and reorganization through separate model-specific theorem targets M6–M10. Neither dossier creates a new numbered problem, changes any of the 300 statuses, or claims new Lean-verified results. [Scope issue #76](https://github.com/rickyjreyes/math/issues/76).
 
 **Research navigation:** [Existing Lean and paper links for GC01–GC65](./GC65_ADOPTION.md) · [Scope-first activation for GC66–GC300](./CANDIDATE_ACTIVATION.md) · [Issue/PR/Lean/paper workflow](./WORKFLOW.md).
 
