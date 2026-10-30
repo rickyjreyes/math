@@ -149,3 +149,4 @@ import MathProofs.E68Singular
 import MathProofs.E68Corrected
 import MathProofs.E68SobolevEmbedding
 import MathProofs.E68H2
+import MathProofs.E68Certification

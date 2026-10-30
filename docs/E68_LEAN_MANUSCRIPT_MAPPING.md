@@ -1,75 +1,113 @@
-# E68: exact manuscript-to-Lean proof mapping
+# E68: manuscript-to-Lean certification
 
-**Issue:** [#41](https://github.com/rickyjreyes/math/issues/41) · **PR:** [#50](https://github.com/rickyjreyes/math/pull/50).
+**Issue:** [#41](https://github.com/rickyjreyes/math/issues/41) · **PR:** [#50](https://github.com/rickyjreyes/math/pull/50) · **Manuscript:** [`papers/localized-gradient-energy-e68/main.tex`](../papers/localized-gradient-energy-e68/main.tex) (unchanged).
 
-Pinned versions: Lean 4.23.0, Mathlib 4.23.0. The baseline `E68Scaling` and `E68CriticalGradient` passed [focused CI](https://github.com/rickyjreyes/math/actions/runs/40632112750) and supporting CI at commit `6df2eab1`. The smooth-profile and weak-H1 modules passed full Lean CI at d083c2f2. The strict n=1 energy contradiction is full-project Lean verified. Exact n>2 smooth localized-gradient-energy contradiction passed full project CI at `087e05f8` on October 29, 2026.
+Pinned versions: Lean 4.23.0, Mathlib v4.23.0. Entry point: [`lean/MathProofs/E68Certification.lean`](../lean/MathProofs/E68Certification.lean) (namespace `ReyesMath.E68Cert`). Dependency audit: [`lean/E68CertificationAudit.lean`](../lean/E68CertificationAudit.lean).
 
-| Manuscript obligation | Lean mapping | Scope / blocker |
+Every manuscript theorem, proposition, corollary and remark is a kernel-checked Lean declaration with the manuscript's quantifiers. There are no `sorry`, `admit`, new axioms or `native_decide`, and no finite-dimensional or numerical surrogate. No hypothesis is equivalent to the conclusion. All 71 audited declarations depend only on `propext`, `Classical.choice` and `Quot.sound`. No manuscript assertion was found to be false, so no correction is needed.
+
+Reproduce:
+
+```bash
+cd lean
+lake update && lake exe cache get
+lake build MathProofs.E68Certification
+lake env lean E68CertificationAudit.lean   # 71 lines, each: [propext, Classical.choice, Quot.sound]
+lake build                                  # complete project
+```
+
+## The objects in the statements
+
+| Manuscript object | Lean | Module |
 |---|---|---|
-| Exact dimensional classification: n=2 | `two_dimensional_local_gradient_energy`; newly added `WeakH1Field` with distributional test identity and `weakH1_two_dimensional_local_energy` | Strong and distributional weak-gradient modules pass full pinned Lean CI. Direct equivalence with a chosen Mathlib Sobolev-space representation remains unproved. |
-| n=1 explicit `C_c^∞((-1,1))` field | `compactOneDim`, `compactOneDim_smooth`, `compactOneDim_hasCompactSupport`, `compactOneDim_support_in_unit_interval`, `compactOneDim_nonconstant` | **PROVED and verified**: positive actual whole-line squared derivative energy, support containment, exact ball/global integral equality at R≥1 and uniform C/R contradiction in `E68OneDimEnergy.lean`. |
-| n>2 smooth concentration, every C>0 | `compactProfile`, `smoothConcentration`, `smoothConcentration_smooth`, `smoothConcentration_hasCompactSupport`, `smooth_concentration_scaling_obstruction` | **PROVED and verified**: `E68ScaledGradient.lean` gives actual Fréchet-gradient integral scaling, normalized R-independent energy and R² mass. `E68SmoothCounterexample.lean` proves support inside B_R, ball/full-space energy equality, and `no_uniform_E68_for_smooth_concentrations` for every n>2. This covers the smooth proposition only. |
-| n>2 single singular H¹ field | No faithful Lean declaration yet | Need radial cutoff, Riesz power weak-gradient identification across zero, polar integrals, fixed-field small-ball divergence |
-| Corrected E68′ | `local_critical_gradient_norm`, `euclidean_ball_volume_scaling` | Genuine measure/Lp results checked; exact real Bochner-integral inequality with `omega_n^{1-2/n} R^{n-2}` remains |
-| Conditional admissible-class corollary | No complete Lean result yet | Need combine corrected E68′ with an **independently assumed** uniform Lⁿ/H¹ estimate; never infer this from unrestricted H¹ |
-| H², n=3,4 | No complete Lean result yet | Need genuine whole-space Sobolev embedding, interpolation in n=3 and L⁴ bound in n=4, with exact norms |
-| H², n>4 counterexample | `high_dimensional_H2_scaling_obstruction` | Algebraic obstruction checked; construct actual smooth rescaled H² fields and prove all derivative integrals |
+| `ℝⁿ`, Lebesgue measure, `B_R(x₀) = {|x−x₀|<R}` | `EuclideanSpace ℝ (Fin n)`, `volume`, `Metric.ball x₀ R` | Mathlib |
+| `ψ ∈ H¹(ℝⁿ)` with gradient `∇ψ` | `ReyesMath.E68.IsH1 ψ g`: `ψ ∈ L²(ℝⁿ;ℂ)`, `g ∈ L²(ℝⁿ;ℂⁿ)` and `∫ ψ ∂ᵢφ = −∫ gᵢ φ` for every coordinate `i` and every real `φ ∈ C_c^∞(ℝⁿ)` (genuine weak derivatives); `MemH1 ψ = ∃ g, IsH1 ψ g` | `E68Sobolev` |
+| `‖ψ‖²_{H¹} = ‖ψ‖²₂ + ‖∇ψ‖²₂`, `|∇ψ|² = Σᵢ|∂ᵢψ|²` | `ReyesMath.E68.h1sq ψ g = ∫‖ψ‖² + ∫‖g‖²` (Euclidean norm on `ℂⁿ`) | `E68Sobolev` |
+| `H¹` as equivalence classes | `ReyesMath.E68.H1 n : Set (Lp ℂ 2 volume)`, `h1Grad` (a.e.-unique weak gradient) | `E68Classification` |
+| `ψ ∈ H²(ℝⁿ)`, `‖ψ‖²_{H²}` | `ReyesMath.E68.IsH2 ψ g H`: `IsH1 ψ g` and `IsH1 gᵢ (H i)` for each `i`, so `H i x j = ∂ⱼ∂ᵢψ` (all weak derivatives of order `≤ 2` in `L²`); `h2sq = ∫‖ψ‖² + ∫‖g‖² + Σᵢ ∫‖H i‖²` | `E68H2` |
+| The estimate `(E68)` | `ReyesMath.E68.E68Holds n` (uniform over centers), `E68Holds0 n` (boxed form, center `0`), `E68L2Holds n` (on `L²` classes); exponent `R ^ ((n:ℤ) − 2)` | `E68Classification` |
+| `ω_n = |B₁(0)|` | `volume.real (ball 0 1)` | Mathlib |
+| `σ_{n−1} = |Sⁿ⁻¹|` | `ReyesMath.E68.Singular.surfaceArea n = volume.toSphere.real univ` (Mathlib's surface measure), `= n ω_n` (`surfaceArea_eq`) | `E68Singular`, `E68Radial` |
 
-**Dimension status:** n=2 uniform estimate and n=1 and n>2 **smooth actual-function** failures are now Lean verified. The n>2 stronger fixed singular weak-H¹ counterexample, corrected E68′, H² consequences and the exact full manuscript iff classification remain open. `main_theorem_formalized` must stay **false**. No discrete or numerical surrogate qualifies.
+### The Sobolev bridge (`ReyesMath.E68Cert.bridge`)
 
-## 2026-10-28 execution checkpoint
+| Requirement | Declaration | Module |
+|---|---|---|
+| Genuine weak derivatives against `C_c^∞` test functions | `IsH1.weak` (structure field) | `E68Sobolev` |
+| Existence and a.e. uniqueness of the weak gradient | `IsH1.ae_eq_grad` (fundamental lemma `ae_eq_zero_of_integral_contDiff_smul_eq_zero`) | `E68Sobolev` |
+| `L²` membership | `IsH1.memLp`, `IsH1.memLp_grad`, `IsH1.integrable_sq`, `IsH1.integrable_grad_sq` | `E68Sobolev` |
+| Energies independent of representatives | `IsH1.congr_ae`, `h1sq_congr_ae`, `setIntegral_grad_congr_ae`; class form `e68L2_iff_e68` | `E68Sobolev`, `E68Classification` |
+| Smooth inclusion, classical = weak gradient | `isH1_of_contDiff` (`C¹` compactly supported, by Mathlib integration by parts), `isH1_ofRealFn`, `norm_gradVec_ofRealFn`, `h1sq_ofRealFn`, `isH2_of_contDiff` | `E68Sobolev`, `E68H2` |
+| Compatibility with `SobolevH2` | `isH1_of_H2` (every `Sobolev.H2` element is in `H¹` with its strong gradient) | `E68Sobolev` |
+| Compatibility with `E26.IsWeakDeriv` | `isH1_iff_isWeakDeriv` (equivalence on `Ω = ℝⁿ`) | `E68Sobolev` |
+| Compatibility with the earlier `WeakH1Field` | `WeakH1Field.isH1`, `IsH1.toWeakH1Field`, `memH1_iff_exists_weakH1Field` | `E68Sobolev` |
+| Product rule with `C_c^∞` multipliers | `IsH1.smul_test` | `E68Sobolev` |
 
-- Exact C-infinity compact bump, its nonzero derivative, integrable and strictly positive whole-line squared derivative energy: **full-project Lean PASS** at `d083c2f2` ([CI](https://github.com/rickyjreyes/math/actions/runs/40720089883)).
-- Genuine support containment, equality of ball and whole-line derivative integrals for radius at least one, and impossibility of a single uniform `C/R` bound: **focused Lean module PASS** at `146c4d9a`; full build pending ([CI](https://github.com/rickyjreyes/math/actions/runs/40721010142)).
-- Open: nontrivial n>2 continuum concentration energy identities; singular H1 profile; complete dimension iff; corrected E68-prime in real energy form; H2 embeddings and obstructions. `main_theorem_formalized` remains **false**.
+The bridge proves these facts; it does not assume them. Defining `IsH1` with a weak-gradient witness is not taken to establish any of them.
 
-## October 29, 2026: exact smooth n>2 counterexample now verified
+## Assertion-by-assertion mapping
 
-**Pinned PR head:** `087e05f8a3083fcb2d7564d4a3bc7e30a79eee8d`.
+All declarations are in `lean/MathProofs/`, imported by `lean/MathProofs.lean`, and checked by `.github/workflows/lean-e68.yml` (focused build, axiom audit, complete project) and `.github/workflows/lean.yml` (complete project). The verification evidence for each row is the CI listed under [Verification](#verification), and none of the rows has a remaining obstruction.
 
-All five workflows passed **at this exact SHA**:
-- [E68 issue-specific CI, including full root project build, #40933787546](https://github.com/rickyjreyes/math/actions/runs/40933787546)
-- [Full supporting-theorems CI #40933787521](https://github.com/rickyjreyes/math/actions/runs/40933787521)
-- [M6B root regression #40933787523](https://github.com/rickyjreyes/math/actions/runs/40933787523)
-- [F09 source verification #40933787515](https://github.com/rickyjreyes/math/actions/runs/40933787515)
-- [PDF publication workflow #40933787542](https://github.com/rickyjreyes/math/actions/runs/40933787542)
+| # | Manuscript assertion | Fully qualified declaration | Hypotheses and quantifier order | Module (imports) |
+|---|---|---|---|---|
+| 1 | Thm 1.1: a uniform `C_n` exists iff `n = 2` (all centers) | `ReyesMath.E68Cert.classification` (`= ReyesMath.E68.e68_iff_two`) | `∀ n ≥ 1, (∃ C, ∀ ψ g, IsH1 ψ g → ∀ x₀ R, 0 < R → ∫_{B_R(x₀)}‖g‖² ≤ C R^{n−2}(∫‖ψ‖²+∫‖g‖²)) ↔ n = 2`. `C` precedes the field, center and radius. | `E68Certification` (`E68Classification`) |
+| 1a | Boxed `(E68)` at center `0` | `ReyesMath.E68Cert.classification_center` (`= e68Holds0_iff_two`) | as row 1 with `x₀ = 0` | `E68Classification` |
+| 1b | Same classification on genuine Sobolev classes | `ReyesMath.E68Cert.classification_L2` (`= e68L2_iff_two`) | `∀ n ≥ 1, E68L2Holds n ↔ n = 2` over `u ∈ H1 n ⊂ Lp ℂ 2` | `E68Classification` |
+| 2 | `n = 2` with `C₂ = 1` | `ReyesMath.E68Cert.dimension_two`, `ReyesMath.E68.e68_two` | `∀ ψ g, IsH1 ψ g → ∀ x₀ R, ∫_{B_R(x₀)}‖g‖² ≤ 1·R⁰·h1sq ψ g` | `E68Classification` |
+| 3 | `n = 1`: compact bump, `∫_{−R}^{R}|ψ'|² = A > 0` for `R ≥ 1`, no `C R⁻¹` bound | `ReyesMath.E68Cert.dimension_one`, `ReyesMath.E68.not_e68_one`, `not_e68_one_of_line` (the whole-line bump `compactOneDim`, lifted along the measure-preserving coordinate `lineEquiv`) | `0 < A`, `∀ R ≥ 1, ∫_{B_R} = A`, `¬ E68Holds0 1` | `E68Classification` (`E68OneDimEnergy`, `E68HigherDimEnergy`) |
+| 4 | Singular field: cutoff `χ = 1` on `[0,1]`, `0` on `[2,∞)`, `C^∞`; `ψ = χ(|x|)|x|^{−a}` smooth off `0` | `ReyesMath.E68.Singular.chi_eq_one`, `chi_eq_zero`, `contDiff_chi`, `contDiffAt_psi`, `psi_of_le_one`, `psi_of_two_le` (packaged in `E68Cert.singular_field`) | `∀ n, ∀ a, 0 < a → a < (n−2)/2 → …`; `∀ x ≠ 0, ContDiffAt ℝ ∞ ψ x` | `E68Singular` |
+| 5 | `∇ψ(x) = −a|x|^{−a−2}x` on `0 < |x| < 1` | `ReyesMath.E68.Singular.gradient_psi_of_lt_one`, `hasGradientAt_psi`, `gradC_eq_gradVec` | `∀ x, x ≠ 0 → ‖x‖ < 1 → gradient ψ x = (−a‖x‖^{−a−2}) • x`; Mathlib's `gradient` | `E68Singular` |
+| 6 | `ψ, ∇ψ ∈ L²` | `ReyesMath.E68.Singular.memLp_psi`, `memLp_gradC` | majorants `|x|^{−a}1_{B̄₂}` and `(2K|x|^{1−a} + a|x|^{−a−1})1_{B̄₂}`, radial integrability (`E68Radial`) | `E68Singular` (`E68Radial`) |
+| 7 | Classical derivatives are the weak derivatives across `0`; `ψ ∈ H¹` (value at `0` arbitrary) | `ReyesMath.E68.Singular.weak_deriv`, `isH1`, `isH1_update` | `∀ i φ, φ ∈ C_c^∞ → ∫ ψ∂ᵢφ = −∫ (∂ᵢψ)φ`, including `0 ∈ supp φ` | `E68Singular` |
+| 8 | `∫_{B₁}|ψ|² = σ_{n−1}/(n−2a)` | `ReyesMath.E68.Singular.integral_sq_ball_one` (and `integral_sq_ball` for `0 < R ≤ 1`) | real Bochner integral; polar coordinates `setIntegral_ball_rpow` | `E68Singular` (`E68Radial`) |
+| 9 | `∫_{B₁}|∇ψ|² = σ_{n−1}a²/(n−2−2a)` | `ReyesMath.E68.Singular.integral_grad_sq_ball_one` | as above | `E68Singular` |
+| 10 | `∫_{B_R}|∇ψ|² = σ_{n−1}a²R^{n−2−2a}/(n−2−2a)`, `0 < R < 1` | `ReyesMath.E68.Singular.integral_grad_sq_ball_sphere` (and `integral_grad_sq_ball` for `R ≤ 1`) | `∀ R, 0 < R → R < 1 → …` | `E68Singular` |
+| 11 | `R^{2−n}∫_{B_R}|∇ψ|² → +∞` as `R ↓ 0` | `ReyesMath.E68.Singular.blowup` | `Tendsto (fun R => R^{2−n} ∫_{B_R}‖∇ψ‖²) (𝓝[>] 0) atTop` | `E68Singular` |
+| 12 | One fixed `H¹` field defeats every finite constant at arbitrarily small radii | `ReyesMath.E68.Singular.no_constant`, `defeats_every_constant`, `not_e68Holds0`, `not_e68` | the field is fixed first; `∀ C, ∀ ε > 0, ∃ R ∈ (0,ε), C R^{n−2}‖ψ‖²_{H¹} < ∫_{B_R}‖∇ψ‖²` | `E68Singular` |
+| 13 | Prop 2.1: `∀ n > 2, ∀ C, ∃ ψ ∈ C_c^∞, R > 0` violating `(E68)` (`ψ_R = R^{1−n/2}φ(x/R)`) | `ReyesMath.E68Cert.smooth_concentration`, `ReyesMath.E68.no_uniform_E68_for_smooth_concentrations`, `smoothConcentration_gradient_energy_constant`, `smoothConcentration_mass_R_sq`, `smoothConcentration_ball_energy_eq_global` | each witness is also `IsH1` with its classical gradient | `E68Certification` (`E68SmoothCounterexample`, `E68ScaledGradient`) |
+| 14 | Thm 3.1 (E68′): `n > 2`, `ψ ∈ H¹`, `∇ψ ∈ Lⁿ`: `∫_{B_R(x₀)}|∇ψ|² ≤ ω_n^{1−2/n}R^{n−2}‖∇ψ‖²_{Lⁿ}` | `ReyesMath.E68Cert.corrected` (`= ReyesMath.E68.e68_corrected`), `ball_energy_le`, `eLpNorm_ball_le` | `∀ n > 2, ∀ ψ g, IsH1 ψ g → MemLp g n → ∀ x₀ R, 0 < R → ∫_{B_R(x₀)}‖g‖² ≤ ω_n^{1−2/n} R^{n−2} (∫‖g‖ⁿ)^{2/n}`; Hölder with exponent `1/2 − 1/n` (`p = n/2`, `q = n/(n−2)` after squaring), `|B_R(x₀)| = ω_nRⁿ` (`euclidean_ball_volume_scaling`), `L²(B_R)` from `Lⁿ` on a finite ball, `2(1/2−1/n) = 1−2/n`, `n(1−2/n) = n−2` | `E68Corrected` (`E68CriticalGradient`) |
+| 15 | Cor 3.2: admissible class with `‖∇ψ‖_{Lⁿ} ≤ K‖ψ‖_{H¹}` gives the constant `ω_n^{1−2/n}K²` | `ReyesMath.E68Cert.admissible` (`= e68_admissible`), `e68_apriori` | `𝒜` a set of (field, weak gradient) pairs; the bound is a hypothesis on `𝒜`, never derived from `H¹` | `E68Corrected` |
+| 16 | Rem 3.3: the a priori bound does not follow from `H¹` | `ReyesMath.E68Cert.remark_3_3` (`= no_apriori_bound_on_H1`) | `∀ n > 2, ¬ ∃ K, ∀ ψ g, IsH1 ψ g → MemLp g n ∧ ‖g‖_{Lⁿ} ≤ K‖ψ‖_{H¹}`; such a `K` would give `E68(n)` | `E68Corrected` (`E68Singular`) |
+| 17 | Cor 4.1: `n ∈ {3,4}`, `∀ ψ ∈ H²`: `∫_{B_R(x₀)}|∇ψ|² ≤ C_nR^{n−2}‖ψ‖²_{H²}` | `ReyesMath.E68Cert.h2_localized` (`= ReyesMath.E68.e68_H2`); `C₃ = ω₃^{1/3}·3C₃^{GNS}`, `C₄ = ω₄^{1/2}(4C₄^{GNS})²` | `∃ C, ∀ ψ g H, IsH2 ψ g H → ∀ x₀ R, 0 < R → …`; `C` precedes field, center, radius | `E68H2` |
+| 17a | `n = 4`: `H¹ → L⁴` on the weak gradient | `ReyesMath.E68Cert.sobolev_four`, `ReyesMath.E68.grad_bound_four` | `‖ψ‖₄ ≤ C₄‖∇ψ‖₂` for every weak `H¹(ℝ⁴)` field; `‖∇ψ‖₄ ≤ 4C₄‖ψ‖_{H²}` | `E68SobolevEmbedding`, `E68H2` |
+| 17b | `n = 3`: `H¹ → L⁶`, then `‖·‖₃ ≤ ‖·‖₂^{1/2}‖·‖₆^{1/2}` | `ReyesMath.E68Cert.sobolev_three`, `ReyesMath.E68.eLpNorm_three_le`, `grad_bound_three` | Hölder with `1/3 = 1/4 + 1/12`; `‖∇ψ‖₃ ≤ (3C₃)^{1/2}‖ψ‖_{H²}` | `E68SobolevEmbedding`, `E68H2` |
+| 17c | The Sobolev embedding for weak `H¹` | `ReyesMath.E68.sobolev_H1`, `memLp_of_isH1` | `∀ n ≥ 1, 1/p* = 1/2 − 1/n → ∀ u G, IsH1 u G → ‖u‖_{p*} ≤ C_n‖G‖₂`, with `C_n` Mathlib's GNS constant | `E68SobolevEmbedding` |
+| 18 | Prop 4.2: `n > 4`: no `C_n` for all `ψ ∈ C_c^∞`, all `R > 0`; `u_R = R^{2−n/2}φ(x/R)` with `‖u_R‖²₂ = R⁴‖φ‖²₂`, `‖∇u_R‖²₂ = R²‖∇φ‖²₂`, `‖D²u_R‖²₂ = ‖D²φ‖²₂` | `ReyesMath.E68Cert.h2_failure_smooth`, `h2_failure`, `h2_scaling`; `ReyesMath.E68.integral_dilateH2_sq`, `integral_gradVec_dilateH2_sq`, `integral_hess_dilateH2_sq`, connected to `high_dimensional_H2_scaling_obstruction` | actual functions and Lebesgue integrals; also refuted on all of `H²` | `E68H2` (`E68Scaling`) |
+| 19 | Section 6, status and scope | rows 1–18 | editorial; no dynamical or physical claim is encoded | — |
 
-New declarations in `E68SmoothCounterexample.lean`:
-- `smoothConcentration_tsupport_inside_ball`
-- `smoothConcentration_gradient_support_inside_ball`
-- `smoothConcentration_ball_energy_eq_global`
-- **`no_uniform_E68_for_smooth_concentrations`**.
+## How the proofs go
 
-The latter is a *literal* continuum Lebesgue ball-integral counterexample for the specified compactly supported smooth concentration family in every n>2, not just the earlier algebraic scaling contradiction. This discharges the paper's smooth-concentration proposition. The fixed singular weak-H¹ single-field counterexample and the corrected E68′/H² statements are separate remaining obligations.
+* **Classification.** For `n = 2` the ball energy is at most the whole-space `H¹` energy. For `n = 1` the compact bump has constant ball energy for `R ≥ 1` while `C R⁻¹` tends to zero. For `n > 2`, either the smooth concentrations or the singular field gives the contradiction. All witnesses are genuine `IsH1` fields.
+* **Singular field.** The field is written `ψ = F₀(|x|²)`, with `F_δ(s) = cut(s)(s + δ²)^{−a/2}` and `cut(s) = smoothTransition((4 − s)/3)`. For `δ ≠ 0` the regularizations `ψ_δ = F_δ(|x|²)` are `C^∞` with compact support, so integration by parts holds for them. Both sides of the identity converge as `δ_k = 1/(k+1) → 0` by dominated convergence, with majorants that do not depend on `δ`. The exact integrals come from Mathlib's polar decomposition `ℝⁿ∖{0} ≅ Sⁿ⁻¹ × (0,∞)` (`E68Radial.setIntegral_ball_rpow`). The manuscript's `ε`-ball boundary-term argument is replaced by this regularization argument; the proved statement is the same.
+* **Sobolev embedding.** Mathlib's GNS inequality for `C¹_c` functions extends to weak `H¹` in three steps:
+  1. Mollification: the classical gradient of `ρ ⋆ v` is `ρ ⋆ (weak gradient)`, from the weak identity tested against `t ↦ ρ(x − t)`. A pointwise Cauchy–Schwarz bound and `∫ ρ ⋆ h = ∫ h` give `‖∇(ρ⋆v)‖₂ ≤ ‖∇v‖₂`.
+  2. Fatou's lemma along `ρ_k ⋆ v → v` a.e.
+  3. Cutoffs `χ_R` with `|∇χ_R| ≤ 4K/R`, then Fatou's lemma again as `R → ∞`.
 
-**Do not mark** `main_theorem_formalized: true` or close issue #41 until those distinct missing proofs are completed and the original main theorem with its full quantifiers is kernel-verified.
+## Verification
 
-## Full E68 claim inventory, re-audited after merging current main
+* Local, pinned toolchain:
+  * `lake build MathProofs.E68Certification`;
+  * the complete project `lake build` (7370 jobs, exit 0, no warnings in E68 modules);
+  * `lake env lean E68CertificationAudit.lean`, with 71 of 71 declarations on `[propext, Classical.choice, Quot.sound]`;
+  * no `sorry`, `admit`, `axiom` or `native_decide` in any E68 module.
+* CI at the exact PR head is recorded in [PR #50](https://github.com/rickyjreyes/math/pull/50) and in `lean/formalization.yaml` (`latest_fully_checked_revision`). It covers:
+  * the focused E68 workflow (hole check, focused build, axiom audit, complete project);
+  * the full `lean.yml` build;
+  * the M6B, F09, analytic-cores and PDF workflows.
 
-**Formalization policy:** A checked theorem covering smooth functions is not a theorem covering all Sobolev equivalence classes. A checked extended-Lp seminorm estimate is not by itself the displayed real-valued corrected energy integral. The manuscript is unchanged.
+## Lean conventions that differ in form from the manuscript
 
-| Manuscript location and assertion | Exact mathematical scope | Lean declaration / imported module | Verification / missing work |
-|---|---|---|---|
-| Section 1, E68 definition and inhomogeneous H1 norm | Exists finite C_n, for **every** ψ ∈ H¹(Rⁿ), every R>0 and every center x0, integral over B_R(x0) ≤ C_n R^(n−2) (||ψ||₂²+||∇ψ||₂²) | No single full-domain declaration | **OPEN:** full Sobolev class and actual weak-gradient quotient |
-| Theorem 1, iff n=2 | For every integer n≥1, uniform E68(n) iff n=2 | `ReyesMath.E68.smoothE68_iff_two` in `MathProofs/E68SmoothClassification.lean` only for the C∞ compact real subclass, n≥2 | **OPEN** for full H¹ equivalence classes and n=1 as a unified iff |
-| Theorem 1, n=2, C₂=1 | Every center, every R>0, every ψ∈H¹(R²); energy on B_R ≤ whole-space H¹ energy | `ReyesMath.E68.weakH1_two_dimensional_local_energy` in `MathProofs/E68WeakH1.lean`, and `ReyesMath.E68.two_dimensional_local_gradient_energy` in `MathProofs/E68Scaling.lean` | Existing weak-gradient and strong-derivative inequalities checked; representation bridge to canonical H¹ remains **OPEN** |
-| Theorem 1, n=1 nonconstant compact bump | A specific ψ∈C_c∞((-1,1)), derivative energy A>0, ball integral A for all R≥1, no C/R bound | `ReyesMath.E68.compactOneDim_deriv_energy_positive`, `compactOneDim_deriv_ball_energy_eq_global`, `compactOneDim_forbids_uniform_inverse_radius_energy` in `MathProofs/E68OneDimEnergy.lean` | Existing actual-integral claims **VERIFIED** on earlier PR head |
-| Theorem 1, n=1 all smooth fields | No single constant controls all C_c∞(R) fields, all centers and radii | `ReyesMath.E68.no_uniform_E68_on_smooth_fields_one_dimensional` in `MathProofs/E68OneDimEnergy.lean` | Newly implemented; **PENDING exact-head CI** |
-| Theorem 1, singular n>2 ψ | 0<a<(n−2)/2; ψ=χ(|x|)|x|^(−a), with cutoff =1 in B1, zero outside B2 | None | **OPEN:** actual radial cutoff and singular field |
-| Theorem 1, singular L²/gradient integrals | For n>2, integrals over B1 are σ_(n−1)/(n−2a) and σ_(n−1)a²/(n−2−2a) | None | **OPEN:** polar integration and finiteness |
-| Theorem 1, singular weak derivative | ∇ψ=−a|x|^(−a−2)x away from 0; boundary term O(ε^(n−1−a))→0; ψ∈H¹ | None | **OPEN:** actual distributional proof, cutoff annulus, equivalence-class membership |
-| Theorem 1, fixed-field blowup | For every 0<R<1, integral of |∇ψ|² over B_R = c R^(n−2−2a); R^(2−n) energy = c R^(−2a)→∞ | None | **OPEN:** one fixed H¹ field, no field-dependent C |
-| Proposition 2, smooth concentration | Every n>2, every C>0, ∃ψ∈C_c∞ and R>0 violating E68, with ψ_R(x)=R^(1−n/2)φ(x/R) | `ReyesMath.E68.no_uniform_E68_for_smooth_concentrations` in `MathProofs/E68SmoothCounterexample.lean` | **VERIFIED** with actual Fréchet derivative and Lebesgue ball integral on earlier PR head |
-| Proposition 2, exact scaling | A=∫|∇φ|²>0, ∫|∇ψ_R|²=A, ∫|ψ_R|²=R² B, ball energy=A | `ReyesMath.E68.smoothConcentration_gradient_energy_constant`, `smoothConcentration_mass_R_sq`, `smoothConcentration_ball_energy_eq_global` in `E68ScaledGradient.lean`, `E68SmoothCounterexample.lean` | **VERIFIED** on earlier PR head |
-| Strengthened smooth obstruction and n≥2 iff | Universal radius, center, field quantifiers on C_c∞(Rⁿ;R), n≥2 | `ReyesMath.E68.no_uniform_E68_on_smooth_fields`, `ReyesMath.E68.smoothE68_iff_two` in `E68SmoothClassification.lean` | Newly implemented; **PENDING exact-head CI** |
-| Theorem 3, corrected E68' | For every n>2, every ψ∈H¹ with ∇ψ∈Lⁿ, center, R>0: ∫_ball|∇ψ|² ≤ ω_n^(1−2/n) R^(n−2)||∇ψ||_n² | `ReyesMath.E68.local_critical_gradient_norm` and `euclidean_ball_volume_scaling` in `E68CriticalGradient.lean` | Existing **VERIFIED** extended-Lp and ball volume components; complete real-valued E68' **OPEN** |
-| Corollary 4, admissible class | Every n>2 and admissible A⊆H¹ with independently proved ||∇ψ||_n ≤ K||ψ||_H1, for all ψ∈A, centers, R>0, bound with ω_n^(1−2/n)K² | None | **OPEN** until corrected E68' and class bridge complete |
-| Remark after Corollary 4 | H¹ membership alone does **not** imply universal Lⁿ gradient control | Smooth concentration counterexample, `E68SmoothCounterexample.lean` | The unrestricted-E68 failure is verified; an explicit no-H¹→Lⁿ theorem remains **OPEN** |
-| Corollary 5, H² for n=3,4 | Every ψ∈H²(Rⁿ), every center and R>0, some C_n independent of ψ, center, R | None | **OPEN:** Sobolev embedding and n=3 L²–L⁶ interpolation |
-| Proposition 6, H² fails for n>4 | For every n>4, no C works for all C_c∞ and all R>0, using u_R(x)=R^(2−n/2)φ(x/R) and first/second derivative integrals | `ReyesMath.E68.high_dimensional_H2_scaling_obstruction` in `E68Scaling.lean` | Algebraic consequence **VERIFIED**; actual H² smooth concentration and all derivative integrals **OPEN** |
-| Representative and integral invariance | If representatives and distributional gradients are equal a.e., H¹ energy integrals agree | `ReyesMath.E68.WeakH1Field.field_memLp`, `gradient_memLp`, `energies_eq_of_ae_eq` in `E68WeakH1.lean` | Newly implemented, **PENDING exact-head CI**; uniqueness of distributional derivatives still **OPEN** |
-| Section 6 status and scope | E68 refuted for unrestricted n≠2, E68' under Lⁿ, H² n=3,4; no dynamics claimed | Corresponding entries above | Editorial synopsis; no extra physics/dynamical theorem encoded |
+* The singular field takes the value `0` at the origin (Lean's `0^{−a} = 0`); `isH1_update` shows that any value gives the same `H¹` field.
+* `R^{n−2}` is the integer power `R ^ ((n:ℤ) − 2)`, which is `R^{−1}` for `n = 1`.
+* The admissible class of Corollary 3.2 is a set of pairs (field, weak gradient), since the a priori bound is stated in terms of `∇ψ`.
+* In Proposition 4.2 the manuscript takes `0 < R < 1`. The formal proof uses every `R > 0`, which is a stronger family of fields. The failure is proved at the single center `0`.
 
-**Remaining central obstruction:** To certify the full iff, it is sufficient to complete a genuine H¹ equivalence-class bridge for the n=2 bound and establish that the smooth counterexamples embed in that H¹ class. However, the manuscript **also explicitly claims** the stronger fixed singular field, the corrected E68' inequality and H² consequences, each of which remains an independent acceptance criterion even after an iff proof. No theorem in this mapping assumes E68 or its corrected conclusion as an axiom.
+## History
 
-**CI caveat:** This inventory distinguishes previously verified declarations from new source declarations. All new declarations are provisional until the complete project and focused workflows return success at the exact final SHA.
+Earlier checkpoints on this branch verified the components that the certificate now subsumes:
+* the `n = 2` bound for `WeakH1Field` and for strong derivatives;
+* the whole-line bump contradiction (`E68OneDimEnergy`);
+* the smooth concentration counterexample (`E68SmoothCounterexample`, full-project CI at `087e05f8`);
+* the extended-`Lp` Hölder step and the ball volume (`E68CriticalGradient`).

@@ -24,8 +24,15 @@ jobs:
           lake exe cache get
       - name: Forbid proof holes
         run: |
-          if grep -rnE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' MathProofs/E68Scaling.lean MathProofs/E68CriticalGradient.lean MathProofs/E68SmoothProfiles.lean MathProofs/E68WeakH1.lean MathProofs/E68OneDimEnergy.lean MathProofs/E68HigherDimEnergy.lean MathProofs/E68ChangeVariables.lean MathProofs/E68ScaledGradient.lean MathProofs/E68SmoothCounterexample.lean MathProofs/E68SmoothClassification.lean MathProofs/E68Sobolev.lean MathProofs/E68Classification.lean MathProofs/E68Radial.lean MathProofs/E68Singular.lean MathProofs/E68Corrected.lean MathProofs/E68SobolevEmbedding.lean MathProofs/E68H2.lean; then exit 1; fi
+          if grep -rnE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' MathProofs/E68Scaling.lean MathProofs/E68CriticalGradient.lean MathProofs/E68SmoothProfiles.lean MathProofs/E68WeakH1.lean MathProofs/E68OneDimEnergy.lean MathProofs/E68HigherDimEnergy.lean MathProofs/E68ChangeVariables.lean MathProofs/E68ScaledGradient.lean MathProofs/E68SmoothCounterexample.lean MathProofs/E68SmoothClassification.lean MathProofs/E68Sobolev.lean MathProofs/E68Classification.lean MathProofs/E68Radial.lean MathProofs/E68Singular.lean MathProofs/E68Corrected.lean MathProofs/E68SobolevEmbedding.lean MathProofs/E68H2.lean MathProofs/E68Certification.lean E68CertificationAudit.lean; then exit 1; fi
       - name: Kernel-check exact issue modules
-        run: lake build MathProofs.E68Scaling MathProofs.E68CriticalGradient MathProofs.E68SmoothProfiles MathProofs.E68WeakH1 MathProofs.E68OneDimEnergy MathProofs.E68HigherDimEnergy MathProofs.E68ChangeVariables MathProofs.E68ScaledGradient MathProofs.E68SmoothCounterexample MathProofs.E68SmoothClassification MathProofs.E68Sobolev MathProofs.E68Classification MathProofs.E68Radial MathProofs.E68Singular MathProofs.E68Corrected MathProofs.E68SobolevEmbedding MathProofs.E68H2
+        run: lake build MathProofs.E68Scaling MathProofs.E68CriticalGradient MathProofs.E68SmoothProfiles MathProofs.E68WeakH1 MathProofs.E68OneDimEnergy MathProofs.E68HigherDimEnergy MathProofs.E68ChangeVariables MathProofs.E68ScaledGradient MathProofs.E68SmoothCounterexample MathProofs.E68SmoothClassification MathProofs.E68Sobolev MathProofs.E68Classification MathProofs.E68Radial MathProofs.E68Singular MathProofs.E68Corrected MathProofs.E68SobolevEmbedding MathProofs.E68H2 MathProofs.E68Certification
+      - name: Dependency audit of the E68 certification
+        run: |
+          lake env lean E68CertificationAudit.lean > audit.out 2>&1 || { cat audit.out; exit 1; }
+          cat audit.out
+          ok="^'[^']+' (depends on axioms: \[((propext|Classical\.choice|Quot\.sound)(, )?)+\]|does not depend on any axioms)$"
+          test "$(grep -cE "$ok" audit.out)" -eq "$(grep -c '^#print axioms' E68CertificationAudit.lean)"
+          if grep -vE "$ok" audit.out | grep -q .; then exit 1; fi
       - name: Kernel-check complete project
         run: lake build

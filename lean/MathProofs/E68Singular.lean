@@ -27,8 +27,9 @@ derivative in `s` composed with `x ↦ |x|²`.
 * `integral_sq_ball_one`, `integral_grad_sq_ball_one`, `integral_grad_sq_ball_sphere`: the
   exact radial integrals `σ_{n-1}/(n-2a)`, `σ_{n-1}a²/(n-2-2a)` and
   `σ_{n-1}a²R^{n-2-2a}/(n-2-2a)`, with `σ_{n-1}` the surface measure of the unit sphere.
-* `blowup`, `no_constant`, `defeats_every_constant`, `not_e68`: the fixed field defeats every
-  constant as `R ↓ 0`, so it alone refutes `E68(n)` for `n > 2`.
+* `blowup`, `no_constant`, `defeats_every_constant`, `not_e68Holds0`, `not_e68`: the fixed
+  field defeats every constant as `R ↓ 0`, so it alone refutes `E68(n)` for `n > 2`.
+* `isH1_update`: the value assigned at the origin is irrelevant.
 -/
 
 noncomputable section
@@ -671,14 +672,26 @@ theorem defeats_every_constant {a : ℝ} (ha : 0 < a) (ha' : a < ((n : ℝ) - 2)
   obtain ⟨R, hR, hRε⟩ := ((no_constant ha ha' C).and (Ioo_mem_nhdsGT hε)).exists
   exact ⟨R, hRε.1, hRε.2, hR⟩
 
-/-- **`E68(n)` fails for `n > 2`, witnessed by one fixed `H¹` field** (here `a = (n-2)/4`). -/
-theorem not_e68 (hn : 2 < n) : ¬ E68Holds n := by
+/-- **`E68(n)` fails for `n > 2`, witnessed by one fixed `H¹` field** (here `a = (n-2)/4`),
+already at the center `0`. -/
+theorem not_e68Holds0 (hn : 2 < n) : ¬ E68Holds0 n := by
   rintro ⟨C, hC⟩
   have h2 : (2 : ℝ) < n := by exact_mod_cast hn
   have ha : (0 : ℝ) < ((n : ℝ) - 2) / 4 := by linarith
   have ha' : ((n : ℝ) - 2) / 4 < ((n : ℝ) - 2) / 2 := by linarith
   obtain ⟨R, hR0, -, hR⟩ := defeats_every_constant ha ha' C 1 one_pos
-  exact absurd (hC _ _ (isH1 ha ha') 0 R hR0) (not_le.2 hR)
+  exact absurd (hC _ _ (isH1 ha ha') R hR0) (not_le.2 hR)
+
+theorem not_e68 (hn : 2 < n) : ¬ E68Holds n := fun h => not_e68Holds0 hn h.center
+
+/-- The value at the origin is irrelevant: changing `ψ(0)` to any `c` gives the same `H¹`
+field. -/
+theorem isH1_update {a : ℝ} (ha : 0 < a) (ha' : a < ((n : ℝ) - 2) / 2) (c : ℂ) :
+    IsH1 (Function.update (ofRealFn (psi a) : EuclideanSpace ℝ (Fin n) → ℂ) 0 c) (gradC a) := by
+  have hn : 1 ≤ n := by have := two_lt_of ha ha'; omega
+  refine (isH1 ha ha').congr_ae ?_ (ae_eq_refl _)
+  filter_upwards [ae_ne_zero hn] with x hx
+  rw [Function.update_of_ne hx]
 
 end Singular
 

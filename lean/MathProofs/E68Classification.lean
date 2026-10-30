@@ -17,7 +17,8 @@ The exponent `n - 2` is an integer, so `R^{-1}` appears when `n = 1`.
   large radii.
 * `not_e68_of_two_lt`: for `n > 2` the smooth concentrations `R^{1-n/2} φ(x/R)` (genuine `H¹`
   fields by `isH1_ofRealFn`) violate every constant at small radii.
-* **`e68_iff_two`**: for every `n ≥ 1`, `E68Holds n ↔ n = 2`.
+* **`e68_iff_two`**: for every `n ≥ 1`, `E68Holds n ↔ n = 2`; `e68Holds0_iff_two`: the same at
+  the center `0` (`E68Holds0`, the boxed form of the manuscript).
 * `e68L2_iff_two`: the same classification for `H¹` stated on `L²` equivalence classes, with the
   (a.e.-unique) weak gradient.
 -/
@@ -35,6 +36,20 @@ def E68Holds (n : ℕ) : Prop :=
     (g : EuclideanSpace ℝ (Fin n) → EuclideanSpace ℂ (Fin n)), IsH1 ψ g →
     ∀ (x₀ : EuclideanSpace ℝ (Fin n)) (R : ℝ), 0 < R →
       (∫ x in Metric.ball x₀ R, ‖g x‖ ^ 2) ≤ C * R ^ ((n : ℤ) - 2) * h1sq ψ g
+
+/-- The boxed form `(E68)` of the manuscript, at the center `0`: one constant for every `H¹`
+field and radius. -/
+def E68Holds0 (n : ℕ) : Prop :=
+  ∃ C : ℝ, ∀ (ψ : EuclideanSpace ℝ (Fin n) → ℂ)
+    (g : EuclideanSpace ℝ (Fin n) → EuclideanSpace ℂ (Fin n)), IsH1 ψ g →
+    ∀ R : ℝ, 0 < R →
+      (∫ x in Metric.ball (0 : EuclideanSpace ℝ (Fin n)) R, ‖g x‖ ^ 2) ≤
+        C * R ^ ((n : ℤ) - 2) * h1sq ψ g
+
+/-- The estimate uniform over all centers implies the estimate at the center `0`. -/
+theorem E68Holds.center {n : ℕ} (h : E68Holds n) : E68Holds0 n :=
+  let ⟨C, hC⟩ := h
+  ⟨C, fun ψ g hψ R hR => hC ψ g hψ 0 R hR⟩
 
 /-- The local gradient energy is at most the global one. -/
 theorem setIntegral_grad_le_integral {n : ℕ} {ψ : EuclideanSpace ℝ (Fin n) → ℂ}
@@ -89,7 +104,7 @@ theorem compactProfile_ball_energy (n : ℕ) {R : ℝ} (hR : 1 ≤ R) :
 
 /-- **Dimension one**: no constant works. The nonconstant compact bump has a fixed positive
 gradient energy on every ball `B_R`, `R ≥ 1`, while `C R^{-1} ‖ψ‖²_{H¹} → 0`. -/
-theorem not_e68_one : ¬ E68Holds 1 := by
+theorem not_e68Holds0_one : ¬ E68Holds0 1 := by
   rintro ⟨C, hC⟩
   set φ : EuclideanSpace ℝ (Fin 1) → ℝ := fun y => compactProfile 1 y
   have hφ : ContDiff ℝ ∞ φ := compactProfile_smooth 1
@@ -101,7 +116,7 @@ theorem not_e68_one : ¬ E68Holds 1 := by
   apply large_radius_one_dimensional_obstruction A H hA
   refine ⟨C, fun R hR => ?_⟩
   have hR0 : 0 < R := by linarith
-  have hb := hC (ofRealFn φ) (gradVec (ofRealFn φ)) (isH1_ofRealFn hφ1 hφc) 0 R hR0
+  have hb := hC (ofRealFn φ) (gradVec (ofRealFn φ)) (isH1_ofRealFn hφ1 hφc) R hR0
   have hd := hφ1.differentiable le_rfl
   have hball : (∫ x in Metric.ball (0 : EuclideanSpace ℝ (Fin 1)) R,
       ‖gradVec (ofRealFn φ) x‖ ^ 2) = A := by
@@ -112,6 +127,8 @@ theorem not_e68_one : ¬ E68Holds 1 := by
   rw [hz] at hb
   calc A ≤ C * R⁻¹ * H := hb
     _ = C * H / R := by ring
+
+theorem not_e68_one : ¬ E68Holds 1 := fun h => not_e68Holds0_one h.center
 
 /-! ### Dimension one through the verified whole-line bump
 
@@ -184,14 +201,14 @@ theorem setIntegral_ball_comp_line (F : ℝ → ℝ) (R : ℝ) :
 is an `H¹(ℝ¹)` field whose ball, mass and gradient energies are exactly the whole-line
 integrals of `compactOneDim`, so `compactOneDim_forbids_uniform_inverse_radius_energy` rules out
 every constant. -/
-theorem not_e68_one_of_line : ¬ E68Holds 1 := by
+theorem not_e68Holds0_one_of_line : ¬ E68Holds0 1 := by
   rintro ⟨C, hC⟩
   apply compactOneDim_forbids_uniform_inverse_radius_energy
   refine ⟨C, fun R hR => ?_⟩
   have hR0 : 0 < R := by linarith
   have hφ1 : ContDiff ℝ 1 lineBump := lineBump_contDiff.of_le (by exact_mod_cast le_top)
   have hb := hC (ofRealFn lineBump) (gradVec (ofRealFn lineBump))
-    (isH1_ofRealFn hφ1 lineBump_hasCompactSupport) 0 R hR0
+    (isH1_ofRealFn hφ1 lineBump_hasCompactSupport) R hR0
   have e1 : (∫ x in Metric.ball (0 : EuclideanSpace ℝ (Fin 1)) R,
       ‖gradVec (ofRealFn lineBump) x‖ ^ 2) =
       ∫ t in Metric.ball (0 : ℝ) R, (deriv (fun t : ℝ => compactOneDim t) t) ^ 2 := by
@@ -213,19 +230,21 @@ theorem not_e68_one_of_line : ¬ E68Holds 1 := by
   calc _ ≤ _ := hb
     _ = _ := by ring
 
+theorem not_e68_one_of_line : ¬ E68Holds 1 := fun h => not_e68Holds0_one_of_line h.center
+
 /-! ### Dimensions above two -/
 
 /-- **Dimensions `n > 2`**: no constant works; the smooth concentrations `R^{1-n/2} φ(x/R)` are
 `H¹` fields with fixed gradient energy `A > 0`, all of it inside `B_R`, and squared mass
 `R² B`. -/
-theorem not_e68_of_two_lt {n : ℕ} (hn : 2 < n) : ¬ E68Holds n := by
+theorem not_e68Holds0_of_two_lt {n : ℕ} (hn : 2 < n) : ¬ E68Holds0 n := by
   rintro ⟨C, hC⟩
   apply no_uniform_E68_for_smooth_concentrations n hn
   refine ⟨C, fun R hR => ?_⟩
   have hsm := smoothConcentration_smooth n R
   have hsm1 : ContDiff ℝ 1 (smoothConcentration n R) := hsm.of_le (by exact_mod_cast le_top)
   have hb := hC (ofRealFn (smoothConcentration n R)) (gradVec (ofRealFn (smoothConcentration n R)))
-    (isH1_ofRealFn hsm1 (smoothConcentration_hasCompactSupport n R hR)) 0 R hR
+    (isH1_ofRealFn hsm1 (smoothConcentration_hasCompactSupport n R hR)) R hR
   have hd := hsm1.differentiable le_rfl
   simp_rw [norm_gradVec_ofRealFn (hd _)] at hb
   rw [h1sq_ofRealFn hsm1] at hb
@@ -233,6 +252,9 @@ theorem not_e68_of_two_lt {n : ℕ} (hn : 2 < n) : ¬ E68Holds n := by
     rw [← zpow_natCast, Nat.cast_sub hn.le]
     norm_num
   rwa [hz] at hb
+
+theorem not_e68_of_two_lt {n : ℕ} (hn : 2 < n) : ¬ E68Holds n :=
+  fun h => not_e68Holds0_of_two_lt hn h.center
 
 /-! ### The classification -/
 
@@ -250,6 +272,21 @@ theorem e68_iff_two (n : ℕ) (hn : 1 ≤ n) : E68Holds n ↔ n = 2 := by
       · exact h3.symm
   · rintro rfl
     exact e68_two
+
+/-- **Theorem 1.1 at the center `0`** (the boxed `(E68)`): for every `n ≥ 1`, the estimate at
+the center `0` holds with a uniform constant if and only if `n = 2`. -/
+theorem e68Holds0_iff_two (n : ℕ) (hn : 1 ≤ n) : E68Holds0 n ↔ n = 2 := by
+  constructor
+  · intro h
+    rcases Nat.lt_or_ge n 2 with h1 | h2
+    · have : n = 1 := by omega
+      subst this
+      exact absurd h not_e68Holds0_one
+    · rcases h2.lt_or_eq with h3 | h3
+      · exact absurd h (not_e68Holds0_of_two_lt h3)
+      · exact h3.symm
+  · rintro rfl
+    exact e68_two.center
 
 /-! ### The classification on `L²` equivalence classes -/
 
