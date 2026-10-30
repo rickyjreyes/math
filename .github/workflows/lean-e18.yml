@@ -43,5 +43,9 @@ jobs:
         run: lake build MathProofs.E18FlowChainRule
       - name: Kernel-check exact integrated E18 balance reduction
         run: lake build MathProofs.E18IntegratedBalance
+      - name: Kernel-check weight bounds, F-second continuity and uniform Taylor bound
+        run: lake build MathProofs.E18WeightBounds
+      - name: Kernel-check Frechet derivative of the full nonlinear energy on H2
+        run: lake build MathProofs.E18Frechet
       - name: Kernel-check registered project imports
         run: lake build MathProofs

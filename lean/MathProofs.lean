@@ -161,3 +161,5 @@ import MathProofs.E18VariationAlgebra
 import MathProofs.E18EnergyGradient
 import MathProofs.E18FlowChainRule
 import MathProofs.E18IntegratedBalance
+import MathProofs.E18WeightBounds
+import MathProofs.E18Frechet
