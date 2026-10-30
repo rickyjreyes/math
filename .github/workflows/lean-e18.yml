@@ -1,0 +1,39 @@
+name: E18 corrected curvature-energy Lean proofs
+on:
+  push:
+    branches: [proofs/e18-frechet-analytic-closure]
+    paths:
+      - 'lean/**'
+      - '.github/workflows/lean-e18.yml'
+  pull_request:
+    paths:
+      - 'lean/**'
+      - '.github/workflows/lean-e18.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  e18:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: lean
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Lean toolchain
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Restore Mathlib cache
+        run: |
+          lake update
+          lake exe cache get
+      - name: Reject unproved holes and new axioms
+        run: |
+          if grep -nE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' MathProofs/E18*.lean; then exit 1; fi
+      - name: Kernel-check actual Fourier H2 energy
+        run: lake build MathProofs.E18FourierEnergy
+      - name: Kernel-check corrected nonlinear weight derivative
+        run: lake build MathProofs.E18WeightDerivative
+      - name: Kernel-check registered project imports
+        run: lake build MathProofs
