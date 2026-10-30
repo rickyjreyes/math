@@ -21,4 +21,4 @@ These are exact Hilbert-space/Fourier identities for a *fixed mask*. The annulus
 
 A smooth tapered Fourier multiplier is generally **not** an idempotent projection. Re-selecting an adaptive "dominant band" between applications is a different operation. Idempotence does **not** establish invariance under an unprojected nonlinear PDE, nonzero bound states, localization, confinement, or orbital stability.
 
-**Verification:** Analytical proof, Lean-formalized in [TorusFourier](../../lean/MathProofs/TorusFourier.lean) (`ReyesMath.TorusL2.e59`; see [lean/formalization.yaml](../../lean/formalization.yaml)). The [PDF workflow](../../.github/workflows/pdfs.yml) recompiles the LaTeX source and publishes `paper.pdf`.
+**Verification:** Analytical proof; the full theorem is not claimed to be Lean kernel-checked. The [PDF workflow](../../.github/workflows/pdfs.yml) recompiles the LaTeX source and publishes `paper.pdf`.
