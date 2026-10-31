@@ -1,0 +1,74 @@
+name: E18 corrected curvature-energy Lean proofs
+on:
+  push:
+    branches: [proofs/e18-frechet-analytic-closure]
+    paths:
+      - 'lean/**'
+      - '.github/workflows/lean-e18.yml'
+  pull_request:
+    paths:
+      - 'lean/**'
+      - '.github/workflows/lean-e18.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  e18:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: lean
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Lean toolchain
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Restore Mathlib cache
+        run: |
+          lake update
+          lake exe cache get
+      - name: Reject unproved holes and new axioms
+        run: |
+          if grep -nE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)|native_decide|\bsorry\b|\badmit\b' MathProofs/E18*.lean E18CertificationAudit.lean; then exit 1; fi
+      - name: Kernel-check actual Fourier H2 energy
+        run: lake build MathProofs.E18FourierEnergy
+      - name: Kernel-check corrected nonlinear weight derivative
+        run: lake build MathProofs.E18WeightDerivative
+      - name: Kernel-check exact complex first-variation algebra
+        run: lake build MathProofs.E18VariationAlgebra
+      - name: Kernel-check gradient contribution of actual E18 energy
+        run: lake build MathProofs.E18EnergyGradient
+      - name: Kernel-check conditional rate from real variation and L2 flow
+        run: lake build MathProofs.E18FlowChainRule
+      - name: Kernel-check exact integrated E18 balance reduction
+        run: lake build MathProofs.E18IntegratedBalance
+      - name: Kernel-check weight bounds, F-second continuity and uniform Taylor bound
+        run: lake build MathProofs.E18WeightBounds
+      - name: Kernel-check Frechet derivative of the full nonlinear energy on H2
+        run: lake build MathProofs.E18Frechet
+      - name: Kernel-check classical torus calculus and periodic integration by parts
+        run: lake build MathProofs.E18TorusCalculus
+      - name: Kernel-check Leibniz rule for the Fourier Laplacian
+        run: lake build MathProofs.E18Leibniz
+      - name: Kernel-check H4 regularity of the variational derivative
+        run: lake build MathProofs.E18Regularity
+      - name: Kernel-check L2 representative DE(psi)[h] = 2 Re int G h-bar
+        run: lake build MathProofs.E18Representative
+      - name: Kernel-check unconditional exact Lyapunov dissipation
+        run: lake build MathProofs.E18Lyapunov
+      - name: Kernel-check the E18 certification interface
+        run: lake build MathProofs.E18Certification
+      - name: Dependency audit of every E18 declaration
+        run: |
+          lake env lean E18CertificationAudit.lean > audit.out 2>&1 || { cat audit.out; exit 1; }
+          cat audit.out
+          # join the continuation lines of wrapped axiom lists
+          sed -e ':a' -e 'N' -e '$!ba' -e 's/\n / /g' audit.out > audit.joined
+          ok="^'.+' (depends on axioms: \[((propext|Classical\.choice|Quot\.sound)(, )?)+\]|does not depend on any axioms)$"
+          test "$(grep -cE "$ok" audit.joined)" -eq "$(grep -c '^#print axioms' E18CertificationAudit.lean)"
+          if grep -vE "$ok" audit.joined | grep -q .; then exit 1; fi
+      - name: Kernel-check registered project imports
+        run: lake build MathProofs
+      - name: Kernel-check complete project
+        run: lake build

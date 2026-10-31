@@ -95,7 +95,7 @@ This E26 manuscript analyzes the historical additive denominator; the corrected 
 
 **E18: Exact Lyapunov descent for the corrected WCT curvature energy** — [PDF](preprints/wct-e18-exact-gradient-lyapunov/paper.pdf) · [LaTeX source](papers/wct-e18-exact-gradient-lyapunov/main.tex) · [Notes](preprints/wct-e18-exact-gradient-lyapunov/README.md)
 
-For sufficiently regular solutions of the **specified exact negative-gradient flow** on a torus, the energy is nonnegative and satisfies an exact energy-dissipation identity. This is not a proof of global existence, free-space confinement, or a derivation from separate physical-time WCT dynamics.
+For sufficiently regular solutions of the **specified exact negative-gradient flow** on a torus, the energy is nonnegative and satisfies an exact energy-dissipation identity. Lean-formalized in full on the Fourier space \(H^2(\mathbb T^d)\), \(d\le3\): the \(C^1\) Fréchet derivative of the nonlinear energy, its \(L^2\) representative on \(H^4\), and the dissipation identities ([E18Certification](lean/MathProofs/E18Certification.lean), [mapping](docs/E18_LEAN_MANUSCRIPT_MAPPING.md)). This is not a proof of global existence, free-space confinement, or a derivation from separate physical-time WCT dynamics.
 
 ## E69 — High-regularity WCT curvature bound
 

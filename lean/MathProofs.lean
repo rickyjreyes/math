@@ -155,3 +155,17 @@ import MathProofs.E69Curvature
 import MathProofs.E69Remarks
 import MathProofs.E69Torus
 import MathProofs.E69Certification
+import MathProofs.E18FourierEnergy
+import MathProofs.E18WeightDerivative
+import MathProofs.E18VariationAlgebra
+import MathProofs.E18EnergyGradient
+import MathProofs.E18FlowChainRule
+import MathProofs.E18IntegratedBalance
+import MathProofs.E18WeightBounds
+import MathProofs.E18Frechet
+import MathProofs.E18TorusCalculus
+import MathProofs.E18Leibniz
+import MathProofs.E18Regularity
+import MathProofs.E18Representative
+import MathProofs.E18Lyapunov
+import MathProofs.E18Certification
