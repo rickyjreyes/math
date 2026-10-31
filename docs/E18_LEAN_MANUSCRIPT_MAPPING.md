@@ -123,7 +123,10 @@ The Fourier operators are tied to classical derivatives by `ReyesMath.E18Cert.re
   * `lake build MathProofs` and the complete project `lake build` (7389 jobs, exit 0);
   * `lake env lean E18CertificationAudit.lean`, with 207 of 207 declarations on `[propext, Classical.choice, Quot.sound]`;
   * no `sorry`, `admit`, `axiom` or `native_decide` in any E18 module.
-* Exact-head CI: recorded in `lean/formalization.yaml` and [PR #75](https://github.com/rickyjreyes/math/pull/75).
+* Exact-head CI at `2e6777134c2811fc11f015f520a2d6491a8678f9`: [focused E18 workflow](https://github.com/rickyjreyes/math/actions/runs/41149396097) (also on [push](https://github.com/rickyjreyes/math/actions/runs/41149391393)) and [complete-project `lean.yml`](https://github.com/rickyjreyes/math/actions/runs/41149396092). Later revisions are recorded in [PR #75](https://github.com/rickyjreyes/math/pull/75) and in `lean/formalization.yaml` (`latest_fully_checked_revision`). The CI covers:
+  * the focused E18 workflow (hole check, a build of each of the fourteen modules, the certification, the axiom audit of 207 declarations, `lake build MathProofs` and the complete project);
+  * the full `lean.yml` build;
+  * the E68, E69, M6B, F09, analytic-cores and PDF workflows.
 
 ## Lean conventions that differ in form from the manuscript
 
