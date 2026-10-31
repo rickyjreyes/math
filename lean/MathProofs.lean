@@ -167,3 +167,5 @@ import MathProofs.E18TorusCalculus
 import MathProofs.E18Leibniz
 import MathProofs.E18Regularity
 import MathProofs.E18Representative
+import MathProofs.E18Lyapunov
+import MathProofs.E18Certification

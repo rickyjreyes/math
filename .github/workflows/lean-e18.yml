@@ -30,7 +30,7 @@ jobs:
           lake exe cache get
       - name: Reject unproved holes and new axioms
         run: |
-          if grep -nE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' MathProofs/E18*.lean; then exit 1; fi
+          if grep -nE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)|native_decide|\bsorry\b|\badmit\b' MathProofs/E18*.lean E18CertificationAudit.lean; then exit 1; fi
       - name: Kernel-check actual Fourier H2 energy
         run: lake build MathProofs.E18FourierEnergy
       - name: Kernel-check corrected nonlinear weight derivative
@@ -55,5 +55,20 @@ jobs:
         run: lake build MathProofs.E18Regularity
       - name: Kernel-check L2 representative DE(psi)[h] = 2 Re int G h-bar
         run: lake build MathProofs.E18Representative
+      - name: Kernel-check unconditional exact Lyapunov dissipation
+        run: lake build MathProofs.E18Lyapunov
+      - name: Kernel-check the E18 certification interface
+        run: lake build MathProofs.E18Certification
+      - name: Dependency audit of every E18 declaration
+        run: |
+          lake env lean E18CertificationAudit.lean > audit.out 2>&1 || { cat audit.out; exit 1; }
+          cat audit.out
+          # join the continuation lines of wrapped axiom lists
+          sed -e ':a' -e 'N' -e '$!ba' -e 's/\n / /g' audit.out > audit.joined
+          ok="^'.+' (depends on axioms: \[((propext|Classical\.choice|Quot\.sound)(, )?)+\]|does not depend on any axioms)$"
+          test "$(grep -cE "$ok" audit.joined)" -eq "$(grep -c '^#print axioms' E18CertificationAudit.lean)"
+          if grep -vE "$ok" audit.joined | grep -q .; then exit 1; fi
       - name: Kernel-check registered project imports
         run: lake build MathProofs
+      - name: Kernel-check complete project
+        run: lake build

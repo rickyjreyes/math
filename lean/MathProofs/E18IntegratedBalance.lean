@@ -6,8 +6,9 @@ import MathProofs.E18FlowChainRule
 This is a *conditional reduction*: the hypotheses give the true H²
 Fréchet derivative of E18's actual energy, its L² representer, and a
 classical negative-gradient trajectory. No assumption about dE/dt or
-an integrated energy identity is made. The missing substantive
-obligation is proving the nonlinear-weight Fréchet derivative.
+an integrated energy identity is made. The derivative and representer
+hypotheses are discharged in `E18Lyapunov` by `E18.hasFDerivAt_energy`
+and `E18.DE_eq_inner`.
 -/
 
 open Filter Topology InnerProductSpace MeasureTheory Set

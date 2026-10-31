@@ -8,9 +8,11 @@ This module does not assume the energy-rate identity. It shows how
 and the actual negative L²-gradient equation entail the claimed
 dissipation rate, with the factor of two explicit.
 
-The nonlinear E18 Fréchet derivative and the full L² representative
-are still obligations; the hypotheses below expose, rather than hide,
-those missing results. In particular, this is not an E18 certification.
+The hypotheses below expose, rather than hide, the two analytic inputs:
+the Fréchet derivative of the nonlinear energy and its L² representative.
+They are proved in `E18Frechet` (`E18.hasFDerivAt_energy`) and
+`E18Representative` (`E18.DE_eq_inner`) and discharged in `E18Lyapunov`;
+the certification is `E18Certification`.
 -/
 
 open Filter Topology InnerProductSpace

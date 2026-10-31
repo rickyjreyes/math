@@ -8,7 +8,8 @@ Builds on `E18FourierEnergy.D`, `E18FourierEnergy.F` and the exact derivative
 `E18WeightDerivative.Fprime` (`F_hasDerivAt`).
 
 * `F_norm_sq`: `|R_ε(z)|² = F(|z|²)`; `F_le`: `0 ≤ F ≤ M_{ε,α}²` on `[0, ∞)`; `F_zero`: `F(0) = 0`.
-* `Uw = {D > 0} ⊇ [0, ∞)` is open; `F_hasDerivAt_of_ne`: `F′` wherever `D ≠ 0`.
+* `Uw = {D > 0} ⊇ [0, ∞)` is open; `contDiffOn_F`: `F` is smooth there;
+  `F_hasDerivAt_of_ne`: `F′` wherever `D ≠ 0`.
 * `Fprime_hasDerivAt`, `continuousOn_Fsecond`: `F′` is differentiable on `Uw` with continuous
   derivative `F″ = Fsecond`.
 * `bound_Fprime`: `F′` is bounded on `[0, A]`; `taylor_F`: the uniform second-order Taylor bound
@@ -81,6 +82,11 @@ theorem F_hasDerivAt_of_ne {ρ : ℝ} (hD : D ε α ρ ≠ 0) : HasDerivAt (F ε
 
 theorem continuousOn_F (ε α : ℝ) : ContinuousOn (F ε α) (Uw ε α) := fun _ hρ =>
   (F_hasDerivAt_of_ne (ne_of_gt hρ)).continuousAt.continuousWithinAt
+
+/-- `F` is smooth on `{D > 0} ⊇ [0, ∞)`. -/
+theorem contDiffOn_F (ε α : ℝ) : ContDiffOn ℝ ⊤ (F ε α) (Uw ε α) :=
+  contDiff_id.contDiffOn.div ((contDiff_D ε α).pow 2).contDiffOn
+    fun ρ hρ => pow_ne_zero 2 (ne_of_gt hρ)
 
 theorem contDiffOn_Fprime (ε α : ℝ) : ContDiffOn ℝ ⊤ (Fprime ε α) (Uw ε α) := by
   have hN : ContDiff ℝ ⊤ fun ρ : ℝ => ε ^ 2 * Real.exp (-2 * α * ρ) * (1 + 4 * α * ρ) - ρ :=

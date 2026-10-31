@@ -4,7 +4,8 @@ import MathProofs.BandPassFlow
 # E18: corrected curvature-energy positivity on the actual torus H² model
 
 This is a supporting kernel-checked step toward issue #37, *not* the full E18
-Fréchet derivative or Lyapunov theorem. The field is represented by
+Fréchet derivative or Lyapunov theorem (those are `E18Frechet`,
+`E18Representative` and `E18Lyapunov`, certified in `E18Certification`). The field is represented by
 \`BandPass.ell2 d\`, whose \`iota L 1\` image is Fourier H² on the flat torus.
 The normalized measure in the curvature integral is converted to physical
 torus volume by the outside factor \`L ^ d\`.
