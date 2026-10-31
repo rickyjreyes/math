@@ -5,7 +5,7 @@ This Mathlib v4.23.0 project integrates main-line supporting modules with newer 
 
 These proofs advance the mathematical study of WCT-related models without by themselves validating WCT physics. Model-specific no-go statements must not be generalized to an entire program without proof, and independent stability results do not establish a ghost-free physical parent theory. See [research direction](../RESEARCH_DIRECTION.md).
 
-The maintained import tree contains **159 project modules and 2,945 theorem/lemma declarations** (including private source lemmas). **14 of the 14 original manuscripts are complete** under the audit criterion. So are the five F11/F12 manuscripts and the supplementary M2/E17, E58, E61, M3/E57, M6B, E68 and E69 manuscripts. Declaration totals do not measure manuscript completeness. The [review and theorem table](../docs/FORMALIZATION_REVIEW_2026-10-27.md) records exact declarations, restrictions, and passing verification runs. The [analytic certification](../docs/ANALYTIC_CERTIFICATION_2026-10-30.md) does the same for E62, E58, M2/E17, E26, M3/E57, E61, E16, E59 and E13/E14.
+The maintained import tree contains **173 project modules and 3,119 theorem/lemma declarations** (including private source lemmas). **14 of the 14 original manuscripts are complete** under the audit criterion. So are the five F11/F12 manuscripts and the supplementary M2/E17, E58, E61, M3/E57, M6B, E68, E69 and E18 manuscripts. Declaration totals do not measure manuscript completeness. The [review and theorem table](../docs/FORMALIZATION_REVIEW_2026-10-27.md) records exact declarations, restrictions, and passing verification runs. The [analytic certification](../docs/ANALYTIC_CERTIFICATION_2026-10-30.md) does the same for E62, E58, M2/E17, E26, M3/E57, E61, E16, E59 and E13/E14.
 
 ### Manuscript formalizations
 
@@ -82,6 +82,15 @@ The [E69 mapping](../docs/E69_LEAN_MANUSCRIPT_MAPPING.md) maps every assertion o
 - [E69Sobolev](MathProofs/E69Sobolev.lean) — `H^s(ℝⁿ; ℂ)` of every real order by the unitary Fourier transform, a normed subspace of `L²`; the Laplacian `𝓕⁻¹(−|ξ|²𝓕)`, proved to be the classical and the unique weak Laplacian; `‖Δψ‖_{H^{s−2}} ≤ ‖ψ‖_{H^s}`; Fourier inversion on `L¹ ∩ L²`; the embedding `H^r ↪ L^∞` for `r > n/2`.
 - [E69Curvature](MathProofs/E69Curvature.lean) — `Θ_ε[ψ] = −(Δψ)R_ε(ψ)` and Theorem E69 for every `n`, `ε > 0`, real `α` and real `s > n/2 + 2`, with the explicit constant `C_{n,s}`.
 - [E69Remarks](MathProofs/E69Remarks.lean), [E69Torus](MathProofs/E69Torus.lean), [E69Certification](MathProofs/E69Certification.lean) — the four remarks: `H²` does not suffice (`1 ≤ n ≤ 3`), other domains and the flat torus in every dimension, no bound uniform in `ε`, and the vanishing older denominator; the certification interface.
+
+### E18 exact Lyapunov descent certification
+
+The [E18 mapping](../docs/E18_LEAN_MANUSCRIPT_MAPPING.md) maps every proposition, the theorem and both corollaries of the manuscript to a declaration. [E18CertificationAudit.lean](E18CertificationAudit.lean) prints the axioms of all 207 E18 declarations; all use only `propext`, `Classical.choice` and `Quot.sound`.
+
+- [E18FourierEnergy](MathProofs/E18FourierEnergy.lean), [E18WeightDerivative](MathProofs/E18WeightDerivative.lean), [E18VariationAlgebra](MathProofs/E18VariationAlgebra.lean), [E18WeightBounds](MathProofs/E18WeightBounds.lean) — the corrected weight `F(ρ) = ρ/(ρ + ε²e^{−2αρ})²` with `D > 0`, `F ≥ 0`, `F` smooth, the exact `F′`, continuous `F″`, uniform Taylor bounds; the energy on the Fourier `H²(𝕋^d)` model; the six-term variation identity.
+- [E18Frechet](MathProofs/E18Frechet.lean) — the explicit real derivative, `|ℰ[ψ+h] − ℰ[ψ] − DE(ψ)[h]| ≤ C_M‖h‖²_{H²}` on bounded sets, `HasFDerivAt`, the locally Lipschitz derivative and `ℰ ∈ C¹`; the energy as a genuine physical-volume integral.
+- [E18TorusCalculus](MathProofs/E18TorusCalculus.lean), [E18Leibniz](MathProofs/E18Leibniz.lean), [E18Regularity](MathProofs/E18Regularity.lean), [E18Representative](MathProofs/E18Representative.lean) — classical partial derivatives and periodic integration by parts, the Leibniz rule for `Δ`, `F(|ψ|²)Δψ ∈ H²` for `ψ ∈ H⁴`, and `DE(ψ)[h] = 2 Re∫ G[ψ] h̄ dx` for every `h ∈ H²` (the real gradient is `2G`).
+- [E18EnergyGradient](MathProofs/E18EnergyGradient.lean), [E18FlowChainRule](MathProofs/E18FlowChainRule.lean), [E18IntegratedBalance](MathProofs/E18IntegratedBalance.lean), [E18Lyapunov](MathProofs/E18Lyapunov.lean), [E18Certification](MathProofs/E18Certification.lean) — Theorem E18 for `ψ ∈ C¹([0,T]; H⁴)` solving `∂ₜψ = −G[ψ]`: `dℰ/dt = −2‖G‖² = −2‖∂ₜψ‖² ≤ 0`, the integrated identity, monotonicity, zero dissipation ⇔ `G = 0` ⇔ `∂ₜψ = 0`, strict descent, and `∫₀^∞‖G‖² ≤ ℰ[ψ(0)]/2`; conditional on the given solution, with no existence or physical-dynamics claim.
 
 ### Integrated additional proofs and diagnostics
 
@@ -179,6 +188,9 @@ lake env lean E68CertificationAudit.lean
 
 # Dependency audit of the E69 certification
 lake env lean E69CertificationAudit.lean
+
+# Dependency audit of the E18 certification
+lake env lean E18CertificationAudit.lean
 ```
 
 Lean and Mathlib release are pinned to v4.23.0. A dependency lockfile
@@ -186,7 +198,7 @@ is not yet committed.
 
 ## Gaps
 
-All fourteen original manuscripts are complete under the manifest's criterion, and so are the additional families F11 and F12. Of the supplementary operator manuscripts, M2/E17, E58, E61, M3/E57, M6B, E68 and E69 are complete. E18 remains analytic only.
+All fourteen original manuscripts are complete under the manifest's criterion, and so are the additional families F11 and F12. All eight supplementary operator manuscripts (M2/E17, E58, E61, M3/E57, M6B, E68, E69 and E18) are complete. E18 is conditional on an existing regular solution of the specified gradient flow, as in the manuscript; its nonperiodic-domain remark is not formalized.
 
 The F08 obstruction on a smooth four-manifold is fully formalized for an actual global complex scalar, including its covariant fiberwise tensor, nonnegativity, rank/nullity, determinant, pullback covariance, and continuous/C^m tangent-bundle evaluation. The F09 exact determinant, complete clipped derivative, rank, nullity, and C¹ local fiber are now proved together in Lean.
 

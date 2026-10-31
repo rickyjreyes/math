@@ -86,7 +86,7 @@ theorem continuousOn_F (ε α : ℝ) : ContinuousOn (F ε α) (Uw ε α) := fun 
 /-- `F` is smooth on `{D > 0} ⊇ [0, ∞)`. -/
 theorem contDiffOn_F (ε α : ℝ) : ContDiffOn ℝ ⊤ (F ε α) (Uw ε α) :=
   contDiff_id.contDiffOn.div ((contDiff_D ε α).pow 2).contDiffOn
-    fun ρ hρ => pow_ne_zero 2 (ne_of_gt hρ)
+    fun _ hρ => pow_ne_zero 2 (ne_of_gt hρ)
 
 theorem contDiffOn_Fprime (ε α : ℝ) : ContDiffOn ℝ ⊤ (Fprime ε α) (Uw ε α) := by
   have hN : ContDiff ℝ ⊤ fun ρ : ℝ => ε ^ 2 * Real.exp (-2 * α * ρ) * (1 + 4 * α * ρ) - ρ :=
