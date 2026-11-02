@@ -6,6 +6,12 @@
 
 **Source of truth:** [problem_registry.json](problem_registry.json). **Related existing proofs and papers:** [GC01–GC65 cross-reference](GC65_ADOPTION.md). Linked sources do not by themselves change any GC status. **New sketches:** [GC66–GC300 scope-first activation](CANDIDATE_ACTIVATION.md). [Browse all 300](ROADMAP_300.md). The table is an accessible snapshot. An initial literature lead does **not** certify open status; no problem is presently tagged `open_verified`.
 
+## ✅ Complete proofs versus GC resolutions
+
+**✅ [20 completed, exact-scope Lean results are listed here](VERIFIED_LEAN_RESULTS.md).** Each source result has a visible green **COMPLETE** check, linked to its mathematical theorem. This does **not** mark the broader GC problem as solved.
+
+**GC statuses remain:** 299 `candidate`, 1 `partially_resolved` (GC08), 0 `resolved`, and 0 [accepted completion records](completion_records.json). See the [existing-proof cross-reference](GC65_ADOPTION.md) for the original 65 problems.
+
 | ID | Problem | Stage | Review | Flagship dossier | Discussion |
 |:--|:--|:--|:--|:--|:--|
 | GC01 | [Universal orbital stability](FORMAL_PROBLEMS.md#gc01-universal-orbital-stability) | candidate | initial review | [Read](./flagship/GC01.md) | [Issue #54](https://github.com/rickyjreyes/math/issues/54) |
