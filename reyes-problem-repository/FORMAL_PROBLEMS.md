@@ -6,6 +6,8 @@
 
 **Shared notation:** $\mathbb R^d$ is Euclidean space, $\mathbb T^d=(\mathbb R/2\pi\mathbb Z)^d$, $\Delta$ is the Laplacian, $H^s$ denotes the $L^2$ Sobolev space, and all solutions use the natural strong/mild solution concept where it exists. Parameters and operators not fixed by a question must be frozen in its dedicated problem dossier before attempting a proof.
 
+**Illustration navigation (not part of the problem statements):** [GC01 orbital stability](../docs/figures/research-posts/orbital-stability.png) · [GC06 whole-space minimizers](../docs/figures/research-posts/wave-without-walls.png) · [GC16 strict binding](../docs/figures/research-posts/strict-binding.png) · [connected overview](../docs/figures/research-posts/existence-binding-stability.png). See [figure provenance](../docs/figures/research-posts/README.md). All images are conceptual, and the original formal questions below remain unchanged and broader than the cited model-specific theorems.
+
 ## GC01: Universal orbital stability
 
 **Problem.** Classify all standing waves φ∈H²(R²) of $i\partial_t u=(\Delta+k^2)^2u-\beta|u|^2u+\gamma|u|^4u$, β,γ>0, whose phase-translation orbits are stable in H². Give necessary and sufficient spectral/variational conditions, including excited states.
