@@ -40,6 +40,6 @@ This page collects the **research administration, audit and provenance material*
 
 ## Reproducibility
 
-Validation tools remain in [\`scripts/\`](../scripts/), and existing GitHub Actions workflows continue to use their original paths. **Administrative files were not relocated or deleted** because their filenames and relative paths are used by validators and historical links. This documentation hub removes them from the *public reading path* without breaking those references.
+Validation tools remain in [`scripts/`](../scripts/), and existing GitHub Actions workflows continue to use their original paths. **Administrative files were not relocated or deleted** because their filenames and relative paths are used by validators and historical links. This documentation hub removes them from the *public reading path* without breaking those references.
 
 No green completion label on a Lean source implies that the corresponding GC question, physical hypothesis, or novelty assessment is complete. [Return to the research overview](../README.md).
