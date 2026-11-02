@@ -8,7 +8,7 @@ A research collection maintained by Richard J. Reyes. Its purpose is to formulat
 
 ## What is in this collection?
 
-There are **300 research candidates across 12 mathematical subjects**. **GC01–GC65** have preserved, explicit mathematical problem statements; **GC66–GC300** are exploratory research sketches that still require precise hypotheses and prior-art review. The catalogue is **not** a claim to have identified 300 novel unsolved problems. The [problem index](./ROADMAP_300.md) distinguishes formal questions from unreviewed drafts and links to an individual page for every GC identifier. The [12 subject folders](./problems/README.md) provide another route into the collection.
+There are **300 research candidates across 12 mathematical subjects**. **GC01–GC65** have preserved, explicit mathematical problem statements; **GC66–GC300** retain their historical research sketches and now have [235 linked scope-v1 benchmark dossiers](./scoped/README.md), with proposed mathematical models, first tests and outstanding prior-art/review obligations. The catalogue is **not** a claim to have identified 300 novel unsolved problems. The [problem index](./ROADMAP_300.md) distinguishes formal questions from unreviewed drafts and links to an individual page for every GC identifier. The [12 subject folders](./problems/README.md) provide another route into the collection.
 
 The main subjects are nonlinear PDEs, variational analysis, curvature and differential geometry, spectral theory, inverse problems, topological structures, formal verification, and mathematical models of computation. Contributions may prove a proposition, produce a counterexample, sharpen a hypothesis, identify a known theorem, or formulate a testable new problem.
 
@@ -47,7 +47,7 @@ One further example illustrates how negative results count: **[GC08: admissible 
 
 ## How to read a problem
 
-Start with the [subject-organized index](./ROADMAP_300.md). Each entry points to an individual GC page. For GC01–GC65, the [preserved formal statements](./FORMAL_PROBLEMS.md) specify the original research questions. The five dossiers above include explicit models, research boundaries, known work, and possible proof tests. For GC66–GC300, the listed question and first decisive target are *drafts*, not yet fixed theorem statements.
+Start with the [subject-organized index](./ROADMAP_300.md). Each entry points to an individual GC page. For GC01–GC65, the [preserved formal statements](./FORMAL_PROBLEMS.md) specify the original research questions. The five dossiers above include explicit models, research boundaries, known work, and possible proof tests. For GC66–GC300, follow the [scope-v1 dossier](./scoped/README.md) to a benchmark model, falsifiable milestone and audit cautions. These are still *unreviewed research drafts*, not fully frozen or known-open theorem statements. [Provisional difficulty ratings](DIFFICULTY_RUBRIC.md) accompany all 300 entries.
 
 The distinction between an established partial result and a full classification matters. For example, a theorem proving strict binding for a specified interval of masses does not solve a problem asking for **all** masses. The [verified-results index](./VERIFIED_LEAN_RESULTS.md) records exact positive and negative mathematical conclusions separately from GC status.
 
