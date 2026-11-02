@@ -32,6 +32,22 @@ The table is a starting point, not an exhaustive list. Each link opens an indivi
 | **Whole-space Fourier spectra (F10)** | An L² function supported in Fourier space on a measure-zero isolated frequency shell must vanish. | [Fourier-shell proof](preprints/isolated-fourier-shell-no-l2-bound-state/paper.pdf) |
 | **Curvature energy and local estimates** | Whole-space nonattainment for a positive curvature energy; separate counterexamples and corrected hypotheses for localized-energy bounds. | [Nonattainment](preprints/positive-curvature-whole-space-nonattainment/paper.pdf) · [Localized estimates (E68)](preprints/localized-gradient-energy-e68/paper.pdf) |
 
+### Illustrated F01 results
+
+The four images below are **conceptual research illustrations**, not computed PDE solutions, numerically obtained energy minimizers, experimental images, or proof artifacts. The formal statements, within their specified mass and coefficient ranges, are in the linked manuscripts and Lean files. See the [figure gallery and scientific caveats](docs/figures/research-posts/README.md).
+
+| Whole-space localization | Strict binding |
+| :---: | :---: |
+| [<img src="docs/figures/research-posts/wave-without-walls.png" alt="Conceptual depiction of a localized wave without cavity walls" width="400">](preprints/whole-space-fourth-order-cubic-quintic-minimizers/README.md) | [<img src="docs/figures/research-posts/strict-binding.png" alt="Conceptual comparison of one localized field and separated fields" width="400">](preprints/strict-subadditivity-fourth-order-cubic-quintic/README.md) |
+| [Existence and compactness](lean/MathProofs/WholeSpaceMinimizers.lean) | [Strict subadditivity](lean/MathProofs/StrictBinding.lean) |
+
+| Orbital stability | One model, three results |
+| :---: | :---: |
+| [<img src="docs/figures/research-posts/orbital-stability.png" alt="Conceptual illustration of set stability during evolution" width="400">](preprints/orbital-stability-fourth-order-cubic-quintic/README.md) | [<img src="docs/figures/research-posts/existence-binding-stability.png" alt="Illustrated guide to existence, strict binding, and orbital stability" width="400">](docs/figures/research-posts/README.md) |
+| [Full-set orbital stability](lean/MathProofs/OrbitalStability.lean) | [Proof correspondence and assumptions](docs/figures/research-posts/README.md) |
+
+**Interpretation:** Existence is not a claim about a specific plotted shape; binding compares constrained infima rather than plotted energy values; orbital stability is closeness to the entire minimizing set and does not imply attraction.
+
 The scalar-gradient tensor in the F08 result is, for a complex scalar field:
 
 $$
