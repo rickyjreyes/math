@@ -1,5 +1,7 @@
 # Reyes Problem Repository
 
+**[Browse all 300 mathematical research questions, by subject and status](./ROADMAP_300.md)** · [✅ Completed mathematical results](./VERIFIED_LEAN_RESULTS.md) · [Contribute a proof or counterexample](./CONTRIBUTING.md)
+
 **Mathematical questions about nonlinear waves, confinement, geometry, and computation**
 
 A research collection maintained by Richard J. Reyes. Its purpose is to formulate precise mathematical questions, document proved results and counterexamples, and make the remaining problems accessible to independent mathematicians. Several questions are motivated by Wave Confinement Theory (WCT), but a mathematical theorem here does not by itself establish a physical theory.
