@@ -41,3 +41,9 @@ This prints a **draft**, not an opened GitHub issue. You must check all existing
 - A **resolved GC issue** additionally requires a reviewed match to every frozen issue obligation.
 
 This staged process leaves the existing 235 problem sketches untouched, keeps the door open for outside contributions, and allows new mathematical problems to grow out of real verified research.
+
+## Scoped dossier batch, November 2, 2026
+
+A companion [GC66–GC300 scoped-dossier directory](scoped/README.md) now supplies 235 **proposed benchmark models and first tests**. The original 235 question pages remain unchanged. The separate [difficulty ratings](DIFFICULTY_RUBRIC.md) are provisional editorial estimates.
+
+These dossiers do **not** override the activation policy: they are starting proposals, **not** fully frozen or literature-cleared problems. A selected candidate still needs a subject-specific model decision, a nonvacuity check, a documented prior-art comparison, and reviewer-confirmed proof obligations before promotion. P0 concept-first cautions take precedence over any proposed benchmark.
