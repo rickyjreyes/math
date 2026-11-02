@@ -164,7 +164,7 @@ For each claimed transition, **first** freeze a domain, time interval, norm, ini
 | Mode selection | $\eta_B(t)=\|P_Bu(t)\|_2^2/\|u(t)\|_2^2$, for $u(t)\ne0$ and a fixed band $B$ | Growth in a band is not proof of a unique nonlinear wavelength |
 | Saturation | $\sup_{t\ge0}\|u(t)\|_{H^2}\le C(\|u_0\|_{H^2})$, or an explicitly defined absorbing bound | A finite simulation window is not a global bound |
 | Formation | a nonempty basin with a stated convergence notion toward nonzero coherent states | Stability near a pre-existing wave is not formation from distant data |
-| Localization | $\sup_x\int_{|y-x|\le R}|\psi(t,y)|^2dy$ relative to conserved total mass, with $R$ fixed | A finite-box peak is not whole-space concentration |
+| Localization | $\sup_x\int_{\lvert y-x\rvert\le R}\lvert\psi(t,y)\rvert^2dy$ relative to conserved total mass, with $R$ fixed | A finite-box peak is not whole-space concentration |
 | Persistence | $\sup_{t\ge0}\inf_{g\in G}\|u(t)-g p\|_X<\delta$ with a declared symmetry group and small-data premise | Orbital stability is not convergence or attraction |
 | Chaos | a rigorous invariant-set criterion with sensitive/shift-like dynamics or an explicit positive-entropy theorem | Irregular plots, positive *estimated* Lyapunov exponent, or random forcing alone |
 | Propagation | $X(t)/t\to v$, with a nonambiguous front locator $X$, or a modulating-front construction | Group velocity and causal signal speed are different quantities |

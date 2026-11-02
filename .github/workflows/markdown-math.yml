@@ -1,0 +1,38 @@
+name: GitHub Markdown math rendering
+
+on:
+  pull_request:
+    paths:
+      - '**/*.md'
+      - scripts/fix_markdown_math.py
+      - scripts/test_fix_markdown_math.py
+      - .github/workflows/markdown-math.yml
+  push:
+    branches:
+      - main
+    paths:
+      - '**/*.md'
+      - scripts/fix_markdown_math.py
+      - scripts/test_fix_markdown_math.py
+      - .github/workflows/markdown-math.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-markdown-math:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test conversion and protect literal mathematical content
+        run: python3 -m unittest discover -s scripts -p 'test_fix_markdown_math.py' -v
+      - name: Inspect every Markdown file for unrendered mathematical delimiters
+        run: python3 scripts/fix_markdown_math.py --check --report /tmp/markdown-math-audit.json
+      - name: Preserve syntax audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: markdown-math-lint-report
+          path: /tmp/markdown-math-audit.json
+          if-no-files-found: ignore
