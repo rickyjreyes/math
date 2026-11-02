@@ -10,6 +10,8 @@ Results are organized by mathematical subject so exact claims can be assessed wi
 
 **[Browse the complete 300-question roadmap](reyes-problem-repository/ROADMAP_300.md)**, organized into 12 mathematical subjects, including nonlinear waves, self-confinement, curvature, spectral theory, variational analysis, inverse problems, topology, and computation.
 
+**Structured problem reviews:** [300 source-linked mathematical review pages](reyes-problem-repository/formal-reviews/README.md) with model and quantifier checks, literature leads, easier milestones, and explicit status recommendations. They are a screening layer, not 300 fully verified new open problems.
+
 **Scope:** GC01–GC65 have preserved formal problem statements; GC66–GC300 retain their original research sketches and have [235 provisional scoped dossiers](reyes-problem-repository/scoped/README.md). Those dossiers still require independent mathematical and prior-art review. The collection is a research agenda, **not a claim that all 300 questions are independently verified novel open problems**.
 
 | Start here | Research resource |
