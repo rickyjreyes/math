@@ -293,6 +293,19 @@ def recommendation(e: dict, area: str, n: int) -> tuple[str, str]:
             "remaining topology or quantifier choices must pass independent review.")
 
 
+def scoping_audit() -> dict[str, tuple[str,str]]:
+    """Retrieve reviewer cautions directly from the existing October 30 audit."""
+    source=read("SCOPING_AUDIT_GC65_GC300_2026-10-30.md")
+    matches=re.findall(
+        r"^\| \[(GC\d+)\]\([^)]+\) \| ([^|]+) \| ([^|]+) \| ([^|]+) \|$",
+        source, re.M)
+    audit={name:(priority.strip(),correction.strip())
+           for name,_stage,priority,correction in matches}
+    if len(audit)!=236:
+        raise ValueError(f"Expected 236 GC65–GC300 audit records, got {len(audit)}")
+    return audit
+
+
 def first_target(e:dict) -> str:
     return e.get("first_test") or ("Identify the smallest admissible special case of the exact "
          "source target and prove an example or counterexample.")
@@ -325,6 +338,10 @@ def create_page(e: dict, legacy: dict[str,str]) -> str:
     tests=TESTS[area]
     special=SPECIAL.get(key,("", ""))[1]
     note=(f"\n**Specific correction/prior-art collision:** {special}\n" if special else "")
+    audit=e.get("_audit")
+    audit_note=(("**Historical scoping screen ("+audit[0]+"):** "+audit[1])
+                if audit else ("**Historical scoping screen:** See the original "+
+                "[formal statement](../FORMAL_PROBLEMS.md) and research-method checklist."))
     statusFlag=e["status"]
     if n>=66 and (statusFlag!="candidate" or e["literature"]!="not_reviewed"):
         raise ValueError("Unexpected status "+key)
@@ -397,6 +414,7 @@ def create_page(e: dict, legacy: dict[str,str]) -> str:
       "endpoint quantifiers as relevant to the cited model.",
       "- **Prior art:** Conduct a focused, source-by-source full-text review "
       "before calling the result novel, unsolved or independently verified.",
+      "- **Problem-specific October 30 issue:** "+audit_note,
       f"- **First original test:** {first_target(e)}",
       note.rstrip(),
       "",
@@ -420,6 +438,12 @@ def build() -> dict[str,str]:
     expected=[f"GC{n:02d}" for n in range(1,301)]
     assert [e["id"] for e in entries]==expected
     legacy=legacy_statements()
+    audit=scoping_audit()
+    for e in entries:
+        if int(e["id"][2:])>=65:
+            e["_audit"]=audit.get(e["id"])
+            if e["_audit"] is None:
+                raise ValueError("Missing scoped audit for "+e["id"])
     pages={e["id"]+".md":create_page(e,legacy) for e in entries}
     assert len(pages)==300
     chunks=["# Reyes Problem Repository: 300 formal-review pages",
