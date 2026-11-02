@@ -6,6 +6,8 @@
 
 **Source of truth:** [problem_registry.json](problem_registry.json). **Related existing proofs and papers:** [GC01–GC65 cross-reference](GC65_ADOPTION.md). Linked sources do not by themselves change any GC status. **New sketches:** [GC66–GC300 scope-first activation](CANDIDATE_ACTIVATION.md). [Browse all 300](ROADMAP_300.md). The table is an accessible snapshot. An initial literature lead does **not** certify open status; no problem is presently tagged `open_verified`.
 
+**Figure navigation:** [conceptual F01 illustrations](../docs/figures/research-posts/README.md) covering the existing [minimizer](../lean/MathProofs/WholeSpaceMinimizers.lean), [strict-binding](../lean/MathProofs/StrictBinding.lean), and [orbital-stability](../lean/MathProofs/OrbitalStability.lean) results. This is a reader aid, **not** a change to any GC status, problem count, or proof verification.
+
 ## ✅ Complete proofs versus GC resolutions
 
 **✅ [20 completed, exact-scope Lean results are listed here](VERIFIED_LEAN_RESULTS.md).** Each source result has a visible green **COMPLETE** check, linked to its mathematical theorem. This does **not** mark the broader GC problem as solved.
