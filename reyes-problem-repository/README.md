@@ -21,6 +21,14 @@ The Reyes Problem Repository is a living, version-controlled research collection
 ---
 
 
+## ✅ Completed Lean mathematics
+
+**✅ [20 COMPLETE Lean results, exact theorem scope](./VERIFIED_LEAN_RESULTS.md).** Each linked theorem is marked complete for its stated mathematical assumptions. These green checks must not be confused with a completed GC question, physical validation, or independent novelty review.
+
+**GC resolution registry:** 299 candidates, 1 partially resolved (GC08), 0 fully resolved. [GC statuses](./STATUS.md) · [Existing-proof adoption map](./GC65_ADOPTION.md).
+
+---
+
 ## Cross-cutting research: selection, saturation, stability and propagation
 
 The [WCT morphogenesis research program](./MORPHOGENESIS_PROGRAM.md) connects GC11, GC257, GC61, GC185 and GC53 in a common-equation challenge: **which modes grow, what regulates growth, which structures persist, and how do they propagate?** The expanded [dynamics-of-organization dossier](./ORGANIZATION_DYNAMICS.md) covers chaos, stochastic forcing, self-organization, effective-law emergence, spatial localization, solitary-wave interactions, pattern memory and reorganization. It specifies separate deterministic, stochastic, Hamiltonian and multiscale tracks, with testable mathematical milestones **M6–M10**. These are **not** a new GC301 entry, a Lean verification claim, or certified novel open problems. [Research issue #76](https://github.com/rickyjreyes/math/issues/76).
