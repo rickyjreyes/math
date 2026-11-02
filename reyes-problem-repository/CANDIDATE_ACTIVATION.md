@@ -41,3 +41,9 @@ This prints a **draft**, not an opened GitHub issue. You must check all existing
 - A **resolved GC issue** additionally requires a reviewed match to every frozen issue obligation.
 
 This staged process leaves the existing 235 problem sketches untouched, keeps the door open for outside contributions, and allows new mathematical problems to grow out of real verified research.
+
+## Existing scoped mathematical dossiers and difficulty guide
+
+The [GC65–GC300 scoped problem index](scoped/README.md) and [COMMON_MODELS.md](scoped/COMMON_MODELS.md) already preserve **236 individual mathematical/formalization targets** created before the November 2 roadmap update. The November 2 update links **GC66–GC300 directly to those existing dossiers** and adds [provisional difficulty ratings for all 300 GC entries](DIFFICULTY_RUBRIC.md).
+
+No mathematical claim, historical scope file or GC verification status is replaced by a difficulty estimate. Keep the existing subject-specific hypotheses and the October 30 [scoping audit](SCOPING_AUDIT_GC65_GC300_2026-10-30.md) in view. Prior-art comparison, nonvacuity and review are still required before promotion.
