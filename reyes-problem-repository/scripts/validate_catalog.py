@@ -56,11 +56,24 @@ def main():
     require(len(roadmap_ids) == 300 and set(roadmap_ids) == set(IDS),
             "Roadmap must contain each of GC01..GC300 once; thematic order is allowed")
     require(table_ids(status) == IDS, "STATUS must list all 300 entries exactly once")
-    old_anchors = {slug(f"{i}-{title}") for i, title in original_titles.items()}
+    # The public README is a short mathematical overview, not a duplicate of all 65 statements.
+    # The canonical FORMAL_PROBLEMS.md and the 65 individual GC pages remain authoritative.
+    flagship_ids = [e["id"] for e in entries[:65] if e["flagship"]]
+    expected_featured = {slug(f"{i}-{original_titles[i]}") for i in flagship_ids}
     found_anchors = set(re.findall(r"FORMAL_PROBLEMS\.md#(gc\d{2}-[a-z0-9-]+)", readme))
-    require(found_anchors == old_anchors, "Original 65 README links changed or missing")
-    require("./ROADMAP_300.md" in readme and "./problems/README.md" in readme,
-            "Main README missing new navigation")
+    require(found_anchors == expected_featured,
+            "README must feature the five original flagship statements, not duplicate all 65")
+    require(500 <= len(readme.split()) <= 1200,
+            "Public README should remain a concise 500–1200 word mathematical overview")
+    require(all(link in readme for link in
+                ("./ROADMAP_300.md", "./problems/README.md",
+                 "./VERIFIED_LEAN_RESULTS.md", "./CONTRIBUTING.md",
+                 "./docs/README.md", "../CONTENTS.md")),
+            "Main README missing mathematician-first navigation")
+    require((ROOT / "docs" / "README.md").is_file(),
+            "Technical documentation index is missing")
+    require((ROOT / "VERIFIED_LEAN_RESULTS.md").is_file(),
+            "Completed theorem index is missing")
     expansion = load(ROOT / "problems" / "expansion_candidates.json")
     new_items = expansion["entries"]
     require([x["id"] for x in new_items] == IDS[65:],
