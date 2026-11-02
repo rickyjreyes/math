@@ -28,3 +28,13 @@ jobs:
           if grep -rnE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' MathProofs; then exit 1; fi
       - name: Kernel check maintained declarations
         run: lake build
+      - name: Confinement-chain dependency and axiom audit
+        run: |
+          lake env lean scripts_audit/DependencyAudit.lean 2>&1 | tee /tmp/audit.txt
+          grep -q "ROOT ReyesMath.OrbitalStability.main" /tmp/audit.txt
+          grep -o 'axioms: \[[^]]*\]' /tmp/audit.txt | sed 's/axioms: \[//; s/\]//' \
+            | tr ',' '\n' | sed 's/ //g' | sort -u > /tmp/axioms.txt
+          cat /tmp/axioms.txt
+          if grep -vxE 'propext|Classical.choice|Quot.sound' /tmp/axioms.txt; then
+            echo "Unexpected axiom in the confinement chain"; exit 1
+          fi
