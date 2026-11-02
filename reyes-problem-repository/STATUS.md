@@ -17,6 +17,8 @@ This page is a **reading view of [problem_registry.json](problem_registry.json)*
 
 **Separate mathematical accomplishments:** [20 selected formalized Lean results](VERIFIED_LEAN_RESULTS.md) include ✅ exact-scope theorems and counterexamples. Their completion is **not** equivalent to GC completion. See the [adoption audit](GC65_ADOPTION.md) and [existing-work inventory](EXISTING_WORK.md). There are **zero accepted full-GC completion records** in [completion_records.json](completion_records.json).
 
+**Research review layer:** [All 300 structured GC reviews](formal-reviews/README.md) include source statements, subject-related literature references, falsifiable first milestones and status recommendations. These are *editorial reviews*, not status transitions or 300 certified new open problems.
+
 **Problem formulations:** GC01–GC65 have formal original statements; GC66–GC300 retain their original sketches and have [235 provisional scoped dossiers](scoped/README.md). The later dossiers are still unreviewed candidates. All [difficulty ratings](DIFFICULTY_RUBRIC.md) are low-confidence estimates of research effort, not proof progress.
 
 ## Browse by subject
