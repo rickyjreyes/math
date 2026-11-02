@@ -23,6 +23,14 @@ i\partial_t u=(\Delta+k^2)^2u-\beta|u|^2u+\gamma|u|^4u,
 
 For this model, **strict binding, constrained minimizer existence, global evolution, and stability of the minimizing set** are established under an explicit sufficient mass range. The result concerns the set of minimizers, not every standing-wave profile. Separate formalizations address an exact 20-dimensional local observation fiber, curvature-closure nonuniqueness, Fourier analysis, and higher-derivative obstructions.
 
+### Visual guide to the F01 results
+
+[![Conceptual overview of existence, strict binding and orbital stability](../docs/figures/research-posts/existence-binding-stability.png)](../docs/figures/research-posts/README.md)
+
+The illustration connects three **distinct, scoped mathematical theorems** for the model above: [whole-space minimizer existence](../lean/MathProofs/WholeSpaceMinimizers.lean), [strict binding](../lean/MathProofs/StrictBinding.lean), and [orbital stability of the complete minimizing set](../lean/MathProofs/OrbitalStability.lean), all in their specified sufficient mass range. It is **conceptual artwork, not PDE numerical output or a depiction of a proved minimizer shape**.
+
+[Explore the four illustrated results](../docs/figures/research-posts/README.md): [localization](../docs/figures/research-posts/wave-without-walls.png) · [binding](../docs/figures/research-posts/strict-binding.png) · [orbital stability](../docs/figures/research-posts/orbital-stability.png) · [combined overview](../docs/figures/research-posts/existence-binding-stability.png).
+
 **[Read the 20 selected completed Lean results with their precise scopes, source files, and paper links](./VERIFIED_LEAN_RESULTS.md).** A green **✅ COMPLETE** applies to the *stated theorem*, never automatically to a broader GC challenge, and is not evidence of experimental confirmation or international mathematical novelty.
 
 ### Five problems to start with
