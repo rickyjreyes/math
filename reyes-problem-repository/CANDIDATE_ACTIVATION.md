@@ -42,8 +42,8 @@ This prints a **draft**, not an opened GitHub issue. You must check all existing
 
 This staged process leaves the existing 235 problem sketches untouched, keeps the door open for outside contributions, and allows new mathematical problems to grow out of real verified research.
 
-## Scoped dossier batch, November 2, 2026
+## Existing scoped mathematical dossiers and difficulty guide
 
-A companion [GC66–GC300 scoped-dossier directory](scoped/README.md) now supplies 235 **proposed benchmark models and first tests**. The original 235 question pages remain unchanged. The separate [difficulty ratings](DIFFICULTY_RUBRIC.md) are provisional editorial estimates.
+The [GC65–GC300 scoped problem index](scoped/README.md) and [COMMON_MODELS.md](scoped/COMMON_MODELS.md) already preserve **236 individual mathematical/formalization targets** created before the November 2 roadmap update. The November 2 update links **GC66–GC300 directly to those existing dossiers** and adds [provisional difficulty ratings for all 300 GC entries](DIFFICULTY_RUBRIC.md).
 
-These dossiers do **not** override the activation policy: they are starting proposals, **not** fully frozen or literature-cleared problems. A selected candidate still needs a subject-specific model decision, a nonvacuity check, a documented prior-art comparison, and reviewer-confirmed proof obligations before promotion. P0 concept-first cautions take precedence over any proposed benchmark.
+No mathematical claim, historical scope file or GC verification status is replaced by a difficulty estimate. Keep the existing subject-specific hypotheses and the October 30 [scoping audit](SCOPING_AUDIT_GC65_GC300_2026-10-30.md) in view. Prior-art comparison, nonvacuity and review are still required before promotion.
