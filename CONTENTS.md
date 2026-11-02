@@ -12,11 +12,15 @@ Twenty-five corrected WCT registry IDs: Sobolev embeddings, entropy and counting
 
 ## F01 — Fourth-order cubic–quintic variational PDE
 
-**Strict binding for a fourth-order cubic–quintic Hamiltonian** — [PDF](preprints/strict-subadditivity-fourth-order-cubic-quintic/paper.pdf) · [LaTeX source](papers/strict-subadditivity-fourth-order-cubic-quintic/main.tex) · [Notes](preprints/strict-subadditivity-fourth-order-cubic-quintic/README.md)
+**F01 visual guide:** [Four-image gallery](docs/figures/research-posts/README.md) · [Connected result infographic](docs/figures/research-posts/existence-binding-stability.png). These are conceptual illustrations, **not** plots from numerical PDE solutions or evidence of physical validation.
 
-**Whole-space constrained minimizer existence** — [PDF](preprints/whole-space-fourth-order-cubic-quintic-minimizers/paper.pdf) · [LaTeX source](papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex) · [Notes](preprints/whole-space-fourth-order-cubic-quintic-minimizers/README.md)
+![Illustrated summary of existence, strict binding and orbital stability](docs/figures/research-posts/existence-binding-stability.png)
 
-**Orbital stability of the complete minimizing set** — [PDF](preprints/orbital-stability-fourth-order-cubic-quintic/paper.pdf) · [LaTeX source](papers/orbital-stability-fourth-order-cubic-quintic/main.tex) · [Notes](preprints/orbital-stability-fourth-order-cubic-quintic/README.md)
+**Strict binding for a fourth-order cubic–quintic Hamiltonian** — [PDF](preprints/strict-subadditivity-fourth-order-cubic-quintic/paper.pdf) · [LaTeX source](papers/strict-subadditivity-fourth-order-cubic-quintic/main.tex) · [Notes](preprints/strict-subadditivity-fourth-order-cubic-quintic/README.md) · [Figure](docs/figures/research-posts/strict-binding.png)
+
+**Whole-space constrained minimizer existence** — [PDF](preprints/whole-space-fourth-order-cubic-quintic-minimizers/paper.pdf) · [LaTeX source](papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex) · [Notes](preprints/whole-space-fourth-order-cubic-quintic-minimizers/README.md) · [Figure](docs/figures/research-posts/wave-without-walls.png)
+
+**Orbital stability of the complete minimizing set** — [PDF](preprints/orbital-stability-fourth-order-cubic-quintic/paper.pdf) · [LaTeX source](papers/orbital-stability-fourth-order-cubic-quintic/main.tex) · [Notes](preprints/orbital-stability-fourth-order-cubic-quintic/README.md) · [Figure](docs/figures/research-posts/orbital-stability.png)
 
 **Negative constrained energy at all positive masses** — [PDF](preprints/negative-constrained-energy-cubic-quintic/paper.pdf) · [LaTeX source](papers/negative-constrained-energy-cubic-quintic/main.tex) · [Notes](preprints/negative-constrained-energy-cubic-quintic/README.md)
 
