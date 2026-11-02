@@ -1,0 +1,76 @@
+name: Reyes 300 formal-review generation and integrity
+
+on:
+  push:
+    branches:
+      - research/gc300-formal-review-all-2026-11-02
+    paths:
+      - reyes-problem-repository/scripts/build_formal_review_pages.py
+      - .github/workflows/reyes-formal-reviews.yml
+  pull_request:
+    paths:
+      - 'reyes-problem-repository/formal-reviews/**'
+      - reyes-problem-repository/scripts/build_formal_review_pages.py
+      - .github/workflows/reyes-formal-reviews.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-review-pages:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/research/gc300-formal-review-all-2026-11-02'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python syntax and source-preserving review generation
+        run: |
+          python3 -m py_compile reyes-problem-repository/scripts/build_formal_review_pages.py
+          python3 reyes-problem-repository/scripts/build_formal_review_pages.py --write
+          python3 reyes-problem-repository/scripts/build_formal_review_pages.py --check
+      - name: Review all IDs, sections and source links
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('reyes-problem-repository')
+          entries=json.loads((root/'problem_registry.json').read_text())['entries']
+          folder=root/'formal-reviews'
+          ids=[f'GC{n:02d}' for n in range(1,301)]
+          files=sorted(p.stem for p in folder.glob('GC*.md'))
+          assert len(files)==300 and sorted(files)==sorted(ids)
+          for e in entries:
+              doc=(folder/(e['id']+'.md')).read_text()
+              assert doc.startswith('# '+e['id']+': '+e['title'])
+              for heading in ('## Canonical mathematical statement',
+                 '## Resolution criterion', '## Closest known results',
+                 '## Falsifiable first milestones',
+                 '## Notes / remaining modeling decisions',
+                 '## Status recommendation'):
+                  assert heading in doc, (e['id'], heading)
+              for n in range(1,5):
+                  assert f'{n}. ' in doc, (e['id'],'milestone',n)
+              assert 'not** a comprehensive item-by-item novelty review' in doc
+          print('Checked 300/300 research pages, preserved IDs and six required sections')
+          PY
+      - name: Commit generated research pages to the review branch
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reyes-problem-repository/formal-reviews
+          if ! git diff --cached --quiet; then
+            git commit -m 'research: publish 300 source-linked formal-review dossiers [skip ci]'
+            git push origin HEAD:"$GITHUB_REF_NAME"
+          fi
+
+  check-review-pages:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify reproducible 300-question review output
+        run: |
+          python3 -m py_compile reyes-problem-repository/scripts/build_formal_review_pages.py
+          python3 reyes-problem-repository/scripts/build_formal_review_pages.py --check
