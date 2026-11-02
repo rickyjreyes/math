@@ -13,7 +13,7 @@ This page is a **reading view of [problem_registry.json](problem_registry.json)*
 | Candidate | **299** | The complete GC question is not accepted as resolved |
 | 🟡 Partially resolved | **1: [GC08](#confinement-and-curvature-geometry)** | A scoped curvature-closure nonuniqueness counterexample is established, but classification remains open |
 | ✅ Fully resolved | **0** | No GC question is recorded as fully solved |
-| Independent literature review | **6 initial screens; 294 not reviewed** | Initial screening is not a novelty or open-status certification |
+| Literature screening | **6 initial screens; 294 not reviewed** | Initial screening is not independent novelty or open-status certification |
 
 **Separate mathematical accomplishments:** [20 selected formalized Lean results](VERIFIED_LEAN_RESULTS.md) include ✅ exact-scope theorems and counterexamples. Their completion is **not** equivalent to GC completion. See the [adoption audit](GC65_ADOPTION.md) and [existing-work inventory](EXISTING_WORK.md). There are **zero accepted full-GC completion records** in [completion_records.json](completion_records.json).
 
