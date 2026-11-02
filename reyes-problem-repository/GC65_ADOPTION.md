@@ -8,6 +8,10 @@
 
 [300-problem roadmap](ROADMAP_300.md) · [Original statements](FORMAL_PROBLEMS.md) · [Research workflow](WORKFLOW.md) · [Existing manuscript verification status](../lean/formalization.yaml) · [Machine adoption links](existing_work_links.json)
 
+## ✅ Completed exact-scope theorem index
+
+**[✅ View all 20 COMPLETE Lean results](VERIFIED_LEAN_RESULTS.md).** The green checks apply to proved model-specific mathematical statements. GC problem statuses remain separate and are not upgraded by this source cross-reference alone. In particular, the newer V18 rank/nullity and local-fiber theorems are included in the complete-results index even though the conservative initial GC26 mapping below predates them.
+
 | Problem | Existing GC issue | Related research artifacts | Relationship | Scope boundary requiring review |
 |:--|:--|:--|:--|:--|
 | [GC01: Universal orbital stability](./problems/01-wave-dynamics/GC01.md) | [#54](https://github.com/rickyjreyes/math/issues/54) | [Lean: OrbitalStability.lean](../lean/MathProofs/OrbitalStability.lean); [Lean: CubicQuinticFlow.lean](../lean/MathProofs/CubicQuinticFlow.lean); [Paper: orbital-stability-fourth-order-cubic-quintic](../papers/orbital-stability-fourth-order-cubic-quintic/main.tex) | Direct, partial evidence | Minimizer-set orbital stability under a sufficient mass bound does not classify excited standing waves. |
