@@ -1,10 +1,14 @@
 # Reyes Problem Repository
 
-**Mathematical questions about nonlinear waves, confinement, geometry, and computation**
+**300 mathematical research questions across 12 subjects**
+
+## [Browse the complete 300-question roadmap](./ROADMAP_300.md)
+
+Select a GC problem by mathematical subject, review its existing evidence and provisional difficulty rating, and follow the original problem page and scoped dossier where available. **These are research candidates, not 300 literature-verified unsolved conjectures.**
+
+**Start here:** [All 300 questions](./ROADMAP_300.md) · [Established exact-scope Lean results](./VERIFIED_LEAN_RESULTS.md) · [Contribute a proof or counterexample](./CONTRIBUTING.md) · [Papers](../CONTENTS.md) · [Technical documentation](./docs/README.md)
 
 A research collection maintained by Richard J. Reyes. Its purpose is to formulate precise mathematical questions, document proved results and counterexamples, and make the remaining problems accessible to independent mathematicians. Several questions are motivated by Wave Confinement Theory (WCT), but a mathematical theorem here does not by itself establish a physical theory.
-
-**[Problems: all 300](./ROADMAP_300.md) · [Verified results](./VERIFIED_LEAN_RESULTS.md) · [Papers](../CONTENTS.md) · [Contribute](./CONTRIBUTING.md) · [Documentation](./docs/README.md)**
 
 ## What is in this collection?
 
