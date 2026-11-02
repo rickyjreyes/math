@@ -1,26 +1,42 @@
 # Research post graphics
 
-Four conceptual scientific illustrations accompanying Richard J. Reyes's fourth-order cubic–quintic mathematical research.
+Four visual companions to the fourth-order cubic–quintic mathematical results of Richard J. Reyes.
 
-**Evidence classification:** The PNG figures are schematic editorial illustrations, not numerical PDE solutions, numerical energy surfaces, computed trajectories, or physical experimental evidence. Mathematical claims must be interpreted within the hypotheses of the cited Lean declarations and manuscripts.
+**Evidence classification:** These graphics are **conceptual illustrations**, not outputs of the PDE solver, numerical minimizers, numerical energy comparisons, simulated trajectories, or experimental evidence. Read all mathematical claims with the conditions in the linked papers and Lean declarations.
 
-## Figures
+## One model, three connected results
 
-| Figure | File | Supporting formalization |
-| --- | --- | --- |
-| Orbital stability | `orbital-stability.png` | [OrbitalStability.lean](../../../lean/MathProofs/OrbitalStability.lean) |
-| Existence, strict binding and orbital stability | `existence-binding-stability.png` | [WholeSpaceMinimizers.lean](../../../lean/MathProofs/WholeSpaceMinimizers.lean), [StrictBinding.lean](../../../lean/MathProofs/StrictBinding.lean), [OrbitalStability.lean](../../../lean/MathProofs/OrbitalStability.lean) |
-| Whole-space localization without a cavity | `wave-without-walls.png` | [WholeSpaceMinimizers.lean](../../../lean/MathProofs/WholeSpaceMinimizers.lean) |
-| Strict binding | `strict-binding.png` | [StrictBinding.lean](../../../lean/MathProofs/StrictBinding.lean) |
+![One mathematical model: existence, strict binding, and orbital stability](existence-binding-stability.png)
 
-The four image files are not present in this commit; this index records their planned filenames and proof correspondence without implying that they have already been uploaded.
+- **Manuscripts:** [whole-space minimizers](../../../preprints/whole-space-fourth-order-cubic-quintic-minimizers/README.md), [strict binding](../../../preprints/strict-subadditivity-fourth-order-cubic-quintic/README.md), [orbital stability](../../../preprints/orbital-stability-fourth-order-cubic-quintic/README.md)
+- **Lean:** [WholeSpaceMinimizers.lean](../../../lean/MathProofs/WholeSpaceMinimizers.lean), [StrictBinding.lean](../../../lean/MathProofs/StrictBinding.lean), [OrbitalStability.lean](../../../lean/MathProofs/OrbitalStability.lean)
 
-## Mathematical scope
+## Whole-space localization without cavity walls
 
-For the specified fourth-order focusing-cubic/defocusing-quintic variational model on `H²(ℝ²; ℂ)`, within its explicit mass and parameter range:
+![Localized energy minimizers in an unbounded two-dimensional domain, schematic](wave-without-walls.png)
 
-- **Existence:** constrained energy minimizers exist in unbounded two-dimensional space, with compactness of minimizing sequences modulo translations.
-- **Strict binding:** `I(m) < I(μ) + I(m − μ)` for `0 < μ < m ≤ m_B`.
-- **Orbital stability:** sufficiently near the full minimizing set, solutions stay near that set in `H²` for all time, under the specified global evolution.
+- **Manuscript:** [Whole-space constrained minimizers](../../../preprints/whole-space-fourth-order-cubic-quintic-minimizers/README.md)
+- **Lean:** [WholeSpaceMinimizers.lean](../../../lean/MathProofs/WholeSpaceMinimizers.lean)
+- No radial symmetry is imposed in the theorem. The displayed ring is a conceptual motif, **not** an asserted shape or symmetry of a proved minimizer.
 
-These are mathematical results about the stated model, not a physical validation of Wave Confinement Theory. The graphics must not be presented as solver-produced output.
+## Strict binding
+
+![Schematic comparison of one localized structure and two separated structures](strict-binding.png)
+
+- **Manuscript:** [Strict subadditivity](../../../preprints/strict-subadditivity-fourth-order-cubic-quintic/README.md)
+- **Lean:** [StrictBinding.lean](../../../lean/MathProofs/StrictBinding.lean)
+- The actual theorem is `I(m) < I(μ) + I(m − μ)` for `0 < μ < m ≤ m_B`, with the coefficient and model assumptions in the Lean statement. The illustrated surfaces are **not computed minimizers or energy values**.
+
+## Orbital stability
+
+![Different schematic profiles illustrating proximity to the minimizing set](orbital-stability.png)
+
+- **Manuscript:** [Orbital stability of the complete minimizing set](../../../preprints/orbital-stability-fourth-order-cubic-quintic/README.md)
+- **Lean:** [OrbitalStability.lean](../../../lean/MathProofs/OrbitalStability.lean)
+- Stability is of the **full set of minimizers** in `H²(ℝ²; ℂ)`. The stages in the image are **not measured or computed time steps**, and the theorem does not claim attraction or uniqueness.
+
+## Scientific scope
+
+The mathematical model is the specified fourth-order focusing-cubic/defocusing-quintic Hamiltonian on `H²(ℝ²; ℂ)`, within the proven parameter and mass range. These are independent mathematical statements and do **not** by themselves validate a physical free-space confinement mechanism or establish that the illustrated wave profiles solve the PDE.
+
+For the formal research catalogue, see [CONTENTS.md](../../../CONTENTS.md). For the source methodology and theorem limitations, see the [repository README](../../../README.md).
