@@ -8,6 +8,8 @@
 
 There are 12 subjects with 25 questions each. The [original 65 statements](./FORMAL_PROBLEMS.md), [five detailed research dossiers](./README.md#five-problems-to-start-with), and [completed-results index](./VERIFIED_LEAN_RESULTS.md) provide the technical starting points.
 
+**Illustrated F01 theorem chain:** [existence, binding, and orbital stability](../docs/figures/research-posts/README.md) (conceptual figures only). The [GC01](problems/01-wave-dynamics/GC01.md), [GC06](problems/02-confinement-curvature/GC06.md), and [GC16](problems/04-variational-solitons/GC16.md) pages link the illustrations to **narrower completed theorems**; the corresponding general problem statuses below are unchanged.
+
 ## [Nonlinear wave dynamics](./problems/01-wave-dynamics/README.md)
 
 Global evolution, solitary states, scattering channels and coherent-wave stability.
