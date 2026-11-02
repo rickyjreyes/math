@@ -6,6 +6,8 @@
 
 A research collection maintained by Richard J. Reyes. Its purpose is to formulate precise mathematical questions, document proved results and counterexamples, and make the remaining problems accessible to independent mathematicians. Several questions are motivated by Wave Confinement Theory (WCT), but a mathematical theorem here does not by itself establish a physical theory.
 
+**Research review pages:** [All 300 model and literature-aware screening dossiers](./formal-reviews/README.md). Each page preserves its underlying mathematical question, cites relevant prior-art starting points and identifies remaining proof, nonvacuity and novelty-review work. These are **not** 300 independently reviewed or proved problems.
+
 **Further resources:** [Papers](../CONTENTS.md) · [Scoped mathematical dossiers](./scoped/README.md) · [Difficulty-rating rubric](./DIFFICULTY_RUBRIC.md) · [Technical documentation](./docs/README.md)
 
 ## What is in this collection?
