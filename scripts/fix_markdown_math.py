@@ -72,6 +72,14 @@ def rewrite_line(line: str, path: str, n: int,
         return "$" + expression + "$"
     result = INLINE.sub(sub, line)
     protected_spans = inline_code_ranges(result)
+    # GitHub tables split at raw vertical bars even when they occur in inline math.
+    # Keep the original equation and surface the location for human review.
+    if line.lstrip().startswith("|"):
+        for math in re.finditer(r"(?<!\\)\$(?!\$)(.*?)(?<!\\)\$", result):
+            if not overlaps(*math.span(), protected_spans):
+                if re.search(r"(?<!\\)\|", math.group(1)):
+                    warnings.append({"file": path, "line": n,
+                                     "problem": "unescaped_pipe_inside_table_math"})
     for pat, name in ((LATEX_DELIM, "unpaired_or_ambiguous_delimiter"),
                       (BARE_ENV, "bare_latex_environment")):
         for m in pat.finditer(result):
@@ -91,6 +99,7 @@ def transform(data: str, path: str) -> tuple[str, dict, list[dict]]:
     html_code = False
     html_comment = False
     frontmatter = bool(lines and lines[0].strip() == "---")
+    dollar_display = False
     for n, original in enumerate(lines, 1):
         line = original.rstrip("\r\n")
         ending = original[len(line):]
@@ -98,6 +107,15 @@ def transform(data: str, path: str) -> tuple[str, dict, list[dict]]:
             result.append(original)
             if n > 1 and line.lstrip() in ("---", "..."):
                 frontmatter = False
+            continue
+        # Existing GitHub MathJax display blocks already contain mathematical TeX.
+        # Do not rewrite delimiters nested inside them.
+        if not fence_len and line.strip() == "$":
+            result.append(original)
+            dollar_display = not dollar_display
+            continue
+        if dollar_display and not fence_len:
+            result.append(original)
             continue
         fm = FENCE.match(line)
         if fence_len:
