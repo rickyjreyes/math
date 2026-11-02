@@ -541,7 +541,9 @@
       ],
       "related_lean": [
         "lean/MathProofs/V18FullForward.lean",
-        "lean/MathProofs/V18MiddleJacobian.lean"
+        "lean/MathProofs/V18MiddleJacobian.lean",
+        "lean/MathProofs/V18Rank.lean",
+        "lean/MathProofs/V18Identifiability.lean"
       ],
       "related_papers": [
         "papers/sm-v18-local-identifiability-obstruction/main.tex"
@@ -553,7 +555,7 @@
         "ReyesMath.V18Forward.jacobian",
         "ReyesMath.V18Forward.null_direction"
       ],
-      "scope_gap": "The 31-parameter clipped spectral model has a checked differential-rank/nullity obstruction, but the exact full Jacobian rank and global injectivity classification are not thereby settled.",
+      "scope_gap": "The full 31-parameter observation derivative has rank 11 and nullity 20 at the frozen point, and a 20-dimensional local equal-output fiber is proved in the ambient domain; classification throughout the constrained parameter domain and its boundary behavior remain unresolved.",
       "correspondence": "not_audited"
     },
     {
