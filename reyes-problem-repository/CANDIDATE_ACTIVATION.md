@@ -1,49 +1,25 @@
-# Activating GC66–GC300 without rewriting the research
+# Activating a GC research question
 
-**Current state:** GC66–GC300 are 235 early-stage research sketches in [the 12-folder roadmap](ROADMAP_300.md). Each has a proposed research question and first decisive target. They are **not** 235 globally certified novel open problems or fully quantified theorems.
+**Short operational guide.** For the full scoping and literature method use [METHOD.md](METHOD.md); for issue, pull-request, Lean, and review requirements use [WORKFLOW.md](WORKFLOW.md). This page stays because it contains the **GC-specific entry route and issue generator**. It is not a second mathematical status policy.
 
-**Policy:** Do not rewrite all 235 in advance. Select a candidate when the researcher or an outside contributor wants to work on it, and freeze the mathematical problem before labeling its issue solvable. This precision serves the continuing WCT research program without assuming its physical hypotheses are true or treating a model-specific failure as a universal defeat. [Research direction](../RESEARCH_DIRECTION.md).
+**Current corpus (November 2, 2026):** [ROADMAP_300.md](ROADMAP_300.md) covers 300 questions; [scoped/README.md](scoped/README.md) contains **236 existing GC65–GC300 scoped dossiers**. GC66–GC300 have proposed precise targets but remain unreviewed candidate research questions. None becomes a new, globally verified open problem merely because a scoped dossier exists. The 1–10 [difficulty ratings](DIFFICULTY_RUBRIC.md) measure subjective research burden, not proof completion.
 
-## Scope-first checklist
+## Activate one candidate
 
-1. **Choose the existing GC file:** Read its current title, research question, suggested test and parent IDs. Keep the permanent ID and original draft wording as historical context.
-2. **Search existing sources:** First check [the original 65 source adoption map](GC65_ADOPTION.md), [Lean formalization status](../lean/formalization.yaml), [manuscripts](../CONTENTS.md), existing GitHub issues and scholarly literature. Search across other research repositories where relevant, without assuming a similarly named theorem establishes the claim.
-3. **Freeze the model and hypotheses:** Specify the exact equation or operator, domain, initial/boundary conditions, function spaces, parameter ranges and all quantifiers. Separate physical hypotheses from purely mathematical statements.
-4. **Choose the issue type:** If the model is not yet precise, open a **scoping task**. When precise, create a **whole-problem issue** or a smaller verifiable milestone, citing the GC source and searching for duplicates first. Never label a newly generated conjecture as already verified open.
-5. **Define success in advance:** A proof or counterexample must meet an explicit acceptance checklist. Include small cases that could refute the claim and define what a positive construction would establish. When a claim fails, record the exact scope and next meaningful construction or test rather than silently moving the target or declaring all WCT models disproven.
-6. **Contribute in either direction:** Paper → Lean or Lean → optional paper. A PR can add a partial analytic result without calling the full issue verified. For *formal completion*, provide the exact Lean declaration and successful CI run, plus independent review that it meets the frozen issue statement.
-7. **Preserve history and attribution:** Corrections and new subproblems belong in linked issues and PRs. Do not move or replace existing papers or formal proofs. A milestone can close even when the parent GC stays open.
+1. **Choose a fixed ID and read both files:** start from [the roadmap](ROADMAP_300.md), follow the original problem under `problems/`, and inspect its `scoped/GCxx.md` formulation (GC65–GC300) or the original [formal statements](FORMAL_PROBLEMS.md) (GC01–GC65). The scoped statement is not automatically the final accepted problem.
+2. **Check for solved subclaims before doing work:** read [existing source and proof mappings](EXISTING_WORK.md), [exact-scope verified results](VERIFIED_LEAN_RESULTS.md), [the GC65 adoption inventory](GC65_ADOPTION.md), prior issues, and [the literature ledger](LITERATURE.md). Do not duplicate an existing theorem or confuse a partial source proof with full GC closure.
+3. **Freeze the issue obligation:** record the exact equation or algorithm, domain, regularity, parameter values/ranges, quantifiers, nonvacuity, known counterexamples, literature comparisons and a precise yes/no or quantified milestone. [October 30 scoping objections](SCOPING_AUDIT_GC65_GC300_2026-10-30.md) must be addressed, especially P0 concerns.
+4. **Draft a GitHub issue without opening one automatically:**
 
-## Illustrative activation of GC66
+   ```bash
+   python3 reyes-problem-repository/scripts/render_gc_issue.py GC66
+   ```
 
-[GC66: Internal-mode radiation damping](problems/01-wave-dynamics/GC66.md) currently asks whether an isolated internal mode near a localized excited state radiates energy.
+   Search for an existing GC or mathematically equivalent issue before opening another. The [issue form](https://github.com/rickyjreyes/math/issues/new?template=gc_problem.yml) captures the target and evidence.
+5. **Verify only what is proved:** a PR cites its specific issue obligation, source theorem, exact Lean declaration/commit and CI when applicable. A narrower result may close its milestone **without** marking its parent GC solved. Update [STATUS.md](STATUS.md), [problem_registry.json](problem_registry.json) and [completion_records.json](completion_records.json) only when their respective review requirements are satisfied.
 
-Before opening a proof-completion issue, fix **which excited state exists**, the stationary equation and spectral assumptions, a precise meaning of isolated internal mode and continuous spectrum, the nonlinear resonance condition, and the time-asymptotic damping norm. The proposed first test is to compute a resonance coupling coefficient or exhibit a symmetry forcing it to vanish.
+## Before the GC catalogue
 
-Until those are fixed, the honest task is *scope and literature review*, not a claim that a particular universal damping theorem is unsolved.
+Use [NOTEBOOK.md](NOTEBOOK.md) for new, speculative questions, negative findings or conceptual forks that do **not** yet warrant a numbered GC. The notebook is a discovery log, not a second registry. Preserve refuted ideas and their source citations rather than deleting inconvenient results.
 
-## Draft an issue, do not generate hundreds
-
-At the repository root:
-
-```bash
-python3 reyes-problem-repository/scripts/render_gc_issue.py GC66
-```
-
-This prints a **draft**, not an opened GitHub issue. You must check all existing issues manually, including related problems in other repositories. The generator rejects GC IDs already linked to an existing GC issue in the adoption register. The existing [GC problem issue form](https://github.com/rickyjreyes/math/issues/new?template=gc_problem.yml) captures the exact claim and acceptance criteria.
-
-## Do not confuse stages
-
-- A **candidate outline** is an interesting research direction.
-- A **frozen mathematical problem** is a definite theorem or counterexample target.
-- A **paper** presents an argument and may precede or follow Lean.
-- A **Lean-checked theorem** establishes the proposition that it encodes.
-- A **resolved GC issue** additionally requires a reviewed match to every frozen issue obligation.
-
-This staged process leaves the existing 235 problem sketches untouched, keeps the door open for outside contributions, and allows new mathematical problems to grow out of real verified research.
-
-## Existing scoped mathematical dossiers and difficulty guide
-
-The [GC65–GC300 scoped problem index](scoped/README.md) and [COMMON_MODELS.md](scoped/COMMON_MODELS.md) already preserve **236 individual mathematical/formalization targets** created before the November 2 roadmap update. The November 2 update links **GC66–GC300 directly to those existing dossiers** and adds [provisional difficulty ratings for all 300 GC entries](DIFFICULTY_RUBRIC.md).
-
-No mathematical claim, historical scope file or GC verification status is replaced by a difficulty estimate. Keep the existing subject-specific hypotheses and the October 30 [scoping audit](SCOPING_AUDIT_GC65_GC300_2026-10-30.md) in view. Prior-art comparison, nonvacuity and review are still required before promotion.
+**Evidence rule:** Formal proof, numerical observation, novelty assessment and physical validation are separate claims. Retain original theorem authorship and unchanged historical questions.

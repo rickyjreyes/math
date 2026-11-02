@@ -1,34 +1,42 @@
 # Foundational research screening shortlist
 
-**25 priority candidates, not 25 independently verified grand open problems.** These candidates prioritize mathematically tractable steps toward the continuing WCT foundational research objective, including self-confinement, stable dynamics, consistent parent theories and physical discrimination. The math can stand independently, but neither its verification nor model-specific obstructions automatically validate or refute WCT physics. Initial mathematical statements, novelty and formal correctness require independent review. This designation does not imply a prize, unsolved status or exceptional difficulty. See [research direction](../RESEARCH_DIRECTION.md).
+**25 priority research candidates, not 25 independently verified grand open problems.** These candidates prioritize mathematically tractable steps toward the continuing WCT foundational research objective, including self-confinement, stable dynamics, consistent parent theories and physical discrimination. The math can stand independently, but neither its verification nor model-specific obstructions automatically validate or refute WCT physics. Initial mathematical statements, novelty and formal correctness require independent review. This designation does not imply a prize, unsolved status or exceptional difficulty. See [research direction](../RESEARCH_DIRECTION.md).
 
-| ID | Research question | Theme | Evidence stage |
-|:--|:--|:--|:--|
-| GC01 | [Universal orbital stability](./problems/01-wave-dynamics/GC01.md) | Nonlinear wave dynamics | initial review |
-| GC02 | [Long-time asymptotic stability](./problems/01-wave-dynamics/GC02.md) | Nonlinear wave dynamics | not reviewed |
-| GC03 | [Global existence versus blow-up](./problems/01-wave-dynamics/GC03.md) | Nonlinear wave dynamics | not reviewed |
-| GC05 | [Breather existence and classification](./problems/01-wave-dynamics/GC05.md) | Nonlinear wave dynamics | not reviewed |
-| GC06 | [Self-confinement criteria](./problems/02-confinement-curvature/GC06.md) | Confinement and curvature geometry | initial review |
-| GC16 | [Strict binding across masses](./problems/04-variational-solitons/GC16.md) | Variational analysis and solitons | not reviewed |
-| GC17 | [Constrained-minimizer uniqueness](./problems/04-variational-solitons/GC17.md) | Variational analysis and solitons | not reviewed |
-| GC25 | [Consistent parent theories](./problems/05-higher-derivative-fields/GC25.md) | Higher-derivative field theory | not reviewed |
-| GC30 | [Partial-data spectral uniqueness](./problems/06-inverse-observation-control/GC30.md) | Inverse problems, observability and control | not reviewed |
-| GC35 | [Infinite-domain pattern selection](./problems/07-pattern-formation/GC35.md) | Pattern formation and disorder | not reviewed |
-| GC36 | [Stable knotted wave configurations](./problems/08-topology-multicomponent/GC36.md) | Topology and multicomponent fields | initial review |
-| GC41 | [Decidability of PDE stability](./problems/09-computability-complexity/GC41.md) | Computability and complexity | not reviewed |
-| GC43 | [Discrete-wave computational universality](./problems/09-computability-complexity/GC43.md) | Computability and complexity | initial review |
-| GC44 | [Sequential-work lower bounds](./problems/09-computability-complexity/GC44.md) | Computability and complexity | not reviewed |
-| GC45 | [Precision and noise limits](./problems/09-computability-complexity/GC45.md) | Computability and complexity | not reviewed |
-| GC46 | [Verified infinite-dimensional evolution](./problems/10-lean-certified-analysis/GC46.md) | Lean formalization and certified analysis | not reviewed |
-| GC51 | [Soliton resolution and asymptotic completeness](./problems/01-wave-dynamics/GC51.md) | Nonlinear wave dynamics | not reviewed |
-| GC52 | [Rigorous emergence of effective wave equations](./problems/11-physical-emergence-multiscale/GC52.md) | Physical emergence and multiscale limits | not reviewed |
-| GC53 | [Universal confinement and stability thresholds](./problems/02-confinement-curvature/GC53.md) | Confinement and curvature geometry | not reviewed |
-| GC54 | [Nonlinear scattering and threshold resonances](./problems/03-spectral-scattering/GC54.md) | Spectral theory and scattering | not reviewed |
-| GC55 | [Scaling universality and critical phenomena](./problems/04-variational-solitons/GC55.md) | Variational analysis and solitons | not reviewed |
-| GC59 | [Nonlinear observability and control](./problems/06-inverse-observation-control/GC59.md) | Inverse problems, observability and control | not reviewed |
-| GC60 | [Singular limits and multiscale consistency](./problems/11-physical-emergence-multiscale/GC60.md) | Physical emergence and multiscale limits | not reviewed |
-| GC63 | [Physical information and energy limits of wave computation](./problems/12-photonic-wave-computing/GC63.md) | Photonic computation and physical information | not reviewed |
-| GC65 | [Verified mathematical model reduction](./problems/10-lean-certified-analysis/GC65.md) | Lean formalization and certified analysis | not reviewed |
+| ID | Research question | Existing scoped theorem | Relation to complete GC question | Actual GC registry stage |
+|:--|:--|:--|:--|:--|
+| GC01 | [Universal orbital stability](./problems/01-wave-dynamics/GC01.md) | ✅ [Minimizer-set orbital stability](../lean/MathProofs/OrbitalStability.lean) | 🟡 Narrow solved stability class; excited states unclassified | `candidate` · initial review |
+| GC02 | [Long-time asymptotic stability](./problems/01-wave-dynamics/GC02.md) | ✅ [Global flow](../lean/MathProofs/CubicQuinticFlow.lean) (adjacent) | ⚪ No asymptotic-decay theorem | `candidate` · not reviewed |
+| GC03 | [Global existence versus blow-up](./problems/01-wave-dynamics/GC03.md) | ✅ [Global H² flow](../lean/MathProofs/CubicQuinticFlow.lean) | 🟡 One specified 2D model, not all nonlinearities | `candidate` · not reviewed |
+| GC05 | [Breather existence and classification](./problems/01-wave-dynamics/GC05.md) | ⚪ No matched result identified | ⚪ Breather existence/classification unproved | `candidate` · not reviewed |
+| GC06 | [Self-confinement criteria](./problems/02-confinement-curvature/GC06.md) | ✅ [Whole-space minimizers](../lean/MathProofs/WholeSpaceMinimizers.lean) + [strict binding](../lean/MathProofs/StrictBinding.lean) | 🟡 Sufficient mass range; complete parameter classification open | `candidate` · initial review |
+| GC16 | [Strict binding across masses](./problems/04-variational-solitons/GC16.md) | ✅ [Strict binding](../lean/MathProofs/StrictBinding.lean) | 🟡 Every split in proved mass range; not all masses | `candidate` · not reviewed |
+| GC17 | [Constrained-minimizer uniqueness](./problems/04-variational-solitons/GC17.md) | ✅ [Minimizer existence](../lean/MathProofs/WholeSpaceMinimizers.lean) (adjacent) | ⚪ Existence does not establish uniqueness | `candidate` · not reviewed |
+| GC25 | [Consistent parent theories](./problems/05-higher-derivative-fields/GC25.md) | ✅ [UV obstruction](../lean/MathProofs/UVIllPosedness.lean) + [higher-derivative no-go](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/lean/ReleaseProofs/R16_CompletionClasses.lean) | 🟡 Specific failed constructions; parent theory classification open | `candidate` · not reviewed |
+| GC30 | [Partial-data spectral uniqueness](./problems/06-inverse-observation-control/GC30.md) | ⚪ No mapped direct proof | ⚪ Partial-data uniqueness unresolved | `candidate` · not reviewed |
+| GC35 | [Infinite-domain pattern selection](./problems/07-pattern-formation/GC35.md) | ✅ [Dispersion minimum](../lean/MathProofs/DispersionMinimum.lean) (adjacent) | ⚪ Linear selection is not nonlinear infinite-domain selection | `candidate` · not reviewed |
+| GC36 | [Stable knotted wave configurations](./problems/08-topology-multicomponent/GC36.md) | ⚪ No GC-matched proof | ⚪ Knotted dynamics and stability unproved | `candidate` · initial review |
+| GC41 | [Decidability of PDE stability](./problems/09-computability-complexity/GC41.md) | ⚪ No GC-matched proof | ⚪ General decidability question open to scoping | `candidate` · not reviewed |
+| GC43 | [Discrete-wave computational universality](./problems/09-computability-complexity/GC43.md) | ⚪ No accepted GC-matched simulation theorem | ⚪ Frozen rule and simulation obligations remain | `candidate` · initial review |
+| GC44 | [Sequential-work lower bounds](./problems/09-computability-complexity/GC44.md) | ✅ [Transcript lower bound](https://github.com/rickyjreyes/PVNP/blob/main/lean/PVNP/Communication.lean) (adjacent) | ⚪ Does not imply general sequential-work lower bounds | `candidate` · not reviewed |
+| GC45 | [Precision and noise limits](./problems/09-computability-complexity/GC45.md) | ✅ [Split-SAT capacity bound](https://github.com/rickyjreyes/PVNP/blob/main/lean/PVNP/SplitSATCapacity.lean) (adjacent) | ⚪ Does not prove wave noise/precision limits | `candidate` · not reviewed |
+| GC46 | [Verified infinite-dimensional evolution](./problems/10-lean-certified-analysis/GC46.md) | ✅ [Global H² evolution](../lean/MathProofs/CubicQuinticFlow.lean) | 🟡 Potential close match, theorem-to-GC audit pending | `candidate` · not reviewed |
+| GC51 | [Soliton resolution and asymptotic completeness](./problems/01-wave-dynamics/GC51.md) | ✅ [Orbital stability](../lean/MathProofs/OrbitalStability.lean) (adjacent) | ⚪ Not soliton resolution or asymptotic completeness | `candidate` · not reviewed |
+| GC52 | [Rigorous emergence of effective wave equations](./problems/11-physical-emergence-multiscale/GC52.md) | ⚪ No matched effective-equation derivation | ⚪ Uniform micro-to-macro error bound absent | `candidate` · not reviewed |
+| GC53 | [Universal confinement and stability thresholds](./problems/02-confinement-curvature/GC53.md) | ✅ [Minimizers](../lean/MathProofs/WholeSpaceMinimizers.lean) + [stability](../lean/MathProofs/OrbitalStability.lean) | 🟡 Model/mass-restricted; universal thresholds unproved | `candidate` · not reviewed |
+| GC54 | [Nonlinear scattering and threshold resonances](./problems/03-spectral-scattering/GC54.md) | ⚪ No matched nonlinear scattering theorem | ⚪ Threshold-resonance classification remains | `candidate` · not reviewed |
+| GC55 | [Scaling universality and critical phenomena](./problems/04-variational-solitons/GC55.md) | ✅ [Strict binding](../lean/MathProofs/StrictBinding.lean) (adjacent) | ⚪ Not a critical-scaling universality classification | `candidate` · not reviewed |
+| GC59 | [Nonlinear observability and control](./problems/06-inverse-observation-control/GC59.md) | ⚪ No matched nonlinear-control theorem | ⚪ Observability/control question remains | `candidate` · not reviewed |
+| GC60 | [Singular limits and multiscale consistency](./problems/11-physical-emergence-multiscale/GC60.md) | ⚪ No matched uniform singular-limit theorem | ⚪ Multiscale consistency not established | `candidate` · not reviewed |
+| GC63 | [Physical information and energy limits of wave computation](./problems/12-photonic-wave-computing/GC63.md) | ✅ [Finite information bound](https://github.com/rickyjreyes/PVNP/blob/main/lean/PVNP/SplitSATCapacity.lean) (adjacent) | ⚪ No physical information-energy bound follows | `candidate` · not reviewed |
+| GC65 | [Verified mathematical model reduction](./problems/10-lean-certified-analysis/GC65.md) | ✅ [Fourier semigroup](../lean/MathProofs/E57L2Semigroup.lean) (adjacent) | ⚪ No accepted invariant-manifold reduction theorem | `candidate` · not reviewed |
+
+## Evidence legend and progress summary
+
+**✅ Green** = a **specific cited mathematical theorem** appears in the repository or connected proof index. It does **not** label the full GC question solved. **🟡 Yellow** = a proven subset, model-specific obstruction, or especially close theorem correspondence that **does not satisfy every GC obligation**. **⚪ Gray** = no established result matching the required GC conclusion; an adjacent theorem may still be cited. The rightmost column quotes the **actual machine-registry state**, not an editorial reclassification.
+
+**Among these 25 shortlisted GC problems:** 25 remain `candidate` in the [machine registry](problem_registry.json); none is registered `resolved` or `partially_resolved`. **Outside this shortlist**, GC08 is the one **🟡 `partially_resolved`** GC, based on a specified curvature-closure nonuniqueness result. Across **all 300**, the registry has 299 candidates, 1 partial, 0 fully resolved. The green proof links do not change those GC-level counts.
+
+[Full source-to-question evidence map](EXISTING_WORK.md) · [Exact scope of 20 selected Lean results](VERIFIED_LEAN_RESULTS.md) · [Status by GC](STATUS.md). Green and yellow marks are visual evidence categories, **not** novel open-problem certification or physical validation.
 
 **F01 related illustrations:** [Orbital stability](../docs/figures/research-posts/orbital-stability.png) (GC01), [whole-space minimizers](../docs/figures/research-posts/wave-without-walls.png) (GC06), [strict binding](../docs/figures/research-posts/strict-binding.png) (GC16). These are conceptual diagrams of **existing partial results**, not evidence that any shortlisted research question has passed screening or is solved. [Provenance and assumptions](../docs/figures/research-posts/README.md).
 

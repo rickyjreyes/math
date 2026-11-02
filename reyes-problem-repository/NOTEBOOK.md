@@ -1,6 +1,6 @@
 # Candidate question notebook
 
-**Purpose:** Capture research ideas without prematurely declaring them open conjectures. Use the notebook to develop constructive WCT-related questions and record exact limitations when one mechanism fails, without claiming an unproven alternative succeeds. Numbered GC entries remain in [the problem register](STATUS.md); notebook entries are exploratory, may be wrong, and can be rejected without creating a new grand challenge. [Research direction](../RESEARCH_DIRECTION.md).
+**Purpose:** Capture new, pre-GC research ideas and unresolved forks from proved theorems without prematurely declaring them open conjectures. This is a **discovery notebook**, not a duplicate of the 300-question catalogue, adoption map, or progress register. Use the notebook to develop constructive WCT-related questions and record exact limitations when one mechanism fails, without claiming an unproven alternative succeeds. Numbered GC entries remain in [the problem register](STATUS.md); notebook entries are exploratory, may be wrong, and can be rejected without creating a new grand challenge. [Research direction](../RESEARCH_DIRECTION.md).
 
 ## N001 · Curvature closure selection after nonuniqueness
 
@@ -24,6 +24,28 @@
 
 ---
 
+## N006 · A zero-width Fourier ring versus localized waves
+
+**Related:** GC14, GC11. **Established:** [FourierShellL2.lean](../lean/MathProofs/FourierShellL2.lean) excludes a nonzero `L²` state with Fourier support entirely on a measure-zero shell; this is a theorem in the stated whole-space setting, not a simulation. **Open fork:** Quantify the minimum bandwidth needed for a specified level of spatial concentration and decay. **First test:** Fix a smooth annular spectral window and derive a normalized spatial-tail estimate or an explicit counterexample. **Status:** New research question; exact-shell obstruction already established, bandwidth claim unproved.
+
+## N007 · Local observation fibers and added measurements
+
+**Related:** GC26, GC27, GC29. **Established:** [V18Rank.lean](../lean/MathProofs/V18Rank.lean) and [V18Identifiability.lean](../lean/MathProofs/V18Identifiability.lean) establish a restricted rank/nullity and a local equal-output fiber. **Open fork:** Can additional independent observables remove the local ambiguity without relying on prior bounds? **First test:** Specify one augmented observation map and establish a rank increase, or prove structural dependence prevents it. **Status:** Candidate follow-up, not global identifiability.
+
+## N008 · Degenerate higher derivatives and the scope of no-go results
+
+**Related:** GC21, GC24, GC25. **Established:** [R16 completion-class obstruction](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/lean/ReleaseProofs/R16_CompletionClasses.lean) covers a specified failure class; it does not say every higher-gradient action is inconsistent. **Open fork:** Which degeneracies and propagated constraints allow a bounded reduced Hamiltonian for a precisely stated parent model? **First test:** Exhibit and check one nontrivial degenerate acceleration Hessian and its constraint preservation, or an obstruction. **Status:** Candidate design question; no parent-theory solution claimed.
+
+## N009 · Finite-mode spectral closure versus true nonlinear dynamics
+
+**Related:** GC13, GC15. **Established:** [FourierLeakage.lean](../lean/MathProofs/FourierLeakage.lean) computes nonlinear convolution/leakage for a specified periodic equation. **Open fork:** Which exceptional finite coordinate sets, if any, can be invariant once exact coefficients and all-data quantifiers are fixed? **First test:** Audit the full existing theorem against GC15, including special singleton and trivial cases, *before* proving anything again. **Status:** Strong existing theorem, GC correspondence under review.
+
+## N010 · Binding at the edge of the proved mass interval
+
+**Related:** GC06, GC16, GC19, GC53. **Established:** [StrictBinding.lean](../lean/MathProofs/StrictBinding.lean), [WholeSpaceMinimizers.lean](../lean/MathProofs/WholeSpaceMinimizers.lean) and [OrbitalStability.lean](../lean/MathProofs/OrbitalStability.lean) treat an explicitly sufficient mass regime in two spatial dimensions. **Open fork:** Identify what happens at and beyond the proven sufficient bound, without assuming the bound is sharp. **First test:** For frozen coefficients, construct an admissible energy comparison near the boundary or prove a larger valid mass interval. **Status:** Candidate extension; proven in-range results preserved.
+
+---
+
 ## Reusable entry template
 
 ```markdown
@@ -34,6 +56,8 @@
 **Question or conjectural statement:**
 **Fastest possible counterexample and what it would exclude:**
 **Constructive theorem or alternative formulation to test:**
+**Existing exact-scope theorem or counterexample, if any:**
+**What is *not* established by that result:**
 **Closest known results to check:**
 **First proof milestone:**
 **Status:** Candidate / refuted / superseded / promoted
