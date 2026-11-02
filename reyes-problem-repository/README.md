@@ -8,7 +8,7 @@ A research collection maintained by Richard J. Reyes. Its purpose is to formulat
 
 ## What is in this collection?
 
-There are **300 research candidates across 12 mathematical subjects**. **GC01–GC65** have preserved, explicit mathematical problem statements; **GC66–GC300** are exploratory research sketches that still require precise hypotheses and prior-art review. The catalogue is **not** a claim to have identified 300 novel unsolved problems. The [problem index](./ROADMAP_300.md) distinguishes formal questions from unreviewed drafts and links to an individual page for every GC identifier.
+There are **300 research candidates across 12 mathematical subjects**. **GC01–GC65** have preserved, explicit mathematical problem statements; **GC66–GC300** are exploratory research sketches that still require precise hypotheses and prior-art review. The catalogue is **not** a claim to have identified 300 novel unsolved problems. The [problem index](./ROADMAP_300.md) distinguishes formal questions from unreviewed drafts and links to an individual page for every GC identifier. The [12 subject folders](./problems/README.md) provide another route into the collection.
 
 The main subjects are nonlinear PDEs, variational analysis, curvature and differential geometry, spectral theory, inverse problems, topological structures, formal verification, and mathematical models of computation. Contributions may prove a proposition, produce a counterexample, sharpen a hypothesis, identify a known theorem, or formulate a testable new problem.
 
@@ -16,10 +16,10 @@ The main subjects are nonlinear PDEs, variational analysis, curvature and differ
 
 The repository already contains rigorous papers and Lean 4 formalizations, including a linked chain for the two-dimensional fourth-order cubic–quintic Schrödinger equation
 
-~~~math
+```math
 i\partial_t u=(\Delta+k^2)^2u-\beta|u|^2u+\gamma|u|^4u,
 \qquad \beta,\gamma>0.
-~~~
+```
 
 For this model, **strict binding, constrained minimizer existence, global evolution, and stability of the minimizing set** are established under an explicit sufficient mass range. The result concerns the set of minimizers, not every standing-wave profile. Separate formalizations address an exact 20-dimensional local observation fiber, curvature-closure nonuniqueness, Fourier analysis, and higher-derivative obstructions.
 
