@@ -2,6 +2,10 @@
 
 The Reyes Problem Repository is an **open invitation to contribute**, not a separate proof or publication pipeline. Its purpose is to track the mathematical questions motivated by the existing research program, invite human and AI-assisted contributors, and reuse the Lean files and papers **already present**.
 
+## ✅ Completed proof results are visible
+
+**[✅ 20 COMPLETE Lean theorem modules](VERIFIED_LEAN_RESULTS.md)** are now explicitly listed with links and exact mathematical scope, including results in other research repositories. These checks certify the *listed theorem claims in their formalization scope*, not the whole associated GC question. The adoption map below remains an initial conservative source-to-problem cross-reference; do not turn a linked result into a GC closure without exact correspondence review.
+
 ## Complete initial cross-reference pass
 
 The original **65 problems** now have an explicit machine-readable source mapping in [existing_work_links.json](existing_work_links.json), rendered for review in [GC65_ADOPTION.md](GC65_ADOPTION.md).
