@@ -1,54 +1,55 @@
-# ✅ COMPLETE: Verified Lean results
+# Verified mathematical results
 
-**20 ranked mathematical result modules with located source files.** A green **✅ COMPLETE** marks an existing *exact-scope Lean result*, **not** completion of every broader Reyes GC problem, proof of physical WCT, or independent worldwide novelty certification.
+**20 selected Lean 4 proof modules**, grouped by mathematical subject. **✅ COMPLETE** means that the *exact theorem described in that row* has been formalized in the linked source. It does **not** mean a related general research problem is solved. These sources were located in their respective repositories on 2026-11-02. This index is not a new independent Lean build, mathematical novelty audit, or physical experiment.
 
-> **Status convention:** ✅ **COMPLETE (Lean theorem)** = the stated result has an existing formal proof module and is reported complete within its defined hypotheses. 🟡 **PARTIAL (GC question)** = the broader problem requires more work. ⚪ **CANDIDATE (GC question)** = not formally accepted as resolved. The [GC machine registry](problem_registry.json) controls GC status, not this table.
+**[Research overview](./README.md) · [300 problems](./ROADMAP_300.md) · [Manuscript catalogue](../CONTENTS.md) · [Documentation](./docs/README.md)**
 
-**Source inspection (2026-11-02):** all 20 linked source modules were located directly in their repositories. Existing project proof/audit documentation supplies their formalization status. **No new cross-repository Lean build or independent mathematical novelty review was performed for this catalogue update.**
+## Fourth-order evolution, minimizers and Fourier analysis
 
-## Completed exact-scope results
+The central model studied by several results is
 
-| Rank | Result | Formalization | Precisely what is complete | GC association, not GC completion |
-|---:|---|---|---|---|
-| 1 | [OrbitalStability.lean](../lean/MathProofs/OrbitalStability.lean) | ✅ **COMPLETE** | Full-set orbital stability for 2D fourth-order cubic–quintic minimizers in the specified mass range. | GC01 (partial) |
-| 2 | [StrictBinding.lean](../lean/MathProofs/StrictBinding.lean) | ✅ **COMPLETE** | Strict mass subadditivity on the explicit sufficient mass range, including frozen parameters. | GC06, GC16 (partial) |
-| 3 | [CubicQuinticFlow.lean](../lean/MathProofs/CubicQuinticFlow.lean) | ✅ **COMPLETE** | Global H² well-posedness, conservation, and continuous dependence on ℝ². | GC03 (partial), GC46 (possible full match) |
-| 4 | [CurvatureNonattainment.lean](../lean/MathProofs/CurvatureNonattainment.lean) | ✅ **COMPLETE** | Whole-space nonattainment and strict spreading for the specified positive curvature energy. | GC07 (related, not a full answer) |
-| 5 | [E68Classification.lean](../lean/MathProofs/E68Classification.lean) | ✅ **COMPLETE** | The specified H¹ localized-gradient estimate holds precisely in dimension 2. | GC10 (related estimate, not general confinement classification) |
-| 6 | [V18Identifiability.lean](../lean/MathProofs/V18Identifiability.lean) | ✅ **COMPLETE** | 20-dimensional local equal-observation fiber in the specified 31-parameter clipped map. | GC26 (partial) |
-| 7 | [L2Fourier.lean](../lean/MathProofs/L2Fourier.lean) | ✅ **COMPLETE** | Unitary L² Fourier construction and exact-shell exclusion. | GC14 (related, not full) |
-| 8 | [R16_AuxiliaryEquivalence.lean](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/lean/ReleaseProofs/R16_AuxiliaryEquivalence.lean) | ✅ **COMPLETE** | Auxiliary reformulation preserves the Hamiltonian obstruction for the specified temporal-jet representative. | GC21/GC24 (related restricted obstruction) |
-| 9 | [E57L2Semigroup.lean](../lean/MathProofs/E57L2Semigroup.lean) | ✅ **COMPLETE** | Exact bounded-operator Fourier semigroup law and contraction on L². | GC48 (related, scope review required) |
-| 10 | [M6BClosureTheorem.lean](../lean/MathProofs/M6BClosureTheorem.lean) | ✅ **COMPLETE** | Infinitely many admissible smooth regularized constitutive closures. | GC08 (partial negative resolution) |
-| 11 | [Randomization.lean](https://github.com/rickyjreyes/photodiode/blob/main/formal/PhotodiodeProtocol/Randomization.lean) | ✅ **COMPLETE** | Exact type-I error control under the stated randomization or exchangeability hypotheses. | No exact GC match |
-| 12 | [BlockEnclosure.lean](https://github.com/rickyjreyes/wct-pde/blob/main/formal/D4Certificates/BlockEnclosure.lean) | ✅ **COMPLETE** | Conditional operator-norm enclosure and sound finite-certificate checker. | GC50 (related; no production operator certificate implied) |
-| 13 | [SplitSATCapacity.lean](https://github.com/rickyjreyes/PVNP/blob/main/lean/PVNP/SplitSATCapacity.lean) | ✅ **COMPLETE** | Exact split-SAT construction and finite-alphabet communication capacity bound. | No exact GC match |
-| 14 | [R18_Onset.lean](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/lean/ReleaseProofs/R18_Onset.lean) | ✅ **COMPLETE** | No primary finite-q static onset in the specified homogeneous S004 sector. | GC23 (related obstruction) |
-| 15 | [R18_CanonicalObstruction.lean](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/lean/ReleaseProofs/R18_CanonicalObstruction.lean) | ✅ **COMPLETE** | Static spatial-selection obstruction and scoped pole positivity. | GC23 (related obstruction) |
-| 16 | [V18Rank.lean](../lean/MathProofs/V18Rank.lean) | ✅ **COMPLETE** | Exact rank 11 and nullity 20 for the defined observation derivative. | GC26 (partial) |
-| 17 | [Communication.lean](https://github.com/rickyjreyes/PVNP/blob/main/lean/PVNP/Communication.lean) | ✅ **COMPLETE** | Exponential transcript-count lower bound for the stated deterministic communication model. | No exact GC match |
-| 18 | [MultiBlock.lean](https://github.com/rickyjreyes/Wavelock/blob/main/lean/WaveLockProofs/MultiBlock.lean) | ✅ **COMPLETE** | Specified multiblock absorption properties and structural collision limitations. | No exact GC match |
-| 19 | [M6BClosureFieldWitness.lean](../lean/MathProofs/M6BClosureFieldWitness.lean) | ✅ **COMPLETE** | Distinguishes admissible curvature closures on a smooth continuum field. | GC08 (supports partial negative resolution) |
-| 20 | [R16_CompletionClasses.lean](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/lean/ReleaseProofs/R16_CompletionClasses.lean) | ✅ **COMPLETE** | Delimited higher-derivative failure class and separate competing spatial action. | GC21/GC24 (related, not full classification) |
+```math
+i\partial_t u=(\Delta+k^2)^2u-\beta|u|^2u+\gamma|u|^4u
+\quad\text{on }\mathbb R^2,\qquad \beta,\gamma>0.
+```
 
-## Most relevant GC questions
+For its constrained energy, the established sufficient range is **$0<m\le m_B$**, where **$m_B=3\beta/(\gamma\sqrt{k^4+3\beta^2/(32\gamma)})$**. This does not characterize all masses.
 
-| GC problem | Completed mathematical evidence | GC status | Remaining boundary |
+| Complete result | Exact mathematical conclusion | Lean proof | Relation to GC questions |
 |---|---|---|---|
-| [GC01](problems/01-wave-dynamics/GC01.md) | ✅ **COMPLETE** full-set minimizer orbital-stability theorem | ⚪ Candidate | Classify all standing waves, including excited states |
-| [GC03](problems/01-wave-dynamics/GC03.md) | ✅ **COMPLETE** global H² evolution for the stated ℝ² equation | ⚪ Candidate | Classify the larger PDE parameter family and blow-up cases |
-| [GC06](problems/02-confinement-curvature/GC06.md) | ✅ **COMPLETE** minimizer existence and strict binding on sufficient mass range | ⚪ Candidate | Determine all parameter and mass regimes |
-| [GC08](problems/02-confinement-curvature/GC08.md) | ✅ **COMPLETE** closure nonuniqueness theorem and smooth-field witness | 🟡 Partially resolved | Classify closure laws under additional axioms and audit exact GC correspondence |
-| [GC16](problems/04-variational-solitons/GC16.md) | ✅ **COMPLETE** strict binding for an explicit sufficient range | ⚪ Candidate | Determine all masses |
-| [GC26](problems/06-inverse-observation-control/GC26.md) | ✅ **COMPLETE** exact rank 11, nullity 20, and nonlinear local non-identifiability | ⚪ Candidate | Global injectivity and all-parameter classification |
-| [GC46](problems/10-lean-certified-analysis/GC46.md) | ✅ **COMPLETE** global existence, uniqueness, continuous dependence and conservation theorem | ⚪ Candidate, possible full match | Exact GC-to-Lean acceptance and CI correspondence review not yet recorded |
+| ✅ **Orbital stability** | Orbital stability of the **full set of constrained minimizers** in $H^2(\mathbb R^2)$, in the sufficient mass range; not uniqueness or profile-wise stability | [OrbitalStability.lean](../lean/MathProofs/OrbitalStability.lean), [paper](../papers/orbital-stability-fourth-order-cubic-quintic/main.tex) | [GC01](problems/01-wave-dynamics/GC01.md), partial |
+| ✅ **Strict binding** | $I(m)<I(a)+I(m-a)$ for every split $0<a<m$ in the proved mass range | [StrictBinding.lean](../lean/MathProofs/StrictBinding.lean), [paper](../papers/strict-subadditivity-fourth-order-cubic-quintic/main.tex) | [GC06](problems/02-confinement-curvature/GC06.md), [GC16](problems/04-variational-solitons/GC16.md), partial |
+| ✅ **Global nonlinear flow** | Global $H^2$ existence, uniqueness, continuous dependence, mass and energy conservation for this two-dimensional equation | [CubicQuinticFlow.lean](../lean/MathProofs/CubicQuinticFlow.lean) | [GC03](problems/01-wave-dynamics/GC03.md), partial; [GC46](problems/10-lean-certified-analysis/GC46.md), exact correspondence not yet signed off |
+| ✅ **Curvature nonattainment** | Positive-curvature whole-space energy admits no minimizer in the specified setting; strict spreading in dimensions 1–4 | [CurvatureNonattainment.lean](../lean/MathProofs/CurvatureNonattainment.lean) | Related to localization, not a general confinement theorem |
+| ✅ **E68 dimension classification** | The particular quantified local $H^1$ gradient estimate holds exactly in spatial dimension two | [E68Classification.lean](../lean/MathProofs/E68Classification.lean) | Related to [GC10](problems/02-confinement-curvature/GC10.md), not its full classification |
+| ✅ **Whole-space $L^2$ Fourier analysis** | Unitary Fourier construction on genuine $L^2$ classes; exclusion of nonzero $L^2$ states supported on a measure-zero frequency shell | [L2Fourier.lean](../lean/MathProofs/L2Fourier.lean) | Related to [GC14](problems/03-spectral-scattering/GC14.md) |
+| ✅ **Fourier contraction semigroup** | Exact continuous-operator $L^2$ semigroup identity and contractivity for the stated Fourier multiplier | [E57L2Semigroup.lean](../lean/MathProofs/E57L2Semigroup.lean) | Related to [GC48](problems/10-lean-certified-analysis/GC48.md) |
 
-**Important:** The same Lean theorem can support several GC questions; these are **20 theorem modules, not 20 different solved GC questions**. Result completeness, GC problem completeness, and mathematical originality are three different statuses.
+## Inverse problems, curvature and higher-derivative fields
 
-## Current GC registry, unchanged
+| Complete result | Exact mathematical conclusion | Lean proof | Relation to GC questions |
+|---|---|---|---|
+| ✅ **V18 local non-identifiability** | Nonlinear $20$-dimensional local fiber of the specified $31$-parameter to $11$-observation map, at the stated frozen model | [V18Identifiability.lean](../lean/MathProofs/V18Identifiability.lean) | [GC26](problems/06-inverse-observation-control/GC26.md), partial |
+| ✅ **V18 Jacobian rank** | Exact rank $11$ and nullity $20$ at the designated parameter point | [V18Rank.lean](../lean/MathProofs/V18Rank.lean) | [GC26](problems/06-inverse-observation-control/GC26.md), partial |
+| ✅ **Curvature closure nonuniqueness** | Infinitely many smooth regularized constitutive closures satisfy the stipulated axioms | [M6BClosureTheorem.lean](../lean/MathProofs/M6BClosureTheorem.lean) | [GC08](problems/02-confinement-curvature/GC08.md), partial negative resolution |
+| ✅ **Smooth-field closure witness** | Distinct admissible curvature closures are distinguishable on an actual smooth field, not just formal jets | [M6BClosureFieldWitness.lean](../lean/MathProofs/M6BClosureFieldWitness.lean) | [GC08](problems/02-confinement-curvature/GC08.md), supporting result |
+| ✅ **Auxiliary-field obstruction** | Rewriting the specified regular higher-time-derivative temporal-jet model does not remove its Hamiltonian obstruction | [R16_AuxiliaryEquivalence.lean](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/lean/ReleaseProofs/R16_AuxiliaryEquivalence.lean) | Higher-derivative questions, restricted class |
+| ✅ **Completion-class obstruction** | A delimited higher-derivative failure class and a distinct competing spatial action | [R16_CompletionClasses.lean](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/lean/ReleaseProofs/R16_CompletionClasses.lean) | [GC21](problems/05-higher-derivative-fields/GC21.md), partial |
+| ✅ **Static finite-wavenumber onset** | Exclusion of a primary finite-$q$ zero-frequency onset in the stated static homogeneous S004 sector | [R18_Onset.lean](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/lean/ReleaseProofs/R18_Onset.lean) | [GC23](problems/05-higher-derivative-fields/GC23.md), partial |
+| ✅ **Canonical static selection obstruction** | Static spatial-selection obstruction and conditional pole-positivity statements in the specified sector | [R18_CanonicalObstruction.lean](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/lean/ReleaseProofs/R18_CanonicalObstruction.lean) | [GC23](problems/05-higher-derivative-fields/GC23.md), partial |
 
-- **300** candidate research entries in the catalogue.
-- **299** marked `candidate` and **1** marked `partially_resolved` (GC08).
-- **0** marked `resolved` and **0** accepted formal [completion records](completion_records.json).
+## Proof certificates, computation and statistical methods
 
-Use the [adoption index](GC65_ADOPTION.md) for the initial 65 problem-to-source links, and the [verification contract](WORKFLOW.md) before changing an entire GC status. A completed theorem should remain visibly green even if its encompassing GC challenge stays open.
+| Complete result | Exact mathematical conclusion | Lean proof | Boundary |
+|---|---|---|---|
+| ✅ **Operator block enclosure** | A rigorous *conditional* operator-norm bound and sound checker given certified block and global-error inputs | [BlockEnclosure.lean](https://github.com/rickyjreyes/wct-pde/blob/main/formal/D4Certificates/BlockEnclosure.lean) | Does not itself certify a production numerical operator |
+| ✅ **Randomization-test validity** | Finite exact type-I error control under declared randomization/exchangeability hypotheses | [Randomization.lean](https://github.com/rickyjreyes/photodiode/blob/main/formal/PhotodiodeProtocol/Randomization.lean) | Does not establish an optical effect |
+| ✅ **Split-SAT communication capacity** | Exact split-SAT construction and finite-alphabet information lower bound in the defined model | [SplitSATCapacity.lean](https://github.com/rickyjreyes/PVNP/blob/main/lean/PVNP/SplitSATCapacity.lean) | Does not solve $P$ versus $NP$ |
+| ✅ **Transcript-count lower bound** | Exponential accepting-transcript bound using the specified communication fooling set | [Communication.lean](https://github.com/rickyjreyes/PVNP/blob/main/lean/PVNP/Communication.lean) | Does not imply a general Turing-machine lower bound |
+| ✅ **Multi-block state structure** | Proven properties of the defined block-absorption construction and structural non-injectivity limits | [MultiBlock.lean](https://github.com/rickyjreyes/Wavelock/blob/main/lean/WaveLockProofs/MultiBlock.lean) | Does not prove general cryptographic collision resistance |
+
+## What remains open?
+
+**GC progress is separate from theorem completion.** The [machine registry](problem_registry.json) currently records **299 candidates, one partially resolved problem (GC08), and no fully accepted GC resolutions**. For example, proof of one minimizer-stability theorem does not classify all excited standing waves, and an exact 20-dimensional local observation fiber does not classify global injectivity.
+
+The [existing-results adoption map](GC65_ADOPTION.md) cross-references earlier mathematics to GC01–GC65, but a GC status can change only after matching the *whole* stated claim to the formal result. The [technical documentation](docs/README.md) preserves the CI, review and scope requirements. Independent mathematical novelty has not been established merely by listing a checked theorem.

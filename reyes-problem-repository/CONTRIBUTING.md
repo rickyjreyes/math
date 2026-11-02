@@ -1,54 +1,37 @@
-# Contributing to The Reyes Problem Repository
+# Contributing mathematical work
 
-This is an **open invitation**, not a requirement for the research to progress. The continuing foundational WCT program welcomes independent proof, criticism and constructive model development; contributors do not have to endorse its physical hypotheses. The existing researcher continues working; outside mathematicians, physicists, computer scientists and AI-assisted collaborators can contribute when they have substantive results. Contributors receive attribution for their original work. **Proving a conjecture false is as welcome as proving it true, with the precise scope of that falsification recorded.** [Research direction](../RESEARCH_DIRECTION.md).
+**Proofs, counterexamples, corrections and serious mathematical criticism are welcome.** Contributors are not required to accept Wave Confinement Theory, and a negative result is valuable when its assumptions and consequences are stated precisely. Original contributions retain attribution.
 
-[300 problems](ROADMAP_300.md) · [Issue, PR, Lean and paper workflow](WORKFLOW.md) · [Existing work](EXISTING_WORK.md) · [Editorial standards](METHOD.md) · [Research status](STATUS.md)
+**[Overview](README.md) · [300 problems](ROADMAP_300.md) · [Verified results](VERIFIED_LEAN_RESULTS.md) · [Research papers](../CONTENTS.md)**
 
-## Before starting a problem
+## Choose a mathematical question
 
-1. Choose a GC ID from [the roadmap](ROADMAP_300.md) and inspect its [problem folder](problems/README.md). GC01–GC65 have existing mathematical statements; GC66–GC300 are preliminary prompts that require [scope-first activation](CANDIDATE_ACTIVATION.md) before declaring a theorem.
-2. Search GitHub **issues and PRs** for the GC ID and for related mathematical formalization issues. In particular, GC01, GC06, GC11, GC36 and GC43 already have research tasks. **Do not open a duplicate.**
-3. Check existing Lean modules and manuscripts using the [complete 65-problem adoption index](GC65_ADOPTION.md), [adoption inventory](EXISTING_WORK.md), [Lean source](../lean/MathProofs) and [manuscript catalogue](../CONTENTS.md). An existing theorem can be cited and adopted by reference. Do not reprove it just to satisfy an issue.
-4. Check the closest established mathematical literature and natural counterexamples. Preserve a record of what has or has not been reviewed.
+Find a GC identifier in the [subject-organized index](ROADMAP_300.md) and read its individual problem page. The original GC01–GC65 entries have preserved mathematical statements. GC66–GC300 are exploratory questions: **first define a precise mathematical problem** before claiming to have solved one.
 
-## Contribute like a software engineer
+Before starting, look for a matching [GitHub issue](https://github.com/rickyjreyes/math/issues), existing [Lean source](../lean/MathProofs), and established prior literature. A relevant theorem may already exist. Cite it instead of duplicating it.
 
-**A GitHub issue is the research task.** Its scope should say whether it represents an entire GC classification, one frozen milestone, or preliminary scope/literature work. The issue must give the exact model, function spaces, parameter domains, quantifiers, acceptance criteria, and previous results or identify these as outstanding scoping work.
+## Submit a result
 
-**A pull request is the contribution.** Reuse an open issue, and cite each theorem or counterexample the PR addresses. Use `Refs #N` or `Part of #N` for partial progress. Use `Closes #N` only when the precise *issue*, not merely a related lemma, is fully answered.
+A mathematical submission should state, as applicable:
 
-**Lean 4 is required for a claim of formal GC completion.** Cite the exact source file and fully qualified declaration; the repository's existing `lean/` build must pass and a mathematical reviewer must confirm the Lean statement meets the issue's acceptance criteria. Lean proves the encoded proposition; it cannot check that an issue's prose, manuscript and physical claims are all equivalent.
+1. **Exact claim:** equation or operator, domain, hypotheses, function spaces, parameter range, and all quantifiers.
+2. **Proof or counterexample:** a readable mathematical derivation, exact construction, or Lean 4 declaration, including its dependencies.
+3. **Comparison:** the closest existing work and an explicit explanation of what your argument adds, recovers, corrects, or refutes.
+4. **Scope:** which part of the GC question is answered and which parts remain unsettled.
+5. **Reproducibility:** code, tested Lean commit and CI result when formal verification is claimed, plus any optional manuscript.
 
-**Papers are optional.** New papers can use the existing `papers/` and `preprints/` conventions. If a paper claims formal verification, link the exact Lean declaration and commit and reconcile hypotheses, conclusion, and theorem scope. Label any unformalized mathematical argument, numerical evidence, or physical interpretation separately. Do not change an existing manuscript just to make the GC catalogue appear complete.
+Use an existing issue if it covers your contribution, and submit a pull request to the appropriate source. Otherwise use the [research contribution issue form](https://github.com/rickyjreyes/math/issues/new?template=grand_challenge.yml) or, for a newly scoped research problem, the [GC issue form](https://github.com/rickyjreyes/math/issues/new?template=gc_problem.yml). Check for duplicates first.
 
-**Partial results count.** A special-case theorem, formal lemma, counterexample, established-prior-art finding, or reproducible falsification may be merged while the parent problem remains open. A scoped milestone issue can close without closing the entire GC question.
+## What counts as complete?
 
-## Issue and PR templates
+**✅ Complete Lean theorem:** the exact formal statement has a checked proof and its hypotheses are visible. This is distinct from a proof about physical reality and from establishing worldwide novelty.
 
-- [Existing contribution issue form](https://github.com/rickyjreyes/math/issues/new?template=grand_challenge.yml): report a finding, correction, theorem, or counterexample when no existing task covers it.
-- [Scoped GC problem issue form](https://github.com/rickyjreyes/math/issues/new?template=gc_problem.yml): open an issue only after checking existing GC and Lean issues and recording the acceptance criteria.
-- [PR template](../.github/PULL_REQUEST_TEMPLATE.md): provide exact claim, issue references, prior work, Lean proof/CI evidence, correspondence review, optional paper, and remaining limitations.
-- [Safe local draft issue renderer](scripts/render_gc_issue.py): run `python3 reyes-problem-repository/scripts/render_gc_issue.py GC52` at the repository root; it does **not** open a GitHub issue. It declines a known existing issue to prevent duplicates.
+**GC question resolved:** only when every frozen acceptance criterion for that entire question is met, the relevant Lean evidence and paper statements match the claim, and the reviewed resolution is entered in the registry. A theorem for one parameter regime is an important result, but not necessarily an answer for all regimes. A verified no-go result applies only to the models it actually excludes.
 
-## Evidence, review and closure
+Lean is required for newly claimed **formally verified** GC resolution records, but conventional analytical work, prior-art discoveries and partial results can be discussed and developed independently. Manuscripts are optional. Use **“Refs #N”** or **“Part of #N”** for partial progress, not **“Closes #N”** unless the precise issue requirements are met.
 
-1. Freeze the exact issue statement, acceptance criteria and scope before declaring a full solution.
-2. Submit a proof or counterexample in Lean, or **adopt** an existing theorem by reference, with an exact declaration and successful CI run.
-3. Explicitly compare the formal statement to every item in the issue. Include prior-art comparisons and known counterexamples.
-4. If there is a paper, identify which claims correspond exactly to Lean and which claims are outside the formal verification.
-5. After review, update the issue and, where appropriate, the [problem registry](problem_registry.json), [STATUS.md](STATUS.md), and [completion evidence index](completion_records.json). Do not add a resolution record without proof and correspondence evidence.
-6. Close **only the matched issue scope**. Preserve unresolved parent questions and historic revisions.
+## Further details
 
-The [workflow contract](WORKFLOW.md) defines the final evidence fields. The structural [record checker](scripts/validate_completion_records.py) validates links and metadata, **not** mathematical correctness. Existing Lean CI continues to check compiled theorems; reviewers are responsible for semantic correspondence.
+The full [verification workflow](WORKFLOW.md) specifies issue scope, exact theorem declaration names, reviewer correspondence, successful CI runs, PR format and closure policy. [Technical documentation](docs/README.md) links the machine-readable adoption records, archived notes, validation scripts and editorial materials.
 
-## Interpreting a proof or counterexample
-
-Document exactly which assumptions and model class a negative result excludes, what broader physical or mathematical hypotheses remain unresolved, and a follow-up proof or experiment where possible. If none is known, say so. Do not use this requirement to shield a refuted claim or manufacture an unsupported repair. Positive mathematical results also require independent physical evidence for physical conclusions.
-
-## Authorship and integrity
-
-Attribution follows original mathematical contributions, Git history, PR discussion, and any independent publications. Contributors are not required to endorse Wave Confinement Theory or give up ownership of their independently written results. Follow the repository's licenses and respect authors' publication rights. No monetary rewards or guaranteed publication are offered.
-
-Do not silently weaken a conjecture, misrepresent existing mathematics as new, conflate numerical simulations with analytic proofs, or advertise unreviewed GC candidates as verified open problems. Public issues can be indexed; do not post secrets or private unpublished work without permission.
-
-**Anyone can contribute, and the research program continues even when no one else does.**
+Independent formal mathematics, numerical calculations and experimental WCT claims remain different types of evidence. Make their boundaries explicit. Corrections and counterexamples should be recorded, not hidden. No prizes or guaranteed publication are offered.
