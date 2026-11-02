@@ -72,8 +72,8 @@ PRIOR_ART = {
    "https://doi.org/10.1103/PhysRevE.100.012204",
    "Related nonlinear localized patterns; not automatically the frozen GC equation.")],
  "08-topology-multicomponent": [
-  ("Classical Hopf homotopy classification of maps S³→S²",
-   "https://en.wikipedia.org/wiki/Hopf_invariant",
+  ("Hatcher (2002), Algebraic Topology, homotopy groups and Hopf invariant",
+   "https://pi.math.cornell.edu/~hatcher/AT/ATchapters.html",
    "Equal Hopf invariants already imply unrestricted homotopy; path restrictions need stating."),
   ("Ward (2004), Skyrmions and Faddeev–Hopf solitons",
    "https://doi.org/10.1103/PhysRevD.70.061701",
@@ -306,6 +306,62 @@ def scoping_audit() -> dict[str, tuple[str,str]]:
     return audit
 
 
+def explicit_repair(key: str) -> str:
+    """Only verified problem-specific logical repairs, not new blanket theorems."""
+    if key=="GC66":
+        return (
+          "**Proposed corrected nonvacuous benchmark (not substituted into the "
+          "historical source):** Fix λ∈(0,1/4) and a nonzero real profile "
+          "φ∈H⁴(ℝ²) satisfying\n\n"
+          "$\n(\\Delta+1)^2\\phi+\\lambda\\phi-\\phi^3+\\phi^5=0.\n$\n\n"
+          "The linearization in real coordinates has blocks "
+          "$L_+=(\\Delta+1)^2+\\lambda-3\\phi^2+5\\phi^4$ and "
+          "$L_-=(\\Delta+1)^2+\\lambda-\\phi^2+\\phi^4$. Its essential "
+          "spectrum is outside the central interval $(-i\\lambda,i\\lambda)$; "
+          "an isolated positive internal mode must have $0<\\nu<\\lambda$. "
+          "If a sufficiently regular nondegenerate branch and such a mode exist, "
+          "ask for decay of its Riesz spectral projection for a rigorously "
+          "specified family of small perturbations, with phase/translation "
+          "modulation and possible unstable directions accounted for. "
+          "The required existence and damping estimates are **not proved here**."
+        )
+    if key=="GC200":
+        return (
+          "**Classical exact solution to the frozen Dirichlet problem:** "
+          "Writing a fixed-winding representative as "
+          "$u=e^{i(2\\pi mx/L_x+2\\pi ny/L_y+f)}$, with periodic "
+          "$f\\in H^1(T;\\mathbb R)$ modulo $2\\pi$, the cross term vanishes "
+          "by integration over the torus. The energy is\n\n"
+          "$\nE(u)=2\\pi^2\\left(\\frac{m^2L_y}{L_x}"
+          "+\\frac{n^2L_x}{L_y}\\right)"
+          "+\\frac12\\int_T|\\nabla f|^2.\n$\n\n"
+          "Thus the affine harmonic phase is minimizing and is unique "
+          "up to a constant phase in the stated winding class. "
+          "This elementary mathematical target should be recorded as "
+          "already settled, not an unsolved conjecture."
+        )
+    if key=="GC212":
+        return (
+          "**Classical implication:** For each sample path continuous as a "
+          "map $[0,T]\\to C(S^3,S^2)$, the maps at any two times are "
+          "homotopic, so the Hopf integer is unchanged. A new problem needs "
+          "an explicit random evolution, proven path regularity and a "
+          "first singular/zero-hitting event; adding randomness alone does "
+          "not evade homotopy invariance."
+        )
+    if key=="GC278":
+        return (
+          "**Frozen algebraic decision is already in its source dossier:** "
+          "with zero input $(a,b)=(0,0)$ and no reference beam, "
+          "a homogeneous linear unitary network outputs zero, contradicting "
+          "NAND(0,0)=1 under a nonnegative positive-intensity threshold. "
+          "With a powered reference amplitude and nonlinear threshold "
+          "readout, the source supplies an explicit NAND construction. "
+          "Neither branch certifies a fabricated passive logic gate."
+        )
+    return ""
+
+
 def first_target(e:dict) -> str:
     return e.get("first_test") or ("Identify the smallest admissible special case of the exact "
          "source target and prove an example or counterexample.")
@@ -362,6 +418,8 @@ def create_page(e: dict, legacy: dict[str,str]) -> str:
       "**Precise source target, reproduced without changing mathematical quantifiers:**",
       "",
       target,
+      "",
+      explicit_repair(key),
       "",
       "**Requested decision.** Determine whether the exact quantified claim above "
       "holds for the specified admissible class. If it holds, identify the strongest "
