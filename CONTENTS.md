@@ -99,13 +99,13 @@ This E26 manuscript analyzes the historical additive denominator; the corrected 
 
 **E18: Exact Lyapunov descent for the corrected WCT curvature energy** — [PDF](preprints/wct-e18-exact-gradient-lyapunov/paper.pdf) · [LaTeX source](papers/wct-e18-exact-gradient-lyapunov/main.tex) · [Notes](preprints/wct-e18-exact-gradient-lyapunov/README.md)
 
-For sufficiently regular solutions of the **specified exact negative-gradient flow** on a torus, the energy is nonnegative and satisfies an exact energy-dissipation identity. Lean-formalized in full on the Fourier space \(H^2(\mathbb T^d)\), \(d\le3\): the \(C^1\) Fréchet derivative of the nonlinear energy, its \(L^2\) representative on \(H^4\), and the dissipation identities ([E18Certification](lean/MathProofs/E18Certification.lean), [mapping](docs/E18_LEAN_MANUSCRIPT_MAPPING.md)). This is not a proof of global existence, free-space confinement, or a derivation from separate physical-time WCT dynamics.
+For sufficiently regular solutions of the **specified exact negative-gradient flow** on a torus, the energy is nonnegative and satisfies an exact energy-dissipation identity. Lean-formalized in full on the Fourier space $H^2(\mathbb T^d)$, $d\le3$: the $C^1$ Fréchet derivative of the nonlinear energy, its $L^2$ representative on $H^4$, and the dissipation identities ([E18Certification](lean/MathProofs/E18Certification.lean), [mapping](docs/E18_LEAN_MANUSCRIPT_MAPPING.md)). This is not a proof of global existence, free-space confinement, or a derivation from separate physical-time WCT dynamics.
 
 ## E69 — High-regularity WCT curvature bound
 
 **E69: Bounded corrected regularized curvature** — [PDF](preprints/high-regularity-bounded-curvature-e69/paper.pdf) · [LaTeX source](papers/high-regularity-bounded-curvature-e69/main.tex) · [Notes](preprints/high-regularity-bounded-curvature-e69/README.md)
 
-If \(\psi\in H^s(\mathbb R^n)\), \(s>n/2+2\), and \(\varepsilon>0\), the corrected regularized curvature lies in \(L^\infty\). Lean-formalized in full over the Fourier-defined Sobolev spaces \(H^s(\mathbb R^n)\) of real order, in every dimension ([E69Certification](lean/MathProofs/E69Certification.lean), [mapping](docs/E69_LEAN_MANUSCRIPT_MAPPING.md)). Not a uniform-in-\(\varepsilon\) or PDE well-posedness claim.
+If $\psi\in H^s(\mathbb R^n)$, $s>n/2+2$, and $\varepsilon>0$, the corrected regularized curvature lies in $L^\infty$. Lean-formalized in full over the Fourier-defined Sobolev spaces $H^s(\mathbb R^n)$ of real order, in every dimension ([E69Certification](lean/MathProofs/E69Certification.lean), [mapping](docs/E69_LEAN_MANUSCRIPT_MAPPING.md)). Not a uniform-in-$\varepsilon$ or PDE well-posedness claim.
 
 ## WCT E58 — Band-selective Green multiplier
 
@@ -133,4 +133,4 @@ The linear dissipative spectral estimate does not establish nonlinear WCT confin
 
 **E68: Counterexamples and corrected local energy estimate** — [PDF](preprints/localized-gradient-energy-e68/paper.pdf) · [LaTeX source](papers/localized-gradient-energy-e68/main.tex) · [Notes](preprints/localized-gradient-energy-e68/README.md)
 
-Unrestricted \(H^1\) estimate refuted for \(n>2\); the corrected \(R^{n-2}\) bound follows if \(\nabla\psi\in L^n\). Includes an \(H^2\) result for spatial dimensions three and four and counterexamples beyond four. Lean-formalized in full over \(H^1\) and \(H^2\) defined by weak derivatives ([E68Certification](lean/MathProofs/E68Certification.lean), [mapping](docs/E68_LEAN_MANUSCRIPT_MAPPING.md)). Not a PDE stability claim.
+Unrestricted $H^1$ estimate refuted for $n>2$; the corrected $R^{n-2}$ bound follows if $\nabla\psi\in L^n$. Includes an $H^2$ result for spatial dimensions three and four and counterexamples beyond four. Lean-formalized in full over $H^1$ and $H^2$ defined by weak derivatives ([E68Certification](lean/MathProofs/E68Certification.lean), [mapping](docs/E68_LEAN_MANUSCRIPT_MAPPING.md)). Not a PDE stability claim.

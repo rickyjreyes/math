@@ -6,4 +6,4 @@ Family: F11 (E13/E14). The complex Swift--Hohenberg amplitude equation is the ne
 
 Research manuscript; not independently peer-reviewed. The theorem, the normalization, the centred representation, the preferred-shell statements and the β > 0 corollary (with the E14 companion) are Lean-formalized in [BandPassFlow](../../lean/MathProofs/BandPassFlow.lean) (`ReyesMath.BandPass.e13`; see the [certification report](../../docs/ANALYTIC_CERTIFICATION_2026-10-30.md) and [lean/formalization.yaml](../../lean/formalization.yaml)). PDFs are compiled reproducibly by the repository's [build script](../../scripts/build_pdfs.sh) and [workflow](../../.github/workflows/pdfs.yml).
 
-The companion E14 file is a separate, standalone LaTeX derivation of the same flow and includes the periodic-domain lower bound for \(\beta>0\). It is not counted as an additional manuscript and is not automatically compiled by the main-PDF workflow.
+The companion E14 file is a separate, standalone LaTeX derivation of the same flow and includes the periodic-domain lower bound for $\beta>0$. It is not counted as an additional manuscript and is not automatically compiled by the main-PDF workflow.

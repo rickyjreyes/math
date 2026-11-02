@@ -8,6 +8,6 @@ Family: F01. Research manuscript; not independently peer-reviewed. PDFs are comp
 
 ![Conceptual visualization of proximity to the full minimizing set during evolution](../../docs/figures/research-posts/orbital-stability.png)
 
-The theorem concerns orbital stability of the **full minimizing set** in \(H^2(\mathbb{R}^2;\mathbb{C})\), not attraction, shape preservation, or uniqueness. The pictured profiles are **not** computed time snapshots.
+The theorem concerns orbital stability of the **full minimizing set** in $H^2(\mathbb{R}^2;\mathbb{C})$, not attraction, shape preservation, or uniqueness. The pictured profiles are **not** computed time snapshots.
 
 **Source:** [Lean formalization](../../lean/MathProofs/OrbitalStability.lean) · [Four-figure gallery](../../docs/figures/research-posts/README.md) · [Combined F01 visual](../../docs/figures/research-posts/existence-binding-stability.png).
