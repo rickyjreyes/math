@@ -6,9 +6,23 @@ This repository develops independently checkable mathematics relevant to the con
 
 Results are organized by mathematical subject so exact claims can be assessed without accepting a physical interpretation. **That separation is a verification strategy, not a retreat from WCT's foundational objectives.** Analytical proofs, Lean-checked statements, numerical evidence and physical hypotheses remain distinct levels of evidence.
 
-**Open research invitation:** [The Reyes Problem Repository](reyes-problem-repository/README.md) organizes 300 proposed questions as a GitHub issue and pull-request research workflow. [Its proof contract](reyes-problem-repository/WORKFLOW.md) links, rather than replaces, the existing Lean declarations and papers. Researchers may contribute verified theorems or counterexamples with full attribution; ongoing work does not depend on outside participation.
+## Reyes Problem Repository: 300 mathematical research questions
 
-**Explore:** [The Reyes Problem Repository](reyes-problem-repository/README.md) · [Complete manuscript catalogue](CONTENTS.md) · [Compiled PDFs](preprints/) · [Overview](overview.pdf) · [Lean formalization status](lean/formalization.yaml) · [Revision history](history.md)
+**[Browse the complete 300-question roadmap](reyes-problem-repository/ROADMAP_300.md)**
+
+A subject-organized research agenda spanning **12 mathematical areas**, including nonlinear waves, free-space confinement, curvature and geometry, spectral theory, variational analysis, inverse problems, topology, formal verification, and computation. Each question links to its research page, existing evidence, and an estimated difficulty rating.
+
+These are **300 research candidates, not 300 independently certified novel open problems**. GC01–GC65 have preserved formal questions; GC66–GC300 also have provisional scoped dossiers awaiting independent mathematical and prior-art review. A narrower Lean-proved result does not automatically resolve its broader GC question.
+
+| Start here | What you will find |
+|:--|:--|
+| **[Explore all 300 questions](reyes-problem-repository/ROADMAP_300.md)** | Browse the 12 subjects, research status, evidence and difficulty estimates |
+| **[Read existing verified results](reyes-problem-repository/VERIFIED_LEAN_RESULTS.md)** | Exact-scope Lean theorems, counterexamples, sources and limitations |
+| **[Contribute a proof or counterexample](reyes-problem-repository/CONTRIBUTING.md)** | How to select a question, avoid duplicate work and submit evidence |
+
+**Open research invitation:** [The Reyes Problem Repository](reyes-problem-repository/README.md) connects these questions with GitHub issue and pull-request workflows. [Its proof contract](reyes-problem-repository/WORKFLOW.md) links, rather than replaces, existing Lean declarations and papers. Verified theorems, counterexamples, scope corrections, and prior-art references are welcome with attribution; progress does not depend on outside participation.
+
+**Explore:** **[300-Question Roadmap](reyes-problem-repository/ROADMAP_300.md)** · [Problem Repository](reyes-problem-repository/README.md) · [Complete manuscript catalogue](CONTENTS.md) · [Compiled PDFs](preprints/) · [Overview](overview.pdf) · [Lean formalization status](lean/formalization.yaml) · [Revision history](history.md)
 
 ## Research purpose and interpretation
 
