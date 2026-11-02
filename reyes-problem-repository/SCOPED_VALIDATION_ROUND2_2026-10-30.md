@@ -6,7 +6,7 @@ This round independently examined GC167, GC196, GC201, and GC278. It identifies 
 
 | Entry | Before | Mathematical issue / result | After |
 |---|---|---|---|
-| GC196 | Claimed possible Q^(3/4) *upper* bound on fixed compact S³ | On compact S³ the Hodge inequality and Hopf integral give \(|Q|\le C E\), hence \(I_Q\ge c|Q|\); a global \(O(|Q|^{3/4})\) upper bound is impossible | Corrected large-Q growth question without a false upper exponent |
+| GC196 | Claimed possible Q^(3/4) *upper* bound on fixed compact S³ | On compact S³ the Hodge inequality and Hopf integral give $\lvert Q\rvert\le C E$, hence $I_Q\ge c\lvert Q\rvert$; a global $O(\lvert Q\rvert^{3/4})$ upper bound is impossible | Corrected large-Q growth question without a false upper exponent |
 | GC201 | Full SO(3) conjugation equivariance on S³ and standard action on S² | q=1 is fixed in domain, while S² has no SO(3)-fixed point, so no equivariant maps exist | Restricted to an S¹ subgroup under which the Hopf map is actually equivariant |
 | GC167 | Asked whether four intensity measurements identify C² vectors modulo phase | Four intensities recover zz* by the complex polarization identity; omission of **each** one admits explicit collision | Mathematically resolved as known phase-retrieval benchmark |
 | GC278 | Asked whether passive no-reference optics can implement NAND, and reference-assisted case | No-reference 00 is impossible; with first row (2,-1,-1)/sqrt(6), a single reference and threshold 1/12 give NAND truth table exactly | Both finite idealized cases resolved |
