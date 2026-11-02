@@ -6,9 +6,21 @@ This repository develops independently checkable mathematics relevant to the con
 
 Results are organized by mathematical subject so exact claims can be assessed without accepting a physical interpretation. **That separation is a verification strategy, not a retreat from WCT's foundational objectives.** Analytical proofs, Lean-checked statements, numerical evidence and physical hypotheses remain distinct levels of evidence.
 
-**Open research invitation:** [The Reyes Problem Repository](reyes-problem-repository/README.md) organizes 300 proposed questions as a GitHub issue and pull-request research workflow. [Its proof contract](reyes-problem-repository/WORKFLOW.md) links, rather than replaces, the existing Lean declarations and papers. Researchers may contribute verified theorems or counterexamples with full attribution; ongoing work does not depend on outside participation.
+## Reyes Problem Repository: 300 mathematical research questions
 
-**Explore:** [The Reyes Problem Repository](reyes-problem-repository/README.md) · [Complete manuscript catalogue](CONTENTS.md) · [Compiled PDFs](preprints/) · [Overview](overview.pdf) · [Lean formalization status](lean/formalization.yaml) · [Revision history](history.md)
+**[Browse the complete 300-question roadmap](reyes-problem-repository/ROADMAP_300.md)**, organized into 12 mathematical subjects, including nonlinear waves, self-confinement, curvature, spectral theory, variational analysis, inverse problems, topology, and computation.
+
+**Scope:** GC01–GC65 have preserved formal problem statements; GC66–GC300 are research sketches that still require precise mathematical scoping and literature review. The collection is a research agenda, **not a claim that all 300 questions are independently verified novel open problems**.
+
+| Start here | Research resource |
+|:--|:--|
+| **Browse mathematical questions** | [All 300 questions, by subject and research status](reyes-problem-repository/ROADMAP_300.md) |
+| **Read completed results** | [20 selected exact-scope Lean formalizations](reyes-problem-repository/VERIFIED_LEAN_RESULTS.md) |
+| **Contribute mathematics** | [Submit a proof, counterexample, or correction](reyes-problem-repository/CONTRIBUTING.md) |
+
+**Open research invitation:** [The Reyes Problem Repository](reyes-problem-repository/README.md) welcomes rigorous proofs, counterexamples, and criticism, with contributor attribution. Existing Lean and manuscript sources remain authoritative; the [verification contract](reyes-problem-repository/WORKFLOW.md) explains the correspondence and review requirements.
+
+**Explore:** [**300-question roadmap**](reyes-problem-repository/ROADMAP_300.md) · [Problem Repository](reyes-problem-repository/README.md) · [Manuscript catalogue](CONTENTS.md) · [Compiled PDFs](preprints/) · [Lean verification status](lean/formalization.yaml) · [Revision history](history.md)
 
 ## Research purpose and interpretation
 
