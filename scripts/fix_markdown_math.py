@@ -182,8 +182,8 @@ def main() -> int:
         print(f"REVIEW: {w['file']}:{w['line']} {w['problem']}: {w.get('token', '')}")
     if len(warnings) > 45:
         print(f"...and {len(warnings)-45} further warnings (see JSON audit)")
-    if args.check and changed:
-        print("FAIL: GitHub math delimiters need normalization")
+    if args.check and (changed or warnings):
+        print("FAIL: GitHub Markdown math has unnormalized or ambiguous render cases")
         return 1
     return 0
 
