@@ -30,6 +30,8 @@
 | GC63 | [Physical information and energy limits of wave computation](./problems/12-photonic-wave-computing/GC63.md) | Photonic computation and physical information | not reviewed |
 | GC65 | [Verified mathematical model reduction](./problems/10-lean-certified-analysis/GC65.md) | Lean formalization and certified analysis | not reviewed |
 
+**F01 related illustrations:** [Orbital stability](../docs/figures/research-posts/orbital-stability.png) (GC01), [whole-space minimizers](../docs/figures/research-posts/wave-without-walls.png) (GC06), [strict binding](../docs/figures/research-posts/strict-binding.png) (GC16). These are conceptual diagrams of **existing partial results**, not evidence that any shortlisted research question has passed screening or is solved. [Provenance and assumptions](../docs/figures/research-posts/README.md).
+
 ## Promotion requirements
 
 Before a candidate becomes a formal flagship: freeze all quantifiers and the exact model; compare closest published theorems; check natural counterexamples; secure external specialist criticism; document meaningful consequences and at least one achievable lemma. Maintain the original five research dossiers without changing their evidence status automatically.
