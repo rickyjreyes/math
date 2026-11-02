@@ -8,6 +8,8 @@
 
 [300-problem roadmap](ROADMAP_300.md) · [Original statements](FORMAL_PROBLEMS.md) · [Research workflow](WORKFLOW.md) · [Existing manuscript verification status](../lean/formalization.yaml) · [Machine adoption links](existing_work_links.json)
 
+**F01 figure correspondence:** [visual overview](../docs/figures/research-posts/existence-binding-stability.png) · [whole-space localization](../docs/figures/research-posts/wave-without-walls.png) · [strict binding](../docs/figures/research-posts/strict-binding.png) · [orbital stability](../docs/figures/research-posts/orbital-stability.png). These are conceptual illustrations of **related proven narrower claims**, especially for GC01, GC06, GC16 and GC53. They **do not certify resolution** of those broader GC questions; consult the [figure legend and proof links](../docs/figures/research-posts/README.md).
+
 ## ✅ Completed exact-scope theorem index
 
 **[✅ View all 20 COMPLETE Lean results](VERIFIED_LEAN_RESULTS.md).** The green checks apply to proved model-specific mathematical statements. GC problem statuses remain separate and are not upgraded by this source cross-reference alone. In particular, the newer V18 rank/nullity and local-fiber theorems are included in the complete-results index and are now linked directly in the GC26 source mapping below.
