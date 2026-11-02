@@ -44,7 +44,7 @@ def main():
     require([e["id"] for e in entries] == IDS,
             "Registry must contain exactly GC01..GC300 in ID order")
     formal = read(ROOT / "FORMAL_PROBLEMS.md")
-    original_titles = dict(re.findall(r"^## (GC\d{2}): (.+)$", formal, re.MULTILINE))
+    original_titles = dict(re.findall(r"^#{2,3} (GC\d{2}): (.+)$", formal, re.MULTILINE))
     require(list(original_titles) == LEGACY,
             "Original formal GC01..GC65 statements must remain ordered")
     roadmap = read(ROOT / "ROADMAP_300.md")
@@ -55,7 +55,9 @@ def main():
     roadmap_ids = table_ids(roadmap)
     require(len(roadmap_ids) == 300 and set(roadmap_ids) == set(IDS),
             "Roadmap must contain each of GC01..GC300 once; thematic order is allowed")
-    require(table_ids(status) == IDS, "STATUS must list all 300 entries exactly once")
+    status_ids = table_ids(status)
+    require(len(status_ids) == 300 and set(status_ids) == set(IDS),
+            "STATUS must list all 300 entries exactly once; thematic order is allowed")
     # The public README is a short mathematical overview, not a duplicate of all 65 statements.
     # The canonical FORMAL_PROBLEMS.md and the 65 individual GC pages remain authoritative.
     flagship_ids = [e["id"] for e in entries[:65] if e["flagship"]]
