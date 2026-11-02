@@ -15,6 +15,12 @@ i\partial_t u=(\Delta+k^2)^2u-\beta|u|^2u+\gamma|u|^4u
 
 For its constrained energy, the established sufficient range is **$0<m\le m_B$**, where **$m_B=3\beta/(\gamma\sqrt{k^4+3\beta^2/(32\gamma)})$**. This does not characterize all masses.
 
+### Illustrated guide to the F01 theorem chain
+
+[![Existence, strict binding, and orbital stability (conceptual)](../docs/figures/research-posts/existence-binding-stability.png)](../docs/figures/research-posts/README.md)
+
+The linked [four-figure gallery](../docs/figures/research-posts/README.md) illustrates [minimizer existence](../docs/figures/research-posts/wave-without-walls.png), [strict binding](../docs/figures/research-posts/strict-binding.png), and [full-set orbital stability](../docs/figures/research-posts/orbital-stability.png). These are **schematics, not computed states, proof certificates, or evidence of a new GC resolution**. The theorems below, not the drawings, establish the precise claims.
+
 | Complete result | Exact mathematical conclusion | Lean proof | Relation to GC questions |
 |---|---|---|---|
 | ✅ **Orbital stability** | Orbital stability of the **full set of constrained minimizers** in $H^2(\mathbb R^2)$, in the sufficient mass range; not uniqueness or profile-wise stability | [OrbitalStability.lean](../lean/MathProofs/OrbitalStability.lean), [paper](../papers/orbital-stability-fourth-order-cubic-quintic/main.tex) | [GC01](problems/01-wave-dynamics/GC01.md), partial |
