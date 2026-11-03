@@ -49,7 +49,7 @@ The illustration connects three **distinct, scoped mathematical theorems** for t
 | **[GC36: Stable knotted waves](./flagship/GC36.md)** ([formal statement](./FORMAL_PROBLEMS.md#gc36-stable-knotted-wave-configurations)) | A candidate topological question is formulated | Construct a stable knot in a specified model or prove an obstruction |
 | **[GC43: Wave-cell computational universality](./flagship/GC43.md)** ([formal statement](./FORMAL_PROBLEMS.md#gc43-discrete-wave-computational-universality)) | A proposed discrete computation question is formulated | Freeze a local rule and prove its simulation power and overhead |
 
-One further example illustrates how negative results count: **[GC08: admissible curvature closures](./problems/02-confinement-curvature/GC08.md)** is **partially resolved** by a formal nonuniqueness construction. A complete classification under additional requirements remains open.
+One further example illustrates how negative results count: **[GC08: admissible curvature closures](./problems/02-confinement-curvature/GC08.md)** is **partially resolved** by an explicit analytical counterexample to uniqueness for its original phase-current-divergence operator. A separate Lean theorem proves nonuniqueness for the **different M6B Laplacian-quotient** operator, not the exact GC08 statement. A complete classification under additional requirements remains open. See the [November 2 negative-results and proof-correspondence audit](../docs/NEGATIVE_RESULT_SCOPE_AUDIT_2026-11-02.md).
 
 ## How to read a problem
 
