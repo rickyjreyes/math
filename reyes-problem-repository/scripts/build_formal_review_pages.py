@@ -385,6 +385,16 @@ def load_standard_v2() -> dict[str, dict]:
                 raise ValueError("Milestone count outside problem standard: "+key)
             if not value["known"] or any(len(c)!=3 for c in value["known"]):
                 raise ValueError("Missing title, link, scope distinctions: "+key)
+            review_texts=[value["model"],value["canonical"],
+                          value["resolution"],value["notes"],
+                          value["status"],value["recommendation"],
+                          *value["milestones"],
+                          *(part for item in value["known"] for part in item)]
+            for fragment in review_texts:
+                if any(char in fragment for char in ("\t","\r","\n")):
+                    raise ValueError("Accidental control character in "+key)
+                if fragment.count("\\(")!=fragment.count("\\)"):
+                    raise ValueError("Unbalanced TeX inline delimiters in "+key)
             found[key]=value
     if len(found)!=23:
         raise ValueError(f"Expected 23 individually reviewed problems, got {len(found)}")
