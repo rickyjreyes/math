@@ -1,0 +1,127 @@
+{
+  "GC97": {
+    "status": "Withdraw order-only target; refine sharp coefficient",
+    "model": "Unit disk \\(B\\subset\\mathbb R^2\\), \\(n\\in\\mathbb Z\\setminus\\{0\\}\\), \\(0<\\delta<1\\), \\(u\\in H^2(B;\\mathbb C)\\) with trace \\(e^{in\\theta}\\). Freeze \\(K_1(u)=\\operatorname{div}(\\operatorname{Im}(\\bar u\\nabla u)/(1+|u|^2))\\) and \\(E_{\\delta,n}(u)=\\int_B(|\\nabla u|^2+\\delta^{-2}(1-|u|^2)^2+|K_1(u)|^2)\\,dx\\). Interior zeros are allowed.",
+    "canonical": "For fixed \\(n\\ne0\\), determine the sharp coefficient and limiting vortex geometry of \\(I_n(\\delta)=\\inf E_{\\delta,n}\\) as \\(\\delta\\downarrow0\\). The weaker logarithmic-order target is already approachable with standard Ginzburg–Landau lower bounds and a smooth equivariant radial trial: \\(u=f(r)e^{in\\theta}\\) has purely angular regularized current and \\(K_1(u)=0\\) distributionally. A new claim should address coefficient, \\(O(1)\\) corrections or minimizers, not logarithmic order alone.",
+    "resolution": "Establish matching leading coefficients and a characterization of minimizers, or disprove a proposed coefficient with explicit competitors; compare the classical lower bounds to the added curvature term.",
+    "known": [
+      [
+        "Bethuel, Brezis, Hélein, Ginzburg–Landau Vortices",
+        "https://doi.org/10.1007/978-1-4612-0287-3",
+        "Classical degree-constrained vortex energy; curvature-current divergence is additional."
+      ],
+      [
+        "Serfaty, Mean field limits for Ginzburg–Landau vortices",
+        "https://doi.org/10.5802/slsedp.91",
+        "Known vortex estimates; not a solution of the extra curvature problem."
+      ]
+    ],
+    "milestones": [
+      "Prove \\(K_1(f(r)e^{in\\theta})=0\\) for a smooth admissible radial vortex.",
+      "Show \\(c_n|\\log\\delta|\\le I_n(\\delta)\\le C_n|\\log\\delta|\\) by classical GL bounds and one \\(H^2\\) trial.",
+      "Determine whether separated unit vortices lower the leading coefficient while controlling \\(\\|K_1(u)\\|_2^2\\)."
+    ],
+    "notes": "Fix the classical GL normalization. Do not require nonvanishing inside B, since that would conflict with nonzero boundary winding.",
+    "recommendation": "Withdraw the order-only open classification if verified; retain the sharp coefficient/geometry as a refined candidate."
+  },
+  "GC124": {
+    "status": "Refined draft; exact finite-volume comparison",
+    "model": "Fix \\(T_L^2=(\\mathbb R/L\\mathbb Z)^2\\), \\(L=8\\pi\\), \\(m>0\\), \\(u\\in H^2(T_L^2;\\mathbb C)\\), \\(M(u)=m\\), and \\(E_L(u)=\\int(|(\\Delta+1)u|^2-\\frac12|u|^4+\\frac13|u|^6)\\). Keep the original stripe class \\(u=f(x_1)\\) and fourfold-invariant localized class with \\(\\int_{B_{L/4}(0)}|u|^2\\ge0.9m\\).",
+    "canonical": "For each \\(m>0\\) determine the sign of \\(D(m)=\\inf_{\\mathcal A_{\\rm str}(m)}E_L-\\inf_{\\mathcal A_{\\rm loc}(m)}E_L\\), classifying \\(D>0,D=0,D<0\\) on \\((0,\\infty)\\). Both infima must use the same torus and mass; a nonzero infinite-plane periodic stripe has infinite \\(L^2\\) mass.",
+    "resolution": "Prove competitor nonemptiness, finite infima and ideally attainment, then a mass-interval comparison or counterexample. Avoid interpreting restricted infima as unrestricted minimizers.",
+    "known": [
+      [
+        "Lions, concentration–compactness",
+        "https://doi.org/10.1016/S0294-1449(16)30428-0",
+        "Whole-space splitting differs from compact-torus compactness."
+      ],
+      [
+        "Bonheure et al., mixed-dispersion standing waves",
+        "https://doi.org/10.1137/17M1154138",
+        "Related fourth-order model, not the exact two-class comparison."
+      ]
+    ],
+    "milestones": [
+      "Construct an admissible fourfold localized bump and a stripe with the same mass.",
+      "Prove coercivity and attainability of both constrained class infima on the fixed torus.",
+      "Prove a strict sign of D(m) on one explicit mass interval or give a mass with equality."
+    ],
+    "notes": "The square torus supports fourfold symmetry, not continuous planar rotation; the 90% localization threshold is part of the definition.",
+    "recommendation": "Retain as refined draft until a strict comparison or a comparison obstruction is proved."
+  },
+  "GC143": {
+    "status": "Known spreading fact; refine quantitative tails",
+    "model": "Take \\(H_0=(\\Delta+1)^2\\) with domain \\(H^4(\\mathbb R^2)\\), \\(U(t)=e^{-itH_0}\\) and nonzero \\(u_0\\in C_c^\\infty(B_1;\\mathbb C)\\). For \\(t\\ne0\\) set \\(T(R,t,u_0)=\\|\\mathbf1_{\\{|x|>R\\}}U(t)u_0\\|_2\\).",
+    "canonical": "Prove that \\(U(t)u_0\\) cannot be compactly supported for \\(t\\ne0\\), using Paley–Wiener growth of the quartic Fourier phase. The potentially new question is the sharp envelope \\(\\sup_{\\|u_0\\|_{H^s}\\le1,\\ \\operatorname{supp}u_0\\subset B_1,\\ t\\in[t_0,t_1]}T(R,t,u_0)\\) for prescribed \\(s>0\\) and \\(0<t_0<t_1\\), as \\(R\\to\\infty\\).",
+    "resolution": "Separate the classical qualitative no-finite-propagation proof from two-sided quantitative tails for the fully specified data class.",
+    "known": [
+      [
+        "Paley–Wiener theorem",
+        "https://encyclopediaofmath.org/wiki/Paley-Wiener_theorem",
+        "Classical exponential-type obstruction, applied to the exact quartic multiplier."
+      ],
+      [
+        "Li, Soffer and Yao, fourth-order Schrödinger decay",
+        "https://doi.org/10.1016/j.jfa.2022.109816",
+        "Related but different dispersion."
+      ]
+    ],
+    "milestones": [
+      "Use the multiplier \\(e^{-it(1-|\\xi|^2)^2}\\) to prove that two compact supports at distinct times force zero data.",
+      "Prove one explicit class-uniform off-support upper bound.",
+      "Construct lower-tail examples ruling out an overly strong universal decay rate."
+    ],
+    "notes": "Compactly supported C-infinity data without a bounded norm or Gevrey class do not define one universal sharp tail exponent.",
+    "recommendation": "Treat the qualitative question as known and keep only the quantitative tail problem."
+  },
+  "GC165": {
+    "status": "Refined draft; implementation identity check",
+    "model": "Use exactly \\(F=\\texttt{V18Forward.observed}:\\mathbb R^{31}\\to\\mathbb R^{11}\\), the point \\(\\theta_0=\\texttt{V18Forward.frozen 5.1725 5}\\), its differentiability locus \\(D\\), and \\(D_r=\\{\\theta\\in D:\\operatorname{rank}DF(\\theta)=r\\}\\). Restrict to \\(B_{1/100}(\\theta_0)\\).",
+    "canonical": "For \\(r=0,\\ldots,11\\), classify each \\(D_r\\cap B_{1/100}(\\theta_0)\\), all adjacent clipping boundaries and which strata are empty. Rank assertions must correspond to the actual source-defined piecewise map, not a surrogate matrix.",
+    "resolution": "Supply exact cell inequalities and rank certificates or a counterexample, verifying Lean/source-code normalization; clipping corners must be treated separately.",
+    "known": [
+      [
+        "Constant rank theorem",
+        "https://encyclopediaofmath.org/wiki/Constant_rank_theorem",
+        "Does not describe boundaries where F fails to be differentiable."
+      ],
+      [
+        "Existing F09 exact local rank proof",
+        "../VERIFIED_LEAN_RESULTS.md",
+        "The frozen local rank is already known; neighboring strata are not thereby classified."
+      ]
+    ],
+    "milestones": [
+      "List the actual clipping branch inequalities intersecting the ball.",
+      "Reproduce the existing rank-11 certificate at the frozen point.",
+      "Prove one adjacent stratum's exact rank or a precise rank-drop witness."
+    ],
+    "notes": "Record the exact committed forward-map implementation, parameter order and clipping derivative conventions.",
+    "recommendation": "Remain refined until code-to-math correspondence and neighboring strata are validated."
+  },
+  "GC177": {
+    "status": "Refined draft; specific Bloch stability target",
+    "model": "Fix real \\(u_t=2u-(1+\\Delta)^2u-u^3\\) on \\(\\mathbb R^2\\), nonconstant \\(2\\pi\\)-periodic stripe \\(\\phi(x_1)\\in H^4_{\\mathrm{per}}\\) solving \\(2\\phi-(1+\\partial_1^2)^2\\phi-\\phi^3=0\\). Use \\(L_\\phi(\\theta)=2-[1+(\\nabla+i\\theta)^2]^2-3\\phi^2\\) with \\(\\theta\\in[-1/2,1/2]^2\\) and domain \\(H^4(T^2)\\).",
+    "canonical": "Characterize profiles satisfying \\(\\sup_{\\theta\\ne0}\\sup\\operatorname{Re}\\sigma(L_\\phi(\\theta))\\le0\\), including neutral translation and the small-\\(\\theta\\) Bloch expansion. The quasi-momentum is continuous because the medium is infinite periodic.",
+    "resolution": "First prove a nonzero stripe branch, then a complete quasi-momentum spectral criterion or an explicit unstable sideband.",
+    "known": [
+      [
+        "Cross and Hohenberg, Pattern formation outside equilibrium",
+        "https://doi.org/10.1103/RevModPhys.65.851",
+        "Classical Eckhaus and zigzag notions."
+      ],
+      [
+        "Weliwita, Rucklidge and Tobias, stripe instabilities",
+        "https://doi.org/10.1103/PhysRevE.84.036201",
+        "Generalized Swift–Hohenberg with mean flow, not identical frozen equation."
+      ]
+    ],
+    "milestones": [
+      "Construct and verify one stationary nonconstant stripe.",
+      "Check the neutral vector L_phi(0) phi'=0 and kernel multiplicity.",
+      "Compute longitudinal and transverse quadratic Bloch coefficients for a constructed stripe."
+    ],
+    "notes": "The parameter 2 is not necessarily a near-onset small perturbation. A single fixed box cannot certify continuous sideband stability.",
+    "recommendation": "Retain as refined draft, pending exact stripe existence and spectral clearance."
+  }
+}
