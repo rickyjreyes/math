@@ -42,8 +42,8 @@
       ]
     ],
     "milestones": [
-      "Prove or exclude a nonzero (H^4) standing-wave branch for a fixed (0<lambda<1/4).",
-      "Certify a simple isolated eigenpair in the true gap (0<\nu<lambda) and account for symmetry zero modes.",
+      "Prove or exclude a nonzero \\(H^4\\) standing-wave branch for a fixed \\(0<\\lambda<1/4\\).",
+      "Certify a simple isolated eigenpair in the true gap \\(0<\\nu<\\lambda\\) and account for symmetry zero modes.",
       "Derive a concrete nonzero nonlinear radiation coefficient and state a conditional decay theorem under exact hypotheses."
     ],
     "notes": "The historical target used (0<\nu<1), which does not locate the actual essential spectral gap. The squared-resonance threshold and degeneracy of the dispersion shell require special analysis.",
@@ -67,9 +67,9 @@
       ]
     ],
     "milestones": [
-      "Verify the algebraic lower bound (-s^2/2+s^3/3ge-3s/16) for all (sge0).",
-      "Prove the Fourier multiplier inequality ((1+t)^2le2(1-t)^2+8).",
-      "Combine the bounds for arbitrary (m>0,alphage0); audit correspondence and Lean formalization if appropriate."
+      "Verify \\(-s^2/2+s^3/3\\ge-3s/16\\) for all \\(s\\ge0\\).",
+      "Prove the multiplier inequality \\((1+t)^2\\le2(1-t)^2+8\\) for all \\(t\\ge0\\).",
+      "Combine the bounds for arbitrary \\(m>0,\\alpha\\ge0\\); audit correspondence and formalization."
     ],
     "notes": "This proves fixed-mass coercivity, not coercivity uniformly over unrestricted mass and not strict binding. It does not prove compactness modulo translations.",
     "recommendation": "Mark the scoped coercivity target analytically answered subject to review, rather than keeping a generic difficult open conjecture."
@@ -92,9 +92,9 @@
       ]
     ],
     "milestones": [
-      "Prove a uniform (H^1(mathbb R^2)\to L^2(S_r^1)) trace bound for r near one.",
-      "Estimate the shell integral (int_{|r-1|<c}r,dr/((1-r^2)^2+kappa)asympkappa^{-1/2}).",
-      "Construct f with nonzero trace of (widehat{wf}) on the unit circle and deduce the sharp exponent."
+      "Prove a uniform \\(H^1(\\mathbb R^2)\\to L^2(S_r^1)\\) trace bound for radii near one.",
+      "Show \\(\\int_{|r-1|<c}r\\,dr/((1-r^2)^2+\\kappa)\\asymp\\kappa^{-1/2}\\).",
+      "Construct \\(f\\) with \\(\\widehat{wf}\\) nonzero on the unit Fourier circle and prove the lower norm bound."
     ],
     "notes": "This resolves only the frozen free resolvent; it says nothing about resonant potentials V or a nonlinear spectral operator. The argument is a provisional analytic proof, not yet Lean checked or independently reviewed.",
     "recommendation": "Record p=1/2 as an analytic result after verification and reframe any future GC103 as a perturbed-shell or sharp-leading-operator problem."
