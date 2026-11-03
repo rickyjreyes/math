@@ -67,13 +67,13 @@ The existence and contents of the named Lean declarations were checked by direct
 
 The [original corrected action](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/WCT_CORRECTED_VARIATIONAL_CLOSURE_DRAFT.md) in a fixed inertial foliation has
 
-\[
+$
 \mathcal L_{\rm orig}=\partial_\mu\bar\psi\,\partial^\mu\psi-V(\rho)
 +F(\rho)\bigl[\kappa|\Box\psi|^2+\theta|\Delta\psi|^2
 +\gamma\operatorname{Re}(\Box\psi\,\overline{\Delta\psi})\bigr].
-\]
+$
 
-With \(\Box\psi=-\psi_{\tau\tau}+\Delta\psi\), the sign-reversed canonical density has acceleration Hessian \(H_{aa}=-2\kappa F(\rho)I_2\). Since \(D(\rho)=\rho+\varepsilon^2e^{-2\alpha\rho}>0\) and \(F(\rho)=\rho/D(\rho)^2>0\) for \(\rho>0\), \(\det H_{aa}=4\kappa^2F(\rho)^2>0\). The unboundedness is not conjectural within this regular fixed-background model. By contrast, at \(\rho=0\) the acceleration coefficient vanishes, changing the rank: a separate constant-rank and PDE analysis is required. A **new proposed action** may evade these hypotheses, but no repair is certified by pointing to that possibility.
+With $\Box\psi=-\psi_{\tau\tau}+\Delta\psi$, the sign-reversed canonical density has acceleration Hessian $H_{aa}=-2\kappa F(\rho)I_2$. Since $D(\rho)=\rho+\varepsilon^2e^{-2\alpha\rho}>0$ and $F(\rho)=\rho/D(\rho)^2>0$ for $\rho>0$, $\det H_{aa}=4\kappa^2F(\rho)^2>0$. The unboundedness is not conjectural within this regular fixed-background model. By contrast, at $\rho=0$ the acceleration coefficient vanishes, changing the rank: a separate constant-rank and PDE analysis is required. A **new proposed action** may evade these hypotheses, but no repair is certified by pointing to that possibility.
 
 ## Group B. Confinement, curvature, spectra, and identifiability
 
@@ -92,23 +92,23 @@ With \(\Box\psi=-\psi_{\tau\tau}+\Delta\psi\), the sign-reversed canonical densi
 
 The [canonical GC08 problem](https://github.com/rickyjreyes/math/blob/main/reyes-problem-repository/problems/02-confinement-curvature/GC08.md) defines
 
-\[
+$
 K_\varepsilon(u)=\nabla\cdot\frac{\operatorname{Im}(\bar u\nabla u)}{\varepsilon+|u|^2}
-\]
+$
 
 and asks whether a class of **real-valued**, phase/translation/rotation-invariant local operators agreeing on constant-amplitude plane waves is unique. The page supplies the distinct operators
 
-\[
+$
 C_\lambda(u)=K_\varepsilon(u)+\lambda\Delta(|u|^2).
-\]
+$
 
 For constant-amplitude plane waves the extra term vanishes; for variable amplitude it need not. This is a valid analytical nonuniqueness counterexample for the stated unrestricted GC08 class. Its remaining classification under added axioms is open.
 
 The M6B theorem instead concerns
 
-\[
+$
 \mathcal N_\varepsilon[u]=-(\Delta u)\bar u/(|u|^2+\varepsilon^2e^{-2\alpha|u|^2}).
-\]
+$
 
 Its admissibility axioms, output space, field dependence, and regularizer differ. **The Lean M6B theorem is not a formalization of C_λ or the exact GC08 claim.** GC08's existing partial status need not be changed on this evidence; its Lean-verification label must be described precisely. See [GC08 formal review](https://github.com/rickyjreyes/math/blob/main/reyes-problem-repository/formal-reviews/GC08.md).
 
