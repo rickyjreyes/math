@@ -8,6 +8,8 @@ A research collection maintained by Richard J. Reyes. Its purpose is to formulat
 
 **Research review pages:** [All 300 model and literature-aware screening dossiers](./formal-reviews/README.md). Each page preserves its underlying mathematical question, cites relevant prior-art starting points and identifies remaining proof, nonvacuity and novelty-review work. These are **not** 300 independently reviewed or proved problems.
 
+**Problem review standard:** [Six-part mathematical problem standard](./PROBLEM_STANDARD.md) · [GC65–GC300 review queue](./formal-reviews/REVIEW_QUEUE.md). The queue distinguishes case-specific corrected drafts from scoped candidates that still require individual literature analysis.
+
 **Further resources:** [Papers](../CONTENTS.md) · [Scoped mathematical dossiers](./scoped/README.md) · [Difficulty-rating rubric](./DIFFICULTY_RUBRIC.md) · [Technical documentation](./docs/README.md)
 
 ## What is in this collection?

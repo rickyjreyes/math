@@ -367,6 +367,123 @@ def first_target(e:dict) -> str:
          "source target and prove an example or counterexample.")
 
 
+def load_standard_v2() -> dict[str, dict]:
+    """Specialist source-preserving reviews for individually assessed cases."""
+    found: dict[str, dict] = {}
+    for file in sorted((ROOT/"problem-standard-v2").glob("priority-*.json")):
+        data=json.loads(file.read_text(encoding="utf-8"))
+        for key, value in data.items():
+            if key in found:
+                raise ValueError("Duplicate specialist review "+key)
+            if not re.fullmatch(r"GC\d{2,3}",key):
+                raise ValueError("Invalid GC key "+key)
+            mandatory={"model","canonical","resolution","known","milestones",
+                       "notes","status","recommendation"}
+            if not mandatory.issubset(value):
+                raise ValueError("Missing review fields: "+key)
+            if not (2<=len(value["milestones"])<=4):
+                raise ValueError("Milestone count outside problem standard: "+key)
+            if not value["known"] or any(len(c)!=3 for c in value["known"]):
+                raise ValueError("Missing title, link, scope distinctions: "+key)
+            review_texts=[value["model"],value["canonical"],
+                          value["resolution"],value["notes"],
+                          value["status"],value["recommendation"],
+                          *value["milestones"],
+                          *(part for item in value["known"] for part in item)]
+            for fragment in review_texts:
+                if any(char in fragment for char in ("\t","\r","\n")):
+                    raise ValueError("Accidental control character in "+key)
+                if fragment.count("\\(")!=fragment.count("\\)"):
+                    raise ValueError("Unbalanced TeX inline delimiters in "+key)
+            found[key]=value
+    if len(found)!=23:
+        raise ValueError(f"Expected 23 individually reviewed problems, got {len(found)}")
+    return found
+
+
+def github_inline_math(text: str) -> str:
+    """Normalize literal TeX inline delimiters for GitHub MathJax rendering."""
+    return re.sub(r"\\\((.+?)\\\)",lambda m: "$"+m.group(1)+"$",text)
+
+
+def create_specialist_page(e: dict, target: str, source: str,
+                           review: dict) -> str:
+    """Six-part problem-standard page with preserved source and review boundaries."""
+    key=e["id"]
+    audit=e.get("_audit")
+    audit_line=(f"**Existing audit ({audit[0]}):** {audit[1]}" if audit
+                else "The original formal problem remains authoritative.")
+    known="\n".join(f"- [{title}]({url}): {difference}"
+                     for title,url,difference in review["known"])
+    milestones="\n".join(f"{i+1}. {v}"
+                         for i,v in enumerate(review["milestones"]))
+    if len(review["milestones"])==3:
+        milestones+=("\n4. Compare the model and theorem quantifiers with the "
+                     "closest cited source; document any genuinely missing result "
+                     "before novelty or closure is claimed.")
+    return github_inline_math("\n".join([
+        f"# {key}: {e['title']}",
+        "",
+        "**Status:** "+review["status"]+".",
+        "**Machine registry:** "+e["status"]+" (unchanged). "
+        "**Audit type:** individual mathematical scoping review, not "
+        "independent peer review or a Lean-checked new result.",
+        "**Sources:** "+source+" · [Six-step standard](../PROBLEM_STANDARD.md) "
+        "· [Review queue](REVIEW_QUEUE.md)",
+        "",
+        "## Canonical mathematical statement",
+        "",
+        "**Model freeze.** "+review["model"],
+        "",
+        "**Precise mathematical target / proven narrower result.** "
+        +review["canonical"],
+        "",
+        "**Original scope text (preserved for comparison):**",
+        "",
+        target,
+        "",
+        "## Resolution criterion",
+        "",
+        review["resolution"],
+        "",
+        "**Proof standard:** Give all quantifiers, functional spaces, "
+        "parameter ranges, symmetries, boundary conditions, and the "
+        "appropriate affirmative proof or explicit admissible negative "
+        "witness. Lean 4 verification is valuable when a new exact theorem "
+        "or checker is claimed, but is not implied by this editorial page.",
+        "",
+        "## Closest known results",
+        "",
+        known,
+        "",
+        "**Novelty boundary:** The references support the stated classical "
+        "or related results, not a globally complete novelty search. "
+        "Any new claim needs focused source-to-statement comparison, and "
+        "any proposed analytic derivation above needs independent checking.",
+        "",
+        "## Falsifiable first milestones",
+        "",
+        milestones,
+        "",
+        "## Notes / remaining modeling decisions",
+        "",
+        review["notes"],
+        "",
+        audit_line,
+        "",
+        "## Status recommendation",
+        "",
+        review["recommendation"],
+        "",
+        "**Do not silently change the registry:** recommendations to "
+        "withdraw, merge, promote or record a solved subclaim are not "
+        "actual status transitions. Such transitions require source "
+        "verification, independent scope correspondence and the "
+        "[existing completion contract](../WORKFLOW.md).",
+        ""
+    ]))
+
+
 def create_page(e: dict, legacy: dict[str,str]) -> str:
     key = e["id"]
     n = int(key[2:])
@@ -383,6 +500,8 @@ def create_page(e: dict, legacy: dict[str,str]) -> str:
         scope=read(scope_rel)
         target,resolution=pick_scoped(scope)
         source="[Existing scoped mathematical target](../"+scope_rel+") · [Original GC page](../"+e["file_path"]+")"
+    if e.get("_standard_v2"):
+        return create_specialist_page(e,target,source,e["_standard_v2"])
     status,why=recommendation(e,area,n)
     literature="\n".join(
       f"- [{title}]({url}): {scope}" for title,url,scope in PRIOR_ART[area]
@@ -497,11 +616,17 @@ def build() -> dict[str,str]:
     assert [e["id"] for e in entries]==expected
     legacy=legacy_statements()
     audit=scoping_audit()
+    specialist=load_standard_v2()
+    p0={key for key,(priority,_message) in audit.items() if priority=="P0*"}
+    if p0-set(specialist):
+        raise ValueError("Unreviewed P0 cases: "+repr(sorted(p0-set(specialist))))
     for e in entries:
         if int(e["id"][2:])>=65:
             e["_audit"]=audit.get(e["id"])
             if e["_audit"] is None:
                 raise ValueError("Missing scoped audit for "+e["id"])
+        if e["id"] in specialist:
+            e["_standard_v2"]=specialist[e["id"]]
     pages={e["id"]+".md":create_page(e,legacy) for e in entries}
     assert len(pages)==300
     chunks=["# Reyes Problem Repository: 300 formal-review pages",
@@ -517,6 +642,11 @@ def build() -> dict[str,str]:
      "[Original formal statements](../FORMAL_PROBLEMS.md) · "
      "[Scoped GC65–GC300 source dossiers](../scoped/README.md) · "
      "[Status registry](../STATUS.md)",
+     "",
+     "**Problem standard v2:** [23 case-specific revisions](REVIEW_QUEUE.md) "
+     "include all 15 original P0 conceptual risks plus eight related cases. "
+     "Several contain provisional exact analytic solutions, **not** "
+     "Lean-checked new GC completions. [Six-part review contract](../PROBLEM_STANDARD.md).",
      "",
      "## Read the evidence labels carefully",
      "",
@@ -540,10 +670,44 @@ def build() -> dict[str,str]:
         chunks.append("|:--|:--|:--|")
         for e in subset:
             rec,_=recommendation(e,area,int(e["id"][2:]))
+            if e.get("_standard_v2"):
+                rec=e["_standard_v2"]["status"]
             chunks.append("| ["+e["id"]+"]("+e["id"]+".md) | "+e["title"].replace("|","/")+
                           " | "+rec+" |")
         chunks.append("")
     pages["README.md"]="\n".join(chunks)+"\n"
+    counts=Counter(e["_audit"][0] for e in entries if e.get("_audit"))
+    guide=[
+        "# Problem standard: research-review completion queue",
+        "",
+        "**November 2, 2026.** The source corpus has 236 GC65–GC300 "
+        "scoping records: **15 P0**, **98 P1***, **123 P1**. "
+        "These are triage categories, not proof-progress percentages.",
+        "",
+        f"**Individual standard-v2 specialist reviews:** {len(specialist)}. "
+        "All P0 items are included; the other P1* and P1 items retain "
+        "their source-specific October 30 audit objections and original "
+        "scope targets. **None is automatically promoted to verified open.**",
+        "",
+        "[Roadmap](../ROADMAP_300.md) · "
+        "[Problem standard](../PROBLEM_STANDARD.md) · "
+        "[October 30 audit](../SCOPING_AUDIT_GC65_GC300_2026-10-30.md) · "
+        "[Exact Lean evidence](../VERIFIED_LEAN_RESULTS.md)",
+        "",
+        "## Individual review and evidence gates",
+        "",
+        "| ID | Audit | Review depth | Required mathematical gate |",
+        "|:--|:--:|:--|:--|",
+    ]
+    for e in entries:
+        if not e.get("_audit"):
+            continue
+        priority,objection=e["_audit"]
+        depth=("Case-specific six-part review" if e.get("_standard_v2")
+               else "Original scope + specific audit; specialist review pending")
+        guide.append(f"| [{e['id']}]({e['id']}.md) | {priority} | {depth} | "
+                     + objection.replace("|",r"\|")+" |")
+    pages["REVIEW_QUEUE.md"]="\n".join(guide)+"\n"
     return pages
 
 
@@ -570,7 +734,7 @@ def main():
         OUT.mkdir(parents=True,exist_ok=True)
         for name in different:
             (OUT/name).write_text(pages[name],encoding="utf-8")
-    print(f"GC research reviews: {len(pages)-1} review pages; "
+    print(f"GC research reviews: {len(pages)-2} GC review pages; "
           f"{len(different)} missing/outdated pages; {len(excess)} extra files.")
     if args.check and (different or excess):
         raise SystemExit("ERROR: generated formal-review pages are missing or out of date")

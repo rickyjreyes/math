@@ -1,0 +1,152 @@
+{
+  "GC247": {
+    "status": "Known scattering algebra; Lean theorem task",
+    "model": "Let \\(H_0,H\\) be self-adjoint on complex Hilbert spaces and assume wave operators \\(W_\\pm:\\mathcal H_{ac}(H_0)\\to\\mathcal H_{ac}(H)\\) exist and are unitary onto the latter subspace. Define \\(S=W_+^*W_-\\) on \\(\\mathcal H_{ac}(H_0)\\).",
+    "canonical": "Prove \\(S^*S=SS^*=I_{\\mathcal H_{ac}(H_0)}\\). This is a standard algebraic consequence: \\(S^*S=W_-^*W_+W_+^*W_-=W_-^*W_-=I\\), and similarly \\(SS^*=I\\). The substantive PDE problem of existence and completeness of \\(W_\\pm\\) is **not** part of the quantified source hypothesis.",
+    "resolution": "For a Lean deliverable, define the absolutely continuous subspaces and bounded unitary wave operators with compatible types, then prove the two identities with kernel checking, no sorry and exact correspondence. Do not market conditional unitarity as a novel scattering theorem.",
+    "known": [
+      [
+        "Reed and Simon, Methods of Modern Mathematical Physics III: Scattering Theory",
+        "https://www.elsevier.com/books/methods-of-modern-mathematical-physics/9780125850032",
+        "Classical scattering framework; completeness is a separate analytic hypothesis."
+      ],
+      [
+        "Mathlib unitary-operator API",
+        "https://leanprover-community.github.io/mathlib4_docs/",
+        "Possible reusable bounded-operator machinery."
+      ]
+    ],
+    "milestones": [
+      "Confirm the Lean type of both absolutely continuous subspaces and assumptions on the two wave operators.",
+      "Formalize the exact two-line S*S and SS* unitary argument.",
+      "Run lake build and inspect axioms and declaration-to-paper correspondence."
+    ],
+    "notes": "The source assumes asymptotic completeness, so proving S unitary does not prove asymptotic completeness of any fourth-order wave model.",
+    "recommendation": "Merge into Lean formalization backlog; record underlying analytic theorem as classical."
+  },
+  "GC248": {
+    "status": "Known homotopy invariant; Lean theorem task",
+    "model": "Take \\(H\\in C^1([0,1]\\times\\mathbb T^2;S^1)\\), coordinate loops \\(\\gamma_1,\\gamma_2\\), and \\(n_j(s)=(2\\pi i)^{-1}\\int_0^{2\\pi}\\overline{H(s,\\gamma_j(t))}\\,\\partial_tH(s,\\gamma_j(t))\\,dt\\in\\mathbb Z\\).",
+    "canonical": "Prove that for every \\(s\\in[0,1]\\) and \\(j\\in\\{1,2\\}\\), \\(n_j(s)=n_j(0)\\). This is ordinary homotopy invariance of the winding number for an \\(S^1\\)-valued homotopy. A PDE-specific new theorem would separately have to show that its evolution remains nonvanishing with this regularity.",
+    "resolution": "Formalize the exact winding integral, integrality and homotopy invariance in Lean with no new unproved axioms; record that the analytic claim is established classical topology.",
+    "known": [
+      [
+        "Hatcher, Algebraic Topology",
+        "https://pi.math.cornell.edu/~hatcher/AT/ATchapters.html",
+        "Winding and fundamental-group homotopy invariance are standard."
+      ],
+      [
+        "Mathlib homotopy and circle API",
+        "https://leanprover-community.github.io/mathlib4_docs/",
+        "Check existing degree and winding declarations before implementing."
+      ]
+    ],
+    "milestones": [
+      "Check the exact meaning of C¹ maps into S¹ and compatibility with the integral.",
+      "Prove integer winding and equality under a smooth homotopy.",
+      "Kernel-check the Lean declaration and separately formulate any PDE nonvanishing obligation."
+    ],
+    "notes": "Do not infer winding preservation across zero-amplitude events from a theorem whose codomain is S¹ at every time.",
+    "recommendation": "Merge with Lean backlog as a precise formalization milestone."
+  },
+  "GC250": {
+    "status": "Exact rational witness logic is elementary; checker-engineering task",
+    "model": "Given \\(P\\in\\mathbb Q[X_1,\\dots,X_n]\\), \\(q\\in\\mathbb Q^n\\), and exact rational evaluation \\(P(q)<0\\), embed coefficients and q into \\(\\mathbb R\\). A checker accepts a certificate only after kernel-reduced rational evaluation proves the inequality.",
+    "canonical": "Prove soundness: \\(P(q)<0\\) implies \\(\\neg(\\forall x\\in\\mathbb R^n,\\ P_\\mathbb R(x)\\ge0)\\), because \\(P_\\mathbb R(\\iota q)=\\iota(P(q))<0\\). The implication is elementary; novelty, if any, is in designing and testing the trusted certificate parser, elaboration boundary and Lean tactic.",
+    "resolution": "Give a sound Lean checker for the frozen certificate syntax and prove its accepted outputs correspond to an exact theorem refutation; do not claim general automatic counterexample checking of arbitrary logical propositions.",
+    "known": [
+      [
+        "Mathlib polynomial and rational-number APIs",
+        "https://leanprover-community.github.io/mathlib4_docs/",
+        "Polynomial evaluation and ordered-field embedding are existing components."
+      ],
+      [
+        "Original GC250 certificate contract",
+        "../scoped/GC250.md",
+        "The source already restricts the certificate schema."
+      ]
+    ],
+    "milestones": [
+      "Specify the syntax and semantic map from parsed bytes into rational multivariate polynomials.",
+      "Prove the rational-to-real polynomial evaluation identity in Lean.",
+      "Test valid/invalid certificates and audit every trusted evaluation path."
+    ],
+    "notes": "A kernel proof about parsed certificate data is different from a meta-level script printing a claimed counterexample.",
+    "recommendation": "Keep as a Lean tooling/proof-certificate issue; withdraw any new-mathematics classification."
+  },
+  "GC252": {
+    "status": "Known LaSalle-type convergence; Lean formalization target",
+    "model": "Let \\(V\\in C^2(\\mathbb R^n)\\), bounded below with compact sublevel sets, and let a global solution satisfy \\(x'(t)=-\\nabla V(x(t))\\). Take \\(C=\\{x:\\nabla V(x)=0\\}\\).",
+    "canonical": "Show \\(\\operatorname{dist}(x(t),C)\\to0\\) as \\(t\\to\\infty\\). Because \\(dV/dt=-\\|\\nabla V\\|^2\\le0\\) and the trajectory remains in a compact initial sublevel, every omega-limit point must be critical. This is a classical convergence-to-set theorem, not convergence to a unique equilibrium.",
+    "resolution": "Provide a Lean-checked formalization under exact global-flow, compactness and differentiability assumptions, or point to an existing exact Mathlib theorem. A new PDE statement would need its own precompactness proof.",
+    "known": [
+      [
+        "LaSalle invariance principle (classical)",
+        "https://encyclopediaofmath.org/wiki/LaSalle_invariance_principle",
+        "Convergence toward the largest invariant subset where the Lyapunov derivative vanishes."
+      ],
+      [
+        "Mathlib analysis/topology API",
+        "https://leanprover-community.github.io/mathlib4_docs/",
+        "Possible compactness and differential-equation infrastructure."
+      ]
+    ],
+    "milestones": [
+      "Formalize the Lyapunov derivative and compact initial sublevel trap.",
+      "Prove accumulation points lie in the critical set.",
+      "Derive convergence of distance to the critical set without asserting convergence to a single point."
+    ],
+    "notes": "The compactness and global flow assumptions are essential; the source question is not a universal theorem for arbitrary noncompact PDEs.",
+    "recommendation": "Merge into Lean verification roadmap, not an independently open analysis conjecture."
+  },
+  "GC278": {
+    "status": "Finite optical NAND model solved algebraically; separate hardware claims",
+    "model": "Encode \\(a,b\\in\\{0,1\\}\\), let a lossless \\(U\\in U(N)\\) act on complex amplitudes and decode output bit 1 exactly when \\(|(Uz)_1|^2>\\tau\\), \\(\\tau\\ge0\\). Specify whether an always-on coherent reference is included among z's inputs; thresholding is nonlinear measurement.",
+    "canonical": "Without any reference \\(z=(a,b)\\), \\(z(0,0)=0\\) forces output 0 for every unitary U and nonnegative threshold, contradicting \\(\\operatorname{NAND}(0,0)=1\\). With reference \\(z=(1,a,b)\\), choose a unitary first row \\((2,-1,-1)/\\sqrt6\\); then \\(I_{00}=4/6\\), \\(I_{01}=I_{10}=1/6\\), \\(I_{11}=0\\), and \\(\\tau=1/12\\) realizes NAND. Both statements are finite-dimensional algebra, not universal passive optical computational power or experimentally demonstrated hardware.",
+    "resolution": "Preserve the exact unitary completion and truth-table proof, preferably kernel verified. Any new device claim requires quantified reference-energy consumption, precision, detection, fanout, refresh and physical implementation.",
+    "known": [
+      [
+        "Knill, Laflamme, Milburn, linear optics quantum computing",
+        "https://doi.org/10.1038/35051009",
+        "Measurement-assisted quantum optics is different from classical thresholded coherent amplitudes."
+      ],
+      [
+        "Original GC278 exact source result",
+        "../scoped/GC278.md",
+        "The finite NAND construction and no-reference obstruction are already in the repository."
+      ]
+    ],
+    "milestones": [
+      "Verify all four threshold inequalities in exact rational arithmetic.",
+      "Prove existence of a 3-by-3 unitary extending the indicated first row.",
+      "Formulate a separately measurable worst-case noise-margin and energy-budget question."
+    ],
+    "notes": "A powered reference and nonlinear detector are part of the computational resource count; no all-optical passive NAND theorem follows.",
+    "recommendation": "Mark the frozen finite model as known/solved upon proof review; redirect hardware claims to a separate candidate."
+  },
+  "GC286": {
+    "status": "Accounting identity settled; physical comparison unmeasured",
+    "model": "For one correct N-gate operation, define nonnegative joule contributions \\(E_{\\rm src},E_{\\rm mod},E_{\\rm det},E_{\\rm cool},E_{\\rm mem},E_{\\rm idle}\\), and reference energy \\(E_{\\rm ref}>0\\) for the same input/output task. Let \\(E_{\\rm opt}\\) be the sum. With \\(E_{\\rm src}=N_{\\rm ph}h\\nu/\\eta_{\\rm wall}\\), fix \\(h\\nu>0\\), \\(0<\\eta_{\\rm wall}\\le1\\).",
+    "canonical": "The exact advantage condition is \\(E_{\\rm opt}<E_{\\rm ref}\\), an accounting identity. Define \\(E_{\\rm other}=E_{\\rm mod}+E_{\\rm det}+E_{\\rm cool}+E_{\\rm mem}+E_{\\rm idle}\\). If \\(E_{\\rm ref}\\le E_{\\rm other}\\), no nonnegative photon count suffices; otherwise \\(N_{\\rm ph}<\\eta_{\\rm wall}(E_{\\rm ref}-E_{\\rm other})/(h\\nu)\\). The nontrivial problem is to measure or tightly bound each term under a *matched* workload and error rate.",
+    "resolution": "Document the elementary inequality algebraically, then require calibration uncertainties, device operating conditions and measurements for any actual physical energy-advantage assertion.",
+    "known": [
+      [
+        "Original GC286 model and accounting target",
+        "../scoped/GC286.md",
+        "All terms are defined there and the break-even conclusion is algebraic."
+      ],
+      [
+        "Landauer, Irreversibility and Heat Generation (1961)",
+        "https://doi.org/10.1147/rd.53.0183",
+        "Thermodynamic limits address a different question from end-to-end device joules per correct result."
+      ]
+    ],
+    "milestones": [
+      "Prove the photon-count bound and handle the no-budget case.",
+      "Freeze an 8-bit task, target error probability, throughput, and system boundary.",
+      "Obtain component-level energy measurements and propagate error bars into a matched comparison."
+    ],
+    "notes": "No source-independent device advantage follows from substituting symbols into an inequality; the accounting includes optical reference energy and all electronic controls.",
+    "recommendation": "Archive the break-even equation as known; retain an engineering measurement project rather than a novel mathematics conjecture."
+  }
+}

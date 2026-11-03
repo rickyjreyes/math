@@ -1,0 +1,127 @@
+{
+  "GC196": {
+    "status": "Refined draft; lower-bound exponent corrected",
+    "model": "Fix the round \\(S^3,S^2\\), normalized smooth area form \\(\\omega\\) with \\(\\int_{S^2}\\omega=1\\), smooth \\(n:S^3\\to S^2\\), \\(F=n^*\\omega\\), \\(E(n)=\\int_{S^3}(|dn|^2+|F|^2)\\,dV\\), \\(Q(n)=\\int_{S^3}A\\wedge F\\in\\mathbb Z\\) for \\(dA=F\\). Set \\(I_Q=\\inf_{Q(n)=Q}E(n)\\).",
+    "canonical": "Classify the large-\\(|Q|\\) asymptotic of \\(I_Q\\), with sharp constants if available. Since the coexact primitive obeys \\(\\|A\\|_2\\le C\\|F\\|_2\\), the exact model already satisfies \\(|Q|\\le C\\|F\\|_2^2\\) and \\(I_Q\\ge c|Q|\\). Consequently an asserted **upper** bound \\(I_Q=O(|Q|^{3/4})\\) contradicts this fixed compact \\(S^3\\) model; that exponent cannot be imported from a different domain or normalization.",
+    "resolution": "Prove sharp two-sided (|Q|)-growth bounds or the actual alternative rate for the frozen compact model, with explicit metric/form normalizations; a negative answer must give a valid obstruction or test map.",
+    "known": [
+      [
+        "Ward, Hopf solitons on compact manifolds (2018)",
+        "https://doi.org/10.1063/1.5006891",
+        "Establishes a compact-manifold topological energy lower bound in a related Faddeev–Skyrme setting; model normalization matters."
+      ],
+      [
+        "Hatcher, Algebraic Topology",
+        "https://pi.math.cornell.edu/~hatcher/AT/ATchapters.html",
+        "Classical classification \\(\\pi_3(S^2)\\cong\\mathbb Z\\), not a statement about energy minimization."
+      ]
+    ],
+    "milestones": [
+      "Write the Hodge estimate \\( |Q(n)|\\le C\\|F_n\\|_2^2 \\) with the exact \\(S^3\\) constant.",
+      "Construct smooth representative maps for a sequence \\(|Q|\\to\\infty\\) and upper-bound their energies.",
+      "Determine \\(\\liminf I_Q/|Q|\\) or an explicit improved upper coefficient."
+    ],
+    "notes": "The previous three-quarter upper-growth target is inconsistent with this fixed compact model and has already been corrected in the scoped dossier. The domain and normalized area form are essential.",
+    "recommendation": "Retain corrected linear-growth research target; do not reintroduce the impossible upper exponent."
+  },
+  "GC197": {
+    "status": "Refined draft; regular-value isotopy obstruction",
+    "model": "Fix smooth maps \\(n_0,n_1:S^3\\to S^2\\) of equal Hopf invariant and a specified common regular value \\(y_0\\in S^2\\). Their links \\(K_i=n_i^{-1}(y_0)\\) carry the regular-value normal framing. Allowed homotopies are \\(C^\\infty\\) maps \\(n_s\\) for \\(s\\in[0,1]\\) such that \\(y_0\\) stays regular for every \\(s\\).",
+    "canonical": "Determine necessary and sufficient conditions, in terms of the links and their induced framings, for the existence of such a regular-value-preserving homotopy \\(n_s\\). Under an allowed homotopy the preimage in \\(S^3\\times[0,1]\\) projects submersively to the parameter interval and yields a framed link isotopy. Thus nonisotopic framed links obstruct the restricted homotopy, although equal Hopf invariants guarantee unrestricted homotopy.",
+    "resolution": "Prove a framed-isotopy classification including any required extension/homotopy data, or give explicit same-Hopf maps with framed-link obstruction. Do not claim isotopy sufficiency without proving an extension theorem.",
+    "known": [
+      [
+        "Hatcher, Algebraic Topology",
+        "https://pi.math.cornell.edu/~hatcher/AT/ATchapters.html",
+        "Equality of Hopf invariants classifies unrestricted \\(S^3\\to S^2\\) homotopy, not regular-value-preserving homotopy."
+      ],
+      [
+        "Pontryagin–Thom framed bordism construction",
+        "https://web.math.princeton.edu/~petero/konyv8.pdf",
+        "Framed bordism is weaker than the regular-value-preserving isotopy demanded here."
+      ]
+    ],
+    "milestones": [
+      "Prove a smooth family with a common regular value induces a framed link isotopy.",
+      "Construct explicit equal-Hopf maps whose regular-value links have different knot type.",
+      "Investigate whether framed isotopy is sufficient by constructing or obstructing a homotopy of maps with that preimage family."
+    ],
+    "notes": "Do not confuse ordinary homotopy, framed cobordism and framed ambient isotopy. The latter is enforced by the unusually strong regular-value-at-every-slice condition.",
+    "recommendation": "Retain as a refined topological problem; ordinary Hopf classification is settled but the restricted problem needs exact framed-isotopy and extension review."
+  },
+  "GC200": {
+    "status": "Classical result established; withdraw open-problem classification",
+    "model": "Let \\(T=\\mathbb R/L_x\\mathbb Z\\times\\mathbb R/L_y\\mathbb Z\\), \\(L_x,L_y>0\\), and \\(u\\in H^1(T;S^1)\\) with winding \\((m,n)\\in\\mathbb Z^2\\). Minimize \\(E(u)=\\frac12\\int_T|\\nabla u|^2\\).",
+    "canonical": "The exact answer is \\(\\min_{[u]=(m,n)}E(u)=2\\pi^2(m^2L_y/L_x+n^2L_x/L_y)\\). Every fixed-winding representative admits \\(u=e^{i[2\\pi(mx/L_x+ny/L_y)+f]}\\) with periodic real \\(f\\in H^1(T)\\); integration removes the affine-gradient cross term, yielding \\(E(u)=E_{\\min}+\\frac12\\int_T|\\nabla f|^2\\). Minimizers are the harmonic phase representatives, unique up to a constant phase.",
+    "resolution": "The stated analytic target is settled by this elementary Hodge/harmonic phase calculation. For an exact Lean completion, formalize winding decomposition, periodic integration and the energy identity; any new dynamics question must introduce a separate evolution equation.",
+    "known": [
+      [
+        "Hatcher, Algebraic Topology",
+        "https://pi.math.cornell.edu/~hatcher/AT/ATchapters.html",
+        "Winding/cohomology classification is classical."
+      ],
+      [
+        "Original scoped GC200 exact energy target",
+        "../scoped/GC200.md",
+        "The repository already identifies the harmonic representative."
+      ]
+    ],
+    "milestones": [
+      "Write the winding-class decomposition and verify the cross term integrates to zero.",
+      "Prove \\(E(u)-E_{\\min}=\\frac12\\|\\nabla f\\|_2^2\\) and uniqueness modulo global phase.",
+      "If useful, implement the full exact result in Lean without new axioms; separately specify any novel nonlinear extension."
+    ],
+    "notes": "The analytic theorem is not new. Do not confuse harmonic-energy minimization with nonlinear orbital stability or physical confinement.",
+    "recommendation": "Withdraw or merge the open-problem entry into completed/known mathematics; preserve an optional Lean verification milestone."
+  },
+  "GC212": {
+    "status": "Pathwise topological statement is classical; seek a different stochastic question",
+    "model": "Given \\((\\Omega,\\mathcal F,\\mathbb P)\\), suppose almost every sample is \\(n_\\omega\\in C([0,T],C(S^3,S^2))\\), with uniform spatial topology. Let \\(Q(n)\\in\\mathbb Z\\) denote the Hopf invariant.",
+    "canonical": "For every such sample, \\(Q(n_\\omega(t))=Q(n_\\omega(0))\\) for all \\(t\\in[0,T]\\), since \\(n_\\omega\\) itself is a homotopy. Hence the prescribed continuous nonvanishing model cannot exhibit stochastic topological charge change. A substantive extension must specify an SPDE or random map valued outside \\(S^2\\), and precisely define the first time when continuity, nonvanishing, or required spatial regularity is lost.",
+    "resolution": "Record the classical homotopy argument for the source statement; for a new SPDE prove/estimate a specified first zero-hitting or regularity-loss event and its probability, or prove it impossible in the chosen model.",
+    "known": [
+      [
+        "Hatcher, Algebraic Topology",
+        "https://pi.math.cornell.edu/~hatcher/AT/ATchapters.html",
+        "Homotopy invariance is independent of randomness."
+      ],
+      [
+        "Original scoped stochastic Hopf problem",
+        "../scoped/GC212.md",
+        "The source already recognizes pathwise invariance."
+      ]
+    ],
+    "milestones": [
+      "Write the almost-sure pathwise homotopy proof, including a measurable sample-event hypothesis.",
+      "Freeze an explicit noise law and field-space topology for a charge-changing SPDE candidate.",
+      "Prove a first-hitting bound, or show the chosen SPDE preserves nonvanishing globally."
+    ],
+    "notes": "Loss of continuity is necessary for a charge change only relative to the stated map space. A field can remain continuous as an (mathbb R^3)-valued function yet cross zero and lose its (S^2)-normalization.",
+    "recommendation": "Withdraw/merge the settled pathwise question; create a separately modeled stochastic defect-formation problem if desired."
+  },
+  "GC235": {
+    "status": "Lean formalization task for established Fourier analysis",
+    "model": "Use the original unitary convention \\(\\widehat f(\\xi)=(2\\pi)^{-1}\\int_{\\mathbb R^2}e^{-ix\\cdot\\xi}f(x)\\,dx\\) for Schwartz \\(f\\), extended to \\(H^2(\\mathbb R^2;\\mathbb C)\\); take the Laplacian as an \\(L^2\\) distribution/derivative and assert Fourier equality almost everywhere.",
+    "canonical": "Formalize the exact theorem \\(\\|\\widehat f\\|_2=\\|f\\|_2\\) and \\(\\widehat{\\Delta f}(\\xi)=-|\\xi|^2\\widehat f(\\xi)\\) a.e. for every \\(f\\in H^2(\\mathbb R^2;\\mathbb C)\\) in Lean 4, checking Schwartz-density extension and conventions. This is a verified-formalization deliverable, not an open analytic claim.",
+    "resolution": "A kernel-checked Lean declaration with exact normalization, imports, no sorry/admit or unreviewed axioms, successful lake build and source-to-theorem comparison is complete; audit existing Fourier modules first.",
+    "known": [
+      [
+        "Mathlib Fourier analysis API",
+        "https://leanprover-community.github.io/mathlib4_docs/",
+        "Established formal definitions may already implement much of this."
+      ],
+      [
+        "Existing Reyes Fourier formalization inventory",
+        "../VERIFIED_LEAN_RESULTS.md",
+        "Compare L2Fourier and FourierShellL2 before claiming missing work."
+      ]
+    ],
+    "milestones": [
+      "Identify all corresponding Mathlib theorem names and the exact Fourier normalization.",
+      "Formalize a Schwartz-space multiplier identity with one exact theorem signature.",
+      "Transport it to H² using density and audit axioms of the final declaration."
+    ],
+    "notes": "Novelty is in formal correspondence/engineering, not Fourier–Plancherel itself. A theorem using a different Fourier normalization is not sufficient without a proved conversion.",
+    "recommendation": "Merge into a formally tracked Lean milestone, retaining source proof attribution and avoiding novel-open language."
+  }
+}

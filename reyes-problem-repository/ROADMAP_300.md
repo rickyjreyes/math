@@ -6,6 +6,8 @@
 
 **Scoped dossier v1:** The GC66–GC300 pages in [the scoped dossier collection](scoped/README.md) add explicit benchmark models, quantities to freeze, existing audit cautions, and first falsifiable tests. They are **not** independently reviewed, automatically nonvacuous or certified open. The historical question pages remain unchanged.
 
+**Review quality and remaining work:** [Six-step problem standard](PROBLEM_STANDARD.md) · [Priority review queue](formal-reviews/REVIEW_QUEUE.md). Fifteen P0 conceptual items have individual case-specific reviews; all other GC scope records retain explicit outstanding gates. No registry status is automatically promoted.
+
 **Mathematical review catalogue:** [All 300 individually linked research review pages](formal-reviews/README.md) preserve the original statements and add model notes, a resolution test, subject-level prior-art starting points, strictly scoped milestones and status recommendations. **These are not 300 independently certified novel open problems or full independent literature audits.**
 
 **Difficulty*:** provisional research/proof burden on a 1–10 ordinal scale; not mathematical significance, novelty, proof completion, or a claim that a question is known open. Scores are editorial estimates with low confidence (approximately ±2 points), assuming the model is made precise. [Rubric and limitations](DIFFICULTY_RUBRIC.md).
