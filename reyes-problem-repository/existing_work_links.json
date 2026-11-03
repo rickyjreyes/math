@@ -162,7 +162,7 @@
         "ReyesMath.M6B.manuscript_closure_nonuniqueness_all_dimensions",
         "ReyesMath.M6B.manuscript_stationary_noninjectivity"
       ],
-      "scope_gap": "Existing admissible-closure nonuniqueness is a potential refutation of the unrestricted uniqueness claim; compare the exact GC08 axiom list and regularization before certifying the GC verdict.",
+      "scope_gap": "The GC08 analytical counterexample refutes unrestricted uniqueness for its phase-current operator. The M6B Lean theorem proves a separate nonuniqueness result for a Laplacian-quotient closure; additional-axiom classification for GC08 remains open.",
       "correspondence": "not_audited"
     },
     {
