@@ -4,6 +4,8 @@
 
 [Main roadmap](../ROADMAP_300.md) · [Verified exact-scope Lean results](../VERIFIED_LEAN_RESULTS.md) · [Original formal statements](../FORMAL_PROBLEMS.md) · [Scoped GC65–GC300 source dossiers](../scoped/README.md) · [Status registry](../STATUS.md)
 
+**Problem standard v2:** [23 case-specific revisions](REVIEW_QUEUE.md) include all 15 original P0 conceptual risks plus eight related cases. Several contain provisional exact analytic solutions, **not** Lean-checked new GC completions. [Six-part review contract](../PROBLEM_STANDARD.md).
+
 ## Read the evidence labels carefully
 
 - **Source target:** the existing question or scope-v1 target is reproduced as mathematics; a screen cannot silently revise it.
@@ -27,7 +29,7 @@
 | [GC56](GC56.md) | Global bifurcation of localized states | Candidate (formal original statement) |
 | [GC61](GC61.md) | Formation and breakdown of coherent structures | Candidate (formal original statement) |
 | [GC62](GC62.md) | Chaotic dynamics and transport barriers | Candidate (formal original statement) |
-| [GC66](GC66.md) | Internal-mode radiation damping | Refined draft |
+| [GC66](GC66.md) | Internal-mode radiation damping | Refined draft; spectral-gap correction and nonvacuity mandatory |
 | [GC67](GC67.md) | Traveling-wave velocity bounds | Refined draft; formal-promotion review required |
 | [GC68](GC68.md) | Two-soliton collision outcomes | Refined draft; formal-promotion review required |
 | [GC69](GC69.md) | Excited-state spectral instability index | Refined draft; formal-promotion review required |
@@ -54,7 +56,7 @@
 | [GC09](GC09.md) | Topological confinement protection | Candidate (formal original statement) |
 | [GC10](GC10.md) | Dimensional localized-energy classification | Candidate (formal original statement) |
 | [GC53](GC53.md) | Universal confinement and stability thresholds | Candidate (formal original statement) |
-| [GC82](GC82.md) | Curvature energy coercivity | Refined draft; formal-promotion review required |
+| [GC82](GC82.md) | Curvature energy coercivity | Provisional analytic solution to frozen coercivity inequality |
 | [GC83](GC83.md) | Zero-amplitude phase defects | Refined draft; formal-promotion review required |
 | [GC84](GC84.md) | Vanishing-regularizer curvature limits | Refined draft; formal-promotion review required |
 | [GC85](GC85.md) | Curvature and confinement on curved surfaces | Refined draft; formal-promotion review required |
@@ -69,7 +71,7 @@
 | [GC94](GC94.md) | Geometric confinement under weak disorder | Refined draft; formal-promotion review required |
 | [GC95](GC95.md) | Regularized curvature and Sobolev continuity | Refined draft; formal-promotion review required |
 | [GC96](GC96.md) | Multiple curvature wells and tunneling | Refined draft; formal-promotion review required |
-| [GC97](GC97.md) | Vortex core energy lower bounds | Refined draft; formal-promotion review required |
+| [GC97](GC97.md) | Vortex core energy lower bounds | Withdraw order-only target; refine sharp coefficient |
 | [GC98](GC98.md) | Local curvature data versus global confinement | Refined draft; formal-promotion review required |
 | [GC99](GC99.md) | Dimensional threshold under constrained curvature | Refined draft; formal-promotion review required |
 | [GC100](GC100.md) | Long-range geometric defects | Refined draft; formal-promotion review required |
@@ -86,9 +88,9 @@
 | [GC54](GC54.md) | Nonlinear scattering and threshold resonances | Candidate (formal original statement) |
 | [GC101](GC101.md) | Threshold resonance multiplicity | Refined draft; formal-promotion review required |
 | [GC102](GC102.md) | Embedded eigenvalues in fourth-order media | Refined draft; formal-promotion review required |
-| [GC103](GC103.md) | Sharp resolvent bounds near band minima | Refined draft; formal-promotion review required |
+| [GC103](GC103.md) | Sharp resolvent bounds near band minima | Provisional analytic solution to frozen free resolvent exponent |
 | [GC104](GC104.md) | Spectral stability of perturbed periodic stripes | Refined draft; formal-promotion review required |
-| [GC105](GC105.md) | Nonlinear Fermi golden rule at a band edge | Refined draft; formal-promotion review required |
+| [GC105](GC105.md) | Nonlinear Fermi golden rule at a band edge | Provisional analytic solution for frozen linear spectral coefficient |
 | [GC106](GC106.md) | Localization near quasi-periodic coefficients | Refined draft; formal-promotion review required |
 | [GC107](GC107.md) | Spectral flow under curvature coupling | Refined draft; formal-promotion review required |
 | [GC108](GC108.md) | Band-gap solitons for finite-amplitude lattices | Refined draft; formal-promotion review required |
@@ -115,14 +117,14 @@
 | [GC20](GC20.md) | Metastable energy landscapes | Candidate (formal original statement) |
 | [GC55](GC55.md) | Scaling universality and critical phenomena | Candidate (formal original statement) |
 | [GC120](GC120.md) | Sharp mass-energy inequality | Refined draft; formal-promotion review required |
-| [GC121](GC121.md) | Ground-state nondegeneracy | Refined draft; formal-promotion review required |
+| [GC121](GC121.md) | Ground-state nondegeneracy | Refined draft; existence and exact kernel classification outstanding |
 | [GC122](GC122.md) | Binding at the critical mass | Refined draft; formal-promotion review required |
 | [GC123](GC123.md) | Orbital stability from quantitative coercivity | Refined draft; formal-promotion review required |
-| [GC124](GC124.md) | Competing radial and stripe minimizers | Refined draft |
+| [GC124](GC124.md) | Competing radial and stripe minimizers | Refined draft; exact finite-volume comparison |
 | [GC125](GC125.md) | Mass partition in vector solitons | Refined draft; formal-promotion review required |
 | [GC126](GC126.md) | Concentration-compactness without radial symmetry | Refined draft; formal-promotion review required |
 | [GC127](GC127.md) | Barycentric pinning of minimizers | Refined draft; formal-promotion review required |
-| [GC128](GC128.md) | Sharp strict-subadditivity transition | Refined draft; formal-promotion review required |
+| [GC128](GC128.md) | Sharp strict-subadditivity transition | Refined draft; sharp binding boundary not known |
 | [GC129](GC129.md) | Soliton branch turning-point stability | Refined draft; formal-promotion review required |
 | [GC130](GC130.md) | Constrained minimizers with angular momentum | Refined draft; formal-promotion review required |
 | [GC131](GC131.md) | Energy landscape Morse index | Refined draft; formal-promotion review required |
@@ -147,7 +149,7 @@
 | [GC140](GC140.md) | Constraint preservation under nonlinear evolution | Refined draft; formal-promotion review required |
 | [GC141](GC141.md) | Finite-wavelength stability with Lorentz breaking | Refined draft; formal-promotion review required |
 | [GC142](GC142.md) | Ghost elimination by auxiliary fields | Refined draft; formal-promotion review required |
-| [GC143](GC143.md) | Causal propagation in dispersive field theories | Refined draft |
+| [GC143](GC143.md) | Causal propagation in dispersive field theories | Known spreading fact; refine quantitative tails |
 | [GC144](GC144.md) | Hyperbolicity under parameter continuation | Refined draft; formal-promotion review required |
 | [GC145](GC145.md) | Higher-derivative effective field theory cutoff | Refined draft; formal-promotion review required |
 | [GC146](GC146.md) | Energy positivity for coupled scalar fields | Refined draft; formal-promotion review required |
@@ -181,7 +183,7 @@
 | [GC162](GC162.md) | Optimal experiment design for competing dispersion laws | Refined draft; formal-promotion review required |
 | [GC163](GC163.md) | Boundary observation for fourth-order operators | Refined draft; formal-promotion review required |
 | [GC164](GC164.md) | Inverse recovery of nonlinear coupling strength | Refined draft; formal-promotion review required |
-| [GC165](GC165.md) | Local uniqueness versus parameter clipping | Refined draft |
+| [GC165](GC165.md) | Local uniqueness versus parameter clipping | Refined draft; implementation identity check |
 | [GC166](GC166.md) | Noise amplification near nonidentifiable sets | Refined draft; formal-promotion review required |
 | [GC167](GC167.md) | Reconstruction from sparse wave interferograms | Refined draft; formal-promotion review required |
 | [GC168](GC168.md) | Boundary potential recovery with eigenfunction traces | Refined draft; formal-promotion review required |
@@ -204,7 +206,7 @@
 | [GC34](GC34.md) | Defect nucleation and annihilation | Candidate (formal original statement) |
 | [GC35](GC35.md) | Infinite-domain pattern selection | Candidate (formal original statement) |
 | [GC57](GC57.md) | Stability under stochastic forcing | Candidate (formal original statement) |
-| [GC177](GC177.md) | Stripe stability boundaries in two dimensions | Refined draft |
+| [GC177](GC177.md) | Stripe stability boundaries in two dimensions | Refined draft; specific Bloch stability target |
 | [GC178](GC178.md) | Hexagon versus stripe selection | Refined draft; formal-promotion review required |
 | [GC179](GC179.md) | Pattern pinning by weak heterogeneity | Refined draft; formal-promotion review required |
 | [GC180](GC180.md) | Defect mobility laws | Refined draft; formal-promotion review required |
@@ -234,11 +236,11 @@
 | [GC39](GC39.md) | Coherent-state interaction laws | Candidate (formal original statement) |
 | [GC40](GC40.md) | Topology-changing singularities | Candidate (formal original statement) |
 | [GC58](GC58.md) | Multicomponent and vector confinement | Candidate (formal original statement) |
-| [GC196](GC196.md) | Hopf charge and coercive energy bounds | Refined draft; formal-promotion review required |
-| [GC197](GC197.md) | Knot type versus Hopf degree | Refined draft |
+| [GC196](GC196.md) | Hopf charge and coercive energy bounds | Refined draft; lower-bound exponent corrected |
+| [GC197](GC197.md) | Knot type versus Hopf degree | Refined draft; regular-value isotopy obstruction |
 | [GC198](GC198.md) | Linked vortex stability | Refined draft; formal-promotion review required |
 | [GC199](GC199.md) | Topology of nodal lines under evolution | Refined draft; formal-promotion review required |
-| [GC200](GC200.md) | Minimal energy for fixed winding pair | Withdraw / merge existing theorem |
+| [GC200](GC200.md) | Minimal energy for fixed winding pair | Classical result established; withdraw open-problem classification |
 | [GC201](GC201.md) | Knotted-field symmetry breaking | Refined draft; formal-promotion review required |
 | [GC202](GC202.md) | Vector-soliton polarization dynamics | Refined draft; formal-promotion review required |
 | [GC203](GC203.md) | Topological obstruction to scalarization | Refined draft; formal-promotion review required |
@@ -250,7 +252,7 @@
 | [GC209](GC209.md) | Quantization without imposed topology | Refined draft; formal-promotion review required |
 | [GC210](GC210.md) | Topology-preserving numerical schemes | Refined draft; formal-promotion review required |
 | [GC211](GC211.md) | Creation of knot pairs under forcing | Refined draft; formal-promotion review required |
-| [GC212](GC212.md) | Topological charge under weak noise | Withdraw / merge existing theorem |
+| [GC212](GC212.md) | Topological charge under weak noise | Pathwise topological statement is classical; seek a different stochastic question |
 | [GC213](GC213.md) | Coupled-field vortex lattice phases | Refined draft; formal-promotion review required |
 | [GC214](GC214.md) | Topology of moduli spaces of confined waves | Refined draft; formal-promotion review required |
 
@@ -293,8 +295,8 @@
 | [GC48](GC48.md) | Certified spectral semigroups | Candidate (formal original statement) |
 | [GC49](GC49.md) | Checked PDE counterexamples | Candidate (formal original statement) |
 | [GC50](GC50.md) | Proof-carrying numerical certificates | Candidate (formal original statement) |
-| [GC65](GC65.md) | Verified mathematical model reduction | Candidate (formal original statement) |
-| [GC235](GC235.md) | Lean-certified Fourier transform on Sobolev spaces | Merge with Lean formalization backlog |
+| [GC65](GC65.md) | Verified mathematical model reduction | Refined formal target; invariant-manifold existence unproved |
+| [GC235](GC235.md) | Lean-certified Fourier transform on Sobolev spaces | Lean formalization task for established Fourier analysis |
 | [GC236](GC236.md) | Verified nonlinear energy differentiability | Refined draft; formal-promotion review required |
 | [GC237](GC237.md) | Certified constrained minimizer existence | Refined draft; formal-promotion review required |
 | [GC238](GC238.md) | Lean orbital-distance quotient topology | Refined draft; formal-promotion review required |
@@ -306,12 +308,12 @@
 | [GC244](GC244.md) | Formal concentration radius inequalities | Refined draft; formal-promotion review required |
 | [GC245](GC245.md) | Lean Hamiltonian constraint matrix rank | Refined draft; formal-promotion review required |
 | [GC246](GC246.md) | Verified parameter identifiability ranks | Refined draft; formal-promotion review required |
-| [GC247](GC247.md) | Proof-assistant validated scattering normalization | Merge with Lean formalization backlog |
-| [GC248](GC248.md) | Formal topological winding invariance | Merge with Lean formalization backlog |
+| [GC247](GC247.md) | Proof-assistant validated scattering normalization | Known scattering algebra; Lean theorem task |
+| [GC248](GC248.md) | Formal topological winding invariance | Known homotopy invariant; Lean theorem task |
 | [GC249](GC249.md) | Certified error propagation for Galerkin ODEs | Refined draft; formal-promotion review required |
-| [GC250](GC250.md) | Lean-displayed counterexample provenance | Merge with Lean formalization backlog |
+| [GC250](GC250.md) | Lean-displayed counterexample provenance | Exact rational witness logic is elementary; checker-engineering task |
 | [GC251](GC251.md) | Validated spectral eigenvalue enclosures | Refined draft; formal-promotion review required |
-| [GC252](GC252.md) | Formal long-time Lyapunov descent | Merge with Lean formalization backlog |
+| [GC252](GC252.md) | Formal long-time Lyapunov descent | Known LaSalle-type convergence; Lean formalization target |
 | [GC253](GC253.md) | Machine-checked model-to-model error theorem | Refined draft; formal-promotion review required |
 
 ### 11 Physical Emergence Multiscale
@@ -350,7 +352,7 @@
 |:--|:--|:--|
 | [GC63](GC63.md) | Physical information and energy limits of wave computation | Candidate (formal original statement) |
 | [GC277](GC277.md) | Interference-based XOR robustness | Refined draft; formal-promotion review required |
-| [GC278](GC278.md) | Passive optical logic universality constraints | Withdraw / record finite-model resolution |
+| [GC278](GC278.md) | Passive optical logic universality constraints | Finite optical NAND model solved algebraically; separate hardware claims |
 | [GC279](GC279.md) | Cascadability of photonic logic gates | Refined draft; formal-promotion review required |
 | [GC280](GC280.md) | Optical phase memory retention | Refined draft; formal-promotion review required |
 | [GC281](GC281.md) | Photonic reversible gate synthesis | Refined draft; formal-promotion review required |
@@ -358,7 +360,7 @@
 | [GC283](GC283.md) | Optical fan-out energy limits | Refined draft; formal-promotion review required |
 | [GC284](GC284.md) | Error accumulation in phase-coded circuits | Refined draft; formal-promotion review required |
 | [GC285](GC285.md) | Photonic neural operator stability | Refined draft; formal-promotion review required |
-| [GC286](GC286.md) | Optical versus electronic energy accounting | Withdraw / record accounting identity |
+| [GC286](GC286.md) | Optical versus electronic energy accounting | Accounting identity settled; physical comparison unmeasured |
 | [GC287](GC287.md) | Integrated photonic wavelength selection | Refined draft; formal-promotion review required |
 | [GC288](GC288.md) | Thermal drift compensation in optical logic | Refined draft; formal-promotion review required |
 | [GC289](GC289.md) | Hybrid electro-optical feedback lower bounds | Refined draft; formal-promotion review required |
