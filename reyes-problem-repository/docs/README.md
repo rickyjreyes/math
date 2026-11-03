@@ -1,4 +1,6 @@
 # Technical documentation
+**New, November 2, 2026:** [Negative-result mathematical scope and proof-correspondence audit](../../docs/NEGATIVE_RESULT_SCOPE_AUDIT_2026-11-02.md), covering foundational S004, spectral, curvature-regularity, inverse, and computation-model obstructions. The review preserves the original Lean proofs and canonical GC questions, and records incomplete verification gates.
+
 
 This page collects the **research administration, audit and provenance material** for the [Reyes Problem Repository](../README.md). It is retained for reproducibility and review but is not necessary for reading the mathematical questions.
 
