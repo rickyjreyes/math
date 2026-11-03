@@ -6,6 +6,8 @@ The Reyes Problem Repository is an **open invitation to contribute**, not a sepa
 
 **Snapshot: November 2, 2026.** The [verified-results index](VERIFIED_LEAN_RESULTS.md) identifies **20 selected Lean proof modules** in this and connected repositories. The green marker here means **the cited, narrower proposition is recorded as formally proved**, not that the full GC question is solved, its physical interpretation established, or an independent Lean rebuild performed for this document. A linked `GC` is a correspondence lead unless reviewed against the entire frozen question.
 
+**November 2 negative-result correspondence correction:** GC08's frozen real phase-current-divergence operator has an explicit **analytical** counterexample on its own problem page. The associated M6B Lean closure-nonuniqueness theorem is **formally proved for a different Laplacian-quotient operator**, and cannot on its own be counted as exact Lean certification of the GC08 counterexample. The historical adoption cross-reference below is retained as provenance, not promoted to an exact operator match. See [audit](../docs/NEGATIVE_RESULT_SCOPE_AUDIT_2026-11-02.md).
+
 | Proven exact-scope result | Statement supported by the cited source | Existing Lean/paper source | Relationship to broader challenge |
 |:--|:--|:--|:--|
 | ✅ **Orbital stability** | Orbital stability of the **full set of constrained minimizers** in $H^2(\mathbb R^2)$, in the sufficient mass range; not uniqueness or profile-wise stability | [OrbitalStability.lean](../lean/MathProofs/OrbitalStability.lean), [paper](../papers/orbital-stability-fourth-order-cubic-quintic/main.tex) | [GC01](problems/01-wave-dynamics/GC01.md), partial |
