@@ -1,5 +1,7 @@
 # Activating a GC research question
 
+**Problem quality standard:** [Six-part formal question, literature and proof checklist](PROBLEM_STANDARD.md) · [Current scoping queue](formal-reviews/REVIEW_QUEUE.md).
+
 **Short operational guide.** For the full scoping and literature method use [METHOD.md](METHOD.md); for issue, pull-request, Lean, and review requirements use [WORKFLOW.md](WORKFLOW.md). This page stays because it contains the **GC-specific entry route and issue generator**. It is not a second mathematical status policy.
 
 **Current corpus (November 2, 2026):** [ROADMAP_300.md](ROADMAP_300.md) covers 300 questions; [scoped/README.md](scoped/README.md) contains **236 existing GC65–GC300 scoped dossiers**. GC66–GC300 have proposed precise targets but remain unreviewed candidate research questions. None becomes a new, globally verified open problem merely because a scoped dossier exists. The 1–10 [difficulty ratings](DIFFICULTY_RUBRIC.md) measure subjective research burden, not proof completion.
