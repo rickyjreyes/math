@@ -14,6 +14,8 @@
 
 **[✅ View all 20 COMPLETE Lean results](VERIFIED_LEAN_RESULTS.md).** The green checks apply to proved model-specific mathematical statements. GC problem statuses remain separate and are not upgraded by this source cross-reference alone. In particular, the newer V18 rank/nullity and local-fiber theorems are included in the complete-results index and are now linked directly in the GC26 source mapping below.
 
+**Dated exact-operator audit correction (November 2, 2026):** GC08 is the phase-current-divergence operator, with its own analytical counterexample C_λ=K_ε+λΔ|u|². The linked M6B Lean results instead concern a different regularized Laplacian quotient and therefore do **not** formally certify the exact GC08 counterexample. The original source-mapping table below is preserved as a historical correspondence lead, not an equivalence claim. **GC28** also uses the original GC08 operator on T²; M6B stationary noninjectivity on a Dirichlet square does not resolve GC28. Keep the existing GC statuses. See the [dated negative-results audit](../docs/NEGATIVE_RESULT_SCOPE_AUDIT_2026-11-02.md).
+
 | Problem | Existing GC issue | Related research artifacts | Relationship | Scope boundary requiring review |
 |:--|:--|:--|:--|:--|
 | [GC01: Universal orbital stability](./problems/01-wave-dynamics/GC01.md) | [#54](https://github.com/rickyjreyes/math/issues/54) | [Lean: OrbitalStability.lean](../lean/MathProofs/OrbitalStability.lean); [Lean: CubicQuinticFlow.lean](../lean/MathProofs/CubicQuinticFlow.lean); [Paper: orbital-stability-fourth-order-cubic-quintic](../papers/orbital-stability-fourth-order-cubic-quintic/main.tex) | Direct, partial evidence | Minimizer-set orbital stability under a sufficient mass bound does not classify excited standing waves. |

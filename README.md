@@ -30,6 +30,8 @@ The objective is to **advance and critically test WCT's foundational physics res
 
 **Constructive scope rule:** an impossibility result excludes only its quantified model class. When a route fails, identify the exact assumption or formulation excluded, what wider hypotheses remain open, and the next meaningful proof, model construction or empirical test. Do not invent a successful alternative or conceal a genuine broad failure. See the [repository-wide research-direction policy](RESEARCH_DIRECTION.md) and [problem research workflow](reyes-problem-repository/WORKFLOW.md).
 
+**Negative-result scope audit (November 2, 2026):** [Source-linked audit of foundational, confinement, operator, and computation-model counterexamples](docs/NEGATIVE_RESULT_SCOPE_AUDIT_2026-11-02.md). It distinguishes genuine S004 constraints and UV obstructions from model-family extrapolations, records the GC08-to-M6B Lean correspondence correction, and states the remaining kernel-replay and inventory-verification gates. The audit does not reopen the F01 constructive proofs or change GC completion statuses.
+
 ## Selected mathematical results
 
 The table is a starting point, not an exhaustive list. Each link opens an individual compiled manuscript; the [catalogue](CONTENTS.md) links every manuscript to its PDF, LaTeX source, and notes.
