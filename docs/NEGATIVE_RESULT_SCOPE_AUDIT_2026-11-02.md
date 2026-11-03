@@ -14,6 +14,21 @@
 4. The F01 constructive results for strict binding, constrained minimizers, global H² flow, and orbital stability concern a specified fourth-order cubic–quintic Schrödinger Hamiltonian with **first-order time evolution**. They are not logically contradicted by the separate S004 **fourth-order time** obstructions.
 5. **One demonstrable source-to-problem mismatch:** GC08's original phase-current divergence operator is *not* the M6B Laplacian-quotient operator. The valid M6B Lean nonuniqueness theorem cannot be called a Lean formalization of the exact GC08 counterexample. The original GC08 page itself gives a separate, elementary analytical counterexample, so this correction does not justify reversing the existing partial GC status.
 
+## Default-branch source provenance snapshot
+
+The following GitHub ref heads were checked on November 2, 2026, independently of the review branch. They are reproducibility anchors for future comparison; each theorem claim must still be matched to its file blob and exact declaration.
+
+| Repository | Default ref | Observed commit SHA | Tracked Lean files in recursive tree |
+|---|---|---|---:|
+| [math](https://github.com/rickyjreyes/math) | main | 6c8328a88db9e922a9c73c214677e57d3840c24a | 182 |
+| [geometry_of_resonance](https://github.com/rickyjreyes/geometry_of_resonance) | main | f8b75eeee5929455ee4ef19b6dec8921e6b98f3c | 28 |
+| [wct-pde](https://github.com/rickyjreyes/wct-pde) | main | f8d4319e04aa52043b3316ee11f78547b0aa2183 | 5 |
+| [PVNP](https://github.com/rickyjreyes/PVNP) | main | 4acb9d821a9566facaefb53ee62b93dbf455956e | 72 |
+| [photodiode](https://github.com/rickyjreyes/photodiode) | main | 1e9abf79b4459438cfa60c6fcd4ec0be02fde4bb | 5 |
+| [Wavelock](https://github.com/rickyjreyes/Wavelock) | **master** | b310ea598c6e38fc46cbf3484ccb2951aaf130fe | 14 |
+
+The file-tree calls returned **truncated=false** in all six repositories, so the **paths** were fully enumerated. This does **not** mean that the contents of all 306 Lean files, manuscripts, unmerged PRs or historical versions were exhaustively reviewed, nor that each theorem was rebuilt.
+
 ## Audit method and status meaning
 
 The audit compared repository paths and Lean theorem declarations against corresponding manuscript statements and foundational model definitions. Status labels below refer to **mathematical interpretation in the named target**, not blanket acceptance or rejection of WCT.
