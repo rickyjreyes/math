@@ -12,6 +12,8 @@
 
 **Difficulty*:** provisional research/proof burden on a 1–10 ordinal scale; not mathematical significance, novelty, proof completion, or a claim that a question is known open. Scores are editorial estimates with low confidence (approximately ±2 points), assuming the model is made precise. [Rubric and limitations](DIFFICULTY_RUBRIC.md).
 
+**Negative-result correspondence audit (November 2, 2026):** [Source-backed scope and proof-mapping ledger](../docs/NEGATIVE_RESULT_SCOPE_AUDIT_2026-11-02.md), including the GC08 versus M6B operator distinction. The 300-question registry statuses are unchanged.
+
 **Read the statuses carefully:** **Candidate (formal)** means the original problem is specified but no full GC resolution is accepted. **Draft (scope v1; unreviewed)** denotes a research sketch with a proposed benchmark model and first test, **not** a frozen, literature-verified unsolved problem. **🟡 Partially resolved** indicates an established narrow negative or positive result, with the larger question still open. A **✅ theorem linked** in the evidence column refers only to the theorem's *precise mathematical scope*, not to completion of that GC question.
 
 There are 12 subjects with 25 questions each. The [original 65 statements](./FORMAL_PROBLEMS.md), [five detailed research dossiers](./README.md#five-problems-to-start-with), and [completed-results index](./VERIFIED_LEAN_RESULTS.md) provide the technical starting points.
@@ -58,7 +60,7 @@ Curvature operators, bound states, localization thresholds and geometric defects
 |:--|:--|:--|:--|:--:|:--|
 | GC06 | [Self-confinement criteria](./problems/02-confinement-curvature/GC06.md) | Candidate (formal) | ✅ Minimizers and strict binding on a mass range | 9/10 | — · [Research review](./formal-reviews/GC06.md) |
 | GC07 | [Curvature-induced localization](./problems/02-confinement-curvature/GC07.md) | Candidate (formal) | No existing proof mapped | 7/10 | — · [Research review](./formal-reviews/GC07.md) |
-| GC08 | [Admissible curvature closures](./problems/02-confinement-curvature/GC08.md) | 🟡 **Partially resolved** | ✅ Nonuniqueness counterexample; classification open | 7/10 | — · [Research review](./formal-reviews/GC08.md) |
+| GC08 | [Admissible curvature closures](./problems/02-confinement-curvature/GC08.md) | 🟡 **Partially resolved** | Analytical GC08 nonuniqueness counterexample; separate M6B Lean model; classification open | 7/10 | — · [Research review](./formal-reviews/GC08.md) |
 | GC09 | [Topological confinement protection](./problems/02-confinement-curvature/GC09.md) | Candidate (formal) | No existing proof mapped | 8/10 | — · [Research review](./formal-reviews/GC09.md) |
 | GC10 | [Dimensional localized-energy classification](./problems/02-confinement-curvature/GC10.md) | Candidate (formal) | No existing proof mapped | 8/10 | — · [Research review](./formal-reviews/GC10.md) |
 | GC53 | [Universal confinement and stability thresholds](./problems/02-confinement-curvature/GC53.md) | Candidate (formal) | Related source links; scope unaudited | 10/10 | — · [Research review](./formal-reviews/GC53.md) |
