@@ -165,6 +165,18 @@ The following negative statements were located in **normally named** Lean module
 
 **Deduplication policy for these additions:** the multiple phase/density/constant-zero witnesses are evidence for related noninjectivity themes, not automatically independent WCT model failures. The unrestricted-encoder and unrestricted-decoder results are separate formal resource-accounting gaps. The 3D high-frequency example is not equivalent to E69's lack of L∞ curvature from H². The radius-one propagation bound is logically unrelated to an arbitrary oracle encoding.
 
+## Second-pass declaration findings (November 3, 2026)
+
+These additions were checked against their current Lean source declarations, not independently rebuilt in this pass. They supplement, rather than replace, the November 2 inventory.
+
+| Source | Exact formal negative result | Scope and classification |
+|---|---|---|
+| [E62TrigonometricScope](https://github.com/rickyjreyes/math/blob/main/lean/MathProofs/E62TrigonometricScope.lean) | `fraction_not_monotone` and `fraction_not_antitone` for the explicit two-mode function $\eta(t)=\cos^2(t)$. | **VALID_BUT_RESTRICTED**: this is an exact trigonometric counterexample to unconditional monotonicity, not a theorem about evolution under a specified PDE. Do not count as a physical spectral-concentration failure. |
+| [E62TorusSharpness](https://github.com/rickyjreyes/math/blob/main/lean/MathProofs/E62TorusSharpness.lean) | `exists_actual_fraction_zero`: if a Fourier band has nonempty complement, a genuine nonzero torus Fourier mode has zero energy fraction in that band. | **VALID_AND_APPLICABLE** to the exact band-fraction statement; not a counterexample to a conditional theorem that assumes initial spectral access. |
+| [R16_CompletionClasses](https://github.com/rickyjreyes/geometry_of_resonance/blob/main/lean/ReleaseProofs/R16_CompletionClasses.lean) | `defocusing_mode_no_nonzero_stationary` excludes nonzero equilibria for a single-mode algebraic equation with positive quadratic frequency and nonnegative quartic coupling. | **VALID_BUT_RESTRICTED**: a one-mode algebraic nonexistence theorem, not a general nonlinear PDE or WCT no-soliton theorem. |
+
+**Verification boundary:** The second pass directly inspected source declarations in selected modules, including S004, UV, Fourier leakage, E58, E68, E69, R16, R18, M6B, PVNP and WaveLock. A full 306-file declaration-by-declaration proof/dependency review and fresh pinned Lean kernel build remain incomplete. The inventory above is not a final deduplicated total.
+
 ## Correspondence with constructive theorems: no contradiction identified
 
 The F01 variational/NLS equation is i u_t=(Δ+k²)²u−β|u|²u+γ|u|⁴u on a specific two-dimensional whole-space phase space. Its strict binding, minimizer existence, global H² dynamics, and stability of the **set of minimizers** are mathematically distinct from the S004 action's second-time-derivative scalar field and fourth-time-order Euler–Lagrange evolution. Different equations, domains, conserved charges, and admissible phase spaces explain the apparent tension. No contradiction justifying alteration of the constructive Lean declarations was found in this source review.
