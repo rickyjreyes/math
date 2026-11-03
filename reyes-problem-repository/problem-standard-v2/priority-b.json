@@ -2,13 +2,13 @@
   "GC196": {
     "status": "Refined draft; lower-bound exponent corrected",
     "model": "Fix the round \\(S^3,S^2\\), normalized smooth area form \\(\\omega\\) with \\(\\int_{S^2}\\omega=1\\), smooth \\(n:S^3\\to S^2\\), \\(F=n^*\\omega\\), \\(E(n)=\\int_{S^3}(|dn|^2+|F|^2)\\,dV\\), \\(Q(n)=\\int_{S^3}A\\wedge F\\in\\mathbb Z\\) for \\(dA=F\\). Set \\(I_Q=\\inf_{Q(n)=Q}E(n)\\).",
-    "canonical": "Classify the large-\\(|Q|\\) asymptotic of \\(I_Q\\), with sharp constants if available. Since the coexact primitive obeys \\(\\|A\\|_2\\le C\\|F\\|_2\\), the exact model already satisfies \\(|Q|\\le C\\|F\\|_2^2\\) and \\(I_Q\\ge c|Q|\\). Consequently an asserted \\emph{upper} bound \\(I_Q=O(|Q|^{3/4})\\) contradicts this fixed compact \\(S^3\\) model; that exponent cannot be imported from a different domain or normalization.",
+    "canonical": "Classify the large-\\(|Q|\\) asymptotic of \\(I_Q\\), with sharp constants if available. Since the coexact primitive obeys \\(\\|A\\|_2\\le C\\|F\\|_2\\), the exact model already satisfies \\(|Q|\\le C\\|F\\|_2^2\\) and \\(I_Q\\ge c|Q|\\). Consequently an asserted **upper** bound \\(I_Q=O(|Q|^{3/4})\\) contradicts this fixed compact \\(S^3\\) model; that exponent cannot be imported from a different domain or normalization.",
     "resolution": "Prove sharp two-sided (|Q|)-growth bounds or the actual alternative rate for the frozen compact model, with explicit metric/form normalizations; a negative answer must give a valid obstruction or test map.",
     "known": [
       [
-        "Vakulenko–Kapitanskii and related Faddeev–Skyrme charge bounds",
-        "https://doi.org/10.1016/0375-9601(79)90034-9",
-        "Classical three-dimensional charge-energy estimates with model-dependent domain and constants; compare carefully."
+        "Ward, Hopf solitons on compact manifolds (2018)",
+        "https://doi.org/10.1063/1.5006891",
+        "Establishes a compact-manifold topological energy lower bound in a related Faddeev–Skyrme setting; model normalization matters."
       ],
       [
         "Hatcher, Algebraic Topology",
