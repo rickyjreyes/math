@@ -391,6 +391,11 @@ def load_standard_v2() -> dict[str, dict]:
     return found
 
 
+def github_inline_math(text: str) -> str:
+    """Normalize literal TeX inline delimiters for GitHub MathJax rendering."""
+    return re.sub(r"\\\((.+?)\\\)",lambda m: "$"+m.group(1)+"$",text)
+
+
 def create_specialist_page(e: dict, target: str, source: str,
                            review: dict) -> str:
     """Six-part problem-standard page with preserved source and review boundaries."""
@@ -406,7 +411,7 @@ def create_specialist_page(e: dict, target: str, source: str,
         milestones+=("\n4. Compare the model and theorem quantifiers with the "
                      "closest cited source; document any genuinely missing result "
                      "before novelty or closure is claimed.")
-    return "\n".join([
+    return github_inline_math("\n".join([
         f"# {key}: {e['title']}",
         "",
         "**Status:** "+review["status"]+".",
@@ -466,7 +471,7 @@ def create_specialist_page(e: dict, target: str, source: str,
         "verification, independent scope correspondence and the "
         "[existing completion contract](../WORKFLOW.md).",
         ""
-    ])
+    ]))
 
 
 def create_page(e: dict, legacy: dict[str,str]) -> str:
