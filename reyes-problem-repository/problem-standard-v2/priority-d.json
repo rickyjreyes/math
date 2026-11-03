@@ -46,7 +46,7 @@
       "Certify a simple isolated eigenpair in the true gap \\(0<\\nu<\\lambda\\) and account for symmetry zero modes.",
       "Derive a concrete nonzero nonlinear radiation coefficient and state a conditional decay theorem under exact hypotheses."
     ],
-    "notes": "The historical target used (0<\nu<1), which does not locate the actual essential spectral gap. The squared-resonance threshold and degeneracy of the dispersion shell require special analysis.",
+    "notes": "The historical target used \\(0<\\nu<1\\), which does not locate the actual essential spectral gap. Higher-harmonic thresholds and the degeneracy of the dispersion minimum circle need separate analysis.",
     "recommendation": "Keep refined draft pending proof of a nonvacuous standing-wave mode and exact spectrum."
   },
   "GC82": {
