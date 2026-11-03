@@ -1,0 +1,177 @@
+{
+  "GC65": {
+    "status": "Refined formal target; invariant-manifold existence unproved",
+    "model": "Fix the real Swift–Hohenberg flow \\(u_t=2u-(1+\\Delta)^2u-u^3\\) on \\(\\mathbb T^2=(\\mathbb R/2\\pi\\mathbb Z)^2\\), initial \\(u_0\\in H^2(\\mathbb T^2;\\mathbb R)\\). For each integer \\(N\\ge1\\), \\(P_N\\) projects to \\(|k|\\le N\\), and \\(Q_N=I-P_N\\).",
+    "canonical": "Determine whether there exist \\(N\\) and a globally Lipschitz graph \\(\\Phi:P_NH^2\\to Q_NH^2\\) such that \\(\\mathcal M=\\{p+\\Phi(p)\\}\\) is forward invariant and attracts every bounded \\(B\\subset H^2\\) exponentially: \\(\\operatorname{dist}_{H^2}(S(t)B,\\mathcal M)\\le C_Be^{-\\lambda t}\\) for \\(t\\ge0\\), with \\(\\lambda>0\\) uniform in B. This is an inertial-manifold problem, stronger than a finite-dimensional attractor.",
+    "resolution": "Prove explicit N, spectral gap/cone invariance and graph tracking estimates in H², or prove no such graph exists for the frozen flow and Fourier cutoffs.",
+    "known": [
+      [
+        "Robinson, Attractors and finite-dimensional behaviour (2013)",
+        "https://doi.org/10.1155/2013/291823",
+        "General inertial manifold/spectral gap conditions; not the exact Swift–Hohenberg graph."
+      ],
+      [
+        "Guo, inertial manifolds for 2D hyperviscous Navier–Stokes",
+        "https://arxiv.org/abs/2401.14642",
+        "Related fourth-order smoothing and lattice spectral gaps, different PDE."
+      ]
+    ],
+    "milestones": [
+      "Compute the ordered torus spectral values and identify an exact Fourier cutoff with a candidate gap.",
+      "Prove an absorbing H² bound and a globally Lipschitz prepared nonlinearity compatible with that cutoff.",
+      "Establish the graph cone or tracking inequality, or construct a failure of every proposed uniform gap."
+    ],
+    "notes": "The spectral projector is radially defined and may split degenerate eigenspaces at shell cutoffs. Distinguish global graph from local center/unstable manifolds.",
+    "recommendation": "Keep refined, not verified open; an explicit nontrivial gap and graph estimate remain necessary."
+  },
+  "GC66": {
+    "status": "Refined draft; spectral-gap correction and nonvacuity mandatory",
+    "model": "Take \\(i u_t=(\\Delta+1)^2u-|u|^2u+|u|^4u\\) on \\(\\mathbb R^2\\), \\(u_0\\in H^2(\\mathbb R^2;\\mathbb C)\\). Use \\(u=e^{i\\lambda t}\\phi\\) with \\(\\phi\\in H^4(\\mathbb R^2;\\mathbb R)\\setminus\\{0\\}\\), \\(\\lambda>0\\), solving \\((\\Delta+1)^2\\phi+\\lambda\\phi-\\phi^3+\\phi^5=0\\). Define \\(L_+=(\\Delta+1)^2+\\lambda-3\\phi^2+5\\phi^4\\), \\(L_-=(\\Delta+1)^2+\\lambda-\\phi^2+\\phi^4\\), \\(\\mathcal A=J\\operatorname{diag}(L_+,L_-)\\).",
+    "canonical": "First prove nonzero standing-wave existence and an isolated \\(\\pm i\\nu\\) eigenpair with \\(0<\\nu<\\lambda<1/4\\). The upper bound \\(\\lambda<1/4\\) is necessary for real localized profiles: \\(\\phi^4-\\phi^6\\le\\phi^2/4\\) and the stationary energy identity exclude \\(\\lambda\\ge1/4\\). Given a verified profile, internal mode, spectral projection and modulation slice, determine whether the mode amplitude tends to zero for a specified small \\(H^2\\)-open perturbation family; any Fermi golden rule must be proved nonzero, not assumed.",
+    "resolution": "Prove profile and eigenmode existence, relevant spectral isolation, modulation estimates and nonlinear radiation transfer, or construct a profile/perturbation proving failure. If the profile has unstable modes, distinguish stable-manifold damping from damping on an open neighborhood.",
+    "known": [
+      [
+        "Gang and Weinstein, nonlinear neutral-mode mass transfer",
+        "https://arxiv.org/abs/0811.0261",
+        "Fermi golden rule dynamics for related NLS systems."
+      ],
+      [
+        "Rialland, asymptotic stability with internal mode (2025)",
+        "https://doi.org/10.3934/dcds.2024140",
+        "Proof in 1D near-cubic NLS; not a theorem for ring-degenerate fourth-order dispersion."
+      ]
+    ],
+    "milestones": [
+      "Prove or exclude a nonzero (H^4) standing-wave branch for a fixed (0<lambda<1/4).",
+      "Certify a simple isolated eigenpair in the true gap (0<\nu<lambda) and account for symmetry zero modes.",
+      "Derive a concrete nonzero nonlinear radiation coefficient and state a conditional decay theorem under exact hypotheses."
+    ],
+    "notes": "The historical target used (0<\nu<1), which does not locate the actual essential spectral gap. The squared-resonance threshold and degeneracy of the dispersion shell require special analysis.",
+    "recommendation": "Keep refined draft pending proof of a nonvacuous standing-wave mode and exact spectrum."
+  },
+  "GC82": {
+    "status": "Provisional analytic solution to frozen coercivity inequality",
+    "model": "Let \\(m>0,\\alpha\\ge0\\), \\(u\\in H^2(\\mathbb R^2;\\mathbb C)\\) with \\(M(u)=\\|u\\|_2^2=m\\), \\(E_{\\alpha,1}(u)=\\|(\\Delta+1)u\\|_2^2-\\frac12\\|u\\|_4^4+\\frac13\\|u\\|_6^6+\\alpha\\|K_1(u)\\|_2^2\\). Use the Bessel \\(H^2\\) norm \\(\\int(1+|\\xi|^2)^2|\\widehat u|^2\\,d\\xi\\).",
+    "canonical": "The claimed coercivity estimate holds, with constants independent of \\(\\alpha\\ge0\\): \\(\\boxed{E_{\\alpha,1}(u)\\ge\\frac12\\|u\\|_{H^2}^2-\\frac{67}{16}m}\\). Indeed, for \\(s=|u|^2\\), \\(-\\frac12s^2+\\frac13s^3\\ge-\\frac3{16}s\\). Moreover \\((1+t)^2\\le2(1-t)^2+8\\) for \\(t=|\\xi|^2\\), so \\(\\|u\\|_{H^2}^2\\le2\\|(\\Delta+1)u\\|_2^2+8m\\). The curvature term is nonnegative. These identities answer the precise v1 yes/no question for all fixed masses.",
+    "resolution": "Independently check the two pointwise inequalities and Fourier normalization, and, if demanded by the GC proof contract, formalize the exact uniform coercivity statement in Lean. Treat stronger optimal-constant or vanishing-regularizer estimates as new questions.",
+    "known": [
+      [
+        "Original frozen W/K energy conventions",
+        "../scoped/COMMON_MODELS.md",
+        "The positivity of the curvature penalty and the mass constraint are explicit."
+      ],
+      [
+        "Existing fourth-order variational proofs",
+        "../VERIFIED_LEAN_RESULTS.md",
+        "Different results (binding/minimizers) do not need to be assumed for this simple inequality."
+      ]
+    ],
+    "milestones": [
+      "Verify the algebraic lower bound (-s^2/2+s^3/3ge-3s/16) for all (sge0).",
+      "Prove the Fourier multiplier inequality ((1+t)^2le2(1-t)^2+8).",
+      "Combine the bounds for arbitrary (m>0,alphage0); audit correspondence and Lean formalization if appropriate."
+    ],
+    "notes": "This proves fixed-mass coercivity, not coercivity uniformly over unrestricted mass and not strict binding. It does not prove compactness modulo translations.",
+    "recommendation": "Mark the scoped coercivity target analytically answered subject to review, rather than keeping a generic difficult open conjecture."
+  },
+  "GC103": {
+    "status": "Provisional analytic solution to frozen free resolvent exponent",
+    "model": "On \\(L^2(\\mathbb R^2)\\), \\(H_0=(\\Delta+1)^2\\) with domain \\(H^4\\). Fix \\(w(x)=\\langle x\\rangle^{-3}\\), \\(0<\\kappa<1\\), \\(R_\\kappa=(H_0+\\kappa)^{-1}\\), \\(N(\\kappa)=\\|wR_\\kappa w\\|_{L^2\\to L^2}\\).",
+    "canonical": "For this **free** shifted bi-Laplacian, the sharp growth exponent is \\(p=1/2\\): there are \\(0<c<C<\\infty\\) with \\(c\\kappa^{-1/2}\\le N(\\kappa)\\le C\\kappa^{-1/2}\\) for sufficiently small \\(\\kappa>0\\). For \\(h=wf\\), the quadratic form is \\(\\int |\\widehat h(\\xi)|^2/((1-|\\xi|^2)^2+\\kappa)\\,d\\xi\\). Since \\(xw\\) is bounded, \\(\\widehat h\\in H^1_\\xi\\); uniform Fourier-circle trace estimates bound the shell integral above by \\(C\\kappa^{-1/2}\\|f\\|_2^2\\), with the complement bounded. Choose a compactly supported f with nonzero Fourier trace of wf on \\(|\\xi|=1\\) to obtain the matching lower bound. Hence \\(\\lim_{\\kappa\\downarrow0}\\log N(\\kappa)/\\log(1/\\kappa)=1/2\\).",
+    "resolution": "Supply a full weighted Fourier-circle trace lemma and explicit nonzero trial function, including constants and treatment away from the circle. Prove sharp bounds, or identify a gap in the proposed argument; a perturbed V or different weight is a separate question.",
+    "known": [
+      [
+        "Classical Fourier trace/Sobolev methods",
+        "https://encyclopediaofmath.org/wiki/Trace_theorem",
+        "Uniform trace to a smooth shell follows from adequate Sobolev regularity."
+      ],
+      [
+        "Li, Soffer and Yao, fourth-order Schrödinger decay",
+        "https://doi.org/10.1016/j.jfa.2022.109816",
+        "Related resolvent background; their dispersion does not have the same minimum circle."
+      ]
+    ],
+    "milestones": [
+      "Prove a uniform (H^1(mathbb R^2)\to L^2(S_r^1)) trace bound for r near one.",
+      "Estimate the shell integral (int_{|r-1|<c}r,dr/((1-r^2)^2+kappa)asympkappa^{-1/2}).",
+      "Construct f with nonzero trace of (widehat{wf}) on the unit circle and deduce the sharp exponent."
+    ],
+    "notes": "This resolves only the frozen free resolvent; it says nothing about resonant potentials V or a nonlinear spectral operator. The argument is a provisional analytic proof, not yet Lean checked or independently reviewed.",
+    "recommendation": "Record p=1/2 as an analytic result after verification and reframe any future GC103 as a perturbed-shell or sharp-leading-operator problem."
+  },
+  "GC105": {
+    "status": "Provisional analytic solution for frozen linear spectral coefficient",
+    "model": "Fix \\(H_0=(\\Delta+1)^2\\) on \\(L^2(\\mathbb R^2)\\), spectral value \\(\\lambda=1\\), \\(g\\in C_c^\\infty(\\mathbb R^2;\\mathbb C)\\), and \\(\\Gamma(g)=\\lim_{\\eta\\downarrow0}\\operatorname{Im}\\langle g,(H_0-1-i\\eta)^{-1}g\\rangle\\). Use the **unitary** 2D Fourier transform \\(\\widehat g=(2\\pi)^{-1}\\int e^{-ix\\cdot\\xi}g(x)\\,dx\\).",
+    "canonical": "The frozen coefficient has an explicit nonnegative expression: \\(\\boxed{\\Gamma(g)=\\frac{\\pi}{4}\\int_0^{2\\pi}|\\widehat g(\\sqrt2\\,e_\\theta)|^2\\,d\\theta+\\frac{\\pi^2}{4}|\\widehat g(0)|^2}\\). Indeed, polar integration with \\(t=|\\xi|^2\\) gives multiplier denominator \\(t(t-2)-i\\eta\\) and measure \\(d\\xi=\\frac12\\,dt\\,d\\theta\\). The ordinary circle root t=2 contributes the first term; the collapsed point t=0 is an endpoint root and contributes the **half-weight** second term. Hence \\(\\Gamma(g)>0\\) iff \\(\\widehat g(0)\\ne0\\) or the restriction to the circle \\(|\\xi|=\\sqrt2\\) is not identically zero. Any nonnegative nonzero compact bump g gives \\(\\widehat g(0)>0\\).",
+    "resolution": "Check the endpoint Poisson-kernel limit and constants rigorously for every smooth compactly supported g. This solves a linear spectral-density exercise only; a nonlinear Fermi golden rule damping theorem requires a separately frozen coherent state and coupling.",
+    "known": [
+      [
+        "Spectral theorem and limiting absorption/Poisson kernel (classical)",
+        "https://encyclopediaofmath.org/wiki/Spectral_theorem",
+        "Provides spectral density interpretation; the collapsed endpoint needs separate local analysis."
+      ],
+      [
+        "Rialland, nonlinear internal mode damping (2025)",
+        "https://doi.org/10.3934/dcds.2024140",
+        "Nonlinear damping involves much more than positivity of this free linear coefficient."
+      ]
+    ],
+    "milestones": [
+      "Compute the exact η-regularized integral in polar t=|ξ|² coordinates.",
+      "Separate the interior root t=2 from the boundary root t=0 and prove their π/4 and π/8 t-density weights.",
+      "Construct a smooth compact bump g with nonzero zero-frequency Fourier transform and prove Γ(g)>0."
+    ],
+    "notes": "The point ξ=0 cannot be discarded as measure zero: it is a critical collapsed energy shell, and the spectral limit contributes finite half-weight. The formula is proposed analytic work pending formal independent checks.",
+    "recommendation": "Record the fixed linear coefficient as analytically classified after review; separately pose a nonlinear resonance/damping problem if novel."
+  },
+  "GC121": {
+    "status": "Refined draft; existence and exact kernel classification outstanding",
+    "model": "Use \\(E_W\\), \\(M(u)=\\|u\\|_2^2\\), \\(I_0(m)=\\inf_{M=m}E_W\\) on \\(H^2(\\mathbb R^2;\\mathbb C)\\). For each existing real positive \\(H^4\\) minimizer \\(\\phi\\in\\mathcal M_m\\), with multiplier \\(\\omega\\), use the source linearized blocks \\(L_+=(\\Delta+1)^2-3\\phi^2+5\\phi^4-\\omega\\) and \\(L_-=(\\Delta+1)^2-\\phi^2+\\phi^4-\\omega\\) on \\(H^4\\).",
+    "canonical": "For every mass \\(m>0\\) admitting such a minimizer, determine whether \\(\\ker_{L^2}L_+=\\operatorname{span}\\{\\partial_1\\phi,\\partial_2\\phi\\}\\) and \\(\\ker_{L^2}L_-=\\operatorname{span}\\{\\phi\\}\\). Symmetries imply the displayed inclusions; the novel issue is excluding *additional* kernel directions at masses and branch points.",
+    "resolution": "Prove nonzero real positive minimizer existence for the claimed masses, domain/self-adjointness of the Hessian blocks, and both equalities; a counterexample is any additional normalizable zero mode or a mass at which a qualified claim fails.",
+    "known": [
+      [
+        "Grillakis, Shatah, Strauss orbital stability theory",
+        "https://doi.org/10.1016/0022-1236(87)90044-9",
+        "General stability theory often assumes nondegeneracy rather than proving it."
+      ],
+      [
+        "Existing Reyes minimizers and stability theorems",
+        "../VERIFIED_LEAN_RESULTS.md",
+        "Existence and full-set orbital stability do not imply exact single-profile Hessian kernels."
+      ]
+    ],
+    "milestones": [
+      "Verify L_-φ=0 and L_+∂_jφ=0 using the stationary equation and translations.",
+      "Prove/exclude extra radial zero modes for one explicitly existing ground state.",
+      "Establish a nondegeneracy interval or construct a parameter value with an additional kernel element."
+    ],
+    "notes": "The claim is conditional on real positive minimizers; there may be masses with only complex minimizers or no minimizer, which cannot be silently quantified as existing.",
+    "recommendation": "Keep refined draft until ground-state selection and a genuine no-extra-kernel argument are established."
+  },
+  "GC128": {
+    "status": "Refined draft; sharp binding boundary not known",
+    "model": "For \\(m>0\\), define \\(I(m)=\\inf_{\\|u\\|_2^2=m}E_W(u)\\), \\(B=\\{m>0:\\forall\\mu\\in(0,m),\\ I(m)<I(\\mu)+I(m-\\mu)\\}\\) and \\(\\Delta_m(\\mu)=I(\\mu)+I(m-\\mu)-I(m)\\). Use the exact W energy and \\(H^2(\\mathbb R^2)\\) admissible class.",
+    "canonical": "Determine the full set \\(B\\) and its boundary. Separately, for \\(m\\in B\\), decide whether \\(b(m)=\\inf_{0<\\mu<m}\\Delta_m(\\mu)/\\min(\\mu,m-\\mu)>0\\). Do not identify a sufficient mass window from existing theorems with a proved *sharp* transition; the set B may have multiple components or no single threshold.",
+    "resolution": "Classify the binding set with exact quantified lower and upper estimates or explicit splitting equalities; for uniform strength prove b(m)>0 or a sequence of splits with ratio tending to zero.",
+    "known": [
+      [
+        "Lions, concentration–compactness and strict subadditivity",
+        "https://doi.org/10.1016/S0294-1449(16)30428-0",
+        "General compactness machinery; exact W binding threshold still model-specific."
+      ],
+      [
+        "Existing Reyes strict binding proof",
+        "../lean/MathProofs/StrictBinding.lean",
+        "Provides a sufficient interval only, not a sharp all-mass classification."
+      ]
+    ],
+    "milestones": [
+      "Reproduce the existing sufficient strict-binding mass range and its exact proof hypotheses.",
+      "Evaluate Δ_m(μ) for a quantitative test mass near the edge of the sufficient interval.",
+      "Prove that a proposed boundary mass is genuinely sharp or exhibit binding beyond it."
+    ],
+    "notes": "Strong binding and strict subadditivity differ. A limit μ→0 can defeat a uniform strength estimate even if all splits are strictly positive.",
+    "recommendation": "Retain as a refined long-term variational problem; sharp mass-set geometry remains to be proved."
+  }
+}
