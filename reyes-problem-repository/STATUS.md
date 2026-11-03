@@ -6,6 +6,8 @@
 
 This page is a **reading view of [problem_registry.json](problem_registry.json)**, not a separate record of scientific completion. It distinguishes entire GC questions from **exact-scope mathematical theorems** that may answer only part of a broader problem. The catalogue is a research program, not a certified inventory of 300 novel unsolved problems.
 
+**Dated correspondence correction, November 2, 2026:** GC08's partial status is retained because its original phase-current operator has an explicit analytical nonuniqueness counterexample. The separate formally proved M6B Laplacian-quotient counterexample is **not** a kernel proof of GC08's exact operator. No original statement or machine status has changed. [Detailed source audit](../docs/NEGATIVE_RESULT_SCOPE_AUDIT_2026-11-02.md).
+
 ## At a glance
 
 | Registry outcome | Questions | What it means |
@@ -87,7 +89,7 @@ This page is a **reading view of [problem_registry.json](problem_registry.json)*
 |:--|:--|:--|:--|--:|
 | GC06 | [Self-confinement criteria](FORMAL_PROBLEMS.md#gc06-self-confinement-criteria) · [Dossier](./flagship/GC06.md) · [Issue #55](https://github.com/rickyjreyes/math/issues/55) | Candidate · formal · initial review | ✅ Minimizers and strict binding on a mass range | 9/10 |
 | GC07 | [Curvature-induced localization](FORMAL_PROBLEMS.md#gc07-curvature-induced-localization) | Candidate · formal | No existing proof mapped | 7/10 |
-| GC08 | [Admissible curvature closures](FORMAL_PROBLEMS.md#gc08-admissible-curvature-closures) | 🟡 Partial · initial review | ✅ [Closure nonuniqueness](../lean/MathProofs/M6BClosureTheorem.lean); classification open | 7/10 |
+| GC08 | [Admissible curvature closures](FORMAL_PROBLEMS.md#gc08-admissible-curvature-closures) | 🟡 Partial · initial review | Analytical [GC08 phase-current counterexample](problems/02-confinement-curvature/GC08.md); [M6B Lean](../lean/MathProofs/M6BClosureTheorem.lean) is a different operator; classification open | 7/10 |
 | GC09 | [Topological confinement protection](FORMAL_PROBLEMS.md#gc09-topological-confinement-protection) | Candidate · formal | No existing proof mapped | 8/10 |
 | GC10 | [Dimensional localized-energy classification](FORMAL_PROBLEMS.md#gc10-dimensional-localized-energy-classification) | Candidate · formal | No existing proof mapped | 8/10 |
 | GC53 | [Universal confinement and stability thresholds](FORMAL_PROBLEMS.md#gc53-universal-confinement-and-stability-thresholds) | Candidate · formal | Related source links; scope unaudited | 10/10 |
