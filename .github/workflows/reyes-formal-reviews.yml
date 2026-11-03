@@ -5,13 +5,16 @@ on:
   push:
     branches:
       - research/gc300-formal-review-all-2026-11-02
+      - research/gc-problem-standard-v2-2026-11-02
     paths:
       - reyes-problem-repository/scripts/build_formal_review_pages.py
+      - 'reyes-problem-repository/problem-standard-v2/**'
       - .github/workflows/reyes-formal-reviews.yml
   pull_request:
     paths:
       - 'reyes-problem-repository/formal-reviews/**'
       - reyes-problem-repository/scripts/build_formal_review_pages.py
+      - 'reyes-problem-repository/problem-standard-v2/**'
       - .github/workflows/reyes-formal-reviews.yml
   workflow_dispatch:
 
@@ -20,7 +23,7 @@ permissions:
 
 jobs:
   generate-review-pages:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/research/gc300-formal-review-all-2026-11-02'
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/research/gc300-formal-review-all-2026-11-02' || github.ref == 'refs/heads/research/gc-problem-standard-v2-2026-11-02')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
