@@ -281,8 +281,9 @@ def recommendation(e: dict, area: str, n: int) -> tuple[str, str]:
     if key in SPECIAL:
         return SPECIAL[key]
     if key=="GC08":
-        return ("Partially resolved (registry)", "An exact curvature-closure nonuniqueness "
-                "counterexample is already formalized, but the full closure-classification "
+        return ("Partially resolved (registry)", "The GC08 phase-current uniqueness claim has an explicit analytical "
+                "counterexample, but the M6B Lean theorem formalizes a different "
+                "Laplacian-quotient operator. The full GC08 closure-classification "
                 "question remains unfinished.")
     if n<=65:
         return ("Candidate (formal original statement)", "The source is one of the 65 preserved "
