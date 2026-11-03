@@ -52,7 +52,7 @@ The linked [four-figure gallery](../docs/figures/research-posts/README.md) illus
 | ✅ **Randomization-test validity** | Finite exact type-I error control under declared randomization/exchangeability hypotheses | [Randomization.lean](https://github.com/rickyjreyes/photodiode/blob/main/formal/PhotodiodeProtocol/Randomization.lean) | Does not establish an optical effect |
 | ✅ **Split-SAT communication capacity** | Exact split-SAT construction and finite-alphabet information lower bound in the defined model | [SplitSATCapacity.lean](https://github.com/rickyjreyes/PVNP/blob/main/lean/PVNP/SplitSATCapacity.lean) | Does not solve $P$ versus $NP$ |
 | ✅ **Transcript-count lower bound** | Exponential accepting-transcript bound using the specified communication fooling set | [Communication.lean](https://github.com/rickyjreyes/PVNP/blob/main/lean/PVNP/Communication.lean) | Does not imply a general Turing-machine lower bound |
-| ✅ **Multi-block state structure** | Proven properties of the defined block-absorption construction and structural non-injectivity limits | [MultiBlock.lean](https://github.com/rickyjreyes/Wavelock/blob/main/lean/WaveLockProofs/MultiBlock.lean) | Does not prove general cryptographic collision resistance |
+| ✅ **Multi-block state structure** | Proven properties of the defined block-absorption construction and structural non-injectivity limits | [MultiBlock.lean](https://github.com/rickyjreyes/Wavelock/blob/master/lean/WaveLockProofs/MultiBlock.lean) | Does not prove general cryptographic collision resistance |
 
 ## What remains open?
 
