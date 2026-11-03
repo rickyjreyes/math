@@ -13,7 +13,7 @@
       [
         "Hatcher, Algebraic Topology",
         "https://pi.math.cornell.edu/~hatcher/AT/ATchapters.html",
-        "Topological classification (pi_3(S^2)congmathbb Z), not energy asymptotics."
+        "Classical classification \\(\\pi_3(S^2)\\cong\\mathbb Z\\), not a statement about energy minimization."
       ]
     ],
     "milestones": [
@@ -33,7 +33,7 @@
       [
         "Hatcher, Algebraic Topology",
         "https://pi.math.cornell.edu/~hatcher/AT/ATchapters.html",
-        "Equal Hopf invariants classify unrestricted (S^3\to S^2) homotopy."
+        "Equality of Hopf invariants classifies unrestricted \\(S^3\\to S^2\\) homotopy, not regular-value-preserving homotopy."
       ],
       [
         "Pontryagin–Thom framed bordism construction",
@@ -68,7 +68,7 @@
     ],
     "milestones": [
       "Write the winding-class decomposition and verify the cross term integrates to zero.",
-      "Prove (E-E_{min}=\frac12|\nabla f|_2^2) and uniqueness modulo constant phase.",
+      "Prove \\(E(u)-E_{\\min}=\\frac12\\|\\nabla f\\|_2^2\\) and uniqueness modulo global phase.",
       "If useful, implement the full exact result in Lean without new axioms; separately specify any novel nonlinear extension."
     ],
     "notes": "The analytic theorem is not new. Do not confuse harmonic-energy minimization with nonlinear orbital stability or physical confinement.",
