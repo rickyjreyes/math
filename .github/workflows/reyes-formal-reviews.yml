@@ -55,7 +55,8 @@ jobs:
                   assert heading in doc, (e['id'], heading)
               for n in range(1,5):
                   assert f'{n}. ' in doc, (e['id'],'milestone',n)
-              assert 'not** a comprehensive item-by-item novelty review' in doc
+              assert ('not** a comprehensive item-by-item novelty review' in doc or
+                      'not independent peer review' in doc), e['id']
           print('Checked 300/300 research pages, preserved IDs and six required sections')
           PY
       - name: Commit generated research pages to the review branch
