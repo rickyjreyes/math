@@ -177,6 +177,12 @@ These additions were checked against their current Lean source declarations, not
 
 **Verification boundary:** The second pass directly inspected source declarations in selected modules, including S004, UV, Fourier leakage, E58, E68, E69, R16, R18, M6B, PVNP and WaveLock. A full 306-file declaration-by-declaration proof/dependency review and fresh pinned Lean kernel build remain incomplete. The inventory above is not a final deduplicated total.
 
+## Exact-original-model GC28 analytical finding (November 4, 2026)
+
+A subsequent source-to-operator review obtained a direct partial result for [GC28](../reyes-problem-repository/problems/06-inverse-observation-control/GC28.md), without using the inapplicable M6B stationary theorem. For the original phase-current map on T², every smooth **real-valued** field has `K_ε(u)=0` because its imaginary current vanishes pointwise. This includes the everywhere-positive family `f_a=1+Σ_{j=1}^N a_j cos(jx₁)` with `0<a_j<1/(4N)`; distinct coefficient vectors cannot be mapped into one another by constant phase or translation because the absolute values of their Fourier coefficients are different. Since this works for every `N`, the **zero fiber is infinite-dimensional, even after the stated symmetry quotient**.
+
+**Classification:** **VALID_AND_APPLICABLE** to GC28's original torus operator for *noninjectivity and an infinite-dimensional zero fiber*; **INSUFFICIENT_EVIDENCE** for its separate question whether **generic** target fibers are infinite-dimensional, or for a classification of all fibers. This is an independent **analytical proof**, not a Lean kernel certificate. The report's earlier mismatch finding remains correct, and GC28's original `candidate` registry status remains unchanged. See the [dated self-contained analytical certificate](GC28_ZERO_FIBER_ANALYTIC_CERTIFICATE_2026-11-04.md).
+
 ## Correspondence with constructive theorems: no contradiction identified
 
 The F01 variational/NLS equation is i u_t=(Δ+k²)²u−β|u|²u+γ|u|⁴u on a specific two-dimensional whole-space phase space. Its strict binding, minimizer existence, global H² dynamics, and stability of the **set of minimizers** are mathematically distinct from the S004 action's second-time-derivative scalar field and fourth-time-order Euler–Lagrange evolution. Different equations, domains, conserved charges, and admissible phase spaces explain the apparent tension. No contradiction justifying alteration of the constructive Lean declarations was found in this source review.
