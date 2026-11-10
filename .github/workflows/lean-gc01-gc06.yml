@@ -1,0 +1,48 @@
+name: GC01 GC06 critical theorem verification
+on:
+  pull_request:
+    paths:
+      - 'lean/MathProofs/CubicQuinticPeriodicMode.lean'
+      - 'lean/MathProofs/DefocusingRegion.lean'
+      - 'lean/MathProofs/ParameterBindingRegion.lean'
+      - 'lean/GC01GC06Audit.lean'
+      - '.github/workflows/lean-gc01-gc06.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  kernel:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: lean
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install repository pinned Lean
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch pinned Mathlib cache
+        run: |
+          lake update
+          lake exe cache get
+      - name: Reject proof placeholders
+        run: |
+          if grep -nE '(^|[[:space:]])(sorry|admit|axiom)([[:space:]]|$)'             MathProofs/CubicQuinticPeriodicMode.lean             MathProofs/DefocusingRegion.lean             MathProofs/ParameterBindingRegion.lean; then exit 1; fi
+      - name: Kernel check new F01 spectral and confinement theorems
+        run: |
+          lake build MathProofs.CubicQuinticPeriodicMode             MathProofs.DefocusingRegion MathProofs.ParameterBindingRegion
+      - name: Audit exact theorem axioms
+        run: |
+          lake env lean GC01GC06Audit.lean 2>&1 | tee gc-audit.log
+          grep -c 'depends on axioms:' gc-audit.log
+          if grep -E 'depends on axioms:' gc-audit.log |              grep -Ev 'propext|Classical.choice|Quot.sound'; then
+            echo 'Unexpected axiom in critical F01 proof chain'
+            exit 1
+          fi
