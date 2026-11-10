@@ -172,3 +172,4 @@ import MathProofs.E18Certification
 import MathProofs.D4FrozenWholeSpace
 
 import MathProofs.ParameterBindingRegion
+import MathProofs.CubicQuinticPeriodicMode
