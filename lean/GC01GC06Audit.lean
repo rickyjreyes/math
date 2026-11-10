@@ -1,0 +1,24 @@
+import MathProofs.CubicQuinticPeriodicMode
+import MathProofs.ParameterBindingRegion
+import MathProofs.DefocusingRegion
+
+/-!
+Theorem-specific reproducibility and axiom audit for GC01 #80 and GC06 #81.
+Every declaration is from the maintained cubic-quintic F01 Hamiltonian,
+not from the independent nonlinear S004/A2 action.
+-/
+
+#print axioms ReyesMath.CubicQuinticPeriodicMode.general_Lminus_ge_negative_k4
+#print axioms ReyesMath.CubicQuinticPeriodicMode.general_Lplus_positive_of_nonlinear_gap
+#print axioms ReyesMath.CubicQuinticPeriodicMode.general_Lminus_negative_iff
+#print axioms ReyesMath.CubicQuinticPeriodicMode.general_growth_band_iff_of_nonlinear_gap
+#print axioms ReyesMath.CubicQuinticPeriodicMode.general_growth_eigenpair_of_nonlinear_gap
+#print axioms ReyesMath.CubicQuinticPeriodicMode.general_no_real_growth_above_band
+#print axioms ReyesMath.CubicQuinticPeriodicMode.unit_background_growth_window_iff
+#print axioms ReyesMath.DefocusingRegion.no_minimizer_negative_beta
+#print axioms ReyesMath.DefocusingRegion.no_minimizer_positive_sextic
+#print axioms ReyesMath.DefocusingRegion.no_dilation_stationary_negative_beta
+#print axioms ReyesMath.DefocusingRegion.no_dilation_stationary_sextic
+#print axioms ReyesMath.DefocusingRegion.no_dilation_stationary_defocusing
+#print axioms ReyesMath.ParameterRegion.strict_binding_of_squared_region
+#print axioms ReyesMath.ParameterRegion.exists_minimizer_of_squared_region
