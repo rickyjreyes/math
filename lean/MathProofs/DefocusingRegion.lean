@@ -162,4 +162,55 @@ theorem no_minimizer_positive_sextic (gamma m : ℝ)
   have hI := infimum_zero_at_zero_selector 0 gamma m (le_refl _) hg.le hm
   linarith
 
+/-! ## Stronger obstruction: absence of virial/dilation stationary states -/
+
+/-- When k=0 and beta<0, the exact F01 dilation-stationarity
+identity cannot hold on any positive-mass H² state. This rules out
+ALL dilation-critical states in this regime, not only minimizers.
+It does not silently assert that a generic weak PDE solution has
+the regularity needed to satisfy the virial identity. -/
+theorem no_dilation_stationary_negative_beta
+    (beta gamma : ℝ) (hb : beta < 0) (hg : 0 ≤ gamma)
+    (U : H2 2) (hm : 0 < M U) :
+    ¬ IsStationary beta gamma 0 U := by
+  intro hstat
+  have hD := D_nonneg U
+  have hQ := Q_pos U hm
+  have hS := S_nonneg U
+  have hrepulsive : 0 < -(beta / 4) * Q U :=
+    mul_pos (by linarith) hQ
+  have hsextic : 0 ≤ gamma / 3 * S U :=
+    mul_nonneg (by linarith) hS
+  unfold IsStationary at hstat
+  norm_num at hstat
+  nlinarith
+
+/-- When k=beta=0 and gamma>0, every positive-mass H² state
+also violates the exact dilation-stationarity identity. -/
+theorem no_dilation_stationary_sextic
+    (gamma : ℝ) (hg : 0 < gamma)
+    (U : H2 2) (hm : 0 < M U) :
+    ¬ IsStationary 0 gamma 0 U := by
+  intro hstat
+  have hD := D_nonneg U
+  have hS := S_pos U hm
+  have hsextic : 0 < gamma / 3 * S U :=
+    mul_pos (by positivity) hS
+  unfold IsStationary at hstat
+  norm_num at hstat
+  nlinarith
+
+/-- Explicit union of strictly defocusing mass-parameter sectors
+with no positive-mass dilation-stationary state at k=0. -/
+theorem no_dilation_stationary_defocusing
+    (beta gamma : ℝ) (hb : beta ≤ 0) (hg : 0 ≤ gamma)
+    (hstrict : beta < 0 ∨ 0 < gamma)
+    (U : H2 2) (hm : 0 < M U) :
+    ¬ IsStationary beta gamma 0 U := by
+  rcases hstrict with hbeta | hgamma
+  · exact no_dilation_stationary_negative_beta beta gamma hbeta hg U hm
+  · have hz : beta = 0 := by linarith
+    subst beta
+    exact no_dilation_stationary_sextic gamma hgamma U hm
+
 end ReyesMath.DefocusingRegion
