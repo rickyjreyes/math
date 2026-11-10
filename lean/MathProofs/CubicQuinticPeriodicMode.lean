@@ -84,9 +84,9 @@ theorem positive_growth_eigenpair (Lm Lp : ℝ) (h : Lm * Lp < 0) :
   have hsquare : lambda ^ 2 = -(Lm * Lp) := Real.sq_sqrt hpos
   refine ⟨lambda, hlambda, ?_⟩
   apply Prod.ext
-  · simp only [block, Prod.fst]
+  · simp only [block, Prod.fst, Prod.snd]
     ring
-  · simp only [block, Prod.snd]
+  · simp only [block, Prod.fst, Prod.snd]
     nlinarith [hsquare]
 
 /-- Exact periodic test point: the homogeneous standing wave frequency is 1,
