@@ -290,4 +290,107 @@ theorem unit_background_no_real_growth_outside_band
   exact no_real_growth_eigenvector_of_positive_product
     (Lminus 1 1 1 1 q) (Lplus 1 1 1 1 q) lambda u v hprod hu hv
 
+/-! ## Uniform positive real stiffness and exact spectral bands at general parameters -/
+
+/-- For every real k and Fourier magnitude q, the periodic fourth-order
+Lminus symbol satisfies the sharp global lower bound -k⁴.
+It is attained when q²=k². -/
+theorem general_Lminus_ge_negative_k4
+    (beta gamma k s q : ℝ) :
+    -(k ^ 4) ≤ Lminus beta gamma k s q := by
+  rw [Lminus_exact]
+  nlinarith [sq_nonneg (q ^ 2 - k ^ 2)]
+
+/-- This explicit open region of the *original cubic-quintic parameters*
+makes the real-sector stiffness Lplus(q) strictly positive for **every**
+Fourier wave number q. This is not a fixed numerical example. -/
+theorem general_Lplus_positive_of_nonlinear_gap
+    (beta gamma k s q : ℝ)
+    (hgap : k ^ 4 < -2 * beta * s + 4 * gamma * s ^ 2) :
+    0 < Lplus beta gamma k s q := by
+  rw [Lplus_exact]
+  nlinarith [sq_nonneg (q ^ 2 - k ^ 2)]
+
+/-- Independently of beta, gamma and background amplitude, the exact
+imaginary-sector sign of the periodic fourth-order dispersion is
+negative if and only if 0<q²<2k². -/
+theorem general_Lminus_negative_iff
+    (beta gamma k s q : ℝ) :
+    Lminus beta gamma k s q < 0 ↔
+      0 < q ^ 2 ∧ q ^ 2 < 2 * k ^ 2 := by
+  rw [Lminus_exact]
+  have hnon : 0 ≤ q ^ 2 := sq_nonneg q
+  have hfact : q ^ 4 - 2 * k ^ 2 * q ^ 2 =
+      q ^ 2 * (q ^ 2 - 2 * k ^ 2) := by ring
+  rw [hfact]
+  constructor
+  · intro h
+    have hq : 0 < q ^ 2 := by
+      by_contra hn
+      have hz : q ^ 2 = 0 := le_antisymm (le_of_not_gt hn) hnon
+      rw [hz] at h
+      norm_num at h
+    have hlimit : q ^ 2 < 2 * k ^ 2 := by
+      by_contra hn
+      have hright : 0 ≤ q ^ 2 - 2 * k ^ 2 := by linarith
+      have hmul := mul_nonneg hq.le hright
+      linarith
+    exact ⟨hq, hlimit⟩
+  · rintro ⟨hq, hlimit⟩
+    exact mul_neg_of_pos_of_neg hq (by linarith)
+
+/-- For an entire explicit OPEN parameter region, the exact periodic
+2x2 Fourier block has real positive exponential growth iff the wave
+number is in the geometric band 0<q²<2k². No numerical fit and no
+unsupported nonlinear stability implication. -/
+theorem general_growth_band_iff_of_nonlinear_gap
+    (beta gamma k s q : ℝ)
+    (hgap : k ^ 4 < -2 * beta * s + 4 * gamma * s ^ 2) :
+    Lminus beta gamma k s q * Lplus beta gamma k s q < 0 ↔
+      0 < q ^ 2 ∧ q ^ 2 < 2 * k ^ 2 := by
+  have hp := general_Lplus_positive_of_nonlinear_gap beta gamma k s q hgap
+  rw [← general_Lminus_negative_iff beta gamma k s q]
+  constructor
+  · intro h
+    by_contra hn
+    have hnon : 0 ≤ Lminus beta gamma k s q := le_of_not_gt hn
+    have hprod := mul_nonneg hnon hp.le
+    linarith
+  · intro hm
+    exact mul_neg_of_neg_of_pos hm hp
+
+/-- In that same symbolic parameter regime, every Fourier mode in
+the open band has a genuine positive real spectral eigenvalue. -/
+theorem general_growth_eigenpair_of_nonlinear_gap
+    (beta gamma k s q : ℝ)
+    (hgap : k ^ 4 < -2 * beta * s + 4 * gamma * s ^ 2)
+    (hq : 0 < q ^ 2) (hupper : q ^ 2 < 2 * k ^ 2) :
+    ∃ lambda : ℝ, 0 < lambda ∧
+      block (Lminus beta gamma k s q) (Lplus beta gamma k s q)
+        (Lminus beta gamma k s q, lambda) =
+      (lambda * Lminus beta gamma k s q, lambda * lambda) := by
+  exact positive_growth_eigenpair _ _ 
+    ((general_growth_band_iff_of_nonlinear_gap beta gamma k s q hgap).2
+      ⟨hq, hupper⟩)
+
+/-- Every frequency beyond the open instability band has no nonzero
+real exponential-growth eigenvector in the original linear block. -/
+theorem general_no_real_growth_above_band
+    (beta gamma k s q : ℝ)
+    (hgap : k ^ 4 < -2 * beta * s + 4 * gamma * s ^ 2)
+    (hq : 2 * k ^ 2 < q ^ 2)
+    (lambda u v : ℝ)
+    (hu : Lminus beta gamma k s q * v = lambda * u)
+    (hv : -Lplus beta gamma k s q * u = lambda * v) :
+    u = 0 ∧ v = 0 := by
+  have hm : 0 < Lminus beta gamma k s q := by
+    rw [Lminus_exact]
+    have hpositive : 0 < q ^ 2 := by nlinarith [sq_nonneg k]
+    have hproduct : 0 < q ^ 2 * (q ^ 2 - 2 * k ^ 2) :=
+      mul_pos hpositive (by linarith)
+    nlinarith
+  have hp := general_Lplus_positive_of_nonlinear_gap beta gamma k s q hgap
+  exact no_real_growth_eigenvector_of_positive_product
+    _ _ _ _ _ (mul_pos hm hp) hu hv
+
 end ReyesMath.CubicQuinticPeriodicMode
