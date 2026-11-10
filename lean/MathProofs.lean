@@ -170,3 +170,6 @@ import MathProofs.E18Representative
 import MathProofs.E18Lyapunov
 import MathProofs.E18Certification
 import MathProofs.D4FrozenWholeSpace
+import MathProofs.GC21AffineMomentumObstruction
+import MathProofs.GC25HealthyParentMode
+import MathProofs.GC11PlaneWaveDegeneracy
