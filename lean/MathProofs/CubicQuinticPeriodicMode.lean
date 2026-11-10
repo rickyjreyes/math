@@ -142,4 +142,59 @@ theorem growingMode_initial :
     growingU 0 = 1 ∧ growingV 0 = -1 := by
   norm_num [growingU, growingV]
 
+
+/-! ## Exact real growth-rate classification away from the zero threshold -/
+
+/-- If the two linearized Fourier stiffnesses have the SAME sign, their
+product is positive and the real Fourier block has no nonzero real
+eigenvector at any real growth exponent. This does not prove nonlinear
+orbital stability or exclude algebraic/neutral growth at a zero eigenvalue. -/
+theorem no_real_growth_eigenvector_of_positive_product
+    (Lm Lp lambda u v : ℝ)
+    (hprod : 0 < Lm * Lp)
+    (hu : Lm * v = lambda * u)
+    (hv : -Lp * u = lambda * v) :
+    u = 0 ∧ v = 0 := by
+  have hcoef : 0 < lambda ^ 2 + Lm * Lp :=
+    add_pos_of_nonneg_of_pos (sq_nonneg lambda) hprod
+  have hfirst : Lm * v - lambda * u = 0 := sub_eq_zero.mpr hu
+  have hsecond : -Lp * u - lambda * v = 0 := sub_eq_zero.mpr hv
+  have hzero : (lambda ^ 2 + Lm * Lp) * u = 0 := by
+    calc
+      (lambda ^ 2 + Lm * Lp) * u =
+          -lambda * (Lm * v - lambda * u) -
+            Lm * (-Lp * u - lambda * v) := by ring
+      _ = 0 := by rw [hfirst, hsecond]; ring
+  have hu0 : u = 0 :=
+    (mul_eq_zero.mp hzero).resolve_left (ne_of_gt hcoef)
+  have hLm : Lm ≠ 0 := by
+    intro h
+    have hfalse : (0 : ℝ) < 0 := by simpa [h] using hprod
+    exact (lt_irrefl (0 : ℝ)) hfalse
+  have hv0 : v = 0 := by
+    have hz : Lm * v = 0 := by simpa [hu0] using hu
+    exact (mul_eq_zero.mp hz).resolve_left hLm
+  exact ⟨hu0, hv0⟩
+
+/-- Exact model-specific spectral dichotomy away from the degenerate
+\`Lminus*Lplus = 0\` boundary: a negative product has a positive real
+growth eigenvalue, while a positive product has no nonzero real
+growth eigenvector. The full periodic PDE stability classification is
+a separate function-space problem. -/
+theorem nondegenerate_fourier_growth_dichotomy
+    (Lm Lp : ℝ) (hzero : Lm * Lp ≠ 0) :
+    (Lm * Lp < 0 ∧
+      ∃ lambda : ℝ, 0 < lambda ∧
+        block Lm Lp (Lm, lambda) =
+          (lambda * Lm, lambda * lambda)) ∨
+    (0 < Lm * Lp ∧
+      ∀ lambda u v : ℝ,
+        Lm * v = lambda * u →
+        -Lp * u = lambda * v →
+        u = 0 ∧ v = 0) := by
+  rcases lt_or_gt_of_ne hzero with hneg | hpos
+  · exact Or.inl ⟨hneg, positive_growth_eigenpair Lm Lp hneg⟩
+  · exact Or.inr ⟨hpos, fun lambda u v hu hv =>
+      no_real_growth_eigenvector_of_positive_product Lm Lp lambda u v hpos hu hv⟩
+
 end ReyesMath.CubicQuinticPeriodicMode
