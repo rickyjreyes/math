@@ -197,4 +197,97 @@ theorem nondegenerate_fourier_growth_dichotomy
   · exact Or.inr ⟨hpos, fun lambda u v hu hv =>
       no_real_growth_eigenvector_of_positive_product Lm Lp lambda u v hpos hu hv⟩
 
+/-! ## Complete wave-number window for the explicit unit background -/
+
+/-- The real-direction stiffness is STRICTLY positive at every real wave
+number for the homogeneous unit CQ background. This is a global
+polynomial theorem, not a numerical scan over modes. -/
+theorem unit_background_Lplus_positive (q : ℝ) :
+    0 < Lplus 1 1 1 1 q := by
+  rw [Lplus_exact]
+  nlinarith [sq_nonneg (q ^ 2 - 1)]
+
+/-- The imaginary-direction stiffness factorizes exactly. -/
+theorem unit_background_Lminus_factor (q : ℝ) :
+    Lminus 1 1 1 1 q = q ^ 2 * (q ^ 2 - 2) := by
+  rw [Lminus_exact]
+  ring
+
+/-- Necessary-and-sufficient **real Fourier growth window** at
+beta=gamma=k=s=1: the spectral block has a positive real growth
+exponent exactly when 0<q²<2. The endpoints q=0 and q²=2
+are degenerate and must not be falsely classified as stable.
+This does NOT claim nonlinear orbital instability. -/
+theorem unit_background_growth_window_iff (q : ℝ) :
+    Lminus 1 1 1 1 q * Lplus 1 1 1 1 q < 0 ↔
+      0 < q ^ 2 ∧ q ^ 2 < 2 := by
+  have hp := unit_background_Lplus_positive q
+  rw [unit_background_Lminus_factor]
+  constructor
+  · intro h
+    have hminus : q ^ 2 * (q ^ 2 - 2) < 0 := by
+      by_contra hn
+      have hnon : 0 ≤ q ^ 2 * (q ^ 2 - 2) := le_of_not_gt hn
+      have hprod := mul_nonneg hnon hp.le
+      linarith
+    have hqpos : 0 < q ^ 2 := by
+      by_contra hn
+      have hqnon : q ^ 2 ≤ 0 := le_of_not_gt hn
+      have hqzero : q ^ 2 = 0 := le_antisymm hqnon (sq_nonneg q)
+      rw [hqzero] at hminus
+      norm_num at hminus
+    have hqlt : q ^ 2 < 2 := by
+      by_contra hn
+      have hge : 0 ≤ q ^ 2 - 2 := by linarith
+      have hmul := mul_nonneg hqpos.le hge
+      linarith
+    exact ⟨hqpos, hqlt⟩
+  · rintro ⟨hqpos, hqlt⟩
+    have hm : q ^ 2 * (q ^ 2 - 2) < 0 :=
+      mul_neg_of_pos_of_neg hqpos (by linarith)
+    exact mul_neg_of_neg_of_pos hm hp
+
+/-- Every real Fourier wave number in the strict unstable band admits
+an explicit nonzero growing real eigenvector. -/
+theorem unit_background_growth_eigenpair_on_band
+    (q : ℝ) (hq0 : 0 < q ^ 2) (hq2 : q ^ 2 < 2) :
+    ∃ lambda : ℝ, 0 < lambda ∧
+      block (Lminus 1 1 1 1 q) (Lplus 1 1 1 1 q)
+        (Lminus 1 1 1 1 q, lambda) =
+      (lambda * Lminus 1 1 1 1 q, lambda * lambda) := by
+  apply positive_growth_eigenpair
+  exact (unit_background_growth_window_iff q).2 ⟨hq0, hq2⟩
+
+/-- The two band endpoints are genuine *zero* imaginary-sector stiffness,
+so a strict positive-growth claim must not include them. -/
+theorem unit_background_growth_thresholds
+    (q : ℝ) (hq : q = 0 ∨ q ^ 2 = 2) :
+    Lminus 1 1 1 1 q = 0 := by
+  rw [unit_background_Lminus_factor]
+  rcases hq with hzero | htwo
+  · rw [hzero]
+    norm_num
+  · rw [htwo]
+    ring
+
+/-- Outside the closed growth band, all nonzero Fourier blocks have
+positive stiffness product and no nonzero REAL exponential eigenvector.
+This is strictly weaker than nonlinear or orbital stability. -/
+theorem unit_background_no_real_growth_outside_band
+    (q : ℝ) (hq : 2 < q ^ 2) :
+    ∀ lambda u v : ℝ,
+      Lminus 1 1 1 1 q * v = lambda * u →
+      -Lplus 1 1 1 1 q * u = lambda * v →
+      u = 0 ∧ v = 0 := by
+  have hm : 0 < Lminus 1 1 1 1 q := by
+    rw [unit_background_Lminus_factor]
+    have hqpos : 0 < q ^ 2 := by linarith
+    exact mul_pos hqpos (by linarith)
+  have hp := unit_background_Lplus_positive q
+  have hprod : 0 < Lminus 1 1 1 1 q * Lplus 1 1 1 1 q :=
+    mul_pos hm hp
+  intro lambda u v hu hv
+  exact no_real_growth_eigenvector_of_positive_product
+    (Lminus 1 1 1 1 q) (Lplus 1 1 1 1 q) lambda u v hprod hu hv
+
 end ReyesMath.CubicQuinticPeriodicMode
