@@ -209,8 +209,10 @@ theorem no_dilation_stationary_defocusing
     ¬ IsStationary beta gamma 0 U := by
   rcases hstrict with hbeta | hgamma
   · exact no_dilation_stationary_negative_beta beta gamma hbeta hg U hm
-  · have hz : beta = 0 := by linarith
-    subst beta
-    exact no_dilation_stationary_sextic gamma hgamma U hm
+  · by_cases hneg : beta < 0
+    · exact no_dilation_stationary_negative_beta beta gamma hneg hg U hm
+    · have hz : beta = 0 := by linarith
+      subst beta
+      exact no_dilation_stationary_sextic gamma hgamma U hm
 
 end ReyesMath.DefocusingRegion
