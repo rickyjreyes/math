@@ -41,8 +41,4 @@ jobs:
       - name: Audit exact theorem axioms
         run: |
           lake env lean GC01GC06Audit.lean 2>&1 | tee gc-audit.log
-          grep -c 'depends on axioms:' gc-audit.log
-          if grep -E 'depends on axioms:' gc-audit.log |              grep -Ev 'propext|Classical.choice|Quot.sound'; then
-            echo 'Unexpected axiom in critical F01 proof chain'
-            exit 1
-          fi
+          python scripts_audit/check_gc_axioms.py gc-audit.log
