@@ -105,4 +105,41 @@ theorem unit_background_growing_mode :
   norm_num [block, Lminus, Lplus, standingFrequency,
     nonlinearFrequency, realNonlinearCoefficient]
 
+
+/-! ## Exact exponentially growing linearized mode -/
+
+/-- The two real Fourier amplitudes of the growing linearized mode. -/
+noncomputable def growingU (t : ℝ) : ℝ := Real.exp t
+
+noncomputable def growingV (t : ℝ) : ℝ := -(Real.exp t)
+
+/-- The positive-growth Fourier eigenvector generates a classical solution
+of the EXACT frozen two-dimensional linearized mode equation, rather
+than just an algebraic eigenpair. -/
+theorem growingMode_solves_linearized_system (t : ℝ) :
+    HasDerivAt growingU (Lminus 1 1 1 1 1 * growingV t) t ∧
+    HasDerivAt growingV (-(Lplus 1 1 1 1 1 * growingU t)) t := by
+  constructor
+  · have h := Real.hasDerivAt_exp t
+    convert h using 1 <;>
+      norm_num [growingU, growingV, Lminus, standingFrequency,
+        nonlinearFrequency]
+  · have h := (Real.hasDerivAt_exp t).neg
+    convert h using 1 <;>
+      norm_num [growingU, growingV, Lplus, standingFrequency,
+        nonlinearFrequency, realNonlinearCoefficient]
+
+/-- The real Fourier amplitude is strictly larger at every later time.
+This is genuine exponential growth of the linearized finite-mode solution,
+not by itself nonlinear instability of the full field PDE. -/
+theorem growingMode_amplifies (s t : ℝ) (hst : s < t) :
+    growingU s < growingU t := by
+  exact Real.exp_lt_exp.mpr hst
+
+/-- The explicit initial mode is the eigenvector used in the algebraic
+instability theorem. -/
+theorem growingMode_initial :
+    growingU 0 = 1 ∧ growingV 0 = -1 := by
+  norm_num [growingU, growingV]
+
 end ReyesMath.CubicQuinticPeriodicMode
