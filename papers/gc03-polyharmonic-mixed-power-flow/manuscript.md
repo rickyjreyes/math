@@ -521,3 +521,85 @@ Focused literature search: the fourth-order arbitrary-data pure defocusing resul
 Remaining proof target: develop a critical dynamic profile decomposition and a valid finite-time minimal-element reduction with the mass-carrying background handled, or prove the required pure uniform Z bounds directly. The global classification in previously established parameter regimes is unchanged. Individual-data supercritical strong dynamics and full Lean PDE certification are also open.
 
 No new scalar Lean lemma is added simply to raise declaration counts. Existing eleven candidate audit roots must actually compile before any certification. The maintained lean.yml workflow already runs lake build and the transitive audit with standard-axiom allowlist. The latest inspected head had all its jobs queued; no verified GC03 build or audit exists in this record. This environment has no lean/lake executables and cannot resolve github.com for a local clone; connector commits are not kernel verification. Keep GC03 candidate and issue #100 open.
+
+
+## 23. Terminal-background subtraction and a faster-than-dispersive concentration scale
+
+All results below concern the exact mixed GC03 critical equation, with integer p>=1, d>2p, b=s+1=2d/(d-2p), 1<r<s, beta,gamma>0. They are analytical, pending independent review and Lean formalization. Denote the pure positive critical energy by P(g)=||D^p g||_2^2/2+gamma||g||_b^b/b.
+
+Suppose a maximal strong solution u has a genuine finite forward endpoint T. Section 13 gives f=lim_(t↑T)u(t) strongly in L² and weakly in H^p, and D=E(u0)-E(f)>=D_*>0. By section 12, there is a strong mixed solution w near T with w(T)=f. Restrict to a compact left neighborhood of T and define h=u-w and m(t)=||h(t)||_2². Then h is uniformly H^p bounded, h→0 in L², and h⇀0 in H^p. Moreover
+lim_(t↑T) P(h(t))=D.
+For the kinetic term use the Hilbert-space norm expansion, weak convergence of u and strong convergence of w to f. For the critical moment take any time sequence approaching T, extract an a.e. convergent subsequence using L² convergence, apply Brezis–Lieb with f, and replace u-f by h using ||w-f||_b→0. Uniform b-bounds ensure the error in the b-th powers tends to zero. The lower moment converges by strict subcritical interpolation. Since the argument applies to every time sequence, the positive residual energy has the stated full limit, not only a liminf. This identifies the finite endpoint energy defect with the entire residual pure critical energy, after subtracting the regular solution.
+
+### 23.1 Residual mass estimate
+
+For a>1 put F_a(z)=|z|^(a-1)z. The following exact cancellation holds for complex z,y and h=z-y:
+Im(conj(h)(F_a(z)-F_a(y))) =
+ (|z|^(a-1)-|y|^(a-1)) Im(conj(h)y).
+In particular the part of a power nonlinearity acting on h alone contributes no mass derivative. By splitting |h|<=|y|/2 and its complement, the right side is bounded in absolute value by
+C_a (|y|^(a-1)|h|²+|y||h|^a).
+For 1<a<=2 it is bounded by C_a |y|^(a-1)|h|² alone: on the complement use |h|^(a-2)<=C|y|^(a-2), with y=0 handled separately by the exact identity. The first region uses the scalar mean-value bound away from zero. This avoids any second derivative of F_a at zero.
+
+Apply the H^p⊂L²⊂H^-p chain rule to h on compact subintervals of the strong lifespan. Its kinetic contribution to m' vanishes, while the two nonlinear difference contributions are bounded by the pointwise estimates above with y=w, z=u, and a=r,s. For each a, w is a compact continuous path in L^(a+1) up to T, so sup_t ||w(t)1_(|w(t)|>R)||_(a+1)→0 as R→∞. Also h is uniformly bounded in L^(a+1) by critical Sobolev. On the high-amplitude region of w, Hölder bounds both integrals by constants times powers of this uniformly small tail. On the low-amplitude region the first term is at most R^(a-1)m(t). If a<=2 the improved pointwise bound suffices. If a>2 the second term is at most R||h||_a^a→0 by interpolation of the vanishing L² norm and the bounded L^(a+1) norm. Thus esssup_(t in (T-epsilon,T)) |m'(t)|→0 as epsilon→0. The derivative is bounded near T, the trace of m is zero, and integration gives
+m(t)=o(T-t).
+This argument controls the difference from the actual backward-evolved background, not necessarily the difference from the time-independent trace f.
+
+In section 21's inverse-Sobolev concentration extraction one can replace u(t_n)-f by h(t_n), because their difference is w(t_n)-f→0 strongly in H^p. Thus some R,c>0 and N_n→∞, x_n∈R^d satisfy
+N_n^(2p) integral_(B(x_n,R/N_n)) |h(t_n)|² dx >= c
+for all large n. Since this is at most N_n^(2p)m(t_n), the mass estimate implies
+N_n^(2p)(T-t_n)→∞.
+The natural concentration radius is therefore little-o of (T-t_n)^(1/(2p)). This excludes critical self-similar rates for any nonzero extracted residual concentration profile. It does not exclude faster concentration or a partial bubble.
+
+### 23.2 Bounded terminal background: additional conditional exclusion
+
+If w is uniformly essentially bounded in space on a left neighborhood of T and s<=2, both pointwise bounds reduce to C m(t); hence |m'|<=C m, with m(T)=0. Backward Gronwall yields m identically zero there. Then u=w and the endpoint was not genuine. Therefore a genuine endpoint with 1<s<=2 cannot have a bounded strong backward background. This is a conditional regularity exclusion, not a claim that every H^p terminal trace yields a bounded background. In particular d>=6p is precisely the critical range s<=2.
+
+If w is uniformly bounded and s>2, the same calculation gives |m'|<=C m^(1/(s-1)) for m<=1. Indeed for 2<a<=s, interpolation yields ||h||_a^a<=C m^(1/(a-1)); the bound for a<=2 is linear. Integrate the differential inequality backwards using (m+epsilon)^(1-1/(s-1)) and send epsilon↓0 to get
+m(t)<=C (T-t)^((s-1)/(s-2)).
+Thus every extracted residual concentration scale in this bounded-background case satisfies
+N_n^(-2p)<=C (T-t_n)^((s-1)/(s-2)).
+No global regularity theorem is inferred for s>2.
+
+## 24. A nonzero global homogeneous pure weak profile at any finite critical endpoint
+
+Use the residual h and the nonzero profile extraction above. After passing to a subsequence define
+h_n(tau,y)=N_n^(-a_*) h(t_n+tau/N_n^(2p),x_n+y/N_n),
+w_n(tau,y)=N_n^(-a_*) w(t_n+tau/N_n^(2p),x_n+y/N_n),
+a_*=d/2-p.
+Because N_n^(2p)(T-t_n)→∞, both endpoints of the rescaled left-neighborhood time interval tend to the corresponding infinities. Hence every fixed compact tau interval lies in the rescaled domains eventually. The rescaled residual equation is
+i ∂_tau h_n=A h_n + gamma[F_s(h_n+w_n)-F_s(w_n)]
+ - beta N_n^(-a_*(s-r))[F_r(h_n+w_n)-F_r(w_n)].
+The energy P(h_n(tau)) tends uniformly on every compact tau interval to D by the full residual energy limit and critical scaling invariance. In particular h_n is uniformly bounded in homogeneous H^p and L^b. On bounded spatial balls this controls local H^p norms, by the homogeneous Sobolev embedding for each derivative of order j<p and local Hölder. The same uniform homogeneous bound holds for w_n. On each fixed compact space-time cylinder, w_n tends to zero in L∞_tau L^b_y: the corresponding physical balls shrink uniformly in their centers, and the continuous L^b path of w is compact and has uniformly absolutely continuous b-th moment. The lower coefficient tends to zero and the lower nonlinear terms are bounded on compact cylinders in L^((r+1)/r).
+
+For completeness, apply a fixed smooth spatial cutoff to h_n. The cutoff functions are bounded in L∞_tau H^p, and their time derivatives are bounded in L∞_tau H^-p by the equation tested against cutoff H^p functions: the kinetic term is estimated using the global homogeneous H^p bound, the critical nonlinear terms by L^(b/s) duality, and the lower terms by local L^((r+1)/r) duality. Interpolation gives equicontinuity in L². Rellich plus Arzela–Ascoli on bounded spatial balls, followed by diagonal extraction over compact time intervals and balls, yields a limit H in C(R;L²_loc) with weakly continuous homogeneous H^p representative. The latter follows from the uniform homogeneous bound, local L² convergence at all times, and uniqueness of any weak limit in the homogeneous space represented in L^b. On compact cylinders take an a.e. convergent subsequence; boundedness and reflexivity yield weak convergence of F_s(h_n+w_n) to F_s(H) in L^(b/s), while F_s(w_n)→0 there. The lower terms vanish in distributions. Thus
+i H_tau=(-Delta)^p H+gamma F_s(H)
+on all of R×R^d in distributions. At tau=0 the nonzero profile from section 21 is preserved by the local strong L² convergence, so H is not the zero function. For every tau, lower semicontinuity and the rescaled residual energy bounds give P(H(tau))<=D. No assertion of equality, global L² membership, strong homogeneous H^p continuity, or scattering is made for this limiting weak solution.
+
+This is a dynamical extraction from the actual background-subtracted mixed solution, rather than a static concentration witness. Its full time axis follows from the strictly faster-than-dispersive rate, not from assuming a pure global flow. It does not yield a contradiction: a nonzero global weak pure trajectory with bounded homogeneous energy is consistent with defocusing dynamics. A stronger profile decomposition and a no-return/rigidity estimate are still needed to exclude this scenario.
+
+## 25. Pure scattering threshold is a lower bound on every mixed critical endpoint defect
+
+Define E_c as the supremum (possibly infinity) of levels e>0 for which all pure critical defocusing data g∈H^p with P(g)<=e have a global strong flow and a uniform full critical Z_R bound depending only on e and the fixed equation parameters. Equivalently the uniform property can be imposed on forward times and then reflected by conjugation. This is an energy-only property, not a statement that mere individual global existence implies uniform scattering. The levels form a downward-closed set. The small-data positive-energy theory gives a nonempty interval: homogeneous free Strichartz and the Z bootstrap of section 16.4 with beta=0 yield a global small-kinetic Z bound and the continuation criterion, with no mass dependence. If the matched pure global theorem gives uniform bounds for bounded H^p norm, critical scaling of g down to smaller mass without changing kinetic energy or Z implies the energy-only property (using the pure equation's exact scaling and uniqueness).
+
+**Theorem.** At any genuine finite strong endpoint of the mixed critical equation, its defect D satisfies D>=E_c. If E_c=infinity there can be no such endpoint. In particular the mixed strong flow is global whenever E(u0)+C M(u0)<E_c, with C the coercivity constant.
+
+Proof. Suppose D<E_c. Choose e with D<e<E_c for which the pure uniform property holds (downward closure and the definition of supremum). The background w and residual h of section 23 satisfy P(h(t))→D, so P(h(a))<=e for every a sufficiently close to T. For such a let z be the pure strong solution from h(a). Its global Z bound is at most L(e), uniformly as a→T. Its kinetic bound follows from positive pure conservation; its mass equals that of h(a) by pure conservation. Both h and w have bounded H^p near T, and w has finite Z on a compact neighborhood of T with Z_[a,T](w)→0 as a→T.
+
+On [a,t] with a<=t<T, bootstrap Z(h)<=2(L(e)+1). The residual equation before scaling is
+i h_t=A h+gamma F_s(h)+gamma [F_s(h+w)-F_s(w)-F_s(h)]
+ - beta[F_r(h+w)-F_r(w)].
+Split F_r=G+Hhigh as in section 16.3, with globally Lipschitz low component G. Let L solve i L_t=A L-beta[G(h+w)-G(w)] with L(a)=0. Apply the time-Sobolev lemma to u=h+w and w individually, using their uniform H^p and H^-p time derivative bounds. Thus ||L||_(C H^p)+Z(L)<=C sqrt(T-a), uniform over the bootstrap intervals. Set v=h-L. Its equation is pure critical plus a residual e_res, consisting of the upper-power replacement F_s(h)-F_s(v), the upper-power cross term F_s(h+w)-F_s(h)-F_s(w), and the high-amplitude lower differences. Their one-gradient L²_t L^k_x norm tends uniformly to zero as a→T:
+* replacement: the weighted Hölder derivative estimate of section 17 with h-v=L and the fixed Z ceiling;
+* cross term: the same estimate with (h+w)-h=w, plus ||∇F_s(w)||_(L²L^k)<=C Z(w)^s;
+* lower terms: section 16.3 with (T-a)^theta and the bounded Z norms of h+w and w.
+All constants are uniform under the H^p bound and the bootstrap ceiling. The approximate solution v starts exactly at h(a), has bounded kinetic norm and Z, and the pure solution z has uniform kinetic and Z bounds. Apply section 19's stability modulus (or the s>=2 estimate) to compare v with z. Taking a sufficiently close to T gives Z(v-z)<1/2, Z(L)<1/2, and hence Z(h)<L(e)+1, strictly below the ceiling. Local Z regularity and continuity on expanding compact intervals close the bootstrap up to T. Therefore Z_[a,T)(u)<=Z(h)+Z(w)<∞, which contradicts the finite endpoint continuation criterion of section 16.4. The backward proof is identical. Finally E(f)>=-C M(f)=-C M(u0) implies D<=E(u0)+C M(u0), proving the small shifted-energy statement relative to the pure threshold.
+
+A useful individual form does not assume a uniform theorem over all pure data: if there exists a sequence a_j↑T such that the pure strong solutions launched from h(a_j) exist through T-a_j and have uniformly bounded Z there, the very same proof excludes the endpoint. Thus any genuine endpoint forces failure of this pure residual-slab bound along every such sequence. It is not necessary to solve the pure scattering problem at the energy of the original mixed solution: it suffices to solve it at the energy actually lost in the weak limit. Nevertheless, if the missing pure threshold is finite, this does not prove that defects >=E_c cannot occur.
+
+## 26. Updated research frontier, prior art and verification
+
+The present revision gives a background-subtracted mass-decay law, a faster-than-dispersive necessary concentration rate, a global homogeneous pure weak profile extracted at an endpoint, and a lower bound on the endpoint defect by the pure critical scattering threshold. The bounded-background exclusion for s<=2 is conditional. No unconditional extension to the remaining large-data critical dimension/order regimes is claimed. The necessary remaining argument is to rule out the pure residual-slab failure above the threshold, or prove the needed pure critical uniform bounds. In particular the global weak profile extracted in section 24 is not an almost-periodic minimal strong solution and cannot be fed into the full-concentration rigidity theorem as though it were one.
+
+A renewed focused literature search located the existing pure d>=9 biharmonic arbitrary-data scattering result (Miao–Xu–Zhao, https://arxiv.org/abs/0807.0692), but not a matching result for nonradial d=5..7 or general integer p>=3. This is not a proof of open-problem status. The background subtraction and type-II-style rate have not undergone independent novelty review. No known supercritical pure blow-up construction can be imported into the exact mixed equation merely by calling the lower term subcritical; a separate robustness proof would be required. General individual-data supercritical strong classification remains unresolved.
+
+A candidate Lean lemma checks the exact complex pointwise cancellation in section 23.1 for arbitrary real coefficients (hence for the power coefficients), with no PDE assumptions. The residual mass chain rule, concentration profile extraction, threshold perturbation and earlier general dynamics remain unformalized. CI was still queued/pending at inspection of the preceding head; no GC03 kernel pass or transitive axiom audit is asserted. Original statement, candidate status and open issue are preserved.

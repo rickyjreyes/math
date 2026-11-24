@@ -72,3 +72,4 @@ elab "#audit_deps " root:ident : command => do
 #audit_deps ReyesMath.GC03Energy.finite_energy_drop_count
 #audit_deps ReyesMath.GC03Energy.gradient_forcing_threshold
 #audit_deps ReyesMath.GC03Energy.lower_cutoff_exponent_lt_critical
+#audit_deps ReyesMath.GC03Energy.relative_mass_cancellation

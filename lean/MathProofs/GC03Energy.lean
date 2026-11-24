@@ -264,6 +264,18 @@ theorem lower_cutoff_exponent_lt_critical {d p r : ℝ}
     (div_lt_div_iff₀ hd0 hgap).mpr hcross
   exact max_lt hr (by linarith)
 
+
+/-- Exact pointwise cancellation of the imaginary nonlinear relative-mass
+pairing for two fields with arbitrary real radial multipliers. Taking the
+coefficients to be the real powers of the moduli gives the identity used in
+GC03 section 23.1. This is not a proof of the PDE mass chain rule. -/
+theorem relative_mass_cancellation (u w : ℂ) (a b : ℝ) :
+    ((starRingEnd ℂ) (u - w) * ((a : ℂ) * u - (b : ℂ) * w)).im =
+      (a - b) * ((starRingEnd ℂ) (u - w) * w).im := by
+  simp only [Complex.mul_im, Complex.mul_re, Complex.sub_re, Complex.sub_im,
+    Complex.conj_re, Complex.conj_im, Complex.ofReal_re, Complex.ofReal_im]
+  ring
+
 end ReyesMath.GC03Energy
 
 #print axioms ReyesMath.GC03Energy.power_absorption
@@ -277,3 +289,4 @@ end ReyesMath.GC03Energy
 #print axioms ReyesMath.GC03Energy.finite_energy_drop_count
 #print axioms ReyesMath.GC03Energy.gradient_forcing_threshold
 #print axioms ReyesMath.GC03Energy.lower_cutoff_exponent_lt_critical
+#print axioms ReyesMath.GC03Energy.relative_mass_cancellation
