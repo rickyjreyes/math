@@ -63,7 +63,7 @@
       "flagship": false,
       "dossier": null,
       "claimed_kernel_verified_resolution": false,
-      "note": "2026-11-24: analytical subcritical strong global, all-regime finite-energy weak existence, supercritical energy-class norm inflation, critical local/continuation and known fourth-order slices. Candidate analytic proof for all p>=2,d>4p critical mixed strong global via homogeneous profile decomposition, minimal-element normalization and rigidity (§§36–40); independent review required. Remaining p>=3 critical 2p<d<=4p, p=2 nonradial d=5..7, individual supercritical strong dynamics and Lean PDE formalization. Issue #100/PR #101; twelve candidate roots unverified. No status promotion.",
+      "note": "2026-11-24: analytical subcritical strong global, all-regime finite-energy weak existence, supercritical energy-class norm inflation, critical local/continuation and known fourth-order slices. Candidate analytical critical mixed global strong for p>=2,d>4p arbitrary data and p>=2,d>2p radial data via homogeneous compactness/rigidity; independent review required. Remaining nonradial p>=3 critical 2p<d<=4p, p=2 d=5..7, individual supercritical dynamics and Lean PDE formalization. Issue #100/PR #101; twelve candidate roots unverified. No status promotion.",
       "file_path": "problems/01-wave-dynamics/GC03.md",
       "research_area": "Nonlinear wave dynamics",
       "source_class": "original_formal_statement",

@@ -1028,3 +1028,75 @@ The proof uses a standard concentration-compactness architecture rather than cla
 The candidate analytic classification now includes all higher-order energy-critical p>=2,d>4p, in addition to the previously established p=1 critical and fourth-order d=8 arbitrary-data and d>=5 radial slices. For p>=3 the strip 2p<d<=4p remains unresolved for arbitrary large data. For p=2 this leaves nonradial d=5,6,7; d=8 is covered by prior work already credited. The subcritical and supercritical energy-admissible classification is unchanged. Individual supercritical strong existence or blow-up remains a different unresolved problem.
 
 The new proof is a research candidate, not a formally checked theorem. Review priorities: (1) all earlier general-order linear and nonlinear stability estimates and their homogeneous extensions; (2) profile energy decoupling and global approximation including the order of limits J then n; (3) no-waste recurrence and negative regularity; (4) compact-orbit localized mass and interaction action at energy regularity; (5) mixed transfer. No citation of an external theorem is used to waive these new general-order proof obligations. The twelve existing Lean roots and focused audit remain unchanged and do not formalize any of these dynamical arguments. At inspection of head 438a21c69698127d9bbd3a3f645d4d7e26aa7456 the workflow API returned no runs. No kernel pass or independent review has been obtained. Keep GC03 candidate, PR draft and issue open.
+
+
+## 42. Homogeneous localized dilation rigidity without finite mass
+
+This revision is a candidate analytical extension of §§36–40. All new and inherited analytical arguments require independent review; none of the general PDE dynamics is Lean-certified. Let p>=2, d>2p, s=1+4p/(d-2p), b=s+1, a_*=d/2-p, A=(-Delta)^p, F(z)=gamma |z|^(s-1)z. Work with the strong homogeneous pure class C_t dot H^p intersect Z_loc constructed in §36, with positive energy P. No L² membership is assumed.
+
+**Theorem 42.1 (fixed-center homogeneous rigidity).** Let u be a global pure strong solution with nonzero energy, such that for some fixed center x0 and scales lambda(t)>=lambda0>0 the normalized profiles
+lambda(t)^(-a_*) u(t,x0+ · /lambda(t))
+have compact closure in dot H^p. Then u cannot exist on an infinite forward time interval. The same conclusion holds on a backward-infinite interval. More generally one can allow centers x(t) uniformly bounded relative to a fixed center, with no regularity requirement on x(t). This is not a theorem for centers escaping to spatial infinity.
+
+### 42.1 Tail control without mass
+
+By homogeneous Sobolev, for each multi-index mu of length j with 0<=j<p, D^mu maps dot H^p continuously to L^(b_j), b_j=2d/(d-2(p-j)); for j=p use b_p=2 and Plancherel. Thus the normalized compact set has uniformly vanishing spatial tails in each of these norms by the finite-net argument. The critical dilation has amplitude lambda^(a_*+j) on D^mu u, and a_*+j=d/b_j, so these derivative norms are invariant. Since lambda>=lambda0, the physical tails outside any fixed ball about x0 tend uniformly to zero as its radius tends to infinity. If x(t) instead remains in a bounded set, use the triangle inequality between the two centers to reach the same conclusion. Denote by B the uniform dot H^p norm, which is bounded by positive energy. There is a strictly positive lower bound on the homogeneous norm for a solution with P>0, because P<=Bkin²/2+C Bkin^b with Bkin=||D^p u||₂.
+
+### 42.2 Localized action and exact commutator
+
+Translate x0 to zero. Choose a smooth vector field a on R^d equal to x for |x|<=1 and zero for |x|>=2, and set a_R(x)=R a(x/R). Define L_R=a_R·∇+(div a_R)/2, a real skew-symmetric first-order operator, and the real action
+J_R(u)=Re integral conj(u)(-i L_R u)=Im integral conj(u) a_R·∇u.
+This is well-defined on dot H^p because the integrand is supported in B(0,2R). By local Hölder and homogeneous Sobolev,
+||u||_(L²(B(0,2R)))<=C R^p B,
+||∇u||_(L²(B(0,2R)))<=C R^(p-1) B.
+In particular |J_R(u)|<=C R^(2p) B² for every R>0, without any global mass bound.
+
+The differentiated action for smooth solutions is
+J_R'=K_R+N_R,
+K_R=2 Re sum_(|mu|=p)(p!/mu!) integral conj(∂^mu u)[∂^mu,L_R]u,
+N_R=gamma (s-1)/(s+1) integral (div a_R)|u|^b.
+The kinetic formula follows from the exact multilinear derivative representation of the form of (-Delta)^p and skew symmetry of L_R. In the nonlinear term use the real first derivative of F and integrate the gradient of |u|^b, as in §27; this is valid for real s>1. For the full linear dilation field a_infty=x, the commutator [∂^mu,L_infty]=p ∂^mu, so K_infty=2p||D^p u||₂². The nonlinear term is N_infty=gamma d(s-1)/b ||u||_b^b=2p gamma ||u||_b^b, since s is critical. Both are nonnegative and their sum is bounded below by 4p P(u)>0 (use b>2). There is no derivative of the translation center in this calculation, because the action center is fixed once and for all.
+
+### 42.3 Homogeneous cutoff errors
+
+All commutator terms are finite at homogeneous energy regularity. Explicitly
+[∂^mu,L_R]u=sum_(0<nu<=mu) binomial(mu,nu)[(∂^nu a_R)·∇∂^(mu-nu)u+(∂^nu div a_R)∂^(mu-nu)u/2].
+For |nu|=1 the first coefficient is bounded independently of R; subtract the full linear coefficient and the difference is supported in |x|>R. Its form contribution is bounded by C times the square of the order-p derivative L² tail. For |nu|=j>=2 the first coefficient is supported in R<=|x|<=2R and has bound C R^(1-j). The other field derivative has order p-j+1, and local Hölder from b_(p-j+1) gives its L² norm on the annulus bounded by C R^(j-1) times its L^(b_(p-j+1)) tail there. Multiplying cancels the power of R. For the divergence term at every j>=1, the coefficient is C R^-j supported on the annulus and the other field derivative has order p-j; local Hölder gives C R^j times its L^(b_(p-j)) tail. Cauchy–Schwarz with the order-p field derivative therefore bounds all such errors by C times products of the homogeneous Sobolev tails in §42.1. In particular
+sup_t |K_R(u(t))-2p||D^p u(t)||₂²|→0 as R→∞.
+This is not a pointwise positivity claim for the truncated high-order commutator. It is a compactness-based control of its errors. Likewise sup_t |N_R-N_infty|→0 by the uniform L^b tail and bounded divergence coefficient. For sufficiently large fixed R, J_R'≥2p P(u)>0 a.e. The bounded action then contradicts an infinite forward interval.
+
+### 42.4 Justification of the identity for homogeneous strong solutions
+
+On a fixed compact time interval I, use real smooth annular cutoffs Q_n which tend to identity and remove both frequencies below 1/n and above n. Set u_n=Q_nu. Uniform multiplier bounds and the canonical homogeneous Sobolev embedding give u_n→u in C(I;dot H^p) and in L^q_(t,x) and W of §36. The latter convergence follows from approximate identities at the high end and strong convergence of the low cutoff to zero on finite exponent Lebesgue spaces (first verify on smooth compact data and then density). For the compact C_t dot H^p path convergence is uniform in time by finite nets. The forced pure equation for u_n has residual e_n=Q_nF(u)-F(u_n); e_n→0 in C(I;L^(b/s)) and ∇e_n→0 in L²(I;L^k) by the power difference estimate, first-derivative chain rule and weighted Hölder derivative difference estimate of §17. Each u_n has finite L² and arbitrary spatial Sobolev regularity, since its Fourier support is bounded and separated from zero; its time derivative also has this regularity by the projected equation. The smooth forced action computation is justified as in §27. The forcing error, after integrating by parts in the derivative of u_n, has integral in time bounded by
+C_R [||∇e_n||_(L²L^k) ||u_n||_(L²(I;L^(k')(B(0,2R)))) + ||e_n||_(L¹L^(b/s)) sup_I ||u_n||_b],
+where k'=2d/(d-2). This tends to zero: critical Sobolev gives uniform L^b, b>=k', hence the local L²_t L^(k') bound. The action and commutator expressions converge uniformly in time on I by strong homogeneous convergence, local Hölder and the same differentiated coefficient estimates used in §42.3 (for fixed R). The nonlinear density converges in L¹ by the L^b convergence. Taking the limit in the integrated action identity proves it at the stated energy regularity. This completes Theorem 42.1.
+
+**Caution.** A time-dependent center cannot simply be substituted into this identity. It generates a term containing the center velocity paired with a localized momentum. Neither a sign nor uniform smallness of that term follows from homogeneous compactness. The two-field interaction of §27 avoids this term but used global mass and inhomogeneous compactness, neither of which is yet available in the low-dimensional nonradial case.
+
+## 43. Radial profile extraction and all-order radial critical candidate theorem
+
+We explain why the concentration-compactness argument in §§36–39 works in the radial homogeneous subspace without translating the profiles. This is a separate radial minimal-energy problem, not an assertion that the unrestricted minimal element can be chosen radial.
+
+### 43.1 Radial inverse Strichartz has centered frames
+
+For a bounded radial sequence f_n, the inverse estimate of §37 gives times t_n, frequency scales N_n and centers x_n with a nonzero rescaled weak dot H^p profile for U(t_n)f_n. The free evolution preserves radiality. In the rescaled coordinates local compactness gives strong local L² convergence to a nonzero function, hence for some fixed R,c>0 the physical critical L^b mass on B(x_n,R/N_n) is >=c, by local Hölder and critical scaling. If N_n |x_n|→∞, for any fixed integer L one can choose L rotations of x_n yielding pairwise disjoint balls of these radii for sufficiently large n: take equally spaced directions on a great circle and use the divergent normalized radius. By radiality all these balls carry the same lower mass bound. This contradicts the uniform total L^b mass for L arbitrarily large. Therefore N_n x_n is bounded along the subsequence. Pass to its finite limit and recenter the frame at zero, absorbing the converging normalized translation into the profile by strong continuity of translations and their inverses on dot H^p. The recentered weak limit is radial, since the radial subspace is closed and each rescaled datum is radial. Its nonzero norm is unchanged. The orthogonality and norm-decomposition arguments of §37 then hold with only time and dilation parameters; all remainders stay radial. The same proof retains the refined inverse quantitative lower bound on the extracted norm and hence the vanishing free remainder.
+
+The pure local theory and wave operators of §36 preserve radiality by uniqueness and rotational invariance. Define the uniform energy threshold only over radial data. Each nonlinear profile lies in that class, and all the energy and differentiated approximation estimates of §38 apply unchanged. Thus failure of radial uniform scattering constructs a nonzero radial minimal strong solution precompact modulo dilations alone. In the compactness-in-the-quotient construction use the group of centered dilations alone; its escaping frames are weakly zero by Fourier localization. This provides a compact normalized family with no spatial translations.
+
+The finite-endpoint exclusion and doubling normalization of §39 apply in this same radial class: local mass rigidity does not require a nonzero moving center, and time shifts and centered critical dilations preserve radiality. In the rescaled limiting construction every solution and its normalized compact representatives remain radial. We obtain a nonzero global radial minimal solution with inf lambda>0 and a compact centered normalized orbit. This directly contradicts Theorem 42.1. No finite-mass or negative-regularity lemma is needed, even when 2p<d<=4p.
+
+### 43.2 Radial candidate theorems
+
+**Theorem 43.2 (candidate analytical proof).** For every integer p>=2, d>2p, the pure defocusing energy-critical equation has a unique global homogeneous strong solution in the differentiated critical class from every radial datum in dot H^p, with a critical Z bound depending only on its positive energy and the equation parameters. It scatters in both directions.
+
+Proof: the preceding radial minimal-element contradiction makes the radial uniform threshold infinite, as in §40. The homogeneous scattering and Z equivalence are supplied by §36.
+
+**Corollary 43.3 (candidate original GC03 radial extension).** For every integer p>=2, d>2p, s=1+4p/(d-2p), 1<r<s and beta,gamma>0, the original mixed equation has a unique global strong energy solution for every radial H^p datum, with conserved mass and energy and continuous dependence. Use the radial pure bound from Theorem 43.2 in the mixed transfer of §§16–19. The cutoff decomposition and pure/mixed local uniqueness preserve radiality. No mixed scattering assertion is made.
+
+The fourth-order radial case d>=5 has established prior art (Pausader, Dynamics of PDE 4 (2007), DOI 10.4310/DPDE.2007.v4.n3.a1). This proof extends the candidate dossier to higher integer p, notably radial data in 2p<d<=4p. It does not claim originality of the localized dilation method or of radial concentration compactness. A renewed focused search located a 2026 fourth-order radial potential result (arXiv:2603.13892), not an unrestricted nonradial theorem for d=5..7. The all-order candidate requires independent review, including all inherited §§36–39.
+
+## 44. Remaining nonradial obstruction and verification
+
+The low-dimensional radial slice now has a candidate proof. For arbitrary nonradial data in 2p<d<=4p (excluding the known p=1 and p=2,d=8 cases), the minimal-element construction and normalization of §§36–39 still yield a putative global compact element with inf lambda>0. The direct virial excludes it if its centers stay bounded, and the interaction virial excludes it if finite mass and the appropriate inhomogeneous compactness/scale bounds can be recovered. Neither bounded centers nor finite mass follow solely from the established estimates. In particular the annular double-Duhamel bound from §34 stops at k>2p-d/2>=0, so using it as a mass theorem in this strip would be an error. A valid frequency-localized interaction rigidity argument or additional low-frequency improvement is still necessary. No nonradial classification change is asserted.
+
+Verification: the previous head 687c66c32a22fba92ebf1a54c236989b2eae7e3f had no workflow runs returned at inspection. Twelve existing Lean roots unchanged. No independent review or successful kernel check of the new PDE theorem exists in this record. Keep the candidate status, draft PR and open issue.
