@@ -43,13 +43,25 @@ theorem omega_match (k : ℝ) (n : Fin 2 → ℤ) :
   rw [qf_match]
   ring
 
-def reindex (v : PVNP.Torus.ℓ2) : BandPass.ell2 2 :=
-  ⟨fun n => v (pairIndex n), BandPass.memℓp_two_iff.2
-    (pairIndex.summable_iff.2 (PVNP.Torus.summable_sq v))⟩
+-- Fix the lattice and summand types before invoking the equivalence.
+-- This avoids expensive inference through the two lp subtype aliases.
+set_option maxHeartbeats 2000000 in
+def reindex (v : PVNP.Torus.ℓ2) : BandPass.ell2 2 := by
+  let f : (Fin 2 → ℤ) → ℂ := fun n => v (pairIndex n)
+  have hs : Summable (fun n : Fin 2 → ℤ => ‖f n‖ ^ 2) := by
+    change Summable (fun n : Fin 2 → ℤ => ‖v (pairIndex n)‖ ^ 2)
+    exact (pairIndex.summable_iff (f := fun p : PVNP.Torus.Z2 => ‖v p‖ ^ 2)).2
+      (PVNP.Torus.summable_sq v)
+  exact ⟨f, (BandPass.memℓp_two_iff (f := f)).2 hs⟩
 
-def unindex (c : BandPass.ell2 2) : PVNP.Torus.ℓ2 :=
-  PVNP.Torus.mk (fun p => c (pairIndex.symm p))
-    (pairIndex.symm.summable_iff.2 (BandPass.hasSum_sq_ell2 c).summable)
+set_option maxHeartbeats 2000000 in
+def unindex (c : BandPass.ell2 2) : PVNP.Torus.ℓ2 := by
+  let f : PVNP.Torus.Z2 → ℂ := fun p => c (pairIndex.symm p)
+  have hs : Summable (fun p : PVNP.Torus.Z2 => ‖f p‖ ^ 2) := by
+    change Summable (fun p : PVNP.Torus.Z2 => ‖c (pairIndex.symm p)‖ ^ 2)
+    exact (pairIndex.symm.summable_iff (f := fun n : Fin 2 → ℤ => ‖c n‖ ^ 2)).2
+      (BandPass.hasSum_sq_ell2 c).summable
+  exact PVNP.Torus.mk f hs
 
 @[simp] theorem reindex_apply (v : PVNP.Torus.ℓ2) (n : Fin 2 → ℤ) :
     reindex v n = v (pairIndex n) := rfl
@@ -71,11 +83,11 @@ def toPVNP (c : BandPass.ell2 2) : PVNP.Torus.ℓ2 := (L : ℂ) • unindex c
 
 @[simp] theorem toMath_apply (v : PVNP.Torus.ℓ2) (n : Fin 2 → ℤ) :
     toMath L v n = (L : ℂ)⁻¹ * v (pairIndex n) := by
-  simp [toMath, lp.coeFn_smul, Pi.smul_apply, smul_eq_mul]
+  simp only [toMath, lp.coeFn_smul, Pi.smul_apply, smul_eq_mul, reindex_apply]
 
 @[simp] theorem toPVNP_apply (c : BandPass.ell2 2) (p : PVNP.Torus.Z2) :
     toPVNP L c p = (L : ℂ) * c (pairIndex.symm p) := by
-  simp [toPVNP, lp.coeFn_smul, Pi.smul_apply, smul_eq_mul]
+  simp only [toPVNP, lp.coeFn_smul, Pi.smul_apply, smul_eq_mul, unindex_apply]
 
 theorem L_ne : (L : ℂ) ≠ 0 := by exact_mod_cast (Fact.out : 0 < L).ne'
 
@@ -165,7 +177,13 @@ theorem field_match (v : PVNP.Torus.ℓ2) (x : ℝ × ℝ) :
 /-- Original, unshifted physical nonlinearity as a continuous field. -/
 def physicalNonlin (beta gamma : ℝ) (F : C(Tor L 2, ℂ)) : C(Tor L 2, ℂ) where
   toFun x := PVNP.Torus.fnl beta gamma (F x)
-  continuous_toFun := by unfold PVNP.Torus.fnl; fun_prop
+  continuous_toFun := by
+    simp only [PVNP.Torus.fnl_eq]
+    exact (Complex.continuous_ofReal.comp
+      (((continuous_const : Continuous (fun _ : Tor L 2 => -beta)).mul
+        (F.continuous.norm.pow 2)).add
+        ((continuous_const : Continuous (fun _ : Tor L 2 => gamma)).mul
+          (F.continuous.norm.pow 4)))).mul F.continuous
 
 theorem nonlin_match (beta gamma : ℝ) (v : PVNP.Torus.ℓ2) :
     BandPass.Phi L (by decide : 2 ≤ 3) (toMath L (PVNP.Torus.Fnl L beta gamma v)) =
@@ -214,6 +232,7 @@ theorem global_lab_exists {k beta gamma : ℝ} (hg : 0 < gamma)
   obtain ⟨v, hv, _⟩ := PVNP.Torus.global_wellposed (κ := k^2) (β := beta)
     (Fact.out : 0 < L) hg (toPVNP L c)
   refine ⟨fun t => toMath L (v t), ?_, pvnp_to_lab L hv.2⟩
+  change toMath L (v 0) = c
   rw [hv.1, toMath_toPVNP]
 
 /-- Exact mass normalization between the two representations. -/
@@ -286,10 +305,10 @@ theorem global_lab_wellposed {k beta gamma : ℝ} (hg : 0 < gamma)
     ∃! u : ℝ → BandPass.ell2 2, u 0 = c ∧ IsLabSolution L k beta gamma u := by
   obtain ⟨v, hv, huniq⟩ := PVNP.Torus.global_wellposed (κ := k^2) (β := beta)
     (Fact.out : 0 < L) hg (toPVNP L c)
-  refine ⟨fun t => toMath L (v t), ⟨by rw [hv.1, toMath_toPVNP], pvnp_to_lab L hv.2⟩, ?_⟩
+  refine ⟨fun t => toMath L (v t), ⟨by change toMath L (v 0) = c; rw [hv.1, toMath_toPVNP], pvnp_to_lab L hv.2⟩, ?_⟩
   intro u hu
   have he := huniq (fun t => toPVNP L (u t))
-    ⟨by rw [hu.1], lab_to_pvnp L hu.2⟩
+    ⟨by change toPVNP L (u 0) = toPVNP L c; rw [hu.1], lab_to_pvnp L hu.2⟩
   funext t
   have ht := congrFun he t
   rw [← ht, toMath_toPVNP]
