@@ -96,8 +96,7 @@ theorem observed_all_points_nonisolated (p : Params) (U : Set Params)
       simp [path]
     · simp [path, Function.update, hi]
   have ht : Tendsto path (𝓝 (p 16)) (𝓝 p) := by
-    rw [← hp]
-    exact hc.continuousAt
+    simpa only [ContinuousAt, hp] using (hc.continuousAt (x := p 16))
   have hnear : ∀ᶠ t in 𝓝 (p 16), path t ∈ U := ht hU
   have hne : ∀ᶠ t in 𝓝[≠] (p 16), t ≠ p 16 := self_mem_nhdsWithin
   obtain ⟨t, hu, htne⟩ := ((hnear.filter_mono nhdsWithin_le_nhds).and hne).exists
@@ -162,5 +161,30 @@ theorem generic_rank_counterexample :
   · intro h
     have hn : (1 : ℝ) = -1 := h (by norm_num)
     norm_num at hn
+
+/-- Any differentiable augmented observation with fewer than 31 output
+coordinates has a nontrivial derivative kernel. This is a rank obstruction,
+not by itself an obstruction to a singular isolated fiber. -/
+theorem augmented_rank_obstruction (N : ℕ) (hN : N < 31)
+    (J : Params →L[ℝ] (Fin N → ℝ)) :
+    0 < Module.finrank ℝ (LinearMap.ker J.toLinearMap) := by
+  have hr : Module.finrank ℝ (LinearMap.range J.toLinearMap) ≤ N := by
+    simpa using (Submodule.finrank_le (LinearMap.range J.toLinearMap))
+  have hsum := LinearMap.finrank_range_add_finrank_ker J.toLinearMap
+  have hdim : Module.finrank ℝ Params = 31 := by simp [Params]
+  omega
+
+/-- Strict separation by a positive inner-product pairing is sufficient
+for injectivity, independently of the Jacobian. -/
+theorem injective_of_strict_pairing {X Y : Type*} (f : X → Y)
+    (pairing : X → X → Y → Y → ℝ)
+    (h : ∀ x z, x ≠ z → 0 < pairing x z (f x) (f z))
+    (hdiag : ∀ x z y, pairing x z y y = 0) :
+    Function.Injective f := by
+  intro x z hz
+  by_contra hne
+  have hp := h x z hne
+  rw [hz, hdiag] at hp
+  exact (lt_irrefl 0 hp)
 
 end ReyesMath.V18Forward
