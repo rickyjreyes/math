@@ -73,7 +73,7 @@ theorem plane_iff_equations {d : ℕ} (J : Jet d) (hn : J.a ≠ 0 ∨ J.b ≠ 0)
       field_simp [hr.ne'] <;> nlinarith only [hB i j]
     cases J
     simp only [plane] at *
-    congr
+    congr <;> assumption
 
 end ReyesMath.GC08
 
