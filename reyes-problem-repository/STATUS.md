@@ -215,7 +215,7 @@ This page is a **reading view of [problem_registry.json](problem_registry.json)*
 
 | ID | Mathematical question | GC stage | Existing mathematical evidence | Difficulty |
 |:--|:--|:--|:--|--:|
-| GC26 | [Local versus global identifiability](FORMAL_PROBLEMS.md#gc26-local-versus-global-identifiability) | Candidate · formal | ✅ Rank 11, nullity 20 and local fiber | 6/10 |
+| GC26 | [Local versus global identifiability](FORMAL_PROBLEMS.md#gc26-local-versus-global-identifiability) | Candidate · formal | ✅ Rank 11, nullity 20 and local fiber; [candidate global alias extension](../docs/GC26_GLOBAL_IDENTIFIABILITY_LEDGER_2026-11-24.md) | 6/10 |
 | GC27 | [Minimal parameter-recovery observations](FORMAL_PROBLEMS.md#gc27-minimal-parameter-recovery-observations) | Candidate · formal | Related source links; scope unaudited | 7/10 |
 | GC28 | [Curvature-map noninjectivity](FORMAL_PROBLEMS.md#gc28-curvature-map-noninjectivity) | Candidate · formal | Related source links; scope unaudited | 7/10 |
 | GC29 | [Noise-stable reconstruction](FORMAL_PROBLEMS.md#gc29-noise-stable-reconstruction) | Candidate · formal | Related source links; scope unaudited | 7/10 |
