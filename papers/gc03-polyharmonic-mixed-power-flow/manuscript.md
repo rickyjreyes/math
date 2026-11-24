@@ -603,3 +603,94 @@ The present revision gives a background-subtracted mass-decay law, a faster-than
 A renewed focused literature search located the existing pure d>=9 biharmonic arbitrary-data scattering result (Miao–Xu–Zhao, https://arxiv.org/abs/0807.0692), but not a matching result for nonradial d=5..7 or general integer p>=3. This is not a proof of open-problem status. The background subtraction and type-II-style rate have not undergone independent novelty review. No known supercritical pure blow-up construction can be imported into the exact mixed equation merely by calling the lower term subcritical; a separate robustness proof would be required. General individual-data supercritical strong classification remains unresolved.
 
 A candidate Lean lemma checks the exact complex pointwise cancellation in section 23.1 for arbitrary real coefficients (hence for the power coefficients), with no PDE assumptions. The residual mass chain rule, concentration profile extraction, threshold perturbation and earlier general dynamics remain unformalized. CI was still queued/pending at inspection of the preceding head; no GC03 kernel pass or transitive axiom audit is asserted. Original statement, candidate status and open issue are preserved.
+
+
+## 27. Translation-invariant interaction rigidity for the pure critical flow
+
+**Theorem 27.1 (analytical, pending independent review).** Let d>2p, p a positive integer, s=1+4p/(d-2p), gamma>0. There is no nonzero strong solution of the pure defocusing equation
+i u_t=(-Delta)^p u+gamma F_s(u)
+on a forward-infinite time interval whose orbit is precompact in inhomogeneous H^p modulo spatial translations. More explicitly, there cannot be a function x(t) such that the closure in H^p of {u(t,·+x(t)): t≥0} is compact. No assumption on radiality, continuity of x(t), its speed, or its growth in time is needed. The same holds backward by conjugation. This theorem rules out a finite-mass, spatially and spectrally tight soliton-like critical element, not all almost-periodic homogeneous critical solutions.
+
+### 27.1 Two-field commutator
+
+Use relative coordinates r=x-y in R^d×R^d and the product U(t,x,y)=u(t,x)u(t,y). Let A2=(-Delta_x)^p+(-Delta_y)^p. The product solves
+i U_t=A2 U+V U,
+V(t,x,y)=gamma(|u(t,x)|^(s-1)+|u(t,y)|^(s-1)).
+Write M=||u||_2², which is constant and positive if u is nonzero.
+
+Choose a smooth vector function a(r) equal to r on |r|≤1, zero on |r|≥2. Let a_R(r)=R a(r/R), b_R(x,y)=(a_R(r),-a_R(r)), and
+L_R=b_R·∇_(x,y)+(div b_R)/2, B_R=-i L_R.
+L_R is skew-symmetric, B_R symmetric on smooth compactly supported functions. All derivatives of b_R of positive order up to p+1 are uniformly bounded for R≥1. The interaction action
+J_R(t)=Re integral conj(U) B_R U
+is well-defined on H^1(R^(2d)), and satisfies |J_R(t)|≤C R ||U||_2 ||∇U||_2+C||U||_2². The product map u↦u⊗u is continuous H^p(R^d)→H^p(R^(2d)) by the multi-index product formula and factorized integrals. In particular the action is bounded by C_B R on an H^p-bounded trajectory.
+
+For smooth data, differentiation gives the kinetic contribution K_R=⟨U,[A2,L_R]U⟩ and the potential contribution -integral |U|² b_R·∇V. The kinetic form extends continuously to H^p: for each x or y multi-index mu of order p, the corresponding summand of K_R, with coefficient p!/mu!, is
+2 Re integral conj(∂^mu U)[∂^mu,L_R]U.
+Indeed the term involving L_R ∂^mu U has zero real part by skew symmetry. Expand the commutator as the sum over 0<nu≤mu of
+binomial(mu,nu) [(∂^nu b_R)·∇∂^(mu-nu) U
+                 +(∂^nu div b_R)∂^(mu-nu) U/2].
+Every field factor has derivative order ≤p. This formula gives uniform boundedness of the quadratic form on H^p and is independent of the possibly large size of b_R itself. The multinomial expansion of the kinetic Fourier symbol gives exactly the sum of the separate x and y forms, not a mixed full Laplacian.
+
+For the untruncated linear b_infty(x,y)=(x-y,y-x), define K_infty by the same commutator form with constant first derivatives. For Schwartz U, direct Fourier transformation of the dilation generator gives
+K_infty(U)=integral∫ (ξ-η)·(∇aop(ξ)-∇aop(η)) |Uhat(ξ,η)|² dξ dη,
+aop(ξ)=|ξ|^(2p),
+in the angular-frequency Plancherel convention. Equivalently, differentiate the symbol aop(ξ)+aop(η) under the linear dual vector field with blocks (ξ-η,η-ξ). The divergence term cancels the Jacobian term. The integrand is nonnegative by convexity of aop (or integrate its positive semidefinite Hessian along the segment). It is bounded by C_p(|ξ|^(2p)+|η|^(2p))|Uhat|² by Young's inequality, so approximation extends positivity to H^p. No sign is asserted for the full truncated high-order commutator pointwise.
+
+Because b_R and b_infty agree on |x-y|≤R, their differentiated coefficients in the form differ only outside this set. Cauchy–Schwarz on that region yields
+|K_R(U)-K_infty(U)| ≤ C_p,a sum_(|mu|≤p) integral_(|x-y|>R) |∂^mu U|².
+For an H^p orbit precompact modulo translations, the right side tends uniformly to zero as R→∞. In fact diagonal translation (x,y)↦(x+x(t),y+x(t)) leaves |x-y| unchanged, and the translated products form a precompact set in H^p(R^(2d)). For any compact set in H^p all finitely many derivative L² tails tend uniformly to zero (finite epsilon-net argument). Thus K_R≥-o_R(1) uniformly in time.
+
+### 27.2 Repulsive nonlinear contribution and the rigidity contradiction
+
+Using the real power derivative and integration by parts in x and y, the potential contribution is exactly
+N_R=gamma (s-1)/(s+1) integral∫ (div a_R)(x-y)
+ [|u(x)|^(s+1)|u(y)|²+|u(x)|²|u(y)|^(s+1)] dx dy.
+For example |u(x)|²∇_x |u(x)|^(s-1)=(s-1)/(s+1)∇_x |u(x)|^(s+1). This identity is interpreted after integrating the derivative of the power; no differentiability at zeros of |u|^(s-1) alone is required. In the untruncated case div a_infty=d, so
+N_infty=2 gamma d(s-1)/(s+1) M ||u||_(s+1)^(s+1).
+The truncated difference is bounded by C times the same two density integrals restricted to |x-y|>R. This tends uniformly to zero under the compactness hypothesis. Indeed the translated orbit is compact in L² and L^(s+1) by critical Sobolev embedding. Both density families have uniformly vanishing spatial tails. On |x-y|>R at least one of the translated coordinates has modulus >R/2, so factorize the two tail bounds. Furthermore inf_t ||u(t)||_(s+1)>0: otherwise a sequence from the translated orbit converges strongly in H^p to a profile with L^(s+1) norm zero but mass M>0. Hence N_infty≥c0>0.
+
+It follows for R sufficiently large but fixed that J_R'(t)≥c0/2 almost everywhere. Integrating over an arbitrarily long interval contradicts the bound |J_R|≤C_B R. This proves the theorem provided the action identity holds for the strong energy solution. The following approximation justifies it without assuming the solution is Schwartz.
+
+### 27.3 Justification at critical energy regularity
+
+On each compact time interval I of the strong pure lifespan, section 16.4 gives finite Z_I(u); the same proof applies with beta=0. Use the smooth Fourier cutoff P_N of section 14 and u_N=P_Nu. Then u_N→u in C(I;H^p) and in both Z components (uniform convergence on the compact C_t H^p path and approximate identities on the finite-exponent spaces). It satisfies a forced pure equation with e_N=gamma[P_N F_s(u)-F_s(u_N)]. The pointwise difference estimate gives e_N→0 in C(I;L^(b/s)), where b=s+1. The first-derivative difference estimate from section 17, valid with alpha=min(1,s-1), and the approximate identity property give ∇e_N→0 in L²(I;L^k), k=2d/(d+2). Indeed ∇F_s(u) belongs to this space by Hölder and the first-derivative chain rule. No high-order differentiation of F_s is used.
+
+For each fixed N, u_N is spatially bandlimited, has arbitrary Sobolev regularity and is differentiable in L² with derivative in all Sobolev spaces, by the cutoff equation and dual energy estimate. In particular U_N=u_N⊗u_N has the regularity needed for the kinetic commutator computation. The nonlinear power term can be evaluated directly in the derivative of the action by the real first-derivative chain rule for F_s, which is C¹ for s>1, followed by integration by parts on the density |u_N|^(s+1). For example the real part of the two potential terms involving L_R(VU_N) and L_R U_N combines to -|U_N|² b_R·∇V in the region where u_N is nonzero; the combined expression extends as the derivative of the power density also at zeros. Alternatively expand the force gamma F_s(u_N)⊗u_N+gamma u_N⊗F_s(u_N) directly against B_R U_N; its integral yields N_R without ever forming an unweighted derivative of |u_N|^(s-1). Spatial integration by parts is justified by the integrable density and its first derivative (bandlimited L² and boundedness), using larger outer cutoffs and sending their radius to infinity.
+
+The extra product force is E_N=e_N(x)u_N(y)+u_N(x)e_N(y). Its action derivative error is bounded after integration in time by C_R times
+||∇e_N||_(L²(I;L^k)) ||u_N||_(L²(I;L^(k'))) sup_I||u_N||_2²
+ + ||e_N||_(L¹(I;L^(b/s))) sup_I||u_N||_b
+    sup_I(||u_N||_2²+||u_N||_2||∇u_N||_2),
+where k'=2d/(d-2). To see this, in the e_N(x) term pair with B_R U_N. For the x derivative integrate it by parts onto e_N and b_R, and use spatial Hölder in x and the mass in y; for the y derivative apply Hölder in x and Cauchy–Schwarz to u_N(y)∇u_N(y). The zero-order divergence term is controlled by the second term. The symmetric product term is identical. For fixed R, b_R and its first derivatives are bounded; no product-space Sobolev inequality for exponent b is required. Critical H^p controls L^b and also L^(k') by H^1 embedding, so the bound tends to zero. The differentiated identity for U_N can be integrated in time; the action, kinetic form and potential expression converge uniformly on I by C_t H^p convergence, product continuity and density norm convergence. Passing to the limit gives
+J_R(t2)-J_R(t1)=integral_(t1)^t2 [K_R(U(t))+N_R(u(t))]dt.
+This completes the energy-regularity justification and the proof. It relies on the local critical theory and derivative-gain estimates of this dossier, which themselves remain analytical and not Lean-certified.
+
+### 27.4 Scope, missing compactness and no shortcut through scaling
+
+The theorem excludes nonzero pure critical traveling or stationary waves in the strong H^p class, since their orbits after a spatial translation and phase rotation are precompact (the phase circle is compact). It also excludes any globally defined pure critical minimal element once inhomogeneous compactness modulo translations has been proved, without any assumption on its center velocity. It does not apply to the mixed equation without additional control of the focusing contribution: that term enters N_R with the opposite sign, and mixed solitary waves are not ruled out.
+
+The distinction between homogeneous and inhomogeneous compactness is essential. For any nonzero smooth compact bump phi, set g_lambda(x)=lambda^(d/2) phi(lambda x) as lambda→0. Then ||g_lambda||_2=||phi||_2 but ||D^p g_lambda||_2=lambda^p||D^p phi||_2→0. The family converges to zero in the homogeneous norm but is not precompact in L² even after arbitrary translations: on every fixed-radius ball its mass is bounded by a constant times lambda^d times the ball volume, uniformly over centers. Adding it to a fixed homogeneous profile leaves the homogeneous limit unchanged but can destroy inhomogeneous compactness. Thus a homogeneous critical profile decomposition is not by itself sufficient for the interaction rigidity theorem.
+
+A precise sufficient upgrade is the following. Suppose a family of H^p profiles is precompact in homogeneous H^p after translations, and its low-frequency mass is uniformly small as the cutoff tends to zero:
+lim_(epsilon↓0) sup_t integral_(|ξ|≤epsilon) |uhat(t,ξ)|² dξ=0.
+Then it is precompact in H^p after the same translations. For a fixed epsilon, the high-frequency part is precompact in H^p by the bounded map from homogeneous H^p, while the low-frequency part is uniformly small in H^p by the displayed condition. Approximate by a finite epsilon-net and use completeness. More generally homogeneous compactness modulo dilations with scale bounded above and below implies homogeneous compactness modulo translations, since the critical dilation action is jointly continuous on a compact scale interval and a compact set. A uniform negative Sobolev bound ||D^(-a)u||_2≤C with some a>0 would supply the low-frequency mass condition by epsilon^(2a). None of these extra properties has been proved for the missing critical minimal elements, so the theorem does not resolve those cases.
+
+## 28. Additional weak–strong uniqueness in the supercritical finite-energy space
+
+For any integer p,d, any 1<r<s≤2, and X=H^p intersect L^(s+1), let u be a mass-conserving weak solution from section 9 and let w be a distributional solution with the same initial data, both in C_t L² intersect L∞_loc X and with time derivatives in L∞_loc X*. Assume w belongs to L^1_loc in time with spatial amplitude control in the precise sense
+integral_I (||w(t)||_infty^(r-1)+||w(t)||_infty^(s-1))dt<∞
+on each compact time interval I in its lifespan. Then u=w on the common lifespan interval containing the initial time. The assertion also holds for any two such distributional solutions satisfying the stated bounds; the energy inequality is not needed for the uniqueness step.
+
+Proof. Apply the Hilbert-pivot chain rule on X⊂L²⊂X* to h=u-w; all nonlinear pairings are integrable by X membership, and the kinetic term cancels. The exact pointwise identity and improved bound for a≤2 in section 23.1 give
+|d/dt ||h||_2²| ≤ C (||w||_infty^(r-1)+||w||_infty^(s-1)) ||h||_2²
+almost everywhere. Gronwall in both directions gives equality of the two solutions from the common trace. This is an actual weak–strong uniqueness statement also in supercritical regimes where 1<s≤2, not a global regularity assertion about w. It strengthens the bounded terminal-background exclusion of section 23.2 by permitting time-integrable rather than uniform amplitude control.
+
+## 29. Prior-art audit and remaining proof obligations
+
+The new interaction argument uses the standard virial commutator method and convexity of the dispersion symbol. Fourth-order interaction Morawetz estimates already exist in the literature, for example Pausader's cubic fourth-order analysis (arXiv:0807.4916) and Miao–Xu–Zhao (arXiv:0807.0692). The present compact-orbit argument does not claim a new global positive interaction Morawetz estimate; its truncated commutator errors vanish only by the explicitly assumed compactness. No novelty or priority claim is made.
+
+The renewed search identified Tarek Saanouni, "A note on the critical nonlinear high-order Schrödinger equation", J. Math. Anal. Appl. (2017), DOI 10.1016/j.jmaa.2017.02.024. Its stated critical scattering theorem (Theorem 2.4) requires small initial data and the paper imposes additional exponent/dimension conditions. Its subcritical global result is in Corollary 2.3. This does not supply the missing arbitrary-data pure critical uniform bound. The March 2026 preprint arXiv:2603.13892 concerns radial fourth-order dynamics with potential, not the missing nonradial dimensions. The focused search did not identify the required unrestricted pure theorem; this does not establish that none exists.
+
+The remaining critical large-data obligations are now (i) obtain an actual minimal strong pure bad element via a homogeneous nonlinear profile decomposition and stability, (ii) exclude finite-time collapse, frequency cascade and/or prove sufficient low-frequency mass tightness, and (iii) apply the interaction rigidity theorem once inhomogeneous compactness is justified. The previous background-subtracted weak profile is not such a minimal strong element. For the mixed endpoint theorem it remains sufficient to control the pure flow at the defect energy. No new unconditional parameter slice is claimed in this revision. Individual-data supercritical strong classification also remains open beyond the weak–strong statement above.
+
+Verification: do not add speculative Lean declarations just to increase counts. The twelve existing candidate GC03 roots have not received a successful kernel build or transitive audit in this record. The previous head's jobs remained queued at inspection. The full Lean workflow already includes this module and its dependency roots. A focused GC03 verification entry point is supplied separately, with explicit root and standard-axiom checking, to avoid depending exclusively on the entire portfolio build. Neither a workflow definition nor an audit script constitutes a successful run.
