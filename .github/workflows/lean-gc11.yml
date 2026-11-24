@@ -32,4 +32,5 @@ jobs:
           grep -q 'integrated_coercivity' gc11-audit.log
           grep -q 'conserved_energy_bound' gc11-audit.log
           grep -q 'all_sidebands_no_growth_iff' gc11-audit.log
+          grep -q 'unit_static_family' gc11-audit.log
           if grep -o 'axioms: \[[^]]*\]' gc11-audit.log | sed 's/axioms: \[//; s/\]//' | tr ',' '\n' | sed 's/ //g' | grep -v '^$' | grep -vxE 'propext|Classical.choice|Quot.sound'; then exit 1; fi
