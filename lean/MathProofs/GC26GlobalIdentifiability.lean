@@ -8,6 +8,8 @@ The Higgs amplitude and offset occur only in one combination.
 These identities do not differentiate any floor or clipping branch.
 -/
 
+set_option maxHeartbeats 1000000
+
 noncomputable section
 namespace ReyesMath.V18Forward
 open Filter
@@ -186,5 +188,72 @@ theorem injective_of_strict_pairing {X Y : Type*} (f : X → Y)
   have hp := h x z hne
   rw [hz, hdiag] at hp
   exact (lt_irrefl 0 hp)
+
+/-! Historical two-coordinate slice, with all 29 stored coefficients fixed. -/
+
+def historicalNumerator (n : ℕ) : ℝ :=
+  frozenLightBase n * (if n = 3 then (0.0048 : ℝ) else 1)
+
+theorem historical_lightRaw (a e : ℝ) (n : ℕ) :
+    lightRaw (frozen a e) n =
+      historicalNumerator n * (1 + Real.exp (a * ((n : ℝ) - e)))⁻¹ := by
+  simp only [lightRaw, frozen, frozenLightBase, historicalNumerator, Matrix.cons_val]
+  split_ifs <;> simp_all <;> ring
+
+/-- Two equal, strictly unfloored logistic outputs with a common numerator
+force their logit arguments to agree. No approximation of exp is used. -/
+theorem logistic_floor_logit_eq (A x z : ℝ)
+    (hx : (1e-12 : ℝ) < max (A * (1 + Real.exp x)⁻¹) 1e-12)
+    (h : max (A * (1 + Real.exp x)⁻¹) 1e-12 =
+      max (A * (1 + Real.exp z)⁻¹) 1e-12) : x = z := by
+  have hx' : (1e-12 : ℝ) < A * (1 + Real.exp x)⁻¹ := by
+    by_contra! hh
+    rw [max_eq_right hh] at hx
+    exact (lt_irrefl _ hx)
+  have hz : (1e-12 : ℝ) < A * (1 + Real.exp z)⁻¹ := by
+    rw [h] at hx
+    by_contra! hh
+    rw [max_eq_right hh] at hx
+    exact (lt_irrefl _ hx)
+  have hA : A ≠ 0 := by
+    intro h0
+    rw [h0, zero_mul] at hx'
+    norm_num at hx'
+  have hv : A * (1 + Real.exp x)⁻¹ = A * (1 + Real.exp z)⁻¹ := by
+    simpa only [max_eq_left hx'.le, max_eq_left hz.le] using h
+  have hi := mul_left_cancel₀ hA hv
+  have hd : 1 + Real.exp x = 1 + Real.exp z := by
+    simpa only [inv_inv] using congrArg (fun v : ℝ => v⁻¹) hi
+  exact Real.exp_injective (add_left_cancel hd)
+
+/-- Global uniqueness on the historical two-parameter slice whenever
+alpha is positive and the first two observed light rows are unfloored.
+The competing parameter pair need not be nearby or inside the optimizer box. -/
+theorem historical_two_active_unique (a e b f : ℝ) (ha : 0 < a)
+    (h0 : (1e-12 : ℝ) < observed (frozen a e) 0)
+    (h1 : (1e-12 : ℝ) < observed (frozen a e) 1)
+    (h : observed (frozen a e) = observed (frozen b f)) :
+    a = b ∧ e = f := by
+  have h0' := congrFun h (0 : Fin 11)
+  have h1' := congrFun h (1 : Fin 11)
+  change (1e-12 : ℝ) < light (frozen a e) 1 at h0
+  change (1e-12 : ℝ) < light (frozen a e) 2 at h1
+  change light (frozen a e) 1 = light (frozen b f) 1 at h0'
+  change light (frozen a e) 2 = light (frozen b f) 2 at h1'
+  simp only [light, historical_lightRaw, Nat.cast_one, Nat.cast_ofNat] at h0 h1 h0' h1'
+  have he0 := logistic_floor_logit_eq (historicalNumerator 1) _ _ h0 h0'
+  have he1 := logistic_floor_logit_eq (historicalNumerator 2) _ _ h1 h1'
+  have hab : a = b := by nlinarith only [he0, he1]
+  subst b
+  have hp : a * e = a * f := by nlinarith only [he0]
+  exact ⟨rfl, mul_left_cancel₀ (ne_of_gt ha) hp⟩
+
+/-- At alpha zero the historical epsilon coordinate is exactly invisible. -/
+theorem historical_zero_alpha (e f : ℝ) :
+    observed (frozen 0 e) = observed (frozen 0 f) := by
+  funext i
+  fin_cases i <;>
+    norm_num [observed, light, lightRaw, middle, middleRaw, heavy,
+      heavyCorrection, frozen, Matrix.cons_val]
 
 end ReyesMath.V18Forward
