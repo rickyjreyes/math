@@ -4,6 +4,7 @@ import MathProofs.GC11TorusOrbit
 import MathProofs.GC11TorusInitial
 import MathProofs.GC11TorusConservation
 import MathProofs.GC11TorusCarrier
+import MathProofs.GC11TorusEquivariance
 import MathProofs.GC11SidebandClassification
 
 #print axioms ReyesMath.GC11Coercivity.excess_eq
@@ -55,3 +56,9 @@ import MathProofs.GC11SidebandClassification
 #print axioms ReyesMath.GC11TorusCarrier.common_torus_stationary
 #print axioms ReyesMath.GC11TorusCarrier.coefficient_laboratory_deriv
 #print axioms ReyesMath.GC11TorusCarrier.common_torus_carrier_stability
+
+#print axioms ReyesMath.GC11TorusEquivariance.translate_mp
+#print axioms ReyesMath.GC11TorusEquivariance.coef_labField
+#print axioms ReyesMath.GC11TorusEquivariance.original_nonlinear_coef
+#print axioms ReyesMath.GC11TorusEquivariance.labPhase_character
+#print axioms ReyesMath.GC11TorusEquivariance.strong_to_laboratory_fourier
