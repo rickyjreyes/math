@@ -1718,3 +1718,96 @@ Concrete examples: G={I,-I} has V=0, k_G=2, and characters give even and odd inv
 ## 70. Decision and verification
 
 The new complementary-order action strengthens the required center excursions in the unrestricted boundary problem even if no finite mass is recovered. The finite-group profile argument enlarges the candidate critical classification to explicit positive energy ranges for non-continuously symmetric data. Both arguments depend on the existing candidate local/profile/rigidity estimates, which require independent verification. Neither establishes general recurrent-cascade exclusion for arbitrary nonradial data. The unrestricted critical lower-dimensional strip and individual supercritical strong dynamics remain open. The preceding focused GC03 Lean run 45371084955 was pending at inspection of head 15c5a8c1e1eb4dca803a47a1d52c9c4123f4896b; no local Lean/lake executable was available. No new Lean roots, successful kernel audit, accepted registry promotion or issue closure is asserted.
+
+
+## 71. Spatially resolved double Duhamel and a joint recurrence criterion
+
+This argument retains spatial separation of the nonlinear forcing, in addition to its time-dependent size. It applies to the compact homogeneous pure critical trajectory of §§48,51,54, with p>=2, 2p<d<=4p, inf lambda>0, global strong evolution, and uniform Q(t)=||F(u(t))||_1<=B_F. The inherited compact-solution and local-theory hypotheses remain candidate analytical results. No assumption of a sign or cancellation in F is made.
+
+### 71.1 Absolute dyadic kernel with off-cone gain
+
+Let P_N be a smooth dyadic annular projection with fixed compact annular symbol under scaling, and let
+K_N(r,z)=[U(r)P_N^*P_N](z)
+denote its convolution kernel (the sign of r is immaterial for the bounds). Set
+kappa=d(p-1)/(2p-1)>0.
+For r>=1 and z∈R^d,
+sum_(N<=1) |K_N(r,z)|
+ <= C r^(-d/(2p)) (1+|z|/r^(1/(2p)))^(-kappa).                 (71.1)
+For 0<=r<=1 the same sum is bounded by C. This is an absolute dyadic sum estimate, not an assertion that absolute values commute with a cancellation in the full dispersive kernel.
+
+Proof. By scaling let L=N r^(1/(2p)) and Z=z/r^(1/(2p)); then the individual kernel is r^(-d/(2p)) times the time-one annular kernel at frequency L, with its value given, up to the Fourier normalization, by
+L^d integral exp(i[L Z·eta - L^(2p)|eta|^(2p)]) m(eta) d eta,
+where m is a fixed smooth compact annular amplitude. The values L form a dyadic grid with a possible common fractional shift, which does not affect geometric-series constants. The size bound is C L^d for L<=1, and C L^(-d(p-1)) for L>=1 by the uniform annular stationary phase of §33.1. These two bounds sum uniformly, settling |Z| bounded.
+
+If |Z| is large, for L<=c |Z|^(1/(2p-1)) with c sufficiently small (depending only on the annular support and p), the gradient of the phase divided by L|Z| is bounded away from zero on the support. Indeed its linear part has unit gradient and the other part has gradient bounded by C L^(2p-1)/|Z|<=1/2. All higher derivatives of that normalized phase on the support are bounded uniformly. Repeated nonstationary integration by parts therefore gives, for each integer M>=1,
+|time-one kernel|<=C_M L^d (1+L|Z|)^(-M).
+For L<=|Z|^(-1) use L^d; for |Z|^(-1)<L<=c |Z|^(1/(2p-1)) use M>d. The two sums are <=C |Z|^(-d). For the remaining L>c |Z|^(1/(2p-1)) use the stationary-phase bound and sum the negative powers to obtain <=C |Z|^(-kappa). For |Z| sufficiently large this last range has L>=1; the finite intermediate range of |Z| is already covered by the uniform bound. Since kappa<d, (71.1) follows. For r<=1 and N<=1 the Fourier L¹ size bound C N^d is summable. QED.
+
+### 71.2 Joint time-space occupation and finite mass
+
+Write f(t,x)=|F(u(t,x))| and define the nonnegative quantity
+B(t,r)=integral_0^r da integral_(R^d×R^d)
+ f(t+a,x) f(t+a-r,y)
+ (1+|x-y|/r^(1/(2p)))^(-kappa) dx dy
+for r>=1. In particular 0<=B(t,r)<=r B_F². For dyadic R>=1 set
+C(R)=sup_(t∈R) R^(-2) integral_R^(2R) B(t,r) dr.
+It is the normalized occupation of pairs of forcing events separated in time by r, weighted by their spatial distance relative to the dispersive length r^(1/(2p)). The supremum is over physical time, not radius. All quantities are measurable in the underlying variables by the strong solution and the established L^s regularity (or choose the usual jointly measurable representatives); the supremum simply defines a nonnegative real number.
+
+**Theorem 71.2 (conditional analytical).** If
+sum_(k>=0) 2^((2-d/(2p))k) C(2^k)<infinity,                 (71.2)
+then u belongs to C(R;H^p), its mass is conserved, and its low-frequency Fourier mass is uniformly tight. Consequently any unbounded frequency-scale sequence forces u=0. At d=4p the bounded-scale alternative is already excluded by §49, so (71.2) alone excludes a nonzero compact trajectory in that dimension.
+
+Proof. Use both weak no-waste Duhamel representations as in §54.1. Pair the truncated past and future integrals before taking weak limits, and retain the spatial kernel:
+||P_N u(t)||₂² <= integral_(a,b>=0) integral_(x,y)
+ f(t+a,x) f(t-b,y) |K_N(a+b,x-y)| dx dy da db.                (71.3)
+For fixed N, this is justified by the absolute time bound of §54.1, since d/2>2, and successive weak limits in the annular L² space. In detail, first let the past truncation tend to infinity while the future truncated vector is fixed in L², then let the future truncation tend to infinity, using the weak limits of the two representations. Each finite-rectangle pairing has absolute value bounded by the displayed full positive integral. This yields (71.3) without requiring strong convergence of either representation individually.
+
+Sum in N<=1 using Tonelli and (71.1). Change variables r=a+b and a∈[0,r]. The contribution from r<=1 is bounded by C B_F². For r in [R,2R], R=2^k, its bound is C R^(-d/(2p)) integral_R^(2R) B(t,r) dr <= C R^(2-d/(2p)) C(R). Thus (71.2) gives a uniform bound on the low dyadic mass sum. For uniform tightness sum only N<=delta. On any fixed r interval [0,R0] the uniform size bound sum_(N<=delta)|K_N|<=C delta^d gives a contribution <=C delta^d R0² B_F². On the remaining r interval use the same summable dyadic majorant, uniformly in t. First let R0 increase through dyadic values and then let delta decrease to zero. This proves uniform low-tail tightness.
+
+The high-band L² bound comes from the homogeneous energy. As in §54, reconstruct the canonical representative in L² by the annular square-function equivalence, use the uniform low-tail bound and strong homogeneous continuity to get strong L² continuity, and apply inhomogeneous local uniqueness and conservation to obtain constant mass. If lambda(t_n)→infinity, the kinetic Fourier integral on any fixed bounded frequency region tends to zero by normalized compactness. Split the conserved mass into low, intermediate and high frequencies, use uniform tightness for the first, the vanishing kinetic integral for the second, and the uniform homogeneous norm for the third. The mass must be zero. At d=4p, if lambda is instead bounded above, §48 supplies lower regularity and §49 excludes the solution. QED.
+
+The previous forcing-only sufficient condition of §58 implies (71.2): by ab<=(a²+b²)/2 and discarding the spatial weight, B(t,r)<= (1/2) integral_0^r [Q(t+a)^2+Q(t+a-r)^2]da, so C(R)<=C A(2R) in the notation of §58. The weight exponent 2-d/(2p)=1-h is exactly the earlier exponent. The new criterion can be strictly more permissive for abstract forcing distributions because spatial separation reduces B even when the individual Q norms do not decay. No dynamical implication from §68 alone to (71.2) is asserted.
+
+### 71.3 Explicit sufficient spatial-separation conditions
+
+Let x(t) denote the concentration center and suppose, for some nu>0, the stronger quantitative force-tail estimate
+sup_t integral_(|x-x(t)|>L) f(t,x) dx <= C L^(-nu), L>=1,     (71.4)
+holds. This estimate is NOT supplied by the existing compactness theorem. For each dyadic R>=1 and t, call a pair (r,a) in R<=r<=2R, 0<=a<=r bad if
+|x(t+a)-x(t+a-r)| < c R^(1/(2p)+eta)
+for some fixed c,eta>0. Let Bbad(R) be the supremum over t of the Lebesgue area of these bad pairs divided by R². Use a measurable choice of comparable center as in §57; the definition is then meaningful. For a good pair choose L=(c/4)R^(1/(2p)+eta), which is >=1 for sufficiently large R. If both spatial points lie in the L-balls about their respective centers, their separation is >=(c/2) R^(1/(2p)+eta), hence the spatial weight in B is <=C R^(-kappa eta). The contribution from either tail is <=C B_F L^(-nu) by (71.4). For bad pairs simply bound the spatial integral by B_F². It follows that
+C(R)<=C [Bbad(R)+R^(-kappa eta)+R^(-nu(1/(2p)+eta))].
+At d=4p any nu,eta>0 and sum_k Bbad(2^k)<infinity suffice for (71.2). In the deeper strip all three terms must be summable after weighting by R^(2-d/(2p)). For example, at d=4p uniformly ballistic separation of all pairs, |x(t)-x(s)|>=c|t-s| at large |t-s|, implies zero bad fraction for any eta strictly below 1-1/(2p). Combined with any positive power in (71.4) this would exclude the nonzero compact trajectory.
+
+What actually follows from the existing estimates is qualitative force tightness. Indeed let j_s=d/2-d/s and choose 2p-d/2<j_-<j_s<p. For bounded-scale sequences the translated profiles are precompact in dot H^p and uniformly bounded in dot H^j_- by §48. Interpolation gives precompactness in dot H^j_s and hence in L^s. On unbounded-scale sequences the three-frequency split of §58 gives ||u||_s→0. These alternatives show the entire physical recentered orbit has compact closure in L^s. The power map is continuous L^s→L¹ for F, so the recentered forces form a precompact family in L¹. Thus the left side of (71.4) tends to zero, with no quantitative rate. Even combining this qualitative decay with vanishing bad-pair fraction does not imply the dyadic summability at d=4p. The excursion theorem §68 is also a width bound, not a pairwise separation estimate. These are the two remaining dynamical gaps in this spatially resolved approach. At present it supplies a new precise sufficient criterion, not an unrestricted scattering or mixed global theorem.
+
+## 72. Exact finite-symmetry scattering threshold via stabilizer subgroups
+
+This sharpens §69 without assuming the unrestricted scattering threshold is finite or infinite. The hypotheses and candidate status of the inherited homogeneous local theory and profile argument are unchanged.
+
+For a finite nontrivial G<=O(d) and character chi, let E_H denote the homogeneous pure uniform scattering threshold in the chi|_H-equivariant class for each subgroup H<=G; E_{Id}=E_*. Put V=Fix(G). Let S be the finite nonempty set of proper stabilizers H=G_w for points w outside V, where G_w={g:g w=w}. Nonemptiness follows since G is nontrivial; the trivial stabilizer is realized outside the finite union of fixed spaces of the nonidentity matrices. Suppose 2p<d<=4p, p>=2 and dim V^perp>4p-d, the condition for cylindrical rigidity.
+
+**Theorem 72.1 (candidate analytical).**
+E_G = min_(H∈S) [G:H] E_H,                                  (72.1)
+with extended-real conventions. In particular if G acts freely on the unit sphere of V^perp (every nonzero transverse vector has trivial stabilizer), then E_G=|G| E_*. This equality of uniform scattering thresholds does not assert failure of global strong existence at the threshold or that the infimum is attained by a datum.
+
+Proof of upper bound. Fix a realizable proper stabilizer H and w outside V with G_w=H. If E_H=infinity the bound is vacuous. Otherwise as in §38.3 choose H-equivariant strong pure data f_n of energy tending to E_H, whose maximal evolutions v_n have arbitrarily large critical norms on finite compact lifespan intervals I_n containing time zero. Such intervals exist by the definition of failure of the uniform bound and continuation; no global solution beyond the finite interval is needed. For each fixed n and translation length L define the G-equivariant initial data
+f_(n,L)=sum_(gH∈G/H) T_g [f_n(·-Lw)].
+Translation by Lw commutes with T_h for h∈H, so the sum is independent of coset representatives and fixed by the full group. Distinct copies have centers separated by L|g w-g' w|→infinity as L→infinity. By Hilbert-space translation orthogonality and the L^b Brezis–Lieb splitting for widely separated translates, P(f_(n,L))→[G:H] P(f_n). These elementary decouplings follow by approximating each field in dot H^p and L^b by compactly supported smooth fields, then using disjoint supports in the approximation and the uniform bounds.
+
+The corresponding sum of translated/rotated v_n is an approximate solution on I_n. Its homogeneous kinetic and Z norms are bounded independently of L for fixed n, and its differentiated nonlinear interaction residual tends to zero as L→infinity, by exactly the spatial-translation compact-factor and Hölder argument of §38.1 on I_n. The critical Z0 norm of the sum to the power q converges to [G:H] times the q-th power of the original Z0 norm by disjoint compact-factor approximation in L^q. For each fixed n choose L sufficiently large that the long-time stability theorem of §36 applies on I_n with arbitrarily small Z difference. The genuine solution from f_(n,L) then exists on I_n, is G-equivariant by uniqueness, and has an arbitrarily large critical norm as n increases. Choose L=L_n so the energy error also tends to zero. Thus the uniform G-scattering property fails at every energy level strictly above [G:H]E_H. This proves E_G<=[G:H]E_H. Notice that the perturbation tolerance may depend on n; the translation choice is made separately for each n, so no uniform large-data perturbation constant is needed.
+
+Proof of lower bound. If E_G were strictly below the minimum in (72.1), take equivariant bad data approaching E_G with divergent norms in both directions as in §38.3. In the block decomposition of §69.1 every noncentered representative is equivariant under its stabilizer H, which belongs to S: after projecting to Fix(H), the actual center outside V has exactly that stabilizer for all sufficiently large n. Its energy is <= E_G/[G:H]<E_H, so its nonlinear profile scatters in the H-equivariant class, and all rotated copies scatter. Each centered representative with energy less than E_G scatters by definition of E_G. The only alternative to the approximation contradiction of §38.2 is therefore a single centered profile of energy E_G. As in §69.2 this gives a nonzero global minimal compact trajectory with positive lower scale and centers in V, contradicted by §64.1. This proves the lower bound, including the case when the minimum is infinity and E_G is assumed finite. The two inequalities prove (72.1). QED.
+
+Consequences: inversion and scalar cyclic rotations in the examples of §69 have exact threshold 2E_* and kE_*, respectively. For general groups the right side of (72.1) can involve smaller groups whose thresholds have not been resolved, so it is a recursion identity rather than a closed numerical classification. Nevertheless it is sharper than the factor k_G lower bound, and it proves that simply increasing the number of well-separated copies cannot establish unconditional finite-group scattering if E_* is finite. The mixed flow still has the sufficient shifted-energy criterion of §69 with E_G in place of k_G E_*; equality of the pure threshold gives no corresponding necessity for mixed finite-time breakdown.
+
+## 73. Exact limitation of the zero-momentum shortcut
+
+For p>1 the conserved momentum P=integral xi |uhat|² and the free mass-current vector J=integral ∇(|xi|^(2p)) |uhat|² are different functionals. Zero P does not even force zero J on Schwartz data. To see this in any dimension, choose nonzero radial real smooth Fourier bump g supported in the unit ball, normalize ||g||₂=1, and take g_epsilon(ξ)=epsilon^(-d/2)g(ξ/epsilon). For distinct positive a,b and epsilon small enough that the two supports are disjoint, set
+uhat(ξ)=sqrt(b) g_epsilon(ξ-a e_1)+sqrt(a) g_epsilon(ξ+b e_1).
+Its momentum is exactly b a e_1-a b e_1=0 by radial symmetry. Its current converges as epsilon→0 to
+2p ab (a^(2p-2)-b^(2p-2)) e_1,
+which is nonzero. Thus for sufficiently small epsilon the current is nonzero even though momentum vanishes. Scaling and multiplication by constants preserve zero momentum and can normalize the positive energy or change the current scale. For the free flow with these Schwartz data the center of mass derivative equals J/M (from Fourier differentiation of the phase), so the mean position has nonzero velocity. The example is not a compact nonlinear critical solution and establishes no counterexample to rigidity; it rules out a purely algebraic inference from conserved momentum to vanishing translational velocity for higher dispersion. The nonlinear potential is local and cancels in the first mass moment for smooth finite-variance fields, so the same instantaneous distinction applies to the nonlinear equation. A dynamical estimate using the compact nonlinear orbit is essential.
+
+## 74. Verification and research decision
+
+Sections 71–73 give a new spatially resolved candidate double-Duhamel mass-recovery criterion, exact recursive finite-group uniform scattering thresholds within the candidate chain, and an explicit obstruction to inferring center velocity from zero momentum. The unrestricted nonradial lower-strip problem is NOT resolved: spatial widths alone do not control joint time-space recurrence, and qualitative forcing tightness does not establish the required summability. No new unconditional parameter region, higher-order blow-up construction or continuum Lean proof is asserted. Focused GC03 verification at the preceding inspected head 7921664337db2aab112b511b6c3a3b96bd0c4f4f was queued (run 45372019196); no successful kernel audit was observed. The PR was reported nonmergeable at inspection. Preserve the twelve candidate roots, original statement and registry status; do not close issue #100.
