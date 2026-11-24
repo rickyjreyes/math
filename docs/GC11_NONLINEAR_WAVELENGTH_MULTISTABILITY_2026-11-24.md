@@ -134,3 +134,11 @@ Minimizing sequences at this mass are H²-precompact modulo the compact phase ci
 ### Additional prior-art check
 
 Jiang, Ge and Shen, *Diffraction managed modulation instability of two-dimensional plane wave in competing cubic-quintic nonlinear media*, Physica Scripta 100 (2025), DOI 10.1088/1402-4896/ad9ef3, is a particularly close two-dimensional fourth-order diffraction reference; compare its diffraction-management coefficients and linear analysis before claiming novelty of the sideband theorem. The nonlinear carrier energy and exact frozen stationary interval require separate comparison. No novelty certificate is claimed.
+
+### Quantitative phase-orbit bridge on the actual Fourier H² torus
+
+GC11TorusOrbit.lean submits a direct estimate for the H² Hilbert-space distance to the constant-phase orbit in the carrier frame. Put d=(2π/L)² and Cgap=2+1/d. For any nonzero Fourier lattice index, s=|ξ_n|²≥d and (1+s)²≤Cgap(s+s²). Hence the weighted nonzero-mode coefficient tail T_H² is at most Cgap times the derivative energy D. The L² tail T_L² is at most T_H². Writing a=|c_0| and R=sqrt(ρ), choose the phase of c_0 (arbitrary if zero); the squared H² distance to that constant is exactly T_H²+(a-R)². Since (a-R)²≤|a²-ρ|≤|M-ρ|+T_L², we get the quantitative estimate
+    dist_H²(c, phaseOrbit ρ)² ≤ |M-ρ| + 2 Cgap D.
+Combined with integrated_coercivity and explicit mass/relative-energy conservation, this proves the uniform-in-time bound
+    dist_H²(c(t), phaseOrbit ρ)² ≤ |M(0)-ρ| + 2 Cgap Ckin L_rel(c(0)).
+In particular, no exact fixed-mass restriction is required. orbit_near_of_small_mass_energy states the epsilon-level conclusion given small initial mass-energy defect. The formal bridge from initial H² proximity to small initial defect and the actual Hamiltonian PDE conservation/solution construction remain open in Lean. All newly added declarations await a successful focused kernel build; this is not a verified status change.
