@@ -66,7 +66,7 @@ theorem negative_c_unstable (delta c : ℝ) (hc : c < 0) :
 theorem below_shell_unstable (delta c : ℝ) (hd : delta < 0) (hc : 0 < c) :
     ∃ s > 0, transverse delta s * (transverse delta s + 2 * c) < 0 := by
   let a := min c (delta ^ 2)
-  have ha : 0 < a := lt_min hc (sq_pos_of_neg hd)
+  have ha : 0 < a := lt_min hc (sq_pos_of_ne_zero hd.ne)
   have hac : a ≤ c := min_le_left _ _
   have had : a ≤ delta ^ 2 := min_le_right _ _
   obtain ⟨s, hs, he⟩ := transverse_attains_neg delta a hd ha had
