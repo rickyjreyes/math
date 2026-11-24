@@ -187,3 +187,4 @@ import MathProofs.GC08Hadamard
 import MathProofs.GC11Coercivity
 import MathProofs.GC11StaticWave
 import MathProofs.GC11TorusEnergy
+import MathProofs.GC11SidebandClassification
