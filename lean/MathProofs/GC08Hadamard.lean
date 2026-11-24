@@ -41,7 +41,7 @@ theorem continuous_parameter_integral [ProperSpace E]
   · filter_upwards [Metric.ball_mem_nhds x (by norm_num : (0 : ℝ)<1)] with y hy
     exact Eventually.of_forall fun t ht => hM y (Metric.ball_subset_closedBall hy)
       (by
-        have ht' : t ∈ Ioc (0 : ℝ) 1 := by simpa using ht
+        have ht' : t ∈ Ioc (0 : ℝ) 1 := by simpa [uIoc_of_le (by norm_num : (0 : ℝ) ≤ 1)] using ht
         exact ⟨ht'.1.le,ht'.2⟩)
   · exact intervalIntegrable_const
   · exact Eventually.of_forall fun t _ =>
@@ -70,7 +70,7 @@ theorem hasFDerivAt_parameter_integral [ProperSpace E]
   · exact (hD.comp (continuous_const.prodMk continuous_id)).aestronglyMeasurable
   · filter_upwards [ae_restrict_mem measurableSet_uIoc] with t ht
     intro y hy
-    have ht' : t ∈ Ioc (0 : ℝ) 1 := by simpa using ht
+    have ht' : t ∈ Ioc (0 : ℝ) 1 := by simpa [uIoc_of_le (by norm_num : (0 : ℝ) ≤ 1)] using ht
     exact hM y (Metric.ball_subset_closedBall hy) ⟨ht'.1.le,ht'.2⟩
   · exact intervalIntegrable_const
   · exact Eventually.of_forall fun t y _ =>
@@ -160,8 +160,57 @@ theorem smooth_graph_factorization [ProperSpace E]
   · intro x
     exact segment_difference f (hf.of_le (by simp)) (p x) x
 
+/-- Differentiating an exact linear symmetry gives the equivariance law
+for the derivative, without assuming invertibility of the symmetry. -/
+theorem fderiv_linear_symmetry (f : E → ℝ) (hf : ContDiff ℝ 1 f)
+    (T : E →L[ℝ] E) (hT : ∀ x, f (T x)=f x) (x v : E) :
+    fderiv ℝ f (T x) (T v)=fderiv ℝ f x v := by
+  have he : (fun y => f (T y))=f := funext hT
+  have hd := (hf.differentiable_one (T x)).hasFDerivAt.comp x T.hasFDerivAt
+  change HasFDerivAt (fun y => f (T y)) ((fderiv ℝ f (T x)).comp T) x at hd
+  rw [he] at hd
+  have h := congrArg (fun L : E →L[ℝ] ℝ => L v) hd.fderiv
+  exact h.symm
+
+theorem segmentCoefficient_equivariant (f : E → ℝ) (hf : ContDiff ℝ 1 f)
+    (T : E →L[ℝ] E) (hT : ∀ x, f (T x)=f x) (x y v : E) :
+    segmentCoefficient f (T x) (T y) (T v)=segmentCoefficient f x y v := by
+  have hci (a b : E) : IntervalIntegrable
+      (fun t : ℝ => fderiv ℝ f (a+t • (b-a))) volume 0 1 :=
+    ((hf.continuous_fderiv le_rfl).comp (by fun_prop)).intervalIntegrable _ _
+  unfold segmentCoefficient
+  rw [ContinuousLinearMap.intervalIntegral_apply (hci _ _),
+    ContinuousLinearMap.intervalIntegral_apply (hci _ _)]
+  apply intervalIntegral.integral_congr
+  intro t _
+  rw [show T x+t • (T y-T x)=T (x+t • (y-x)) by
+    simp only [map_add,map_smul,map_sub]]
+  exact fderiv_linear_symmetry f hf T hT _ v
+
+/-- Full equivariant graph factorization: the same canonical smooth
+coefficient works simultaneously for all linear symmetries commuting
+with the base graph. The vanishing condition is only on the base graph. -/
+theorem equivariant_graph_factorization [ProperSpace E]
+    (f : E → ℝ) (hf : ContDiff ℝ ∞ f) (p : E → E)
+    (hp : ContDiff ℝ ∞ p) (hz : ∀ x, f (p x)=0) :
+    ∃ A : E → E →L[ℝ] ℝ, ContDiff ℝ ∞ A ∧
+      (∀ x, f x=A x (x-p x)) ∧
+      (∀ T : E →L[ℝ] E, (∀ x, f (T x)=f x) →
+        (∀ x, p (T x)=T (p x)) → ∀ x v, A (T x) (T v)=A x v) := by
+  refine ⟨fun x => segmentCoefficient f (p x) x, ?_, ?_, ?_⟩
+  · exact (segmentCoefficient_smooth f hf).comp (hp.prodMk contDiff_id)
+  · intro x
+    have h := segment_difference f (hf.of_le (by simp)) (p x) x
+    simpa only [hz x,sub_zero] using h
+  · intro T hT hP x v
+    change segmentCoefficient f (p (T x)) (T x) (T v)=segmentCoefficient f (p x) x v
+    rw [hP x]
+    exact segmentCoefficient_equivariant f (hf.of_le (by simp)) T hT _ _ v
+
 end ReyesMath.GC08
 
 #print axioms ReyesMath.GC08.parameter_integral_smooth
 #print axioms ReyesMath.GC08.segment_difference
 #print axioms ReyesMath.GC08.smooth_graph_factorization
+
+#print axioms ReyesMath.GC08.equivariant_graph_factorization
