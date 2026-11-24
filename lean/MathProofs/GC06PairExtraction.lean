@@ -41,8 +41,10 @@ private theorem compact_inner_translate_zero
     (hfc : HasCompactSupport f) (hgc : HasCompactSupport g) :
     ∃ R : ℝ, ∀ y : R2, R < ‖y‖ →
       inner ℂ (hf.toLp f) (transL2 y (hg.toLp g)) = 0 := by
-  obtain ⟨A, hA⟩ := hfc.isBounded.subset_closedBall (0 : R2)
-  obtain ⟨B, hB⟩ := hgc.isBounded.subset_closedBall (0 : R2)
+  have hfK : IsCompact (tsupport f) := hfc
+  have hgK : IsCompact (tsupport g) := hgc
+  obtain ⟨A, hA⟩ := hfK.isBounded.subset_closedBall (0 : R2)
+  obtain ⟨B, hB⟩ := hgK.isBounded.subset_closedBall (0 : R2)
   refine ⟨A+B, fun y hy => ?_⟩
   have hpoint (x : R2) : f x = 0 ∨ g (x+y) = 0 := by
     by_contra! h
@@ -57,7 +59,7 @@ private theorem compact_inner_translate_zero
     linarith
   have hshift : (transL2 y (hg.toLp g) : R2 → ℂ) =ᵐ[volume] fun x => g (x+y) := by
     have hm := (mp_add_right y).quasiMeasurePreserving
-    exact (coeFn_transL2 y (hg.toLp g)).trans (hm.ae_eq_comp hg.coeFn_toLp)
+    exact (coeFn_transL2 y (hg.toLp g)).trans (hm.ae_eq hg.coeFn_toLp)
   rw [L2.inner_def]
   calc
     _ = ∫ _x : R2, (0 : ℂ) := by
