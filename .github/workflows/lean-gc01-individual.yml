@@ -36,7 +36,8 @@ jobs:
           from pathlib import Path
           data = Path("gc01-audit.log").read_text()
           names = ["orbit_subset_Gset", "continuous_distX_solution", "isolated_orbit_stability",
-                   "stationary_dilation_gap", "stationary_dilation_strict", "global_wellposed"]
+                   "stationary_dilation_gap", "stationary_dilation_strict", "global_wellposed",
+                   "orbit_invariants", "defect_small_near_orbit", "orbit_stability_of_barriers"]
           for name in names:
               rows = [line for line in data.splitlines() if name in line and ("depends on axioms" in line or "does not depend on any axioms" in line)]
               assert len(rows) == 1, (name, rows)
