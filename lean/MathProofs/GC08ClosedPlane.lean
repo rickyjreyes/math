@@ -85,8 +85,12 @@ private theorem nonzero_plane {d : ℕ} (J : ComplexJet d)
   have hr : 0 < z.re^2+z.im^2 := by
     by_contra h
     have hr0 : z.re^2+z.im^2 ≤ 0 := le_of_not_gt h
-    have hre : z.re=0 := by nlinarith [sq_nonneg z.re,sq_nonneg z.im]
-    have him : z.im=0 := by nlinarith [sq_nonneg z.re,sq_nonneg z.im]
+    have hre : z.re=0 := by
+      by_contra hn
+      linarith [sq_pos_of_ne_zero hn,sq_nonneg z.im]
+    have him : z.im=0 := by
+      by_contra hn
+      linarith [sq_pos_of_ne_zero hn,sq_nonneg z.re]
     apply hz
     change z=0
     apply Complex.ext <;> simp [hre,him]
