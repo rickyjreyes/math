@@ -1,0 +1,154 @@
+[
+  {
+    "id": "01-foundations",
+    "title": "Foundations and reusable analysis",
+    "description": "Elementary algebra, structural identities, Sobolev spaces and shared Fourier infrastructure.",
+    "prefixes": [],
+    "names": [
+      "Elementary",
+      "Structural",
+      "StructuralExtensions",
+      "SobolevH2",
+      "H2Algebra",
+      "L2Fourier",
+      "FourierMultiplierL2",
+      "TorusFourier",
+      "SphereNull",
+      "RemainingCores"
+    ]
+  },
+  {
+    "id": "02-wave-dynamics",
+    "title": "Nonlinear wave dynamics, confinement and stability",
+    "description": "F01, GC01, GC03, GC06, GC16 and related energy, binding, evolution and stability proofs.",
+    "prefixes": [
+      "GC01",
+      "GC03",
+      "GC06",
+      "GC16",
+      "GC53"
+    ],
+    "names": [
+      "CubicQuinticFlow",
+      "FreeEvolution",
+      "D4FrozenWholeSpace",
+      "GaussianTrialAlgebra",
+      "VariationalBinding",
+      "NegativeEnergy",
+      "StrictBinding",
+      "WholeSpaceMinimizers",
+      "MinimizerNonvanishing",
+      "OrbitalStability",
+      "OrbitalStabilityCriterion",
+      "ParameterBindingRegion",
+      "DefocusingRegion",
+      "CubicQuinticPeriodicMode"
+    ]
+  },
+  {
+    "id": "03-spectral-patterns",
+    "title": "Fourier spectra, dispersion and pattern selection",
+    "description": "F03, F04, F06, F10, F11, GC11 and spectral growth, leakage, damping and projector results.",
+    "prefixes": [
+      "Dispersion",
+      "E16",
+      "E57",
+      "E58",
+      "E61",
+      "E62",
+      "GC11"
+    ],
+    "names": [
+      "BandPassFlow",
+      "ContinuousSpectralVariance",
+      "PhysicalDispersionMinimum",
+      "FourierLeakage",
+      "FourierLeakageWellPosed",
+      "FourierShellL2",
+      "FourierSupport",
+      "L2FourierShellBridge",
+      "QuinticConvolution",
+      "SchwartzShell",
+      "SpectralConcentration",
+      "SpectralPhaseIdentity",
+      "SpectralSharpness",
+      "SwiftHohenbergL2"
+    ]
+  },
+  {
+    "id": "04-curvature",
+    "title": "Curvature, regularization and energy descent",
+    "description": "F05, F12, E17, E18, E26, E68, E69, GC08 and M6B; distinct operator families are not interchangeable.",
+    "prefixes": [
+      "Curvature",
+      "E17",
+      "E18",
+      "E26",
+      "E68",
+      "E69",
+      "GC08",
+      "M6B"
+    ],
+    "names": [
+      "RegularizedCurvatureL2"
+    ]
+  },
+  {
+    "id": "05-phase-geometry",
+    "title": "Phase locking and geometric tensors",
+    "description": "F07 and F08; phase optimization, scalar-gradient metrics, rank and covariance.",
+    "prefixes": [
+      "Phase"
+    ],
+    "names": [
+      "ContinuousPhaseIntegral",
+      "ContinuousPhaseOptimizer",
+      "ChartedScalarMetric",
+      "ComplexMetric",
+      "IntrinsicScalarMetric",
+      "ManifoldScalarMetric",
+      "MetricQuadratic",
+      "ScalarGradientFields"
+    ]
+  },
+  {
+    "id": "06-inverse-problems",
+    "title": "Inverse problems and identifiability",
+    "description": "F09, frozen v18 derivatives, local fibers, global fibers and constrained identifiability (GC26 and follow-ups).",
+    "prefixes": [
+      "V18",
+      "GC26",
+      "GC27",
+      "GC28"
+    ],
+    "names": [
+      "ExactSensitivityNullity",
+      "LocalIdentifiability",
+      "LocalLevelSet"
+    ]
+  },
+  {
+    "id": "07-hamiltonian",
+    "title": "Hamiltonian constraints and UV obstructions",
+    "description": "F02, S004 constraint analysis, ultraviolet instability and healthy-parent/affine-momentum targets.",
+    "prefixes": [
+      "S004",
+      "UV",
+      "GC21",
+      "GC25"
+    ],
+    "names": [
+      "ModelAlgebra"
+    ]
+  },
+  {
+    "id": "08-topology-computation",
+    "title": "Topology and computational universality",
+    "description": "Reserved for GC36 and GC43 when corresponding modules are integrated.",
+    "prefixes": [
+      "GC36",
+      "GC43"
+    ],
+    "names": []
+  }
+]
