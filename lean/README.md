@@ -5,7 +5,24 @@ This Mathlib v4.23.0 project integrates main-line supporting modules with newer 
 
 These proofs advance the mathematical study of WCT-related models without by themselves validating WCT physics. Model-specific no-go statements must not be generalized to an entire program without proof, and independent stability results do not establish a ghost-free physical parent theory. See [research direction](../RESEARCH_DIRECTION.md).
 
-The maintained import tree contains **173 project modules and 3,119 theorem/lemma declarations** (including private source lemmas). **14 of the 14 original manuscripts are complete** under the audit criterion. So are the five F11/F12 manuscripts and the supplementary M2/E17, E58, E61, M3/E57, M6B, E68, E69 and E18 manuscripts. Declaration totals do not measure manuscript completeness. The [review and theorem table](../docs/FORMALIZATION_REVIEW_2026-10-27.md) records exact declarations, restrictions, and passing verification runs. The [analytic certification](../docs/ANALYTIC_CERTIFICATION_2026-10-30.md) does the same for E62, E58, M2/E17, E26, M3/E57, E61, E16, E59 and E13/E14.
+The earlier manuscript inventory recorded **173 project modules and 3,119 theorem/lemma declarations** (including private source lemmas). **14 of the 14 original manuscripts are complete** under the audit criterion. So are the five F11/F12 manuscripts and the supplementary M2/E17, E58, E61, M3/E57, M6B, E68, E69 and E18 manuscripts. Declaration totals do not measure manuscript completeness. The [review and theorem table](../docs/FORMALIZATION_REVIEW_2026-10-27.md) records exact declarations, restrictions, and passing verification runs. The [analytic certification](../docs/ANALYTIC_CERTIFICATION_2026-10-30.md) does the same for E62, E58, M2/E17, E26, M3/E57, E61, E16, E59 and E13/E14.
+
+## Browse the Lean library
+
+Start with the [complete subject catalogue](catalog/README.md). Every proof source is assigned to exactly one subject; the catalogue identifies direct master imports without inferring verification status. Existing module names and paths remain stable for published links, downstream imports and active proof branches.
+
+| Research area | Proof catalogue |
+|---|---|
+| Foundations and reusable analysis | [Browse modules](catalog/01-foundations.md) |
+| Nonlinear wave dynamics, confinement and stability | [Browse modules](catalog/02-wave-dynamics.md) |
+| Fourier spectra, dispersion and pattern selection | [Browse modules](catalog/03-spectral-patterns.md) |
+| Curvature, regularization and energy descent | [Browse modules](catalog/04-curvature.md) |
+| Phase locking and geometric tensors | [Browse modules](catalog/05-phase-geometry.md) |
+| Inverse problems and identifiability | [Browse modules](catalog/06-inverse-problems.md) |
+| Hamiltonian constraints and UV obstructions | [Browse modules](catalog/07-hamiltonian.md) |
+| Topology and computational universality | [Browse modules](catalog/08-topology-computation.md) |
+
+For contributors: regenerate navigation with `python scripts_audit/generate_catalog.py` after adding a module, or run it with `--check` to check the committed pages. See [audit commands](scripts_audit/README.md). The historical manuscript inventory below and `formalization.yaml` are separate from the live source catalogue.
 
 ### Manuscript formalizations
 
