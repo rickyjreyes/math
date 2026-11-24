@@ -43,3 +43,8 @@ import MathProofs.GC06SpectralMerging
 #print axioms ReyesMath.GC06PairExtraction.confinement_of_spectral_exclusion
 #print axioms ReyesMath.GC06PairExtraction.compactness_of_spectral_exclusion
 #print axioms ReyesMath.GC06PairExtraction.stability_of_spectral_exclusion
+#print axioms ReyesMath.GC06PairExtraction.exact_pair_of_failed_split
+#print axioms ReyesMath.GC06PairExtraction.all_binding_iff_no_equality_pair
+#print axioms ReyesMath.GC06PairExtraction.all_mass_confinement_of_no_equality_pair
+#print axioms ReyesMath.GC06PairExtraction.all_mass_compactness_of_no_equality_pair
+#print axioms ReyesMath.GC06PairExtraction.all_mass_stability_of_no_equality_pair
