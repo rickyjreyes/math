@@ -1,0 +1,35 @@
+name: GC06 nonzero-selector exact theorem verification
+on:
+  pull_request:
+    paths:
+      - 'lean/**'
+      - '.github/workflows/lean-gc06-shell.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  gc06-shell:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: lean
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch pinned Mathlib cache
+        run: |
+          lake update
+          lake exe cache get
+      - name: Reject unfinished proof commands
+        run: |
+          if grep -nE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' MathProofs/GC06ShellBinding.lean MathProofs/GC06NearZeroShell.lean MathProofs/GC06VirialBinding.lean; then exit 1; fi
+      - name: Build exact GC06 modules
+        run: lake build MathProofs.GC06ShellBinding MathProofs.GC06NearZeroShell MathProofs.GC06VirialBinding
+      - name: Audit exact theorem roots
+        run: |
+          set -o pipefail
+          lake env lean GC06ShellAudit.lean 2>&1 | tee /tmp/gc06-shell-audit.txt
+          python3 scripts_audit/check_gc06_shell_axioms.py /tmp/gc06-shell-audit.txt

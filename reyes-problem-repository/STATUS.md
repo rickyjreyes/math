@@ -8,6 +8,8 @@ This page is a **reading view of [problem_registry.json](problem_registry.json)*
 
 **Dated correspondence correction, November 2, 2026:** GC08's partial status is retained because its original phase-current operator has an explicit analytical nonuniqueness counterexample. The separate formally proved M6B Laplacian-quotient counterexample is **not** a kernel proof of GC08's exact operator. No original statement or machine status has changed. [Detailed source audit](../docs/NEGATIVE_RESULT_SCOPE_AUDIT_2026-11-02.md).
 
+**GC08 update, November 24, 2026:** [Cartesian jet classification](../docs/GC08_CARTESIAN_CLASSIFICATION_2026-11-24.md) records the analytical normal form and the locally verified seven-module, 24-root Lean package (standard axioms only, commit `4d05257`). Full invariant classification and field correspondence remain partially formalized; no status promotion. [Issue #102](https://github.com/rickyjreyes/math/issues/102).
+
 ## At a glance
 
 | Registry outcome | Questions | What it means |
@@ -57,7 +59,7 @@ This page is a **reading view of [problem_registry.json](problem_registry.json)*
 |:--|:--|:--|:--|--:|
 | GC01 | [Universal orbital stability](FORMAL_PROBLEMS.md#gc01-universal-orbital-stability) · [Dossier](./flagship/GC01.md) · [Issue #54](https://github.com/rickyjreyes/math/issues/54) | Candidate · formal · initial review | ✅ Minimizer-set orbital stability, narrower scope | 9/10 |
 | GC02 | [Long-time asymptotic stability](FORMAL_PROBLEMS.md#gc02-long-time-asymptotic-stability) | Candidate · formal | Related source links; scope unaudited | 9/10 |
-| GC03 | [Global existence versus blow-up](FORMAL_PROBLEMS.md#gc03-global-existence-versus-blow-up) | Candidate · formal | ✅ Global H² flow for one equation; candidate critical classification; recurrent-cascade reductions [#100](https://github.com/rickyjreyes/math/issues/100), pending review | 8/10 |
+| GC03 | [Global existence versus blow-up](FORMAL_PROBLEMS.md#gc03-global-existence-versus-blow-up) | Candidate · formal | ✅ Global H² flow for one equation; candidate critical classification and recurrent-cascade reductions [#100](https://github.com/rickyjreyes/math/issues/100), pending review | 8/10 |
 | GC04 | [Stable multi-wave interactions](FORMAL_PROBLEMS.md#gc04-stable-multi-wave-interactions) | Candidate · formal | No existing proof mapped | 8/10 |
 | GC05 | [Breather existence and classification](FORMAL_PROBLEMS.md#gc05-breather-existence-and-classification) | Candidate · formal | No existing proof mapped | 9/10 |
 | GC51 | [Soliton resolution and asymptotic completeness](FORMAL_PROBLEMS.md#gc51-soliton-resolution-and-asymptotic-completeness) | Candidate · formal | Related source links; scope unaudited | 9/10 |
@@ -215,7 +217,7 @@ This page is a **reading view of [problem_registry.json](problem_registry.json)*
 
 | ID | Mathematical question | GC stage | Existing mathematical evidence | Difficulty |
 |:--|:--|:--|:--|--:|
-| GC26 | [Local versus global identifiability](FORMAL_PROBLEMS.md#gc26-local-versus-global-identifiability) | Candidate · formal | ✅ Rank 11, nullity 20 and local fiber | 6/10 |
+| GC26 | [Local versus global identifiability](FORMAL_PROBLEMS.md#gc26-local-versus-global-identifiability) | Candidate · formal | ✅ Rank 11, nullity 20 and local fiber; [candidate global alias extension](../docs/GC26_GLOBAL_IDENTIFIABILITY_LEDGER_2026-11-24.md) | 6/10 |
 | GC27 | [Minimal parameter-recovery observations](FORMAL_PROBLEMS.md#gc27-minimal-parameter-recovery-observations) | Candidate · formal | Related source links; scope unaudited | 7/10 |
 | GC28 | [Curvature-map noninjectivity](FORMAL_PROBLEMS.md#gc28-curvature-map-noninjectivity) | Candidate · formal | Related source links; scope unaudited | 7/10 |
 | GC29 | [Noise-stable reconstruction](FORMAL_PROBLEMS.md#gc29-noise-stable-reconstruction) | Candidate · formal | Related source links; scope unaudited | 7/10 |

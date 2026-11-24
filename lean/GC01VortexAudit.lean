@@ -1,0 +1,6 @@
+import MathProofs.GC01VortexEstimates
+#print axioms ReyesMath.GC01VortexEstimates.frequency_pos
+#print axioms ReyesMath.GC01VortexEstimates.nonlinear_gap
+#print axioms ReyesMath.GC01VortexEstimates.not_minimizer_of_kinetic_competitor
+#print axioms ReyesMath.GC01VortexEstimates.angular_kinetic_gap_pos
+#print axioms ReyesMath.GC01VortexEstimates.angular_coefficient_negative

@@ -1332,8 +1332,8 @@ theorem exists_profile {m C r c₀ : ℝ} (hc₀ : 0 < c₀) {w : ℕ → H2 2} 
 /-- **Conclusion of the compactness argument.**  Let `0 < m ≤ m_B`, `M(Wₙ) = m`,
 `D(Wₙ) ≤ C`, `H(Wₙ) → I(m)`, and let `Wₙ ⇀ U` weakly (componentwise) with `M(U) > 0`.  Then
 `M(U) = m`, `H(U) = I(m)` and `Wₙ → U` strongly in `H²`. -/
-theorem conclusion (hβ : 0 < β) (hγ : 0 < γ) {m C : ℝ} (hm : 0 < m)
-    (hmB : m ≤ StrictBinding.mB β γ k) {W : ℕ → H2 2} (hM : ∀ n, M (W n) = m)
+theorem conclusion_of_binding (hβ : 0 < β) (hγ : 0 < γ) {m C : ℝ} (hm : 0 < m)
+    (hbind : ∀ a : ℝ, 0 < a → a < m → Imin β γ k m < Imin β γ k a + Imin β γ k (m - a)) {W : ℕ → H2 2} (hM : ∀ n, M (W n) = m)
     (hD : ∀ n, D (W n) ≤ C) (hE : Tendsto (fun n => energy β γ k (W n)) atTop (𝓝 (Imin β γ k m)))
     {U : H2 2} (hU : 0 < M U)
     (h0 : ∀ z, Tendsto (fun n => inner ℂ z (W n).val) atTop (𝓝 (inner ℂ z U.val)))
@@ -1372,7 +1372,7 @@ theorem conclusion (hβ : 0 < β) (hγ : 0 < γ) {m C : ℝ} (hm : 0 < m)
       refine ge_of_tendsto hF ?_
       filter_upwards [hev] with n hn
       linarith
-    have := StrictBinding.strict_binding (k := k) hβ hγ hm hmB hU hlt
+    have := hbind (M U) hU hlt
     linarith
   -- the remainder carries no mass
   have hMV0 : Tendsto (fun n => M (V n)) atTop (𝓝 0) := by rwa [heq, sub_self] at hMV
@@ -1436,6 +1436,17 @@ theorem conclusion (hβ : 0 < β) (hγ : 0 < γ) {m C : ℝ} (hm : 0 < m)
   simp only [Finset.sum_const_zero, add_zero] at hsum
   exact hsum
 
+/-- Original sufficient-mass corollary, preserving the existing API. -/
+theorem conclusion (hβ : 0 < β) (hγ : 0 < γ) {m C : ℝ} (hm : 0 < m)
+    (hmB : m ≤ StrictBinding.mB β γ k) {W : ℕ → H2 2} (hM : ∀ n, M (W n) = m)
+    (hD : ∀ n, D (W n) ≤ C) (hE : Tendsto (fun n => energy β γ k (W n)) atTop (𝓝 (Imin β γ k m)))
+    {U : H2 2} (hU : 0 < M U)
+    (h0 : ∀ z, Tendsto (fun n => inner ℂ z (W n).val) atTop (𝓝 (inner ℂ z U.val)))
+    (h2 : ∀ z, Tendsto (fun n => inner ℂ z (W n).lap) atTop (𝓝 (inner ℂ z U.lap))) :
+    M U = m ∧ energy β γ k U = Imin β γ k m ∧
+      Tendsto (fun n => distH2 (W n) U) atTop (𝓝 0) :=
+  conclusion_of_binding hβ hγ hm (fun a ha ham => StrictBinding.strict_binding (k := k) hβ hγ hm hmB ha ham) hM hD hE hU h0 h2
+
 end WholeSpace
 
 end ReyesMath
@@ -1454,8 +1465,8 @@ variable {β γ k : ℝ}
 `β, γ > 0` and `0 < m ≤ m_B`.  If `M(uₙ) = m` and `H(uₙ) → I(m)`, then there are a subsequence
 `φ`, translations `yₙ ∈ ℝ²` and `u ∈ H²(ℝ²)` with `uφ(n)(· + yₙ) → u` strongly in `H²`
 (`distH2 → 0`), `M(u) = m` and `H(u) = I(m)`. -/
-theorem compactness (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ} (hm : 0 < m)
-    (hmB : m ≤ StrictBinding.mB β γ k) {u : ℕ → H2 2} (hM : ∀ n, M (u n) = m)
+theorem compactness_of_binding (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ} (hm : 0 < m)
+    (hbind : ∀ a : ℝ, 0 < a → a < m → Imin β γ k m < Imin β γ k a + Imin β γ k (m - a)) {u : ℕ → H2 2} (hM : ∀ n, M (u n) = m)
     (hE : Tendsto (fun n => energy β γ k (u n)) atTop (𝓝 (Imin β γ k m))) :
     ∃ φ : ℕ → ℕ, StrictMono φ ∧ ∃ y : ℕ → R2, ∃ U : H2 2, M U = m ∧
       energy β γ k U = Imin β γ k m ∧
@@ -1482,15 +1493,24 @@ theorem compactness (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ} (hm : 0 < m)
   have hEW : Tendsto (fun n => energy β γ k (w (φ n))) atTop (𝓝 (Imin β γ k m)) := by
     refine (hE.comp hφN).congr fun n => ?_
     simp only [Function.comp_apply, hw, hu', energy_translate]
-  obtain ⟨hUm, hUE, hdist⟩ := conclusion hβ hγ hm hmB (fun n => hMw (φ n)) (fun n => hDw (φ n))
+  obtain ⟨hUm, hUE, hdist⟩ := conclusion_of_binding hβ hγ hm hbind (fun n => hMw (φ n)) (fun n => hDw (φ n))
     hEW hU h0 h2
   refine ⟨fun n => φ n + N₀, fun a b hab => Nat.add_lt_add_right (hφ hab) _,
     fun n => y (φ n), U, hUm, hUE, ?_⟩
   exact hdist
 
+/-- Original sufficient-mass corollary, preserving the existing API. -/
+theorem compactness (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ} (hm : 0 < m)
+    (hmB : m ≤ StrictBinding.mB β γ k) {u : ℕ → H2 2} (hM : ∀ n, M (u n) = m)
+    (hE : Tendsto (fun n => energy β γ k (u n)) atTop (𝓝 (Imin β γ k m))) :
+    ∃ φ : ℕ → ℕ, StrictMono φ ∧ ∃ y : ℕ → R2, ∃ U : H2 2, M U = m ∧
+      energy β γ k U = Imin β γ k m ∧
+      Tendsto (fun n => distH2 (translate (y n) (u (φ n))) U) atTop (𝓝 0) :=
+  compactness_of_binding hβ hγ hm (fun a ha ham => StrictBinding.strict_binding (k := k) hβ hγ hm hmB ha ham) hM hE
+
 /-- **Attainment:** for `0 < m ≤ m_B` the minimizing set `𝒢_m` is nonempty. -/
-theorem exists_minimizer (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ} (hm : 0 < m)
-    (hmB : m ≤ StrictBinding.mB β γ k) :
+theorem exists_minimizer_of_binding (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ} (hm : 0 < m)
+    (hbind : ∀ a : ℝ, 0 < a → a < m → Imin β γ k m < Imin β γ k a + Imin β γ k (m - a)) :
     ∃ U : H2 2, M U = m ∧ energy β γ k U = Imin β γ k m := by
   have hU : ∀ n : ℕ, ∃ U : H2 2, M U = m ∧ energy β γ k U < Imin β γ k m + 1 / ((n : ℝ) + 1) :=
     fun n => StrictBinding.exists_energy_lt hβ hm (by positivity)
@@ -1501,8 +1521,14 @@ theorem exists_minimizer (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ} (hm : 0 < m)
   have hE : Tendsto (fun n => energy β γ k (u n)) atTop (𝓝 (Imin β γ k m)) :=
     tendsto_of_tendsto_of_tendsto_of_le_of_le tendsto_const_nhds hlim
       (fun n => StrictBinding.Imin_le_energy hγ (hum n)) (fun n => (hult n).le)
-  obtain ⟨-, -, -, U, hUm, hUE, -⟩ := compactness hβ hγ hm hmB hum hE
+  obtain ⟨-, -, -, U, hUm, hUE, -⟩ := compactness_of_binding hβ hγ hm hbind hum hE
   exact ⟨U, hUm, hUE⟩
+
+/-- Original sufficient-mass corollary, preserving the existing API. -/
+theorem exists_minimizer (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ} (hm : 0 < m)
+    (hmB : m ≤ StrictBinding.mB β γ k) :
+    ∃ U : H2 2, M U = m ∧ energy β γ k U = Imin β γ k m :=
+  exists_minimizer_of_binding hβ hγ hm (fun a ha ham => StrictBinding.strict_binding (k := k) hβ hγ hm hmB ha ham)
 
 /-- **Sequential compactness of `𝒢_m` modulo translations:** every sequence of minimizers has a
 subsequence which, after translations, converges strongly in `H²` to a minimizer. -/

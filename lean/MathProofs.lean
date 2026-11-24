@@ -86,6 +86,7 @@ import MathProofs.V18SelectedJacobian
 import MathProofs.V18Rank
 import MathProofs.LocalLevelSet
 import MathProofs.V18Identifiability
+import MathProofs.GC26GlobalIdentifiability
 import MathProofs.RemainingCores
 import MathProofs.E16SpectralCore
 import MathProofs.E62Discrete
@@ -170,4 +171,17 @@ import MathProofs.E18Representative
 import MathProofs.E18Lyapunov
 import MathProofs.E18Certification
 import MathProofs.D4FrozenWholeSpace
+import MathProofs.GC16ZeroShell
+import MathProofs.GC01IndividualOrbit
+import MathProofs.GC01VortexEstimates
+import MathProofs.GC06ShellBinding
+import MathProofs.GC06NearZeroShell
+import MathProofs.GC06VirialBinding
+import MathProofs.GC08Cartesian
+import MathProofs.GC08Gauge
+import MathProofs.GC08Field
+import MathProofs.GC08PlaneLocus
+import MathProofs.GC08ClosedPlane
+import MathProofs.GC08Spatial
+import MathProofs.GC08Hadamard
 import MathProofs.GC03Energy
