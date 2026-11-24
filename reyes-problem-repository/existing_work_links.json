@@ -547,8 +547,8 @@
     },
     {
       "id": "GC26",
-      "issue_number": null,
-      "issue_scope": "not_created",
+      "issue_number": 103,
+      "issue_scope": "whole_problem",
       "relation_kind": "direct_partial",
       "artifact_keys": [
         "F09"
