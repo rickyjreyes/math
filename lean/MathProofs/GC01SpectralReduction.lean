@@ -38,8 +38,10 @@ theorem hessian_lower (β γ a b x y : ℝ) (hγ : 0 < γ) :
     20*γ*hessian β γ a b x y + 9*β^2*(x^2+y^2) ≥ 0 := by
   have hs : 0 ≤ a^2+b^2 := by positivity
   rcases eq_or_lt_of_le hs with hz | hp
-  · have ha : a = 0 := by nlinarith [sq_nonneg b]
-    have hb : b = 0 := by nlinarith [sq_nonneg a]
+  · have ha2 : a*a = 0 := by nlinarith [sq_nonneg b]
+    have hb2 : b*b = 0 := by nlinarith [sq_nonneg a]
+    have ha : a = 0 := (mul_eq_zero.mp ha2).elim id id
+    have hb : b = 0 := (mul_eq_zero.mp hb2).elim id id
     simp [ha, hb, hessian] <;> positivity
   · have hprod : 0 ≤ (a^2+b^2) *
         (20*γ*hessian β γ a b x y + 9*β^2*(x^2+y^2)) := by
