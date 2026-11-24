@@ -530,6 +530,22 @@ The uniform region and first-crossing results are analytical claims,
 not an all-mass nonzero-shell classification or a statement of novelty.
 No minimizer attainment was assumed in these arguments.
 
+
+\section*{Unrestricted binding continuation (November 24, 2026)}
+Merged PR \#111 develops an all-mass spectral-merging proof candidate.
+Its locally audited algebraic results do not yet certify the continuum
+spectral exclusion. A subsequent direct two-profile reduction shows
+analytically that ordinary subadditivity and weak profile extraction
+suffice to turn any failed split into an attained equality pair; finite
+cluster termination is not needed for this reduction. The new
+\texttt{GC06PairExtraction} module encodes candidate proofs of ordinary
+subadditivity and this equivalence, pending compilation. The remaining
+spectral argument must exclude equality pairs, using the constrained
+Hessian, negative multiplier, decay, characteristic-pole noncancellation,
+and exact mass-normalized interaction. See
+\url{https://github.com/rickyjreyes/math/blob/main/docs/GC06_GC16_GC26_CLOSURE_AUDIT_2026-11-24.md}.
+The original verified mass-range theorem is unchanged.
+
 \begin{thebibliography}{9}
 \bibitem{FJMM2022}
 A.~J. Fern\'andez, L. Jeanjean, R. Mandel, and M. Mari\c{s},
