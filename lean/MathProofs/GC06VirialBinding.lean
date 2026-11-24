@@ -49,12 +49,12 @@ theorem stationary_ratio (hβ : 0 < β) (hγ : 0 < γ) {m c : ℝ}
   have hxup : x ≤ k ^ 2 * M W + B * M W ^ 2 / 4 := by
     by_contra! hh
     have hp := mul_lt_mul_of_pos_right hh hxpos
-    linarith only [hp, hprod]
+    nlinarith only [hp, hprod]
   have hkM := mul_le_mul_of_nonneg_left hMm (sq_nonneg k)
   have hMsq := pow_le_pow_left₀ hM.le hMm 2
   have hBM := mul_le_mul_of_nonneg_left hMsq hB0
   change k ^ 2 * m / 4 + B * m ^ 2 / 16 ≤ c at hmargin
-  linarith only [hxup, hkM, hBM, hmargin, hcx]
+  nlinarith only [hxup, hkM, hBM, hmargin, hcx]
 
 /-- The uniform ratio bound can be chosen strictly below the amplitude-scaling
 critical ratio whenever k²m < 3β/γ. -/
@@ -87,7 +87,7 @@ theorem exists_ratio (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ}
   have hcr : c < r := by dsimp [c]; linarith
   have hcoefeq : β / 4 - γ / 3 * c = γ / 3 * d := by
     dsimp only [c]
-    linarith only [hr_eq]
+    nlinarith only [hr_eq]
   have hcoef : 0 < β / 4 - γ / 3 * c := by rw [hcoefeq]; positivity
   have hceq : c = k ^ 2 * m / 4 + d * (1 + γ * m ^ 2 / 48) := by
     change d * (2 + γ * m ^ 2 / 48) = r - k ^ 2 * m / 4 at hdeq
@@ -145,7 +145,7 @@ theorem local_comparison (hβ : 0 < β) (hγ : 0 < γ) {a b c : ℝ}
       nlinarith only [hSQ', hhalfQ]
     have hEW : -β / 2 * Q W ≤ energy β γ k W := by
       rw [energy_eq]
-      have hS : 0 ≤ γ / 3 * S W := by positivity
+      have hS : 0 ≤ γ / 3 * S W := mul_nonneg (by positivity) (S_nonneg W)
       linarith only [T_nonneg k W, hS]
     have hEW' := mul_le_mul_of_nonneg_left hEW hh.le
     have hbound' : -β / 2 * Q W + γ * (t + 1) / 3 * S W ≤ h * energy β γ k W := by
@@ -197,7 +197,7 @@ theorem chain_strict (f : ℝ → ℝ) {a b d : ℝ} (hab : a < b) (hd : 0 < d)
         have hzd : z - a ≤ (n : ℝ) * d := by
           push_cast at hdist
           dsimp [z]
-          linarith only [hdist]
+          nlinarith only [hdist]
         have hf := hlocal z y haz.le hzy hy (by dsimp [z]; linarith)
         exact hf.trans (ih z haz (hzy.le.trans hy) hzd)
   obtain ⟨n, hn⟩ := exists_nat_gt ((b - a) / d)
@@ -275,6 +275,137 @@ theorem exists_minimizer_zero_all_mass (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ}
     (hm : 0 < m) : ∃ U : H2 2, M U = m ∧ energy β γ 0 U = Imin β γ 0 m :=
   exists_minimizer_virial hβ hγ hm (by simp; positivity)
 
+
+/-- Upper comparison at the boundary, using actual near-minimizers of masses
+approaching the target and the established bounded mass-correction lemma. -/
+theorem energy_per_mass_le_endpoint (hβ : 0 < β) (hγ : 0 < γ) {a b : ℝ}
+    (ha : 0 < a) (hab : a < b) (hk : k ^ 2 * b ≤ 3 * β / γ) :
+    Imin β γ k b / b ≤ Imin β γ k a / a := by
+  have hb : 0 < b := ha.trans hab
+  let e : ℕ → ℝ := fun n => 1 / ((n : ℝ) + 1)
+  let q : ℕ → ℝ := fun n => b - (b - a) / 2 * e n
+  let j := Imin β γ k a / a
+  have he : Tendsto e atTop (𝓝 0) := tendsto_one_div_add_atTop_nhds_zero_nat
+  have hepos : ∀ n, 0 < e n := fun n => by dsimp [e]; positivity
+  have hele : ∀ n, e n ≤ 1 := by
+    intro n
+    dsimp [e]
+    apply (div_le_one (by positivity)).2
+    linarith only [Nat.cast_nonneg (α := ℝ) n]
+  have hqa : ∀ n, a < q n := by
+    intro n
+    have h := mul_le_mul_of_nonneg_left (hele n) (show 0 ≤ (b - a) / 2 by linarith)
+    dsimp only [q]
+    linarith only [h, hab]
+  have hqb : ∀ n, q n < b := by
+    intro n
+    have h := mul_pos (show 0 < (b - a) / 2 by linarith) (hepos n)
+    dsimp only [q]
+    linarith only [h]
+  have hqp : ∀ n, 0 < q n := fun n => ha.trans (hqa n)
+  have hqk : ∀ n, k ^ 2 * q n < 3 * β / γ := by
+    intro n
+    by_cases h : k = 0
+    · rw [h]
+      simp
+      positivity
+    · have hkpos : 0 < k ^ 2 := by positivity
+      exact (mul_lt_mul_of_pos_left (hqb n) hkpos).trans_le hk
+  have hlimq : Tendsto q atTop (𝓝 b) := by
+    have hh := (tendsto_const_nhds (x := b)).sub (he.const_mul ((b - a) / 2))
+    simpa [q] using hh
+  have htrial : ∀ n, ∃ U : H2 2, M U = q n ∧
+      energy β γ k U < Imin β γ k (q n) + e n := by
+    intro n
+    exact exists_energy_lt (γ := γ) (k := k) hβ (hqp n) (hepos n)
+  choose U hUm hUe using htrial
+  have hEupper : ∀ n, energy β γ k (U n) ≤ q n * j + e n := by
+    intro n
+    have hc := energy_per_mass_strict hβ hγ ha (hqa n) (hqk n)
+    have hh := (div_lt_iff₀ (hqp n)).mp hc
+    change Imin β γ k (q n) < j * q n at hh
+    nlinarith only [hh, hUe n]
+  have hE1 : ∀ n, energy β γ k (U n) ≤ 1 := by
+    intro n
+    have hn := (NegativeEnergy.negative_constrained_energy (k := k) hβ hγ (hqp n)).2
+    linarith only [hn, hUe n, hele n]
+  let L := Real.sqrt (1 + 3 * β ^ 2 / (16 * γ) * b) + k ^ 2 * Real.sqrt b
+  have hD : ∀ n, D (U n) ≤ L ^ 2 := by
+    intro n
+    have hh := (bounded_of_energy_le hγ (hUm n) (hE1 n)).1
+    have hc : 0 ≤ 3 * β ^ 2 / (16 * γ) := by positivity
+    have h1 := Real.sqrt_le_sqrt (show 1 + 3 * β ^ 2 / (16 * γ) * q n ≤
+        1 + 3 * β ^ 2 / (16 * γ) * b by
+      linarith only [mul_le_mul_of_nonneg_left (hqb n).le hc])
+    have h2 := mul_le_mul_of_nonneg_left (Real.sqrt_le_sqrt (hqb n).le) (sq_nonneg k)
+    have hsum : Real.sqrt (1 + 3 * β ^ 2 / (16 * γ) * q n) + k ^ 2 * Real.sqrt (q n) ≤ L := by
+      dsimp only [L]
+      linarith only [h1, h2]
+    exact hh.trans (pow_le_pow_left₀ (by positivity) hsum 2)
+  have hbd : ∀ n, D (U n) + M (U n) ≤ L ^ 2 + b := by
+    intro n
+    rw [hUm n]
+    linarith only [hD n, hqb n]
+  have hMlim : Tendsto (fun n => M (U n)) atTop (𝓝 b) := by
+    simpa only [hUm] using hlimq
+  obtain ⟨err, herr, hcorr⟩ := exists_energy_ge_Imin β γ k hγ U hb hMlim hbd
+  have hlim : Tendsto (fun n => q n * j + e n + err n) atTop (𝓝 (b * j)) := by
+    simpa using ((hlimq.mul (tendsto_const_nhds (x := j))).add he).add herr
+  have hI : Imin β γ k b ≤ b * j := by
+    refine ge_of_tendsto hlim ?_
+    filter_upwards [hcorr] with n hn
+    linarith only [hn, hEupper n]
+  exact (div_le_iff₀ hb).2 (by simpa [j, mul_comm] using hI)
+
+/-- Strict comparison including equality at the new mass ceiling. -/
+theorem energy_per_mass_strict_closed (hβ : 0 < β) (hγ : 0 < γ) {a b : ℝ}
+    (ha : 0 < a) (hab : a < b) (hk : k ^ 2 * b ≤ 3 * β / γ) :
+    Imin β γ k b / b < Imin β γ k a / a := by
+  by_cases hz : k = 0
+  · apply energy_per_mass_strict hβ hγ ha hab
+    rw [hz]
+    simp
+    positivity
+  let c := (a + b) / 2
+  have hac : a < c := by dsimp [c]; linarith
+  have hcb : c < b := by dsimp [c]; linarith
+  have hkpos : 0 < k ^ 2 := by positivity
+  have hkc := (mul_lt_mul_of_pos_left hcb hkpos).trans_le hk
+  exact (energy_per_mass_le_endpoint hβ hγ (ha.trans hac) hcb hk).trans_lt
+    (energy_per_mass_strict hβ hγ ha hac hkc)
+
+theorem strict_binding_closed (hβ : 0 < β) (hγ : 0 < γ) {m a : ℝ}
+    (hm : 0 < m) (hk : k ^ 2 * m ≤ 3 * β / γ) (ha : 0 < a) (ham : a < m) :
+    Imin β γ k m < Imin β γ k a + Imin β γ k (m - a) := by
+  have hb : 0 < m - a := by linarith
+  have e1 := energy_per_mass_strict_closed hβ hγ ha ham hk
+  have e2 := energy_per_mass_strict_closed hβ hγ hb (show m - a < m by linarith) hk
+  have f1 : a * (Imin β γ k m / m) < Imin β γ k a := by
+    have h := mul_lt_mul_of_pos_left e1 ha
+    rwa [mul_div_cancel₀ _ ha.ne'] at h
+  have f2 : (m - a) * (Imin β γ k m / m) < Imin β γ k (m - a) := by
+    have h := mul_lt_mul_of_pos_left e2 hb
+    rwa [mul_div_cancel₀ _ hb.ne'] at h
+  have hsum : a * (Imin β γ k m / m) + (m - a) * (Imin β γ k m / m) =
+      Imin β γ k m := by field_simp; ring
+  linarith
+
+theorem compactness_closed (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ}
+    (hm : 0 < m) (hk : k ^ 2 * m ≤ 3 * β / γ) {u : ℕ → H2 2}
+    (hM : ∀ n, M (u n) = m)
+    (hE : Tendsto (fun n => energy β γ k (u n)) atTop (𝓝 (Imin β γ k m))) :
+    ∃ φ : ℕ → ℕ, StrictMono φ ∧ ∃ y : ℕ → EuclideanSpace ℝ (Fin 2),
+      ∃ U : H2 2, M U = m ∧ energy β γ k U = Imin β γ k m ∧
+      Tendsto (fun n => distH2 (translate (y n) (u (φ n))) U) atTop (𝓝 0) :=
+  WholeSpace.compactness_of_binding hβ hγ hm
+    (fun a ha ham => strict_binding_closed hβ hγ hm hk ha ham) hM hE
+
+theorem exists_minimizer_closed (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ}
+    (hm : 0 < m) (hk : k ^ 2 * m ≤ 3 * β / γ) :
+    ∃ U : H2 2, M U = m ∧ energy β γ k U = Imin β γ k m :=
+  WholeSpace.exists_minimizer_of_binding hβ hγ hm
+    (fun a ha ham => strict_binding_closed hβ hγ hm hk ha ham)
+
 end ReyesMath.GC06VirialBinding
 
 #print axioms ReyesMath.GC06VirialBinding.stationary_ratio
@@ -286,3 +417,8 @@ end ReyesMath.GC06VirialBinding
 #print axioms ReyesMath.GC06VirialBinding.compactness_virial
 #print axioms ReyesMath.GC06VirialBinding.exists_minimizer_virial
 #print axioms ReyesMath.GC06VirialBinding.exists_minimizer_zero_all_mass
+#print axioms ReyesMath.GC06VirialBinding.energy_per_mass_le_endpoint
+#print axioms ReyesMath.GC06VirialBinding.energy_per_mass_strict_closed
+#print axioms ReyesMath.GC06VirialBinding.strict_binding_closed
+#print axioms ReyesMath.GC06VirialBinding.compactness_closed
+#print axioms ReyesMath.GC06VirialBinding.exists_minimizer_closed
