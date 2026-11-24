@@ -70,7 +70,9 @@ theorem hasFDerivAt_parameter_integral [ProperSpace E]
   · exact Eventually.of_forall fun y =>
       (hF.continuous.comp (continuous_const.prodMk continuous_id)).aestronglyMeasurable
   · exact (hF.continuous.comp (continuous_const.prodMk continuous_id)).intervalIntegrable _ _
-  · exact (hD.comp (continuous_const.prodMk continuous_id)).aestronglyMeasurable
+  · have hDc : Continuous (fun t : ℝ => parameterDerivative F (x,t)) :=
+      hD.comp (continuous_const.prodMk continuous_id)
+    exact hDc.stronglyMeasurable.aestronglyMeasurable
   · filter_upwards [ae_restrict_mem measurableSet_uIoc] with t ht
     intro y hy
     have ht' : t ∈ Ioc (0 : ℝ) 1 := by simpa [uIoc_of_le (by norm_num : (0 : ℝ) ≤ 1)] using ht
