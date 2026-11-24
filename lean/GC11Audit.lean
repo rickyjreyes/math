@@ -20,3 +20,7 @@ import MathProofs.GC11SidebandClassification
 
 #print axioms ReyesMath.GC11Coercivity.transverse_no_growth_iff
 #print axioms ReyesMath.GC11Coercivity.all_sidebands_no_growth_iff
+
+#print axioms ReyesMath.GC11Coercivity.staticUpperQ_witness
+#print axioms ReyesMath.GC11Coercivity.staticUpperQ_strict_anti
+#print axioms ReyesMath.GC11Coercivity.unit_static_family
