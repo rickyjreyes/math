@@ -6,7 +6,7 @@ analytical obligations. These declarations do not assert continuum certification
 namespace ReyesMath.GC01SpectralReduction
 
 /-- Nonlinear part of the normalized action density (E + ω M)/2. -/
-def potential (β γ a b : ℝ) : ℝ :=
+noncomputable def potential (β γ a b : ℝ) : ℝ :=
   -β / 4 * (a^2 + b^2)^2 + γ / 6 * (a^2 + b^2)^3
 
 /-- Pointwise real Hessian of the same density. -/
@@ -34,7 +34,7 @@ theorem shifted_hessian_identity (β γ a b x y : ℝ) :
   ring
 
 /-- Uniform lower bound -9β²/(20γ) for the nonlinear Hessian. -/
-theorem hessian_lower (β γ a b x y : ℝ) (hγ : 0 < γ) :
+theorem hessian_lower (β γ a b x y : ℝ) (_hγ : 0 < γ) :
     20*γ*hessian β γ a b x y + 9*β^2*(x^2+y^2) ≥ 0 := by
   have hs : 0 ≤ a^2+b^2 := by positivity
   rcases eq_or_lt_of_le hs with hz | hp
@@ -76,15 +76,15 @@ theorem negative_energy_rotation (x y : ℝ) :
 
 /-- The same rotation generator has no nonzero real eigenvector. This is
 a finite-dimensional counterexample, not a PDE stationary profile. -/
-theorem rotation_no_real_eigenvector (x y λ : ℝ)
-    (hx : -y = λ*x) (hy : x = λ*y) : x = 0 ∧ y = 0 := by
-  have h : λ^2*y = -y := by
+theorem rotation_no_real_eigenvector (x y lam : ℝ)
+    (hx : -y = lam*x) (hy : x = lam*y) : x = 0 ∧ y = 0 := by
+  have h : lam^2*y = -y := by
     calc
-      λ^2*y = λ*(λ*y) := by ring
-      _ = λ*x := by rw [← hy]
+      lam^2*y = lam*(lam*y) := by ring
+      _ = lam*x := by rw [← hy]
       _ = -y := hx.symm
-  have hf : (λ^2+1)*y = 0 := by nlinarith only [h]
-  have hp : 0 < λ^2+1 := by positivity
+  have hf : (lam^2+1)*y = 0 := by nlinarith only [h]
+  have hp : 0 < lam^2+1 := by positivity
   have hy0 : y = 0 := (mul_eq_zero.mp hf).resolve_left (ne_of_gt hp)
   exact ⟨by simpa [hy0] using hy, hy0⟩
 
