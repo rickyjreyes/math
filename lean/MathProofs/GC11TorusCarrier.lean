@@ -1,5 +1,6 @@
 import MathProofs.GC11TorusConservation
 import MathProofs.GC11SidebandClassification
+import MathProofs.GC11StaticWave
 
 /-!
 # GC11: original periodic stationary equation and exact carrier symbol
@@ -80,7 +81,7 @@ theorem originalOp_plane (k : ℝ) (a : ℂ) (m : Fin 2 → ℤ) :
   rw [originalOp_coef L k hA, coef_smul, coef_smul, coef_basis]
   by_cases hn : n = m
   · subst n
-    simp
+    simp [mul_comm]
   · simp [hn]
 
 /-- Original cubic-quintic nonlinearity, without carrier or chemical subtraction. -/
@@ -105,7 +106,12 @@ theorem stationary_plane {k beta gamma : ℝ} {a : ℂ} {m : Fin 2 → ℤ}
     (hf : frequency k beta gamma (‖a‖ ^ 2) (xi2 L m) = 0) :
     originalResidual L k beta gamma (planeField L a m) = 0 := by
   unfold originalResidual
-  rw [originalOp_plane, originalNonlinear_plane, fieldL2, map_smul, ← fieldL2, ← add_smul]
+  have hn : fieldL2 L (originalNonlinearMap L beta gamma (planeField L a m)) =
+      (densitySlope beta gamma (‖a‖ ^ 2) : ℂ) • fieldL2 L (planeField L a m) := by
+    rw [originalNonlinear_plane]
+    unfold fieldL2
+    rw [map_smul]
+  rw [originalOp_plane, hn, ← add_smul]
   have h : shellSymbol k (xi2 L m) + densitySlope beta gamma (‖a‖ ^ 2) = 0 := by
     unfold frequency at hf
     unfold densitySlope
@@ -217,6 +223,95 @@ theorem common_torus_stationary :
     rw [Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg (Real.sqrt_nonneg _),
       Real.sq_sqrt (by linarith : 0 ≤ upperRho (xi2 commonLength (axialIndex 22)))]
     exact hf2
+
+
+/-- Temporal phase in the transformation from a carrier-frame coefficient
+to the laboratory Fourier coefficient at index m+n. -/
+def carrierTheta (k beta gamma rho : ℝ) (m n : Fin 2 → ℤ) : ℝ :=
+  frequency k beta gamma rho (xi2 L m) +
+    4 * (xi2 L m - k ^ 2) * carrierDot L (latticeCarrier L m) n
+
+theorem carrierTheta_balance (k beta gamma rho : ℝ) (m n : Fin 2 → ℤ) :
+    g L k (latticeCarrier L m) n + carrierTheta L k beta gamma rho m n =
+      shellSymbol k (xi2 L (m+n)) + densitySlope beta gamma rho := by
+  rw [carrier_symbol_eq]
+  unfold carrierTheta frequency densitySlope
+  ring
+
+/-- Exact coefficient-wise time-dependent transformation. The supplied
+forcing is the coefficient of the chemical-potential-subtracted
+nonlinearity in the moving frame. The conclusion recovers the original
+linear dispersion and adds back the chemical term. A separate
+function-space theorem must identify the transformed forcing with the
+original nonlinear Fourier coefficient. -/
+theorem coefficient_laboratory_deriv (k beta gamma rho : ℝ)
+    (m n : Fin 2 → ℤ) {z : ℝ → ℂ} {dz N : ℂ} {t : ℝ}
+    (hd : HasDerivAt z dz t)
+    (he : Complex.I * dz = (g L k (latticeCarrier L m) n : ℂ) * z t + N) :
+    let theta := carrierTheta L k beta gamma rho m n
+    let phase := mode (-theta)
+    ∃ dw : ℂ, HasDerivAt (fun s => phase s * z s) dw t ∧
+      Complex.I * dw =
+        (shellSymbol k (xi2 L (m+n)) : ℂ) * (phase t * z t) +
+          phase t * (N + (densitySlope beta gamma rho : ℂ) * z t) := by
+  let theta := carrierTheta L k beta gamma rho m n
+  let phase := mode (-theta)
+  have hp : HasDerivAt phase ((Complex.I * ((-theta : ℝ) : ℂ)) * phase t) t :=
+    hasDerivAt_mode (-theta) t
+  refine ⟨_, hp.mul hd, ?_⟩
+  have hb : (g L k (latticeCarrier L m) n : ℂ) + (theta : ℂ) =
+      (shellSymbol k (xi2 L (m+n)) : ℂ) + (densitySlope beta gamma rho : ℂ) := by
+    exact_mod_cast carrierTheta_balance L k beta gamma rho m n
+  calc
+    _ = phase t * ((theta : ℂ) * z t + Complex.I * dz) := by
+      push_cast
+      calc
+        _ = (- (Complex.I * Complex.I)) * (theta : ℂ) * phase t * z t +
+          phase t * (Complex.I * dz) := by ring
+        _ = _ := by rw [Complex.I_mul_I]; ring
+    _ = _ := by rw [he]; linear_combination (phase t * z t) * hb
+
+/-- Both exact static fields admit nonempty strong carrier-frame solution
+classes and the previously proved conditional-on-existence stability
+statement. This packages the two radii and all stability hypotheses. -/
+theorem common_torus_carrier_stability :
+    ∃ m₁ m₂ : Fin 2 → ℤ, ∃ r₁ r₂ : ℝ,
+      xi2 commonLength m₁ ≠ xi2 commonLength m₂ ∧
+      (∀ i : Bool, let m := if i then m₁ else m₂
+        let rho := if i then r₁ else r₂
+        originalResidual commonLength 1 1 1
+          (planeField commonLength (Real.sqrt rho : ℂ) m) = 0 ∧
+        StrongSolution commonLength 1 1 1 rho (latticeCarrier commonLength m)
+          (fun _ => constantCoeff (Real.sqrt rho : ℂ)) ∧
+        (∀ eps > 0, ∃ eta > 0, ∀ u : ℝ → ell2 2,
+          StrongSolution commonLength 1 1 1 rho (latticeCarrier commonLength m) u →
+          OrbitalStabilityCriterion.Near (phaseOrbit rho) (u 0) eta →
+          ∀ t, OrbitalStabilityCriterion.Near (phaseOrbit rho) (u t) eps)) := by
+  obtain ⟨m₁, m₂, r₁, r₂, hne, hq1, hq2, hr1, hr2, hs1, hs2⟩ :=
+    common_torus_stationary
+  refine ⟨m₁, m₂, r₁, r₂, hne, ?_⟩
+  have aux : ∀ (m : Fin 2 → ℤ) (rho : ℝ), 1 < xi2 commonLength m →
+      3/4 < rho →
+      StrongSolution commonLength 1 1 1 rho (latticeCarrier commonLength m)
+        (fun _ => constantCoeff (Real.sqrt rho : ℂ)) ∧
+      (∀ eps > 0, ∃ eta > 0, ∀ u : ℝ → ell2 2,
+        StrongSolution commonLength 1 1 1 rho (latticeCarrier commonLength m) u →
+        OrbitalStabilityCriterion.Near (phaseOrbit rho) (u 0) eta →
+        ∀ t, OrbitalStabilityCriterion.Near (phaseOrbit rho) (u t) eps) := by
+    intro m rho hq hr
+    have hq' : (1 : ℝ)^2 < carrierSq (latticeCarrier commonLength m) := by
+      rw [latticeCarrier_sq]
+      simpa using hq
+    have hr' : 0 ≤ rho := by linarith
+    have ha : ‖(Real.sqrt rho : ℂ)‖ ^ 2 = rho := by
+      rw [Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg (Real.sqrt_nonneg _),
+        Real.sq_sqrt hr']
+    exact ⟨strong_constant commonLength hq'.le ha,
+      orbital_stability_strong commonLength hq' (by norm_num) (by linarith) hr'⟩
+  intro i
+  cases i
+  · exact ⟨hs2, aux m₂ r₂ hq2 hr2⟩
+  · exact ⟨hs1, aux m₁ r₁ hq1 hr1⟩
 
 end GC11TorusCarrier
 end ReyesMath
