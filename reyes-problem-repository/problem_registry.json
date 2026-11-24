@@ -164,7 +164,7 @@
       "flagship": false,
       "dossier": null,
       "claimed_kernel_verified_resolution": false,
-      "note": "The unrestricted plane-wave-based uniqueness statement is refuted by C_lambda = K_epsilon + lambda Delta |u|^2. Classification under additional axioms remains.",
+      "note": "Unrestricted uniqueness is refuted by C_lambda = K_epsilon + lambda Delta |u|^2. Seven GC08 Lean modules and 24 audit roots passed local verification at 4d05257 with standard axioms only; analytical global invariant normal form and nodal extension recorded in docs/GC08_CARTESIAN_CLASSIFICATION_2026-11-24.md. Full invariant factorization, smooth extension and mixed-jet field correspondence remain partially formalized (issue #102); no full status promotion.",
       "file_path": "problems/02-confinement-curvature/GC08.md",
       "research_area": "Confinement and curvature geometry",
       "source_class": "original_formal_statement",
