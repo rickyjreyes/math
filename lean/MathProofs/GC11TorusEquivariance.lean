@@ -41,7 +41,7 @@ theorem integral_translate (a : Tor L 2) (f : Tor L 2 → ℂ) :
 def labField (m : Fin 2 → ℤ) (a : Tor L 2) (phase : ℂ)
     (F : C(Tor L 2, ℂ)) : C(Tor L 2, ℂ) where
   toFun x := phase * emode m x * F (x - a)
-  continuous_toFun := continuous_const.mul (emode (L := L) m).continuous |>.mul
+  continuous_toFun := (continuous_const.mul (emode (L := L) m).continuous).mul
     (F.continuous.comp (continuous_id.sub continuous_const))
 
 theorem labField_apply (m : Fin 2 → ℤ) (a : Tor L 2) (phase : ℂ)
@@ -133,7 +133,7 @@ theorem original_nonlinear_coef (beta gamma rho : ℝ) (m n : Fin 2 → ℤ)
           (densitySlope beta gamma rho : ℂ) * coef (iota L 1 c) n) := by
   rw [original_nonlinear_lab L beta gamma rho m a hp, coef_labField,
     fieldL2_add, fieldL2_smul, coef_add, coef_smul]
-  rfl
+  simp only [fieldL2, nonlinear, toLp_Phi]
 
 end GC11TorusEquivariance
 end ReyesMath
