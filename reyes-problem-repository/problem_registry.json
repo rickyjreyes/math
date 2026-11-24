@@ -123,7 +123,7 @@
       "flagship": true,
       "dossier": "flagship/GC06.md",
       "claimed_kernel_verified_resolution": false,
-      "note": "2026-11-24: local Lean 4.23.0 build and all 25 GC06 axiom roots passed on c3d58d5, establishing the sufficient closed interval k²m ≤ 3β/γ (including k=0 all masses). Analytical unbounded-mass and finite-cluster results await formalization. Full classification and independent correspondence review remain open.",
+      "note": "2026-11-24: verified GC06 closed virial region k²m ≤ 3β/γ, including all masses at k=0; merged #111 adds a complete-scope analytical spectral-merging candidate with 26 locally audited supporting roots (not the full continuum proof). Candidate direct two-profile extraction and ordinary subadditivity reduce unrestricted attainment/compactness to exclusion of attained equality pairs. See docs/GC06_GC16_GC26_CLOSURE_AUDIT_2026-11-24.md. Continuum spectral proof and new focused build remain pending.",
       "discussion_issue": "https://github.com/rickyjreyes/math/issues/55",
       "file_path": "problems/02-confinement-curvature/GC06.md",
       "research_area": "Confinement and curvature geometry",
@@ -325,7 +325,7 @@
       "flagship": false,
       "dossier": null,
       "claimed_kernel_verified_resolution": false,
-      "note": "2026-11-24 analytical extension in GC16_SHELL_RESEARCH_20261124.md: all masses at k=0; additional k-independent sufficient region m<=2 sqrt(3)/sqrt(gamma); unbounded set of binding masses for each admissible tuple. Candidate Lean modules GC16ShellFourier and GC16ShellBinding pending kernel verification; nonzero-shell all-mass classification remains open. No novelty claim.",
+      "note": "2026-11-24: verified all positive masses at k=0 and sufficient nonzero-k regions m≤2sqrt(3)/sqrt(γ) or k²m≤3β/γ. Merged #111 includes an all-mass analytical spectral-merging candidate and locally verified supporting roots. Candidate GC06PairExtraction replaces finite-cluster induction with direct equality-pair extraction; full spectral exclusion and kernel verification remain pending. See docs/GC06_GC16_GC26_CLOSURE_AUDIT_2026-11-24.md.",
       "file_path": "problems/04-variational-solitons/GC16.md",
       "research_area": "Variational analysis and solitons",
       "source_class": "original_formal_statement",
@@ -525,7 +525,7 @@
       "flagship": false,
       "dossier": null,
       "claimed_kernel_verified_resolution": false,
-      "note": "Ambient exact v18 non-injectivity, all-point non-isolation and range verified by owner-reported exact-head Lean audit in merged PR #105. Historical rectangle classified analytically with verified supporting lemmas; assembled relative neighborhood theorem and hosted CI pending. See docs/GC26_CORRESPONDENCE_AUDIT_2026-11-24.md. Generic topology #112 and observation design #113 are separate extensions.",
+      "note": "2026-11-24: specified ambient R31→R11 model and historical alpha/epsilon rectangle classifications locally kernel-verified in merged #105 and #117; the combined exact-head F09 audit has 57 standard-axiom roots, including historical_complete_classification. Original issue #103 closed. Hosted F09 CI 45376758923 queued at inspection; accepted completion record awaits actual successful Lean CI and correspondence acceptance. No new mathematical condition from extensions #112 or #113. See docs/GC06_GC16_GC26_CLOSURE_AUDIT_2026-11-24.md.",
       "file_path": "problems/06-inverse-observation-control/GC26.md",
       "research_area": "Inverse problems, observability and control",
       "source_class": "original_formal_statement",
@@ -533,7 +533,8 @@
       "difficulty_estimate": 6,
       "difficulty_scale": "editorial_1_to_10",
       "difficulty_confidence": "low_unreviewed",
-      "difficulty_basis": "inverse maps, stability estimates, and experimental observability"
+      "difficulty_basis": "inverse maps, stability estimates, and experimental observability",
+      "discussion_issue": "https://github.com/rickyjreyes/math/issues/103"
     },
     {
       "id": "GC27",
