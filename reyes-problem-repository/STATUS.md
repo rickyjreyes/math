@@ -10,12 +10,14 @@ This page is a **reading view of [problem_registry.json](problem_registry.json)*
 
 **GC08 update, November 24, 2026:** [Cartesian jet classification](../docs/GC08_CARTESIAN_CLASSIFICATION_2026-11-24.md) records the analytical normal form and the locally verified seven-module, 24-root Lean package (standard axioms only, commit `4d05257`). Full invariant classification and field correspondence remain partially formalized; no status promotion. [Issue #102](https://github.com/rickyjreyes/math/issues/102).
 
+**GC26 update, November 24, 2026:** [Exact correspondence audit](../docs/GC26_CORRESPONDENCE_AUDIT_2026-11-24.md) records the ambient negative resolution, historical rectangle classification and limits of formal verification. Generic fiber topology and observation design are separate extensions.
+
 ## At a glance
 
 | Registry outcome | Questions | What it means |
 |:--|--:|:--|
-| Candidate | **299** | The complete GC question is not accepted as resolved |
-| 🟡 Partially resolved | **1: [GC08](#confinement-and-curvature-geometry)** | A scoped curvature-closure nonuniqueness counterexample is established, but classification remains open |
+| Candidate | **298** | The complete GC question is not accepted as resolved |
+| 🟡 Partially resolved | **2: [GC08](#confinement-and-curvature-geometry), [GC26](#inverse-problems-observability-and-control)** | Exact scoped obstructions established; broader formal correspondence remains partial |
 | ✅ Fully resolved | **0** | No GC question is recorded as fully solved |
 | Literature screening | **6 initial screens; 294 not reviewed** | Initial screening is not independent novelty or open-status certification |
 
@@ -34,7 +36,7 @@ This page is a **reading view of [problem_registry.json](problem_registry.json)*
 | [Spectral theory and scattering](#spectral-theory-and-scattering) | 25 | 6 / 19 | — |
 | [Variational analysis and solitons](#variational-analysis-and-solitons) | 25 | 6 / 19 | — |
 | [Higher-derivative field theory](#higher-derivative-field-theory) | 25 | 5 / 20 | — |
-| [Inverse problems, observability and control](#inverse-problems-observability-and-control) | 25 | 7 / 18 | — |
+| [Inverse problems, observability and control](#inverse-problems-observability-and-control) | 25 | 7 / 18 | 🟡 GC26 |
 | [Pattern formation and disorder](#pattern-formation-and-disorder) | 25 | 6 / 19 | — |
 | [Topology and multicomponent fields](#topology-and-multicomponent-fields) | 25 | 6 / 19 | — |
 | [Computability and complexity](#computability-and-complexity) | 25 | 5 / 20 | — |
@@ -217,7 +219,7 @@ This page is a **reading view of [problem_registry.json](problem_registry.json)*
 
 | ID | Mathematical question | GC stage | Existing mathematical evidence | Difficulty |
 |:--|:--|:--|:--|--:|
-| GC26 | [Local versus global identifiability](FORMAL_PROBLEMS.md#gc26-local-versus-global-identifiability) | Candidate · formal | ✅ Rank 11, nullity 20 and local fiber; [candidate global alias extension](../docs/GC26_GLOBAL_IDENTIFIABILITY_LEDGER_2026-11-24.md) | 6/10 |
+| GC26 | [Local versus global identifiability](FORMAL_PROBLEMS.md#gc26-local-versus-global-identifiability) | 🟡 Partially resolved · formal | ✅ Exact ambient global non-injectivity, non-isolation and range; historical classification analytical with audited lemmas. [Correspondence audit](../docs/GC26_CORRESPONDENCE_AUDIT_2026-11-24.md) | 6/10 |
 | GC27 | [Minimal parameter-recovery observations](FORMAL_PROBLEMS.md#gc27-minimal-parameter-recovery-observations) | Candidate · formal | Related source links; scope unaudited | 7/10 |
 | GC28 | [Curvature-map noninjectivity](FORMAL_PROBLEMS.md#gc28-curvature-map-noninjectivity) | Candidate · formal | Related source links; scope unaudited | 7/10 |
 | GC29 | [Noise-stable reconstruction](FORMAL_PROBLEMS.md#gc29-noise-stable-reconstruction) | Candidate · formal | Related source links; scope unaudited | 7/10 |
