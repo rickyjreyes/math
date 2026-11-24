@@ -78,7 +78,7 @@ theorem mass_exchange_comparison (hγ : 0 < γ) (U V : H2 2)
   rw [show M U + h + (M V - h) = M U + M V by ring, heq] at hi
   change energy β γ k W = amp β γ k U (1 + h / M U) at hWe
   change energy β γ k Z = amp β γ k V (1 - h / M V) at hZe
-  rw [amp_one, amp_one, hU, hV]
+  rw [amp_one U, amp_one V, hU, hV]
   linarith only [hw, hz, hi, hWe, hZe]
 
 /-- A cubic nonnegative on a right neighborhood has nonnegative linear
