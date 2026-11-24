@@ -1,4 +1,4 @@
-import MathProofs.V18Identifiability
+import MathProofs.GC26GlobalIdentifiability
 
 /-!
 Reproducible audit of the exported F09 theorem signatures and dependencies.
@@ -26,3 +26,18 @@ This file adds no declarations to the maintained library.
 #print axioms ReyesMath.V18Forward.observed_local_level_set
 #print axioms ReyesMath.V18Forward.observed_locally_nonidentifiable
 #print axioms ReyesMath.V18Forward.f09_completion
+
+/- GC26 candidate roots -/
+#print axioms ReyesMath.V18Forward.observed_update_quarkAmp
+#print axioms ReyesMath.V18Forward.observed_update_quarkPower
+#print axioms ReyesMath.V18Forward.observed_shiftHiggs
+#print axioms ReyesMath.V18Forward.observed_invisibleFamily
+#print axioms ReyesMath.V18Forward.invisibleFamily_injective
+#print axioms ReyesMath.V18Forward.observed_all_points_nonisolated
+#print axioms ReyesMath.V18Forward.observed_relative_nonisolated
+#print axioms ReyesMath.V18Forward.observed_not_injective
+#print axioms ReyesMath.V18Forward.floor_eq_iff
+#print axioms ReyesMath.V18Forward.nested_floor_eq_iff
+#print axioms ReyesMath.V18Forward.generic_rank_counterexample
+#print axioms ReyesMath.V18Forward.augmented_rank_obstruction
+#print axioms ReyesMath.V18Forward.injective_of_strict_pairing
