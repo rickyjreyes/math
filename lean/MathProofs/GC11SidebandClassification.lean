@@ -117,5 +117,52 @@ theorem all_sidebands_no_growth_iff (k q c : ℝ) :
       exact mul_self_nonneg _
     · exact sideband_discriminant_nonneg hq hs hc.le
 
+
+/-- Parameterization of a genuinely continuous family of static carriers. -/
+def staticUpperQ (k beta gamma rho : ℝ) : ℝ :=
+  k ^ 2 + Real.sqrt (beta * rho - gamma * rho ^ 2)
+
+theorem staticUpperQ_witness {k beta gamma rho : ℝ}
+    (hr : 0 < rho) (hupper : gamma * rho < beta) :
+    k ^ 2 < staticUpperQ k beta gamma rho ∧
+      frequency k beta gamma rho (staticUpperQ k beta gamma rho) = 0 := by
+  have hp : 0 < beta * rho - gamma * rho ^ 2 := by
+    have h := mul_pos hr (sub_pos.mpr hupper)
+    nlinarith
+  have hs := Real.sq_sqrt hp.le
+  constructor
+  · unfold staticUpperQ
+    linarith [Real.sqrt_pos.2 hp]
+  · unfold frequency RemainingCores.shellSymbol staticUpperQ
+    nlinarith [hs]
+
+/-- At high density the static radius is strictly decreasing in density.
+No reflected-frequency equality is used. -/
+theorem staticUpperQ_strict_anti {k beta gamma r₁ r₂ : ℝ}
+    (hg : 0 < gamma) (hr₁ : 0 < r₁) (hlt : r₁ < r₂)
+    (hlo : beta < 2 * gamma * r₁) (hhi : gamma * r₂ < beta) :
+    staticUpperQ k beta gamma r₂ < staticUpperQ k beta gamma r₁ := by
+  have hr₂ : 0 < r₂ := hr₁.trans hlt
+  have hdiff := mul_pos hg (sub_pos.mpr hlt)
+  have hsum : 0 < gamma * (r₁ + r₂) - beta := by nlinarith
+  have hp := mul_pos (sub_pos.mpr hlt) hsum
+  have hlt' : beta * r₂ - gamma * r₂ ^ 2 < beta * r₁ - gamma * r₁ ^ 2 := by
+    nlinarith
+  have hnonneg : 0 ≤ beta * r₂ - gamma * r₂ ^ 2 := by
+    have h := mul_pos hr₂ (sub_pos.mpr hhi)
+    nlinarith
+  unfold staticUpperQ
+  exact add_lt_add_left (Real.sqrt_lt_sqrt hnonneg hlt') _
+
+/-- Entire open density interval at one fixed parameter triple gives
+distinct stationary positive wavenumbers and the global density-coercivity condition. -/
+theorem unit_static_family {rho : ℝ} (hlo : 3/4 < rho) (hhi : rho < 1) :
+    1 < staticUpperQ 1 1 1 rho ∧
+      frequency 1 1 1 rho (staticUpperQ 1 1 1 rho) = 0 ∧
+      3 < 4 * rho := by
+  obtain ⟨hq, hf⟩ := staticUpperQ_witness (k := 1) (beta := 1) (gamma := 1)
+    (show 0 < rho by linarith) (show 1 * rho < 1 by simpa using hhi)
+  exact ⟨by simpa using hq, hf, by linarith⟩
+
 end GC11Coercivity
 end ReyesMath
