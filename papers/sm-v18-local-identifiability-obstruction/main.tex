@@ -496,7 +496,20 @@ Even everywhere full-column rank fails for
 \(C^1\) map on \(\R^d\), by contrast, is globally invertible
 (Hadamard's theorem). A fixed constrained domain requires separate
 analysis; the historical optimizer varied only two coefficients,
-not all 31.
+not all 31. For that historical rectangle, let \(a=\alpha\),
+\(z=\alpha\epsilon\), \(t=a-z\), and
+\(h_i=\log(A_i/c-1)\) for the three fixed light numerators.
+The bounds \(0<h_3<h_1<h_2<40\) and \(h_1>20\) show
+that strictly unfloored rows form a prefix. Relative neighborhood
+injectivity holds exactly at \(a>0,\ a+t<h_2\). At \(a=0\) the
+whole epsilon segment is one fiber. When \(t<h_1,\ a+t\ge h_2\),
+the fiber is given by fixed \(t\) and
+\(\max(t,-t/4,h_2-t)\le a\le50\), with
+\(\epsilon=1-t/a\). The singleton at
+\((a,\epsilon)=(50,2-h_2/50)\) is isolated but not relatively
+locally injective. When \(t\ge h_1\), all light outputs are
+floored and the entire region has identical observations.
+The research ledger gives the threshold bounds and proofs.
 
 These extensions are analytical results and candidate Lean code in
 \texttt{GC26GlobalIdentifiability}; the new statements are not included
