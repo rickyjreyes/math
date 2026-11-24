@@ -1,0 +1,52 @@
+name: GC11 PVNP periodic solver bridge
+on:
+  pull_request:
+    paths:
+      - 'lean/lakefile.lean'
+      - 'lean/MathProofs/GC11PVNPBridge.lean'
+      - 'lean/GC11PVNPAudit.lean'
+      - '.github/workflows/lean-gc11-pvnp.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: gc11-pvnp-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  bridge:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: lean
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch pinned dependencies
+        run: |
+          lake update
+          lake exe cache get
+      - name: Build independent periodic bridge
+        run: lake build MathProofs.GC11PVNPBridge
+      - name: Audit verified dependency and bridge
+        run: |
+          set -o pipefail
+          lake env lean GC11PVNPAudit.lean 2>&1 | tee gc11-pvnp-audit.log
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          lines = Path('GC11PVNPAudit.lean').read_text().splitlines()
+          expected = [line.split()[-1] for line in lines if line.startswith('#print axioms ')]
+          text = Path('gc11-pvnp-audit.log').read_text()
+          allowed = {'propext', 'Classical.choice', 'Quot.sound'}
+          for name in expected:
+              m = re.search(r"'" + re.escape(name) + r"' depends on axioms: \[([^\]]*)\]", text)
+              if not m:
+                  raise SystemExit('Missing axiom audit: ' + name)
+              actual = {x.strip() for x in m.group(1).split(',') if x.strip()}
+              if actual - allowed:
+                  raise SystemExit(f'{name}: unexpected axioms {actual - allowed}')
+          print(f'PASS: {len(expected)} audited declarations')
+          PY
