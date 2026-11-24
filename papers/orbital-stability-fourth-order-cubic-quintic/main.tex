@@ -525,6 +525,68 @@ The full spectral and nonlinear classification, especially for
 excited states and degenerate profiles, remains unresolved.
 \par
 
+\subsection{A concrete non-minimizing vortex subclass (analytical)}
+For \(k=0\), fixed \(\beta,\gamma>0\), every mass \(m>0\) and integer
+\(|\ell|\ge2\), there exists a profile
+\(\phi_\ell(r,\theta)=e^{i\ell\theta}f(r)\) minimizing energy at mass
+\(m\) in its closed angular-equivariant subspace. To see attainment,
+annular trial functions and mass-preserving dilation give negative
+infimum. Bounded minimizing sequences converge weakly in \(H^2\)
+and strongly in \(L^4,L^6\): the radial amplitudes have bounded
+\(H^1\) norm, hence the radial decay estimate controls the tails,
+and local Rellich compactness controls balls.
+A weak limit of mass \(a<m\) has negative energy. Stretching it by
+\(u(x/\sqrt{m/a})\) increases mass to \(m\) and strictly decreases
+energy, contradicting the infimum. Thus mass is retained and the
+limit attains the restricted infimum. Averaging arbitrary test
+variations over the combined rotation and phase action extends the
+multiplier equation to the full \(H^2\) stationary PDE. Dilation
+stationarity and testing against the profile yield
+\(\omega m=3D+\gamma S/3>0\), where
+\(D=\|\Delta\phi_\ell\|_2^2\) and \(S=\|\phi_\ell\|_6^6\).
+
+For \(\ell\ge2\), set \(u_j=e^{ij\theta}f(r)\) with \(|j|\le\ell\),
+\(D_j=\|\Delta u_j\|_2^2\),
+\(A=2\pi\int_0^\infty |f'|^2\,dr/r\), and
+\(B=2\pi\int_0^\infty |f|^2\,dr/r^3\).
+Polar integration by parts gives
+\[
+D_\ell-D_j=(\ell^2-j^2)[2A+(\ell^2+j^2-4)B].
+\]
+The identity follows first for smooth compactly supported equivariant
+profiles (the radial factor vanishes to order \(\ell\) at zero), and
+then by equivariant density, the resulting kinetic bound on the
+mode replacement map, and the weighted Hardy inequality \(B\le A\).
+For a nonzero finite-mass profile \(A>0\). Taking \(j=0\) preserves
+mass and nonlinear integrals and strictly decreases energy; the
+standing wave is not an unrestricted constrained minimizer.
+
+On the mass-tangent real \(4\ell\)-dimensional subspace
+\(h=f(r)\sum_{j=-\ell}^{\ell-1}c_j e^{ij\theta}\), angular orthogonality
+and the tested stationary equation give the Hessian of
+\((H+\omega M)/2\) as
+\[
+\sum_{j=-\ell}^{\ell-1}|c_j|^2
+       (D_j-D_\ell-\beta Q+2\gamma S),
+\qquad Q=\|\phi_\ell\|_4^4 .
+\]
+Indeed all shifted frequencies \(j-\ell\) are negative, so the angular
+average of the square of the real part is half the sum of squared
+coefficient moduli. The virial estimate
+\(S\le \sqrt{3\beta^2/(32\gamma)}\,mQ/4\)
+makes every coefficient strictly negative when
+\(m<8\sqrt{2/(3\gamma)}\). Conjugation treats negative \(\ell\).
+Thus the constrained Morse index is at least \(4|\ell|\) in that
+mass range. Exact symmetry kernel directions can be projected out
+without changing the negative dimension. The result proves constrained
+saddles, not nonlinear orbital instability. Stability of the full
+restricted minimizing set holds only relative to equivariant
+perturbations by conservation, compactness and mass normalization.
+The angular-pair spectral calculation and unrestricted nonlinear
+escape remain open. Lean scalar estimates are pending kernel checks;
+the continuum vortex theorem itself has not yet been formalized.
+\par
+
 \section{Interpretation and antecedents}
 The conclusion is \emph{Lyapunov stability of a set}. It does not imply
 convergence as \(|t|\to\infty\), uniqueness of the minimizing profile,
