@@ -8,6 +8,8 @@ This page is a **reading view of [problem_registry.json](problem_registry.json)*
 
 **Dated correspondence correction, November 2, 2026:** GC08's partial status is retained because its original phase-current operator has an explicit analytical nonuniqueness counterexample. The separate formally proved M6B Laplacian-quotient counterexample is **not** a kernel proof of GC08's exact operator. No original statement or machine status has changed. [Detailed source audit](../docs/NEGATIVE_RESULT_SCOPE_AUDIT_2026-11-02.md).
 
+**GC08 update, November 24, 2026:** [Cartesian jet classification](../docs/GC08_CARTESIAN_CLASSIFICATION_2026-11-24.md) records the analytical normal form and the locally verified seven-module, 24-root Lean package (standard axioms only, commit `4d05257`). Full invariant classification and field correspondence remain partially formalized; no status promotion. [Issue #102](https://github.com/rickyjreyes/math/issues/102).
+
 ## At a glance
 
 | Registry outcome | Questions | What it means |
