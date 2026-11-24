@@ -65,3 +65,6 @@ elab "#audit_deps " root:ident : command => do
 #audit_deps ReyesMath.GC03Energy.integrated_absorption
 #audit_deps ReyesMath.GC03Energy.energy_coercivity
 #audit_deps ReyesMath.GC03Energy.cubic_quintic_d2_p2
+#audit_deps ReyesMath.GC03Energy.supercritical_scaling_iff
+#audit_deps ReyesMath.GC03Energy.singular_exponent_window_iff
+#audit_deps ReyesMath.GC03Energy.trajectory_kinetic_bound

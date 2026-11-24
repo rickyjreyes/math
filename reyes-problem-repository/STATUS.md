@@ -57,7 +57,7 @@ This page is a **reading view of [problem_registry.json](problem_registry.json)*
 |:--|:--|:--|:--|--:|
 | GC01 | [Universal orbital stability](FORMAL_PROBLEMS.md#gc01-universal-orbital-stability) · [Dossier](./flagship/GC01.md) · [Issue #54](https://github.com/rickyjreyes/math/issues/54) | Candidate · formal · initial review | ✅ Minimizer-set orbital stability, narrower scope | 9/10 |
 | GC02 | [Long-time asymptotic stability](FORMAL_PROBLEMS.md#gc02-long-time-asymptotic-stability) | Candidate · formal | Related source links; scope unaudited | 9/10 |
-| GC03 | [Global existence versus blow-up](FORMAL_PROBLEMS.md#gc03-global-existence-versus-blow-up) | Candidate · formal | ✅ Global H² flow for one equation; analytical advances [#100](https://github.com/rickyjreyes/math/issues/100), pending review | 8/10 |
+| GC03 | [Global existence versus blow-up](FORMAL_PROBLEMS.md#gc03-global-existence-versus-blow-up) | Candidate · formal | ✅ Global H² flow for one equation; analytical weak existence and real-power norm inflation [#100](https://github.com/rickyjreyes/math/issues/100), pending review | 8/10 |
 | GC04 | [Stable multi-wave interactions](FORMAL_PROBLEMS.md#gc04-stable-multi-wave-interactions) | Candidate · formal | No existing proof mapped | 8/10 |
 | GC05 | [Breather existence and classification](FORMAL_PROBLEMS.md#gc05-breather-existence-and-classification) | Candidate · formal | No existing proof mapped | 9/10 |
 | GC51 | [Soliton resolution and asymptotic completeness](FORMAL_PROBLEMS.md#gc51-soliton-resolution-and-asymptotic-completeness) | Candidate · formal | Related source links; scope unaudited | 9/10 |

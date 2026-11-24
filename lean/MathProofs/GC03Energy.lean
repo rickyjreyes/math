@@ -137,9 +137,69 @@ theorem cubic_quintic_d2_p2 {β γ : ℝ} (hγ : 0 < γ) (u₀ : H2 2) :
     ∃! u : ℝ → H2 2, IsSolution β γ 0 u ∧ u 0 = u₀ :=
   global_wellposed hγ u₀
 
+
+/-- Exact supercritical scaling inequality, with dimension and order realified. -/
+theorem supercritical_scaling_iff {d p s : ℝ} (hs : 1 < s) :
+    p < d / 2 - 2 * p / (s - 1) ↔
+      4 * p < (d - 2 * p) * (s - 1) := by
+  have h : 0 < s - 1 := sub_pos.mpr hs
+  constructor
+  · intro hp
+    have h' : 2 * p / (s - 1) < d / 2 - p := by linarith
+    have h'' := (div_lt_iff₀ h).mp h'
+    nlinarith only [h'']
+  · intro hp
+    have h' : 2 * p < (d / 2 - p) * (s - 1) := by
+      nlinarith only [hp]
+    have h'' := (div_lt_iff₀ h).mpr h'
+    linarith
+
+/-- The interval of singular exponents in the analytic Sobolev witness is
+nonempty exactly above the critical scaling boundary. This is scalar
+arithmetic, not a formal proof of the singular function's Sobolev membership. -/
+theorem singular_exponent_window_iff {d p s : ℝ} (hs : 1 < s) :
+    (∃ ell : ℝ, d / (s + 1) ≤ ell ∧ ell < d / 2 - p) ↔
+      4 * p < (d - 2 * p) * (s - 1) := by
+  have h : 0 < s + 1 := by linarith
+  constructor
+  · rintro ⟨ell, hlo, hhi⟩
+    have h' := (div_lt_iff₀ h).mp (lt_of_le_of_lt hlo hhi)
+    nlinarith only [h']
+  · intro hp
+    have h' : d < (d / 2 - p) * (s + 1) := by
+      nlinarith only [hp]
+    exact ⟨d / (s + 1), le_rfl, (div_lt_iff₀ h).mpr h'⟩
+
+/-- Uniform kinetic bound for any trajectory satisfying the finite-energy
+and mass/energy bounds, with no assumption of a continuation theorem. -/
+theorem trajectory_kinetic_bound {d : ℕ} (p : ℕ) {β γ r s : ℝ}
+    (hβ : 0 < β) (hγ : 0 < γ) (hr : 1 < r) (hrs : r < s) :
+    ∃ C : ℝ, 0 ≤ C ∧
+      ∀ {T : Type} (u : T → L2 d) (M E : ℝ),
+        (∀ t, FiniteEnergy p r s (u t)) →
+        (∀ t, (∫ x, ‖u t x‖ ^ (2 : ℕ)) ≤ M) →
+        (∀ t, energy p β γ r s (u t) ≤ E) →
+        ∀ t, kinetic p (u t) ≤ 2 * (E + C * M) := by
+  obtain ⟨C, hC, h⟩ := energy_coercivity (d := d) p hβ hγ hr hrs
+  refine ⟨C, hC, ?_⟩
+  intro T u M E hf hm he t
+  have hc := h (u t) (hf t)
+  have hmass := mul_le_mul_of_nonneg_left (hm t) hC
+  have hpos : 0 ≤ moment (s + 1) (u t) := by
+    unfold moment
+    exact integral_nonneg (fun x => Real.rpow_nonneg (norm_nonneg (u t x)) _)
+  have hcoef : 0 ≤ γ / (2 * (s + 1)) := by
+    have : 0 < s + 1 := by linarith
+    positivity
+  have hterm := mul_nonneg hcoef hpos
+  linarith only [hc, hmass, he t, hterm]
+
 end ReyesMath.GC03Energy
 
 #print axioms ReyesMath.GC03Energy.power_absorption
 #print axioms ReyesMath.GC03Energy.integrated_absorption
 #print axioms ReyesMath.GC03Energy.energy_coercivity
 #print axioms ReyesMath.GC03Energy.cubic_quintic_d2_p2
+#print axioms ReyesMath.GC03Energy.supercritical_scaling_iff
+#print axioms ReyesMath.GC03Energy.singular_exponent_window_iff
+#print axioms ReyesMath.GC03Energy.trajectory_kinetic_bound

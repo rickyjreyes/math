@@ -63,7 +63,7 @@
       "flagship": false,
       "dossier": null,
       "claimed_kernel_verified_resolution": false,
-      "note": "2026-11-24: analytical subcritical global flow proof, critical p=1 prior-art match, supercritical admissibility obstruction and polynomial norm inflation; higher-order critical strong theory and nonpolynomial supercritical cases unresolved. Issue #100; draft manuscript papers/gc03-polyharmonic-mixed-power-flow/manuscript.md; candidate Lean coercivity only, unverified. No status promotion.",
+      "note": "2026-11-24: analytical all-real-power subcritical global strong flow, exact p=1 critical prior art, all-regime global weak finite-energy existence, and all-real-power supercritical norm inflation in the energy-admissible class. Higher-order critical strong global theory and individual-data supercritical dynamics unresolved. Issue #100/PR #101; manuscript and ledger; candidate Lean coercivity/scalar boundary/kinetic bound pending verification. No status promotion.",
       "file_path": "problems/01-wave-dynamics/GC03.md",
       "research_area": "Nonlinear wave dynamics",
       "source_class": "original_formal_statement",
