@@ -722,6 +722,53 @@ masses, finite-profile criterion, and counterexample remain analytical
 and are not certified by these declarations.
 \end{remark}
 
+
+\subsection{Virial-ratio improvement including the endpoint (candidate)}
+
+\begin{theorem}[Larger sufficient confinement interval]
+Let $\beta,\gamma>0$, $m>0$. If $k^2m\le 3\beta/\gamma$, then
+strict binding holds for every interior split of $m$, all minimizing
+sequences are subsequentially compact modulo translations, and $I(m)$
+is attained. In particular $k=0$ admits every positive mass.
+\end{theorem}
+
+\begin{proof}
+For $k^2m<3\beta/\gamma$, put $r=3\beta/(4\gamma)$,
+$d=(r-k^2m/4)/(2+\gamma m^2/48)$, $c=r-d$ and
+$B=\beta/4-\gamma c/3=\gamma d/3$. Then $0<c<r$, $B>0$ and
+$k^2m/4+B m^2/16<c$. For a dilation-stationary field $W$ of
+mass $a\le m$ set $x=\sqrt{aD}$. The established bounds are
+$Q\le ax/4$, $S\le xQ/4$, $K\le x$. If $S>cQ$, then $x>4c$,
+and the virial identity gives $D\le k^2x+BQ$. Consequently
+$x^2\le(k^2a+B a^2/4)x$, contradicting
+$x/4\le k^2m/4+B m^2/16<c$. Hence $S\le cQ$ uniformly.
+For $t>1$ and $\gamma(t+1)c/3<\beta/2$, let
+$h=1-2\gamma(t+1)c/(3\beta)>0$. Amplitude scaling and
+$E(W)\ge-\beta Q/2$ give
+$E(\sqrt{t}W)/t\le[1+(t-1)h]E(W)$.
+After dilation adjustment and passage to the infimum, negativity
+implies strict decrease of $I(a)/a$ for such mass increments.
+On any interval $[a,b]\subset(0,m]$, increments of size at most
+$(r/c-1)a$ obey this condition, so a finite chain gives strict decrease
+throughout the interval.
+
+For $k^2b=3\beta/\gamma$, choose
+$q_n=b-(b-a)/(2(n+1))$ and mass-$q_n$ near-minimizers with error
+$1/(n+1)$. Their energies are uniformly bounded above by $1$;
+coercivity gives bounded $H^2$ norms. Correct their masses to $b$
+using the existing mass-correction lemma: the energy error tends to
+zero, so $I(b)/b\le I(a)/a$. Starting instead at $(a+b)/2$ and
+using strict decrease from $a$ to this midpoint gives strictness
+at the endpoint. Multiplying the strict comparisons by the two
+split masses and adding proves strict binding. The established
+whole-space compactness theorem under all-split binding gives the
+remaining conclusions.
+\end{proof}
+
+The corresponding candidate module is \texttt{GC06VirialBinding.lean};
+its exact roots are included in the focused build and axiom gate.
+No full parameter classification is claimed.
+
 \begin{thebibliography}{9}
 \bibitem{brezislieb}
 H.~Brézis and E.~Lieb,
