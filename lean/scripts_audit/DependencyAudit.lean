@@ -1,5 +1,6 @@
 import MathProofs.D4FrozenWholeSpace
 import MathProofs.GC16ZeroShell
+import MathProofs.GC06NearZeroShell
 
 /-!
 Dependency audit for the whole-space confinement chain (Task 2).
@@ -65,3 +66,14 @@ elab "#audit_deps " root:ident : command => do
 #audit_deps ReyesMath.GC16ZeroShell.compactness_all_mass
 #audit_deps ReyesMath.GC16ZeroShell.exists_minimizer_all_mass
 #audit_deps ReyesMath.GC16ZeroShell.orbital_stability_all_mass
+#audit_deps ReyesMath.GC06ShellBinding.mB_lt_mR
+#audit_deps ReyesMath.GC06ShellBinding.gap_refined
+#audit_deps ReyesMath.GC06ShellBinding.strict_binding_refined
+#audit_deps ReyesMath.GC06ShellBinding.compactness_refined
+#audit_deps ReyesMath.GC06ShellBinding.exists_minimizer_refined
+#audit_deps ReyesMath.GC06NearZeroShell.exists_stretch
+#audit_deps ReyesMath.GC06NearZeroShell.seed_upper
+#audit_deps ReyesMath.GC06NearZeroShell.kinetic_gap
+#audit_deps ReyesMath.GC06NearZeroShell.strict_binding_near_zero
+#audit_deps ReyesMath.GC06NearZeroShell.compactness_near_zero
+#audit_deps ReyesMath.GC06NearZeroShell.exists_minimizer_near_zero

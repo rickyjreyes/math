@@ -1,0 +1,28 @@
+import MathProofs.GC06VirialBinding
+
+#print axioms ReyesMath.GC06ShellBinding.mB_lt_mR
+#print axioms ReyesMath.GC06ShellBinding.gap_refined
+#print axioms ReyesMath.GC06ShellBinding.strict_binding_refined
+#print axioms ReyesMath.GC06ShellBinding.compactness_refined
+#print axioms ReyesMath.GC06ShellBinding.exists_minimizer_refined
+#print axioms ReyesMath.GC06NearZeroShell.exists_stretch
+#print axioms ReyesMath.GC06NearZeroShell.seed_upper
+#print axioms ReyesMath.GC06NearZeroShell.kinetic_gap
+#print axioms ReyesMath.GC06NearZeroShell.strict_binding_near_zero
+#print axioms ReyesMath.GC06NearZeroShell.compactness_near_zero
+#print axioms ReyesMath.GC06NearZeroShell.exists_minimizer_near_zero
+
+#print axioms ReyesMath.GC06VirialBinding.stationary_ratio
+#print axioms ReyesMath.GC06VirialBinding.exists_ratio
+#print axioms ReyesMath.GC06VirialBinding.local_comparison
+#print axioms ReyesMath.GC06VirialBinding.chain_strict
+#print axioms ReyesMath.GC06VirialBinding.energy_per_mass_strict
+#print axioms ReyesMath.GC06VirialBinding.strict_binding_virial
+#print axioms ReyesMath.GC06VirialBinding.compactness_virial
+#print axioms ReyesMath.GC06VirialBinding.exists_minimizer_virial
+#print axioms ReyesMath.GC06VirialBinding.exists_minimizer_zero_all_mass
+#print axioms ReyesMath.GC06VirialBinding.energy_per_mass_le_endpoint
+#print axioms ReyesMath.GC06VirialBinding.energy_per_mass_strict_closed
+#print axioms ReyesMath.GC06VirialBinding.strict_binding_closed
+#print axioms ReyesMath.GC06VirialBinding.compactness_closed
+#print axioms ReyesMath.GC06VirialBinding.exists_minimizer_closed

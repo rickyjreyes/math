@@ -123,7 +123,7 @@
       "flagship": true,
       "dossier": "flagship/GC06.md",
       "claimed_kernel_verified_resolution": false,
-      "note": "Initial references and mathematical objections recorded in dossier; still requires full audit.",
+      "note": "2026-11-24: local Lean 4.23.0 build and all 25 GC06 axiom roots passed on c3d58d5, establishing the sufficient closed interval k²m ≤ 3β/γ (including k=0 all masses). Analytical unbounded-mass and finite-cluster results await formalization. Full classification and independent correspondence review remain open.",
       "discussion_issue": "https://github.com/rickyjreyes/math/issues/55",
       "file_path": "problems/02-confinement-curvature/GC06.md",
       "research_area": "Confinement and curvature geometry",
