@@ -440,4 +440,68 @@ theorem observed_unbounded_coordinate_fiber (p : Params) (R : ℝ) :
     observed_update_quarkAmp p (R + 1)⟩
   simp
 
+/-- Historical heavy rows remain constant for all real alpha and epsilon,
+not only at the previously frozen epsilon=5. -/
+theorem historical_heavy_light_floor (a e : ℝ) (i : Fin 3) :
+    light (frozen a e) (heavyN i) = (1e-12 : ℝ) := by
+  have hn : heavyN i ≠ 3 := by fin_cases i <;> decide
+  rw [light, historical_lightRaw, historicalNumerator, if_neg hn, mul_one]
+  apply max_eq_right
+  have h := mul_neg_of_neg_of_pos (frozenLightBase_heavy_neg i)
+    (show 0 < (1 + Real.exp (a * ((heavyN i : ℝ) - e)))⁻¹ by positivity)
+  linarith
+
+theorem historical_heavy_constant (a e b f : ℝ) (i : Fin 3) :
+    heavy (frozen a e) (heavyN i) = heavy (frozen b f) (heavyN i) := by
+  rw [heavy, heavy, historical_heavy_light_floor, historical_heavy_light_floor]
+  fin_cases i <;> norm_num [heavyN, heavyCorrection, frozen, Matrix.cons_val]
+
+/-- On the historical slice the complete eleven-output fiber is exactly
+the fiber of the three light rows. -/
+theorem historical_equal_iff_light (a e b f : ℝ) :
+    observed (frozen a e) = observed (frozen b f) ↔
+      ∀ i : Fin 3, light (frozen a e) (i.val + 1) =
+        light (frozen b f) (i.val + 1) := by
+  constructor
+  · intro h i
+    fin_cases i
+    · exact congrFun h (0 : Fin 11)
+    · exact congrFun h (1 : Fin 11)
+    · exact congrFun h (2 : Fin 11)
+  · intro h
+    funext i
+    fin_cases i
+    · exact h 0
+    · exact h 1
+    · exact h 2
+    · norm_num [observed, middle, middleRaw, frozen, Matrix.cons_val]
+    · norm_num [observed, middle, middleRaw, frozen, Matrix.cons_val]
+    · norm_num [observed, middle, middleRaw, frozen, Matrix.cons_val]
+    · norm_num [observed, middle, middleRaw, frozen, Matrix.cons_val]
+    · norm_num [observed, middle, middleRaw, frozen, Matrix.cons_val]
+    · exact historical_heavy_constant a e b f 0
+    · exact historical_heavy_constant a e b f 1
+    · exact historical_heavy_constant a e b f 2
+
+/-- All actual outputs obey the positive source floor. -/
+theorem observed_floor_le (p : Params) (i : Fin 11) :
+    (1e-12 : ℝ) ≤ observed p i := by
+  fin_cases i <;> exact le_max_right _ _
+
+/-- A square real observation block with nonzero determinant attains every
+right hand side. Used in the analytical full-range proof. -/
+theorem square_system_solvable {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
+    (h : A.det ≠ 0) (y : Fin n → ℝ) :
+    ∃ x : Fin n → ℝ, A.mulVec x = y := by
+  have hu : IsUnit A := (Matrix.isUnit_iff_isUnit_det A).mpr
+    (isUnit_iff_ne_zero.mpr h)
+  have hr := Matrix.rank_of_isUnit A hu
+  have hs : Function.Surjective A.mulVecLin := by
+    apply LinearMap.range_eq_top.mp
+    apply Submodule.eq_top_of_finrank_eq
+    change Module.finrank ℝ (LinearMap.range A.mulVecLin) =
+      Module.finrank ℝ (Fin n → ℝ)
+    simpa [Matrix.rank] using hr
+  exact hs y
+
 end ReyesMath.V18Forward
