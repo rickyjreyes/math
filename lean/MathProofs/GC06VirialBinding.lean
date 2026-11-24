@@ -313,7 +313,7 @@ theorem energy_per_mass_le_endpoint (hβ : 0 < β) (hγ : 0 < γ) {a b : ℝ}
       exact (mul_lt_mul_of_pos_left (hqb n) hkpos).trans_le hk
   have hlimq : Tendsto q atTop (𝓝 b) := by
     have hh := (tendsto_const_nhds (x := b)).sub (he.const_mul ((b - a) / 2))
-    simpa [q] using hh
+    simpa [q, e] using hh
   have htrial : ∀ n, ∃ U : H2 2, M U = q n ∧
       energy β γ k U < Imin β γ k (q n) + e n := by
     intro n
