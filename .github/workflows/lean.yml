@@ -33,6 +33,7 @@ jobs:
           set -o pipefail
           lake env lean F09Audit.lean 2>&1 | tee /tmp/f09-audit.txt
           grep -q "observed_all_points_nonisolated" /tmp/f09-audit.txt
+          grep -q "historical_complete_classification.*depends on axioms" /tmp/f09-audit.txt
           grep -o 'axioms: \[[^]]*\]' /tmp/f09-audit.txt | sed 's/axioms: \[//; s/\]//' \
             | tr ',' '\n' | sed 's/ //g' | sort -u > /tmp/f09-axioms.txt
           if grep -vxE 'propext|Classical.choice|Quot.sound' /tmp/f09-axioms.txt; then exit 1; fi
