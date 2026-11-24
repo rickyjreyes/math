@@ -173,3 +173,4 @@ import MathProofs.D4FrozenWholeSpace
 import MathProofs.GC16ZeroShell
 import MathProofs.GC06ShellBinding
 import MathProofs.GC06NearZeroShell
+import MathProofs.GC06VirialBinding
