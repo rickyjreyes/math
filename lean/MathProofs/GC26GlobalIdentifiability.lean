@@ -357,4 +357,87 @@ theorem canonicalInvisible_zero_coords (p : Params) :
       canonicalInvisible p 27 = 0 := by
   norm_num [canonicalInvisible, invisibleFamily, shiftHiggs, Function.update]
 
+/-! Exact historical thresholds. -/
+def historicalThreshold (n : ℕ) : ℝ :=
+  Real.log (historicalNumerator n / (1e-12 : ℝ) - 1)
+
+theorem historical_numerator_bounds :
+    (0.4 : ℝ) < historicalNumerator 1 ∧ historicalNumerator 1 < 1 ∧
+    2 < historicalNumerator 2 ∧ historicalNumerator 2 < 12 ∧
+    (1e-12 : ℝ) < historicalNumerator 3 ∧ historicalNumerator 3 < 0.1 := by
+  have h1 := frozenLightBase_one
+  have h2 := frozenLightBase_two
+  have h3 := frozenLightBase_three
+  have u1 := frozenLightBase_one_upper
+  have u2 := frozenLightBase_two_upper
+  have u3 := frozenLightBase_three_upper
+  norm_num [historicalNumerator]
+  exact ⟨h1, u1, h2, u2, by linarith, by linarith⟩
+
+private theorem exp_twenty_lt : Real.exp 20 < (3 : ℝ)^20 := by
+  have h : Real.exp 1 < 3 := lt_trans Real.exp_one_lt_d9 (by norm_num)
+  calc
+    Real.exp 20 = Real.exp 1 ^ (20 : ℕ) := by
+      rw [← Real.exp_nat_mul] <;> norm_num
+    _ < _ := pow_lt_pow_left₀ h (Real.exp_pos _).le (by decide)
+
+private theorem exp_forty_gt : (2.5 : ℝ)^40 < Real.exp 40 := by
+  have h : (2.5 : ℝ) < Real.exp 1 := lt_trans (by norm_num) Real.exp_one_gt_d9
+  calc
+    (2.5 : ℝ)^40 < Real.exp 1 ^ (40 : ℕ) :=
+      pow_lt_pow_left₀ h (by norm_num) (by decide)
+    _ = Real.exp 40 := by rw [← Real.exp_nat_mul] <;> norm_num
+
+theorem historical_threshold_bounds :
+    0 < historicalThreshold 3 ∧ historicalThreshold 3 < historicalThreshold 1 ∧
+    historicalThreshold 1 < historicalThreshold 2 ∧
+    20 < historicalThreshold 1 ∧ historicalThreshold 2 < 40 := by
+  obtain ⟨h1,u1,h2,u2,h3,u3⟩ := historical_numerator_bounds
+  have h3' : 0.00002 < historicalNumerator 3 := by
+    have h := frozenLightBase_three
+    norm_num [historicalNumerator]
+    linarith
+  have q1 : 0 < historicalNumerator 1 / (1e-12 : ℝ) - 1 := by linarith
+  have q2 : 0 < historicalNumerator 2 / (1e-12 : ℝ) - 1 := by linarith
+  have q3 : 1 < historicalNumerator 3 / (1e-12 : ℝ) - 1 := by linarith
+  unfold historicalThreshold
+  refine ⟨Real.log_pos q3, Real.log_lt_log (by linarith) (by linarith),
+    Real.log_lt_log q1 (by linarith), ?_, ?_⟩
+  · apply (Real.lt_log_iff_exp_lt q1).2
+    have h := exp_twenty_lt
+    norm_num at h
+    linarith
+  · apply (Real.log_lt_iff_lt_exp q2).2
+    have h := exp_forty_gt
+    norm_num at h
+    linarith
+
+/-- The exact (unrounded) threshold test, valid for any historical row
+whose fixed numerator exceeds twice the floor. -/
+theorem historical_light_active_iff (a e : ℝ) (n : ℕ)
+    (hA : (2e-12 : ℝ) < historicalNumerator n) :
+    (1e-12 : ℝ) < light (frozen a e) n ↔
+      a * ((n : ℝ) - e) < historicalThreshold n := by
+  have hd : 0 < 1 + Real.exp (a * ((n : ℝ) - e)) := by positivity
+  have hq : 0 < historicalNumerator n / (1e-12 : ℝ) - 1 := by linarith
+  rw [light, historical_lightRaw, ← div_eq_mul_inv, lt_max_iff, or_iff_left (lt_irrefl _),
+    historicalThreshold, Real.lt_log_iff_exp_lt hq, lt_div_iff₀ hd]
+  constructor <;> intro h <;> linarith
+
+/-- Exact reconstruction from the canonical quotient representative
+and the three eliminated coordinates. -/
+theorem invisible_reconstruct (p : Params) :
+    invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) = p := by
+  funext i
+  fin_cases i <;>
+    norm_num [canonicalInvisible, invisibleFamily, shiftHiggs, Function.update] <;> ring
+
+/-- An arbitrarily large change in an unused coordinate is completely
+invisible to the actual spectral observations. -/
+theorem observed_unbounded_coordinate_fiber (p : Params) (R : ℝ) :
+    ∃ q : Params, R < q 16 ∧ observed q = observed p := by
+  refine ⟨Function.update p (16 : Fin 31) (R + 1), ?_,
+    observed_update_quarkAmp p (R + 1)⟩
+  simp
+
 end ReyesMath.V18Forward
