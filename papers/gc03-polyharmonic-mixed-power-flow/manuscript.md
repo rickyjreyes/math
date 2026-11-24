@@ -694,3 +694,93 @@ The renewed search identified Tarek Saanouni, "A note on the critical nonlinear 
 The remaining critical large-data obligations are now (i) obtain an actual minimal strong pure bad element via a homogeneous nonlinear profile decomposition and stability, (ii) exclude finite-time collapse, frequency cascade and/or prove sufficient low-frequency mass tightness, and (iii) apply the interaction rigidity theorem once inhomogeneous compactness is justified. The previous background-subtracted weak profile is not such a minimal strong element. For the mixed endpoint theorem it remains sufficient to control the pure flow at the defect energy. No new unconditional parameter slice is claimed in this revision. Individual-data supercritical strong classification also remains open beyond the weak–strong statement above.
 
 Verification: do not add speculative Lean declarations just to increase counts. The twelve existing candidate GC03 roots have not received a successful kernel build or transitive audit in this record. The previous head's jobs remained queued at inspection. The full Lean workflow already includes this module and its dependency roots. A focused GC03 verification entry point is supplied separately, with explicit root and standard-axiom checking, to avoid depending exclusively on the entire portfolio build. Neither a workflow definition nor an audit script constitutes a successful run.
+
+
+## 30. No-waste Duhamel and negative Sobolev regularity for general integer order
+
+All results in this section are analytical, pending independent review and Lean formalization. Let p>=1 be an integer, d>2p, s=1+4p/(d-2p), b=s+1, a_*=d/2-p, and gamma>0. Write A=(-Delta)^p, U(t)=exp(-itA), F(z)=gamma |z|^(s-1)z, and P(u)=||D^p u||_2²/2+gamma||u||_b^b/b. A normalized compact orbit means that there exist scales lambda(t)>0 and centers x(t) such that
+K=closure_{dot H^p}{ lambda(t)^(-a_*) u(t,x(t)+ · /lambda(t)): t in I }
+is compact. The symbol lambda denotes frequency scale here; physical radius is of order 1/lambda. This is precisely the homogeneous compactness assumption, not an assertion of L² compactness. The results below do not construct a minimal element.
+
+### 30.1 No-waste at both infinite endpoints
+
+Suppose u is a global strong homogeneous pure solution, continuous into dot H^p and satisfying the Duhamel identity there on compact time intervals, with compact normalized orbit. Then
+U(-T)u(T) ⇀ 0 in dot H^p as T→+∞ and as T→-∞.
+
+Proof. It suffices to test against phi with smooth compact Fourier support in an annulus away from zero; these are dense in dot H^p. The homogeneous norm of u(T) is uniformly bounded by compactness and scaling. For any tolerance epsilon>0, compactness of K gives uniform smallness of its dot H^p Fourier tails near zero and infinity, using a finite net and strong convergence of frequency cutoffs. If lambda(T) is sufficiently small or sufficiently large, the Fourier mass of D^p u(T) on the fixed test annulus is therefore smaller than epsilon, independently of translation. Since U(-T) is unitary and preserves that annulus, the pairing with phi is small.
+
+For the remaining times lambda(T) lies in a compact positive interval. Approximate the normalized profiles by finitely many Schwartz functions in dot H^p to within epsilon, possible by density and compactness. Rescale and translate each approximating function back to physical coordinates. Its L¹ norm is bounded uniformly in the bounded scale interval and is unaffected by translation. For each approximation g_T,
+|<U(-T)g_T,phi>_{dot H^p}|=|<g_T,U(T)D^(2p)phi>|
+ <= C |T|^(-d/(2p)) ||g_T||_1 ||D^(2p)phi||_1.
+Use the polyharmonic dispersive estimate, with either time sign. The error in the pairing is at most epsilon||phi||_{dot H^p}. First send |T|→∞ and then epsilon→0. This proves the assertion, without a lower bound on lambda or any condition on the center's motion.
+
+Consequently the Duhamel identity at each fixed t0 has both one-sided no-waste representations
+u(t0)= weak-lim_{T→+∞} i integral_(t0)^T U(t0-t) F(u(t)) dt,
+u(t0)= weak-lim_{S→-∞} (-i) integral_S^(t0) U(t0-t) F(u(t)) dt,
+in dot H^p. The signs follow from i u_t=A u+F(u); they do not affect the subsequent absolute pairing estimate. These formulas are not asserted for general bounded homogeneous trajectories without compactness.
+
+### 30.2 An exact sufficient integrability condition for negative regularity
+
+**Theorem 30.2.** Under the assumptions of §30.1, suppose that for some 1<=q<2 the nonlinearity obeys
+sup_t ||F(u(t))||_q <= B_F,
+and put a=d(1/q-1/2). If a>2p, then
+sup_t ||D^(-epsilon)u(t)||_2 < infinity
+for every 0<epsilon<a-2p. In particular u has finite mass, uniformly tight at low frequencies, and is strongly continuous into H^p.
+
+Proof. Let P_N be real smooth annular Fourier multipliers, N dyadic, with a bounded-overlap partition of unity away from zero and uniform cutoff derivative bounds by scaling. Each P_N maps dot H^p boundedly into L². Apply P_N to the two weak Duhamel representations and pair them in L², using successive weak limits. At t0=0 for convenience, the squared norm is bounded by the limsup of the integral over the forward/past quadrant of
+|<P_N F(u(t)), U(t-t') P_N F(u(t'))>_{L²}|, t>=0>=t'.
+The formula on finite rectangles is justified by the localized Duhamel identity, since P_N maps L^q into L² uniformly for fixed N. Measurability follows from the space-time representative of u and the finite-q integrability hypothesis. There are two bounds for this integrand:
+C B_F² N^(2a), by the L^q-to-L² Bernstein estimate and unitarity;
+C B_F² |t-t'|^(-a/p), by interpolation of the L¹-to-L∞ dispersive bound and L² unitarity, with smooth annular cutoffs uniformly L^q bounded.
+Equivalently use the L^q-to-L^(q') bound on U(t-t')P_N². Both estimates include q=1 by Young's inequality and the L¹-to-L∞ dispersive estimate. Absolute integration of their minimum on the quadrant gives
+||P_N u(0)||_2²
+ <= C B_F² integral_0^∞ R min(N^(2a),R^(-a/p)) dR
+ <= C_(a,p) B_F² N^(2a-4p).
+The second integral converges because a/p>2; the crossover is R=N^(-2p). This absolute bound also justifies taking the two successive weak limits without exchanging an uncontrolled pair of limits. By time translation the result holds uniformly at every t0.
+
+For N<=1 the bound on the L² norm is C B_F N^(a-2p); the squared dyadic sum after multiplying by N^(-epsilon) is finite for epsilon<a-2p. For N>1 the sum is controlled by the uniform homogeneous H^p norm, since N^(-2epsilon)<=N^(2p). Littlewood-Paley equivalence in L² then gives the stated homogeneous negative norm, using the canonical dot H^p representative in L^b (no polynomial component). In particular
+integral_(|xi|<=delta)|uhat(t,xi)|² dxi <= delta^(2epsilon) ||D^(-epsilon)u(t)||_2²
+uniformly in t. Interpolation between the negative norm bound and strong dot H^p continuity proves strong L² continuity; for a difference v use
+||v||_2 <= ||D^(-epsilon)v||_2^(p/(p+epsilon)) ||D^p v||_2^(epsilon/(p+epsilon)).
+Thus u is strongly H^p-continuous, and the mass and energy conservation arguments of the local critical theory apply. QED.
+
+A sufficient condition expressed only on u is a uniform L^ell bound with
+s<=ell<2ds/(d+4p).
+Set q=ell/s; the upper restriction is exactly a>2p and the lower is q>=1. This is an explicit integrability improvement that would upgrade a homogeneous compact critical element to finite mass. It has not been proved automatically for all such elements. The interval is nonempty precisely when d>4p. For d<=4p this particular estimate cannot obtain a>2p from any q>=1; the argument does not prove that negative regularity is false there. At d=4p and q=1 the displayed global dispersive integral has a logarithmically divergent tail. Even improved annular time decay by stationary phase would not produce a positive low-frequency power from the same scaling bound at d=4p.
+
+### 30.3 Finite mass supplies the required integrability for d>4p
+
+Suppose the global normalized-compact trajectory in §30.1 already belongs to C_t H^p, with conserved mass M and bounded positive pure energy. Then it is uniformly L² and L^b bounded. If s>=2 choose q=1, since 2<=s<b gives ||F(u)||_1=gamma||u||_s^s bounded by interpolation. Here a=d/2, so a>2p exactly for d>4p. If 1<s<2 choose q=2/s in (1,2), since ||F(u)||_(2/s)=gamma||u||_2^s. Then
+a=d(s-1)/2=2pd/(d-2p)>2p.
+Thus, in every d>4p, Theorem 30.2 applies to every global finite-mass normalized-compact pure strong solution. The admissible negative exponent can be any
+0<epsilon<d/2-2p for 4p<d<=6p,
+0<epsilon<4p²/(d-2p) for d>6p.
+The two expressions agree at d=6p. This result uses no additional spatial integrability hypothesis for the finite-mass class.
+
+## 31. Exclusion of all compact finite-mass pure critical elements when d>4p
+
+**Theorem 31.1.** Let u be a maximal strong pure critical H^p solution with compact normalized orbit on its maximal lifespan I and positive energy. For any d>2p, no finite endpoint of I is possible and inf_I lambda(t)>0. For d>4p no such nonzero solution exists, even if I is the full time axis. The assertion is conditional on the compact normalized orbit, not on a minimal-element theorem.
+
+Proof of the lower scale bound. Positive conserved pure energy and homogeneous Sobolev give a positive lower bound for ||D^p u(t)||_2: if this norm tended to zero, both terms of P(u) would tend to zero. By compactness of K, choose a fixed frequency annulus [c,C] in normalized variables containing at least a fixed positive amount of kinetic norm squared for every member of K. In physical variables its frequencies are [c lambda(t),C lambda(t)]. On that annulus the kinetic norm squared is at most (C lambda(t))^(2p) M. Since M is finite, lambda(t) is bounded below. This argument works without negative regularity.
+
+Proof of finite endpoint exclusion. If T is a finite forward endpoint and there is a sequence t_n↑T with lambda(t_n) bounded above, the linear critical Z norm on [t_n,t_n+h] is uniformly small for sufficiently small h>0. Indeed in normalized coordinates it is the linear Z norm on [0,h lambda(t_n)^(2p)], by the exact critical scaling and translation invariance. Homogeneous free Strichartz bounds and a finite net of the compact set K give uniform absolute continuity of the Z norm on shrinking intervals. The pure nonlinear estimate of §16.4 gives
+Z_[t_n,t](u)<=Z_[t_n,t](U(·-t_n)u(t_n))+C Z_[t_n,t](u)^s.
+For small linear norm, continuity of Z on compact subintervals and vanishing at t_n close the small-norm bootstrap on [t_n,min(t_n+h,T)). This implies finite Z up to T for all sufficiently large n, contradicting continuation in §16.4. Hence lambda(t)→∞ as t↑T. Compactness of K in dot H^p and critical Sobolev imply uniform L^b spatial tails in normalized coordinates. At the diverging scales the physical solution therefore satisfies the full critical-moment concentration hypothesis in §21.2, which contradicts nonzero conserved mass. The backward case follows by conjugation. Thus I=R for every d>2p in this finite-mass compact class. This step does not use double Duhamel.
+
+Proof of upper scale bound for d>4p. With I=R, §30.3 supplies uniform negative Sobolev regularity. Suppose lambda(t_n)→∞ along any sequence. Fix 0<delta<L<∞. Compactness of K makes
+integral_(|xi|<=L) |xi|^(2p)|uhat(t_n,xi)|² dxi→0,
+since in normalized variables the cutoff L/lambda(t_n) tends to zero. Split the conserved mass into three regions. On |xi|<=delta it is at most C delta^(2epsilon), by negative regularity. On delta<|xi|<=L it is at most delta^(-2p) times the kinetic integral just shown to vanish. On |xi|>L it is at most L^(-2p) sup_t||D^p u(t)||_2². Sending n→∞, then delta→0 and L→∞, gives M=0, a contradiction. Therefore sup_I lambda(t)<∞. This excludes arbitrary unbounded frequency-scale excursions, not only a monotone cascade limit.
+
+Finally, the compact scale interval and compact normalized orbit imply precompactness in dot H^p modulo translations, by continuity of the critical scaling action on a compact product of scale interval and K. The uniform low-frequency mass tightness of Theorem 30.2 upgrades this to H^p precompactness modulo translations, by §27.4. Apply Theorem 27.1 to exclude the resulting nonzero global compact pure orbit. QED.
+
+### 31.1 Conditional implication for the homogeneous minimal-element problem
+
+For d>4p a global homogeneous pure strong compact element with the additional uniform L^ell bound of §30.2 becomes an H^p strong trajectory, so the preceding rigidity applies and excludes it. A homogeneous finite-endpoint compact trajectory with diverging scale is already excluded by the local mass argument in §21.2 (provided it satisfies the stated local strong homogeneous regularity and full concentration). But neither the existence of a homogeneous minimal strong bad element nor the required global L^ell improvement has been derived in this dossier. In particular, one cannot conclude arbitrary-data global critical scattering or mixed global well-posedness merely from the finite-mass compact rigidity theorem. Homogeneous weak profiles from §24 are not automatically strong, compact or finite-mass.
+
+## 32. Exact remaining obstructions and verification state
+
+The present revision closes the full compact-orbit rigidity step for finite-mass critical pure strong solutions in d>4p and the finite-time full compactness obstruction in every d>2p in that class. The remaining dimensions 2p<d<=4p still require a different negative-regularity or frequency-cascade mechanism, and all dimensions require a valid construction and regularity upgrade of any homogeneous minimal bad element before a general large-data pure theorem can be concluded.
+
+The double-Duhamel approach is established prior art: see Killip–Visan, arXiv:0804.1018 and Clay lecture notes on NLS at critical regularity (https://www.math.ucla.edu/~visan/ClayLectureNotes.pdf), Miao–Xu–Zhao arXiv:0807.0692 for d>=9 fourth-order energy-critical scattering, and Miao–Zheng arXiv:1211.4668 for fourth-order scattering theory. Those works use negative regularity and cascade exclusion. The present section adapts that estimate to general integer p with explicit finite-mass and integrability hypotheses; it makes no novelty claim and does not import their fourth-order minimal-element result as a general-order theorem. The dimensional restriction in the double-Duhamel estimate is a proof-method restriction.
+
+No new unconditional parameter region of the original mixed equation is claimed. Individual-data supercritical strong classification remains open. The twelve candidate Lean roots and focused audit workflow from the preceding revision are unchanged: at inspection of head b9d09142cf8e7240d0e783b3c8fee324a22d0638 the workflow API returned no runs. This is not a pass, failure, or proof that the workflow executed. The no-waste Duhamel, negative regularity and compact-rigidity arguments above are not Lean-formalized. No issue closure, registry promotion or kernel certification.

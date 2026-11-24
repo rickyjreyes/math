@@ -63,7 +63,7 @@
       "flagship": false,
       "dossier": null,
       "claimed_kernel_verified_resolution": false,
-      "note": "2026-11-24: analytical subcritical strong global, all-regime finite-energy weak existence, supercritical energy-class norm inflation, critical local/continuation, fourth-order critical global transfer d>=8 arbitrary and d>=5 radial; general-order conditional stability, endpoint background/defect threshold reduction, all-order pure compact H^p orbit interaction rigidity and s<=2 weak–strong uniqueness with amplitude control. Missing pure bounds/minimal-element and cascade control in nonradial p=2,d=5..7 and p>=3; individual supercritical strong dynamics and Lean PDE formalization unresolved. Issue #100/PR #101; twelve candidate Lean roots pending verification. No status promotion.",
+      "note": "2026-11-24: analytical subcritical strong global, all-regime finite-energy weak existence, supercritical energy-class norm inflation, critical local/continuation, fourth-order critical global transfer d>=8 arbitrary and d>=5 radial; general-order conditional stability, endpoint background/defect, interaction rigidity, no-waste Duhamel and finite-mass compact pure rigidity via negative regularity for d>4p. Missing homogeneous minimal-element and integrability upgrade, low-dimensional cascade control, pure bounds in nonradial p=2,d=5..7 and p>=3; individual supercritical strong dynamics and Lean PDE formalization unresolved. Issue #100/PR #101; twelve candidate roots pending verification. No status promotion.",
       "file_path": "problems/01-wave-dynamics/GC03.md",
       "research_area": "Nonlinear wave dynamics",
       "source_class": "original_formal_statement",
