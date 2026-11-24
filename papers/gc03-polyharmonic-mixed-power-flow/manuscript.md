@@ -1100,3 +1100,97 @@ The fourth-order radial case d>=5 has established prior art (Pausader, Dynamics 
 The low-dimensional radial slice now has a candidate proof. For arbitrary nonradial data in 2p<d<=4p (excluding the known p=1 and p=2,d=8 cases), the minimal-element construction and normalization of §§36–39 still yield a putative global compact element with inf lambda>0. The direct virial excludes it if its centers stay bounded, and the interaction virial excludes it if finite mass and the appropriate inhomogeneous compactness/scale bounds can be recovered. Neither bounded centers nor finite mass follow solely from the established estimates. In particular the annular double-Duhamel bound from §34 stops at k>2p-d/2>=0, so using it as a mass theorem in this strip would be an error. A valid frequency-localized interaction rigidity argument or additional low-frequency improvement is still necessary. No nonradial classification change is asserted.
 
 Verification: the previous head 687c66c32a22fba92ebf1a54c236989b2eae7e3f had no workflow runs returned at inspection. Twelve existing Lean roots unchanged. No independent review or successful kernel check of the new PDE theorem exists in this record. Keep the candidate status, draft PR and open issue.
+
+
+## 45. Frequency-localized interaction attempt: exact error budget
+
+This section records an analytical reduction and an obstruction to a naive proof, NOT an all-data critical global theorem. Earlier candidate results, including the local theory and rigidity estimates used here, still require independent review. Let p>=2, 2p<d<=4p, b=s+1=2d/(d-2p), q=2s, k=2d/(d+2), b'=b/(b-1), k'=2d/(d-2), and F(z)=gamma |z|^(s-1)z. Consider a hypothetical global strong homogeneous pure minimal solution u with compact normalized orbit and inf lambda>0, as in §§38–39.
+
+Let S_epsilon be a smooth real radial Fourier cutoff equal to one on |xi|<=epsilon and zero on |xi|>=2epsilon, and put v=(I-S_epsilon)u. For each fixed epsilon>0, v belongs to C_t H^p, with uniform H^p bound depending on epsilon and the homogeneous energy. It satisfies exactly
+i v_t=A v+F(v)+e,  e=(I-S_epsilon)F(u)-F(v).
+There is no claim that v conserves mass or is an exact pure solution. On every compact time interval, v has finite Z and e is in C_t L^(b') with gradient in L²_t L^k, by the critical first-derivative chain rule and the bounded multiplier estimates of the previous sections.
+
+### 45.1 Forced two-field action
+
+Write M=||v||₂², B_v=||v||_b and U=v tensor v. Retain the relative vector field b_R=(a_R(x-y),-a_R(x-y)) and skew first-order operator L_R of §27, and set J_R=Re <U,-i L_R U>. For any fixed R>=1, epsilon>0, the integrated identity is
+J_R(t2)-J_R(t1)=integral_(t1)^t2 (K_R(U)+N_R(v)+Q_R(v,e)) dt,
+where K_R is the kinetic commutator form of §27, N_R is its defocusing nonlinear density expression, and Q_R is the extra force pairing from E=e tensor v+v tensor e. In particular |Q_R|<=2|<E,-i L_R U>| in the distributional pairing (the imaginary part and its sign are irrelevant to the bound). The identity and estimates below follow by the annular smoothing and integrated forced-action approximation of §§27.3,42.4, now applied to v; smoothing errors in C_t L^(b') and the gradient L²_t L^k tend to zero on compact time intervals. This argument does not assume smoothness of all higher derivatives of F.
+
+Define the nonnegative tail budget
+T_R(v)=sum_(|mu|<=p) integral_(|x-y|>R)|partial^mu (v(x)v(y))|² dxdy
+ + integral_(|x-y|>R)(|v(x)|^b |v(y)|²+|v(x)|² |v(y)|^b) dxdy.
+By the exact full commutator and the truncated coefficient comparison of §27,
+K_R(U)+N_R(v)>= c0 M B_v^b-C T_R(v),
+c0=2 gamma d(s-1)/(s+1)>0.
+All constants in the comparison can be taken uniform in R>=1. The endpoint action satisfies |J_R|<=C R ||v||₂³||∇v||₂; the real divergence coefficient contributes zero to its imaginary-integral formula. Thus for fixed epsilon,R it is bounded in time.
+
+For the forcing pairing, integrate by parts in x when a derivative on v(x) is paired with e(x), and use Holder with exponents k,k' for the derivative of e; use b',b for the undifferentiated terms. When a derivative lands on v(y), Cauchy-Schwarz in y suffices. The symmetric force term is identical. Since ||a_R||∞<=C R and ||∂a_R||∞<=C, this yields the following time-integrable error budget on compact intervals:
+|Q_R(v,e)| <= C [ R M ||∇e||_k ||v||_(k')
+  + M ||e||_(b') B_v
+  + R ||v||₂||∇v||₂ ||e||_(b') B_v ].
+Here the inequality is understood a.e. in time for the differentiated forcing, or after integration on the interval; no assertion of pointwise time differentiability at every time is required. The bound follows for general v by the same approximation argument. It uses the actual projected nonlinearity and does not silently discard its force contribution.
+
+Let Qbudget_R denote the right side including the constant C. A sufficient rigidity condition is the existence of fixed epsilon,R for which
+integral_0^T M(t)B_v(t)^b dt -> infinity as T->infinity,
+limsup_(T->infinity) [integral_0^T (C T_R(v)+Qbudget_R(v,e)) dt] /
+                    [integral_0^T M B_v^b dt] < c0.
+Indeed integrating the lower bound on J_R' would make the bounded action unbounded. This is a precise sufficient condition, not a claim that the compact minimal element satisfies it. In particular, taking R→infinity for each fixed epsilon first and then epsilon→0 is not a valid shortcut: the error budget grows with R, and the mass itself depends on epsilon.
+
+### 45.2 What compactness actually supplies in the bounded-scale case
+
+Suppose, in addition, lambda(t) is bounded above. Then the physical orbit after translations is precompact in dot H^p by the compact normalized set and the bounded scale interval. For any fixed epsilon>0, the map I-S_epsilon:dot H^p→H^p is bounded and translation-equivariant. Therefore v is precompact modulo the same translations in H^p, and sup_t T_R(v)→0 as R→infinity, by the argument of §27. This gives no rate uniform in epsilon.
+
+For small epsilon the positive nonlinear factor has a uniform positive lower bound. The compact translated homogeneous orbit has a positive minimum L^b norm: a sequence with that norm tending to zero would converge strongly in dot H^p to a zero representative, contrary to positive conserved energy. Likewise a common fixed frequency annulus captures a positive amount of kinetic energy by compactness and the positive homogeneous norm bound. If epsilon is below that annulus, M(v) is bounded below by the kinetic annular lower bound divided by a fixed upper frequency to the power 2p. Finally ||S_epsilon u||_b tends uniformly to zero by the low-frequency homogeneous tail and Sobolev. Hence M B_v^b>=c>0. This conclusion requires the bounded-scale assumption for the common physical annulus.
+
+There is also qualitative smallness of the residual on fixed-length slabs in this bounded-scale case. Indeed the translated initial profiles at all times lie in a fixed compact subset of dot H^p. The homogeneous local theory and stability of §36 provide a common short time interval [0,h] and a compact family of corresponding solution paths in C_t dot H^p intersect Z. To obtain the common interval, use a finite net and uniform absolute continuity of the free Z norm; the small-norm bootstrap then gives uniform local existence and stability on that interval. Spatial translations commute with the flow and the cutoffs. Smooth low frequency cutoffs tend strongly to zero in the finite-exponent spaces defining Z and L^(b') and on the homogeneous energy space (by density and uniform multiplier bounds). This convergence is uniform on compact sets. Continuity of F in C_t L^(b') and of its gradient in L²_t L^k on bounded Z sets gives
+sup_a (||e||_(C([a,a+h];L^(b'))) + ||∇e||_(L²([a,a+h];L^k))) -> 0
+as epsilon→0. For the low-projection term use the compact family of F(u) and ∇F(u) paths in these spaces. This is only qualitative smallness; the R and cutoff-dependent H^p factors in Qbudget_R are not controlled by it. There is no assertion of a common fixed h for unbounded physical scales.
+
+For clarity, the following quantitative version of part of this bound is available if the uniform lower homogeneous norm ||D^j u||₂<=B_j is known for a fixed 0<j<p, as in the positive-regularity stage of §34 in the lower-dimensional strip. With lambda bounded above, the above uniform local Z bound and dyadic Bernstein give, on each fixed slab of length h<=1,
+||S_epsilon u||_Z <= C_h B_j epsilon^(p-j+2p/q).
+In fact both spatial norms use Bernstein from dot H^j, with the same exponent p-j+2p/q; the time norm supplies h^(1/q). Also
+||∇S_epsilon F(u)||_(L²L^k)<=C_h epsilon^p sup_t||F(u)||_(b'),
+because 1+d(1/b'-1/k)=p. In this strip s>=3, so the differentiated Lipschitz estimate of §14 yields
+||∇e||_(L²([a,a+h];L^k)) <= C_h (epsilon^p+epsilon^(p-j+2p/q)).
+An analogous undifferentiated estimate follows if u is uniformly L^ell for some s<=ell<b (the improvement of §33 has ell>s): the low-projected F term gains d(s/ell-s/b)>0 by Bernstein from L^(ell/s), and the difference F(u)-F(v) is bounded in L^(b') by C ||S_epsilon u||_b <= C epsilon^(p-j). Thus ||e||_(L∞L^(b')) has some positive power decay. These estimates do not prove the required coupled limit: the exponents may be too small, and there is no uniform cutoff-dependent spatial-tail rate. They are not an interaction Morawetz estimate over the full trajectory.
+
+### 45.3 Counterexample to a naive uniform tail upgrade
+
+Here is an exact functional counterexample to the inference that homogeneous compactness and a uniform lower positive Sobolev norm imply uniform relative mass tightness of the high-pass fields at spatial radius C/epsilon. It is not a family of solutions and does not prove any PDE singularity.
+
+Fix 0<j<p, nonzero Schwartz functions phi and psi whose Fourier transforms are smooth and supported in 1<=|xi|<=2, and dyadic N_n→0. Set epsilon_n=N_n/4, x_n=N_n^(-2) e_1, and
+f_n(x)=phi(x)+N_n^(p-j) N_n^a_* psi(N_n(x-x_n)),
+a_*=d/2-p.
+The packet term has homogeneous dot H^p norm N_n^(p-j)||D^p psi||₂→0, dot H^j norm exactly ||D^j psi||₂, and L² norm N_n^(-j)||psi||₂→infinity. Thus {f_n} union {phi} is compact in dot H^p, bounded in dot H^j, with fixed normalized frequency scale 1 and fixed center 0, and its energies converge to the positive energy of phi. For all large n the Fourier support of both terms lies in |xi|>=2epsilon_n, so (I-S_epsilon_n)f_n=f_n exactly. The low packet is spatially remote, and its mass dominates the high-pass L² norm. More precisely for every fixed C>0,
+integral_(|x|>C/epsilon_n) |(I-S_epsilon_n)f_n(x)|² dx /
+ ||(I-S_epsilon_n)f_n||₂² -> 1.
+After change of variables to the packet coordinates, the region |x|<=4C/N_n is a fixed-radius ball centered at -N_n x_n=-N_n^-1 e_1, whose psi mass tends to zero by square integrability. The core phi contributes bounded mass, negligible against N_n^-2j; the cross term is negligible by Cauchy-Schwarz. In fact for the product relative tail, the mixed core/packet density gives
+integral_(|x-y|>C/epsilon_n) |f_n(x)|^b |f_n(y)|² dxdy /
+ (||f_n||_b^b ||f_n||₂²) -> 1.
+To see this, choose a fixed ball containing all but an arbitrarily small part of the b-th moment of phi; f_n→phi in L^b by homogeneous Sobolev. Uniformly for x in that ball the y-mass within C/epsilon_n of x is negligible by the same packet-coordinate argument (enlarge the radius by the ball radius). Integrate and then let the missed b-moment tend to zero. The upper bound is one by positivity. This is precisely one term in T_R relative to the desired positive nonlinear contribution.
+
+The example defeats the naive uniform choice R=C/epsilon based only on homogeneous compactness, even when the profiles have a bounded positive lower Sobolev norm, bounded scales, and fixed core centers. One can send x_n farther away to defeat any preassigned radius rule by the same argument. It does not exclude a different action, a sharper sign analysis of the actual tail error, or a dynamical estimate using the equation to control the low-frequency packets. In particular, one cannot invoke this example as evidence against global well-posedness. What is missing is a dynamical joint cutoff estimate, not just a second application of the compactness definition.
+
+## 46. Additional rigorous conditional rigidity: sub-dispersive center motion
+
+The fixed-center virial of §42 has a useful quantitative extension that needs no mass or frequency upper bound.
+
+**Theorem 46.1.** Let a nonzero global strong homogeneous pure solution have a compact normalized orbit with inf lambda>0 on [0,infinity), and suppose there are centers x(t) for this representation such that
+sup_(0<=t<=T)|x(t)-x(0)|=o(T^(1/(2p))) as T->infinity.
+Then no such solution exists. In fact it suffices that for a sequence T_n→infinity and a choice of reference centers y_n,
+sup_(0<=t<=T_n)|x(t)-y_n|=o(T_n^(1/(2p))).
+This excludes center excursions growing strictly more slowly than the natural virial scale, not merely uniformly bounded centers.
+
+Proof. By normalized compactness and the lower frequency-scale bound, all homogeneous derivative Lebesgue tails appearing in §42.1 tend uniformly to zero outside balls of large fixed radius about x(t). Choose a fixed R0 sufficiently large so those tails make the sum of kinetic and nonlinear cutoff errors in §42.3 at most 2p P(u) whenever the action's ball of radius R contains B(x(t),R0). The constants of §42.3 are independent of R and of the fixed action center, since all coefficient powers of R cancel by local Holder. For the interval [0,T_n], choose the action centered at y_n, fixed in time, with radius
+R_n=R0+sup_(0<=t<=T_n)|x(t)-y_n|.
+If necessary enlarge it to at least one. Its derivative is at least 2p P(u)>0 almost everywhere throughout the interval by the exact identity of §42.4. No center-velocity term is generated because y_n is fixed on that entire interval. On the other hand the homogeneous action bound gives |J_(R_n)|<=C R_n^(2p) sup_t||D^p u||₂². Integrating gives
+2p P(u) T_n <= C R_n^(2p) sup_t||D^p u||₂².
+The right side is o(T_n) by the assumed excursion bound, a contradiction. This proves the theorem. Equivalently every putative global nonzero compact normalized trajectory with lower scale bound has, on every sufficiently long interval, a center-excursion radius bounded below by a positive constant times the interval length to power 1/(2p), up to the fixed R0. The estimate is uniform in the choice of reference center. The same proof applies to intervals not starting at zero, and to backward time by conjugation.
+
+This does not exclude centers with linear drift, faster-than-dispersive excursions or oscillatory motion with large excursions. Neither the compactness/minimal-element construction nor local conservation as established here gives the hypothesized center bound. It is a new necessary condition on a possible nonradial critical obstruction, not a new unconditional parameter slice.
+
+## 47. Decision and verification
+
+The direct frequency-localized interaction attempt is incomplete. The exact forced action and error budget, and the counterexample in §45.3, prevent claiming that qualitative cutoff convergence and homogeneous compactness suffice. A successful extension must prove the coupled long-time error condition in §45.1 (or a different positive interaction inequality), including the mass tail created by the projection, or show that a minimal element has sufficiently slow center excursions as in §46.1. The bounded-scale case alone does not supply this. Frequency-localized interaction Morawetz estimates for second-order critical NLS, e.g. Colliander–Keel–Staffilani–Takaoka–Tao arXiv:math/0402129 and Visan's thesis (Appendix C), require additional dynamical control and cannot be imported unchanged for higher-order symbols. Fourth-order interaction estimates in Miao–Xu–Zhao arXiv:0807.0692 are used after recovering mass in the high-dimensional regime. Pausader–Xia, Nonlinearity 26 (2013), DOI 10.1088/0951-7715/26/8/2175, concerns dimensions 1–4 and subcritical scattering, not the missing fourth-order energy-critical dimensions 5–7. No matching unrestricted lower-strip result was identified in this focused search; this is not proof of an open-problem status.
+
+No new unconditional nonradial parameter region or accepted theorem is claimed. The high-dimensional and radial candidate proof chains remain subject to independent review; individual-data supercritical strong dynamics remain unresolved. At inspection of head 5abef4a8424ad9fb0491259d7618c509b8d02a15 GitHub returned no workflow runs. Existing twelve candidate Lean roots and focused workflow unchanged; the forced interaction calculation, functional counterexample and center-excursion theorem are analytical and unformalized. Keep issue #100 and PR #101 open/draft; no accepted registry promotion.
