@@ -15,19 +15,457 @@ namespace ReyesMath.V18Forward
 open Filter
 open scoped Topology
 
+/- Concrete projection lemmas prevent exponential expansion of dependent update ifs. -/
+@[local simp] private theorem upd_16_0 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (0 : Fin 31) = p 0 := by
+  rw [Function.update_of_ne (show (0 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_1 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (1 : Fin 31) = p 1 := by
+  rw [Function.update_of_ne (show (1 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_2 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (2 : Fin 31) = p 2 := by
+  rw [Function.update_of_ne (show (2 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_3 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (3 : Fin 31) = p 3 := by
+  rw [Function.update_of_ne (show (3 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_4 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (4 : Fin 31) = p 4 := by
+  rw [Function.update_of_ne (show (4 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_5 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (5 : Fin 31) = p 5 := by
+  rw [Function.update_of_ne (show (5 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_6 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (6 : Fin 31) = p 6 := by
+  rw [Function.update_of_ne (show (6 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_7 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (7 : Fin 31) = p 7 := by
+  rw [Function.update_of_ne (show (7 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_8 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (8 : Fin 31) = p 8 := by
+  rw [Function.update_of_ne (show (8 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_9 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (9 : Fin 31) = p 9 := by
+  rw [Function.update_of_ne (show (9 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_10 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (10 : Fin 31) = p 10 := by
+  rw [Function.update_of_ne (show (10 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_11 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (11 : Fin 31) = p 11 := by
+  rw [Function.update_of_ne (show (11 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_12 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (12 : Fin 31) = p 12 := by
+  rw [Function.update_of_ne (show (12 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_13 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (13 : Fin 31) = p 13 := by
+  rw [Function.update_of_ne (show (13 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_14 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (14 : Fin 31) = p 14 := by
+  rw [Function.update_of_ne (show (14 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_15 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (15 : Fin 31) = p 15 := by
+  rw [Function.update_of_ne (show (15 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_17 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (17 : Fin 31) = p 17 := by
+  rw [Function.update_of_ne (show (17 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_18 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (18 : Fin 31) = p 18 := by
+  rw [Function.update_of_ne (show (18 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_19 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (19 : Fin 31) = p 19 := by
+  rw [Function.update_of_ne (show (19 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_20 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (20 : Fin 31) = p 20 := by
+  rw [Function.update_of_ne (show (20 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_21 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (21 : Fin 31) = p 21 := by
+  rw [Function.update_of_ne (show (21 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_22 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (22 : Fin 31) = p 22 := by
+  rw [Function.update_of_ne (show (22 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_23 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (23 : Fin 31) = p 23 := by
+  rw [Function.update_of_ne (show (23 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_24 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (24 : Fin 31) = p 24 := by
+  rw [Function.update_of_ne (show (24 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_25 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (25 : Fin 31) = p 25 := by
+  rw [Function.update_of_ne (show (25 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_26 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (26 : Fin 31) = p 26 := by
+  rw [Function.update_of_ne (show (26 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_27 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (27 : Fin 31) = p 27 := by
+  rw [Function.update_of_ne (show (27 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_28 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (28 : Fin 31) = p 28 := by
+  rw [Function.update_of_ne (show (28 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_29 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (29 : Fin 31) = p 29 := by
+  rw [Function.update_of_ne (show (29 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_16_30 (p : Params) (t : ℝ) :
+    Function.update p (16 : Fin 31) t (30 : Fin 31) = p 30 := by
+  rw [Function.update_of_ne (show (30 : Fin 31) ≠ 16 by decide)]
+@[local simp] private theorem upd_18_0 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (0 : Fin 31) = p 0 := by
+  rw [Function.update_of_ne (show (0 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_1 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (1 : Fin 31) = p 1 := by
+  rw [Function.update_of_ne (show (1 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_2 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (2 : Fin 31) = p 2 := by
+  rw [Function.update_of_ne (show (2 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_3 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (3 : Fin 31) = p 3 := by
+  rw [Function.update_of_ne (show (3 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_4 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (4 : Fin 31) = p 4 := by
+  rw [Function.update_of_ne (show (4 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_5 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (5 : Fin 31) = p 5 := by
+  rw [Function.update_of_ne (show (5 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_6 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (6 : Fin 31) = p 6 := by
+  rw [Function.update_of_ne (show (6 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_7 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (7 : Fin 31) = p 7 := by
+  rw [Function.update_of_ne (show (7 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_8 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (8 : Fin 31) = p 8 := by
+  rw [Function.update_of_ne (show (8 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_9 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (9 : Fin 31) = p 9 := by
+  rw [Function.update_of_ne (show (9 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_10 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (10 : Fin 31) = p 10 := by
+  rw [Function.update_of_ne (show (10 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_11 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (11 : Fin 31) = p 11 := by
+  rw [Function.update_of_ne (show (11 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_12 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (12 : Fin 31) = p 12 := by
+  rw [Function.update_of_ne (show (12 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_13 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (13 : Fin 31) = p 13 := by
+  rw [Function.update_of_ne (show (13 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_14 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (14 : Fin 31) = p 14 := by
+  rw [Function.update_of_ne (show (14 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_15 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (15 : Fin 31) = p 15 := by
+  rw [Function.update_of_ne (show (15 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_16 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (16 : Fin 31) = p 16 := by
+  rw [Function.update_of_ne (show (16 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_17 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (17 : Fin 31) = p 17 := by
+  rw [Function.update_of_ne (show (17 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_19 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (19 : Fin 31) = p 19 := by
+  rw [Function.update_of_ne (show (19 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_20 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (20 : Fin 31) = p 20 := by
+  rw [Function.update_of_ne (show (20 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_21 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (21 : Fin 31) = p 21 := by
+  rw [Function.update_of_ne (show (21 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_22 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (22 : Fin 31) = p 22 := by
+  rw [Function.update_of_ne (show (22 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_23 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (23 : Fin 31) = p 23 := by
+  rw [Function.update_of_ne (show (23 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_24 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (24 : Fin 31) = p 24 := by
+  rw [Function.update_of_ne (show (24 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_25 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (25 : Fin 31) = p 25 := by
+  rw [Function.update_of_ne (show (25 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_26 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (26 : Fin 31) = p 26 := by
+  rw [Function.update_of_ne (show (26 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_27 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (27 : Fin 31) = p 27 := by
+  rw [Function.update_of_ne (show (27 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_28 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (28 : Fin 31) = p 28 := by
+  rw [Function.update_of_ne (show (28 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_29 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (29 : Fin 31) = p 29 := by
+  rw [Function.update_of_ne (show (29 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_18_30 (p : Params) (t : ℝ) :
+    Function.update p (18 : Fin 31) t (30 : Fin 31) = p 30 := by
+  rw [Function.update_of_ne (show (30 : Fin 31) ≠ 18 by decide)]
+@[local simp] private theorem upd_27_0 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (0 : Fin 31) = p 0 := by
+  rw [Function.update_of_ne (show (0 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_1 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (1 : Fin 31) = p 1 := by
+  rw [Function.update_of_ne (show (1 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_2 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (2 : Fin 31) = p 2 := by
+  rw [Function.update_of_ne (show (2 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_3 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (3 : Fin 31) = p 3 := by
+  rw [Function.update_of_ne (show (3 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_4 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (4 : Fin 31) = p 4 := by
+  rw [Function.update_of_ne (show (4 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_5 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (5 : Fin 31) = p 5 := by
+  rw [Function.update_of_ne (show (5 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_6 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (6 : Fin 31) = p 6 := by
+  rw [Function.update_of_ne (show (6 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_7 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (7 : Fin 31) = p 7 := by
+  rw [Function.update_of_ne (show (7 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_8 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (8 : Fin 31) = p 8 := by
+  rw [Function.update_of_ne (show (8 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_9 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (9 : Fin 31) = p 9 := by
+  rw [Function.update_of_ne (show (9 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_10 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (10 : Fin 31) = p 10 := by
+  rw [Function.update_of_ne (show (10 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_11 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (11 : Fin 31) = p 11 := by
+  rw [Function.update_of_ne (show (11 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_12 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (12 : Fin 31) = p 12 := by
+  rw [Function.update_of_ne (show (12 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_13 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (13 : Fin 31) = p 13 := by
+  rw [Function.update_of_ne (show (13 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_14 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (14 : Fin 31) = p 14 := by
+  rw [Function.update_of_ne (show (14 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_15 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (15 : Fin 31) = p 15 := by
+  rw [Function.update_of_ne (show (15 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_16 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (16 : Fin 31) = p 16 := by
+  rw [Function.update_of_ne (show (16 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_17 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (17 : Fin 31) = p 17 := by
+  rw [Function.update_of_ne (show (17 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_18 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (18 : Fin 31) = p 18 := by
+  rw [Function.update_of_ne (show (18 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_19 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (19 : Fin 31) = p 19 := by
+  rw [Function.update_of_ne (show (19 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_20 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (20 : Fin 31) = p 20 := by
+  rw [Function.update_of_ne (show (20 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_21 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (21 : Fin 31) = p 21 := by
+  rw [Function.update_of_ne (show (21 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_22 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (22 : Fin 31) = p 22 := by
+  rw [Function.update_of_ne (show (22 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_23 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (23 : Fin 31) = p 23 := by
+  rw [Function.update_of_ne (show (23 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_24 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (24 : Fin 31) = p 24 := by
+  rw [Function.update_of_ne (show (24 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_25 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (25 : Fin 31) = p 25 := by
+  rw [Function.update_of_ne (show (25 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_26 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (26 : Fin 31) = p 26 := by
+  rw [Function.update_of_ne (show (26 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_28 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (28 : Fin 31) = p 28 := by
+  rw [Function.update_of_ne (show (28 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_29 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (29 : Fin 31) = p 29 := by
+  rw [Function.update_of_ne (show (29 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_27_30 (p : Params) (t : ℝ) :
+    Function.update p (27 : Fin 31) t (30 : Fin 31) = p 30 := by
+  rw [Function.update_of_ne (show (30 : Fin 31) ≠ 27 by decide)]
+@[local simp] private theorem upd_28_0 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (0 : Fin 31) = p 0 := by
+  rw [Function.update_of_ne (show (0 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_1 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (1 : Fin 31) = p 1 := by
+  rw [Function.update_of_ne (show (1 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_2 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (2 : Fin 31) = p 2 := by
+  rw [Function.update_of_ne (show (2 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_3 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (3 : Fin 31) = p 3 := by
+  rw [Function.update_of_ne (show (3 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_4 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (4 : Fin 31) = p 4 := by
+  rw [Function.update_of_ne (show (4 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_5 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (5 : Fin 31) = p 5 := by
+  rw [Function.update_of_ne (show (5 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_6 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (6 : Fin 31) = p 6 := by
+  rw [Function.update_of_ne (show (6 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_7 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (7 : Fin 31) = p 7 := by
+  rw [Function.update_of_ne (show (7 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_8 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (8 : Fin 31) = p 8 := by
+  rw [Function.update_of_ne (show (8 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_9 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (9 : Fin 31) = p 9 := by
+  rw [Function.update_of_ne (show (9 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_10 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (10 : Fin 31) = p 10 := by
+  rw [Function.update_of_ne (show (10 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_11 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (11 : Fin 31) = p 11 := by
+  rw [Function.update_of_ne (show (11 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_12 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (12 : Fin 31) = p 12 := by
+  rw [Function.update_of_ne (show (12 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_13 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (13 : Fin 31) = p 13 := by
+  rw [Function.update_of_ne (show (13 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_14 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (14 : Fin 31) = p 14 := by
+  rw [Function.update_of_ne (show (14 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_15 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (15 : Fin 31) = p 15 := by
+  rw [Function.update_of_ne (show (15 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_16 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (16 : Fin 31) = p 16 := by
+  rw [Function.update_of_ne (show (16 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_17 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (17 : Fin 31) = p 17 := by
+  rw [Function.update_of_ne (show (17 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_18 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (18 : Fin 31) = p 18 := by
+  rw [Function.update_of_ne (show (18 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_19 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (19 : Fin 31) = p 19 := by
+  rw [Function.update_of_ne (show (19 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_20 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (20 : Fin 31) = p 20 := by
+  rw [Function.update_of_ne (show (20 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_21 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (21 : Fin 31) = p 21 := by
+  rw [Function.update_of_ne (show (21 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_22 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (22 : Fin 31) = p 22 := by
+  rw [Function.update_of_ne (show (22 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_23 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (23 : Fin 31) = p 23 := by
+  rw [Function.update_of_ne (show (23 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_24 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (24 : Fin 31) = p 24 := by
+  rw [Function.update_of_ne (show (24 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_25 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (25 : Fin 31) = p 25 := by
+  rw [Function.update_of_ne (show (25 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_26 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (26 : Fin 31) = p 26 := by
+  rw [Function.update_of_ne (show (26 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_27 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (27 : Fin 31) = p 27 := by
+  rw [Function.update_of_ne (show (27 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_29 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (29 : Fin 31) = p 29 := by
+  rw [Function.update_of_ne (show (29 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem upd_28_30 (p : Params) (t : ℝ) :
+    Function.update p (28 : Fin 31) t (30 : Fin 31) = p 30 := by
+  rw [Function.update_of_ne (show (30 : Fin 31) ≠ 28 by decide)]
+@[local simp] private theorem obs_0 (p : Params) : observed p (0 : Fin 11) = light p 1 := rfl
+@[local simp] private theorem obs_1 (p : Params) : observed p (1 : Fin 11) = light p 2 := rfl
+@[local simp] private theorem obs_2 (p : Params) : observed p (2 : Fin 11) = light p 3 := rfl
+@[local simp] private theorem obs_3 (p : Params) : observed p (3 : Fin 11) = middle p 12 := rfl
+@[local simp] private theorem obs_4 (p : Params) : observed p (4 : Fin 11) = middle p 19 := rfl
+@[local simp] private theorem obs_5 (p : Params) : observed p (5 : Fin 11) = middle p 53 := rfl
+@[local simp] private theorem obs_6 (p : Params) : observed p (6 : Fin 11) = middle p 73 := rfl
+@[local simp] private theorem obs_7 (p : Params) : observed p (7 : Fin 11) = middle p 91 := rfl
+@[local simp] private theorem obs_8 (p : Params) : observed p (8 : Fin 11) = heavy p 95 := rfl
+@[local simp] private theorem obs_9 (p : Params) : observed p (9 : Fin 11) = heavy p 96 := rfl
+@[local simp] private theorem obs_10 (p : Params) : observed p (10 : Fin 11) = heavy p 123 := rfl
+
+
+private theorem upd_16_light (p : Params) (t : ℝ) (n : ℕ) :
+    light (Function.update p (16 : Fin 31) t) n = light p n := by
+  simp only [light, lightRaw, upd_16_0, upd_16_1, upd_16_2, upd_16_3, upd_16_4, upd_16_5, upd_16_6, upd_16_7, upd_16_8, upd_16_29, upd_16_30]
+private theorem upd_16_middle (p : Params) (t : ℝ) (n : ℕ) :
+    middle (Function.update p (16 : Fin 31) t) n = middle p n := by
+  simp only [middle, middleRaw, upd_16_9, upd_16_10, upd_16_11, upd_16_12, upd_16_13, upd_16_14, upd_16_15]
+private theorem upd_16_heavy (p : Params) (t : ℝ) (n : ℕ) (hn : 91 ≤ n)
+    (hu : n ≤ 123) :
+    heavy (Function.update p (16 : Fin 31) t) n = heavy p n := by
+  have hnot : ¬ (19 ≤ n ∧ n ≤ 73) := by omega
+  simp only [heavy, upd_16_light, heavyCorrection, if_neg hnot, if_pos ⟨hn, hu⟩,
+    upd_16_17, upd_16_19, upd_16_20, upd_16_21, upd_16_22, upd_16_23, upd_16_24, upd_16_25, upd_16_26, upd_16_27, upd_16_28]
 theorem observed_update_quarkAmp (p : Params) (t : ℝ) :
     observed (Function.update p (16 : Fin 31) t) = observed p := by
   funext i
-  fin_cases i <;>
-    norm_num [observed, light, lightRaw, middle, middleRaw, heavy,
-      heavyCorrection, Function.update]
+  fin_cases i
+  · change light (Function.update p (16 : Fin 31) t) 1 = light p 1
+    exact upd_16_light p t _
+  · change light (Function.update p (16 : Fin 31) t) 2 = light p 2
+    exact upd_16_light p t _
+  · change light (Function.update p (16 : Fin 31) t) 3 = light p 3
+    exact upd_16_light p t _
+  · change middle (Function.update p (16 : Fin 31) t) 12 = middle p 12
+    exact upd_16_middle p t _
+  · change middle (Function.update p (16 : Fin 31) t) 19 = middle p 19
+    exact upd_16_middle p t _
+  · change middle (Function.update p (16 : Fin 31) t) 53 = middle p 53
+    exact upd_16_middle p t _
+  · change middle (Function.update p (16 : Fin 31) t) 73 = middle p 73
+    exact upd_16_middle p t _
+  · change middle (Function.update p (16 : Fin 31) t) 91 = middle p 91
+    exact upd_16_middle p t _
+  · change heavy (Function.update p (16 : Fin 31) t) 95 = heavy p 95
+    exact upd_16_heavy p t _ (by decide) (by decide)
+  · change heavy (Function.update p (16 : Fin 31) t) 96 = heavy p 96
+    exact upd_16_heavy p t _ (by decide) (by decide)
+  · change heavy (Function.update p (16 : Fin 31) t) 123 = heavy p 123
+    exact upd_16_heavy p t _ (by decide) (by decide)
 
+private theorem upd_18_light (p : Params) (t : ℝ) (n : ℕ) :
+    light (Function.update p (18 : Fin 31) t) n = light p n := by
+  simp only [light, lightRaw, upd_18_0, upd_18_1, upd_18_2, upd_18_3, upd_18_4, upd_18_5, upd_18_6, upd_18_7, upd_18_8, upd_18_29, upd_18_30]
+private theorem upd_18_middle (p : Params) (t : ℝ) (n : ℕ) :
+    middle (Function.update p (18 : Fin 31) t) n = middle p n := by
+  simp only [middle, middleRaw, upd_18_9, upd_18_10, upd_18_11, upd_18_12, upd_18_13, upd_18_14, upd_18_15]
+private theorem upd_18_heavy (p : Params) (t : ℝ) (n : ℕ) (hn : 91 ≤ n)
+    (hu : n ≤ 123) :
+    heavy (Function.update p (18 : Fin 31) t) n = heavy p n := by
+  have hnot : ¬ (19 ≤ n ∧ n ≤ 73) := by omega
+  simp only [heavy, upd_18_light, heavyCorrection, if_neg hnot, if_pos ⟨hn, hu⟩,
+    upd_18_17, upd_18_19, upd_18_20, upd_18_21, upd_18_22, upd_18_23, upd_18_24, upd_18_25, upd_18_26, upd_18_27, upd_18_28]
 theorem observed_update_quarkPower (p : Params) (t : ℝ) :
     observed (Function.update p (18 : Fin 31) t) = observed p := by
   funext i
-  fin_cases i <;>
-    norm_num [observed, light, lightRaw, middle, middleRaw, heavy,
-      heavyCorrection, Function.update]
+  fin_cases i
+  · change light (Function.update p (18 : Fin 31) t) 1 = light p 1
+    exact upd_18_light p t _
+  · change light (Function.update p (18 : Fin 31) t) 2 = light p 2
+    exact upd_18_light p t _
+  · change light (Function.update p (18 : Fin 31) t) 3 = light p 3
+    exact upd_18_light p t _
+  · change middle (Function.update p (18 : Fin 31) t) 12 = middle p 12
+    exact upd_18_middle p t _
+  · change middle (Function.update p (18 : Fin 31) t) 19 = middle p 19
+    exact upd_18_middle p t _
+  · change middle (Function.update p (18 : Fin 31) t) 53 = middle p 53
+    exact upd_18_middle p t _
+  · change middle (Function.update p (18 : Fin 31) t) 73 = middle p 73
+    exact upd_18_middle p t _
+  · change middle (Function.update p (18 : Fin 31) t) 91 = middle p 91
+    exact upd_18_middle p t _
+  · change heavy (Function.update p (18 : Fin 31) t) 95 = heavy p 95
+    exact upd_18_heavy p t _ (by decide) (by decide)
+  · change heavy (Function.update p (18 : Fin 31) t) 96 = heavy p 96
+    exact upd_18_heavy p t _ (by decide) (by decide)
+  · change heavy (Function.update p (18 : Fin 31) t) 123 = heavy p 123
+    exact upd_18_heavy p t _ (by decide) (by decide)
 
 def shiftHiggs (p : Params) (t : ℝ) : Params :=
   Function.update (Function.update p (27 : Fin 31) (p 27 + t))
@@ -35,24 +473,26 @@ def shiftHiggs (p : Params) (t : ℝ) : Params :=
 
 private theorem shiftHiggs_light (p : Params) (t : ℝ) (n : ℕ) :
     light (shiftHiggs p t) n = light p n := by
-  norm_num [shiftHiggs, light, lightRaw, Function.update]
+  norm_num [shiftHiggs, light, lightRaw]
 
 private theorem shiftHiggs_middle (p : Params) (t : ℝ) (n : ℕ) :
     middle (shiftHiggs p t) n = middle p n := by
-  norm_num [shiftHiggs, middle, middleRaw, Function.update]
+  norm_num [shiftHiggs, middle, middleRaw]
 
 private theorem shiftHiggs_heavyCorrection (p : Params) (t : ℝ) (n : Fin 3) :
     heavyCorrection (shiftHiggs p t) (![95, 96, 123] n) =
       heavyCorrection p (![95, 96, 123] n) := by
   fin_cases n <;>
-    norm_num [shiftHiggs, heavyCorrection, Function.update] <;> ring
+    norm_num [shiftHiggs, heavyCorrection, Matrix.cons_val] <;> ring
 
 theorem observed_shiftHiggs (p : Params) (t : ℝ) :
     observed (shiftHiggs p t) = observed p := by
   have h0 := shiftHiggs_heavyCorrection p t (0 : Fin 3)
   have h1 := shiftHiggs_heavyCorrection p t (1 : Fin 3)
   have h2 := shiftHiggs_heavyCorrection p t (2 : Fin 3)
-  norm_num at h0 h1 h2
+  change heavyCorrection (shiftHiggs p t) 95 = heavyCorrection p 95 at h0
+  change heavyCorrection (shiftHiggs p t) 96 = heavyCorrection p 96 at h1
+  change heavyCorrection (shiftHiggs p t) 123 = heavyCorrection p 123 at h2
   funext i
   fin_cases i <;>
     simp [observed, heavy, shiftHiggs_light, shiftHiggs_middle, h0, h1, h2]
@@ -74,7 +514,7 @@ theorem invisibleFamily_injective (p : Params) :
   have h16 := congrFun h (16 : Fin 31)
   have h18 := congrFun h (18 : Fin 31)
   have h27 := congrFun h (27 : Fin 31)
-  norm_num [invisibleFamily, shiftHiggs, Function.update] at h16 h18 h27
+  simp [invisibleFamily, shiftHiggs] at h16 h18 h27
   have hc : c = f := by linarith
   exact Prod.ext h16 (Prod.ext h18 hc)
 
@@ -249,12 +689,64 @@ theorem historical_two_active_unique (a e b f : ℝ) (ha : 0 < a)
   exact ⟨rfl, mul_left_cancel₀ (ne_of_gt ha) hp⟩
 
 /-- At alpha zero the historical epsilon coordinate is exactly invisible. -/
+@[local simp] private theorem frozen_at_0 (a e : ℝ) : frozen a e 0 = 0.3877 := rfl
+@[local simp] private theorem frozen_at_1 (a e : ℝ) : frozen a e 1 = -2.3676 := rfl
+@[local simp] private theorem frozen_at_2 (a e : ℝ) : frozen a e 2 = -8.2963 := rfl
+@[local simp] private theorem frozen_at_3 (a e : ℝ) : frozen a e 3 = 6.8830 := rfl
+@[local simp] private theorem frozen_at_4 (a e : ℝ) : frozen a e 4 = -1.7948 := rfl
+@[local simp] private theorem frozen_at_5 (a e : ℝ) : frozen a e 5 = -8.6415 := rfl
+@[local simp] private theorem frozen_at_6 (a e : ℝ) : frozen a e 6 = -6.1744 := rfl
+@[local simp] private theorem frozen_at_7 (a e : ℝ) : frozen a e 7 = 0.9981 := rfl
+@[local simp] private theorem frozen_at_8 (a e : ℝ) : frozen a e 8 = 0.0048 := rfl
+@[local simp] private theorem frozen_at_9 (a e : ℝ) : frozen a e 9 = 2241.1 := rfl
+@[local simp] private theorem frozen_at_10 (a e : ℝ) : frozen a e 10 = 5.0632 := rfl
+@[local simp] private theorem frozen_at_11 (a e : ℝ) : frozen a e 11 = 9.4062 := rfl
+@[local simp] private theorem frozen_at_12 (a e : ℝ) : frozen a e 12 = 1.6469 := rfl
+@[local simp] private theorem frozen_at_13 (a e : ℝ) : frozen a e 13 = 0.2092 := rfl
+@[local simp] private theorem frozen_at_14 (a e : ℝ) : frozen a e 14 = 998.7 := rfl
+@[local simp] private theorem frozen_at_15 (a e : ℝ) : frozen a e 15 = 0.2427 := rfl
+@[local simp] private theorem frozen_at_16 (a e : ℝ) : frozen a e 16 = 98949 := rfl
+@[local simp] private theorem frozen_at_17 (a e : ℝ) : frozen a e 17 = 12795 := rfl
+@[local simp] private theorem frozen_at_18 (a e : ℝ) : frozen a e 18 = -3.301 := rfl
+@[local simp] private theorem frozen_at_19 (a e : ℝ) : frozen a e 19 = 9.039 := rfl
+@[local simp] private theorem frozen_at_20 (a e : ℝ) : frozen a e 20 = 61635 := rfl
+@[local simp] private theorem frozen_at_21 (a e : ℝ) : frozen a e 21 = -1.189 := rfl
+@[local simp] private theorem frozen_at_22 (a e : ℝ) : frozen a e 22 = 17770 := rfl
+@[local simp] private theorem frozen_at_23 (a e : ℝ) : frozen a e 23 = 5.615 := rfl
+@[local simp] private theorem frozen_at_24 (a e : ℝ) : frozen a e 24 = 8624 := rfl
+@[local simp] private theorem frozen_at_25 (a e : ℝ) : frozen a e 25 = -1.264 := rfl
+@[local simp] private theorem frozen_at_26 (a e : ℝ) : frozen a e 26 = 4.685 := rfl
+@[local simp] private theorem frozen_at_27 (a e : ℝ) : frozen a e 27 = 896077 := rfl
+@[local simp] private theorem frozen_at_28 (a e : ℝ) : frozen a e 28 = -952363 := rfl
+@[local simp] private theorem frozen_at_29 (a e : ℝ) : frozen a e 29 = a := rfl
+@[local simp] private theorem frozen_at_30 (a e : ℝ) : frozen a e 30 = e := rfl
+
 theorem historical_zero_alpha (e f : ℝ) :
     observed (frozen 0 e) = observed (frozen 0 f) := by
   funext i
-  fin_cases i <;>
-    norm_num [observed, light, lightRaw, middle, middleRaw, heavy,
-      heavyCorrection, frozen, Matrix.cons_val]
+  fin_cases i
+  · change light (frozen 0 e) 1 = light (frozen 0 f) 1
+    simp [light, lightRaw, middle, middleRaw, heavy, heavyCorrection]
+  · change light (frozen 0 e) 2 = light (frozen 0 f) 2
+    simp [light, lightRaw, middle, middleRaw, heavy, heavyCorrection]
+  · change light (frozen 0 e) 3 = light (frozen 0 f) 3
+    simp [light, lightRaw, middle, middleRaw, heavy, heavyCorrection]
+  · change middle (frozen 0 e) 12 = middle (frozen 0 f) 12
+    simp [light, lightRaw, middle, middleRaw, heavy, heavyCorrection]
+  · change middle (frozen 0 e) 19 = middle (frozen 0 f) 19
+    simp [light, lightRaw, middle, middleRaw, heavy, heavyCorrection]
+  · change middle (frozen 0 e) 53 = middle (frozen 0 f) 53
+    simp [light, lightRaw, middle, middleRaw, heavy, heavyCorrection]
+  · change middle (frozen 0 e) 73 = middle (frozen 0 f) 73
+    simp [light, lightRaw, middle, middleRaw, heavy, heavyCorrection]
+  · change middle (frozen 0 e) 91 = middle (frozen 0 f) 91
+    simp [light, lightRaw, middle, middleRaw, heavy, heavyCorrection]
+  · change heavy (frozen 0 e) 95 = heavy (frozen 0 f) 95
+    simp [light, lightRaw, middle, middleRaw, heavy, heavyCorrection]
+  · change heavy (frozen 0 e) 96 = heavy (frozen 0 f) 96
+    simp [light, lightRaw, middle, middleRaw, heavy, heavyCorrection]
+  · change heavy (frozen 0 e) 123 = heavy (frozen 0 f) 123
+    simp [light, lightRaw, middle, middleRaw, heavy, heavyCorrection]
 
 /-! The exact geometry of the transformed rectangle, separated from
 the source-specific transcendental threshold enclosures. -/
@@ -313,6 +805,100 @@ def plateauCenter : Params := fun i =>
   if i = 7 ∨ i = 14 ∨ i = 17 ∨ i = 28 then -1
   else if i = 8 then 1 else 0
 
+@[local simp] private theorem plateau_at_0 : plateauCenter 0 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((0 : Fin 31) = 7 ∨ 0 = 14 ∨ 0 = 17 ∨ 0 = 28)), if_neg (by decide : ¬ ((0 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_1 : plateauCenter 1 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((1 : Fin 31) = 7 ∨ 1 = 14 ∨ 1 = 17 ∨ 1 = 28)), if_neg (by decide : ¬ ((1 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_2 : plateauCenter 2 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((2 : Fin 31) = 7 ∨ 2 = 14 ∨ 2 = 17 ∨ 2 = 28)), if_neg (by decide : ¬ ((2 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_3 : plateauCenter 3 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((3 : Fin 31) = 7 ∨ 3 = 14 ∨ 3 = 17 ∨ 3 = 28)), if_neg (by decide : ¬ ((3 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_4 : plateauCenter 4 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((4 : Fin 31) = 7 ∨ 4 = 14 ∨ 4 = 17 ∨ 4 = 28)), if_neg (by decide : ¬ ((4 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_5 : plateauCenter 5 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((5 : Fin 31) = 7 ∨ 5 = 14 ∨ 5 = 17 ∨ 5 = 28)), if_neg (by decide : ¬ ((5 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_6 : plateauCenter 6 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((6 : Fin 31) = 7 ∨ 6 = 14 ∨ 6 = 17 ∨ 6 = 28)), if_neg (by decide : ¬ ((6 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_7 : plateauCenter 7 = -1 := by
+  unfold plateauCenter
+  rw [if_pos (by decide : (7 : Fin 31) = 7 ∨ 7 = 14 ∨ 7 = 17 ∨ 7 = 28)]
+@[local simp] private theorem plateau_at_8 : plateauCenter 8 = 1 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((8 : Fin 31) = 7 ∨ 8 = 14 ∨ 8 = 17 ∨ 8 = 28)), if_pos (by decide : ((8 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_9 : plateauCenter 9 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((9 : Fin 31) = 7 ∨ 9 = 14 ∨ 9 = 17 ∨ 9 = 28)), if_neg (by decide : ¬ ((9 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_10 : plateauCenter 10 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((10 : Fin 31) = 7 ∨ 10 = 14 ∨ 10 = 17 ∨ 10 = 28)), if_neg (by decide : ¬ ((10 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_11 : plateauCenter 11 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((11 : Fin 31) = 7 ∨ 11 = 14 ∨ 11 = 17 ∨ 11 = 28)), if_neg (by decide : ¬ ((11 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_12 : plateauCenter 12 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((12 : Fin 31) = 7 ∨ 12 = 14 ∨ 12 = 17 ∨ 12 = 28)), if_neg (by decide : ¬ ((12 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_13 : plateauCenter 13 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((13 : Fin 31) = 7 ∨ 13 = 14 ∨ 13 = 17 ∨ 13 = 28)), if_neg (by decide : ¬ ((13 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_14 : plateauCenter 14 = -1 := by
+  unfold plateauCenter
+  rw [if_pos (by decide : (14 : Fin 31) = 7 ∨ 14 = 14 ∨ 14 = 17 ∨ 14 = 28)]
+@[local simp] private theorem plateau_at_15 : plateauCenter 15 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((15 : Fin 31) = 7 ∨ 15 = 14 ∨ 15 = 17 ∨ 15 = 28)), if_neg (by decide : ¬ ((15 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_16 : plateauCenter 16 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((16 : Fin 31) = 7 ∨ 16 = 14 ∨ 16 = 17 ∨ 16 = 28)), if_neg (by decide : ¬ ((16 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_17 : plateauCenter 17 = -1 := by
+  unfold plateauCenter
+  rw [if_pos (by decide : (17 : Fin 31) = 7 ∨ 17 = 14 ∨ 17 = 17 ∨ 17 = 28)]
+@[local simp] private theorem plateau_at_18 : plateauCenter 18 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((18 : Fin 31) = 7 ∨ 18 = 14 ∨ 18 = 17 ∨ 18 = 28)), if_neg (by decide : ¬ ((18 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_19 : plateauCenter 19 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((19 : Fin 31) = 7 ∨ 19 = 14 ∨ 19 = 17 ∨ 19 = 28)), if_neg (by decide : ¬ ((19 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_20 : plateauCenter 20 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((20 : Fin 31) = 7 ∨ 20 = 14 ∨ 20 = 17 ∨ 20 = 28)), if_neg (by decide : ¬ ((20 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_21 : plateauCenter 21 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((21 : Fin 31) = 7 ∨ 21 = 14 ∨ 21 = 17 ∨ 21 = 28)), if_neg (by decide : ¬ ((21 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_22 : plateauCenter 22 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((22 : Fin 31) = 7 ∨ 22 = 14 ∨ 22 = 17 ∨ 22 = 28)), if_neg (by decide : ¬ ((22 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_23 : plateauCenter 23 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((23 : Fin 31) = 7 ∨ 23 = 14 ∨ 23 = 17 ∨ 23 = 28)), if_neg (by decide : ¬ ((23 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_24 : plateauCenter 24 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((24 : Fin 31) = 7 ∨ 24 = 14 ∨ 24 = 17 ∨ 24 = 28)), if_neg (by decide : ¬ ((24 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_25 : plateauCenter 25 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((25 : Fin 31) = 7 ∨ 25 = 14 ∨ 25 = 17 ∨ 25 = 28)), if_neg (by decide : ¬ ((25 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_26 : plateauCenter 26 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((26 : Fin 31) = 7 ∨ 26 = 14 ∨ 26 = 17 ∨ 26 = 28)), if_neg (by decide : ¬ ((26 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_27 : plateauCenter 27 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((27 : Fin 31) = 7 ∨ 27 = 14 ∨ 27 = 17 ∨ 27 = 28)), if_neg (by decide : ¬ ((27 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_28 : plateauCenter 28 = -1 := by
+  unfold plateauCenter
+  rw [if_pos (by decide : (28 : Fin 31) = 7 ∨ 28 = 14 ∨ 28 = 17 ∨ 28 = 28)]
+@[local simp] private theorem plateau_at_29 : plateauCenter 29 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((29 : Fin 31) = 7 ∨ 29 = 14 ∨ 29 = 17 ∨ 29 = 28)), if_neg (by decide : ¬ ((29 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_30 : plateauCenter 30 = 0 := by
+  unfold plateauCenter
+  rw [if_neg (by decide : ¬ ((30 : Fin 31) = 7 ∨ 30 = 14 ∨ 30 = 17 ∨ 30 = 28)), if_neg (by decide : ¬ ((30 : Fin 31) = 8))]
+
 /-- Every observed coordinate is exactly at the floor on an ambient
 neighborhood of an explicit 31-vector. This supports the stronger
 topological lower bound on global observation augmentation. -/
@@ -322,26 +908,46 @@ theorem observed_constant_near_plateau :
       (fun q => light q (i.val + 1)) =ᶠ[𝓝 plateauCenter]
         (fun _ => (1e-12 : ℝ)) := by
     apply eventually_max_right (continuous_lightRaw (i.val + 1)).continuousAt
-    fin_cases i <;> norm_num [plateauCenter, lightRaw, clip, topo]
+    fin_cases i <;> norm_num [lightRaw, clip, topo]
   have hm (i : Fin 5) :
       (fun q => middle q (middleN i)) =ᶠ[𝓝 plateauCenter]
         (fun _ => (1e-12 : ℝ)) := by
     apply eventually_max_right (contDiff_middleRaw (middleN i)).continuous.continuousAt
-    fin_cases i <;> norm_num [plateauCenter, middleN, middleRaw, Matrix.cons_val]
+    fin_cases i <;> norm_num [middleN, middleRaw, Matrix.cons_val]
   have hh (i : Fin 3) :
       (fun q => heavy q (heavyN i)) =ᶠ[𝓝 plateauCenter]
         (fun _ => (1e-12 : ℝ)) := by
     apply eventually_max_right
       ((continuous_light (heavyN i)).add (continuous_heavyCorrection (heavyN i))).continuousAt
     fin_cases i <;>
-      norm_num [plateauCenter, heavyN, light, lightRaw, heavyCorrection,
+      norm_num [heavyN, light, lightRaw, heavyCorrection,
         clip, topo, Matrix.cons_val, Real.rpow_zero]
   filter_upwards [hl 0, hl 1, hl 2, hm 0, hm 1, hm 2, hm 3, hm 4,
     hh 0, hh 1, hh 2] with q l0 l1 l2 m0 m1 m2 m3 m4 h0 h1 h2
   funext i
-  fin_cases i <;> first | exact l0 | exact l1 | exact l2 |
-    exact m0 | exact m1 | exact m2 | exact m3 | exact m4 |
-    exact h0 | exact h1 | exact h2
+  fin_cases i
+  · change light q 1 = (1e-12 : ℝ)
+    exact l0
+  · change light q 2 = (1e-12 : ℝ)
+    exact l1
+  · change light q 3 = (1e-12 : ℝ)
+    exact l2
+  · change middle q 12 = (1e-12 : ℝ)
+    exact m0
+  · change middle q 19 = (1e-12 : ℝ)
+    exact m1
+  · change middle q 53 = (1e-12 : ℝ)
+    exact m2
+  · change middle q 73 = (1e-12 : ℝ)
+    exact m3
+  · change middle q 91 = (1e-12 : ℝ)
+    exact m4
+  · change heavy q 95 = (1e-12 : ℝ)
+    exact h0
+  · change heavy q 96 = (1e-12 : ℝ)
+    exact h1
+  · change heavy q 123 = (1e-12 : ℝ)
+    exact h2
 
 /-- A canonical representative for the three affine invisible directions.
 This does not quotient the other, nonlinear observation aliases. -/
@@ -355,7 +961,7 @@ theorem observed_canonicalInvisible (p : Params) :
 theorem canonicalInvisible_zero_coords (p : Params) :
     canonicalInvisible p 16 = 0 ∧ canonicalInvisible p 18 = 0 ∧
       canonicalInvisible p 27 = 0 := by
-  norm_num [canonicalInvisible, invisibleFamily, shiftHiggs, Function.update]
+  simp [canonicalInvisible, invisibleFamily, shiftHiggs]
 
 /-! Exact historical thresholds. -/
 def historicalThreshold (n : ℕ) : ℝ :=
@@ -372,6 +978,7 @@ theorem historical_numerator_bounds :
   have u2 := frozenLightBase_two_upper
   have u3 := frozenLightBase_three_upper
   norm_num [historicalNumerator]
+  norm_num at h1 u1 h2 u2 h3 u3
   exact ⟨h1, u1, h2, u2, by linarith, by linarith⟩
 
 private theorem exp_twenty_lt : Real.exp 20 < (3 : ℝ)^20 := by
@@ -396,21 +1003,22 @@ theorem historical_threshold_bounds :
   have h3' : 0.00002 < historicalNumerator 3 := by
     have h := frozenLightBase_three
     norm_num [historicalNumerator]
-    linarith
-  have q1 : 0 < historicalNumerator 1 / (1e-12 : ℝ) - 1 := by linarith
-  have q2 : 0 < historicalNumerator 2 / (1e-12 : ℝ) - 1 := by linarith
-  have q3 : 1 < historicalNumerator 3 / (1e-12 : ℝ) - 1 := by linarith
+    norm_num <;> linarith
+  norm_num at h1 u1 h2 u2 h3 u3 h3'
+  have q1 : 0 < historicalNumerator 1 / (1e-12 : ℝ) - 1 := by norm_num <;> linarith
+  have q2 : 0 < historicalNumerator 2 / (1e-12 : ℝ) - 1 := by norm_num <;> linarith
+  have q3 : 1 < historicalNumerator 3 / (1e-12 : ℝ) - 1 := by norm_num <;> linarith
   unfold historicalThreshold
-  refine ⟨Real.log_pos q3, Real.log_lt_log (by linarith) (by linarith),
-    Real.log_lt_log q1 (by linarith), ?_, ?_⟩
+  refine ⟨Real.log_pos q3, Real.log_lt_log (by norm_num <;> linarith) (by norm_num <;> linarith),
+    Real.log_lt_log q1 (by norm_num <;> linarith), ?_, ?_⟩
   · apply (Real.lt_log_iff_exp_lt q1).2
     have h := exp_twenty_lt
     norm_num at h
-    linarith
+    norm_num <;> linarith
   · apply (Real.log_lt_iff_lt_exp q2).2
     have h := exp_forty_gt
     norm_num at h
-    linarith
+    norm_num <;> linarith
 
 /-- The exact (unrounded) threshold test, valid for any historical row
 whose fixed numerator exceeds twice the floor. -/
@@ -419,10 +1027,11 @@ theorem historical_light_active_iff (a e : ℝ) (n : ℕ)
     (1e-12 : ℝ) < light (frozen a e) n ↔
       a * ((n : ℝ) - e) < historicalThreshold n := by
   have hd : 0 < 1 + Real.exp (a * ((n : ℝ) - e)) := by positivity
-  have hq : 0 < historicalNumerator n / (1e-12 : ℝ) - 1 := by linarith
+  norm_num at hA
+  have hq : 0 < historicalNumerator n / (1e-12 : ℝ) - 1 := by norm_num <;> linarith
   rw [light, historical_lightRaw, ← div_eq_mul_inv, lt_max_iff, or_iff_left (lt_irrefl _),
     historicalThreshold, Real.lt_log_iff_exp_lt hq, lt_div_iff₀ hd]
-  constructor <;> intro h <;> linarith
+  constructor <;> intro h <;> norm_num at h ⊢ <;> linarith
 
 /-- Exact reconstruction from the canonical quotient representative
 and the three eliminated coordinates. -/
@@ -430,7 +1039,7 @@ theorem invisible_reconstruct (p : Params) :
     invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) = p := by
   funext i
   fin_cases i <;>
-    norm_num [canonicalInvisible, invisibleFamily, shiftHiggs, Function.update] <;> ring
+    norm_num [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
 
 /-- An arbitrarily large change in an unused coordinate is completely
 invisible to the actual spectral observations. -/
@@ -453,7 +1062,7 @@ theorem historical_heavy_light_floor (a e : ℝ) (i : Fin 3) :
 
 theorem historical_heavy_constant (a e b f : ℝ) (i : Fin 3) :
     heavy (frozen a e) (heavyN i) = heavy (frozen b f) (heavyN i) := by
-  rw [heavy, heavy, historical_heavy_light_floor, historical_heavy_light_floor]
+  simp only [heavy, historical_heavy_light_floor]
   fin_cases i <;> norm_num [heavyN, heavyCorrection, frozen, Matrix.cons_val]
 
 /-- On the historical slice the complete eleven-output fiber is exactly
@@ -474,11 +1083,11 @@ theorem historical_equal_iff_light (a e b f : ℝ) :
     · exact h 0
     · exact h 1
     · exact h 2
-    · norm_num [observed, middle, middleRaw, frozen, Matrix.cons_val]
-    · norm_num [observed, middle, middleRaw, frozen, Matrix.cons_val]
-    · norm_num [observed, middle, middleRaw, frozen, Matrix.cons_val]
-    · norm_num [observed, middle, middleRaw, frozen, Matrix.cons_val]
-    · norm_num [observed, middle, middleRaw, frozen, Matrix.cons_val]
+    · norm_num [observed, middle, middleRaw, Matrix.cons_val]
+    · norm_num [observed, middle, middleRaw, Matrix.cons_val]
+    · norm_num [observed, middle, middleRaw, Matrix.cons_val]
+    · norm_num [observed, middle, middleRaw, Matrix.cons_val]
+    · norm_num [observed, middle, middleRaw, Matrix.cons_val]
     · exact historical_heavy_constant a e b f 0
     · exact historical_heavy_constant a e b f 1
     · exact historical_heavy_constant a e b f 2
@@ -527,12 +1136,75 @@ def rangeParams (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) : Pa
     m 4, m 0, m 1,
     0, 0, 0, 0, h 0, -1.189, 0, 0, h 1, -1.264, 4.685, 0, h 2, 0, 0]
 
+@[local simp] private theorem range_at_0 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 0 = l 0 := rfl
+@[local simp] private theorem range_at_1 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 1 = 0 := rfl
+@[local simp] private theorem range_at_2 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 2 = 0 := rfl
+@[local simp] private theorem range_at_3 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 3 = l 1 := rfl
+@[local simp] private theorem range_at_4 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 4 = l 2 := rfl
+@[local simp] private theorem range_at_5 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 5 = 0 := rfl
+@[local simp] private theorem range_at_6 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 6 = 0 := rfl
+@[local simp] private theorem range_at_7 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 7 = 0 := rfl
+@[local simp] private theorem range_at_8 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 8 = 1 := rfl
+@[local simp] private theorem range_at_9 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 9 = ‖middlePolar m‖ := rfl
+@[local simp] private theorem range_at_10 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 10 = 5.0632 := rfl
+@[local simp] private theorem range_at_11 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 11 = 9.4062 := rfl
+@[local simp] private theorem range_at_12 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 12 = 1.6469 + (middlePolar m).arg := rfl
+@[local simp] private theorem range_at_13 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 13 = m 4 := rfl
+@[local simp] private theorem range_at_14 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 14 = m 0 := rfl
+@[local simp] private theorem range_at_15 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 15 = m 1 := rfl
+@[local simp] private theorem range_at_16 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 16 = 0 := rfl
+@[local simp] private theorem range_at_17 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 17 = 0 := rfl
+@[local simp] private theorem range_at_18 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 18 = 0 := rfl
+@[local simp] private theorem range_at_19 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 19 = 0 := rfl
+@[local simp] private theorem range_at_20 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 20 = h 0 := rfl
+@[local simp] private theorem range_at_21 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 21 = -1.189 := rfl
+@[local simp] private theorem range_at_22 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 22 = 0 := rfl
+@[local simp] private theorem range_at_23 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 23 = 0 := rfl
+@[local simp] private theorem range_at_24 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 24 = h 1 := rfl
+@[local simp] private theorem range_at_25 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 25 = -1.264 := rfl
+@[local simp] private theorem range_at_26 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 26 = 4.685 := rfl
+@[local simp] private theorem range_at_27 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 27 = 0 := rfl
+@[local simp] private theorem range_at_28 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 28 = h 2 := rfl
+@[local simp] private theorem range_at_29 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 29 = 0 := rfl
+@[local simp] private theorem range_at_30 (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) :
+    rangeParams l m h 30 = 0 := rfl
+
 private theorem range_lightRaw (l : Fin 3 → ℝ) (m : Fin 5 → ℝ)
     (h : Fin 3 → ℝ) (i : Fin 3) :
     lightRaw (rangeParams l m h) (i.val + 1) =
       (V18LightJacobian.base.mulVec l) i / 2 := by
   fin_cases i <;>
-    norm_num [rangeParams, lightRaw, topo, clip, V18LightJacobian.base,
+    norm_num [lightRaw, topo, clip, V18LightJacobian.base,
       Matrix.mulVec, dotProduct, Fin.sum_univ_succ, Matrix.cons_val] <;> ring
 
 private theorem range_middleRaw (l : Fin 3 → ℝ) (m : Fin 5 → ℝ)
@@ -540,9 +1212,9 @@ private theorem range_middleRaw (l : Fin 3 → ℝ) (m : Fin 5 → ℝ)
     middleRaw (rangeParams l m h) (middleN i) =
       (V18MiddleJacobian.middle.mulVec m) i := by
   fin_cases i <;>
-    norm_num [rangeParams, middleRaw, middleN, V18MiddleJacobian.middle,
+    norm_num [middleRaw, middleN, V18MiddleJacobian.middle,
       Matrix.mulVec, dotProduct, Fin.sum_univ_succ, Matrix.cons_val, ← add_assoc] <;>
-    rw [middle_polar_linear] <;> ring
+    first | (rw [middle_polar_linear]; ring) | (rw [show (6329 / 1250 : ℝ) * _ + (16469 / 10000 + (middlePolar m).arg) = (6329 / 1250 * _ + 16469 / 10000) + (middlePolar m).arg by ring]; rw [middle_polar_linear]; ring)
 
 private theorem range_heavyCorrection (l : Fin 3 → ℝ) (m : Fin 5 → ℝ)
     (h : Fin 3 → ℝ) (i : Fin 3) :
@@ -554,13 +1226,13 @@ private theorem range_heavyCorrection (l : Fin 3 → ℝ) (m : Fin 5 → ℝ)
          (1.23 : ℝ)^(-1.189 : ℝ), 0, 1] := rfl
   rw [hm]
   fin_cases i <;>
-    norm_num [rangeParams, heavyCorrection, heavyN, clip,
+    norm_num [heavyCorrection, heavyN, clip,
       Matrix.mulVec, dotProduct, Fin.sum_univ_succ, Matrix.cons_val] <;> ring
 
 private theorem range_light_independent (l : Fin 3 → ℝ) (m : Fin 5 → ℝ)
     (h : Fin 3 → ℝ) (n : ℕ) :
     light (rangeParams l m h) n = light (rangeParams l m 0) n := by
-  norm_num [light, lightRaw, rangeParams, Matrix.cons_val]
+  simp [light, lightRaw]
 
 /-- Exact image of the full clipped map: every eleven-vector at or above
 the source floor is attained. The proof is constructive block solving;
@@ -588,9 +1260,9 @@ theorem observed_range_exact :
       change light (rangeParams l m h) (i.val + 1) = _
       rw [light, range_lightRaw, hl]
       fin_cases i
-      · norm_num [Matrix.cons_val]; exact max_eq_left (hy 0)
-      · norm_num [Matrix.cons_val]; exact max_eq_left (hy 1)
-      · norm_num [Matrix.cons_val]; exact max_eq_left (hy 2)
+      · norm_num [Matrix.cons_val]; exact (hy 0)
+      · norm_num [Matrix.cons_val]; exact (hy 1)
+      · norm_num [Matrix.cons_val]; exact (hy 2)
     have hmiddle (i : Fin 5) :
         middle p (middleN i) = (![y 3, y 4, y 5, y 6, y 7] : Fin 5 → ℝ) i := by
       change middle (rangeParams l m h) (middleN i) = _
