@@ -36,9 +36,9 @@ def historicalExceptional : ℝ × ℝ :=
   (50, 2 - historicalThreshold 2 / 50)
 
 local notation "h₁" => historicalThreshold 1
-private local notation "h₂" => historicalThreshold 2
-private local notation "h₃" => historicalThreshold 3
-private local notation "c" => (1e-12 : ℝ)
+local notation "h₂" => historicalThreshold 2
+local notation "h₃" => historicalThreshold 3
+local notation "c" => (1e-12 : ℝ)
 
 private def row (p : ℝ × ℝ) (n : ℕ) : ℝ :=
   light (frozen p.1 p.2) n
@@ -58,15 +58,15 @@ private theorem active1 (p : ℝ × ℝ) : c < row p 1 ↔ historicalT p < h₁ 
 
 private theorem active2 (p : ℝ × ℝ) : c < row p 2 ↔ p.1 + historicalT p < h₂ := by
   have h := historical_light_active_iff p.1 p.2 2 (numerator_gt 1)
-  norm_num at h
+  simp only [Nat.cast_ofNat] at h
   rw [show p.1 * (2 - p.2) = p.1 + historicalT p by unfold historicalT; ring] at h
-  exact h
+  simpa [row] using h
 
 private theorem active3 (p : ℝ × ℝ) : c < row p 3 ↔ 2 * p.1 + historicalT p < h₃ := by
   have h := historical_light_active_iff p.1 p.2 3 (numerator_gt 2)
-  norm_num at h
+  simp only [Nat.cast_ofNat] at h
   rw [show p.1 * (3 - p.2) = 2 * p.1 + historicalT p by unfold historicalT; ring] at h
-  exact h
+  simpa [row] using h
 
 private theorem row_floor (p : ℝ × ℝ) (n : ℕ) : c ≤ row p n :=
   le_max_right _ _
@@ -118,7 +118,7 @@ private theorem t_bounds {p : ℝ × ℝ} (hp : p ∈ historicalRectangle) :
   unfold historicalT
   constructor <;> nlinarith only [h0, h5]
 
-private theorem prefix {p : ℝ × ℝ} (hp : p ∈ historicalRectangle) :
+private theorem active_prefix_rect {p : ℝ × ℝ} (hp : p ∈ historicalRectangle) :
     (h₁ ≤ historicalT p → h₂ ≤ p.1 + historicalT p) ∧
     (h₂ ≤ p.1 + historicalT p → h₃ ≤ 2 * p.1 + historicalT p) := by
   obtain ⟨_, h31, h12, h20, h40⟩ := historical_threshold_bounds
@@ -177,8 +177,8 @@ theorem historical_one_active_fiber_iff {p q : ℝ × ℝ}
     apply (eq_rows q p).mpr
     exact ⟨row1_same ht',
       ((floor2 q).mpr h2').trans ((floor2 p).mpr h2).symm,
-      ((floor3 q).mpr ((prefix hq).2 h2')).trans
-        ((floor3 p).mpr ((prefix hp).2 h2)).symm⟩
+      ((floor3 q).mpr ((active_prefix_rect hq).2 h2')).trans
+        ((floor3 p).mpr ((active_prefix_rect hp).2 h2)).symm⟩
 
 /-- Exact all-floor fiber, including the boundary of the plateau. -/
 theorem historical_plateau_fiber_iff {p q : ℝ × ℝ}
@@ -189,20 +189,20 @@ theorem historical_plateau_fiber_iff {p q : ℝ × ℝ}
   · intro he
     exact (floor1 q).mp (((eq_rows q p).mp he).1.trans ((floor1 p).mpr ht))
   · intro ht'
-    have h2 := (prefix hp).1 ht
-    have h2' := (prefix hq).1 ht'
+    have h2 := (active_prefix_rect hp).1 ht
+    have h2' := (active_prefix_rect hq).1 ht'
     apply (eq_rows q p).mpr
     exact ⟨((floor1 q).mpr ht').trans ((floor1 p).mpr ht).symm,
       ((floor2 q).mpr h2').trans ((floor2 p).mpr h2).symm,
-      ((floor3 q).mpr ((prefix hq).2 h2')).trans
-        ((floor3 p).mpr ((prefix hp).2 h2)).symm⟩
+      ((floor3 q).mpr ((active_prefix_rect hq).2 h2')).trans
+        ((floor3 p).mpr ((active_prefix_rect hp).2 h2)).symm⟩
 
 theorem historical_good_singleton {p : ℝ × ℝ} (hp : p ∈ historicalRectangle)
     (hg : HistoricalGood p) : HistoricalSingleton p := by
   intro q _ he
   have ht : historicalT p < h₁ := by
     by_contra! hh
-    have := (prefix hp).1 hh
+    have := (active_prefix_rect hp).1 hh
     linarith [hg.2]
   have h0 : c < observed (frozen p.1 p.2) 0 := (active1 p).mpr ht
   have h1 : c < observed (frozen p.1 p.2) 1 := (active2 p).mpr hg.2
@@ -460,7 +460,12 @@ private theorem zero_nonisolated {p : ℝ × ℝ} (hp : p ∈ historicalRectangl
   rintro ⟨U, hU, hi⟩
   let e : ℝ := if p.2 = 0 then 5 else 0
   have he : 0 ≤ e ∧ e ≤ 5 := by unfold e; split_ifs <;> norm_num
-  have hne : e ≠ p.2 := by unfold e; split_ifs <;> simp_all
+  have hne : e ≠ p.2 := by
+    unfold e
+    split_ifs with hz'
+    · rw [hz']
+      norm_num
+    · exact Ne.symm hz'
   let f : ℝ → ℝ × ℝ := fun s => (0, blend p.2 e s)
   have hc : Continuous f := by unfold f blend; fun_prop
   have h0 : f 0 = p := by apply Prod.ext <;> simp [f, blend, hz]
