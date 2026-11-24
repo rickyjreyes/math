@@ -1299,3 +1299,100 @@ At the boundary d=4p, Lemma 48.1 supplies the lower Sobolev order j<1/2 automati
 The bounded-velocity construction cannot be applied to the unbounded-frequency-scale class by simply using the same fixed time step: the local existence times obtained by scaling may shrink like lambda^(-2p). Nor can one claim that the multiplier error in §49.3 is small after multiplication by an unbounded center velocity. The exact remaining boundary task is therefore to exclude the zero-momentum frequency cascade (or obtain a moving-center bound that permits the error estimate). For the deeper strip 2p<d<4p the missing half-derivative regularity or an alternative interaction weight remains an additional obstacle. No new unconditional nonradial parameter region is asserted. The prior high-dimensional and radial theorem statements remain candidates requiring independent review.
 
 Verification: the connector's pull-request workflow-run query returned no runs for head b822c88392e293d23674d1ee8df6dab9511bfc8f; a direct GitHub actions/runs query for that same head showed one queued catalogue-integrity run (ID 45366570947), not a successful GC03 Lean check. Twelve candidate Lean roots and their focused audit workflow are unchanged. The new momentum identity, homogeneous regularity and transverse commutator are analytical; no kernel pass, independent review, accepted registry promotion, or issue closure is asserted.
+
+
+## 51. One-sided additional decay and quantitative rapid-cascade exclusion
+
+Candidate analytical reductions, pending independent review of these arguments and their inherited estimates. Let p>=2, 2p<d<=4p, a_*=d/2-p>0, b=2d/(d-2p)=s+1, s=1+4p/(d-2p)>=3, F(u)=gamma |u|^(s-1)u. Suppose u is a nonzero global pure strong homogeneous solution as in §36, with compact normalized orbit K in dot H^p and inf lambda>0. Use the angular-frequency convention and frequency-scale notation of §30.
+
+### 51.1 One-sided integrability bootstrap, uniform under half-line rescaling
+
+**Lemma 51.1.** On any forward half-line [t0,infinity) with lambda(t)>=L>0,
+sup_(t>=t0) ||u(t)||_s <= C_K L^(a_*-d/s).
+The constant depends on K, the equation and uniform homogeneous bound, not on t0 or L. Only forward no-waste Duhamel is needed.
+
+Proof. Rescale by L and shift t0 to zero. The rescaled trajectory has frequency scale at least one, the same normalized compact set K (with transformed centers), and unchanged critical energy. The +infinity no-waste representation of §30.1 needs only the forward compact orbit. The proof of §33 is likewise one-sided: take suprema over the forward half-line, use only the Duhamel integral from the current time to +infinity, and choose N0 from the uniform low-frequency homogeneous tails of K using lambda>=1. Thus its constants, including N0, can be chosen uniformly in this rescaled class, yielding a fixed ell in (s,b) and uniform L^ell bound.
+
+Improve the exponent to s without backward or double Duhamel. Suppose uniform L^ell for s<ell<b. Set q_in=ell/s>=1. For s<=R<=ell, q_in<=b/s=b'<=R', where primes are conjugate exponents. The annular kernel of U(t)Q_N in §33.1 has L¹-to-L∞ norm bounded by C N^d min(1,(N^(2p)|t|)^(-d/2)). Interpolation with unitarity gives the L^(R')-to-L^R bound with spatial power d(1-2/R) and time exponent a_R=d(1/2-1/R). Insert a wider annular multiplier identically one on the support of P_N and use Bernstein from L^(q_in) into L^(R') on P_N F(u). This gives
+||U(t)P_N F(u)||_R <= C N^(d(s/ell-1/R)) min(1,(N^(2p)|t|)^(-a_R)) ||F(u)||_(ell/s).
+Here a_R>=a_s=d(6p-d)/(2(d+2p))>=2p/3>1; the latter scalar inequality follows from (3d-2p)(4p-d)>=0. Integrate in t using forward no-waste:
+sup_t ||P_Nu(t)||_R <= C N^(d(s/ell-1/R)-2p) (sup_t||u(t)||_ell)^s.
+For fixed N the absolutely convergent L^R integral agrees distributionally with the localized weak no-waste limit. No L² assumption on u is used.
+
+If d(s/ell-1/R)>2p and R<b, the low dyadic sum converges by this estimate; the high sum converges by Bernstein from homogeneous energy, ||P_Nu||_R<=C B N^(a_*-d/R). Identify the sum with u by distributional reconstruction in the canonical representative. To reach R=s in finitely many steps write x=1/ell-1/b>0 and choose mu=(1+s)/2 in (1,s). Set 1/R=min(1/s,1/b+mu x). Then s<=R<ell and
+d(s/ell-1/R)-2p >= d(s-mu)x>0,
+using d(s-1)/b=2p. Before reaching s, x is multiplied by mu at every step, so finitely many suffice. Constants depend only on the initial uniform improvement and equation parameters. Undo scaling to prove the lemma.
+
+Define m(t)=inf_(tau>=t) lambda(tau). It is positive, finite and nondecreasing, even without continuity of lambda. Apply the lemma with L=m(t) to each future half-line. Since s a_*=d-a_*,
+||F(u(t))||_1 <= C_K m(t)^(-a_*).
+This is in terms of the entire future minimum, not lambda(t) at a single large excursion.
+
+### 51.2 One-sided endpoint mass recovery
+
+**Lemma 51.2.** For any d>2p, a global compact homogeneous strong pure trajectory with forward no-waste Duhamel and bounded homogeneous energy must be zero if F(u) belongs to L²([t0,infinity);L¹), using the pure inhomogeneous local theory and conservation of §§12,16,36.
+
+Proof. The polyharmonic endpoint Strichartz pair (2,b) is admissible, since p+d/b=d/2 and the decay exponent d/(2p)>1. Its dual homogeneous estimate gives
+||integral_t^T U(-tau)P_N F(u(tau))dtau||₂
+ <= C ||P_N F(u)||_(L²([t,T];L^(b')))
+ <= C N^(a_*) ||F(u)||_(L²([t,T];L¹)).
+The last step is annular Bernstein since d(1-1/b')=a_*. For fixed N the integral is strongly Cauchy in L² as T→infinity and agrees after U(t) with P_Nu(t) by no-waste. Hence
+||P_Nu(t)||₂ <= C N^(a_*) H(t),
+H(t)=||F(u)||_(L²([t,infinity);L¹)) -> 0.
+For any fixed K0>0 sum low bands and use the homogeneous energy bound B for the high bands:
+||S_(K0)u(t)||₂ <= C K0^(a_*) H(t),
+||(I-S_(K0))u(t)||₂ <= C K0^(-p) B.
+This identifies u in L². Summation with weight N^(-epsilon), 0<epsilon<a_*, also gives uniform negative regularity on the half-line. Interpolating with strong homogeneous continuity as in §30.2 gives C_t H^p; inhomogeneous uniqueness and conservation apply. Taking t→infinity for fixed K0 and then K0→infinity makes the conserved mass zero. By homogeneous uniqueness u is zero throughout its lifespan.
+
+**Theorem 51.3 (conditional rapid-cascade exclusion).** For the class of Lemma 51.1,
+integral_0^infinity m(t)^(-(d-2p))dt < infinity
+implies u=0, by the bound on F and Lemma 51.2. Every nonzero such solution must have divergent integral. The backward statement follows by conjugation with time reversal using the past minimum scale.
+
+For example lambda(t)>=c(1+t)^sigma eventually with sigma>1/(d-2p) gives the forbidden condition. At d=4p the threshold is 1/(2p); lambda(t)>=c(1+t)^(1/(2p))(log(2+t))^rho with rho>1/(2p) also suffices. These are sufficient growth examples, not necessary characterizations. Slow growth or recurrent excursions with bounded future minimum are not excluded. Sup lambda=infinity does not imply the integral is finite.
+
+## 52. Cascade exclusion from a fixed high-frequency spacetime estimate
+
+The alternative below does not require eventual pointwise growth. The method is related to Pausader, arXiv:0807.4916v2, Proposition 10.1 (pp. 31–33, PDF zero-based pages 30–33), which recovers mass for the cubic fourth-order d=8 cascade using a separate frequency-localized interaction estimate. That theorem is established prior art; its high-frequency estimates are not assumed for general p.
+
+**Theorem 52.1 (conditional).** Let p>=2, 2p<d<=4p, and u satisfy the global compact homogeneous strong hypotheses of §51. Suppose t_n→infinity with lambda(t_n)→infinity. If for some fixed K>0
+||(I-S_K)u||_(L²([0,infinity);L^s)) < infinity,
+then u=0. It also suffices to assume directly
+G=F(u)-F(S_Ku) in L²([0,infinity);L¹)
+for any fixed K>0. This is a sufficient spacetime control, not a proved estimate for general-order minimal elements.
+
+Proof. The global lower scale bound and Lemma 51.1 give uniform L^s. The first hypothesis implies the second by the pointwise power difference bound, uniform cutoff boundedness on L^s and Holder:
+||G||_(L²L¹)<=C(sup_t||u||_s)^(s-1)||(I-S_K)u||_(L²L^s).
+Set v=S_Ku. Its exact equation is
+i v_t=A v+S_K F(v)+S_K G.
+The cutoff need not be idempotent. No conservation assertion for v is used. On compact intervals v is continuous in the homogeneous norm and has finite Z.
+
+Fix a late time t0 and restrict to [t0,t_n]. The force estimates
+||∇ S_K G||_(L²L^k)<=C K^(d/2) ||G||_(L²([t0,infinity);L¹)),
+||S_K G||_(L²L^(b'))<=C K^(a_*) ||G||_(L²([t0,infinity);L¹))
+follow by Bernstein, k=2d/(d+2). Both right sides tend to zero as t0→infinity for fixed K. By normalized compactness and lambda(t_n)→infinity, ||D^p v(t_n)||₂→0: the fixed physical cutoff corresponds to a shrinking normalized low-frequency ball.
+
+Use the S=L∞ dot H^p+Z norm and N(e)=||∇e||_(L²L^k) of §36. The small-data forced projected theory with terminal datum at t_n has constants independent of interval length. The derivative-gain estimate of §14 and the differentiated Lipschitz power estimate (s>=3) give
+N(S_K F(z))<=C Z(z)^s,
+N(S_K(F(z)-F(w)))<=C(Z(z)+Z(w))^(s-1) Z(z-w).
+The terminal free term plus linear forced response has S norm bounded by C(initial kinetic norm + force N norm). A ball of twice this bound is invariant and contractive when the bound is small. The fixed point has strong homogeneous continuity by the linear Duhamel estimate; the estimates are equally valid backward. The actual v obeys the same small S bound on [t0,t_n], using its small terminal kinetic norm, small force and the small-Z bootstrap on expanding intervals (its Z norm is continuous on each compact subinterval and vanishes at the terminal time).
+
+Construct w_n with the same prescribed force S_K G but zero terminal datum. In addition to the small homogeneous S contraction, its Picard iteration stays in Y=L∞L² intersect L²L^b. Indeed ordinary endpoint Strichartz gives for a zero-terminal Picard update
+||z_new||_Y <= C ||S_K G||_(L²L^(b')) + C ||z||_(L∞L^b)^(s-1)||z||_(L²L^b).
+Here s=b-1 and s/b=1/b'. The corresponding difference bound has coefficient C(||z||_(L∞L^b)+||z'||_(L∞L^b))^(s-1) multiplying ||z-z'||_Y by the power difference inequality. Sobolev and the small S ball make this less than 1/2. Starting from zero, iterate simultaneously in the two complete spaces (their limits agree as distributions). This yields
+||w_n||_(L∞([t0,t_n];L²)) <= C K^(a_*) ||G||_(L²([t0,infinity);L¹)).
+The differentiated difference estimate for v and w_n with the same prescribed force then gives
+||v-w_n||_S<=C||D^p v(t_n)||₂ -> 0.
+At t0 the convergence in the homogeneous norm gives distributional convergence; the uniform L² bound on w_n(t0) passes by weak compactness. Thus
+||S_Ku(t0)||₂<= C K^(a_*) ||G||_(L²([t0,infinity);L¹)).
+This holds for all sufficiently late t0 (choose n large afterward), so the low mass tends to zero.
+
+At one such time the high part has finite L² from the homogeneous energy bound, hence u is an H^p datum. The inhomogeneous pure flow agrees locally with the homogeneous flow by §36 uniqueness; it agrees on each compact future interval by continuation, since its mass and energy are conserved and the homogeneous path has finite Z there, using §16.4. Thus mass is conserved throughout the future half-line. At the original cascade times t_n, the low mass tends to zero by the estimate above. The high component on K<|xi|<=L tends to zero in L² by normalized compactness; the part |xi|>L is bounded by C L^-p B. Sending n→infinity then L→infinity makes the conserved mass zero, proving the theorem.
+
+This condition is a fixed-cutoff target, not necessarily sharp. Pausader's fourth-order proof uses different weighted spacetime norms, and the general-order high-frequency estimate required here is not established. No unconditional parameter extension follows from this theorem.
+
+## 53. Remaining task and verification
+
+At d=4p the candidate chain excludes bounded-scale compact trajectories, nonzero momentum and rapid cascades satisfying the future-minimum integral (or its past analogue). A remaining nonzero minimal element must have zero momentum, unbounded frequency excursions and divergent future and past reciprocal-scale integrals. In a direction with a cascade sequence its high-pass L²_t L^s_x norm must be infinite at every fixed cutoff. In the deeper strip 2p<d<4p the same conditional cascade exclusions hold, but bounded-scale nonradial rigidity still needs additional regularity or a new argument. Slow or recurrent excursions are not excluded. Neither unbounded sup lambda nor the center-excursion theorem implies the lower growth needed in §51.
+
+The concrete open target is the high-frequency spacetime bound of §52 or a different positive interaction estimate adapted to the higher-order symbol. In the established p=2,d=8 theorem, Pausader's mass recovery uses an independently proved frequency-localized interaction estimate (arXiv:0807.4916v2, §§7–10). No novelty claim for the general-order adaptation is made. The prior high-dimensional and radial candidate chains still require independent adversarial review.
+
+Verification: the direct Actions API returned only a queued catalogue-integrity run for preceding head afb3ce69bbdf7699e6d32b37018798bc4aeed. No successful GC03 kernel pass or transitive audit. Twelve candidate Lean roots and focused workflow unchanged; new analytic estimates unformalized. No new unconditional parameter region, accepted registry promotion or issue closure.
