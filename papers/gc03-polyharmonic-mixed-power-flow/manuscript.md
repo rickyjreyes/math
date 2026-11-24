@@ -1924,3 +1924,82 @@ The principal remaining arbitrary-data critical region is now the lower strip 2p
 ## 78. Verification gate
 
 The new ingredient is the positive principal convex commutator and its lower-order Hardy error estimate, combined with a spatially resolved pair occupation bound. It does not appeal to the unproved quantitative force tail or pair-separation hypotheses of §71.3. The boundary and adjacent-dimension conclusions are candidate unconditional analytical parameter extensions, not accepted or Lean-certified theorems. The focused workflow API returned no runs for preceding head cb151c24a02eb1f5cad8f12b7ece07daa06296da at inspection; that is not a successful kernel check. The twelve existing candidate Lean roots remain unchanged; no new continuum proof has been formalized. Keep the original problem and registry unchanged and issue #100 open pending independent proof review and actual kernel verification.
+
+
+## 79. Exact biharmonic Morawetz positivity in dimensions five and six
+
+The following candidate analytical refinement specializes to p=2 and d=5,6. It uses the existing homogeneous strong compact-element theory and lower regularity in §48. Biharmonic Morawetz identities and interaction estimates are prior art (Pausader, arXiv:0807.4916; Miao–Xu–Zhao, arXiv:0807.0692). The point here is to exploit the one-field exact positive form and its localized homogeneous action in a new frequency-regularity bootstrap; no novelty claim is made.
+
+Let A(x) be a real scalar weight, a=∇A, and J=Im integral conj(u) a·∇u. For Schwartz fields, expanding (75.1) for p=2, or using [Δ,L] with L=∇A·∇+ΔA/2, gives the kinetic part
+K_A(u)=4 integral sum_(i,j,k) A_jk Re(conj(u_ij)u_ik)
+ -2 integral sum_(i,j) (ΔA)_ij Re(conj(u_i)u_j)
+ - integral Δ²A |∇u|² + (1/2) integral Δ³A |u|².            (79.1)
+Indeed K_A=2 Re integral Δconj(u)[Δ,L]u, where [Δ,L]u=2 A_jk u_jk+2(ΔA)_j u_j+(Δ²A)u/2. Integrating the first term once in each derivative index gives the first term of (79.1), plus 2 Hess(ΔA) on the gradient and -2 Δ²A on its norm; the second gives -4 Hess(ΔA) and +2 Δ²A; the last gives -Δ²A and Δ³A/2. The nonlinear term is gamma(s-1)/b integral ΔA |u|^b.
+
+For A=|x| with r=|x|, the leading term of (79.1) is 4/r times the squared Hessian with one tangential index. The gradient coefficients away from zero are (d-1)(d-7)/r³ in the radial direction and (d-1)²/r³ in the tangential directions. The final distribution is nonnegative: Δ³r=3(d-1)(d-3)(d-5)r^(-5) for d>5, and at d=5 it is the positive multiple 24|S^4|δ_0. Thus the radial gradient term at d=5,6 cannot simply be discarded as positive. Instead expand into spherical harmonics with -Δ_S Y=λY and normalize each harmonic in L²(S^(d-1)). For one coefficient f(r)Y(ω), the tangential-tangential Hessian is r^(-2)(f Hess_S Y+r f' Y g_S), where g_S is the sphere metric. Its angular squared integral equals
+r^(-4)[λ(λ-d+2)|f|²+(d-1)r²|f'|²-2λ r Re(conj(f) f')].
+Here the Hessian norm identity follows from the integrated Bochner formula on the unit sphere; the cross term is the trace Δ_S Y=-λY. When multiplied by r^(-1) and integrated radially with measure r^(d-1)dr, the cross term gives +λ(d-5) integral r^(d-6)|f|² by integration by parts. Boundary terms vanish for smooth compact data: for nonconstant harmonics f=O(r) at zero, d>=5; the λ=0 term is absent. Orthogonality across harmonic modes follows by angular integration by parts, including the Hessian inner products. Since every nonzero λ>=d-1, all terms other than the displayed (d-1)r²|f'|² contribution are nonnegative after integration. The mixed radial-tangential Hessian terms are also nonnegative. Hence
+4 integral r^(-1) sum_(i,j,k) projection_tangential,jk Re(conj(u_ij)u_ik)
+ >=4(d-1) integral r^(-3)|∂_r u|².
+Combining with the radial coefficient (d-1)(d-7) gives (d-1)(d-3)>0. Thus K_|x|(u)>=0 for every Schwartz u when d>=5, not merely radial u. The distributional identity can be justified by excluding a small ball, or by distributional differentiation of r and integrating against smooth products; all coefficients up to order five are locally integrable except the stated order-six delta at d=5. The harmonic argument first applies to finite expansions and then by smooth approximation and the integrability of the r^-1 and r^-3 weights. No claim of pointwise positivity of every integrand is used.
+
+Take a nonnegative smooth radial mollifier ρ of integral one supported in the unit ball and A_z=ρ*|·-z|. By linearity of K in A and translation invariance of the preceding estimate, K_(A_z)(u)>=0. The action coefficient a_z=∇A_z is bounded, with |∂^k a_z|<=C_k(1+|x-z|)^(-k) for k>=1, and ΔA_z>=(c_d)/(1+|x-z|) by convolution with (d-1)/|x-z|. The coefficient and nonlinear lower bounds are uniform in z. This avoids a singular distribution in the rough-solution calculation.
+
+### 79.1 Uniform local occupation from exact positivity
+
+Assume uniform dot H² and dot H^j bounds for 0<j<2 and strong continuity in these spaces (in subsequent use choose j strictly above the available lower endpoint, by interpolation). Let b=s+1, s=1+8/(d-4). For j<1/2 the uniform half derivative and first derivative bounds follow by interpolation. Multiplication by a_z is uniformly bounded on dot H^(1/2) by the Gagliardo-Hardy proof of §75.2, now with R=1. Therefore the untruncated action is uniformly bounded and (79.1), positive K and the nonlinear bound yield
+integral_I integral_(B(z,L)) |u|^b <= C (1+L),                (79.2)
+uniformly in every finite interval I. To pass to the rough solution, use annular smoothings as in §75.2; positivity of K on approximants extends from Schwartz by inhomogeneous Sobolev approximation, since mollified coefficients and derivatives are bounded. Principal and lower terms converge by the order-two norm and the Hardy estimates of §75.1 (R=1); force errors vanish by the global dot H¹ bound and the differentiated forcing regularity. Thus (79.2) is an estimate on the homogeneous strong solution.
+
+For j>=1/2, truncate a_z by χ((x-z)/S), S>=2, denoting the resulting action J_S. We claim that the kinetic form satisfies K_(χ a_z)(u)>=-C S^(-1) ||D²u||₂². In this notation K for the non-gradient cutoff vector field is defined by the exact commutator (75.1), not by treating χ a_z as a scalar Hessian unless it is a gradient. To prove the claim, compare with K_(A_z)(η_S u), where η_S is a real smooth cutoff equal to one in B(z,S/2), supported in B(z,S), with the standard rescaled derivative bounds. On B(z,S/2) the two ordered commutator integrands are identical. Outside this ball the cutoff form and the form applied to η_S u are supported in B(z,2S). Every coefficient pairing an order-two derivative and an order-l derivative (l=0,1,2) is bounded there by C S^(-(3-l)), by the derivative bounds above and the product rule. For the cutoff form the local order-l L² norm on the annulus is <=C S^(2-l)||D²u||₂ by homogeneous Sobolev and Holder (at l=2 use global L²). For η_S u use the same estimate after expanding the derivatives of η_S, and its uniform dot H² bound. Cauchy–Schwarz shows each annular integral is bounded by C S^(-1)||D²u||₂². The compared form on η_S u is nonnegative by the established positivity and smooth approximation. This proves the claim. Also div(χ a_z)>=c/(1+|x-z|) on B(z,S/2), and is bounded below everywhere by -C/S since the uncut divergence is positive. The nonlinear negative contribution is <=C/S by the uniform critical norm. The localized half-derivative action estimate of §75.3 now gives |J_S|<=C S^(2j-1) (the coefficient amplitude is one, not R). The annular rough-solution limit uses compact cutoff support and local L^(k') exactly as in §75.3; the comparison positivity needs no extra regularity of the limiting solution.
+
+Integration, for 1<=L<=S/2, yields
+integral_I integral_(B(z,L)) |u|^b <= C L [S^(2j-1)+|I|/S].
+Choose S=2 T^β, T>=1, β=1/(2j), and I of length at most 2T. If L>S/2 use the trivial uniform critical-moment estimate instead. Combining both cases, and including (79.2) for j<1/2, gives
+T^(-1) integral_I integral_(B(z,L)) |u|^b
+ <= C min(1,L T^(-β)),   L>=1, β=min(1,1/(2j)).              (79.3)
+This is uniform in z, T, I, and requires neither finite mass nor a center bound. The upper bound with min follows by also using the trivial uniform moment bound. The action at j=1/2 is handled by the cutoff argument with β=1.
+
+## 80. Annulus-specific double-Duhamel bootstrap
+
+Keep p=2 and a global compact element of positive lower scale. The two no-waste representations, Q(t)=||F(u(t))||_1 bounded, and the homogeneous energy bound are the same as in §71. Suppose uniform dot H^j is available, 0<j<2, with ell=2d/(d-2j)<s, and define θ=(s-ell)/(b-ell)>0, β=min(1,1/(2j)). Equation (76.1) with this ell and (79.3) give
+T^(-1) integral_I integral_(B(z,L)) |F(u)| <= C min(1,(L T^(-β))^θ).
+This holds for all intervals I of length <=2T and all z, L>=1.
+
+### 80.1 Keep the annulus fixed instead of summing first
+
+For dyadic 0<N<=1, choose a small η>0, and at each dyadic time separation T>=1 take
+L=C N^(-η) (N^(-1)+T N³).
+The annular kernel of U(r)P_N^*P_N, r∈[T,2T], is bounded everywhere by C N^d min(1,(T N⁴)^(-d/2)). Outside |x-y|<=L it has the stronger bound, for every prescribed A>0,
+C_A N^A N^d min(1,(T N⁴)^(-d/2)).
+Indeed in the scaled integral the phase is N(x-y)·ξ-r N⁴|ξ|⁴ on a fixed annulus; outside this radius N|x-y| dominates 1+r N⁴ by a factor at least C N^-η. The phase normalized by N|x-y| has gradient bounded away from zero and all required higher derivatives bounded. Repeated integration by parts gives C_M N^d (N|x-y|)^(-M), and since N|x-y|>=C N^-η(1+T N⁴), choose M large enough for both requested gains. Constants are independent of N,T.
+
+For the near contribution to the double-Duhamel rectangle with T<=a+b_time<=2T, integrate the past force over its interval of length 2T and B(x,L) for each fixed future point (a,x); then integrate the future force using the global Q bound, as in §76. Thus
+||P_N u(t)||₂²
+ <= C N^d + C sum_(T>=1 dyadic) N^d T² min(1,(T N⁴)^(-d/2))
+       [min(1,(L T^(-β))^θ)+C_A N^A].                       (80.1)
+The r<=1 contribution is bounded by C N^d. All constants uniform in t. Pairing and successive weak limits are justified by the fixed-annulus time integrability d/2>2, as in §71.2.
+
+Put g=θ(4β-1-η) and h=θ(1-β). Assume g>0. For T<=N^-4 bound the near factor by C N^(-(1+η)θ) T^(-βθ), without taking the min. Since 2-βθ>0, the geometric sum is bounded by C N^(d-8+g). For T>=N^-4 write v=T N⁴>=1; the summand is bounded by
+C N^(d-8) v^(-(d/2-2)) min(1,C N^g v^h).
+If h<d/2-2 (including h=0), the geometric sum is <=C N^(d-8+g). If h>d/2-2, split the sum at v approximately N^(-g/h) to get <=C N^(d-8+g(d/2-2)/h). If equality holds there is an extra O(1+|log N|) factor, absorbable by arbitrarily small loss in the exponent. The far term contributes <=C N^(d-8+A), and r<=1 is harmless for these gains since g<8. Consequently for every
+0<g'< θ(4β-1) min(1,(d/2-2)/h),                           (80.2)
+where the min is interpreted as one when h=0, choose η sufficiently small and A sufficiently large to obtain the uniform estimate
+||P_N u(t)||₂² <= C N^(d-8+g').                             (80.3)
+The strict inequality accommodates all losses including the logarithm. Thus every homogeneous order j_new> (8-d-g')/2, up to order two, is uniformly bounded by annular square summation; if g'>8-d the low-frequency L² sum is uniformly tight. Strong continuity at intermediate improved orders follows by interpolation with a slightly lower improved order and the original energy norm. This is a genuine iterative gain, rather than requiring the first improved decay to yield finite mass immediately.
+
+### 80.2 Dimension six: finite sequence of explicit strict gains
+
+Here s=5,b=6, d/2-2=1, and h<1 automatically. Section 48 supplies j=21/20. For that j, ell=40/13, θ=25/38, β=10/21, so θ(4β-1)=(25/38)(19/21)=25/42>1/2. Select g'=1/2; (80.3) gives all orders strictly above 3/4. To reach exactly 3/4 choose instead g'=11/20 (strictly less than 25/42), so the lower endpoint is 29/40<3/4.
+
+At j=3/4, ell=8/3, θ=7/10, β=2/3, and θ(4β-1)=7/6>11/10. Choose g'=23/20, which is also strictly below 7/6. The lower endpoint is 17/40<9/20, supplying j=9/20. At that j, ell=40/17, θ=45/62, β=1, and θ(4β-1)=135/62>2. Choose g'=21/10, strictly between 2 and 135/62. This gives the uniform low-band bound C N^(1/10), whose dyadic sum is finite and uniformly tight. The high-frequency L² bound is provided by the original dot H² norm. The strict margins also give the continuity required in every preceding application, by choosing intermediate orders below the displayed j's.
+
+Recover L² continuity and conserved mass as in §71.2. An unbounded scale sequence then forces mass zero by normalized compactness and the uniform low-tail bound. Otherwise scales are bounded above and below, the physical recentered orbit is precompact in H² by §27.4, and the full interaction rigidity theorem §27 excludes it. Thus no nonzero global homogeneous pure critical compact element of positive lower scale exists in dimension six, in the inherited analytical chain.
+
+### 80.3 Dimension five: actual gain, not closure
+
+Here s=9,b=10, d/2-2=1/2, and the long-time exponent in (80.2) can matter. From §48 take j=31/20, ell=100/19, θ=71/90, β=10/31. Then θ(4β-1)= (71/90)(9/31), while h=(71/90)(21/31)>1/2. Formula (80.2) gives upper gain (9/21)/2=3/14>1/5. Choose g'=1/5; (80.3) gives all j_new>7/5, in particular 29/20. This improves the former lower endpoint 3/2. At j=29/20, β=10/29, ell=100/21, θ=89/110, h>1/2, the upper gain is (11/19)/2=11/38>1/4. Choosing g'=1/4 gives all j_new>11/8, in particular 7/5. These strict gains do not recover mass. The displayed iteration and exact positivity alone do not establish arbitrary-data global existence in d=5; no extrapolation of the d=6 proof to this remaining dimension is asserted.
+
+## 81. Candidate unrestricted fourth-order dimension-six theorem
+
+Assuming the inherited homogeneous local theory, profile compactness and minimal-element normalization §§36–39 and lower regularity §48, §§79–80 exclude the compact obstruction for p=2,d=6. Therefore the pure defocusing critical equation has an infinite uniform energy scattering threshold in dot H² in this dimension. By §§16–20 or §25, the exact original mixed critical equation, with s=5, arbitrary real 1<r<5 and beta,gamma>0, has candidate global strong H² well-posedness for arbitrary data, with mass and energy conservation and continuous dependence. The conclusion does not assert mixed scattering. Combined with §77 the fourth-order candidate unrestricted critical coverage now includes all d>=6; d=5 remains unresolved. All inherited estimates and the new angular commutator and annular bootstrap require independent mathematical review. No new Lean roots or verified continuum proof; focused workflow listing was empty at the inspected preceding head a46e511d6744753bf00c2ed023830848f91de511, not a kernel pass. Keep issue #100 open and do not promote the registry.
