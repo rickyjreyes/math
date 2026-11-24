@@ -388,3 +388,136 @@ The new time-Sobolev lemma is the key proof contribution of this revision. Its p
 - C. Miao, G. Xu, L. Zhao, J. Differential Equations 251 (2011), 3381–3402, pure defocusing uniform bound d>=9: https://arxiv.org/abs/0807.0692 ; https://doi.org/10.1016/j.jde.2011.08.009
 - B. Pausader, The cubic fourth-order Schrödinger equation, JFA 256 (2009), 2473–2517: https://arxiv.org/abs/0807.4916
 - J. Zhang, J. Zheng, exact d=8 mixed equation, Nonlinear Analysis 73 (2010), 1004–1014: https://doi.org/10.1016/j.na.2010.04.027 ; accessible manuscript https://doczz.net/doc/7839286/the-energy-critical-fourth-order-schr%C3%B6dinger-equations-with
+
+
+## 19. General-order critical stability below the Lipschitz derivative threshold
+
+**Analytical result, pending independent review.** The conditional large-data transfer of sections 14 and 17 extends to every integer p>=1, every d>2p, and every 1<r<s=s_E. The only additional pure-flow input needed is a uniform critical spacetime bound for bounded initial H^p data. For s>=2 the earlier first-derivative stability estimate suffices. This section supplies the missing Hölder-critical stability for d>6p, so 0<alpha=s-1=4p/(d-2p)<1. It adapts classical exotic Strichartz and fractional chain-rule methods, rather than claiming novelty of those methods.
+
+Use D=|∇|, U(t)=exp(-it(-Delta)^p), a_*=d/2-p, b_*=2d/(d-2p), q=2s, and k=2d/(d+2). Write Z and S as in section 14, with S=||D^p u||_(L∞L²)+Z. The derivative-gain linear estimate there also controls every nonendpoint admissible output ||D^p u||_(L^Q L^R), Q>2, 2p/Q+d/R=d/2, by initial kinetic norm and ||∇e||_(L²L^k) for a forcing e. The same observation was used in section 16.
+
+### 19.1 Fractional stability metric for every order
+
+Choose sigma=alpha/4 and a number kappa satisfying
+0<kappa<min(sigma/(2p),alpha/(2q),1/8).
+Set theta=1-kappa and define
+A0=alpha/kappa, B0=d alpha/(2p theta),
+A=2p/(sigma-p kappa), B=2d/(d-2p theta),
+1/C=1/A+kappa, 1/B'=1-1/B.
+These choices give A0>q, A>q, 1<C<A<∞, 2<B<∞,
+2p/A0+d/B0=a_*,
+2p/A+d/B=a_*+sigma,
+and alpha/B0=1-2/B, alpha/A0=kappa.
+Let B1 and L1 be defined by 1/B1=1/B0+1/d and 1/L1=alpha/B0+sigma/d. Also let 1/Btilde=1/B-sigma/d. All spatial exponents used in the following fractional product and Sobolev estimates are strictly between 1 and infinity: d>6p, sigma<1/4, B0>b_*, and d/B-sigma>0. The scale-invariant norms are
+X_I(h)=||D^sigma h||_(L^A(I;L^B)),
+Y_I(e)=||D^sigma e||_(L^C(I;L^(B'))),
+V_I(v)=||v||_(L^A0(I;L^B0))+||∇v||_(L^A0(I;L^B1)).
+In particular V_I(v)<=C ||D^p v||_(L∞L²)^(1-q/A0) Z_I(v)^(q/A0) by time-space interpolation and homogeneous Sobolev. Both components use the same interpolation parameter, since 1/B1=1/B0+1/d.
+
+The free kernel estimate of section 3 implies, by interpolation with L² unitarity,
+||U(t)f||_B<=C|t|^(-theta)||f||_(B').
+Indeed d/(2p)(1-2/B)=theta. Fractional integration in time of order kappa=1-theta gives
+X_I(integral_a^t U(t-t')e(t')dt')<=C Y_I(e).
+This holds directly for retarded integration, since the time integrand is dominated by the positive convolution kernel |t-t'|^(-theta), and 1/A=1/C-kappa. It does not need a retarded endpoint estimate or a generalized Foschi theorem. The free initial evolution obeys X_I(U(t-a)h0)<=C||D^p h0||₂: apply the ordinary admissible estimate at time exponent A to D^p h0 and spatial Sobolev of order p-sigma, using 2p/A+d/B=a_*+sigma. The derivative-gain forcing estimate similarly controls X_I of a retarded response by ||∇e||_(L²L^k), even if Y_I(e) is not known. The spatial Sobolev inequality also gives ||h||_(L^A L^Btilde)<=C X_I(h).
+
+For F(z)=|z|^alpha z, its real derivative DF is globally alpha-Hölder and |DF(z)|<=C|z|^alpha. We claim
+Y_I(F(v)-F(w))<=C(V_I(v)+V_I(w))^alpha X_I(v-w).
+To check this, apply the real fundamental theorem of calculus along the line between v and w; it suffices to estimate DF(z)h with z=w+lambda(v-w) and h=v-w, uniformly in lambda in [0,1]. At each time use the fractional product rule:
+||D^sigma(DF(z)h)||_(B')
+ <= C ||z||_(B0)^alpha ||D^sigma h||_B
+   + C ||D^sigma DF(z)||_(L1) ||h||_(Btilde).
+Both exponent identities follow from 1/B'=alpha/B0+1/B and 1/L1+1/Btilde=1/B'. For the second term use the Hölder fractional chain rule of Visan, in the standard formulation with sigma/alpha<tau<1, and take tau=1/2. Put lambda0=sigma/tau=alpha/2, 1/Btau=1/B0+tau/d. The rule gives
+||D^sigma DF(z)||_(L1)
+ <= C ||z||_(B0)^(alpha-lambda0) ||D^tau z||_(Btau)^lambda0
+ <= C ||z||_(B0)^(alpha-lambda0) ||∇z||_(B1)^lambda0.
+For the first inequality choose the Hölder exponents P1=B0/(alpha-lambda0), P2=Btau/lambda0; they satisfy 1/P1+1/P2=alpha/B0+sigma/d. The stronger standard condition (1-lambda0/alpha)P1>1 also holds, since its left side is B0/alpha>1. The second inequality is fractional integration of ∇z, with 1/Btau=1/B1-(1-tau)/d. These are precisely the fractional-power hypotheses, not a second derivative bound at zero. Apply spatial Sobolev to h and Hölder in time, using alpha/A0=kappa=1/C-1/A. This proves the claim. Reference: Visan's fractional chain rule for Hölder functions (Appendix A of her energy-critical NLS work; see also the Oberwolfach lecture notes, Lemmas A.6 and A.8, https://www.math.ucla.edu/~visan/Oberwolfach2012.pdf, printed pp. 56–57). The chosen exponents meet even the stronger condition in the original thesis https://www.math.ucla.edu/~visan/thesis.pdf.
+
+### 19.2 Return from fractional to energy stability
+
+Let v,w be respectively an approximate and an exact pure defocusing critical solution on a compact interval I, satisfying the distributional equations
+i v_t=Aop v+gamma F(v)+e, i w_t=Aop w+gamma F(w),
+where Aop=(-Delta)^p, and assume a common bound Bbig on the sum of their L∞ kinetic norms and Z norms. Suppose ||∇e||_(L²L^k)<=epsilon, and the initial homogeneous H^p mismatch is at most epsilon. The solutions must have strong energy traces and the finite critical norms just stated; for the mixed application these are provided by section 16, not assumed for an unknown supercritical flow.
+
+Partition I into finitely many intervals J on which the sum of the Z norms is small enough that C(V_J(v)+V_J(w))^alpha<=1/2. This is possible with the number of pieces bounded in terms of Bbig and the equation parameters, by interpolation above and additivity of the q-th powers of the finite-time-exponent norms. For h=v-w, the fractional estimate and the linear estimates imply
+X_J(h)<=C(||D^p h(a_J)||₂+epsilon).
+These norms are finite: apply the derivative-gain estimate for time exponent A to v,w using ||∇F(v)||_(L²L^k)<=C Z(v)^s, and the residual, then spatial Sobolev. Thus the absorption is legitimate.
+
+To control the undifferentiated difference in the original critical norm, choose Q1=(q+2)/2, and 1/R1=(a_*-2p/Q1)/d. Since d>6p, R1 is finite and positive. The derivative-gain estimate and Sobolev give
+||h||_(L^Q1 L^R1)<=C_Bbig
+on I (assuming epsilon<=1). The underlying D^p admissible spatial reciprocal is 1/R1+p/d, and Q1>2. Interpolate this bound with ||h||_(L^A L^Btilde)<=C X_J(h). Because Q1<q<A and both pairs lie on 2p/Q+d/R=a_*, interpolation gives
+||h||_(L^q(J×R^d))<=C_Bbig X_J(h)^nu
+for some fixed 0<nu<1.
+
+Use the pointwise Hölder derivative estimate on the difference:
+||∇(F(v)-F(w))||_(L²L^k)
+ <= C Z_J(v)^alpha Z_J(h)
+   + C ||h||_(L^q(J×R^d))^alpha Z_J(w).
+Take the subdivision small enough also to absorb the first term in the derivative-gain S estimate. Then
+S_J(h)<=C_Bbig (d_J+epsilon+(d_J+epsilon)^(alpha nu)),
+where d_J=||D^p h(a_J)||₂.
+The endpoint kinetic mismatch for the next interval is bounded by S_J(h). Finite iteration proves a modulus of stability tending to zero with epsilon, uniformly for approximate and exact trajectories obeying Bbig. This gives a genuine small-error stability estimate for all p when s<2, not the invalid direct inequality S<=epsilon+small*S^alpha. No global critical spacetime theorem is being assumed in deriving stability.
+
+Combine this result (and the s>=2 case) with the low-amplitude response subtraction of section 17. For a mixed strong solution, remove L solving iL_t=Aop L-beta G(u) with zero initial value on a slab; its H^p and Z bound is C_B sqrt(h) for h<=1. The adjusted v=u-L has residual with one-gradient norm tending to zero as h→0 under any fixed Z bootstrap ceiling, by the high-amplitude estimate and the pointwise Hölder derivative estimate of section 17. Apply the stability modulus above on the bootstrapped interval, with the pure solution w of the same initial datum. This closes the same Z bootstrap, gives uniform positive slab length whenever the pure flow has a uniform critical bound, and iterates using conservation. Hence for every p>=1 and every critical real lower exponent, the pure-flow uniform critical bound suffices for mixed strong global well-posedness. The earlier missing higher-order Hölder perturbation input has now been reduced to standard fractional calculus plus the linear estimates in this dossier. The missing pure-flow spacetime bounds themselves have not been supplied.
+
+## 20. The uniform mixed-slab property is equivalent to the pure critical spacetime bound
+
+This is a useful exact reduction, not an equivalence between mere pointwise-in-datum global existence of the two equations.
+
+Fix p,d,r,s critical and positive beta,gamma. For bounded sets of initial H^p data (or their radial subsets), consider:
+(P) the pure defocusing strong flow exists globally and has a uniform finite Z_R bound on each bounded set;
+(M) there exist h(B)>0 and L(B)<∞ such that the mixed strong flow from every datum of H^p norm ≤B exists on [0,h(B)] and has Z_[0,h(B)]≤L(B).
+Theorems in sections 17 and 19 imply P=>M, even for 1<s<2. Conversely M=>P, by critical scaling and the same stability argument.
+
+Proof of necessity. For f in the bounded set, choose N→∞ and f_N(x)=N^a_* f(Nx). For N>=1 its H^p norm is bounded by the original H^p bound: the homogeneous kinetic norm is unchanged and mass norm is multiplied by N^-p; equivalently the Fourier inhomogeneous weight decreases after change of variables. Apply (M) to f_N. Rescale the mixed solution back to v_N, defined on [0,N^(2p)h(B)], with initial profile f. Its lower coefficient becomes beta eta_N, where eta_N=N^(-a_*(s-r))→0, and its upper coefficient remains gamma. Both components of Z are invariant under critical scaling; thus Z(v_N)≤L(B), uniformly on its whole rescaled interval. Conservation and the absorption estimate, uniformly for eta_N<=1, give bounded H^p norm in these rescaled variables as well (mass is that of f, not that of f_N).
+
+Let w be the pure maximal strong solution from f (use section 12 with beta=0, whose proof remains valid). For any fixed compact forward interval [0,T] in its lifespan, all large N cover that interval. On unit subintervals the time-Sobolev lemma bounds the low-amplitude response by O(eta_N), and on the whole fixed interval its C H^p and Z norms tend to zero by finite summation and the homogeneous propagation estimate. The high-amplitude residual gradient is also O(eta_N) under the uniform Z and energy bounds. After subtraction of the low-amplitude response the remaining upper-power residual gradient tends to zero by the weighted Hölder derivative estimate of section 17 (for s>=2 use alpha=1 there). Apply section 19 stability or its s>=2 counterpart to the adjusted trajectory and w on [0,T], with constants allowed to depend on T and the finite Z norm of w there. Their initial mismatch is zero. Hence Z_[0,T](w)<=L(B) by passage to the limit. The right side is independent of T and of f in the bounded set. If the pure maximal forward endpoint were finite, this uniform bound and section 16.4 continuation would contradict maximality. Thus it is infinite and Z_[0,∞)(w)<=L(B). Conjugation with time reversal gives the backward estimate, since the coefficients and symbol are real and conjugation preserves the norm and radiality. This proves (P).
+
+Consequently an elementary uniform lifespan bound in the mixed critical energy ball, together with uniform Z control, would also solve the corresponding pure defocusing critical spacetime problem; it is not a shortcut around that problem. Neither (P) nor (M) follows merely from bounded kinetic energy. Nor does failure to establish (M) prove that any individual solution fails to be global.
+
+## 21. General-order concentration and localized mass rigidity
+
+### 21.1 A necessary concentrating profile at a finite strong endpoint
+
+Let u be any maximal mixed critical strong solution from section 12, with finite endpoint T, L² trace f, and bounded H^p norm. The tail criterion of section 13 yields a sequence t_n→T for which ||u(t_n)-f||_(b_*)≥c>0 (choose thresholds tending to infinity; use T_R(g)≤2||g-f||_(b_*)+T_(R/2)(f)). Set g_n=u(t_n)-f. Then ||g_n||₂→0, ||D^p g_n||₂ is uniformly bounded, and ||g_n||_(b_*) is bounded below.
+
+Use a smooth dyadic annular partition P_N with N in 2^Z, and the refined Sobolev inequality
+||g||_(b_*) <= C ||D^p g||₂^(2/b_*) [sup_N N^(-a_*)||P_N g||∞]^(1-2/b_*).
+For completeness, write B0tilde for the bracket and M for the Hardy-Littlewood maximal operator. At any point where the maximal function of D^p g is finite, split the dyadic sum at N. Its low frequencies are bounded by C B0tilde N^a_* and the high ones by C N^-p M(D^p g), since each annular D^-p multiplier is N^-p times a rapidly decaying convolution kernel dominated by the maximal operator. Optimize over dyadic N. The bound becomes C B0tilde^(p/(a_*+p)) M(D^p g)^(a_*/(a_*+p)). The case B0tilde=0 is trivial, and a vanishing maximal function gives g=0 at the point by the same split. Raising to b_* and using the L² maximal theorem proves the inequality, first on Schwartz functions and by approximation on the homogeneous energy space (or directly by convergence of the dyadic reconstruction in L^(b_*)). This is the usual Gérard–Meyer–Oru refined embedding, not a new Sobolev theorem.
+
+There exist scales N_n and locations x_n such that
+N_n^(-a_*) |P_(N_n) g_n(x_n)|≥c1>0.
+Bernstein gives the upper bound C N_n^p ||g_n||₂, so N_n→∞. Define
+G_n(y)=N_n^(-a_*) g_n(x_n+y/N_n).
+The sequence is bounded in homogeneous H^p. Pass to a weakly convergent subsequence G_n⇀G. The linear functional G↦P_1 G(0) is continuous on homogeneous H^p by annular Fourier localization and Cauchy-Schwarz; its values on G_n have modulus ≥c1. Hence G≠0. On bounded balls the lower derivatives of G_n are bounded in L² by homogeneous Sobolev and Hölder, giving local H^p compactness into L² by Rellich. Thus G_n→G in local L² after a subsequence. The rescaled contribution of f tends to zero in local L² (indeed in L^(b_*)) because its b_*-moment is absolutely continuous on sets of shrinking measure, uniformly in the centers x_n.
+
+It follows that a hypothetical finite endpoint necessarily has a nonzero concentration profile extracted from the actual solution, with radii R/N_n→0. For some finite R and c2>0,
+liminf_n N_n^(2p) integral_(B(x_n,R/N_n)) |u(t_n,x)|² dx >= c2,
+and by Hölder a positive amount of the critical b_*-moment lies in these balls. This does not assert that all energy is captured by that profile, that x_n converges, or that the rescaled profile itself solves a limiting dynamical equation. The latter needs time-dependent profile decomposition and stability.
+
+### 21.2 Localized mass rigidity, any integer order
+
+Consider a nonzero pure critical trajectory on [0,T) with finite T, bounded homogeneous H^p norm B, strong local energy regularity, and the pure Hamiltonian equation. The following also applies to the mixed trajectory whenever it is H^p and the lower term is defined. Let chi be a nonnegative smooth radial cutoff equal to one on the unit ball, zero outside the radius-two ball, with 0<=chi<=1, and let m_R(t)=integral chi((x-x0)/R)|u(t,x)|² dx.
+
+The local mass is absolutely continuous on compact time intervals and
+|m_R'(t)| <= C_p,d,chi B²
+uniformly in R>0 and x0. To prove this without assuming global L² for the homogeneous pure case, use a smooth auxiliary cutoff identically one on the support of chi_R; it puts u in local H^p and its time derivative in local H^-p by the equation and critical dual Sobolev embedding. The Hilbert-pivot chain rule yields the weighted mass derivative. The nonlinear terms give no real contribution to u_t paired with chi_R u, because all coefficients and chi_R are real. Expand the kinetic form by the multi-index identity
+<D^p u,D^p v> = sum_(|mu|=p) (p!/mu!) <partial^mu u,partial^mu v>.
+The term with all derivatives on u in partial^mu(chi_R u) is real and vanishes from the imaginary part. Each remaining product, with j>=1 derivatives on chi_R, has magnitude bounded by
+C ||partial^mu u||₂ ||partial^(mu-nu)u||_(2d/(d-2j)) ||partial^nu chi_R||_(d/j),
+where |nu|=j. The middle norm is controlled by B by homogeneous Sobolev of order j, and the cutoff norm is independent of R by scaling. This gives the asserted bound (d>2p ensures every exponent is legitimate). When u is globally H^p, an alternative bound uses both differentiated factors in L² and cutoff derivatives in L∞, giving O(R^-1)||u||_(H^p)² for R>=1. This proof covers all integer orders, including higher than biharmonic. Compare Pausader's fourth-order local mass identity (Dynamics of PDE 4 (2007), Lemma 7.1), which is a prior-art instance.
+
+Suppose additionally that there is a sequence t_n↑T and centers x_n such that for every epsilon>0 some finite L and all sufficiently large n obey
+integral_(|x-x_n|>L/N_n) |u(t_n,x)|^(b_*) dx <= epsilon,
+where N_n→∞. This is a full critical-moment concentration hypothesis, satisfied for instance by a trajectory precompact modulo translations and critical dilations along a concentrating sequence. Then for every fixed ball B(x0,2R), its local L² mass tends to zero: the part inside the concentrating ball is bounded by C B² (L/N_n)^(2p) by Hölder, and the part outside it by C_R epsilon^(2/b_*). Send n→∞ and then epsilon→0. Thus m_R(t_n)→0, and the uniform local mass derivative bound yields m_R(t)≤C B²(T-t) for each t<T, independently of R. Taking R→∞ proves that u(t) is globally in L² even in the homogeneous pure formulation, with mass at most C B²(T-t). Now use the improved large-R flux estimate on compact time intervals; the H^p norms are uniformly bounded there since mass was just bounded. Letting R→∞ proves global mass conservation on [0,T). Sending t→T forces this mass to be zero. This contradicts nonzero u.
+
+This rules out a nonzero entire concentrating critical profile with finite lifespan at every integer dispersion order. For an inhomogeneous mixed trajectory it is also immediate from the strong L² trace and conservation once full concentration is assumed. The proof does NOT exclude a finite-time concentration of only part of the critical energy while a nonzero mass-carrying background remains. To use it as a complete rigidity theorem one must first construct a minimal finite-time bad solution with the full concentration property, or exclude background-plus-bubble scenarios by other means. Standard minimal nonscattering compactness is not automatically a minimal finite-time construction; lower-energy global nonscattering profiles can prevent a uniform-spacetime induction. No such missing reduction is assumed here.
+
+## 22. Updated frontier and verification
+
+Sections 19–21 complete the analytic general-order conditional perturbation argument, isolate its necessary uniform pure-flow input, and provide a quantitative inverse-Sobolev concentration and local-mass rigidity step. They do not establish the missing pure critical spacetime bound or the full concentration property for a general hypothetical finite-time endpoint.
+
+Focused literature search: the fourth-order arbitrary-data pure defocusing results in d>=8 (Pausader and Miao–Xu–Zhao) and radial d>=5 remain the matched inputs. The search did not locate a matching arbitrary-data theorem for d=5,6,7, nor an all-order critical uniform theorem for p>=3. A 2026 preprint on fourth-order potential scattering (Nakayama, arXiv:2603.13892) is radial and does not remove these nonradial gaps. This is a search result, not certification that those questions are globally open. The local-mass result has a classical fourth-order antecedent; novelty of general-order formulation is unassessed.
+
+Remaining proof target: develop a critical dynamic profile decomposition and a valid finite-time minimal-element reduction with the mass-carrying background handled, or prove the required pure uniform Z bounds directly. The global classification in previously established parameter regimes is unchanged. Individual-data supercritical strong dynamics and full Lean PDE certification are also open.
+
+No new scalar Lean lemma is added simply to raise declaration counts. Existing eleven candidate audit roots must actually compile before any certification. The maintained lean.yml workflow already runs lake build and the transitive audit with standard-axiom allowlist. The latest inspected head had all its jobs queued; no verified GC03 build or audit exists in this record. This environment has no lean/lake executables and cannot resolve github.com for a local clone; connector commits are not kernel verification. Keep GC03 candidate and issue #100 open.
