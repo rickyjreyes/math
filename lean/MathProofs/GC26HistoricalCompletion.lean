@@ -238,14 +238,13 @@ private def lift (a t : ℝ) : ℝ × ℝ := (a, 1 - t / a)
 
 private theorem lift_t {a t : ℝ} (ha : 0 < a) : historicalT (lift a t) = t := by
   change a * (1 - (1 - t / a)) = t
-  field_simp
-  <;> ring
+  field_simp [ha.ne'] <;> ring
 
 private theorem lift_mem {a t : ℝ} (ha : 0 < a) (ha50 : a ≤ 50)
     (htl : -4 * a ≤ t) (htu : t ≤ a) : lift a t ∈ historicalRectangle := by
   change 0 ≤ a ∧ a ≤ 50 ∧ 0 ≤ 1 - t / a ∧ 1 - t / a ≤ 5
-  have h1 := (div_le_iff₀ ha).mpr (show t ≤ 1 * a by linarith)
-  have h2 := (le_div_iff₀ ha).mpr htl
+  have h1 : t / a ≤ 1 := (div_le_iff₀ ha).mpr (by linarith)
+  have h2 : -4 ≤ t / a := (le_div_iff₀ ha).mpr htl
   exact ⟨ha.le, ha50, by linarith, by linarith⟩
 
 private def lower (t : ℝ) : ℝ := max 0 (max t (max (-t / 4) (h₂ - t)))
@@ -386,6 +385,8 @@ private theorem segment_continuousAt {p q : ℝ × ℝ} (ha : 0 < p.1) :
     unfold blend
     fun_prop
   have hn : blend p.1 q.1 0 ≠ 0 := by simpa [blend] using ha.ne'
+  change ContinuousAt (fun s : ℝ => (blend p.1 q.1 s,
+    1 - blend (historicalT p) (historicalT q) s / blend p.1 q.1 s)) 0
   exact hA.continuousAt.prodMk
     (continuousAt_const.sub (hT.continuousAt.div hA.continuousAt hn))
 
@@ -622,5 +623,25 @@ theorem historical_neighborhood_injective_iff {p : ℝ × ℝ}
     refine ⟨U, ho, hg, ?_⟩
     intro x hx y hy he
     exact (historical_good_singleton hx.2 hx.1 y hy.2 he.symm).symm
+
+/-- Integrated classification for the exact historical model and actual
+closed parameter rectangle. No assumptions on additional sensors. -/
+theorem historical_complete_classification {p : ℝ × ℝ}
+    (hp : p ∈ historicalRectangle) :
+    (HistoricalSingleton p ↔
+      (0 < p.1 ∧ p.1 * (2 - p.2) < historicalThreshold 2) ∨
+      p = historicalExceptional) ∧
+    (HistoricalIsolated p ↔
+      (0 < p.1 ∧ p.1 * (2 - p.2) < historicalThreshold 2) ∨
+      p = historicalExceptional) ∧
+    (HistoricalNeighborhoodInjective p ↔
+      0 < p.1 ∧ p.1 * (2 - p.2) < historicalThreshold 2) := by
+  have he : p.1 + historicalT p = p.1 * (2 - p.2) := by
+    unfold historicalT
+    ring
+  refine ⟨?_, ?_, ?_⟩
+  · simpa only [HistoricalGood, he] using historical_singleton_iff hp
+  · simpa only [HistoricalGood, he] using historical_isolated_iff hp
+  · simpa only [HistoricalGood, he] using historical_neighborhood_injective_iff hp
 
 end ReyesMath.V18Forward
