@@ -101,8 +101,69 @@ theorem fieldCurvature_at_zero {d : ℕ} (ε : ℝ) (he : 0 < ε)
   · simp [diagonalJet,hz]
   · simp [diagonalJet,hz]
 
+/-- Actual density Laplacian along Cartesian lines. -/
+def fieldDensityLaplacian {d : ℕ} (u : (Fin d → ℝ) → ℂ) (x : Fin d → ℝ) : ℝ :=
+  ∑ i : Fin d, secondPart (fun y => (u y).re^2+(u y).im^2) x i
+
+def fieldClosure {d : ℕ} (ε lam : ℝ) (u : (Fin d → ℝ) → ℂ)
+    (x : Fin d → ℝ) : ℝ :=
+  fieldCurvature ε u x + lam * fieldDensityLaplacian u x
+
+/-- A genuine smooth affine complex field (with zero imaginary part). -/
+def affineField (x : Fin 2 → ℝ) : ℂ := Complex.mk (1+x 0) 0
+
+theorem affineField_smooth : ContDiff ℝ ⊤ affineField := by
+  have h : ContDiff ℝ ⊤ (fun x : Fin 2 → ℝ => (1+x 0, (0 : ℝ))) := by
+    fun_prop
+  exact Complex.equivRealProdCLM.symm.contDiff.comp h
+
+private theorem deriv_affine_square (t : ℝ) :
+    deriv (fun s : ℝ => (1+s)^2) t=2*(1+t) := by
+  have h := ((hasDerivAt_const t (1 : ℝ)).add (hasDerivAt_id t)).pow 2
+  convert h.deriv using 1 <;> ring
+
+private theorem second_affine_square :
+    deriv (deriv (fun s : ℝ => (1+s)^2)) 0=2 := by
+  have hf : deriv (fun s : ℝ => (1+s)^2) = fun t => 2*(1+t) := by
+    funext t
+    exact deriv_affine_square t
+  rw [hf]
+  have h := ((hasDerivAt_const (0 : ℝ) (1 : ℝ)).add
+    (hasDerivAt_id (0 : ℝ))).const_mul (2 : ℝ)
+  convert h.deriv using 1 <;> ring
+
+theorem affineField_densityLaplacian :
+    fieldDensityLaplacian affineField 0=2 := by
+  unfold fieldDensityLaplacian
+  rw [Fin.sum_univ_two]
+  have h0 : (fun t : ℝ => (affineField (line 0 0 t)).re^2+
+      (affineField (line 0 0 t)).im^2) = fun t => (1+t)^2 := by
+    funext t
+    simp [affineField,line]
+  have h1 : (fun t : ℝ => (affineField (line 0 1 t)).re^2+
+      (affineField (line 0 1 t)).im^2) = fun _ => (1 : ℝ) := by
+    funext t
+    norm_num [affineField,line]
+  unfold secondPart
+  rw [h0,h1,second_affine_square]
+  simp
+
+/-- Pairwise distinct closures on one actual smooth field, not merely a
+postulated jet. This witness does not require computing its common K term. -/
+theorem field_closure_family_distinct (ε lam mu : ℝ) (hne : lam ≠ mu) :
+    ∃ (u : (Fin 2 → ℝ) → ℂ) (x : Fin 2 → ℝ),
+      ContDiff ℝ ⊤ u ∧ fieldClosure ε lam u x ≠ fieldClosure ε mu u x := by
+  refine ⟨affineField,0,affineField_smooth,?_⟩
+  intro h
+  unfold fieldClosure at h
+  rw [affineField_densityLaplacian] at h
+  apply hne
+  linarith
+
 end ReyesMath.GC08
 
 #print axioms ReyesMath.GC08.lineCurrent_deriv
 #print axioms ReyesMath.GC08.fieldCurvature_eq_cartesian
 #print axioms ReyesMath.GC08.fieldCurvature_at_zero
+
+#print axioms ReyesMath.GC08.field_closure_family_distinct
