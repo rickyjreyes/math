@@ -8,6 +8,8 @@ This page is a **reading view of [problem_registry.json](problem_registry.json)*
 
 **Dated correspondence correction, November 2, 2026:** GC08's partial status is retained because its original phase-current operator has an explicit analytical nonuniqueness counterexample. The separate formally proved M6B Laplacian-quotient counterexample is **not** a kernel proof of GC08's exact operator. No original statement or machine status has changed. [Detailed source audit](../docs/NEGATIVE_RESULT_SCOPE_AUDIT_2026-11-02.md).
 
+**GC08 analytical update, November 24, 2026:** [Global Cartesian jet classification](../docs/GC08_CARTESIAN_CLASSIFICATION_2026-11-24.md) gives a necessary-and-sufficient invariant normal form, zero-amplitude extension criterion and conditional uniqueness. Candidate algebraic Lean core only; no full kernel certificate or status promotion. [Verification issue #102](https://github.com/rickyjreyes/math/issues/102).
+
 ## At a glance
 
 | Registry outcome | Questions | What it means |
