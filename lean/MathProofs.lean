@@ -190,3 +190,5 @@ import MathProofs.GC11TorusEnergy
 import MathProofs.GC11SidebandClassification
 import MathProofs.GC11TorusOrbit
 import MathProofs.GC11TorusInitial
+import MathProofs.GC11TorusHamiltonian
+import MathProofs.GC11TorusConservation
