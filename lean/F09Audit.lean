@@ -50,3 +50,7 @@ This file adds no declarations to the maintained library.
 #print axioms ReyesMath.V18Forward.historical_active_prefix
 #print axioms ReyesMath.V18Forward.historical_one_active_interval
 #print axioms ReyesMath.V18Forward.historical_exceptional_endpoint
+
+#print axioms ReyesMath.V18Forward.observed_constant_near_plateau
+#print axioms ReyesMath.V18Forward.observed_canonicalInvisible
+#print axioms ReyesMath.V18Forward.canonicalInvisible_zero_coords
