@@ -25,9 +25,9 @@ jobs:
           lake exe cache get
       - name: Reject unfinished proof commands
         run: |
-          if grep -nE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' MathProofs/GC06ShellBinding.lean MathProofs/GC06NearZeroShell.lean; then exit 1; fi
+          if grep -nE '^[[:space:]]*(sorry|admit|axiom)([[:space:]]|$)' MathProofs/GC06ShellBinding.lean MathProofs/GC06NearZeroShell.lean MathProofs/GC06VirialBinding.lean; then exit 1; fi
       - name: Build exact GC06 modules
-        run: lake build MathProofs.GC06ShellBinding MathProofs.GC06NearZeroShell
+        run: lake build MathProofs.GC06ShellBinding MathProofs.GC06NearZeroShell MathProofs.GC06VirialBinding
       - name: Audit exact theorem roots
         run: |
           set -o pipefail
