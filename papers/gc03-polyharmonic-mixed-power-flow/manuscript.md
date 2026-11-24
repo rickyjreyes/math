@@ -2003,3 +2003,108 @@ Here s=9,b=10, d/2-2=1/2, and the long-time exponent in (80.2) can matter. From 
 ## 81. Candidate unrestricted fourth-order dimension-six theorem
 
 Assuming the inherited homogeneous local theory, profile compactness and minimal-element normalization §§36–39 and lower regularity §48, §§79–80 exclude the compact obstruction for p=2,d=6. Therefore the pure defocusing critical equation has an infinite uniform energy scattering threshold in dot H² in this dimension. By §§16–20 or §25, the exact original mixed critical equation, with s=5, arbitrary real 1<r<5 and beta,gamma>0, has candidate global strong H² well-posedness for arbitrary data, with mass and energy conservation and continuous dependence. The conclusion does not assert mixed scattering. Combined with §77 the fourth-order candidate unrestricted critical coverage now includes all d>=6; d=5 remains unresolved. All inherited estimates and the new angular commutator and annular bootstrap require independent mathematical review. No new Lean roots or verified continuum proof; focused workflow listing was empty at the inspected preceding head a46e511d6744753bf00c2ed023830848f91de511, not a kernel pass. Keep issue #100 open and do not promote the registry.
+
+
+## 82. Audit of the biharmonic bootstrap and its dimension-five barrier
+
+The three dimension-six gains in §80.2 have strict margins. In order, the upper gains in (80.2) at j=21/20, 3/4, 9/20 are 25/42, 7/6, 135/62, respectively. These exceed the chosen 11/20, 23/20, 21/10. Thus the final low-band exponent 1/10 is consistent with the actual annular summation; the analytical hypotheses of §§79–80 remain subject to independent review.
+
+For p=2,d=5, we can now identify the precise lower-regularity barrier of this particular iteration. For 5/4<j<=3/2+epsilon (epsilon positive and sufficiently small), the quantities in §80 are
+ell=10/(5-2j), theta=(35-18j)/(40-20j), beta=1/(2j).
+In this interval theta(1-beta)>1/2 (at j=5/4 equality holds); multiplying by the positive denominators verifies the inequality, or factor the quadratic to obtain (4j-5)(7-4j)>0. The long-time branch of (80.2) therefore gives the upper gain
+G(j)=(2-j)/(2j-1).
+The limiting new Sobolev endpoint is
+T(j)=(3-G(j))/2.
+For j>5/4 in this interval, T(j)>5/4 and
+j-T(j)=(4j-5)(j-1)/(2(2j-1))>0.
+Starting with j=31/20 from §48 (which is within this interval, since j<7/4), one can choose every next actual regularity strictly between T(j) and j, e.g. their midpoint. The iterates decrease to 5/4, since the fixed points of T are 1 and 5/4 and the sequence stays above 5/4. All homogeneous orders strictly above 5/4 therefore become uniformly bounded by finitely many applications. Strong continuity at each follows from interpolation as before. Conversely the lower endpoint of this gain alone cannot fall below 5/4 when starting above it. This is an obstruction to this estimate, not a PDE counterexample or a proof that additional regularity is impossible. The unrestricted dimension-five problem remains open.
+
+## 83. General-order gradient commutator: eliminate the first-order error
+
+We now return to p>=3, 2p<d<=4p. This refinement of §75 uses the fact that the weight is a gradient, including after the radial outer cutoff. It is independent of the special exact biharmonic positivity in §79. Retain the same pure homogeneous strong compact trajectory, uniform energy and lower Sobolev norm at an order j∈(0,p). In subsequent applications strong continuity at j follows from the already available slightly smaller order. Let a be the convex vector field a_R, or its outer-cutoff version a_(R,S) of §75.1. Both are radial about the same fixed reference z, hence both are gradients of smooth real radial scalar functions. The latter fact does not require convexity of the cutoff weight. As in §75.1, the principal form is nonnegative for a_R and has negative part bounded by C R/S for a_(R,S).
+
+We improve the lower-order error exponent to
+delta=min(2,p-j)>0.
+To see this, write the ordered derivative commutator (75.1) and group terms by the number of derivatives falling on a. All terms with field derivative order l<=p-2 have coefficient bounded by C (R+|x-z|)^(-(p-l)) and hence by the argument of §75.1 have absolute form bound C B² R^-delta (for l>=j use global L² of the derivative; for l<j use Hardy at j-l). It remains to treat exactly the terms of field derivative order p-1, which previously cost a power R^-1.
+
+The divergence term of that order has one derivative on div a. With w an ordered derivative of order p-1 it is a real multiple of
+Re integral (∂_i div a) conj(∂_i w) w
+= -(1/2) integral (∂_ii div a)|w|²,
+by the product derivative of |w|² and integration by parts. Summing over ordered indices gives coefficients bounded by C(R+|x-z|)^-2.
+
+The other term of order p-1 has two derivatives on a and all other p-2 ordered derivatives on a field w. Up to its positive combinatorial constant it is
+I=sum_(i,k,l) Re integral B_ikl conj(∂_ik w) ∂_l w,
+B_ikl=∂_ik a_l.
+Because a is a gradient, B is fully symmetric in i,k,l. Integrate by parts in i:
+I=-sum_(i,k,l) Re integral (∂_i B_ikl) conj(∂_k w) ∂_l w
+  -sum_(i,k,l) Re integral B_ikl conj(∂_k w) ∂_il w.
+Exchange k,l in the last sum and take the real conjugate; the last sum without its preceding minus sign equals I. Consequently
+I=-(1/2) sum_(i,k,l) Re integral (∂_i B_ikl) conj(∂_k w) ∂_l w.
+This is the essential cancellation. It is an equality of integrated real forms, not a pointwise estimate or a sign assumption on higher derivatives. The coefficients on the right satisfy the same inverse-square bound uniformly in R,S,z. The derivation first applies to Schwartz fields, or by outer cutoffs on the annular approximants, and the weighted quadratic forms pass by the following bounds.
+
+Both resulting quadratic forms are bounded in absolute value by C integral (R+|x-z|)^-2 |∇^(p-1)u|². If j<=p-1 use the global order-(p-1) derivative L² bound, giving C B² R^-2. If j>p-1, set alpha=j-p+1∈(0,1). Use
+(R+|x-z|)^-2 <= R^(-2(1-alpha)) |x-z|^(-2alpha)
+and the fractional Hardy inequality at alpha to bound the form by C B² R^(-2(p-j)), which is at least as strong as the required R^-delta decay for R>=1. Summing finitely many terms proves the improved estimates
+J_(a_R)' >= c integral_(B(z,R)) |u|^b - C R^-delta,
+J_(a_(R,S))' >= c integral_(B(z,R)) |u|^b - C(R^-delta+R/S).
+For j<=1/2 use the untruncated homogeneous half-derivative action, with the first derivative bounded by interpolation, as in §75.2. For j>=1/2 one may always use the localized action of §75.3, whose bound is C R S^(2j-1). The force approximation and convergence in the integrated identity are the same as in §§75.2–3; the new integration-by-parts expressions converge by the weighted Hardy estimates above and the strong Sobolev convergence. When using j=1/2 the cutoff bound suffices and does not require a smaller norm to define the action. This establishes the improved error bound without any uniform spatial-tail rate.
+
+## 84. General-order fixed-annulus regularity bootstrap
+
+Keep p>=3 and the compact-element hypotheses of §83, including the uniform L¹ forcing supplied originally by §48, and choose an available j∈(0,p) with ell=2d/(d-2j)<s. Write
+theta=(s-ell)/(b-ell), beta=min(1,1/(2j)), delta=min(2,p-j).
+For every dyadic T>=1, any interval I of length <=2T, and every z and L>=1, §83 gives the uniform local critical occupation estimate
+T^-1 integral_I integral_(B(z,L)) |u|^b
+ <= C min(1, L T^-beta + T^(-beta delta/(1+delta))).        (84.1)
+
+Here are the choices of fixed radii for the proof. If j>=1/2 and L<=T^beta, set S=2T^beta and R=max(L,T^(beta/(1+delta))). Then S>=2R and the normalized action cost R S^(2j-1)/T is bounded by C R T^-beta because 2j beta=1. The outer error R/S has the same bound, and R^-delta<=T^(-beta delta/(1+delta)). The ball B(z,L) lies inside B(z,R). If L>T^beta use the trivial critical moment bound. If j<1/2, take the uncut action, use beta=1, and take R=max(L,T^(1/(1+delta))); the normalized endpoint cost R/T and the improved lower-order error give the same estimate. Taking also the trivial bound proves the min. These choices depend on the interval scale but are fixed in the time differentiation.
+
+By the local interpolation (76.1) and concavity,
+T^-1 integral_I integral_(B(z,L)) |F(u)|
+ <= C min(1, (L T^-beta + T^(-beta delta/(1+delta)))^theta).
+Now retain the annulus N<=1 in the double-Duhamel representation, exactly as §80.1, but use the polyharmonic phase |xi|^(2p). For r∈[T,2T] the kernel is globally bounded by C N^d min(1,(T N^(2p))^(-d/2)), and outside the radius
+L=C N^-eta (N^-1+T N^(2p-1))
+it has an additional arbitrarily large power gain N^A. The proof is the same normalized nonstationary integration by parts: N|x-y| dominates 1+T N^(2p) by N^-eta. The annular stationary-phase bound uses nondegeneracy of the Hessian on the fixed annulus as in §33.1. Integrating the near past forcing over its ball and time interval, then the future forcing using its global L¹ bound, yields (80.1) with 4 replaced by 2p, 8 by 4p, and the near factor replaced by the local bound just displayed. By subadditivity for theta∈(0,1) separate the two terms of that bound.
+
+For T<=N^-2p the first term has time power 2-beta theta delta/(1+delta)>0 and the second has time power 2-beta theta>0. Summation gives powers N^(d-4p+g_1) and N^(d-4p+g_2), where
+g_1=2p beta theta delta/(1+delta),
+g_2=theta(2p beta-1-eta).
+For T>=N^-2p put v=T N^(2p). The first local factor decreases as v^(-beta theta delta/(1+delta)); the second increases at most as v^(theta(1-beta)). The kernel-time measure contributes v^(-(d/2-2)). Since p>=3,d>=2p+1>=7, one has d/2-2>=3/2>theta(1-beta). Thus both dyadic sums converge without the long-time exponent loss of the dimension-five biharmonic case. The arbitrarily small far term and bounded r<=1 term are handled as in §80.1. Define
+G_(p,d)(j)=theta min(2p beta delta/(1+delta), 2p beta-1).
+Both arguments of the min are positive for j<p. Also G<4p, so the bounded-time term is harmless. For every 0<g<G_(p,d)(j), choose eta small and the far exponent large; then
+sup_t ||P_Nu(t)||₂² <= C_g N^(d-4p+g).                     (84.2)
+All estimates are uniform in t,N; the no-waste pairing remains justified because d/2>2.
+
+Put k0=4p-d. Thus the new available homogeneous orders are every j_new>(k0-G_(p,d)(j))/2 with j_new>0 and j_new<=p, using a strict intermediate gain g. If G_(p,d)(j)>k0, choose k0<g<G and recover finite mass with uniform low-tail tightness. The same cascade and bounded-scale rigidity of §76.2 then excludes the compact element. This supplies a concrete iterative sufficient criterion for unrestricted critical global dynamics, rather than the single-step inequality (76.2). The criterion depends only on rational arithmetic for rational p,d,j. No necessity or sharpness is asserted.
+
+### 84.1 Explicit finite certificates of mass recovery
+
+The following table lists strict chains of available positive Sobolev orders, beginning just above j0=k0/2 as guaranteed by §48. Each next entry lies strictly above (k0-G(j))/2 for the preceding entry; the last entry satisfies G(j)>k0. All decimals in the chains are exact finite-decimal rationals, not rounded values of the next endpoint. The inequalities can be checked by substituting the rational values in G above. The final column records a conservative strict lower bound for the last gain.
+
+p | d | successive available orders j | final gain >
+--|---|-------------------------------|------------
+3 | 10 | 1.01, 0.44 | 2.57
+4 | 13 | 1.51, 1.02, 0.69, 0.25 | 3.62
+5 | 16 | 2.01, 1.57, 1.34, 1.21, 1.12, 1.04, 0.96, 0.86, 0.72, 0.45 | 4.59
+6 | 20 | 2.01, 1.43, 1.16, 0.94, 0.66, 0.06 | 5.32
+8 | 27 | 2.51, 1.90, 1.67, 1.54, 1.45, 1.38, 1.32, 1.26, 1.20, 1.13, 1.04, 0.90, 0.64 | 5.36
+
+For example p=3,d=10 has k0=2,s=4,b=5. At j=101/100, beta=50/101, delta=199/100 and theta= (4(10-2j)-20)/(5(10-2j)-20); G>1.18>2-2(0.44)=1.12. At j=11/25, beta=1,delta=2,theta=(4(10-22/25)-20)/(5(10-22/25)-20)=103/160, giving G=103/40=2.575>2. A gain g=5/2 yields uniform low-band mass O(N^(1/2)), establishing tight finite mass. Each other row is analogous, using its own strict gain margins. Since the compact-element hypotheses and uniform energy do not depend on a particular time or center, the finite iteration is valid on the entire time axis. Section 76.2 then excludes the hypothetical compact element in each listed dimension.
+
+For reference, these chains are sufficient certificates, not a numerical search offered as a proof of the PDE. Their mathematical content is (84.2) and a finite list of strict rational inequalities, which require the inherited analytical estimates and the new cancellation to be valid.
+
+### 84.2 Borderline sixth-order d=9: all positive lower regularity
+
+For p=3,d=9, k0=3, s=5,b=6. The strict available-order chain
+1.51, 1.19, 0.99, 0.80, 0.62, 0.34
+follows from (84.2); each next order is strictly above the preceding limiting endpoint, by direct substitution. Once j<=1/2, beta=1,delta=2, and
+G(j)=4(27-10j)/(36-12j),
+so the limiting new order is
+(3-G(j))/2=j/(18-6j).
+For 0<j<=1/2 this is strictly below j/2. Choosing each next actual order j/2 proves every strictly positive order is uniformly bounded, without claiming the endpoint order zero. The gain remains strictly below k0 for all j>0 in this final iteration. Thus the half-derivative momentum and bounded-scale rigidity theorem §49 now apply in d=9; every remaining hypothetical nonzero compact trajectory must have zero conserved momentum and unbounded scale. Neither a finite mass bound nor unrestricted global scattering follows at the endpoint from this argument. In particular the constants in the positive-order estimates need not be bounded as j decreases to zero.
+
+## 85. Candidate classification extension and verification
+
+Within the inherited homogeneous minimal-element and lower-regularity framework, §§83–84 exclude the nonzero compact element in the five explicit parameter pairs in §84.1. By the same contradiction and transfer argument as §77, these pairs have candidate arbitrary-data pure critical scattering and exact original mixed global strong H^p well-posedness for all real lower powers 1<r<s and positive beta,gamma. This provides new higher-order candidate parameter slices (including sixth-order d=10, eighth-order d=13, tenth-order d=16, twelfth-order d=20 and sixteenth-order d=27). It does not prove any new dimension-five global theorem, and §84.2 does not resolve sixth-order d=9. The dimension-five regularity endpoint improvement is 5/4 rather than the prior 11/8, with an explicit barrier of that bootstrap.
+
+The general critical classification, individual supercritical strong continuation, and full continuum Lean proof remain open. No new Lean roots were added. The preceding head 3dbf031b9569a79d485a226b5c302f9cca738233 returned no associated workflow runs at inspection, and the PR was nonmergeable. No successful kernel verification, registry promotion, closure or mathematical novelty claim is made. The new real-form integration-by-parts cancellation, dyadic estimates, and all inherited analytical results require independent review.
