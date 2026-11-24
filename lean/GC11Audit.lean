@@ -1,4 +1,5 @@
 import MathProofs.GC11StaticWave
+import MathProofs.GC11TorusEnergy
 
 #print axioms ReyesMath.GC11Coercivity.excess_eq
 #print axioms ReyesMath.GC11Coercivity.excess_pos
@@ -10,3 +11,8 @@ import MathProofs.GC11StaticWave
 
 #print axioms ReyesMath.GC11Coercivity.stationary_wave
 #print axioms ReyesMath.GC11Coercivity.explicit_stationary_fields
+
+#print axioms ReyesMath.GC11TorusEnergy.derivativeEnergy_le
+#print axioms ReyesMath.GC11TorusEnergy.densityPotential_lower
+#print axioms ReyesMath.GC11TorusEnergy.integrated_coercivity
+#print axioms ReyesMath.GC11TorusEnergy.conserved_energy_bound
