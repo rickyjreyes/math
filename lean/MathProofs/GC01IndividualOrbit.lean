@@ -40,7 +40,7 @@ theorem distX_triangle_left {E : Set (H2 2)} (hE : E.Nonempty) (u v : H2 2) :
   by_contra! h
   obtain ⟨g, hg, hd⟩ := exists_of_distX_lt hE
     (show distX v E < distX u E - distH2 u v by linarith)
-  linarith [distX_le hg, distH2_triangle u v g]
+  linarith [distX_le (v := u) hg, distH2_triangle u v g]
 
 theorem distX_mono {A B : Set (H2 2)} (hA : A.Nonempty) (hAB : A ⊆ B)
     (u : H2 2) : distX u B ≤ distX u A := by
