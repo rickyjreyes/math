@@ -185,3 +185,4 @@ import MathProofs.GC08ClosedPlane
 import MathProofs.GC08Spatial
 import MathProofs.GC08Hadamard
 import MathProofs.GC11Coercivity
+import MathProofs.GC11StaticWave
