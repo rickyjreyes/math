@@ -1,4 +1,5 @@
 import MathProofs.D4FrozenWholeSpace
+import MathProofs.GC03Energy
 
 /-!
 Dependency audit for the whole-space confinement chain (Task 2).
@@ -60,3 +61,7 @@ elab "#audit_deps " root:ident : command => do
 #audit_deps ReyesMath.OrbitalStability.main
 #audit_deps ReyesMath.D4Frozen.d4_frozen_main
 #audit_deps ReyesMath.D4Frozen.d4_strict_binding
+#audit_deps ReyesMath.GC03Energy.power_absorption
+#audit_deps ReyesMath.GC03Energy.integrated_absorption
+#audit_deps ReyesMath.GC03Energy.energy_coercivity
+#audit_deps ReyesMath.GC03Energy.cubic_quintic_d2_p2
