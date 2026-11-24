@@ -283,7 +283,7 @@ theorem historical_one_active_interval (a t h2 h3 : ℝ)
 /-- In the one-active region the lower endpoint reaches the upper bound
 exactly at the exceptional clipping-edge point. -/
 theorem historical_exceptional_endpoint (t h1 h2 : ℝ)
-    (ht : t < h1) (h12 : h1 < h2) (h2 : h2 < 40)
+    (ht : t < h1) (h12 : h1 < h2) (hupper : h2 < 40)
     (hp : 0 < h2) (hfeas : h2 - 50 ≤ t) :
     max 0 (max t (max (-t / 4) (h2 - t))) = 50 ↔ t = h2 - 50 := by
   have ht50 : t < 50 := by linarith
