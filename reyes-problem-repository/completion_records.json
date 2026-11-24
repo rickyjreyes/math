@@ -1,5 +1,5 @@
 {
   "schema_version": 1,
-  "description": "Newly reviewed GC issue-resolution records. Empty until an exact issue-to-Lean proof or counterexample correspondence is verified. Mathematical review and successful Lean CI are required before adding a record.",
+  "description": "Newly reviewed GC issue-resolution records. Empty until an exact issue-to-Lean proof or counterexample correspondence is verified. Mathematical review and successful Lean CI are required before adding a record. Pending but locally verified evidence is separately recorded in pending_completion_evidence.json and is not an accepted record.",
   "records": []
 }

@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "description": "Staged evidence only; not an accepted completion record. Do not import into completion_records.json until the existing successful-hosted-Lean-CI and correspondence review gate is met.",
+  "records": [
+    {
+      "gc_id": "GC26",
+      "issue_scope": "whole_problem",
+      "issue_number": 103,
+      "issue_url": "https://github.com/rickyjreyes/math/issues/103",
+      "outcome": "refuted",
+      "claim_scope_summary": "Specified exact v18 ambient observation map R31 to R11 has no locally injective point and is globally noninjective; the generic-full-rank implication is refuted; exact historical alpha/epsilon rectangle classifies local, global and neighborhood identifiability. No new arbitrary prior or augmentation scope assumed.",
+      "acceptance_criteria": [
+        "No local neighborhood injection at any ambient point; global noninjectivity.",
+        "Generic full-rank implication disproved by explicit counterexample.",
+        "Historical rectangle, including boundary and exceptional singleton, classified exactly."
+      ],
+      "remaining_mathematical_obligations_in_frozen_scope": [],
+      "local_verification": {
+        "proof_commit": "0974c5d677c2769b95666e18e41a118890181aee",
+        "audit_roots": 57,
+        "build_jobs": 7234,
+        "standard_axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "record": "https://github.com/rickyjreyes/math/pull/117#issuecomment-7129133692"
+      },
+      "declarations": [
+        {
+          "lean_file": "lean/MathProofs/GC26GlobalIdentifiability.lean",
+          "lean_declaration": "ReyesMath.V18Forward.observed_all_points_nonisolated"
+        },
+        {
+          "lean_file": "lean/MathProofs/GC26GlobalIdentifiability.lean",
+          "lean_declaration": "ReyesMath.V18Forward.observed_not_injective"
+        },
+        {
+          "lean_file": "lean/MathProofs/GC26GlobalIdentifiability.lean",
+          "lean_declaration": "ReyesMath.V18Forward.generic_rank_counterexample"
+        },
+        {
+          "lean_file": "lean/MathProofs/GC26HistoricalCompletion.lean",
+          "lean_declaration": "ReyesMath.V18Forward.historical_complete_classification"
+        },
+        {
+          "lean_file": "lean/MathProofs/GC26HistoricalCompletion.lean",
+          "lean_declaration": "ReyesMath.V18Forward.historical_exceptional_not_neighborhood_injective"
+        }
+      ],
+      "review_pr_url": "https://github.com/rickyjreyes/math/pull/117",
+      "correspondence_review_path": "docs/GC06_GC16_GC26_CLOSURE_AUDIT_2026-11-24.md",
+      "pending_ci_url": "https://github.com/rickyjreyes/math/actions/runs/45376758923",
+      "ci_conclusion_at_inspection": null,
+      "acceptance_state": "awaiting_successful_hosted_lean_ci_and_correspondence_acceptance",
+      "excluded_extensions": [
+        112,
+        113
+      ]
+    }
+  ]
+}

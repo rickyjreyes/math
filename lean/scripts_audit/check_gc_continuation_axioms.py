@@ -29,7 +29,25 @@ expected = [
     "ReyesMath.GC06SpectralMerging.multiplier_nonpos",
     "ReyesMath.GC06SpectralMerging.common_multiplier_of_equality",
     "ReyesMath.GC06SpectralMerging.low_density_hessian",
-    "ReyesMath.GC06SpectralMerging.all_binding_of_pair_exclusion"
+    "ReyesMath.GC06SpectralMerging.all_binding_of_pair_exclusion",
+    "ReyesMath.GC06PairExtraction.weak_translate_zero",
+    "ReyesMath.GC06PairExtraction.exists_weak_translates",
+    "ReyesMath.GC06PairExtraction.pair_upper_of_weak_translates",
+    "ReyesMath.GC06PairExtraction.subadditive_of_weak_translates",
+    "ReyesMath.GC06PairExtraction.ordinary_subadditive",
+    "ReyesMath.GC06PairExtraction.attained_profile_of_weak",
+    "ReyesMath.GC06PairExtraction.exists_attained_submass",
+    "ReyesMath.GC06PairExtraction.equality_of_subprofiles",
+    "ReyesMath.GC06PairExtraction.pair_of_failed_split",
+    "ReyesMath.GC06PairExtraction.binding_of_spectral_exclusion",
+    "ReyesMath.GC06PairExtraction.confinement_of_spectral_exclusion",
+    "ReyesMath.GC06PairExtraction.compactness_of_spectral_exclusion",
+    "ReyesMath.GC06PairExtraction.stability_of_spectral_exclusion",
+    "ReyesMath.GC06PairExtraction.exact_pair_of_failed_split",
+    "ReyesMath.GC06PairExtraction.all_binding_iff_no_equality_pair",
+    "ReyesMath.GC06PairExtraction.all_mass_confinement_of_no_equality_pair",
+    "ReyesMath.GC06PairExtraction.all_mass_compactness_of_no_equality_pair",
+    "ReyesMath.GC06PairExtraction.all_mass_stability_of_no_equality_pair"
 ]
 allowed = {"propext", "Classical.choice", "Quot.sound"}
 data = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
