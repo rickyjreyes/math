@@ -450,6 +450,86 @@ The associated development notes, including independent dilation and arithmetic 
 \end{center}
 The theorem and its proof above are self-contained and do not depend on numerical evidence or external computational artifacts.
 
+
+\section{Analytical extension: zero shell and a uniform nonzero-shell region}
+
+The following extension is recorded separately from the existing kernel-verified
+sufficient mass theorem. Its Lean implementation is a candidate pending focused
+verification. Let $T=\|(\Delta+k^2)u\|_2^2$, $D=\|\Delta u\|_2^2$,
+$K=\|\nabla u\|_2^2$, $M=\|u\|_2^2$, $Q=\|u\|_4^4$, and $S=\|u\|_6^6$.
+Write $C=3\beta^2/(16\gamma)$.
+
+\paragraph{Zero shell.}
+For $t=b/a>1$ and $v(x)=u(x/\sqrt t)$,
+\[
+ M(v)=tM(u),\qquad E_k(v)-tE_k(u)=-(t-1/t)D+2k^2(t-1)K.
+\]
+For $k=0$, put $J=I(a)<0$. A mass-$a$ near minimizer with $E_0(u)<J/2$
+has $\beta Q>-J$ and $Q\le a\sqrt{aD}/4$, hence
+$D\ge16J^2/(\beta^2a^3)>0$. The displayed scaling, applied to a minimizing
+sequence, yields $I(b)<t I(a)$. Thus strict binding holds at all positive
+masses for $k=0$. For $k>0$ the gradient term cannot be omitted: smooth
+Fourier profiles supported near $|2\pi\xi|^2=k^2$ have $D/K\to k^2$,
+so for any $t>1$ the energy difference above is positive on sufficiently
+thin shells. This is not a counterexample to binding of infima.
+
+\paragraph{Shifted Fourier estimate.}
+In the Fourier convention $q=|2\pi\xi|^2$, polar integration gives
+\[
+ \int_{\mathbb R^2}\frac{d\xi}{(q-k^2)^2+\eta}
+ =\frac{\pi/2+\arctan(k^2/\sqrt\eta)}{4\pi\sqrt\eta}
+ \le \frac{1}{4\sqrt\eta},\qquad \eta>0 .
+\]
+By weighted Cauchy--Schwarz and Fourier inversion, first on Schwartz
+functions and then by $H^2$ approximation,
+$\|u\|_\infty^2\le (T+\eta M)/(4\sqrt\eta)$.
+For positive mass, $T>0$ since the Fourier shell is a null set; optimize
+at $\eta=T/M$ to get $\|u\|_\infty^2\le\sqrt{MT}/2$.
+
+\paragraph{Uniform strict-binding region.}
+The bulk square completion gives $E_k\ge T-CM$. On negative-energy
+near minimizers of mass $a$, $T\le Ca$ and hence $S\le a\sqrt C Q/2$.
+Set $m_* = 2\sqrt{3}/\sqrt{\gamma}$. For $0<a<b$ and $a+b<2m_*$,
+put $t=b/a$ and $h=1-(a+b)/(2m_*)>0$. Then
+\[
+ \frac{E_k(\sqrt t\,u)}t-E_k(u)
+ =(t-1)\left(-\frac{\beta Q}{2}+\frac{\gamma(t+1)S}{3}\right)
+ \le -(t-1)\frac{\beta hQ}{2}\le(t-1)h E_k(u).
+\]
+Pass to the infimum along a negative minimizing sequence:
+$I(b)/b\le[1+(t-1)h] I(a)/a<I(a)/a$. Therefore every split binds for
+$0<m\le m_*$, including the endpoint. Together with the existing
+$m_B$ theorem, every split binds for $m\le\max(m_B,m_*)$.
+
+\paragraph{Unbounded set of binding masses.}
+Cauchy--Schwarz gives $S\ge Q^2/m$, while the optimized Fourier estimate
+gives $T\ge4Q^2/m^3$. Minimizing the resulting quadratic in $Q/m$ shows
+\[
+ -C<-\frac{\beta^2}{16(4/m^2+\gamma/3)}\le \frac{I(m)}m<0.
+\]
+Thus $e(m)=I(m)/m\to0$ at zero. At infinity $e(m)\to-C$:
+choose $c^2=3\beta/(4\gamma)$ and $u_R=c e^{ikx_1}\chi(x/R)$ for a
+real smooth compactly supported cutoff $\chi$ approximating a disk
+indicator in $L^2,L^4,L^6$. The exact mass is $c^2R^2\int\chi^2$ and
+the shifted kinetic energy per mass is $O(R^{-2})+O(R^{-4})$.
+First let $R\to\infty$ at fixed cutoff, then approximate the indicator
+to achieve the bulk lower bound. The infimum is locally Lipschitz on
+positive masses: approximate minimizers have uniformly bounded $H^2$
+norms on compact mass intervals by $E_k\ge T-CM$ and the triangle
+inequality for $\Delta$; amplitude scaling gives uniformly Lipschitz
+energy changes in the mass parameter and comparison in both directions.
+For arbitrary $A>0$, choose a level $\ell$ strictly between $-C$ and
+$-\beta^2/[16(4/A^2+\gamma/3)]$. By continuity and the limits, the first
+mass $b$ where $e(b)\le\ell$ exists, is larger than $A$, and satisfies
+$e(b)=\ell<e(a)$ for every $0<a<b$. It therefore binds at every split.
+The set of binding masses is unbounded for every admissible parameter
+tuple. This does not show it contains an entire tail, nor rule out
+nonbinding intermediate masses.
+
+The uniform region and first-crossing results are analytical claims,
+not an all-mass nonzero-shell classification or a statement of novelty.
+No minimizer attainment was assumed in these arguments.
+
 \begin{thebibliography}{9}
 \bibitem{FJMM2022}
 A.~J. Fern\'andez, L. Jeanjean, R. Mandel, and M. Mari\c{s},
