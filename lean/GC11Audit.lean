@@ -1,4 +1,4 @@
-import MathProofs.GC11Coercivity
+import MathProofs.GC11StaticWave
 
 #print axioms ReyesMath.GC11Coercivity.excess_eq
 #print axioms ReyesMath.GC11Coercivity.excess_pos
@@ -7,3 +7,6 @@ import MathProofs.GC11Coercivity
 #print axioms ReyesMath.GC11Coercivity.sideband_characteristic
 #print axioms ReyesMath.GC11Coercivity.sideband_discriminant_nonneg
 #print axioms ReyesMath.GC11Coercivity.two_static_carriers
+
+#print axioms ReyesMath.GC11Coercivity.stationary_wave
+#print axioms ReyesMath.GC11Coercivity.explicit_stationary_fields
