@@ -86,6 +86,7 @@ import MathProofs.V18SelectedJacobian
 import MathProofs.V18Rank
 import MathProofs.LocalLevelSet
 import MathProofs.V18Identifiability
+import MathProofs.GC26GlobalIdentifiability
 import MathProofs.RemainingCores
 import MathProofs.E16SpectralCore
 import MathProofs.E62Discrete

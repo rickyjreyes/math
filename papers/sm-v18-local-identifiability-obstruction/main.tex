@@ -445,6 +445,120 @@ box into an open manifold. None of these mathematical results constitutes
 an independently validated physical spectrum. The corresponding v18 research
 classification remains \texttt{EMPIRICAL\_FIT\_ONLY}.
 
+\section{Global identifiability extension (candidate formalization)}
+
+The exact dispatch of the original observation map yields a stronger
+ambient non-identifiability statement independent of differentiability.
+Using the zero-based coordinates of the Lean model, the quark amplitude
+and exponent, coordinates 16 and 18, never enter any of the eleven
+observations. The two Higgs coordinates 27 and 28 occur only through
+\(123p_{27}/124+p_{28}\). Hence for every \(p\in\R^{31}\) and
+\(a,b,t\in\R\),
+\[
+ F(p+a e_{16}+b e_{18}+t(e_{27}-(123/124)e_{28}))=F(p).
+\]
+This follows directly from the source dispatch and preservation of
+the raw values before clipping. Every ambient fiber therefore contains
+a three-dimensional affine plane; no fiber is isolated, including at
+a clipping boundary. Any relative box that permits variation of an
+unused coordinate also has non-isolated fibers, even at its endpoints.
+
+For a floor \(c=10^{-12}\), the exact scalar condition
+\(\max(x,c)=y\) is equivalent to \(x\le y,\ c\le y\), and at least
+one equality. For a heavy observation with raw light value \(x\)
+and correction \(d\), the corresponding condition is
+\[
+ x+d\le y,\quad c+d\le y,\quad c\le y,
+\]
+with at least one equality. These conditions characterize membership
+in the full fiber, not its connected components. At fixed nonlinear
+coefficients they give a finite union of polyhedra in the remaining
+affine coefficients.
+
+More generally, invariance of domain rules out neighborhood
+injectivity for a continuous map from an open subset of
+\(\R^{31}\) to \(\R^N\) when \(N<31\): pad the output with zeros,
+which gives an allegedly open image contained in a proper subspace.
+At a regular frozen point, twenty additional independent observations
+are necessary and locally sufficient: append the twenty coordinates
+outside the certified minor. This does not give global injectivity.
+The unrestricted model even has an open constant-output plateau:
+take all coefficients zero except \(p_7=-1,p_8=1,p_{14}=-1,
+p_{17}=-1,p_{28}=-1\). All floor inequalities are strict. On that
+plateau an injective continuous augmentation must itself have at least
+31 scalar coordinates. Appending all coordinate projections attains
+that mathematical bound, not necessarily a physically realizable design.
+
+Generic full-column rank is not a global inverse theorem: \(x\mapsto
+x^2\) has nonzero derivative off zero and equal outputs at \(\pm1\).
+Even everywhere full-column rank fails for
+\(x\mapsto(x^2,x^3-x)\). A proper everywhere nonsingular square
+\(C^1\) map on \(\R^d\), by contrast, is globally invertible
+(Hadamard's theorem). A fixed constrained domain requires separate
+analysis; the historical optimizer varied only two coefficients,
+not all 31. For that historical rectangle, let \(a=\alpha\),
+\(z=\alpha\epsilon\), \(t=a-z\), and
+\(h_i=\log(A_i/c-1)\) for the three fixed light numerators.
+The bounds \(0<h_3<h_1<h_2<40\) and \(h_1>20\) show
+that strictly unfloored rows form a prefix. Relative neighborhood
+injectivity holds exactly at \(a>0,\ a+t<h_2\). At \(a=0\) the
+whole epsilon segment is one fiber. When \(t<h_1,\ a+t\ge h_2\),
+the fiber is given by fixed \(t\) and
+\(\max(t,-t/4,h_2-t)\le a\le50\), with
+\(\epsilon=1-t/a\). The singleton at
+\((a,\epsilon)=(50,2-h_2/50)\) is isolated but not relatively
+locally injective. When \(t\ge h_1\), all light outputs are
+floored and the entire region has identical observations.
+The research ledger gives the threshold bounds and proofs.
+
+
+\paragraph{Global image and affine quotient.}
+In the unrestricted exact-real model one has
+\[
+ F(\R^{31})=[c,\infty)^{11}.
+\]
+Indeed, set \(\alpha=0\), the third-row light multiplier to one,
+and all other light coefficients to zero except \(p_0,p_3,p_4\).
+The light base matrix of determinant nine solves for twice the
+desired three light outputs. For the middle sector, solve the
+certified five-column matrix against the desired five middle
+outputs. If its solution is \(m\), use the complex number
+\(w=m_2+i(2241.1m_3)\), amplitude \(|w|\), phase
+\(1.6469+\arg w\), the historical frequencies, offset \(m_0\),
+quadratic coefficient \(m_1\), and harmonic amplitude \(m_4\).
+The sine addition formula realizes the middle solution exactly,
+including \(w=0\). Finally solve the certified heavy matrix
+for \(p_{20},p_{24},p_{28}\), subtracting the already fixed inner
+light contributions from the desired heavy outputs, with the
+other relevant powers and phases fixed to the certified values
+and the other heavy amplitudes zero. The floors preserve every
+requested coordinate since it is at least \(c\). The reverse
+inclusion is immediate from the floors. This is an unrestricted
+interpolation result, not a result about the historical rectangle
+or an independent physical prediction.
+
+Let \(Q(p)\) set \(p_{16},p_{18},p_{27}\) to zero and replace
+\(p_{28}\) by \(p_{28}+(123/124)p_{27}\), preserving the other
+coordinates. The inverse reconstruction from \(Q(p)\) and the
+three removed coordinates is affine and continuous. Consequently
+every nonempty fiber is homeomorphic to
+\[
+ \bigl(F^{-1}(y)\cap\{p_{16}=p_{18}=p_{27}=0\}\bigr)
+ \times\R^3 .
+\]
+This reduces the remaining fiber topology to the 28-coordinate
+slice and shows every nonempty unrestricted fiber is unbounded.
+The constructive image proof and threshold estimates have
+candidate Lean declarations; their exact-head verification is
+pending. The topological product statement is analytical.
+
+These extensions are analytical results and candidate Lean code in
+\texttt{GC26GlobalIdentifiability}; the new statements are not included
+in the previously certified F09 scope until the exact-head build and
+axiom audit pass. The detailed research ledger records the historical
+two-parameter rectangle, the remaining stratum analysis, and precise
+limitations. No novelty or complete GC26 resolution is claimed.
+
 \section*{Sources and reproducibility}
 \begin{enumerate}
 \item v18 audit and scientific-status discussion:\\
