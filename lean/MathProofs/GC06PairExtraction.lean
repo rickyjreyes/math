@@ -417,4 +417,62 @@ theorem stability_of_spectral_exclusion (hβ : 0 < β) (hγ : 0 < γ)
   orbital_stability_of_binding hβ hγ hm
     (fun a ha ham => binding_of_spectral_exclusion hβ hγ hsub hmerge hm ha ham) hε
 
+/-- Exact pair extraction on the original admissible domain: the only
+inputs are the coefficients and a failed strict split. -/
+theorem exact_pair_of_failed_split (hβ : 0 < β) (hγ : 0 < γ)
+    {m a : ℝ} (hm : 0 < m) (ha : 0 < a) (ham : a < m)
+    (hfail : ¬ Imin β γ k m < Imin β γ k a + Imin β γ k (m-a)) :
+    ∃ U V : H2 2, 0 < M U ∧ 0 < M V ∧
+      energy β γ k U = Imin β γ k (M U) ∧
+      energy β γ k V = Imin β γ k (M V) ∧
+      Imin β γ k (M U + M V) = Imin β γ k (M U) + Imin β γ k (M V) :=
+  pair_of_failed_split hβ hγ (ordinary_subadditive hβ hγ) hm ha ham hfail
+
+/-- The single unresolved continuum lemma for all-mass strict binding:
+no pair of genuine attained minimizing profiles saturates subadditivity. -/
+def NoEqualityPair (β γ k : ℝ) : Prop :=
+  ∀ U V : H2 2, 0 < M U → 0 < M V →
+    energy β γ k U = Imin β γ k (M U) →
+    energy β γ k V = Imin β γ k (M V) →
+    Imin β γ k (M U + M V) ≠ Imin β γ k (M U) + Imin β γ k (M V)
+
+/-- Equivalence, not merely sufficiency: the exact GC16 all-mass assertion
+is equivalent to the spectral-merging target on attained minimizers. -/
+theorem all_binding_iff_no_equality_pair (hβ : 0 < β) (hγ : 0 < γ) :
+    (∀ m a : ℝ, 0 < m → 0 < a → a < m →
+      Imin β γ k m < Imin β γ k a + Imin β γ k (m-a)) ↔
+      NoEqualityPair β γ k := by
+  constructor
+  · intro hb U V hu hv _ _
+    have h := hb (M U+M V) (M U) (add_pos hu hv) hu (by linarith)
+    rw [show M U+M V-M U=M V by ring] at h
+    exact ne_of_lt h
+  · intro h m a hm ha ham
+    exact binding_of_spectral_exclusion hβ hγ
+      (ordinary_subadditive hβ hγ) h hm ha ham
+
+/-- No independent finite-decomposition or subadditivity assumption remains
+in the reduction of GC06 and GC16 to NoEqualityPair. -/
+theorem all_mass_confinement_of_no_equality_pair (hβ : 0 < β) (hγ : 0 < γ)
+    (hmerge : NoEqualityPair β γ k) {m : ℝ} (hm : 0 < m) :
+    ∃ U : H2 2, M U = m ∧ energy β γ k U = Imin β γ k m :=
+  confinement_of_spectral_exclusion hβ hγ (ordinary_subadditive hβ hγ) hmerge hm
+
+theorem all_mass_compactness_of_no_equality_pair (hβ : 0 < β) (hγ : 0 < γ)
+    (hmerge : NoEqualityPair β γ k)
+    {m : ℝ} (hm : 0 < m) {u : ℕ → H2 2} (hM : ∀ n, M (u n) = m)
+    (hE : Tendsto (fun n => energy β γ k (u n)) atTop (𝓝 (Imin β γ k m))) :
+    ∃ φ : ℕ → ℕ, StrictMono φ ∧ ∃ y : ℕ → R2, ∃ U : H2 2, M U = m ∧
+      energy β γ k U = Imin β γ k m ∧
+      Tendsto (fun n => distH2 (translate (y n) (u (φ n))) U) atTop (𝓝 0) :=
+  compactness_of_spectral_exclusion hβ hγ (ordinary_subadditive hβ hγ) hmerge hm hM hE
+
+theorem all_mass_stability_of_no_equality_pair (hβ : 0 < β) (hγ : 0 < γ)
+    (hmerge : NoEqualityPair β γ k) {m ε : ℝ} (hm : 0 < m) (hε : 0 < ε) :
+    ∃ δ > 0, ∀ u : ℝ → H2 2, IsSolution β γ k u →
+      distX (u 0) (Gset β γ k m) < δ →
+      BddAbove (Set.range fun t => distX (u t) (Gset β γ k m)) ∧
+      ⨆ t, distX (u t) (Gset β γ k m) < ε :=
+  stability_of_spectral_exclusion hβ hγ (ordinary_subadditive hβ hγ) hmerge hm hε
+
 end ReyesMath.GC06PairExtraction
