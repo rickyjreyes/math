@@ -1,0 +1,45 @@
+name: GC01 vortex estimates verification
+on:
+  pull_request:
+    paths:
+      - 'lean/MathProofs/GC01VortexEstimates.lean'
+      - 'lean/GC01VortexAudit.lean'
+      - '.github/workflows/lean-gc01-vortex.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  kernel:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: lean
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install repository-pinned Lean
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch Mathlib cache
+        run: |
+          lake update
+          lake exe cache get
+      - name: Build and audit scalar estimates
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -nE '(^|[[:space:]])(sorry|admit|axiom)([[:space:]]|$)' MathProofs/GC01VortexEstimates.lean; then exit 1; fi
+          lake build MathProofs.GC01VortexEstimates
+          lake env lean GC01VortexAudit.lean | tee gc01-vortex-audit.log
+          python - <<'PY'
+          import re
+          from pathlib import Path
+          data = Path("gc01-vortex-audit.log").read_text()
+          names = ["frequency_pos", "nonlinear_gap", "not_minimizer_of_kinetic_competitor",
+                   "angular_kinetic_gap_pos", "angular_coefficient_negative"]
+          for name in names:
+              pattern = r"'" + re.escape("ReyesMath.GC01VortexEstimates." + name) + r"'\s+(?:depends on axioms:\s*\[([^\]]*)\]|does not depend on any axioms)"
+              matches = re.findall(pattern, data, flags=re.S)
+              assert len(matches) == 1, (name, data)
+              assert set(x.strip() for x in matches[0].split(",") if x.strip()) <= {"propext", "Classical.choice", "Quot.sound"}, matches
+          PY

@@ -185,3 +185,7 @@ critical/supercritical regimes remain open in this ledger.
 ## GC06 follow-up: closed virial-ratio mass interval
 
 Candidate `GC06VirialBinding.lean` proves all-split binding, compactness and attainment for k²m≤3β/γ, by a uniform virial ratio, finite mass-increment chaining and mass correction at the endpoint. This supersedes the earlier explicit sufficient ceiling, but not the unrestricted fixed-k classification. The user's local build verified both earlier GC06 modules; the new module and 25-root gate remain pending. See section 10 of the detailed note. No completion status promoted.
+
+## Local kernel verification record
+
+Local verification on 2026-11-24: Lean 4.23.0, commit c3d58d59aa85c9e04c83a25f2a728eeb6b6583e5. Focused build completed successfully (7225 jobs); all 25 exact GC06 audit roots passed, using only propext, Classical.choice and Quot.sound. This verifies the three GC06 modules, including k²m ≤ 3β/γ, not the unrestricted classification or analytical-only results.

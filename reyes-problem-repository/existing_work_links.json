@@ -138,7 +138,7 @@
         "ReyesMath.GC06VirialBinding.compactness_closed",
         "ReyesMath.GC06VirialBinding.exists_minimizer_closed"
       ],
-      "scope_gap": "New candidate results enlarge the sufficient region and give analytical unbounded attained masses and finite-cluster compactness classification. The new closed virial region k²m ≤ 3β/γ awaits CI and exact correspondence review. Full fixed-k attainment classification and strict energetic merging remain unresolved.",
+      "scope_gap": "New candidate results enlarge the sufficient region and give analytical unbounded attained masses and finite-cluster compactness classification. The new closed virial region k²m ≤ 3β/γ passed the owner's focused Lean build and 25-root axiom audit at c3d58d5; independent correspondence review remains. Full fixed-k attainment classification and strict energetic merging remain unresolved.",
       "correspondence": "not_audited"
     },
     {

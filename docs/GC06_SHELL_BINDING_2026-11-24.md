@@ -233,3 +233,7 @@ The earlier two GC06 modules were reported successfully built by the
 user with standard axioms only; this new module still requires compilation.
 No GC-level status promotion. The counterexample in section 7 still
 prevents inferring arbitrary-mass binding from stationarity alone.
+
+## Local kernel verification record
+
+Local verification on 2026-11-24: Lean 4.23.0, commit c3d58d59aa85c9e04c83a25f2a728eeb6b6583e5. Focused build completed successfully (7225 jobs); all 25 exact GC06 audit roots passed, using only propext, Classical.choice and Quot.sound. This verifies the three GC06 modules, including k²m ≤ 3β/γ, not the unrestricted classification or analytical-only results.
