@@ -40,8 +40,7 @@ theorem hessian_lower (β γ a b x y : ℝ) (hγ : 0 < γ) :
   rcases eq_or_lt_of_le hs with hz | hp
   · have ha : a = 0 := by nlinarith [sq_nonneg b]
     have hb : b = 0 := by nlinarith [sq_nonneg a]
-    simp [ha, hb, hessian]
-    positivity
+    simp [ha, hb, hessian] <;> positivity
   · have hprod : 0 ≤ (a^2+b^2) *
         (20*γ*hessian β γ a b x y + 9*β^2*(x^2+y^2)) := by
       rw [shifted_hessian_identity]
@@ -85,6 +84,6 @@ theorem rotation_no_real_eigenvector (x y λ : ℝ)
   have hf : (λ^2+1)*y = 0 := by nlinarith only [h]
   have hp : 0 < λ^2+1 := by positivity
   have hy0 : y = 0 := (mul_eq_zero.mp hf).resolve_left (ne_of_gt hp)
-  exact ⟨by simp [hy0] at hy; exact hy, hy0⟩
+  exact ⟨by simpa [hy0] using hy, hy0⟩
 
 end ReyesMath.GC01SpectralReduction
