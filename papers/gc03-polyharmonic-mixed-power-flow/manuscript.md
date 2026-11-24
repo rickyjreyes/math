@@ -285,3 +285,106 @@ This proof isolates two genuine outstanding analytical obstructions: for s<2 a H
 ## 15. Verification update
 
 The previous seven Lean roots are not yet verified at the current head; the prior head's catalogue and Markdown checks passed, while Lean checks were queued/running or cancelled upon supersession. New candidate Lean lemmas encode the finite energy-drop counting inequality and its application to the actual finite-energy Hamiltonian. The analytic critical local dynamics, endpoint estimates, defect quantization and transfer theorem themselves are not formalized. A full formal solution still requires these and the previous analytic proof chains. No closure or accepted registry promotion.
+
+
+## 16. Removing the lower-power integrability restriction by time regularity
+
+The restriction r>=1+2/d in section 14 is a limitation of its particular spatial-gradient forcing norm, not a physical or mathematical critical exponent. This section supplies an alternative, using fractional time regularity and the energy bound. All assertions below are analytical and require independent review; no new kernel-certified PDE theorem is asserted.
+
+### 16.1 Sharp obstruction to the unmodified forcing estimate
+
+Let k=2d/(d+2), let phi be a nonzero nonnegative flat smooth compact bump with ∇F_r(phi) not identically zero, and choose disjoint translates phi_j. Set g_N=N^(-1/2) sum_(j=1)^N phi_j. For each integer p the H^p norms of g_N stay bounded by disjoint support of the weak derivatives. For every a>=2, both ||g_N||_a and ||∇g_N||_a stay bounded. In contrast
+||∇F_r(g_N)||_k=N^(1/k-r/2)||∇F_r(phi)||_k.
+For 1<r<1+2/d the exponent is positive. Taking g_N constant in time also gives a counterexample to the uniform one-derivative forcing estimate on any fixed nonzero time interval, even with all the spatial Z norms of section 14 bounded. This is not a counterexample to well-posedness; these test paths need not solve the equation.
+
+### 16.2 A time-Sobolev Duhamel lemma
+
+Let A=(-Delta)^p, U(t)=exp(-itA), and let J be an interval of length ell<=1. Suppose F:J→L² is in H^(1/2)(J;L²) with sup_J||F||₂≤B_F. Define
+[F]_(1/2,J)^2=integral_J integral_J ||F(t)-F(t')||₂²/|t-t'|² dt dt'.
+Then
+||D^p integral_J U(-t)F(t)dt||₂
+ <= C (||F||_(L²(J;L²))+sqrt(ell)[F]_(1/2,J)).
+This is an estimate on the interaction-picture increment, not a general smoothing assertion for arbitrary L¹L² forcing.
+
+Proof. By a time translation and scaling to [0,1], and taking the spatial Fourier transform, reduce to the scalar integral against exp(i Lambda tau), Lambda=ell|xi|^(2p). For scalar f∈H^(1/2)(0,1) one has
+|integral_0^1 exp(i Lambda tau)f(tau)dtau|
+ <= C (1+|Lambda|)^(-1/2)||f||_(H^(1/2)(0,1)).
+Indeed extend f to H^(1/2)(R) by bounded reflection extension and smooth cutoff. The zero-extended test 1_[0,1] exp(-i Lambda tau) has H^(-1/2)(R) norm at most C(1+|Lambda|)^(-1/2): its Fourier transform is a translate of the transform of the interval indicator, bounded by C min(1,|omega-Lambda|^-1) up to sign convention. For |Lambda|>=2 split |omega|>=|Lambda|/2, whose weighted integral of the squared transform is O(1/|Lambda|) by Plancherel, and |omega|<|Lambda|/2, whose integral is O(log(2+|Lambda|)/|Lambda|²). For smaller Lambda use the L² bound. Duality proves the scalar estimate. Multiply by ell |xi|^p≤sqrt(ell)(1+|Lambda|)^(1/2) and integrate over xi. Spatial Plancherel and Fubini identify the integrated scalar H^(1/2) norm with ell^-1||F||_(L²(J;L²))²+[F]_(1/2,J)². This proves the claimed increment estimate. The L² increment is bounded directly by ell B_F.
+
+A further elementary estimate supplies the needed fractional time regularity. If u∈L∞(J;H^p) and u_t∈L∞(J;H^-p) with bounds B,K, respectively, then
+[u]_(1/2,J;L²) ≤ C sqrt(ell B K).
+For rigor, reflect u on J to a periodic interval of length 2ell. The reflected function is in L²_t H^p intersect H¹_t H^-p; reflection introduces no jumps in H^-p by its time continuity. Its normalized Fourier coefficients u_n obey
+sum_n |n| ||u_n||₂²
+ ≤ C ell (sum_n ||u_n||_(H^p)²)^(1/2)
+          (sum_n (|n|/ell)²||u_n||_(H^-p)²)^(1/2)
+ ≤ C ell B K.
+Here use the pivot inequality ||f||₂²≤||f||_(H^p)||f||_(H^-p), Cauchy–Schwarz, and Parseval for Hilbert-valued periodic functions. The periodic H^(1/2) seminorm controls the interval seminorm (its double-integral kernel is comparable to the inverse square of periodic distance). Equivalently rescale to the fixed unit circle; the order-1/2 seminorm is scale invariant in one time dimension.
+
+If G:C→C is globally Lipschitz with G(0)=0, then F=G(u) satisfies B_F≤Lip(G)B and [F]_(1/2,J)≤Lip(G)[u]_(1/2,J). Consequently for every subinterval J of length ell<=1,
+||integral_J U(-t) G(u(t))dt||_(H^p)
+ ≤ C Lip(G) [sqrt(ell)B+ell sqrt(BK)].
+All statements also hold with u replaced by a uniformly H^p/H^-p bounded Fourier cutoff of u and G(u) followed by an L²-contracting, time-independent Fourier multiplier.
+
+This gives the retarded response L(t)=integral_a^t U(t-t')G(u(t'))dt' in C(I;H^p) for I=[a,a+h], h<=1: the interaction-picture path has H^p increments bounded as above, and U is strongly continuous. It also gives, for every nonendpoint homogeneous Strichartz output norm ||D^p L||_(L^q L^a) with q>2 and 2p/q+d/a=d/2,
+||D^p L||_(L^q(I;L^a)) ≤ C Lip(G)(B+sqrt(BK)) sqrt(h).
+Here is the triangular decomposition argument. Partition I dyadically. Up to a null set, each pair a<=t'<t<=a+h belongs to a unique pair of adjacent left/right halves of a dyadic interval (their first differing dyadic digit). At level j there are 2^j disjoint right halves of length h/2^(j+1). On each right half the contribution from the paired left half is a free solution with interaction-picture datum integral_left U(-t')F(t')dt'. Its H^p norm is bounded by C sqrt(h/2^(j+1))(B+sqrt(BK))Lip(G). Homogeneous Strichartz and the disjoint time supports give a total level norm bounded by C sqrt(h) 2^(-j(1/2-1/q))(B+sqrt(BK))Lip(G). The geometric series converges precisely for q>2. The sum equals the retarded integral in distributions: finite partial sums omit only the thin diagonal region, whose L∞L² contribution tends to zero by the L∞L² forcing bound. Thus it has the claimed mixed-norm estimate. The L∞H^p bound already follows from the increment estimate. Spatial Sobolev embedding yields both terms of Z_I in section 14 for q=2s>2. This proof neither assumes u is a classical solution nor differentiates G in space.
+
+### 16.3 Splitting the lower nonlinearity
+
+Choose smooth radial amplitude cutoff chi equal to 1 for |z|≤1 and zero for |z|≥2. Put G(z)=chi(z)F_r(z), H(z)=(1-chi(z))F_r(z), so F_r=G+H. G is globally Lipschitz since r>1 and it is C¹ compactly supported, with G(0)=0. Set r0=max(r,1+2/d); in the critical case r0<s, since s-1=4p/(d-2p)>2/d. On the support of H and its derivative, |z|≥1, so |DH(z)|≤C |z|^(r0-1). The high-amplitude gradient estimate of section 14 is now valid for all r, with r0 replacing r:
+||∇H(u)||_(L²(I;L^k)) ≤ C h^theta (B+Z_I(u))^r0,
+theta=(s-r0)/(2s)>0.
+This follows by precisely the interpolation used there; when r0=1+2/d, use its low spatial endpoint r0/2=1/k. For bounded critical H^p weak solutions the equation bounds u_t in H^-p by K(B). This applies uniformly to the smooth-cutoff Galerkin approximants of section 14 as well because P_N is H^-p-contracting, P_N u_N is uniformly H^p-bounded, and the Sobolev dual estimates are uniform. By section 16.2, the low-amplitude response, including its coefficient -beta and factor -i, obeys
+||L||_(C(I;H^p))+Z_I(L)≤C_B sqrt(h).
+This resolves the low-power forcing obstruction without requiring any artificial spatial integrability of G(u) below L².
+
+### 16.4 Critical differentiated local regularity and continuation for all real powers
+
+For every p>=1, d>2p and 1<r<s=s_E, the maximal strong solution of section 12 has finite Z_J on each compact subinterval J of its lifespan. Here Z is the sum of the two finite-time-exponent norms in section 14. Further, finite Z_[0,T) implies strong continuation at any finite T.
+
+Proof of local differentiated regularity. Use the smooth Fourier cutoff Galerkin Hamiltonian of section 14; it yields uniform H^p bounds B and derivative-in-time H^-p bounds K(B). Its low-amplitude Duhamel response is uniformly bounded in Z by C_B sqrt(h). For a finite interval I=[0,h], the one-derivative linear estimate of section 14, the elementary chain rule ||∇F_s(v)||_(L²L^k)≤C Z_I(v)^s (valid for all s>1), and the high-amplitude estimate give
+Z_I(u_N) ≤ Z_I(U(t)P_Nu0)+C Z_I(u_N)^s+C h^theta(B+Z_I(u_N))^r0+C_B sqrt(h).
+All cutoff constants are uniform by smooth multiplier boundedness. For fixed u0 the free term tends to zero as h→0 by homogeneous Strichartz and absolute continuity, uniformly for large N by H^p convergence of P_Nu0. Choose a small bootstrap ceiling zeta with C zeta^s≤zeta/4, then h small so the other terms below the ceiling sum to less than zeta/2. Each approximant has finite continuous Z norm on expanding subintervals (bandlimited and H^p-continuous), hence Z_I(u_N)≤zeta. The weak compactness construction of section 14 passes to an energy-admissible weak solution, and reflexivity of the finite-exponent Z spaces preserves its Z bound. Its distributional gradient is identified by local distributional convergence. By section 12 weak-strong comparison near the initial profile, this limit agrees with the strong solution on a possibly shorter interval. Repeat around any time of the strong solution; a compact subinterval is covered by finitely many neighborhoods. This proves local Z regularity without differentiating the low-amplitude nonlinearity.
+
+For the continuation implication, if the solution is bounded in H^p by conservation and Z_[0,T) finite, then ∇F_s(u) and ∇H(u) lie in L²([0,T);L^k). The dual derivative-gain estimate underlying section 14 implies
+||D^p integral_a^b U(-t') (gamma F_s(u)-beta H(u))dt'||₂
+ ≤ C ||∇(gamma F_s(u)-beta H(u))||_(L²([a,b];L^k)).
+This tends to zero as a,b→T by absolute continuity. The low-amplitude increment tends to zero by section 16.2. The interaction-picture kinetic term is therefore Cauchy in L², while the L² trace already exists by section 13. Thus u has a strong H^p trace at T, and section 12 restarts it. This proves the necessary-and-sufficient finite critical spacetime norm criterion (on bounded time intervals). Conversely, a strong continuation gives finite Z on the compact extended interval by the local regularity just proved.
+
+## 17. All-power fourth-order critical global theorem
+
+**Theorem 17.1.** For p=2, every integer d>=8, all real 1<r<s=1+8/(d-4), beta,gamma>0, every H² datum has a unique global strong energy solution, continuously depending on the datum. For every d>=5 the same conclusion holds for radial H² data. The proof uses the uniform pure defocusing critical scattering results plus the time-regularity lemma. It is an analytical theorem pending independent review, not a novelty or Lean claim.
+
+First, for arbitrary p where s>=2, the conditional pure-flow transfer in section 14 no longer needs r>=1+2/d: use the actual strong solutions with local Z regularity, and subtract the pure solution. Include the low-amplitude response as an additive C_B sqrt(h) in the S estimate, and use r0 in the high-amplitude term. The same finite interval subdivision and bootstrap works. Section 16.4 guarantees continuation of the actual strong solution if its Z bound persists to a proposed endpoint, so the argument no longer needs a Galerkin construction at this stage.
+
+For fourth-order s<2 (d>12), use Pausader, "Global Well-Posedness for Energy Critical Fourth-Order Schrödinger Equations in the Radial Case", Dynamics of PDE 4 (2007), 197–225, Proposition 6.1 and (6.3). The stability proposition is not restricted to radial data; with epsilon=0 it supplies a uniform stability threshold depending on the approximate solution's critical Z and kinetic bounds, and yields closeness in W when the residual is small in N=||∇e||_(L²L^(2d/(d+2))) and the initial data agree. W is exactly the gradient part of our Z; homogeneous Sobolev bounds the undifferentiated critical L^(2s) norm by W. For d>12 its conclusion uses a positive Hölder exponent 15/(d-4)^2 in addition to the linear term. The result is used as a published theorem, not proved here. Its opposite sign convention is converted by complex conjugation. Its statement allows any real upper coefficient, so gamma>0 is legitimate after sign conversion, or normalize gamma by field scaling. The pure scattering bound is Miao–Xu–Zhao, JDE 251 (2011), 3381–3402, Theorem 1.1 for d>=9, and Pausader's radial theorem in d>=5. For d=8 use Pausader's cubic paper as in section 14. The pure Z bound including W follows by the partition argument of section 14.
+
+Here are the details of the perturbation with the low-amplitude response removed. Let u be the maximal strong mixed solution, starting at an arbitrary time a, and let w be the pure defocusing solution with the same initial profile. By conservation both have uniform H² bounds in terms of B=||u(a)||_H², with the mixed bound provided by section 2. Let I=[a,a+h] intersected with its strong lifespan, h<=1. Define L to solve the linear equation i L_t=A L-beta G(u), L(a)=0, and v=u-L. By section 16.2, ||L||_C H²+Z_I(L)≤C_B sqrt(h). Then
+i v_t=A v+gamma F_s(v)+e,
+e=gamma(F_s(u)-F_s(v))-beta H(u).
+The derivative of F_s is Hölder of order alpha=min(1,s-1) with the standard weighted difference estimate
+|DF_s(x)-DF_s(y)|≤C|x-y|^alpha (|x|+|y|)^(s-1-alpha).
+This follows from homogeneity and the derivative formula away from zero, splitting whether |x-y| is at least half of the larger amplitude; if smaller apply the mean-value bound away from zero. Thus
+||∇(F_s(u)-F_s(v))||_(L²L^k)
+ ≤ C (Z_I(u)+Z_I(v))^(s-1) Z_I(L)
+ + C (Z_I(u)+Z_I(v))^(s-1-alpha) Z_I(L)^alpha Z_I(v).
+The estimate follows by Hölder with q=2s and 1/k=(s-1)/q+1/b1. Consequently on any subinterval [a,t] with Z_[a,t](u)≤A0 fixed, ||∇e||_(L²L^k) is bounded by
+C_(B,A0) (h^theta + sqrt(h) + h^(alpha/2)),
+uniformly for all such t. No derivative of G was estimated in the critical forcing space.
+
+Let L_B bound the pure full Z norm (including W) by the cited pure global theorem. Choose A0=2(L_B+1). On a compact initial interval on which the bootstrap Z(u)≤A0 holds, the approximate v has a uniform kinetic bound and critical Z bound A0+1 for h sufficiently small. It starts exactly at u(a). Choose the stability parameter Λ=1 in Proposition 6.1, so the initial mismatch is zero. The stability threshold and output constants may be taken uniform under the stated bounds (as in the proof via finite subdivision of the approximate critical norm). For h=h(B)>0 sufficiently small the residual bound is below this threshold and the resulting W(v-w) is as small as desired. The proposition's exact solution must be w by uniqueness of the pure strong flow. In particular, homogeneous Sobolev gives Z(v-w)<1/2, and Z(L)<1/2 after reducing h. Thus Z(u)<L_B+1<A0. The local regularity of section 16.4 ensures continuity of Z on expanding compact intervals and its vanishing at their initial time, so the bootstrap holds until min(a+h,T_max). If a finite maximal endpoint T_max≤a+h existed, monotone convergence would give finite Z up to T_max, contradicting section 16.4. Hence the mixed solution exists on a uniform slab of length h(B) (and backward as well). Repeat using the uniform conserved-energy H² bound. This proves the theorem for all d>=8 arbitrary data and d>=5 radial data, including the previously excluded very low focusing powers and the high-dimensional Hölder critical nonlinearity.
+
+## 18. Prior-art correction and remaining frontier
+
+A closer existing result was identified: Junyong Zhang and Jiqiang Zheng, "Energy critical fourth-order Schrödinger equations with subcritical perturbations", Nonlinear Analysis 73(4) (2010), 1004–1014, DOI 10.1016/j.na.2010.04.027. The accessible manuscript's Theorem 1.1 states global H² well-posedness for exactly d=8, critical cubic upper term defocusing, arbitrary real lower-power coefficient and lower exponent 0<a<2 in |u|^a u (our r=a+1). This is the exact GC03 d=8 critical slice after sign convention conversion. Credit the prior theorem as stated; do not claim this slice as original research. Its accessible transcription of Lemma 2.2 appears to use a spatial-gradient forcing estimate over the whole lower-power range; section 16.1 shows such an estimate cannot hold uniformly for arbitrary test functions when a<1/4. The typeset publisher proof was not accessible during this review, so no assertion of a published error is made. The independent argument in sections 16–17 does not rely on that estimate. The result in d>=9 or radial d>=5 is a proof transfer from existing pure-flow and stability theorems; novelty remains unassessed.
+
+The fourth-order critical large-data slice is now covered in every dimension with the verified pure uniform critical bound: all d>=8, radial d>=5, every lower real exponent. No matching arbitrary-data pure uniform bound was located for d=5,6,7 in this focused literature search. Higher integer dispersion orders p>=3 still require a suitable pure critical uniform bound (and a higher-order counterpart of the Hölder stability estimate when s<2). The argument of sections 16–17 is conditional for those orders; it does not certify those missing inputs. The general subcritical, weak, and supercritical statements remain as before. Strong supercritical individual-data classification remains unresolved, even though universal energy-class well-posedness fails.
+
+The new time-Sobolev lemma is the key proof contribution of this revision. Its proof and the perturbative transfer require independent mathematical review and are not yet Lean-formalized. The Lean addition only checks the scalar exponent threshold arithmetic behind the separated-bump obstruction and the cutoff exponent. No promotion of GC03, issue closure or novelty claim. CI for the preceding head was queued when checked; local Lean/Lake unavailable.
+
+### References for sections 16–18
+
+- B. Pausader, Dynamics of PDE 4 (2007), 197–225, Proposition 6.1, especially the high-dimensional stability estimate: https://doi.org/10.4310/DPDE.2007.v4.n3.a1
+- C. Miao, G. Xu, L. Zhao, J. Differential Equations 251 (2011), 3381–3402, pure defocusing uniform bound d>=9: https://arxiv.org/abs/0807.0692 ; https://doi.org/10.1016/j.jde.2011.08.009
+- B. Pausader, The cubic fourth-order Schrödinger equation, JFA 256 (2009), 2473–2517: https://arxiv.org/abs/0807.4916
+- J. Zhang, J. Zheng, exact d=8 mixed equation, Nonlinear Analysis 73 (2010), 1004–1014: https://doi.org/10.1016/j.na.2010.04.027 ; accessible manuscript https://doczz.net/doc/7839286/the-energy-critical-fourth-order-schr%C3%B6dinger-equations-with

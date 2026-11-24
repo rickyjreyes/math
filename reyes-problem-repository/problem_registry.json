@@ -63,7 +63,7 @@
       "flagship": false,
       "dossier": null,
       "claimed_kernel_verified_resolution": false,
-      "note": "2026-11-24: analytical all-real-power subcritical global strong flow, all-regime global weak finite-energy existence and supercritical energy-class norm inflation; critical local strong flow, positive endpoint energy defect, small-data global existence, and restricted fourth-order critical large-data transfer (p=2,d=8..12, r>=1+2/d; radial d=5..12). General critical large-data and individual supercritical strong classification unresolved. Issue #100/PR #101; candidate Lean supporting lemmas pending CI. No status promotion.",
+      "note": "2026-11-24: analytical subcritical strong global, all-regime finite-energy weak existence, supercritical energy-class norm inflation; critical local strong flow, endpoint defect and small-data global; all-real-power fourth-order critical global transfer for d>=8 arbitrary data and d>=5 radial using time-Sobolev Duhamel and prior pure stability. Nonradial d=5..7, p>=3 critical large-data and individual supercritical strong classification unresolved. Issue #100/PR #101; candidate Lean supporting lemmas pending CI. No status promotion.",
       "file_path": "problems/01-wave-dynamics/GC03.md",
       "research_area": "Nonlinear wave dynamics",
       "source_class": "original_formal_statement",

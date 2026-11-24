@@ -70,3 +70,5 @@ elab "#audit_deps " root:ident : command => do
 #audit_deps ReyesMath.GC03Energy.trajectory_kinetic_bound
 #audit_deps ReyesMath.GC03Energy.energy_drop_count
 #audit_deps ReyesMath.GC03Energy.finite_energy_drop_count
+#audit_deps ReyesMath.GC03Energy.gradient_forcing_threshold
+#audit_deps ReyesMath.GC03Energy.lower_cutoff_exponent_lt_critical

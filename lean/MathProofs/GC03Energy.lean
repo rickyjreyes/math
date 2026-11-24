@@ -237,6 +237,33 @@ theorem finite_energy_drop_count {d : ℕ} (p : ℕ) {β γ r s : ℝ}
   have hcount := energy_drop_count (fun i => energy p β γ r s (u i)) δ N hd
   linarith only [hk, hpos, hlow, hmass, hcount]
 
+
+/-- The exponent of N in the separated-bump gradient-forcing obstruction.
+This checks the scalar threshold, not the analytic disjoint-support construction. -/
+theorem gradient_forcing_threshold {d r : ℝ} (hd : 0 < d) :
+    0 < (d + 2) / (2 * d) - r / 2 ↔ r < 1 + 2 / d := by
+  have h : 0 < 2 * d := by positivity
+  have he : (d + 2) / (2 * d) - r / 2 =
+      (1 + 2 / d - r) / 2 := by
+    field_simp [hd.ne']
+    <;> ring
+  rw [he]
+  constructor <;> intro hh <;> linarith
+
+/-- The amplitude-cutoff replacement exponent stays strictly subcritical. -/
+theorem lower_cutoff_exponent_lt_critical {d p r : ℝ}
+    (hp : 1 ≤ p) (hd : 2 * p < d)
+    (hr : r < 1 + 4 * p / (d - 2 * p)) :
+    max r (1 + 2 / d) < 1 + 4 * p / (d - 2 * p) := by
+  have hd0 : 0 < d := by linarith
+  have hgap : 0 < d - 2 * p := sub_pos.mpr hd
+  have hprod : 0 ≤ (2 * p - 1) * d := mul_nonneg (by linarith) hd0.le
+  have hcross : 2 * (d - 2 * p) < (4 * p) * d := by
+    nlinarith only [hprod, hp]
+  have hdiv : 2 / d < 4 * p / (d - 2 * p) :=
+    (div_lt_div_iff₀ hd0 hgap).mpr hcross
+  exact max_lt hr (by linarith)
+
 end ReyesMath.GC03Energy
 
 #print axioms ReyesMath.GC03Energy.power_absorption
@@ -248,3 +275,5 @@ end ReyesMath.GC03Energy
 #print axioms ReyesMath.GC03Energy.trajectory_kinetic_bound
 #print axioms ReyesMath.GC03Energy.energy_drop_count
 #print axioms ReyesMath.GC03Energy.finite_energy_drop_count
+#print axioms ReyesMath.GC03Energy.gradient_forcing_threshold
+#print axioms ReyesMath.GC03Energy.lower_cutoff_exponent_lt_critical
