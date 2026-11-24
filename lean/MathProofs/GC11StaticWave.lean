@@ -39,7 +39,9 @@ theorem shifted_wave (k K : ℝ) (a : ℂ) :
     shifted k (wave a K) =
       wave (((k : ℂ) ^ 2 - (K : ℂ) ^ 2) * a) K := by
   funext x
-  simp only [shifted, deriv_wave, wave]
+  unfold shifted
+  rw [deriv_wave, deriv_wave]
+  simp only [wave]
   calc
     _ = (a * (Complex.I * Complex.I) * (K : ℂ) ^ 2 +
         (k : ℂ) ^ 2 * a) * mode K x := by ring
