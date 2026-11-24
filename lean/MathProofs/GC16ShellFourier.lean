@@ -52,20 +52,50 @@ theorem integral_halfline_shell_le (k : ℝ) {c η : ℝ} (hc : 0 < c) (hη : 0 
     field_simp [hc.ne', hs.ne', hη.ne']
     rw [Real.sq_sqrt hη.le]
     <;> ring
+  let F : ℝ → ℝ := fun x => (1 + x ^ 2)⁻¹
+  let G : ℝ → ℝ := fun x => F (b * x)
+  have hF : Integrable F := integrable_inv_one_add_sq
+  have hG : Integrable G := by
+    let A : ℝ := 1 + (b ^ 2)⁻¹
+    have hA : 0 ≤ A := by dsimp [A]; positivity
+    refine (hF.const_mul A).mono' ?_ (Eventually.of_forall fun x => ?_)
+    · dsimp [G, F]
+      exact Continuous.aestronglyMeasurable (continuous_inv₀ (by fun_prop) (fun x => by positivity))
+    · change ‖(1 + (b * x) ^ 2)⁻¹‖ ≤ A * (1 + x ^ 2)⁻¹
+      rw [Real.norm_of_nonneg (by positivity)]
+      have h1 : 0 < 1 + (b * x) ^ 2 := by positivity
+      have h2 : 0 < 1 + x ^ 2 := by positivity
+      have heq : A * (1 + (b * x) ^ 2) = 1 + x ^ 2 + (b ^ 2)⁻¹ + (b * x) ^ 2 := by
+        dsimp [A]
+        field_simp [hb.ne']
+        <;> ring
+      rw [← one_div, ← one_div, mul_one_div, div_le_div_iff₀ h1 h2, one_mul, heq]
+      have hp : 0 ≤ (b ^ 2)⁻¹ := by positivity
+      linarith [sq_nonneg (b * x)]
   have hint : Integrable (fun u : ℝ => 1 / ((c * u - k ^ 2) ^ 2 + η)) := by
     simp_rw [he]
-    exact ((integrable_inv_one_add_mul_sq hb.ne').comp_sub_right (k ^ 2 / c)).const_mul _
+    exact (hG.comp_sub_right (k ^ 2 / c)).const_mul _
   calc
     (∫ u in Ioi (0 : ℝ), 1 / ((c * u - k ^ 2) ^ 2 + η)) ≤
         ∫ u : ℝ, 1 / ((c * u - k ^ 2) ^ 2 + η) :=
       setIntegral_le_integral hint (Eventually.of_forall fun _ => by positivity)
     _ = Real.pi / (c * Real.sqrt η) := by
       simp_rw [he]
-      rw [integral_const_mul, integral_sub_right_eq_self,
-        integral_univ_inv_one_add_mul_sq, abs_of_pos hb]
+      rw [integral_const_mul]
+      change η⁻¹ * (∫ u : ℝ, G (u - k ^ 2 / c)) = _
+      rw [integral_sub_right_eq_self]
+      have hscale : (∫ u : ℝ, G u) = b⁻¹ * Real.pi := by
+        change (∫ u : ℝ, F (b * u)) = _
+        have heq : (fun u : ℝ => F (b * u)) = fun u => F (u / b⁻¹) := by
+          funext u
+          rw [div_inv_eq_mul, mul_comm]
+        rw [heq, Measure.integral_comp_div, abs_of_pos (inv_pos.2 hb), smul_eq_mul]
+        change b⁻¹ * (∫ u : ℝ, (1 + u ^ 2)⁻¹) = _
+        rw [integral_univ_inv_one_add_sq]
+      rw [hscale]
       dsimp [b]
-      field_simp
-      rw [Real.sq_sqrt hη.le]
+      field_simp [hc.ne', hs.ne', hη.ne']
+      <;> nlinarith [Real.sq_sqrt hη.le]
 
 /-- In dimension two the inverse shifted-symbol weight is bounded uniformly in k. -/
 theorem integral_inv_shell_le (k : ℝ) {η : ℝ} (hη : 0 < η) :
@@ -96,7 +126,12 @@ theorem integral_inv_shell_le (k : ℝ) {η : ℝ} (hη : 0 < η) :
   simp only [nsmul_eq_mul, smul_eq_mul, Nat.cast_ofNat]
   have h := integral_halfline_shell_le k (c := (2 * Real.pi) ^ 2) (by positivity) hη
   calc
-    _ ≤ 2 * Real.pi * (1 / 2 * (Real.pi / ((2 * Real.pi) ^ 2 * Real.sqrt η))) := by gcongr
+    _ ≤ 2 * Real.pi * (1 / 2 * (Real.pi / ((2 * Real.pi) ^ 2 * Real.sqrt η))) := by
+      change 2 * (Real.pi * (1 / 2 * (∫ u in Ioi (0 : ℝ),
+        1 / (((2 * Real.pi) ^ 2 * u - k ^ 2) ^ 2 + η)))) ≤ _
+      have hh := mul_le_mul_of_nonneg_left
+        (mul_le_mul_of_nonneg_left h (by norm_num : (0 : ℝ) ≤ 1 / 2)) hπ.le
+      linarith
     _ = _ := by field_simp; ring
 
 private theorem norm_shift_fourier (φ : SchwartzMap R2 ℂ) (k : ℝ) (ξ : R2) :
@@ -113,7 +148,9 @@ theorem integrable_weight_shell (φ : SchwartzMap R2 ℂ) (k η : ℝ) :
   have h1 : Integrable fun ξ : R2 => (qS ξ - k ^ 2) ^ 2 * ‖𝓕 (⇑φ) ξ‖ ^ 2 := by
     refine (integrable_normSq (fS (lapS φ + ((k ^ 2 : ℝ) : ℂ) • φ))).congr
       (Eventually.of_forall fun ξ => ?_)
-    rw [coe_fS, norm_shift_fourier]
+    change ‖fS (lapS φ + ((k ^ 2 : ℝ) : ℂ) • φ) ξ‖ ^ 2 = _
+    rw [coe_fS]
+    exact norm_shift_fourier φ k ξ
   have h2 : Integrable fun ξ : R2 => ‖𝓕 (⇑φ) ξ‖ ^ 2 := by
     rw [← coe_fS]
     exact integrable_normSq (fS φ)
@@ -126,7 +163,9 @@ theorem integral_weight_shell (φ : SchwartzMap R2 ℂ) (k η : ℝ) :
   have h1 : Integrable fun ξ : R2 => (qS ξ - k ^ 2) ^ 2 * ‖𝓕 (⇑φ) ξ‖ ^ 2 := by
     refine (integrable_normSq (fS (lapS φ + ((k ^ 2 : ℝ) : ℂ) • φ))).congr
       (Eventually.of_forall fun ξ => ?_)
-    rw [coe_fS, norm_shift_fourier]
+    change ‖fS (lapS φ + ((k ^ 2 : ℝ) : ℂ) • φ) ξ‖ ^ 2 = _
+    rw [coe_fS]
+    exact norm_shift_fourier φ k ξ
   have h2 : Integrable fun ξ : R2 => ‖𝓕 (⇑φ) ξ‖ ^ 2 := by
     rw [← coe_fS]
     exact integrable_normSq (fS φ)
