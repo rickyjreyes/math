@@ -197,3 +197,7 @@ See [GC06 / GC16 / GC01 bulk continuation](GC06_GC16_GC01_BULK_CONTINUATION_2026
 ## GC06/GC16 surface-order continuation
 
 [Interface binding dossier](GC06_GC16_INTERFACE_BINDING_2026-11-24.md): analytical proof candidate of positive surface-order excess F(m)=Theta(sqrt(m)) via local elliptic compactness and a two-phase lattice count; optimized finite increment excludes fragments up to eta sqrt(m) for sufficiently large total mass. Five additional candidate Lean audit roots, not yet built; cell estimate and asymptotic fragment theorem remain analytical. PR #109's 13 roots passed the supplied local audit at a3bd4f6 (7237 jobs); their exact modules are preserved on current main. Integrated audit now expects 18 roots. No GC status promotion or universal binding claim.
+
+## Exact pair-extraction reduction and GC26 acceptance audit
+
+[Closure audit](GC06_GC16_GC26_CLOSURE_AUDIT_2026-11-24.md). GC26 #105/#117 merged, original #103 closed, 57 exact roots locally verified; hosted CI gate pending. Generic topology #112 and augmentation #113 remain separate. GC06/GC16 #111 merged, 26 supporting roots locally audited. New GC06PairExtraction candidate uses compact-support L² translation, ordinary subadditivity and one attained profile per side to reduce all-mass binding to NoEqualityPair without finite-cluster induction. Integrated gate expects 44 roots. The continuum spectral exclusion remains unformalized and the new source has not passed a pinned build. No accepted registry promotion or premature issue closure.
