@@ -41,3 +41,8 @@ This file adds no declarations to the maintained library.
 #print axioms ReyesMath.V18Forward.generic_rank_counterexample
 #print axioms ReyesMath.V18Forward.augmented_rank_obstruction
 #print axioms ReyesMath.V18Forward.injective_of_strict_pairing
+
+#print axioms ReyesMath.V18Forward.historical_lightRaw
+#print axioms ReyesMath.V18Forward.logistic_floor_logit_eq
+#print axioms ReyesMath.V18Forward.historical_two_active_unique
+#print axioms ReyesMath.V18Forward.historical_zero_alpha
