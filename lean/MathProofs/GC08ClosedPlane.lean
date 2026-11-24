@@ -191,6 +191,7 @@ theorem nodalPath_mem_plane {d : ℕ} (c : ℂ) (hc : c ≠ 0)
       field_simp [htC] <;> ring
 
 /-- Every polynomial-test nodal jet lies in the actual topological closure. -/
+set_option maxHeartbeats 2000000 in
 theorem nodal_mem_closure {d : ℕ} (J : ComplexJet d)
     (hz : J.1=0) (h : closedEquations J) :
     J ∈ closure (planeSet d) := by
@@ -203,16 +204,18 @@ theorem nodal_mem_closure {d : ℕ} (J : ComplexJet d)
         simp [nodalPath,hg i]
       · funext i j
         exact (hH i j).symm
-  rw [← hJ,Metric.mem_closure_iff]
+  rw [← hJ]
+  apply Metric.mem_closure_iff.mpr
   intro ε he
-  obtain ⟨δ,hδ,hd⟩ :=
-    (Metric.continuousAt_iff.mp (nodalPath_continuous c v).continuousAt) ε he
+  have hcont : ContinuousAt (nodalPath c v) (0 : ℝ) :=
+    (nodalPath_continuous c v).continuousAt
+  obtain ⟨δ,hδ,hd⟩ := (Metric.continuousAt_iff.mp hcont) ε he
   have ht : 0 < δ/2 := by linarith
   have hdist : dist (δ/2) (0 : ℝ) < δ := by
     rw [Real.dist_eq,sub_zero,abs_of_pos ht]
     linarith
   refine ⟨nodalPath c v (δ/2),nodalPath_mem_plane c hc v _ ht.ne',?_⟩
-  first | exact hd hdist | simpa [dist_comm] using hd hdist
+  exact (dist_comm _ _).trans_lt (hd hdist)
 
 /-- The polynomial set is closed in the actual finite-dimensional topology. -/
 theorem closedEquations_isClosed (d : ℕ) :
