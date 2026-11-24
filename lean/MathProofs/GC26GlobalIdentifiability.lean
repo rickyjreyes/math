@@ -1038,8 +1038,69 @@ and the three eliminated coordinates. -/
 theorem invisible_reconstruct (p : Params) :
     invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) = p := by
   funext i
-  fin_cases i <;>
-    norm_num [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  fin_cases i
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 0 = p 0
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 1 = p 1
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 2 = p 2
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 3 = p 3
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 4 = p 4
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 5 = p 5
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 6 = p 6
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 7 = p 7
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 8 = p 8
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 9 = p 9
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 10 = p 10
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 11 = p 11
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 12 = p 12
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 13 = p 13
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 14 = p 14
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 15 = p 15
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 16 = p 16
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 17 = p 17
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 18 = p 18
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 19 = p 19
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 20 = p 20
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 21 = p 21
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 22 = p 22
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 23 = p 23
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 24 = p 24
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 25 = p 25
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 26 = p 26
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 27 = p 27
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 28 = p 28
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 29 = p 29
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
+  · change invisibleFamily (canonicalInvisible p) (p 16) (p 18) (p 27) 30 = p 30
+    simp [canonicalInvisible, invisibleFamily, shiftHiggs] <;> ring
 
 /-- An arbitrarily large change in an unused coordinate is completely
 invisible to the actual spectral observations. -/
@@ -1211,10 +1272,37 @@ private theorem range_middleRaw (l : Fin 3 → ℝ) (m : Fin 5 → ℝ)
     (h : Fin 3 → ℝ) (i : Fin 5) :
     middleRaw (rangeParams l m h) (middleN i) =
       (V18MiddleJacobian.middle.mulVec m) i := by
-  fin_cases i <;>
-    norm_num [middleRaw, middleN, V18MiddleJacobian.middle,
-      Matrix.mulVec, dotProduct, Fin.sum_univ_succ, Matrix.cons_val, ← add_assoc] <;>
-    first | (rw [middle_polar_linear]; ring) | (rw [show (6329 / 1250 : ℝ) * _ + (16469 / 10000 + (middlePolar m).arg) = (6329 / 1250 * _ + 16469 / 10000) + (middlePolar m).arg by ring]; rw [middle_polar_linear]; ring)
+  fin_cases i
+  · change middleRaw (rangeParams l m h) 12 = (V18MiddleJacobian.middle.mulVec m) 0
+    simp only [middleRaw, range_at_14, range_at_15, range_at_13, range_at_11,
+      range_at_9, range_at_10, range_at_12, ← add_assoc]
+    rw [middle_polar_linear]
+    norm_num [V18MiddleJacobian.middle, Matrix.mulVec, dotProduct,
+      Fin.sum_univ_succ, Matrix.cons_val] <;> ring
+  · change middleRaw (rangeParams l m h) 19 = (V18MiddleJacobian.middle.mulVec m) 1
+    simp only [middleRaw, range_at_14, range_at_15, range_at_13, range_at_11,
+      range_at_9, range_at_10, range_at_12, ← add_assoc]
+    rw [middle_polar_linear]
+    norm_num [V18MiddleJacobian.middle, Matrix.mulVec, dotProduct,
+      Fin.sum_univ_succ, Matrix.cons_val] <;> ring
+  · change middleRaw (rangeParams l m h) 53 = (V18MiddleJacobian.middle.mulVec m) 2
+    simp only [middleRaw, range_at_14, range_at_15, range_at_13, range_at_11,
+      range_at_9, range_at_10, range_at_12, ← add_assoc]
+    rw [middle_polar_linear]
+    norm_num [V18MiddleJacobian.middle, Matrix.mulVec, dotProduct,
+      Fin.sum_univ_succ, Matrix.cons_val] <;> ring
+  · change middleRaw (rangeParams l m h) 73 = (V18MiddleJacobian.middle.mulVec m) 3
+    simp only [middleRaw, range_at_14, range_at_15, range_at_13, range_at_11,
+      range_at_9, range_at_10, range_at_12, ← add_assoc]
+    rw [middle_polar_linear]
+    norm_num [V18MiddleJacobian.middle, Matrix.mulVec, dotProduct,
+      Fin.sum_univ_succ, Matrix.cons_val] <;> ring
+  · change middleRaw (rangeParams l m h) 91 = (V18MiddleJacobian.middle.mulVec m) 4
+    simp only [middleRaw, range_at_14, range_at_15, range_at_13, range_at_11,
+      range_at_9, range_at_10, range_at_12, ← add_assoc]
+    rw [middle_polar_linear]
+    norm_num [V18MiddleJacobian.middle, Matrix.mulVec, dotProduct,
+      Fin.sum_univ_succ, Matrix.cons_val] <;> ring
 
 private theorem range_heavyCorrection (l : Fin 3 → ℝ) (m : Fin 5 → ℝ)
     (h : Fin 3 → ℝ) (i : Fin 3) :
