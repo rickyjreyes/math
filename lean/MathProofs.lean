@@ -174,3 +174,6 @@ import MathProofs.GC08Cartesian
 import MathProofs.GC08Gauge
 import MathProofs.GC08Field
 import MathProofs.GC08PlaneLocus
+import MathProofs.GC08ClosedPlane
+import MathProofs.GC08Spatial
+import MathProofs.GC08Hadamard
