@@ -1,0 +1,43 @@
+name: GC11 focused Lean audit
+on:
+  pull_request:
+    paths: ['lean/MathProofs/GC11Coercivity.lean', 'lean/MathProofs/GC11StaticWave.lean', 'lean/MathProofs/GC11TorusEnergy.lean', 'lean/MathProofs/GC11TorusOrbit.lean', 'lean/MathProofs/GC11TorusInitial.lean', 'lean/MathProofs/GC11TorusHamiltonian.lean', 'lean/MathProofs/GC11TorusConservation.lean', 'lean/MathProofs/GC11TorusCarrier.lean', 'lean/MathProofs/GC11TorusEquivariance.lean', 'lean/MathProofs/GC11SidebandClassification.lean', 'lean/MathProofs/GC11PVNPBridge.lean', 'lean/MathProofs/GC11PVNPIntegration.lean', 'lean/lakefile.lean', 'lean/GC11Audit.lean', '.github/workflows/lean-gc11.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  gc11:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: lean
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch Mathlib cache
+        run: |
+          lake update
+          lake exe cache get
+      - name: Build exact algebra core
+        run: lake build MathProofs.GC11StaticWave MathProofs.GC11PVNPIntegration
+      - name: Audit declarations
+        run: |
+          set -o pipefail
+          lake env lean GC11Audit.lean 2>&1 | tee gc11-audit.log
+          grep -q 'two_static_carriers' gc11-audit.log
+          grep -q 'explicit_stationary_fields' gc11-audit.log
+          grep -q 'integrated_coercivity' gc11-audit.log
+          grep -q 'conserved_energy_bound' gc11-audit.log
+          grep -q 'all_sidebands_no_growth_iff' gc11-audit.log
+          grep -q 'unit_static_family' gc11-audit.log
+          grep -q 'orbit_near_of_small_mass_energy' gc11-audit.log
+          grep -q 'orbital_stability_conserving' gc11-audit.log
+          grep -q 'energy_conserved_strong' gc11-audit.log
+          grep -q 'orbital_stability_strong' gc11-audit.log
+          grep -q 'common_torus_carrier_stability' gc11-audit.log
+          grep -q 'coefficient_laboratory_deriv' gc11-audit.log
+          grep -q 'strong_to_laboratory_fourier' gc11-audit.log
+          if grep -o 'axioms: \[[^]]*\]' gc11-audit.log | sed 's/axioms: \[//; s/\]//' | tr ',' '\n' | sed 's/ //g' | grep -v '^$' | grep -vxE 'propext|Classical.choice|Quot.sound'; then exit 1; fi

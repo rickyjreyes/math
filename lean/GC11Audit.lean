@@ -1,0 +1,69 @@
+import MathProofs.GC11PVNPIntegration
+import MathProofs.GC11StaticWave
+import MathProofs.GC11TorusEnergy
+import MathProofs.GC11TorusOrbit
+import MathProofs.GC11TorusInitial
+import MathProofs.GC11TorusConservation
+import MathProofs.GC11TorusCarrier
+import MathProofs.GC11TorusEquivariance
+import MathProofs.GC11SidebandClassification
+
+#print axioms ReyesMath.GC11Coercivity.excess_eq
+#print axioms ReyesMath.GC11Coercivity.excess_pos
+#print axioms ReyesMath.GC11Coercivity.fourth_order_bound
+#print axioms ReyesMath.GC11Coercivity.relativePotential_lower
+#print axioms ReyesMath.GC11Coercivity.sideband_characteristic
+#print axioms ReyesMath.GC11Coercivity.sideband_discriminant_nonneg
+#print axioms ReyesMath.GC11Coercivity.two_static_carriers
+
+#print axioms ReyesMath.GC11Coercivity.stationary_wave
+#print axioms ReyesMath.GC11Coercivity.explicit_stationary_fields
+
+#print axioms ReyesMath.GC11TorusEnergy.derivativeEnergy_le
+#print axioms ReyesMath.GC11TorusEnergy.densityPotential_lower
+#print axioms ReyesMath.GC11TorusEnergy.integrated_coercivity
+#print axioms ReyesMath.GC11TorusEnergy.conserved_energy_bound
+
+#print axioms ReyesMath.GC11Coercivity.transverse_no_growth_iff
+#print axioms ReyesMath.GC11Coercivity.all_sidebands_no_growth_iff
+
+#print axioms ReyesMath.GC11Coercivity.staticUpperQ_witness
+#print axioms ReyesMath.GC11Coercivity.staticUpperQ_strict_anti
+#print axioms ReyesMath.GC11Coercivity.unit_static_family
+
+#print axioms ReyesMath.GC11TorusOrbit.latticeGap_le
+#print axioms ReyesMath.GC11TorusOrbit.mass_split
+#print axioms ReyesMath.GC11TorusOrbit.orbit_bound_fixed_mass
+#print axioms ReyesMath.GC11TorusOrbit.orbit_bound_mass_defect
+#print axioms ReyesMath.GC11TorusOrbit.conserving_orbit_bound_near_mass
+#print axioms ReyesMath.GC11TorusOrbit.orbit_near_of_small_mass_energy
+
+#print axioms ReyesMath.GC11TorusInitial.Phi_constant
+#print axioms ReyesMath.GC11TorusInitial.mass_defect_near
+#print axioms ReyesMath.GC11TorusInitial.energy_near
+#print axioms ReyesMath.GC11TorusInitial.orbital_stability_conserving
+
+#print axioms ReyesMath.GC11TorusHamiltonian.kinetic_eq_norm
+#print axioms ReyesMath.GC11TorusHamiltonian.sqrtOp_inner
+#print axioms ReyesMath.GC11TorusHamiltonian.mass_conserved_strong
+#print axioms ReyesMath.GC11TorusConservation.hasDerivAt_potential
+#print axioms ReyesMath.GC11TorusConservation.energy_conserved_strong
+#print axioms ReyesMath.GC11TorusConservation.orbital_stability_strong
+
+#print axioms ReyesMath.GC11TorusCarrier.carrier_symbol_eq
+#print axioms ReyesMath.GC11TorusCarrier.originalOp_coef
+#print axioms ReyesMath.GC11TorusCarrier.stationary_plane
+#print axioms ReyesMath.GC11TorusCarrier.strong_constant
+#print axioms ReyesMath.GC11TorusCarrier.common_torus_stationary
+#print axioms ReyesMath.GC11TorusCarrier.coefficient_laboratory_deriv
+#print axioms ReyesMath.GC11TorusCarrier.common_torus_carrier_stability
+
+#print axioms ReyesMath.GC11TorusEquivariance.translate_mp
+#print axioms ReyesMath.GC11TorusEquivariance.coef_labField
+#print axioms ReyesMath.GC11TorusEquivariance.original_nonlinear_coef
+#print axioms ReyesMath.GC11TorusEquivariance.labPhase_character
+#print axioms ReyesMath.GC11TorusEquivariance.strong_to_laboratory_fourier
+
+#print axioms ReyesMath.GC11PVNPIntegration.global_original_fourier_exists
+#print axioms ReyesMath.GC11PVNPBridge.global_lab_wellposed
+#print axioms ReyesMath.GC11PVNPBridge.lab_conservation

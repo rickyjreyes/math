@@ -190,3 +190,15 @@ import MathProofs.GC08ClosedPlane
 import MathProofs.GC08Spatial
 import MathProofs.GC08Hadamard
 import MathProofs.GC01SpectralReduction
+import MathProofs.GC11Coercivity
+import MathProofs.GC11StaticWave
+import MathProofs.GC11TorusEnergy
+import MathProofs.GC11SidebandClassification
+import MathProofs.GC11TorusOrbit
+import MathProofs.GC11TorusInitial
+import MathProofs.GC11TorusHamiltonian
+import MathProofs.GC11TorusConservation
+import MathProofs.GC11TorusCarrier
+import MathProofs.GC11TorusEquivariance
+import MathProofs.GC11PVNPBridge
+import MathProofs.GC11PVNPIntegration
