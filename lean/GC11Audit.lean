@@ -1,6 +1,7 @@
 import MathProofs.GC11StaticWave
 import MathProofs.GC11TorusEnergy
 import MathProofs.GC11TorusOrbit
+import MathProofs.GC11TorusInitial
 import MathProofs.GC11SidebandClassification
 
 #print axioms ReyesMath.GC11Coercivity.excess_eq
@@ -32,3 +33,8 @@ import MathProofs.GC11SidebandClassification
 #print axioms ReyesMath.GC11TorusOrbit.orbit_bound_mass_defect
 #print axioms ReyesMath.GC11TorusOrbit.conserving_orbit_bound_near_mass
 #print axioms ReyesMath.GC11TorusOrbit.orbit_near_of_small_mass_energy
+
+#print axioms ReyesMath.GC11TorusInitial.Phi_constant
+#print axioms ReyesMath.GC11TorusInitial.mass_defect_near
+#print axioms ReyesMath.GC11TorusInitial.energy_near
+#print axioms ReyesMath.GC11TorusInitial.orbital_stability_conserving
