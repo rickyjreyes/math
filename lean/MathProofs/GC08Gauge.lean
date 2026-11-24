@@ -181,9 +181,104 @@ theorem unique_all_jets {d : ℕ} (ε : ℝ) (he : 0 < ε) (C : Jet d → ℝ)
     simpa only [f,hJ] using hf
   · exact unique_nonzero ε he C hrot hg hreal J (Or.inl ha)
 
+/-- Precisely the symmetry restriction on second derivatives of C² fields. -/
+def SymmetricJet {d : ℕ} (J : Jet d) : Prop :=
+  (∀ i j, J.A i j = J.A j i) ∧ (∀ i j, J.B i j = J.B j i)
+
+def SymmetricPhase {d : ℕ} (W : Fin d → Fin d → ℝ) : Prop :=
+  ∀ i j, W i j = W j i
+
+theorem rotate_symmetric {d : ℕ} (J : Jet d) (c s : ℝ)
+    (h : SymmetricJet J) : SymmetricJet (rotate c s J) := by
+  constructor <;> intro i j <;> simp only [rotate] <;> rw [h.1 i j, h.2 i j]
+
+theorem gauge_symmetric {d : ℕ} (J : Jet d) (v : Fin d → ℝ)
+    (W : Fin d → Fin d → ℝ) (h : SymmetricJet J) (hW : SymmetricPhase W) :
+    SymmetricJet (gauge J v W) := by
+  constructor
+  · intro i j
+    simp only [gauge]
+    rw [h.1 i j, hW i j]
+    ring
+  · intro i j
+    simp only [gauge]
+    rw [h.2 i j, hW i j]
+    ring
+
+/-- Symmetrization of a successful phase Hessian preserves its ability to
+remove the imaginary part when the original jet is symmetric. -/
+theorem exists_real_symmetric_gauge {d : ℕ} (J : Jet d)
+    (hJ : SymmetricJet J) (hn : J.a ≠ 0 ∨ J.b ≠ 0) :
+    ∃ c s : ℝ, c^2+s^2=1 ∧ ∃ (v : Fin d → ℝ) (W : Fin d → Fin d → ℝ),
+      SymmetricPhase W ∧ RealJet (gauge (rotate c s J) v W) := by
+  obtain ⟨c,s,hu,v,W,hR⟩ := exists_real_gauge J hn
+  let L := rotate c s J
+  let V : Fin d → Fin d → ℝ := fun i j => (W i j+W j i)/2
+  have hL : SymmetricJet L := rotate_symmetric J c s hJ
+  have hV : SymmetricPhase V := by
+    intro i j
+    dsimp [V]
+    ring
+  refine ⟨c,s,hu,v,V,hV,?_⟩
+  obtain ⟨hb,hq,hB⟩ := hR
+  refine ⟨hb,hq,?_⟩
+  intro i j
+  have hij := hB i j
+  have hji := hB j i
+  change L.B i j+L.p i*v j+L.p j*v i-L.b*v i*v j+L.a*W i j=0 at hij
+  change L.B j i+L.p j*v i+L.p i*v j-L.b*v j*v i+L.a*W j i=0 at hji
+  rw [← hL.2 i j] at hji
+  change L.B i j+L.p i*v j+L.p j*v i-L.b*v i*v j+L.a*V i j=0
+  dsimp [V]
+  linear_combination (hij+hji)/2
+
+/-- Exact uniqueness on nonzero symmetric jets. No response or normalization
+axiom is imposed on nonsymmetric, unrealizable Hessian coordinates. -/
+theorem unique_symmetric_nonzero {d : ℕ} (ε : ℝ) (he : 0 < ε) (C : Jet d → ℝ)
+    (hrot : ∀ J c s, SymmetricJet J → c^2+s^2=1 → C (rotate c s J)=C J)
+    (hg : ∀ J v W, SymmetricJet J → SymmetricPhase W →
+      C (gauge J v W)=C J+response ε J v W)
+    (hreal : ∀ J, SymmetricJet J → RealJet J → C J=0)
+    (J : Jet d) (hJ : SymmetricJet J) (hn : J.a ≠ 0 ∨ J.b ≠ 0) :
+    C J=curvature ε J := by
+  obtain ⟨c,s,hu,v,W,hW,hR⟩ := exists_real_symmetric_gauge J hJ hn
+  have hL := rotate_symmetric J c s hJ
+  have hG := gauge_symmetric (rotate c s J) v W hL hW
+  have hC := hreal _ hG hR
+  have hK := curvature_real ε _ hR
+  rw [hg _ _ _ hL hW, hrot J c s hJ hu] at hC
+  rw [curvature_gauge ε he, curvature_rotate ε J c s hu] at hK
+  linarith
+
+/-- Exact symmetric-jet uniqueness including nodes; continuity is required
+only along the nodal value line, within the symmetric jet space. -/
+theorem unique_symmetric_jets {d : ℕ} (ε : ℝ) (he : 0 < ε) (C : Jet d → ℝ)
+    (hrot : ∀ J c s, SymmetricJet J → c^2+s^2=1 → C (rotate c s J)=C J)
+    (hg : ∀ J v W, SymmetricJet J → SymmetricPhase W →
+      C (gauge J v W)=C J+response ε J v W)
+    (hreal : ∀ J, SymmetricJet J → RealJet J → C J=0)
+    (hcont : ∀ J : Jet d, SymmetricJet J → ContinuousAt
+      (fun t : ℝ => C {J with a := t} - curvature ε {J with a := t}) 0) :
+    ∀ J, SymmetricJet J → C J=curvature ε J := by
+  intro J hJ
+  by_cases ha : J.a = 0
+  · let f : ℝ → ℝ := fun t => C {J with a := t} - curvature ε {J with a := t}
+    have hf : f 0 = 0 := zero_of_continuous_off_zero f (hcont J hJ) (by
+      intro t ht
+      apply sub_eq_zero.mpr
+      exact unique_symmetric_nonzero ε he C hrot hg hreal _ hJ (Or.inl ht))
+    have hJ0 : {J with a := (0 : ℝ)} = J := by
+      cases J
+      simp_all
+    apply sub_eq_zero.mp
+    simpa only [f,hJ0] using hf
+  · exact unique_symmetric_nonzero ε he C hrot hg hreal J hJ (Or.inl ha)
+
 end ReyesMath.GC08
 
 #print axioms ReyesMath.GC08.curvature_rotate
 #print axioms ReyesMath.GC08.curvature_gauge
 #print axioms ReyesMath.GC08.exists_real_gauge
 #print axioms ReyesMath.GC08.unique_all_jets
+
+#print axioms ReyesMath.GC08.unique_symmetric_jets
