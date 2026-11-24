@@ -1,7 +1,7 @@
 name: GC11 focused Lean audit
 on:
   pull_request:
-    paths: ['lean/MathProofs/GC11Coercivity.lean', 'lean/MathProofs/GC11StaticWave.lean', 'lean/GC11Audit.lean', '.github/workflows/lean-gc11.yml']
+    paths: ['lean/MathProofs/GC11Coercivity.lean', 'lean/MathProofs/GC11StaticWave.lean', 'lean/MathProofs/GC11TorusEnergy.lean', 'lean/GC11Audit.lean', '.github/workflows/lean-gc11.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -22,11 +22,13 @@ jobs:
           lake update
           lake exe cache get
       - name: Build exact algebra core
-        run: lake build MathProofs.GC11StaticWave
+        run: lake build MathProofs.GC11StaticWave MathProofs.GC11TorusEnergy
       - name: Audit declarations
         run: |
           set -o pipefail
           lake env lean GC11Audit.lean 2>&1 | tee gc11-audit.log
           grep -q 'two_static_carriers' gc11-audit.log
           grep -q 'explicit_stationary_fields' gc11-audit.log
+          grep -q 'integrated_coercivity' gc11-audit.log
+          grep -q 'conserved_energy_bound' gc11-audit.log
           if grep -o 'axioms: \[[^]]*\]' gc11-audit.log | sed 's/axioms: \[//; s/\]//' | tr ',' '\n' | sed 's/ //g' | grep -v '^$' | grep -vxE 'propext|Classical.choice|Quot.sound'; then exit 1; fi
