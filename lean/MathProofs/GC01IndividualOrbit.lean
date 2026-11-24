@@ -103,6 +103,7 @@ theorem isolated_orbit_stability (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ}
     have hgo : g ∈ orbit φ := hiso g hg (by linarith)
     have hle : distX (u s) (orbit φ) ≤ distH2 (u s) g := distX_le hgo
     linarith
+  letI : Nonempty {t : ℝ // 0 ≤ t} := ⟨⟨0, le_rfl⟩⟩
   have hbd : ∀ t : {t : ℝ // 0 ≤ t}, distX (u t) (orbit φ) ≤ 2 * η :=
     fun t => (hall t t.property).le
   refine ⟨⟨2 * η, ?_⟩, ?_⟩
@@ -143,6 +144,100 @@ theorem stationary_dilation_strict (hγ : 0 < γ) {U : H2 2}
     mul_pos hP (sq_pos_of_ne_zero hne2)
   rw [← stationary_dilation_gap hU hlam] at hp
   linarith
+
+/-- Mass and energy are exactly constant on each phase-translation orbit,
+whether or not the profile is a minimizer. -/
+theorem orbit_invariants {φ g : H2 2} (hg : g ∈ orbit φ) :
+    M g = M φ ∧ energy β γ k g = energy β γ k φ := by
+  obtain ⟨c, hc, y, rfl⟩ := hg
+  constructor
+  · rw [M_smul, hc, one_pow, one_mul, M_translate]
+  · rw [energy_eq, T_smul, Q_smul, S_smul, hc]
+    simp only [one_pow, one_mul]
+    rw [← energy_eq, energy_translate]
+
+/-- A nonnegative conserved defect that measures closeness of the two
+invariants, without requiring the initial perturbation to have exact mass. -/
+noncomputable def defect (β γ k : ℝ) (φ v : H2 2) : ℝ :=
+  |M v - M φ| + |energy β γ k v - energy β γ k φ|
+
+theorem defect_small_near_orbit (hγ : 0 < γ) (φ : H2 2) {a : ℝ} (ha : 0 < a) :
+    ∃ δ > 0, ∀ v : H2 2, distX v (orbit φ) < δ → defect β γ k φ v < a := by
+  let R := Real.sqrt (Bd β γ k (M φ) (energy β γ k φ)) + 1
+  have hR : 0 ≤ R := by dsimp [R]; positivity
+  let L := 2 * R + Lam β γ k R
+  have hL : 0 ≤ L := by
+    dsimp [L]
+    have := Lam_nonneg β γ k hR
+    linarith
+  let δ := min 1 (a / (2 * (L + 1)))
+  have hδ : 0 < δ := lt_min (by norm_num) (div_pos ha (by linarith))
+  have hδ1 : δ ≤ 1 := min_le_left _ _
+  have hδL : δ * (2 * (L + 1)) ≤ a :=
+    (le_div_iff₀ (by linarith : 0 < 2 * (L + 1))).1 (min_le_right _ _)
+  refine ⟨δ, hδ, fun v hv => ?_⟩
+  obtain ⟨g, hg, hd⟩ := exists_of_distX_lt (orbit_nonempty φ) hv
+  have hi := orbit_invariants (β := β) (γ := γ) (k := k) hg
+  have hgR : ‖toSp g‖ ≤ R - 1 := by
+    have h := norm_toSp_sq_le (β := β) (k := k) hγ g
+    rw [hi.1, hi.2] at h
+    have hg' := Real.le_sqrt_of_sq_le h
+    dsimp [R]
+    linarith
+  have hd' : ‖toSp v - toSp g‖ ≤ distH2 v g := norm_le_distH2 _ _
+  have hvR : ‖toSp v‖ ≤ R := by
+    have := norm_le_norm_add_norm_sub' (toSp v) (toSp g)
+    linarith
+  have hgR' : ‖toSp g‖ ≤ R := by linarith
+  have hM := mass_lip hvR hgR'
+  rw [← M_eq_vl, ← M_eq_vl, hi.1] at hM
+  have hE := Esp_lip β γ k hR hvR hgR'
+  rw [← energy_eq_Esp, ← energy_eq_Esp, hi.2] at hE
+  have hdef : defect β γ k φ v ≤ L * ‖toSp v - toSp g‖ := by
+    unfold defect
+    dsimp [L]
+    linarith
+  have hbound : L * ‖toSp v - toSp g‖ ≤ L * δ :=
+    mul_le_mul_of_nonneg_left (by linarith) hL
+  have hhalf : L * δ ≤ a / 2 := by nlinarith
+  linarith
+
+/-- Nonlinear stability from a static isolating invariant barrier. This
+criterion applies also to non-minimizing profiles, if the barrier is proved.
+It uses the full weak PDE solution and conservation, rather than linearized
+or periodic dynamics. No assertion is made that an arbitrary excited profile
+satisfies the static barrier hypothesis. -/
+theorem orbit_stability_of_barriers (hγ : 0 < γ) (φ : H2 2)
+    (hbar : ∀ ε > 0, ∃ r > 0, r < ε ∧ ∃ a > 0, ∀ v : H2 2,
+      distX v (orbit φ) = r → a ≤ defect β γ k φ v)
+    {ε : ℝ} (hε : 0 < ε) :
+    ∃ δ > 0, ∀ u : ℝ → H2 2, IsSolution β γ k u →
+      distX (u 0) (orbit φ) < δ →
+      BddAbove (Set.range fun t : {t : ℝ // 0 ≤ t} => distX (u t) (orbit φ)) ∧
+      (⨆ t : {t : ℝ // 0 ≤ t}, distX (u t) (orbit φ)) < ε := by
+  obtain ⟨r, hr, hre, a, ha, hb⟩ := hbar ε hε
+  obtain ⟨δ, hδ, hsmall⟩ := defect_small_near_orbit (β := β) (k := k) hγ φ ha
+  refine ⟨min r δ, lt_min hr hδ, fun u hu h0 => ?_⟩
+  have hinit : distX (u 0) (orbit φ) < r := h0.trans_le (min_le_left _ _)
+  have hd0 := hsmall (u 0) (h0.trans_le (min_le_right _ _))
+  have hcont := continuous_distX_solution (orbit_nonempty φ) hu
+  have hall : ∀ t : ℝ, 0 ≤ t → distX (u t) (orbit φ) < r := by
+    intro t ht
+    by_contra! hfar
+    have hmid : r ∈ Icc (distX (u 0) (orbit φ)) (distX (u t) (orbit φ)) :=
+      ⟨hinit.le, hfar⟩
+    obtain ⟨s, _, hs⟩ := intermediate_value_Icc ht hcont.continuousOn hmid
+    have hbad := hb (u s) hs
+    unfold defect at hbad hd0
+    rw [(conservation hu s).1, (conservation hu s).2] at hbad
+    linarith
+  letI : Nonempty {t : ℝ // 0 ≤ t} := ⟨⟨0, le_rfl⟩⟩
+  have hbd : ∀ t : {t : ℝ // 0 ≤ t}, distX (u t) (orbit φ) ≤ r :=
+    fun t => (hall t t.property).le
+  refine ⟨⟨r, ?_⟩, ?_⟩
+  · rintro _ ⟨t, rfl⟩
+    exact hbd t
+  · exact lt_of_le_of_lt (ciSup_le hbd) hre
 
 end GC01IndividualOrbit
 end ReyesMath
