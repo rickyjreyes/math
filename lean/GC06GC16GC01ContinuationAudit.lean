@@ -1,0 +1,16 @@
+import MathProofs.GC16BulkBinding
+import MathProofs.GC01ExpandedOrbits
+
+#print axioms ReyesMath.GC16BulkBinding.field_bulk_gap
+#print axioms ReyesMath.GC16BulkBinding.inf_bulk_gap
+#print axioms ReyesMath.GC16BulkBinding.quartic_shift_bound
+#print axioms ReyesMath.GC16BulkBinding.scaled_field_upper
+#print axioms ReyesMath.GC16BulkBinding.inf_scaled_upper
+#print axioms ReyesMath.GC16BulkBinding.strict_split_of_certificate
+#print axioms ReyesMath.GC16BulkBinding.inf_increment_bound
+#print axioms ReyesMath.GC16BulkBinding.strict_split_of_small_bulk_defect
+#print axioms ReyesMath.GC01ExpandedOrbits.isolated_orbit_stability_of_binding
+#print axioms ReyesMath.GC01ExpandedOrbits.binding_of_either
+#print axioms ReyesMath.GC01ExpandedOrbits.exists_minimizer_expanded
+#print axioms ReyesMath.GC01ExpandedOrbits.orbital_stability_expanded
+#print axioms ReyesMath.GC01ExpandedOrbits.isolated_orbit_stability_expanded
