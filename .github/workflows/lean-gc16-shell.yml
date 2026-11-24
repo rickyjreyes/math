@@ -1,0 +1,61 @@
+name: GC16 shifted-shell binding kernel audit
+on:
+  pull_request:
+    paths:
+      - 'lean/MathProofs/GC16*.lean'
+      - '.github/workflows/lean-gc16-shell.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  kernel:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: lean
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Lean
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch pinned Mathlib cache
+        run: |
+          lake update
+          lake exe cache get
+      - name: Reject placeholders
+        run: |
+          if grep -nE '(^|[[:space:]])(sorry|admit|axiom)([[:space:]]|$)' MathProofs/GC16*.lean; then exit 1; fi
+      - name: Build exact theorem modules
+        run: lake build MathProofs.GC16ZeroShell MathProofs.GC16ShellFourier MathProofs.GC16ShellBinding
+      - name: Audit transitive axioms
+        run: |
+          set -o pipefail
+          lake env lean MathProofs/GC16ZeroShell.lean | tee zero-shell-audit.log
+          lake env lean MathProofs/GC16ShellFourier.lean | tee shell-fourier-audit.log
+          lake env lean MathProofs/GC16ShellBinding.lean | tee shell-binding-audit.log
+          python - <<'PY'
+          import pathlib, re
+          expected = {
+              'ReyesMath.GC16ZeroShell.strict_binding_all_mass',
+              'ReyesMath.GC16ZeroShell.compactness_all_mass',
+              'ReyesMath.GC16ZeroShell.exists_minimizer_all_mass',
+              'ReyesMath.GC16ZeroShell.orbital_stability_all_mass',
+              'ReyesMath.Sobolev.H2.ae_sup_bound_shell',
+              'ReyesMath.GC16Shell.exists_stretch_general',
+              'ReyesMath.GC16Shell.gap_shell',
+              'ReyesMath.GC16Shell.strict_binding_shell',
+          }
+          allowed = {'propext', 'Classical.choice', 'Quot.sound'}
+          found = set()
+          for file in pathlib.Path('.').glob('*shell*-audit.log'):
+              for name, deps in re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", file.read_text(), re.S):
+                  if name in expected:
+                      found.add(name)
+                      assert {x.strip() for x in deps.split(',') if x.strip()} <= allowed, (name, deps)
+              for name in re.findall(r"'([^']+)' does not depend on any axioms", file.read_text()):
+                  if name in expected:
+                      found.add(name)
+          assert expected == found, (expected - found)
+          print('Exact GC16 roots audited:', sorted(found))
+          PY
