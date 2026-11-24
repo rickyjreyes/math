@@ -2,7 +2,7 @@ import MathProofs.GC26GlobalIdentifiability
 
 /-!
 Reproducible audit of the exported F09 theorem signatures and dependencies.
-Run `lake env lean F09Audit.lean` after building MathProofs.V18Identifiability.
+Run `lake env lean F09Audit.lean` after building MathProofs.GC26GlobalIdentifiability.
 This file adds no declarations to the maintained library.
 -/
 
@@ -54,3 +54,17 @@ This file adds no declarations to the maintained library.
 #print axioms ReyesMath.V18Forward.observed_constant_near_plateau
 #print axioms ReyesMath.V18Forward.observed_canonicalInvisible
 #print axioms ReyesMath.V18Forward.canonicalInvisible_zero_coords
+
+/- Third-pass candidate roots -/
+#print axioms ReyesMath.V18Forward.historical_numerator_bounds
+#print axioms ReyesMath.V18Forward.historical_threshold_bounds
+#print axioms ReyesMath.V18Forward.historical_light_active_iff
+#print axioms ReyesMath.V18Forward.invisible_reconstruct
+#print axioms ReyesMath.V18Forward.observed_unbounded_coordinate_fiber
+#print axioms ReyesMath.V18Forward.historical_heavy_light_floor
+#print axioms ReyesMath.V18Forward.historical_heavy_constant
+#print axioms ReyesMath.V18Forward.historical_equal_iff_light
+#print axioms ReyesMath.V18Forward.observed_floor_le
+#print axioms ReyesMath.V18Forward.square_system_solvable
+#print axioms ReyesMath.V18Forward.middle_polar_linear
+#print axioms ReyesMath.V18Forward.observed_range_exact
