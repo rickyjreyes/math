@@ -15,7 +15,7 @@ noncomputable section
 namespace ReyesMath
 namespace GC11TorusOrbit
 
-open BandPass TorusL2 GC11TorusEnergy
+open BandPass TorusL2 GC11TorusEnergy GC11Coercivity
 
 variable (L : ℝ) [Fact (0 < L)]
 
@@ -99,9 +99,13 @@ theorem phase_target (a : ℂ) {R : ℝ} (hR : 0 ≤ R) :
       exact div_mul_cancel₀ R hn.ne'
     · have he : a - (R / ‖a‖) • a = (1 - R / ‖a‖) • a := by
         rw [sub_smul, one_smul]
-      rw [he, norm_smul, Real.norm_eq_abs, ← abs_of_nonneg hn.le, ← abs_mul]
-      congr 1
-      field_simp
+      rw [he, norm_smul, Real.norm_eq_abs]
+      calc
+        |1 - R / ‖a‖| * ‖a‖ = |(1 - R / ‖a‖) * ‖a‖| := by
+          rw [abs_mul, abs_of_nonneg hn.le]
+        _ = |‖a‖ - R| := by
+          congr 1
+          field_simp
 
 /-- L² mass is measured in the repository's normalized Haar measure. -/
 def mass (c : ell2 2) : ℝ := ‖iota L 1 c‖ ^ 2
@@ -159,8 +163,8 @@ theorem tailMass_le_tailH2 (c : ell2 2) : tailMass L c ≤ tailH2 c := by
   · simp [hn]
   · simp only [hn, if_false]
     have hw := one_le_wt (L := L) n
-    have he := norm_coef_iota_sq (L := L) 1 c n
-    simp only [Nat.reduceMul] at he
+    have he : wt L n ^ 2 * ‖coef (iota L 1 c) n‖ ^ 2 = ‖c n‖ ^ 2 := by
+      simpa using norm_coef_iota_sq (L := L) 1 c n
     have hm := mul_le_mul_of_nonneg_right
       (show (1 : ℝ) ≤ wt L n ^ 2 by nlinarith [sq_nonneg (wt L n - 1)])
       (sq_nonneg ‖coef (iota L 1 c) n‖)
@@ -176,8 +180,8 @@ theorem tailH2_le_derivative (c : ell2 2) :
   by_cases hn : n = 0
   · simp [hn, xi2_zero]
   · simp only [hn, if_false]
-    have he := norm_coef_iota_sq (L := L) 1 c n
-    simp only [Nat.reduceMul] at he
+    have he : wt L n ^ 2 * ‖coef (iota L 1 c) n‖ ^ 2 = ‖c n‖ ^ 2 := by
+      simpa using norm_coef_iota_sq (L := L) 1 c n
     rw [← he]
     rw [← mul_assoc]
     exact mul_le_mul_of_nonneg_right (weight_le_derivative L hn) (sq_nonneg _)
@@ -254,6 +258,78 @@ theorem conserving_orbit_bound {k beta gamma rho : ℝ} {K : Fin 2 → ℝ}
     _ ≤ (2 * Cgap L) * (Ckin k (carrierSq K) * relEnergy L k beta gamma rho K (u 0)) :=
       mul_le_mul_of_nonneg_left hder (by positivity)
     _ = _ := by ring
+
+
+/-- The same H² orbit estimate for arbitrary mass, with explicit mass defect. -/
+theorem orbit_bound_mass_defect {rho : ℝ} (hrho : 0 ≤ rho) (c : ell2 2) :
+    ∃ v ∈ phaseOrbit rho,
+      ‖c - v‖ ^ 2 ≤ |mass L c - rho| +
+        2 * Cgap L * derivativeEnergy L (iota L 1 c) := by
+  obtain ⟨z, hz, hzdist⟩ := phase_target (c 0) (Real.sqrt_nonneg rho)
+  refine ⟨constantCoeff z, ⟨z, hz, rfl⟩, ?_⟩
+  have hs := mass_split L c
+  have htail := tailMass_nonneg L c
+  have hr := Real.sq_sqrt hrho
+  have hn := norm_nonneg (c 0)
+  have hR := Real.sqrt_nonneg rho
+  have herror : ‖c 0 - z‖ ^ 2 ≤ |mass L c - rho| + tailMass L c := by
+    rw [hzdist, sq_abs]
+    by_cases h : ‖c 0‖ ≤ Real.sqrt rho
+    · have hp := mul_nonneg hn (sub_nonneg.mpr h)
+      nlinarith [neg_abs_le (mass L c - rho)]
+    · have hp := mul_nonneg hR (sub_nonneg.mpr (le_of_not_ge h))
+      nlinarith [le_abs_self (mass L c - rho)]
+  rw [norm_sub_constant_sq]
+  have h1 := tailMass_le_tailH2 L c
+  have h2 := tailH2_le_derivative L c
+  nlinarith
+
+/-- Uniform-in-time H² orbital control for nearby masses, on a trajectory
+with explicit mass and relative-energy conservation. -/
+theorem conserving_orbit_bound_near_mass {k beta gamma rho : ℝ} {K : Fin 2 → ℝ}
+    (hq : k ^ 2 < carrierSq K) (hg : 0 ≤ gamma)
+    (hrho : 3 * beta < 4 * gamma * rho) (hr : 0 ≤ rho)
+    (u : ℝ → ell2 2)
+    (hm : ∀ t, mass L (u t) = mass L (u 0))
+    (hc : ∀ t, relEnergy L k beta gamma rho K (u t) =
+      relEnergy L k beta gamma rho K (u 0)) (t : ℝ) :
+    ∃ v ∈ phaseOrbit rho,
+      ‖u t - v‖ ^ 2 ≤ |mass L (u 0) - rho| +
+        2 * Cgap L * Ckin k (carrierSq K) * relEnergy L k beta gamma rho K (u 0) := by
+  obtain ⟨v, hv, hb⟩ := orbit_bound_mass_defect L hr (u t)
+  rw [hm t] at hb
+  refine ⟨v, hv, hb.trans ?_⟩
+  have h := conserved_energy_bound L hq hg hrho u hc t
+  have hn := mul_nonneg (mul_nonneg (Ckin_pos hq).le (density_coercivity_pos hrho).le)
+    (density_nonneg L rho (u t))
+  have hder : derivativeEnergy L (iota L 1 (u t)) ≤
+      Ckin k (carrierSq K) * relEnergy L k beta gamma rho K (u 0) := by linarith
+  have hc0 := Cgap_pos L
+  have hmul := mul_le_mul_of_nonneg_left hder (show 0 ≤ 2 * Cgap L by positivity)
+  calc
+    _ ≤ |mass L (u 0) - rho| + (2 * Cgap L) *
+        (Ckin k (carrierSq K) * relEnergy L k beta gamma rho K (u 0)) := by linarith
+    _ = _ := by ring
+
+/-- An epsilon-level orbital conclusion with a quantitative initial
+mass-energy condition; no hidden compactness hypothesis. -/
+theorem orbit_near_of_small_mass_energy {k beta gamma rho eps : ℝ}
+    {K : Fin 2 → ℝ} (hq : k ^ 2 < carrierSq K) (hg : 0 ≤ gamma)
+    (hrho : 3 * beta < 4 * gamma * rho) (hr : 0 ≤ rho) (heps : 0 < eps)
+    (u : ℝ → ell2 2)
+    (hm : ∀ t, mass L (u t) = mass L (u 0))
+    (hc : ∀ t, relEnergy L k beta gamma rho K (u t) =
+      relEnergy L k beta gamma rho K (u 0))
+    (hsmall : |mass L (u 0) - rho| +
+      2 * Cgap L * Ckin k (carrierSq K) * relEnergy L k beta gamma rho K (u 0) <
+      eps ^ 2) :
+    ∀ t, OrbitalStabilityCriterion.Near (phaseOrbit rho) (u t) eps := by
+  intro t
+  obtain ⟨v, hv, hb⟩ := conserving_orbit_bound_near_mass L hq hg hrho hr u hm hc t
+  refine ⟨v, hv, ?_⟩
+  rw [dist_eq_norm]
+  have hlt := hb.trans_lt hsmall
+  nlinarith [norm_nonneg (u t - v)]
 
 end GC11TorusOrbit
 end ReyesMath
