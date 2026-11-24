@@ -12,6 +12,8 @@ argument are in the companion research note. This module does not itself
 formalize that PDE argument or the Bloch spectral correspondence.
 -/
 
+noncomputable section
+
 namespace ReyesMath
 namespace GC11Coercivity
 
