@@ -111,20 +111,34 @@
       "related_lean": [
         "lean/MathProofs/WholeSpaceMinimizers.lean",
         "lean/MathProofs/StrictBinding.lean",
-        "lean/MathProofs/NegativeEnergy.lean"
+        "lean/MathProofs/NegativeEnergy.lean",
+        "lean/MathProofs/GC06ShellBinding.lean",
+        "lean/MathProofs/GC06NearZeroShell.lean",
+        "lean/MathProofs/GC06VirialBinding.lean"
       ],
       "related_papers": [
         "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex",
         "papers/strict-subadditivity-fourth-order-cubic-quintic/main.tex",
         "papers/negative-constrained-energy-cubic-quintic/main.tex"
       ],
-      "related_issues": [],
+      "related_issues": [
+        81
+      ],
       "candidate_declarations": [
         "ReyesMath.WholeSpace.main",
         "ReyesMath.StrictBinding.strict_binding",
-        "ReyesMath.NegativeEnergy.negative_constrained_energy"
+        "ReyesMath.NegativeEnergy.negative_constrained_energy",
+        "ReyesMath.GC06ShellBinding.strict_binding_refined",
+        "ReyesMath.GC06ShellBinding.compactness_refined",
+        "ReyesMath.GC06ShellBinding.exists_minimizer_refined",
+        "ReyesMath.GC06NearZeroShell.strict_binding_near_zero",
+        "ReyesMath.GC06NearZeroShell.compactness_near_zero",
+        "ReyesMath.GC06NearZeroShell.exists_minimizer_near_zero",
+        "ReyesMath.GC06VirialBinding.strict_binding_closed",
+        "ReyesMath.GC06VirialBinding.compactness_closed",
+        "ReyesMath.GC06VirialBinding.exists_minimizer_closed"
       ],
-      "scope_gap": "Existence and strict binding in a sufficient mass range do not classify all mass and parameter regimes.",
+      "scope_gap": "New candidate results enlarge the sufficient region and give analytical unbounded attained masses and finite-cluster compactness classification. The new closed virial region k²m ≤ 3β/γ passed the owner's focused Lean build and 25-root axiom audit at c3d58d5; independent correspondence review remains. Full fixed-k attainment classification and strict energetic merging remain unresolved.",
       "correspondence": "not_audited"
     },
     {

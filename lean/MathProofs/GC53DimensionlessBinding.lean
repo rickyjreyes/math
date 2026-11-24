@@ -55,8 +55,7 @@ theorem normalized_binding_threshold_identity
         (gamma / beta ^ 2) * (StrictBinding.sigmaB beta gamma k) ^ 2 := by
     rw [hsigma]
     unfold StrictBinding.rho
-    field_simp [ne_of_gt hbeta, ne_of_gt hgamma]
-    ring
+    field_simp [ne_of_gt hbeta, ne_of_gt hgamma] <;> ring
   unfold normalizedMass normalizedWaveParameter
   rw [hscalar]
   unfold StrictBinding.mB

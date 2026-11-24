@@ -1,8 +1,8 @@
-import MathProofs.V18Identifiability
+import MathProofs.GC26HistoricalCompletion
 
 /-!
 Reproducible audit of the exported F09 theorem signatures and dependencies.
-Run `lake env lean F09Audit.lean` after building MathProofs.V18Identifiability.
+Run `lake env lean F09Audit.lean` after building MathProofs.GC26GlobalIdentifiability.
 This file adds no declarations to the maintained library.
 -/
 
@@ -26,3 +26,59 @@ This file adds no declarations to the maintained library.
 #print axioms ReyesMath.V18Forward.observed_local_level_set
 #print axioms ReyesMath.V18Forward.observed_locally_nonidentifiable
 #print axioms ReyesMath.V18Forward.f09_completion
+
+/- GC26 candidate roots -/
+#print axioms ReyesMath.V18Forward.observed_update_quarkAmp
+#print axioms ReyesMath.V18Forward.observed_update_quarkPower
+#print axioms ReyesMath.V18Forward.observed_shiftHiggs
+#print axioms ReyesMath.V18Forward.observed_invisibleFamily
+#print axioms ReyesMath.V18Forward.invisibleFamily_injective
+#print axioms ReyesMath.V18Forward.observed_all_points_nonisolated
+#print axioms ReyesMath.V18Forward.observed_relative_nonisolated
+#print axioms ReyesMath.V18Forward.observed_not_injective
+#print axioms ReyesMath.V18Forward.floor_eq_iff
+#print axioms ReyesMath.V18Forward.nested_floor_eq_iff
+#print axioms ReyesMath.V18Forward.generic_rank_counterexample
+#print axioms ReyesMath.V18Forward.augmented_rank_obstruction
+#print axioms ReyesMath.V18Forward.injective_of_strict_pairing
+
+#print axioms ReyesMath.V18Forward.historical_lightRaw
+#print axioms ReyesMath.V18Forward.logistic_floor_logit_eq
+#print axioms ReyesMath.V18Forward.historical_two_active_unique
+#print axioms ReyesMath.V18Forward.historical_zero_alpha
+
+#print axioms ReyesMath.V18Forward.historical_active_prefix
+#print axioms ReyesMath.V18Forward.historical_one_active_interval
+#print axioms ReyesMath.V18Forward.historical_exceptional_endpoint
+
+#print axioms ReyesMath.V18Forward.observed_constant_near_plateau
+#print axioms ReyesMath.V18Forward.observed_canonicalInvisible
+#print axioms ReyesMath.V18Forward.canonicalInvisible_zero_coords
+
+/- Third-pass candidate roots -/
+#print axioms ReyesMath.V18Forward.historical_numerator_bounds
+#print axioms ReyesMath.V18Forward.historical_threshold_bounds
+#print axioms ReyesMath.V18Forward.historical_light_active_iff
+#print axioms ReyesMath.V18Forward.invisible_reconstruct
+#print axioms ReyesMath.V18Forward.observed_unbounded_coordinate_fiber
+#print axioms ReyesMath.V18Forward.historical_heavy_light_floor
+#print axioms ReyesMath.V18Forward.historical_heavy_constant
+#print axioms ReyesMath.V18Forward.historical_equal_iff_light
+#print axioms ReyesMath.V18Forward.observed_floor_le
+#print axioms ReyesMath.V18Forward.square_system_solvable
+#print axioms ReyesMath.V18Forward.middle_polar_linear
+#print axioms ReyesMath.V18Forward.observed_range_exact
+
+/- Integrated GC26 historical-domain classification roots. -/
+#print axioms ReyesMath.V18Forward.historical_one_active_fiber_iff
+#print axioms ReyesMath.V18Forward.historical_plateau_fiber_iff
+#print axioms ReyesMath.V18Forward.historical_good_singleton
+#print axioms ReyesMath.V18Forward.historical_zero_fiber_iff
+#print axioms ReyesMath.V18Forward.historical_one_active_singleton_iff
+#print axioms ReyesMath.V18Forward.historical_exceptional_mem
+#print axioms ReyesMath.V18Forward.historical_exceptional_singleton
+#print axioms ReyesMath.V18Forward.historical_isolated_iff
+#print axioms ReyesMath.V18Forward.historical_singleton_iff
+#print axioms ReyesMath.V18Forward.historical_exceptional_not_neighborhood_injective
+#print axioms ReyesMath.V18Forward.historical_neighborhood_injective_iff
+#print axioms ReyesMath.V18Forward.historical_complete_classification

@@ -69,7 +69,7 @@ def characteristic (A C M g q z : ℝ) : ℝ :=
   (z - A * q) * (z - (M + C * q)) - g ^ 2 * q ^ 2
 
 /-- The effective light-branch polynomial through fourth spatial order. -/
-def lightApproximation (A M g q : ℝ) : ℝ :=
+noncomputable def lightApproximation (A M g q : ℝ) : ℝ :=
   A * q - (g ^ 2 / M) * q ^ 2
 
 /-- Exact residual after substituting the fourth-order approximation into
@@ -95,8 +95,7 @@ theorem light_approximation_residual_factor
     characteristic A C M g q (lightApproximation A M g q) =
       (g ^ 2 * q ^ 3 / M ^ 2) * (M * (C - A) + g ^ 2 * q) := by
   rw [light_approximation_residual A C M g q hM]
-  field_simp [hM]
-  ring
+  field_simp [hM] <;> ring
 
 /-- With nonzero interfield coupling, the fourth-order truncation can be
     an exact eigenfrequency at *at most one positive* squared wavenumber. -/
