@@ -164,7 +164,7 @@
       "flagship": false,
       "dossier": null,
       "claimed_kernel_verified_resolution": false,
-      "note": "Unrestricted uniqueness is refuted by C_lambda = K_epsilon + lambda Delta |u|^2. Analytical global Cartesian invariant normal form, nodal extension criterion and conditional uniqueness are recorded in docs/GC08_CARTESIAN_CLASSIFICATION_2026-11-24.md (issue #102); candidate GC08Cartesian, GC08Gauge and GC08Field Lean modules target algebraic, phase uniqueness and continuum derivative lemmas. Full invariant classification, smooth extension and verification pending; no status promotion.",
+      "note": "Unrestricted uniqueness is refuted by C_lambda = K_epsilon + lambda Delta |u|^2. Analytical global Cartesian invariant normal form, nodal extension criterion and conditional uniqueness are recorded in docs/GC08_CARTESIAN_CLASSIFICATION_2026-11-24.md (issue #102); candidate GC08Cartesian, GC08Gauge, GC08Field and GC08PlaneLocus Lean modules target algebraic, symmetric-jet phase uniqueness, continuum derivative and nonzero plane-locus lemmas. Full invariant classification, smooth extension and verification pending; no status promotion.",
       "file_path": "problems/02-confinement-curvature/GC08.md",
       "research_area": "Confinement and curvature geometry",
       "source_class": "original_formal_statement",
