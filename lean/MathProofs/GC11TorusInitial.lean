@@ -146,9 +146,10 @@ theorem potential_near {beta gamma rho : ℝ} (hg : 0 ≤ gamma) (hr : 0 ≤ rho
     unfold relativePotential potential densitySlope
     fun_prop
   let C := Pbound L beta gamma rho * B L rho ^ 2 * ‖c - constantCoeff z‖ ^ 2
-  have hm := integral_mono hi (integrable_const C) (fun x => ?_)
-  · simpa [C] using hm
-  · let a := ‖Phi L (by decide : 2 ≤ 3) c x‖
+  have hpoint : ∀ x : Tor L 2, relativePotential beta gamma rho
+      (‖Phi L (by decide : 2 ≤ 3) c x‖ ^ 2) ≤ C := by
+    intro x
+    let a := ‖Phi L (by decide : 2 ≤ 3) c x‖
     have ha : 0 ≤ a := norm_nonneg _
     have hR := Real.sqrt_nonneg rho
     have hS := S_nonneg L
@@ -176,6 +177,9 @@ theorem potential_near {beta gamma rho : ℝ} (hg : 0 ≤ gamma) (hr : 0 ≤ rho
       _ ≤ (B L rho ^ 2 * ‖c - constantCoeff z‖ ^ 2) * Pbound L beta gamma rho :=
         mul_le_mul_of_nonneg_right hd2 (Pbound_nonneg L hg hr)
       _ = C := by dsimp [C]; ring
+  have hm := integral_mono hi (integrable_const C) hpoint
+  rw [integral_const] at hm
+  simpa [C] using hm
 
 def Ebound (beta gamma rho : ℝ) (K : Fin 2 → ℝ) : ℝ :=
   2 + 10 * carrierSq K + Pbound L beta gamma rho * B L rho ^ 2
