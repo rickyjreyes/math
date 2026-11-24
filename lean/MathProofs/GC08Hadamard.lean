@@ -39,7 +39,7 @@ theorem continuous_parameter_integral [ProperSpace E]
   · exact Eventually.of_forall fun y =>
       (hF.comp (continuous_const.prodMk continuous_id)).aestronglyMeasurable
   · filter_upwards [Metric.ball_mem_nhds x (by norm_num : (0 : ℝ)<1)] with y hy
-    exact Eventually.of_forall fun t ht => hM y (Metric.ball_subset_closedBall hy)
+    exact Eventually.of_forall fun t ht => hM y (Metric.ball_subset_closedBall hy) t
       (by
         have ht' : t ∈ Ioc (0 : ℝ) 1 := by simpa [uIoc_of_le (by norm_num : (0 : ℝ) ≤ 1)] using ht
         exact ⟨ht'.1.le,ht'.2⟩)
@@ -63,6 +63,9 @@ theorem hasFDerivAt_parameter_integral [ProperSpace E]
       contDiff_const).continuous
   obtain ⟨M,hM⟩ := compact_parameter_bound (parameterDerivative F) hD x
   apply hasFDerivAt_integral_of_dominated_of_fderiv_le''
+    (F := fun y t => F (y,t))
+    (F' := fun y t => parameterDerivative F (y,t))
+    (μ := volume) (a := 0) (b := 1)
     (bound := fun _ => M) (ε := 1) (by norm_num)
   · exact Eventually.of_forall fun y =>
       (hF.continuous.comp (continuous_const.prodMk continuous_id)).aestronglyMeasurable
@@ -71,7 +74,7 @@ theorem hasFDerivAt_parameter_integral [ProperSpace E]
   · filter_upwards [ae_restrict_mem measurableSet_uIoc] with t ht
     intro y hy
     have ht' : t ∈ Ioc (0 : ℝ) 1 := by simpa [uIoc_of_le (by norm_num : (0 : ℝ) ≤ 1)] using ht
-    exact hM y (Metric.ball_subset_closedBall hy) ⟨ht'.1.le,ht'.2⟩
+    exact hM y (Metric.ball_subset_closedBall hy) t ⟨ht'.1.le,ht'.2⟩
   · exact intervalIntegrable_const
   · exact Eventually.of_forall fun t y _ =>
       ((hF.differentiable_one (y,t)).hasFDerivAt.comp y
@@ -129,7 +132,9 @@ theorem segment_difference (f : E → ℝ) (hf : ContDiff ℝ 1 f) (x y : E) :
       (fderiv ℝ f (x+t • (y-x)) (y-x)) t := by
     intro t
     have hl : HasDerivAt (fun s : ℝ => x+s • (y-x)) (y-x) t := by
-      simpa using (hasDerivAt_const t x).add ((hasDerivAt_id t).smul_const (y-x))
+      have h := (hasDerivAt_const t x).add ((hasDerivAt_id t).smul_const (y-x))
+      change HasDerivAt (fun s : ℝ => x+s • (y-x)) (0+1 • (y-x)) t at h
+      simpa only [zero_add, one_smul] using h
     exact (hf.differentiable_one _).hasFDerivAt.comp_hasDerivAt t hl
   unfold segmentCoefficient
   rw [ContinuousLinearMap.intervalIntegral_apply (hc.intervalIntegrable _ _)]
@@ -183,6 +188,8 @@ theorem segmentCoefficient_equivariant (f : E → ℝ) (hf : ContDiff ℝ 1 f)
     ContinuousLinearMap.intervalIntegral_apply (hci _ _)]
   apply intervalIntegral.integral_congr
   intro t _
+  change fderiv ℝ f (T x+t • (T y-T x)) (T v) =
+    fderiv ℝ f (x+t • (y-x)) v
   rw [show T x+t • (T y-T x)=T (x+t • (y-x)) by
     simp]
   exact fderiv_linear_symmetry f hf T hT _ v
