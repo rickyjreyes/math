@@ -177,3 +177,10 @@ import MathProofs.GC01VortexEstimates
 import MathProofs.GC06ShellBinding
 import MathProofs.GC06NearZeroShell
 import MathProofs.GC06VirialBinding
+import MathProofs.GC08Cartesian
+import MathProofs.GC08Gauge
+import MathProofs.GC08Field
+import MathProofs.GC08PlaneLocus
+import MathProofs.GC08ClosedPlane
+import MathProofs.GC08Spatial
+import MathProofs.GC08Hadamard
