@@ -13,7 +13,7 @@ i\partial_t u=(\Delta+k^2)^2u-\beta|u|^2u+\gamma|u|^4u
 \quad\text{on }\mathbb R^2,\qquad \beta,\gamma>0.
 ```
 
-For its constrained energy, the established sufficient range is **$0<m\le m_B$**, where **$m_B=3\beta/(\gamma\sqrt{k^4+3\beta^2/(32\gamma)})$**. This does not characterize all masses.
+For its constrained energy, the established sufficient range is **$0<m\le m_B$**, where **$m_B=3\beta/(\gamma\sqrt{k^4+3\beta^2/(32\gamma)})$**. This is the original sufficient range. The locally verified follow-up modules [GC16ZeroShell](../lean/MathProofs/GC16ZeroShell.lean), [GC16ShellBinding](../lean/MathProofs/GC16ShellBinding.lean), and [GC06VirialBinding](../lean/MathProofs/GC06VirialBinding.lean) establish all positive masses at k=0 and additional closed ranges m≤2√3/√γ or k²m≤3β/γ for β,γ>0. [GC01ExpandedOrbits](../lean/MathProofs/GC01ExpandedOrbits.lean) extends full-set and isolated-minimizer-orbit results to the established binding masses; individual-orbit isolation remains a hypothesis. The unrestricted spectral-merging candidate is analytical, not a verified all-mass theorem. See the [closure audit](../docs/GC06_GC16_GC26_CLOSURE_AUDIT_2026-11-24.md).
 
 ### Illustrated guide to the F01 theorem chain
 
@@ -32,6 +32,8 @@ The linked [four-figure gallery](../docs/figures/research-posts/README.md) illus
 | ✅ **Fourier contraction semigroup** | Exact continuous-operator $L^2$ semigroup identity and contractivity for the stated Fourier multiplier | [E57L2Semigroup.lean](../lean/MathProofs/E57L2Semigroup.lean) | Related to [GC48](problems/10-lean-certified-analysis/GC48.md) |
 
 ## Inverse problems, curvature and higher-derivative fields
+
+**November 24, 2026, GC26 local verification:** merged [#105](https://github.com/rickyjreyes/math/pull/105) gives ambient all-point non-isolation, non-injectivity, exact range and a generic-rank counterexample; merged [#117](https://github.com/rickyjreyes/math/pull/117) gives the complete historical rectangle classification via [GC26HistoricalCompletion](../lean/MathProofs/GC26HistoricalCompletion.lean), including the exceptional isolated-but-not-neighborhood-injective boundary point. The [57-root exact-head local audit](https://github.com/rickyjreyes/math/pull/117#issuecomment-7129133692) uses only standard axioms. This completes local kernel correspondence for the specified original domains; the hosted CI acceptance gate remains pending. Extensions #112 and #113 are independent. The older selected-result table below is retained as provenance.
 
 | Complete result | Exact mathematical conclusion | Lean proof | Relation to GC questions |
 |---|---|---|---|
