@@ -1,5 +1,7 @@
 import MathProofs.D4FrozenWholeSpace
 import MathProofs.GC08Cartesian
+import MathProofs.GC08Gauge
+import MathProofs.GC08Field
 
 /-!
 Dependency audit for the whole-space confinement chain (Task 2).
@@ -65,3 +67,11 @@ elab "#audit_deps " root:ident : command => do
 #audit_deps ReyesMath.GC08.closure_plane
 #audit_deps ReyesMath.GC08.closure_family_distinct
 #audit_deps ReyesMath.GC08.polar_scalar_unique
+#audit_deps ReyesMath.GC08.curvature_rotate
+#audit_deps ReyesMath.GC08.curvature_gauge
+#audit_deps ReyesMath.GC08.exists_real_gauge
+#audit_deps ReyesMath.GC08.unique_all_jets
+#audit_deps ReyesMath.GC08.lineCurrent_deriv
+#audit_deps ReyesMath.GC08.fieldCurvature_eq_cartesian
+#audit_deps ReyesMath.GC08.fieldCurvature_at_zero
+#audit_deps ReyesMath.GC08.field_closure_family_distinct
