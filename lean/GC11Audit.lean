@@ -1,5 +1,6 @@
 import MathProofs.GC11StaticWave
 import MathProofs.GC11TorusEnergy
+import MathProofs.GC11TorusOrbit
 import MathProofs.GC11SidebandClassification
 
 #print axioms ReyesMath.GC11Coercivity.excess_eq
@@ -24,3 +25,10 @@ import MathProofs.GC11SidebandClassification
 #print axioms ReyesMath.GC11Coercivity.staticUpperQ_witness
 #print axioms ReyesMath.GC11Coercivity.staticUpperQ_strict_anti
 #print axioms ReyesMath.GC11Coercivity.unit_static_family
+
+#print axioms ReyesMath.GC11TorusOrbit.latticeGap_le
+#print axioms ReyesMath.GC11TorusOrbit.mass_split
+#print axioms ReyesMath.GC11TorusOrbit.orbit_bound_fixed_mass
+#print axioms ReyesMath.GC11TorusOrbit.orbit_bound_mass_defect
+#print axioms ReyesMath.GC11TorusOrbit.conserving_orbit_bound_near_mass
+#print axioms ReyesMath.GC11TorusOrbit.orbit_near_of_small_mass_energy
