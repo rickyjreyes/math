@@ -21,7 +21,15 @@ expected = [
     "ReyesMath.GC16InterfaceBinding.optimized_increment",
     "ReyesMath.GC16InterfaceBinding.strict_split_of_optimized_margin",
     "ReyesMath.GC16InterfaceBinding.mass_bound_to_surface_gap",
-    "ReyesMath.GC16InterfaceBinding.inf_surface_gap_of_cell_bound"
+    "ReyesMath.GC16InterfaceBinding.inf_surface_gap_of_cell_bound",
+    "ReyesMath.GC06SpectralMerging.amp_one",
+    "ReyesMath.GC06SpectralMerging.mass_deletion_comparison",
+    "ReyesMath.GC06SpectralMerging.mass_exchange_comparison",
+    "ReyesMath.GC06SpectralMerging.cubic_linear_nonneg",
+    "ReyesMath.GC06SpectralMerging.multiplier_nonpos",
+    "ReyesMath.GC06SpectralMerging.common_multiplier_of_equality",
+    "ReyesMath.GC06SpectralMerging.low_density_hessian",
+    "ReyesMath.GC06SpectralMerging.all_binding_of_pair_exclusion"
 ]
 allowed = {"propext", "Classical.choice", "Quot.sound"}
 data = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
