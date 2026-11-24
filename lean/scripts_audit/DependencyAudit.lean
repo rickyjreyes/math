@@ -1,4 +1,5 @@
 import MathProofs.D4FrozenWholeSpace
+import MathProofs.GC08Cartesian
 
 /-!
 Dependency audit for the whole-space confinement chain (Task 2).
@@ -60,3 +61,7 @@ elab "#audit_deps " root:ident : command => do
 #audit_deps ReyesMath.OrbitalStability.main
 #audit_deps ReyesMath.D4Frozen.d4_frozen_main
 #audit_deps ReyesMath.D4Frozen.d4_strict_binding
+#audit_deps ReyesMath.GC08.curvature_at_zero
+#audit_deps ReyesMath.GC08.closure_plane
+#audit_deps ReyesMath.GC08.closure_family_distinct
+#audit_deps ReyesMath.GC08.polar_scalar_unique
