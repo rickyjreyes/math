@@ -325,7 +325,7 @@
       "flagship": false,
       "dossier": null,
       "claimed_kernel_verified_resolution": false,
-      "note": "Awaiting scope freeze, prior-art audit, and counterexample screening.",
+      "note": "2026-11-24 analytical extension in GC16_SHELL_RESEARCH_20261124.md: all masses at k=0; additional k-independent sufficient region m<=2 sqrt(3)/sqrt(gamma); unbounded set of binding masses for each admissible tuple. Candidate Lean modules GC16ShellFourier and GC16ShellBinding pending kernel verification; nonzero-shell all-mass classification remains open. No novelty claim.",
       "file_path": "problems/04-variational-solitons/GC16.md",
       "research_area": "Variational analysis and solitons",
       "source_class": "original_formal_statement",
