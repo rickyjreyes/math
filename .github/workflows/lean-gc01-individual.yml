@@ -1,0 +1,46 @@
+name: GC01 individual orbit verification
+on:
+  pull_request:
+    paths:
+      - 'lean/MathProofs/GC01IndividualOrbit.lean'
+      - 'lean/GC01IndividualOrbitAudit.lean'
+      - '.github/workflows/lean-gc01-individual.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  kernel:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: lean
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install repository-pinned Lean
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch Mathlib cache
+        run: |
+          lake update
+          lake exe cache get
+      - name: Build and audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -nE '(^|[[:space:]])(sorry|admit|axiom)([[:space:]]|$)' MathProofs/GC01IndividualOrbit.lean; then exit 1; fi
+          lake build MathProofs.GC01IndividualOrbit
+          lake env lean GC01IndividualOrbitAudit.lean | tee gc01-audit.log
+          python - <<'PY'
+          import re
+          from pathlib import Path
+          data = Path("gc01-audit.log").read_text()
+          names = ["orbit_subset_Gset", "continuous_distX_solution", "isolated_orbit_stability",
+                   "stationary_dilation_gap", "stationary_dilation_strict", "global_wellposed",
+                   "orbit_invariants", "defect_small_near_orbit", "orbit_stability_of_barriers"]
+          for name in names:
+              rows = [line for line in data.splitlines() if name in line and ("depends on axioms" in line or "does not depend on any axioms" in line)]
+              assert len(rows) == 1, (name, rows)
+          for group in re.findall(r"depends on axioms: \[([^\]]*)\]", data, flags=re.S):
+              assert set(x.strip() for x in group.split(",") if x.strip()) <= {"propext", "Classical.choice", "Quot.sound"}, group
+          PY
