@@ -558,6 +558,217 @@ defocusing-quintic Hamiltonian and its sufficient mass threshold.
 This is not a claim of literature-wide novelty.
 \end{remark}
 
+
+\section{Provisional GC06 extensions (November 24, 2026)}
+\label{sec:gc06-extension}
+The following analytical extensions preserve the exact functional and
+constraint above. They are research additions pending independent review
+and, where candidate Lean declarations exist, successful kernel verification.
+They are not an assertion of full GC06 resolution. Full derivations,
+including the explicit stationary counterexample and finite-profile
+extraction, are in the companion repository note
+\texttt{docs/GC06\_SHELL\_BINDING\_2026-11-24.md}.
+For the remainder of this section allow $k\ge0$, with $\beta,\gamma>0$.
+
+\begin{theorem}[Refined explicit confinement region]
+Set $c=3\beta^2/(32\gamma)$,
+$\sigma_R=(k^2+\sqrt{k^4+2c})/2$ and
+$m_R=3\beta/(\gamma\sigma_R)$. Then $m_R>m_B$, and all conclusions of
+Theorem~\ref{thm:main} hold for $0<m\le m_R$.
+\end{theorem}
+\begin{proof}
+On a dilation-stationary mass-$a$ field, the virial identity and square
+completion give $2D-2k^2K=\beta Q/2-2\gamma S/3\le ca$.
+Since $K\le\sqrt{aD}$, setting $x=\sqrt{D/a}$ gives
+$2x^2-2k^2x\le c$, hence $x\le\sigma_R$.
+The existing Fourier inequality yields
+$S/Q\le\sqrt{aD}/4\le\sigma_R a/4$.
+The quantitative amplitude comparison in
+Proposition~\ref{prop:decrease} therefore holds with $m_R$ in place of
+$m_B$, including all splits at its endpoint. The concentration--compactness
+argument above depends only on strict binding once negativity is known.
+Finally $\sigma_R>k^2$ and
+$\sigma_R^2+(\sigma_R-k^2)^2=k^4+c$, so
+$\sigma_R<\sqrt{k^4+c}$.
+\end{proof}
+
+\begin{theorem}[Growing near-zero-selector confinement region]
+Fix $a_0,\eta>0$ with $a_0\le m_R$ and
+$I_{0,\beta,\gamma}(a_0)<-2\eta a_0$. If
+\[
+a_0\le m,\qquad k^4\le\eta,\qquad 2k^2m<4\eta/\beta,
+\]
+then all conclusions of Theorem~\ref{thm:main} hold at $m$.
+In particular each prescribed finite mass is covered for sufficiently
+small positive $k$, with fixed $\beta,\gamma>0$.
+\end{theorem}
+\begin{proof}
+For $t>0$, $v(x)=u(x/\sqrt t)$ has mass $tM(u)$ and
+\[
+H_k(v)=tH_k(u)-(t-1/t)D(u)+2k^2(t-1)K(u).
+\]
+Choose a mass-$a_0$ seed $U$ with $H_0(U)<-2\eta a_0$. For $a\ge a_0$
+take $t=a/a_0\ge1$. The above identity becomes
+$H_k(v)=t(H_0(U)+k^4a_0)-(t-1/t)D(U)-2k^2K(U)<-\eta a$.
+Thus $I_k(a)\le-\eta a$.
+On a mass-$a$ near-minimizer with $H_k(u)<-\eta a/2$, positivity of
+$T,S$ gives $\beta Q>\eta a$, and the Fourier bound gives
+$x=\sqrt{aD}\ge L=4\eta/\beta$. Since $K\le x$ and $2k^2a<L$,
+\[
+a(D-2k^2K)\ge x^2-2k^2ax\ge L(L-2k^2a)>0 .
+\]
+For $b>a$, stretching with $t=b/a>1$ now gives
+$H_k(v)\le tH_k(u)-(t-1)L(L-2k^2a)/a$.
+This is a uniform positive gap at the infimum, so $I_k(b)/b<I_k(a)/a$.
+For $a_0\le a<m$ the hypothesis ensures the gap; for $a<a_0$ use
+the refined theorem to compare first to $a_0$ and then to $m$.
+The two split comparisons prove strict binding and compactness.
+An admissible explicit seed is obtained by the isotropic Gaussian
+calculation in Lemma~\ref{lem:negative}, with $k=0$ and unit aspect ratio:
+\[
+I_0(a_0)/a_0\le
+-\frac{\beta^2a_0^2}{64\pi^2(2+\gamma a_0^2/(9\pi^2))}.
+\]
+Choose $\eta$ to be one quarter of the positive magnitude of this bound
+and take $a_0$ strictly below $m_R(0)$; the claimed small-$k$ conclusion
+follows by continuity, using the refined theorem if $m<a_0$.
+\end{proof}
+
+\begin{proposition}[Shell bound and arbitrarily large binding masses]
+For every fixed $k,\beta,\gamma$ in the stated range,
+$-3\beta^2m/(16\gamma)< I(m)<0$ and $I(m)\ge-\beta^2m^3/64$.
+No minimizing sequence at fixed positive mass has $T\to0$.
+There are arbitrarily large masses with strict binding at every
+interior split, attainment, and compactness modulo translations.
+\end{proposition}
+\begin{proof}
+Weighted Fourier inversion with weight $(|\xi|^2-k^2)^2+h$ gives
+\[
+\|u\|_\infty^2\le\frac{T+hM}{4\pi\sqrt h}
+\left(\frac\pi2+\arctan(k^2/\sqrt h)\right)
+\le\frac{T+hM}{4\sqrt h}.
+\]
+The polar integral uses $s=|\xi|^2-k^2$. Since $T>0$ for $M>0$
+(the exact shell is null), optimize at $h=T/M$ to get
+$\|u\|_\infty^2\le\sqrt{MT}/2$. Thus
+$H\ge T-\beta m\sqrt{mT}/4\ge-\beta^2m^3/64$.
+At fixed mass, $T\to0$ implies $Q,S\to0$, contradicting negativity
+of the infimum on a minimizing sequence. The square completion then
+gives the strict lower bound.
+
+Set $C=3\beta^2/(16\gamma)$, $r_*=3\beta/(4\gamma)$ and take
+$u_R=\sqrt{r_*}\chi(|x|-R)e^{ikx_1}$, where $\chi$ is a smooth monotone
+unit-width cutoff, one on $(-\infty,0]$ and zero on $[1,\infty)$.
+The shifted kinetic term and potential excess $H+CM$ are supported
+in the annulus and their integrals are $O(R)$.
+The mass varies continuously and strictly increasingly with $R$,
+and is asymptotic to $\pi r_*R^2$. Thus $e(m)=I(m)/m\to-C$ as
+$m\to\infty$, while $e(m)>-C$ at each finite $m$ and $e(m)\to0$
+as $m\downarrow0$. Continuity at positive masses follows by mass
+correction on uniformly bounded near-minimizers in both directions.
+For $\ell\in(-C,0)$, let $m_\ell$ be the first mass where
+$e(m)\le\ell$. Then $e(m_\ell)=\ell<e(a)$ for every $0<a<m_\ell$.
+This implies all-split strict binding at $m_\ell$. As $\ell\downarrow-C$,
+$m_\ell\to\infty$, since a bounded subsequence would contradict
+the strict finite-mass lower bound.
+\end{proof}
+
+\begin{proposition}[Exact compactness criterion]
+At any positive mass in the stated domain, every minimizing sequence
+is subsequentially compact modulo translations if and only if
+strict binding holds at every interior split.
+If binding fails, noncompact minimizing sequences exist; vanishing
+is excluded. Every minimizing sequence has, after subsequence,
+a finite sum of mutually separating attained minimizing profiles
+plus an $H^2$-vanishing remainder. At most one profile can have mass
+at most $m_R/2$, so there are at most $\lfloor 2m/m_R\rfloor+1$
+profiles. Nonattainment requires more than one profile.
+\end{proposition}
+\begin{proof}
+Sufficiency is the preceding compactness proof.
+If equality holds for a positive split, approximate the two near-minimizers
+by exact-mass compactly supported smooth fields, separating their
+supports by a distance tending to infinity. Their sum is minimizing,
+but any fixed-radius ball eventually contains at most the larger
+split mass, so no translates converge strongly in $L^2$.
+For the finite decomposition, repeat the weak-profile extraction
+and mass-corrected energy splitting from the proof of
+Theorem~\ref{thm:main}. Ordinary subadditivity and the lower bounds
+on the profile and remainder force equality, and each extracted
+profile is a minimizer. A positive-mass remainder is again minimizing
+after mass correction and cannot vanish. Later centers must diverge
+from the earlier centers because the residual has weak local limit zero
+there. Any pair of extracted masses must satisfy binding equality:
+otherwise replacing that pair by its merged infimum gives a strictly
+lower total energy by ordinary subadditivity. The refined theorem
+rules out equality for pairs summing to at most $m_R$. Hence
+extraction terminates finitely with zero residual mass, and the
+residual energy and coercive kinetic argument give strong $H^2$
+convergence to zero.
+\end{proof}
+
+\begin{remark}[Remaining obstruction and formal scope]
+The two elementary scaling defects can both have the wrong sign on
+negative-energy dilation-stationary trial fields for $k>0$:
+the companion note constructs broad carrier profiles whose optimized
+dilation has $D<k^2K$ and $S/Q>3\beta/(4\gamma)$.
+This refutes a universal trial-field scaling inequality, not attainment.
+To resolve the remaining mass region one must settle strict merging
+of attained profiles or exhibit genuine equality at the infimum and
+distinguish noncompactness from nonattainment. The new candidate Lean
+modules \texttt{GC06ShellBinding} and \texttt{GC06NearZeroShell}
+encode the first two theorems only. The shell bound, unbounded binding
+masses, finite-profile criterion, and counterexample remain analytical
+and are not certified by these declarations.
+\end{remark}
+
+
+\subsection{Virial-ratio improvement including the endpoint (candidate)}
+
+\begin{theorem}[Larger sufficient confinement interval]
+Let $\beta,\gamma>0$, $m>0$. If $k^2m\le 3\beta/\gamma$, then
+strict binding holds for every interior split of $m$, all minimizing
+sequences are subsequentially compact modulo translations, and $I(m)$
+is attained. In particular $k=0$ admits every positive mass.
+\end{theorem}
+
+\begin{proof}
+For $k^2m<3\beta/\gamma$, put $r=3\beta/(4\gamma)$,
+$d=(r-k^2m/4)/(2+\gamma m^2/48)$, $c=r-d$ and
+$B=\beta/4-\gamma c/3=\gamma d/3$. Then $0<c<r$, $B>0$ and
+$k^2m/4+B m^2/16<c$. For a dilation-stationary field $W$ of
+mass $a\le m$ set $x=\sqrt{aD}$. The established bounds are
+$Q\le ax/4$, $S\le xQ/4$, $K\le x$. If $S>cQ$, then $x>4c$,
+and the virial identity gives $D\le k^2x+BQ$. Consequently
+$x^2\le(k^2a+B a^2/4)x$, contradicting
+$x/4\le k^2m/4+B m^2/16<c$. Hence $S\le cQ$ uniformly.
+For $t>1$ and $\gamma(t+1)c/3<\beta/2$, let
+$h=1-2\gamma(t+1)c/(3\beta)>0$. Amplitude scaling and
+$E(W)\ge-\beta Q/2$ give
+$E(\sqrt{t}W)/t\le[1+(t-1)h]E(W)$.
+After dilation adjustment and passage to the infimum, negativity
+implies strict decrease of $I(a)/a$ for such mass increments.
+On any interval $[a,b]\subset(0,m]$, increments of size at most
+$(r/c-1)a$ obey this condition, so a finite chain gives strict decrease
+throughout the interval.
+
+For $k^2b=3\beta/\gamma$, choose
+$q_n=b-(b-a)/(2(n+1))$ and mass-$q_n$ near-minimizers with error
+$1/(n+1)$. Their energies are uniformly bounded above by $1$;
+coercivity gives bounded $H^2$ norms. Correct their masses to $b$
+using the existing mass-correction lemma: the energy error tends to
+zero, so $I(b)/b\le I(a)/a$. Starting instead at $(a+b)/2$ and
+using strict decrease from $a$ to this midpoint gives strictness
+at the endpoint. Multiplying the strict comparisons by the two
+split masses and adding proves strict binding. The established
+whole-space compactness theorem under all-split binding gives the
+remaining conclusions.
+\end{proof}
+
+The corresponding candidate module is \texttt{GC06VirialBinding.lean};
+its exact roots are included in the focused build and axiom gate.
+No full parameter classification is claimed.
+
 \begin{thebibliography}{9}
 \bibitem{brezislieb}
 H.~Brézis and E.~Lieb,
