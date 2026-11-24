@@ -1,0 +1,31 @@
+name: GC11 focused Lean audit
+on:
+  pull_request:
+    paths: ['lean/MathProofs/GC11Coercivity.lean', 'lean/GC11Audit.lean', '.github/workflows/lean-gc11.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  gc11:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: lean
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch Mathlib cache
+        run: |
+          lake update
+          lake exe cache get
+      - name: Build exact algebra core
+        run: lake build MathProofs.GC11Coercivity
+      - name: Audit declarations
+        run: |
+          set -o pipefail
+          lake env lean GC11Audit.lean 2>&1 | tee gc11-audit.log
+          grep -q 'two_static_carriers' gc11-audit.log
+          if grep -o 'axioms: \[[^]]*\]' gc11-audit.log | sed 's/axioms: \[//; s/\]//' | tr ',' '\n' | sed 's/ //g' | grep -v '^$' | grep -vxE 'propext|Classical.choice|Quot.sound'; then exit 1; fi
