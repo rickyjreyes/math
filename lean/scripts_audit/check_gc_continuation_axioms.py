@@ -42,7 +42,12 @@ expected = [
     "ReyesMath.GC06PairExtraction.binding_of_spectral_exclusion",
     "ReyesMath.GC06PairExtraction.confinement_of_spectral_exclusion",
     "ReyesMath.GC06PairExtraction.compactness_of_spectral_exclusion",
-    "ReyesMath.GC06PairExtraction.stability_of_spectral_exclusion"
+    "ReyesMath.GC06PairExtraction.stability_of_spectral_exclusion",
+    "ReyesMath.GC06PairExtraction.exact_pair_of_failed_split",
+    "ReyesMath.GC06PairExtraction.all_binding_iff_no_equality_pair",
+    "ReyesMath.GC06PairExtraction.all_mass_confinement_of_no_equality_pair",
+    "ReyesMath.GC06PairExtraction.all_mass_compactness_of_no_equality_pair",
+    "ReyesMath.GC06PairExtraction.all_mass_stability_of_no_equality_pair"
 ]
 allowed = {"propext", "Classical.choice", "Quot.sound"}
 data = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
