@@ -60,7 +60,11 @@ theorem integral_halfline_shell_le (k : ℝ) {c η : ℝ} (hc : 0 < c) (hη : 0 
     have hA : 0 ≤ A := by dsimp [A]; positivity
     refine (hF.const_mul A).mono' ?_ (Eventually.of_forall fun x => ?_)
     · dsimp [G, F]
-      exact Continuous.aestronglyMeasurable (continuous_inv₀ (by fun_prop) (fun x => by positivity))
+      exact Continuous.aestronglyMeasurable (by
+        simpa only [one_div] using
+          (continuous_const.div (by fun_prop : Continuous (fun x : ℝ => 1 + (b * x) ^ 2))
+            (fun x => by positivity : ∀ x : ℝ, 1 + (b * x) ^ 2 ≠ 0) :
+            Continuous (fun x : ℝ => 1 / (1 + (b * x) ^ 2))))
     · change ‖(1 + (b * x) ^ 2)⁻¹‖ ≤ A * (1 + x ^ 2)⁻¹
       rw [Real.norm_of_nonneg (by positivity)]
       have h1 : 0 < 1 + (b * x) ^ 2 := by positivity
@@ -69,7 +73,8 @@ theorem integral_halfline_shell_le (k : ℝ) {c η : ℝ} (hc : 0 < c) (hη : 0 
         dsimp [A]
         field_simp [hb.ne']
         <;> ring
-      rw [← one_div, ← one_div, mul_one_div, div_le_div_iff₀ h1 h2, one_mul, heq]
+      simp only [← one_div, mul_one_div]
+      rw [div_le_div_iff₀ h1 h2, one_mul, heq]
       have hp : 0 ≤ (b ^ 2)⁻¹ := by positivity
       linarith [sq_nonneg (b * x)]
   have hint : Integrable (fun u : ℝ => 1 / ((c * u - k ^ 2) ^ 2 + η)) := by
@@ -94,8 +99,9 @@ theorem integral_halfline_shell_le (k : ℝ) {c η : ℝ} (hc : 0 < c) (hη : 0 
         rw [integral_univ_inv_one_add_sq]
       rw [hscale]
       dsimp [b]
+      have hs2 : Real.sqrt η ^ 2 = η := Real.sq_sqrt hη.le
       field_simp [hc.ne', hs.ne', hη.ne']
-      <;> nlinarith [Real.sq_sqrt hη.le]
+      <;> nlinarith [congrArg (fun x : ℝ => x * Real.pi) hs2]
 
 /-- In dimension two the inverse shifted-symbol weight is bounded uniformly in k. -/
 theorem integral_inv_shell_le (k : ℝ) {η : ℝ} (hη : 0 < η) :
@@ -131,7 +137,8 @@ theorem integral_inv_shell_le (k : ℝ) {η : ℝ} (hη : 0 < η) :
         1 / (((2 * Real.pi) ^ 2 * u - k ^ 2) ^ 2 + η)))) ≤ _
       have hh := mul_le_mul_of_nonneg_left
         (mul_le_mul_of_nonneg_left h (by norm_num : (0 : ℝ) ≤ 1 / 2)) hπ.le
-      linarith
+      have hhh := mul_le_mul_of_nonneg_left hh (by norm_num : (0 : ℝ) ≤ 2)
+      simpa only [mul_assoc] using hhh
     _ = _ := by field_simp; ring
 
 private theorem norm_shift_fourier (φ : SchwartzMap R2 ℂ) (k : ℝ) (ξ : R2) :
