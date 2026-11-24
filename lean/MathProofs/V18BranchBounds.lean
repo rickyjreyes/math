@@ -57,21 +57,21 @@ theorem frozen_lightRaw_eq (alpha : ℝ) (n : ℕ) :
   simp only [lightRaw, frozen, frozenLightBase, Matrix.cons_val]
   split_ifs <;> simp_all
 
-private theorem frozenLightBase_one : (0.4 : ℝ) < frozenLightBase 1 := by
+theorem frozenLightBase_one : (0.4 : ℝ) < frozenLightBase 1 := by
   norm_num [frozenLightBase, topo, clip]
   have hl : Real.log (2 : ℝ) < 0.694 := lt_trans Real.log_two_lt_d9 (by norm_num)
   have he := exp_light_one_lt
   norm_num only at hl he
   linarith
 
-private theorem frozenLightBase_two : (2 : ℝ) < frozenLightBase 2 := by
+theorem frozenLightBase_two : (2 : ℝ) < frozenLightBase 2 := by
   norm_num [frozenLightBase, topo, clip]
   have hl := log_three_lt
   have he := exp_light_two_lt
   norm_num only at hl he
   linarith
 
-private theorem frozenLightBase_three : (0.005 : ℝ) < frozenLightBase 3 := by
+theorem frozenLightBase_three : (0.005 : ℝ) < frozenLightBase 3 := by
   norm_num [frozenLightBase, topo, clip]
   have hl := log_four_lt
   have he := exp_light_three_lt
@@ -136,7 +136,7 @@ theorem heavy_ratio_clip (i : Fin 3) :
       (heavyN i : ℝ) / 100 < (1e6 : ℝ) := by
   fin_cases i <;> norm_num [heavyN, Matrix.cons_val]
 
-private theorem frozenLightBase_heavy_neg (i : Fin 3) :
+theorem frozenLightBase_heavy_neg (i : Fin 3) :
     frozenLightBase (heavyN i) < 0 := by
   have he := Real.exp_pos (-50 : ℝ)
   fin_cases i
@@ -211,5 +211,28 @@ theorem frozen_heavy_floor_lt (alpha : ℝ) (i : Fin 3) :
   have h := frozen_heavy_light_floor alpha i
   rw [light, max_eq_right h.le]
   exact lt_add_of_pos_right _ (frozen_heavyCorrection_pos alpha i)
+
+/-- Coarse upper bounds suffice to order the historical clipping thresholds.
+The lower bounds above already use exact rational estimates for log and exp. -/
+theorem frozenLightBase_one_upper : frozenLightBase 1 < 1 := by
+  have hl := Real.log_two_gt_d9
+  have he := Real.exp_pos (-6.1744 : ℝ)
+  norm_num [frozenLightBase, topo, clip]
+  norm_num only at hl he
+  linarith
+
+theorem frozenLightBase_two_upper : frozenLightBase 2 < 12 := by
+  have hl := Real.log_nonneg (show (1 : ℝ) ≤ 3 by norm_num)
+  have he := Real.exp_pos (-12.3488 : ℝ)
+  norm_num [frozenLightBase, topo, clip]
+  norm_num only at hl he
+  linarith
+
+theorem frozenLightBase_three_upper : frozenLightBase 3 < 20 := by
+  have hl := Real.log_nonneg (show (1 : ℝ) ≤ 4 by norm_num)
+  have he := Real.exp_pos (-18.5232 : ℝ)
+  norm_num [frozenLightBase, topo, clip]
+  norm_num only at hl he
+  linarith
 
 end ReyesMath.V18Forward
