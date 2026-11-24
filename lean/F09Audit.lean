@@ -46,3 +46,7 @@ This file adds no declarations to the maintained library.
 #print axioms ReyesMath.V18Forward.logistic_floor_logit_eq
 #print axioms ReyesMath.V18Forward.historical_two_active_unique
 #print axioms ReyesMath.V18Forward.historical_zero_alpha
+
+#print axioms ReyesMath.V18Forward.historical_active_prefix
+#print axioms ReyesMath.V18Forward.historical_one_active_interval
+#print axioms ReyesMath.V18Forward.historical_exceptional_endpoint
