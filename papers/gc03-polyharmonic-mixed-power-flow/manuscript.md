@@ -1584,3 +1584,72 @@ This extends §28 to arbitrarily large upper powers, including supercritical reg
 The original universal H^p strong well-posedness statement is incompatible with supercritical finite-energy admissibility and H^p continuity at zero by §§5,10. This is not a proof of finite-time H^p norm divergence. Section 2 instead excludes such divergence on every conserved finite-energy trajectory, at every exponent. Section 61 further separates the X topology from H^p. Individual supercritical strong continuation and higher-regularity singularity formation remain different questions.
 
 The connected-group critical extension resolves a family of nonradial data classes within the candidate analytical chain, not the full arbitrary-data parameter region. An arbitrary nonradial datum need not satisfy any of these symmetries, and the general recurrent critical obstruction in §§56–59 persists. Sections 60–62 are continuum arguments, not scalar formalizations. No new Lean declaration is claimed verified; the preexisting twelve candidate roots require an actual kernel pass. Head ade796eef3c0e74536d8e89e58eacd8ce5632ffa had a cancelled focused GC03 check (run 45370353141), not a successful verification. Preserve original GC03 and open issue #100, and do not promote the machine registry.
+
+
+## 64. Fixed cylindrical virial without mass: transverse confinement and unrestricted longitudinal motion
+
+**Theorem 64.1 (candidate analytical rigidity).** Let p>=2, 2p<d<=4p and consider a nonzero global strong homogeneous pure critical solution with a compact normalized orbit K and inf lambda>0, as in §§36–39. Let R^d=V⊕W be an orthogonal splitting with m=dim W>4p-d. If the W-component of the concentration centers is uniformly bounded on a forward half-line, no such solution exists. There is no upper frequency-scale bound, finite mass, bound on the V-component, center velocity, or radiality assumption.
+
+### 64.1 Cylindrical L² control
+
+Choose a real j with 2p-d/2<j<min(p,m/2). This is possible by m>4p-d and d>2p. Section 48 supplies sup_t||D^j u||₂<infinity. For an integer l with 0<=l<=p, write b_l=max(j-l,0). For every multi-index alpha of length l and cylinder C_R(z0)={x: |proj_W x-z0|<=2R}, R>=1,
+||∂^alpha u||_(L²(C_R(z0))) <= C R^b_l B,
+where B is a uniform bound for the lower and energy Sobolev norms.
+
+If l>=j, use the global L² derivative bound by interpolation. If l<j, apply the homogeneous Sobolev embedding of order j-l on W, dimension m, for each fixed V-coordinate, followed by Holder on the W-ball. Squaring and integrating in V gives
+||∂^alpha u||_(L²(C_R(z0))) <= C R^(j-l)||D_W^(j-l) ∂^alpha u||₂
+ <= C R^(j-l)||D^j u||₂.
+First prove this for smooth rapidly decreasing functions, and extend using density in the intersection of the two homogeneous Sobolev spaces; the local cylinder limits agree with the canonical distributional derivatives. Thus no global mass or transverse Hardy assumption at the higher order p is required. The estimate is uniform in z0.
+
+For fixed R, multiplication by a smooth W-cutoff supported in this cylinder maps the intersection into H¹, with bound depending on R: use the l=0,1 cylinder bounds and the product rule. This will be used for the force approximation.
+
+### 64.2 Virial identity and error estimate
+
+Write x=(y,z) in V×W. For a smooth radial chi on W equal to 1 on |z|<=1 and zero for |z|>=2, use the vector field
+a_R(x)=(0, chi(z/R) z)
+and action J_R(t)=Im integral conj(u) a_R·∇u.
+By §64.1, uniformly in time,
+|J_R(t)| <= C B² R^(1+j+max(j-1,0)).
+In particular it is bounded for each fixed R, despite no control of the longitudinal translation.
+
+For annularly smoothed finite-mass fields use the exact commutator of §§27.1,42.2 with L_R=a_R·∇+div(a_R)/2. The full linear transverse field a_infty=(0,z) gives the nonnegative kinetic term
+K_infty=2p integral |xi|^(2p-2)|proj_W xi|² |uhat(xi)|² dxi.
+The pure nonlinear term tends to
+N_infty=gamma m(s-1)/b ||u||_b^b, b=s+1,
+with uniform positive minimum by the normalized compactness and nonzero conserved energy.
+
+We now bound the cutoff error uniformly in time. Expand the commutator using the multinomial formula for (-Delta)^p. Each summand pairs a p-th derivative of u against a derivative of u of order l<=p, multiplied by a differentiated coefficient. For l=p the coefficient difference from the full field is bounded and supported on |z|>R, so the error is bounded by C sum_(|alpha|=p)||∂^alpha u||²_(L²(|z|>R)). For l<p the full-field coefficient is zero, while the cutoff coefficient is supported on R<=|z|<=2R and has bound C R^(-(p-l)). Indeed the [∂^alpha,a_R·∇] term with |nu| derivatives of a_R has l=p-|nu|+1, and the [∂^alpha,div(a_R)/2] term has l=p-|nu|; both coefficient powers equal l-p. The corresponding absolute error is at most
+C B² R^(l-p+max(j-l,0))=C B² R^(max(j,l)-p),
+which tends to zero because j<p and l<p. There are only finitely many terms. This uses lower regularity to remove every lower-order cutoff error, rather than a uniform cutoff-dependent L² tail.
+
+The p-th derivative tails on |z|>R tend uniformly to zero: the centers have bounded W-projection, so outside that cylinder one is outside a Euclidean ball of radius R-O(1) about the current center. The scaled compact family has uniformly vanishing p-th derivative L² tails, with physical radii controlled by the positive lower scale. The same reasoning using critical L^b compactness controls the nonlinear cutoff error C integral_(|z|>R)|u|^b. Thus K_R+N_R>=c>0 for sufficiently large fixed R, uniformly in time.
+
+### 64.3 Justification and contradiction
+
+The cutoff is not compactly supported in V. For each annular smoothing u_n=Q_nu, however, u_n lies in all inhomogeneous Sobolev spaces and the vector field and its derivatives are bounded for fixed R. The commutator and nonlinear integration by parts therefore hold by further outer spatial cutoffs and dominated convergence. On each compact time interval, u_n→u in C_t dot H^p, in C_t dot H^j and in Z: for the j convergence use interpolation with any j_- strictly between 2p-d/2 and j, with its uniform bound supplied by §48. Strong continuity in dot H^j follows by the same interpolation. The cylindrical estimate therefore gives convergence of the action and lower-order commutator factors. The top-order factors converge in L², and the nonlinear density converges in L¹ via C_t L^b.
+
+The force error e_n=Q_n F(u)-F(u_n) tends to zero in C_t L^(b') and with ∇e_n in L²_t L^k, k=2d/(d+2), as in §42.4. After integrating by parts in the force-action pairing, its derivative term is bounded by C_R ||∇e_n||_(L²L^k)||chi_1(z/R)u_n||_(L²L^(k')), where chi_1 is a slightly larger W-cutoff and k'=2d/(d-2). The second factor is bounded by the H¹ cylinder estimate of §64.1 and ordinary full-dimensional Sobolev. The divergence-coefficient term is bounded by C||e_n||_(L¹L^(b'))sup||u_n||_b. Both vanish. Thus the integrated action identity passes to the homogeneous strong solution, for each fixed R, without global L². Integrating J_R' >= c on the half-line contradicts its uniform bound. This proves Theorem 64.1 within the inherited analytic chain.
+
+## 65. Critical scattering with a nontrivial fixed subspace
+
+**Theorem 65.1 (candidate analytical parameter/data theorem).** Let p>=2 and 2p<d<=4p. Let G be a compact connected subgroup of O(d), with common fixed subspace V and W=V^perp. Suppose dim W>4p-d. For every continuous unitary character chi:G→U(1), the pure defocusing critical equation has global strong well-posedness and a uniform positive-energy-dependent full Z bound in the equivariant homogeneous class of §60; it scatters. The original mixed critical equation therefore has global strong H^p well-posedness for all such equivariant data, all real 1<r<s and beta,gamma>0. Neither radiality in the full space nor zero common fixed space is required.
+
+Proof. The extraction argument of §60 extends with translations allowed in V. For an inverse Strichartz sequence of frames (N_n,x_n), split x_n=v_n+w_n. If N_n|w_n| is unbounded, pass to a subsequence where it diverges and w_n/|w_n| converges to a unit vector w in W. Its G-orbit is infinite since G is connected and W contains no nonzero common fixed vector. For arbitrarily many distinct g_i w, the critical-moment balls B(g_i x_n,R/N_n) become disjoint, since g_i v_n=v_n and the scaled distances between g_i w_n diverge. Equivariance gives a common positive moment in each ball, impossible. Thus after passing to a subsequence N_n w_n converges. Absorb that bounded normalized displacement into the extracted weak profile and take the physical center to be v_n in V. Translations by V commute with G, so the extracted profiles and iterative remainders retain equivariance; the free evolution, time shifts and centered dilations do also. All energy decoupling and nonlinear approximation arguments of §§37–38 remain valid for these frames. The equivariant minimal threshold construction uses only these translations and dilations; the normalized compact profiles can be chosen in the equivariant subspace with centers in V. The rescaling and limiting construction of §39 also uses V translations, so the global minimal element has a positive lower frequency scale and centers with W-component zero. Theorem 64.1 excludes it. Hence the equivariant threshold is infinite. Mixed transfer follows from §§16–20 because the scalar radial cutoffs in frequency and amplitude preserve this symmetry. QED subject to review of all inherited local, profile and decay estimates.
+
+Examples: axisymmetric data in R^d=R×R^(d-1), invariant under SO(d-1) acting on the transverse factor, are covered whenever d-1>4p-d. This holds for every integer d>2p. In particular the fourth-order p=2 critical cases d=5,6,7 now have candidate all-amplitude global strong theorems for axisymmetric data with arbitrary dependence on the axial coordinate. For a general cylindrical factor SO(m) with 2<=m<=d, the criterion is m>4p-d. At d=4p every such factor of dimension at least two suffices, including data with planar rotational invariance and arbitrary dependence on the other d-2 coordinates; a planar character allows nonzero angular winding. Finite groups and groups with transverse dimension <=4p-d are not covered by this proof. Group-invariant fourth-order focusing intercritical scattering has prior art in Komada–Masaki (2024) and Komada arXiv:2609.33381. No novelty claim is made.
+
+## 66. Stronger necessary center-excursion law without upper scale control
+
+The same proof gives a quantitative restriction without assuming bounded transverse centers. Let j satisfy the hypotheses of §64.1 and define a(j)=1+j+max(j-1,0). For any long interval I and fixed reference transverse position z0, choose R=R0+sup_(t∈I)|proj_W x(t)-z0|, where R0 is a sufficiently large fixed constant. The virial with transverse argument z-z0 has the same estimates uniformly in z0. Its tail errors are uniformly small because the radius includes each center plus R0; the lower-derivative terms are bounded by the same negative powers of R. Hence
+c |I| <= C B² [R0+sup_(t∈I)|proj_W x(t)-z0|]^a(j).
+This excludes sub-|I|^(1/a(j)) transverse excursions along any unbounded sequence of intervals. It is independent of excursions in the complementary V directions.
+
+There is a sharper boundary estimate at d=4p. Here §48 gives uniform dot H^(1/2), and for any nonzero W of dimension m>=1 one may use j in (0,min(1/2,m/2)) for the cutoff errors. The action bound improves to |J_R|<=C R ||D^(1/2)u||₂² even for a cylindrical cutoff: multiplication by a_R/R is bounded on dot H^(1/2)(R^d), uniformly in R and z0. For a proof use the Gagliardo seminorm of order 1/2 in full dimension. A bounded Lipschitz multiplier b_R=a_R/R satisfies |b_R(x)-b_R(y)|<=C min(1,|x-y|/R); for y in |proj_W y-z0|<=4R the inner integral of its squared difference against |x-y|^(-d-1) is <=C/R. For y farther away, b_R(y)=0 and integration over the support of b_R(x) in the W-cylinder, integrating first in V, bounds this inner integral by C R^m |proj_W y-z0|^(-m-1). Thus it is bounded everywhere by C/|proj_W y-z0| for z≠z0. If m>=2 the fractional Hardy inequality on W at order 1/2 (or the standard fractional Hardy theorem for 0<1/2<m/2) and Fubini control this weight by C||D_W^(1/2)u||₂². For m=1 the Hardy endpoint is not available; we do NOT assert the O(R) improvement for a single transverse direction. For m>=2 the product difference formula gives the uniform multiplier bound and hence
+|J_R|=|Im <a_R u,∇u>| <= C R ||D^(1/2)u||₂²
+using homogeneous duality, as in §49.3. The action pairing agrees with the cylinder integral by density and the local L² derivative bounds.
+
+Consequently at d=4p for any fixed W with m>=2 the necessary transverse excursion on every sufficiently long interval is at least c_W |I|-R0, uniformly in the reference transverse position. For m=1 the earlier exponent a(j)=1+j, with arbitrarily small j>0, still excludes any power-law excursion of exponent strictly below one. In particular every hypothetical recurrent solution must make essentially linear or faster excursions in every two-dimensional projection, not merely in total Euclidean displacement. This excludes all trajectories confined within a bounded-width tube about any affine line (take W orthogonal to it), and more generally those with sublinear transverse excursions in any fixed projection of dimension at least two. It does not prove a contradiction for arbitrary multidirectional rapidly escaping trajectories; neither momentum zero nor band residence alone implies the necessary transverse confinement or sublinear motion.
+
+## 67. Scope and verification
+
+The fixed-cylinder action replaces the global L² mass requirement by existing positive lower Sobolev regularity and is independent of longitudinal translation, including unbounded speeds and scales. In the new cylindrical symmetry classes it yields a candidate unconditional critical global theorem, not a conditional cascade integrability test. The unrestricted lower-strip nonradial critical problem is still open, as is the full general continuum Lean proof. No new verified roots or registry promotion. The original GC03 statement and draft PR are retained.
