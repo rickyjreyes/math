@@ -171,3 +171,5 @@ import MathProofs.E18Lyapunov
 import MathProofs.E18Certification
 import MathProofs.D4FrozenWholeSpace
 import MathProofs.GC08Cartesian
+import MathProofs.GC08Gauge
+import MathProofs.GC08Field
