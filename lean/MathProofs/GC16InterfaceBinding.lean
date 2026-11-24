@@ -73,7 +73,7 @@ theorem optimized_increment (hβ : 0 < β) (hγ : 0 < γ)
     rw [hd]
     field_simp [hb.ne']
   have htb : t * b = a + b := by nlinarith only [hm]
-  have hi := inf_increment_bound (β := β) (γ := γ) (k := k) hb hδ ht ht2
+  have hi := inf_increment_bound (β := β) (γ := γ) (k := k) hβ hγ hb hδ ht ht2
   change Imin β γ k (t * b) - Imin β γ k b ≤ (t - 1) * b *
     (-C + 2 * C * (t - 1) + (7 + 4 * (β / δ)) * f + 4 * C * (δ / β)) at hi
   have he : (7 + 4 * (β / δ)) * f + 4 * C * (δ / β) =
@@ -99,7 +99,7 @@ theorem strict_split_of_optimized_margin (hβ : 0 < β) (hγ : 0 < γ)
   have hmul := mul_lt_mul_of_pos_left hmargin ha
   have he : a * (bulkDensity β γ k a - bulk β γ) = Imin β γ k a := by
     unfold bulkDensity
-    field_simp [ha.ne']
+    field_simp [ha.ne'] <;> ring
   nlinarith only [hi, hmul, he]
 
 /-- Algebraic consequence of the continuum cell-counting estimate.
