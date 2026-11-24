@@ -83,7 +83,7 @@ theorem S_le_of_negative (hβ : 0 < β) (hγ : 0 < γ) (U : H2 2)
 theorem mShell_eq (hβ : 0 < β) (hγ : 0 < γ) :
     mShell β γ = 2 * Real.sqrt 3 / Real.sqrt γ := by
   have hroot : Real.sqrt (bulk β γ) = Real.sqrt 3 * β / (4 * Real.sqrt γ) := by
-    apply (Real.sqrt_eq_iff_eq_sq (by positivity)).2
+    apply (Real.sqrt_eq_iff_eq_sq (by positivity) (by positivity)).2
     unfold bulk
     field_simp [Real.sqrt_ne_zero'.2 hγ]
     rw [Real.sq_sqrt (by norm_num : (0 : ℝ) ≤ 3), Real.sq_sqrt hγ.le]
