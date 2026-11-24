@@ -1811,3 +1811,116 @@ which is nonzero. Thus for sufficiently small epsilon the current is nonzero eve
 ## 74. Verification and research decision
 
 Sections 71–73 give a new spatially resolved candidate double-Duhamel mass-recovery criterion, exact recursive finite-group uniform scattering thresholds within the candidate chain, and an explicit obstruction to inferring center velocity from zero momentum. The unrestricted nonradial lower-strip problem is NOT resolved: spatial widths alone do not control joint time-space recurrence, and qualitative forcing tightness does not establish the required summability. No new unconditional parameter region, higher-order blow-up construction or continuum Lean proof is asserted. Focused GC03 verification at the preceding inspected head 7921664337db2aab112b511b6c3a3b96bd0c4f4f was queued (run 45372019196); no successful kernel audit was observed. The PR was reported nonmergeable at inspection. Preserve the twelve candidate roots, original statement and registry status; do not close issue #100.
+
+
+## 75. Convex virial spacetime occupation without a center hypothesis
+
+This section is a candidate analytical advance toward the unrestricted critical theorem. Its new estimates use the homogeneous lower regularity of §48 and the strong local solution class of §36; the inherited minimal-element and regularity arguments still require independent review. Unlike §§56–74, no assumption of a center separation law or summable force tails is imposed.
+
+Let p>=2, 2p<d<=4p, s=1+4p/(d-2p), b=s+1, and let u be a nonzero global strong homogeneous pure critical solution with compact normalized orbit and inf lambda>0. Write j0=2p-d/2. By §48, all orders j∈(j0,p] have uniform homogeneous bounds. Write B for a constant depending on finitely many such norms and the equation parameters. In particular Q(t)=||F(u(t))||_1 is uniformly bounded by §51.1.
+
+### 75.1 Convex weight, positive principal commutator and lower-order errors
+
+For any spatial reference point z and radius R>=1 define
+a_R(x)=R (x-z)/(R²+|x-z|²)^(1/2).
+This is the gradient of R sqrt(R²+|x-z|²), a convex function. Its Jacobian is positive semidefinite, and div a_R>=c_d>0 on B(z,R). For every integer k>=1,
+|∂^k a_R(x)|<=C_k R (R+|x-z|)^(-k).
+Also |a_R|<=R. For use below, introduce an outer smooth radial cutoff chi((x-z)/S), with 0<=chi<=1, chi=1 on the unit ball, zero outside the ball of radius two, and S>=2R. Write a_(R,S)=chi((x-z)/S)a_R. Its symmetric Jacobian is the sum of chi times the positive Jacobian and a symmetric error bounded by C R/S, supported on S<=|x-z|<=2S. In particular div a_(R,S)>=c_d 1_(B(z,R))-C R/S. For k>=1 the coefficient derivative bound
+|∂^k a_(R,S)(x)|<=C_k (R+|x-z|)^(1-k)
+holds uniformly in S,R,z, by the product rule and the support of the derivatives of chi. The same weaker bound holds for a_R itself.
+
+For a real vector field a define L=a·∇+div(a)/2 and J_a=Im integral conj(u) a·∇u when this is finite, or the corresponding homogeneous duality pairing below. The exact fixed-center action derivative for a smooth pure solution is
+J_a'=2 Re sum_(i_1,...,i_p) integral conj(∂_(i_1)...∂_(i_p) u) [∂_(i_1)...∂_(i_p),L]u
+       + gamma(s-1)/b integral div(a)|u|^b.                     (75.1)
+The ordered derivative sum represents (-Delta)^p exactly: each multi-index of order p occurs with multiplicity p!/alpha!, and the quadratic form is ||D^p u||₂². Skew symmetry of L eliminates the term L acting on the top-order derivative. The leading commutator term (one derivative landing on a in a·∇) can be written
+2p sum_(i_1,...,i_(p-1)) integral sum_(i,j)
+ Re[conj(∂_i ∂_(i_1)...∂_(i_(p-1))u) (∂_i a_j)
+                    ∂_j ∂_(i_1)...∂_(i_(p-1))u].
+This follows by expanding the ordered product rule and grouping the p choices of the differentiated position, with all remaining indices summed independently. Only the symmetric Jacobian contributes to this real quadratic form. Thus the entire principal term is nonnegative for a_R, and is bounded below by -C (R/S)||D^p u||₂² for a_(R,S). This uses convexity and does not assume positivity of all higher-order terms.
+
+Each remaining term pairs an order-p derivative with an order-l derivative for some integer 0<=l<p, multiplied by a coefficient bounded by C (R+|x-z|)^(-(p-l)). This follows exactly from the commutator expansion in §42.3, including the differentiated divergence term. Fix j∈(j0,p) and set delta=min(1,p-j)>0. For l>=j, use the uniform global order-l L² derivative bound by interpolation between orders j and p, giving weighted L² norm <=C B R^(l-p). For l<j, set alpha=j-l∈(0,d/2), and use
+(R+|x-z|)^(-(p-l)) <= R^(-(p-j)) |x-z|^(-alpha).
+The full-dimensional fractional Hardy inequality at order alpha gives
+|| |x-z|^(-alpha) ∂^l u||₂ <= C ||D^alpha ∂^l u||₂ <= C B.
+This standard inequality is applied only in its strict range 0<alpha<d/2 (j<p<d/2). Cauchy–Schwarz with the order-p factor therefore bounds the sum of all lower-order errors in absolute value by C B² R^(-delta), uniformly in z,S,t. These estimates prove
+J_(a_R)' >= c integral_(B(z,R)) |u|^b - C R^(-delta),          (75.2)
+J_(a_(R,S))' >= c integral_(B(z,R)) |u|^b - C(R^(-delta)+R/S). (75.3)
+Constants absorb the uniform kinetic and critical moment bounds. No spatial tail of u or its derivatives is used for these lower bounds.
+
+### 75.2 Boundary action bound and energy-regularity justification
+
+At d=4p take j∈(0,1/2), so delta=1, and §48 provides uniform dot H^(1/2) and dot H^1. The untruncated action J_(a_R) is well-defined by homogeneous duality and
+|J_(a_R)(t)|<= C R ||D^(1/2)u(t)||₂² <= C R.                 (75.4)
+To justify this, multiplication by b_R=a_R/R is uniformly bounded on dot H^(1/2). In the Gagliardo difference seminorm, use |b_R|<=1 and |∇b_R(x)|<=C/(R+|x-z|). For fixed y, on |x-y|< (R+|y-z|)/2 the segment derivative bound gives |b_R(x)-b_R(y)|<=C|x-y|/(R+|y-z|); outside use the amplitude bound. Integration against |x-y|^(-d-1) gives <=C/(R+|y-z|)<=C/|y-z|. The fractional Hardy inequality in full dimension at order 1/2 (strictly below d/2) then bounds the multiplication error by C||D^(1/2)u||₂². This proves (75.4) by pairing dot H^(1/2) with dot H^(-1/2). The action is the usual spatial integral on smooth finite-mass approximants; absolute spatial integrability of u∇u for the limiting homogeneous solution is not assumed.
+
+For rigorous passage in (75.1) take the real annular smoothings u_n=Q_nu of §42.4 on a compact time interval I. They converge in C_t dot H^p, C_t dot H^(1/2) and C_t dot H^j (for the latter two use the lower norm at a strictly smaller positive order and interpolation, as in §49). They also converge in Z and C_t L^b. Their equation error e_n=Q_n F(u)-F(u_n) tends to zero in C_t L^(b') and its gradient tends to zero in L²_t L^k, k=2d/(d+2), by §42.4. For fixed R, a_R and its derivatives are bounded. For each approximant the integration by parts in the action and commutator is justified by outer compact cutoffs and the inhomogeneous Sobolev regularity of the annular fields; the force error is integrated by parts to bound it by
+C_R [||∇e_n||_(L²L^k)||u_n||_(L²L^(k'))+
+         ||e_n||_(L¹L^(b'))sup_I||u_n||_b],
+k'=2d/(d-2). The global L²_t L^(k') bound is available from the uniform dot H^1 bound and Sobolev, with no global mass. Thus the integrated error vanishes. The action converges by (75.4) and the homogeneous multiplier bound; the principal commutator converges by the bounded Jacobian and strong top derivative convergence; the other terms converge by the weighted estimates of §75.1 and strong convergence in the two Sobolev norms; the nonlinear density converges in L¹. Passing to the integrated identity yields (75.2) for the actual homogeneous solution. In particular for every bounded interval I and spatial point z, integrating (75.2) gives
+integral_I integral_(B(z,R)) |u(t,x)|^b dx dt
+ <= C (R+|I|/R),   d=4p.                                    (75.5)
+All constants are independent of I,z,R. This is a uniform local spacetime estimate rather than a pointwise decay estimate. It uses no center position, momentum value, upper-scale bound or quantitative compactness modulus.
+
+### 75.3 Outer cutoff action below the boundary
+
+For j0>=1/2 choose any j∈(j0,p). The untruncated pairing used above is not justified by §48. Instead let a=a_(R,S). Pick a fixed smooth cutoff eta_S centered at z, identically one on the support of a, supported in B(z,4S), obtained by rescaling a single bump. Then the action agrees with the action of eta_S u (the cutoff is real, so any derivative of eta_S contributes no imaginary part). We have
+||eta_S u||₂ <= C S^j ||D^j u||₂,
+||D^j(eta_S u)||₂ <= C ||D^j u||₂.
+The first estimate is local Holder and homogeneous Sobolev; the second is the fractional Leibniz inequality with the critical multiplier norm ||D^j eta_S||_(d/j) invariant under dilation, and homogeneous Sobolev ||u||_(2d/(d-2j)). For integer j it also follows by the ordinary product rule with the corresponding derivative embeddings. All exponents here lie strictly between one and infinity. Thus interpolation between orders zero and j yields
+||D^(1/2)(eta_S u)||₂ <= C S^(j-1/2) B.
+Multiplication by a_(R,S)/R is uniformly bounded on dot H^(1/2), being the product of b_R from §75.2 and the rescaled smooth cutoff chi; the latter has the same Gagliardo-Hardy estimate or the fractional Leibniz bound. Consequently
+|J_(a_(R,S))(t)|<= C R S^(2j-1) B².
+This is a bound on a localized action, not an assertion of global half-derivative membership.
+
+The identity (75.1) for the outer-cutoff action follows by the annular approximation of §75.2 with the following changes. Strong convergence in dot H^j follows by interpolation with any j_-∈(j0,j). For the force term use the compact support of a_(R,S) and the local L^(k') bound from critical L^b and finite spatial volume, since b>=k' for p>=1. The constants may depend on fixed R,S during this limit. The action convergence follows from the localized half-derivative bound just proved, while the weighted lower-order forms converge by §75.1. Then integrate (75.3) to obtain, for every bounded interval I,
+integral_I integral_(B(z,R)) |u|^b <= C [R S^(2j-1)+|I|(R^(-delta)+R/S)],
+             S>=2R>=2, delta=min(1,p-j).                     (75.6)
+Constants are uniform in the reference point, radii and time interval. The two radii will be chosen after integrating; no time-dependent center or cutoff is differentiated.
+
+## 76. Unconditional recurrence summability within the compact-element class
+
+This argument uses the spatial double-Duhamel criterion of §71, now deriving its summability from the equation rather than assuming a separation law or force-tail rate.
+
+Choose a lower Lebesgue exponent ell with 2<ell<s for which sup_t||u(t)||_ell<=C. Such an exponent exists by §48: its allowed range is ell>2d/(d-2j0)=b/2 when j0>0, and ell>2 when j0=0 (at d=4p these coincide). Since b=s+1>2 and s>=3, the interval (b/2,s) is nonempty. Choose ell by homogeneous Sobolev from some j_ell∈(j0,p), as close to j0 as needed. Put theta=(s-ell)/(b-ell)∈(0,1). Then theta can be chosen arbitrarily close from below to (s-b/2)/(b-b/2)=2p/d. For any ball B(z,L),
+integral_(B(z,L)) |F(u(t,x))| dx
+ <= C (integral_(B(z,L)) |u(t,x)|^b dx)^theta,              (76.1)
+by Holder interpolation between ell and b with the uniform global ell bound; here F=gamma|u|^(s-1)u. Integrating in time and using concavity yields a local forcing occupation bound from either (75.5) or (75.6).
+
+For dyadic T>=1, recall C(T) from §71.2. In that integral change (r,a) to (a,b_time) with r=a+b_time. Both nonnegative times lie in [0,2T]. The spatial weight is bounded by one for all x,y, and when |x-y|>L it is <=C (L/T^(1/(2p)))^(-kappa) for L>=T^(1/(2p)), kappa=d(p-1)/(2p-1). The far contribution to C(T) is thus bounded by C (L/T^(1/(2p)))^(-kappa) using the uniform global Q bound. For the near contribution fix a and x, integrate the past forcing over b_time∈[0,2T] and y∈B(x,L). This integral is bounded by the uniform local forcing occupation over the interval [t-2T,t] and the ball centered at x. Then integrate the future forcing over a∈[0,2T] and all x, with total integral <=2T B_F. Divide by T² as in the definition of C(T). This uses positivity/Tonelli only; the constraint T<=a+b_time<=2T can be discarded for the near upper bound. In particular no alignment between the ball center and the concentration center is required.
+
+### 76.1 Boundary d=4p
+
+Choose L=T^(1/2). From (75.5) and (76.1) the past local forcing integral is bounded by C T (L/T+L^(-1))^theta=C T^(1-theta/2). Hence
+C(T)<= C [T^(-theta/2)+T^(-kappa(1/2-1/(2p)))].
+Both exponents are strictly positive for p>=2. Since 2-d/(2p)=0, this establishes (71.2) without a dynamical extra hypothesis. Section 71 therefore recovers finite mass and uniform Fourier low-tail tightness and excludes every compact trajectory with unbounded frequency excursions. If the scale is bounded above, §49 excludes it as well. This proves that there is no nonzero global homogeneous pure compact trajectory at d=4p with inf lambda>0, within the stated strong class and inherited estimates.
+
+This argument does not assume the zero-momentum condition, the center-excursion estimates, a quantitative spatial compactness modulus or a monotone frequency scale. It handles slow, recurrent and oscillatory excursions alike. In particular it closes the specific boundary obstruction left in §§55–74 rather than introducing another unproved occupation condition.
+
+### 76.2 Below the boundary: explicit further strip
+
+Write k0=4p-d, a positive integer, so j0=k0/2. Choose k0<p and assume the strict inequalities
+2p² > k0² d,             kappa(p-k0)>k0².                   (76.2)
+Choose j>k0/2 sufficiently close to k0/2, with p-j>=1. This is possible under (76.2): if k0>=2 then k0<p implies p-k0/2>1, and if k0=1 then p>=2 gives p-k0/2>=3/2. Hence delta=1 in (75.6). Set alpha=1/(2k0), beta=1/k0, L=T^alpha and S=2 T^beta. These choices obey S>=2L and L>=T^(1/(2p)). Then (75.6), divided by an interval length 2T, gives
+T^(-1) integral_(t-2T)^t integral_(B(z,L)) |u|^b
+ <= C [T^(-(alpha-2(j-k0/2)/k0))+T^(-alpha)].
+Indeed 1-alpha-beta(2j-1)=alpha-2(j-k0/2)/k0, and both outer-error and lower-error exponents equal alpha. Let mu=alpha-2(j-k0/2)/k0>0. The joint occupation estimate from (76.1) becomes
+C(T)<=C[T^(-theta mu)+T^(-kappa(alpha-1/(2p)))].
+The required weighting exponent in (71.2) is k0/(2p). The first inequality in (76.2) is precisely (2p/d)/(2k0)>k0/(2p), so choose theta close enough to 2p/d and j close enough to k0/2 that theta mu>k0/(2p). The second inequality ensures kappa(alpha-1/(2p))>k0/(2p). Thus (71.2) follows, yielding finite mass and uniform low-frequency tightness for every compact element with a lower scale bound in this strip.
+
+For completeness, finite mass and tightness also exclude the bounded-scale alternative below d=4p, without relying on the momentum argument of §49. Once mass is recovered, unbounded scales would force mass zero as above; the remaining scales are bounded above and below. Section 27.4 then upgrades normalized compactness to inhomogeneous compactness modulo translations, using the uniform low-frequency tightness. The interaction rigidity theorem §27.1 excludes that entire nonzero pure trajectory. Therefore the compact-element class is empty under (76.2).
+
+In particular k0=1 satisfies all the strict inequalities for every p>=2: d=4p-1 and 2p²>4p-1 (including p=2), while kappa(p-1)=(4p-1)(p-1)²/(2p-1)>1. Thus the entire adjacent dimension d=4p-1 is also covered by the candidate proof. For larger k0 the conditions supply further explicit order-dependent dimensions; for example p=8,d=30 (k0=2) meets both. No sharpness is asserted for these sufficient exponent inequalities. Cases outside them require a stronger estimate, not a conclusion of ill-posedness.
+
+## 77. Candidate unrestricted critical extension and remaining scope
+
+**Theorem 77.1 (candidate analytical, independent review required).** Let p>=2, d>2p and s=1+4p/(d-2p). Suppose d>=4p, or d=4p-k0 with integer k0>=1, k0<p and (76.2). Then every pure defocusing homogeneous critical datum in dot H^p generates a unique global strong solution, with an energy-dependent uniform full critical Z bound and scattering in both directions.
+
+Proof. For d>4p this is the previous candidate theorem §40. For d=4p or the stated lower strip, failure of the uniform property gives the minimal compact strong solution of §38, global and normalized to inf lambda>0 by §39. Section 48 provides the lower positive Sobolev regularity, §71 supplies the double-Duhamel summation, and §§75–76 prove that its joint occupation condition necessarily holds. The resulting inhomogeneous compactness/cascade rigidity contradicts the nonzero element (at the boundary one may use either §49 or §27 for bounded scales). Thus the uniform threshold is infinite. Local theory, scattering and the uniform Z assertion are those of §36. QED within the inherited candidate chain.
+
+**Corollary 77.2.** For the exact original mixed GC03 with arbitrary H^p data, all real 1<r<s and beta,gamma>0, in the dimensions of Theorem 77.1 the global strong energy solution exists uniquely with conserved mass and energy and continuous dependence. The pure uniform bound is the input to the mixed critical transfer of §§16–20, or the endpoint-defect bound of §25 with infinite pure threshold. No mixed scattering assertion follows. This extends the candidate arbitrary-data critical region to every d>=4p-1 for every higher integer p and to further explicit dimensions satisfying (76.2), with no symmetry restriction. In particular it covers the nonradial fourth-order critical d=7 case within this analytical dossier. Prior fourth-order d>=8 and radial results are credited in §17 and §43; no novelty claim for this extension is made without external review.
+
+The principal remaining arbitrary-data critical region is now the lower strip 2p<d<4p-1 outside (76.2). For p=2 the unresolved dimensions are d=5,6. For p=3 the unresolved dimensions are d=7,8,9,10. The sufficient condition can be evaluated for every integer p,d; it is not an exact necessary boundary. The general continuum Lean formalization, independent validation of the inherited local/stability/profile/negative-regularity chain, and individual supercritical strong continuation remain unresolved.
+
+## 78. Verification gate
+
+The new ingredient is the positive principal convex commutator and its lower-order Hardy error estimate, combined with a spatially resolved pair occupation bound. It does not appeal to the unproved quantitative force tail or pair-separation hypotheses of §71.3. The boundary and adjacent-dimension conclusions are candidate unconditional analytical parameter extensions, not accepted or Lean-certified theorems. The focused workflow API returned no runs for preceding head cb151c24a02eb1f5cad8f12b7ece07daa06296da at inspection; that is not a successful kernel check. The twelve existing candidate Lean roots remain unchanged; no new continuum proof has been formalized. Keep the original problem and registry unchanged and issue #100 open pending independent proof review and actual kernel verification.
