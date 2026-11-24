@@ -10,14 +10,14 @@ This page is a **reading view of [problem_registry.json](problem_registry.json)*
 
 **GC08 update, November 24, 2026:** [Cartesian jet classification](../docs/GC08_CARTESIAN_CLASSIFICATION_2026-11-24.md) records the analytical normal form and the locally verified seven-module, 24-root Lean package (standard axioms only, commit `4d05257`). Full invariant classification and field correspondence remain partially formalized; no status promotion. [Issue #102](https://github.com/rickyjreyes/math/issues/102).
 
-**GC26 update, November 24, 2026:** [Exact correspondence audit](../docs/GC26_CORRESPONDENCE_AUDIT_2026-11-24.md) records the ambient negative resolution, historical rectangle classification and limits of formal verification. Generic fiber topology and observation design are separate extensions.
+**GC26 update, November 24, 2026:** [Exact correspondence audit](../docs/GC26_CORRESPONDENCE_AUDIT_2026-11-24.md) records the ambient negative resolution and historical rectangle classification. Merged PR #117 and its owner-reported 57-root audit complete the specified-domain local kernel correspondence; issue #103 is closed. The successful hosted CI and completion-record gate remain pending. Generic fiber topology (#112) and observation design (#113) are separate extensions.
 
 ## At a glance
 
 | Registry outcome | Questions | What it means |
 |:--|--:|:--|
 | Candidate | **298** | The complete GC question is not accepted as resolved |
-| 🟡 Partially resolved | **2: [GC08](#confinement-and-curvature-geometry), [GC26](#inverse-problems-observability-and-control)** | Exact scoped obstructions established; broader formal correspondence remains partial |
+| 🟡 Partially resolved | **2: [GC08](#confinement-and-curvature-geometry), [GC26](#inverse-problems-observability-and-control)** | Exact scoped results established; formal acceptance requirements remain |
 | ✅ Fully resolved | **0** | No GC question is recorded as fully solved |
 | Literature screening | **6 initial screens; 294 not reviewed** | Initial screening is not independent novelty or open-status certification |
 
@@ -91,7 +91,7 @@ This page is a **reading view of [problem_registry.json](problem_registry.json)*
 
 | ID | Mathematical question | GC stage | Existing mathematical evidence | Difficulty |
 |:--|:--|:--|:--|--:|
-| GC06 | [Self-confinement criteria](FORMAL_PROBLEMS.md#gc06-self-confinement-criteria) · [Dossier](./flagship/GC06.md) · [Issue #55](https://github.com/rickyjreyes/math/issues/55) | Candidate · formal · initial review | ✅ Minimizers and strict binding on a mass range | 9/10 |
+| GC06 | [Self-confinement criteria](FORMAL_PROBLEMS.md#gc06-self-confinement-criteria) · [Dossier](./flagship/GC06.md) · [Issue #55](https://github.com/rickyjreyes/math/issues/55) | Candidate · formal · initial review | ✅ Expanded mass-region theorems; all-mass spectral proof candidate and direct pair reduction [audit](../docs/GC06_GC16_GC26_CLOSURE_AUDIT_2026-11-24.md) | 9/10 |
 | GC07 | [Curvature-induced localization](FORMAL_PROBLEMS.md#gc07-curvature-induced-localization) | Candidate · formal | No existing proof mapped | 7/10 |
 | GC08 | [Admissible curvature closures](FORMAL_PROBLEMS.md#gc08-admissible-curvature-closures) | 🟡 Partial · initial review | Analytical [GC08 phase-current counterexample](problems/02-confinement-curvature/GC08.md); [M6B Lean](../lean/MathProofs/M6BClosureTheorem.lean) is a different operator; classification open | 7/10 |
 | GC09 | [Topological confinement protection](FORMAL_PROBLEMS.md#gc09-topological-confinement-protection) | Candidate · formal | No existing proof mapped | 8/10 |
@@ -155,7 +155,7 @@ This page is a **reading view of [problem_registry.json](problem_registry.json)*
 
 | ID | Mathematical question | GC stage | Existing mathematical evidence | Difficulty |
 |:--|:--|:--|:--|--:|
-| GC16 | [Strict binding across masses](FORMAL_PROBLEMS.md#gc16-strict-binding-across-masses) | Candidate · formal | ✅ Strict binding on a mass range | 8/10 |
+| GC16 | [Strict binding across masses](FORMAL_PROBLEMS.md#gc16-strict-binding-across-masses) | Candidate · formal | ✅ All masses at k=0 and expanded nonzero-k ranges; all-mass spectral pair exclusion remains to be verified | 8/10 |
 | GC17 | [Constrained-minimizer uniqueness](FORMAL_PROBLEMS.md#gc17-constrained-minimizer-uniqueness) | Candidate · formal | Related source links; scope unaudited | 8/10 |
 | GC18 | [Symmetry-breaking thresholds](FORMAL_PROBLEMS.md#gc18-symmetry-breaking-thresholds) | Candidate · formal | Related source links; scope unaudited | 9/10 |
 | GC19 | [Critical compactness failures](FORMAL_PROBLEMS.md#gc19-critical-compactness-failures) | Candidate · formal | Related source links; scope unaudited | 8/10 |
@@ -219,7 +219,7 @@ This page is a **reading view of [problem_registry.json](problem_registry.json)*
 
 | ID | Mathematical question | GC stage | Existing mathematical evidence | Difficulty |
 |:--|:--|:--|:--|--:|
-| GC26 | [Local versus global identifiability](FORMAL_PROBLEMS.md#gc26-local-versus-global-identifiability) | 🟡 Partially resolved · formal | ✅ Exact ambient global non-injectivity, non-isolation and range; historical classification analytical with audited lemmas. [Correspondence audit](../docs/GC26_CORRESPONDENCE_AUDIT_2026-11-24.md) | 6/10 |
+| GC26 | [Local versus global identifiability](FORMAL_PROBLEMS.md#gc26-local-versus-global-identifiability) | 🟡 Partially resolved · formal | ✅ Exact ambient global non-injectivity, non-isolation and range; historical complete classification locally kernel-verified (57-root combined audit); hosted acceptance pending. [Correspondence audit](../docs/GC26_CORRESPONDENCE_AUDIT_2026-11-24.md) | 6/10 |
 | GC27 | [Minimal parameter-recovery observations](FORMAL_PROBLEMS.md#gc27-minimal-parameter-recovery-observations) | Candidate · formal | Related source links; scope unaudited | 7/10 |
 | GC28 | [Curvature-map noninjectivity](FORMAL_PROBLEMS.md#gc28-curvature-map-noninjectivity) | Candidate · formal | Related source links; scope unaudited | 7/10 |
 | GC29 | [Noise-stable reconstruction](FORMAL_PROBLEMS.md#gc29-noise-stable-reconstruction) | Candidate · formal | Related source links; scope unaudited | 7/10 |
