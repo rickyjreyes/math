@@ -27,7 +27,9 @@ theorem lineCurrent_deriv (ε : ℝ) (he : 0 < ε) (a b : ℝ → ℝ) (t p q A 
   have hp : 0 < ε+a t^2+b t^2 := by positivity
   have h := (hn.div hd hp.ne').deriv
   change deriv (lineCurrent ε a b) t = _ at h
-  rw [h, ha.deriv, hb.deriv]
+  rw [h]
+  simp only [Pi.sub_apply, Pi.mul_apply, Pi.add_apply, Pi.pow_apply]
+  rw [ha.deriv, hb.deriv]
   field_simp [hp.ne'] <;> ring
 
 /-- A coordinate line parameterized from its given base point. -/
@@ -120,7 +122,7 @@ theorem affineField_smooth : ContDiff ℝ ⊤ affineField := by
 private theorem deriv_affine_square (t : ℝ) :
     deriv (fun s : ℝ => (1+s)^2) t=2*(1+t) := by
   have h := ((hasDerivAt_const t (1 : ℝ)).add (hasDerivAt_id t)).pow 2
-  convert h.deriv using 1 <;> ring
+  convert h.deriv using 1 <;> simp [Pi.add_apply, Pi.pow_apply, id] <;> ring
 
 private theorem second_affine_square :
     deriv (deriv (fun s : ℝ => (1+s)^2)) 0=2 := by
