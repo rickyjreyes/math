@@ -4,6 +4,7 @@ import re
 import sys
 from pathlib import Path
 ROOTS = ["ReyesMath.GC06ShellBinding.mB_lt_mR","ReyesMath.GC06ShellBinding.gap_refined","ReyesMath.GC06ShellBinding.strict_binding_refined","ReyesMath.GC06ShellBinding.compactness_refined","ReyesMath.GC06ShellBinding.exists_minimizer_refined","ReyesMath.GC06NearZeroShell.exists_stretch","ReyesMath.GC06NearZeroShell.seed_upper","ReyesMath.GC06NearZeroShell.kinetic_gap","ReyesMath.GC06NearZeroShell.strict_binding_near_zero","ReyesMath.GC06NearZeroShell.compactness_near_zero","ReyesMath.GC06NearZeroShell.exists_minimizer_near_zero"]
+ROOTS += ["ReyesMath.GC06VirialBinding.stationary_ratio","ReyesMath.GC06VirialBinding.exists_ratio","ReyesMath.GC06VirialBinding.local_comparison","ReyesMath.GC06VirialBinding.chain_strict","ReyesMath.GC06VirialBinding.energy_per_mass_strict","ReyesMath.GC06VirialBinding.strict_binding_virial","ReyesMath.GC06VirialBinding.compactness_virial","ReyesMath.GC06VirialBinding.exists_minimizer_virial","ReyesMath.GC06VirialBinding.exists_minimizer_zero_all_mass","ReyesMath.GC06VirialBinding.energy_per_mass_le_endpoint","ReyesMath.GC06VirialBinding.energy_per_mass_strict_closed","ReyesMath.GC06VirialBinding.strict_binding_closed","ReyesMath.GC06VirialBinding.compactness_closed","ReyesMath.GC06VirialBinding.exists_minimizer_closed"]
 ALLOWED = {"propext", "Classical.choice", "Quot.sound"}
 log = Path(sys.argv[1]).read_text(encoding="utf-8", errors="replace")
 for root in ROOTS:
