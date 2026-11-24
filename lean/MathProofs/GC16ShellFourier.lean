@@ -55,28 +55,7 @@ theorem integral_halfline_shell_le (k : ℝ) {c η : ℝ} (hc : 0 < c) (hη : 0 
   let F : ℝ → ℝ := fun x => (1 + x ^ 2)⁻¹
   let G : ℝ → ℝ := fun x => F (b * x)
   have hF : Integrable F := integrable_inv_one_add_sq
-  have hG : Integrable G := by
-    let A : ℝ := 1 + (b ^ 2)⁻¹
-    have hA : 0 ≤ A := by dsimp [A]; positivity
-    refine (hF.const_mul A).mono' ?_ (Eventually.of_forall fun x => ?_)
-    · dsimp [G, F]
-      exact Continuous.aestronglyMeasurable (by
-        simpa only [one_div] using
-          (continuous_const.div (by fun_prop : Continuous (fun x : ℝ => 1 + (b * x) ^ 2))
-            (fun x => by positivity : ∀ x : ℝ, 1 + (b * x) ^ 2 ≠ 0) :
-            Continuous (fun x : ℝ => 1 / (1 + (b * x) ^ 2))))
-    · change ‖(1 + (b * x) ^ 2)⁻¹‖ ≤ A * (1 + x ^ 2)⁻¹
-      rw [Real.norm_of_nonneg (by positivity)]
-      have h1 : 0 < 1 + (b * x) ^ 2 := by positivity
-      have h2 : 0 < 1 + x ^ 2 := by positivity
-      have heq : A * (1 + (b * x) ^ 2) = 1 + x ^ 2 + (b ^ 2)⁻¹ + (b * x) ^ 2 := by
-        dsimp [A]
-        field_simp [hb.ne']
-        <;> ring
-      simp only [← one_div, mul_one_div]
-      rw [div_le_div_iff₀ h1 h2, one_mul, heq]
-      have hp : 0 ≤ (b ^ 2)⁻¹ := by positivity
-      linarith [sq_nonneg (b * x)]
+  have hG : Integrable G := hF.comp_mul_left' hb.ne'
   have hint : Integrable (fun u : ℝ => 1 / ((c * u - k ^ 2) ^ 2 + η)) := by
     simp_rw [he]
     exact (hG.comp_sub_right (k ^ 2 / c)).const_mul _
@@ -91,10 +70,7 @@ theorem integral_halfline_shell_le (k : ℝ) {c η : ℝ} (hc : 0 < c) (hη : 0 
       rw [integral_sub_right_eq_self]
       have hscale : (∫ u : ℝ, G u) = b⁻¹ * Real.pi := by
         change (∫ u : ℝ, F (b * u)) = _
-        have heq : (fun u : ℝ => F (b * u)) = fun u => F (u / b⁻¹) := by
-          funext u
-          rw [div_inv_eq_mul, mul_comm]
-        rw [heq, Measure.integral_comp_div, abs_of_pos (inv_pos.2 hb), smul_eq_mul]
+        rw [Measure.integral_comp_mul_left, abs_of_pos (inv_pos.2 hb), smul_eq_mul]
         change b⁻¹ * (∫ u : ℝ, (1 + u ^ 2)⁻¹) = _
         rw [integral_univ_inv_one_add_sq]
       rw [hscale]
