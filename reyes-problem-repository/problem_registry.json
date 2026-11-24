@@ -63,7 +63,7 @@
       "flagship": false,
       "dossier": null,
       "claimed_kernel_verified_resolution": false,
-      "note": "2026-11-24: analytical subcritical global strong, all-regime finite-energy weak existence, supercritical energy-class norm inflation, critical local/continuation, known fourth-order slices; candidate critical mixed global for p>=2,d>4p arbitrary and p>=2,d>2p radial, independent review required. Momentum-transverse rigidity at d=4p and one-sided rapid-cascade/high-frequency spacetime conditional exclusions across lower strip. Slow/recurrent zero-momentum cascade, deeper nonradial rigidity, individual supercritical dynamics and Lean PDE formalization unresolved. Issue #100/PR #101; twelve candidate roots unverified. No status promotion.",
+      "note": "2026-11-24: analytical subcritical global strong, all-regime finite-energy weak existence, supercritical energy-class norm inflation, critical local/continuation and known fourth-order slices; candidate critical mixed global for p>=2,d>4p arbitrary and p>=2,d>2p radial, independent review required. Boundary transverse rigidity, weighted one-/two-sided cascade exclusion including logarithmic growth at d=4p, conditional high-frequency mass recovery. Arbitrarily slow/recurrent cascades, deeper nonradial rigidity, individual supercritical dynamics and Lean PDE formalization unresolved. Issue #100/PR #101; twelve candidate roots unverified. No status promotion.",
       "file_path": "problems/01-wave-dynamics/GC03.md",
       "research_area": "Nonlinear wave dynamics",
       "source_class": "original_formal_statement",

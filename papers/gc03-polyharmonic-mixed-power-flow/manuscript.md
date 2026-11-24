@@ -1396,3 +1396,71 @@ At d=4p the candidate chain excludes bounded-scale compact trajectories, nonzero
 The concrete open target is the high-frequency spacetime bound of §52 or a different positive interaction estimate adapted to the higher-order symbol. In the established p=2,d=8 theorem, Pausader's mass recovery uses an independently proved frequency-localized interaction estimate (arXiv:0807.4916v2, §§7–10). No novelty claim for the general-order adaptation is made. The prior high-dimensional and radial candidate chains still require independent adversarial review.
 
 Verification: the direct Actions API returned only a queued catalogue-integrity run for preceding head afb3ce69bbdf7699e6d32b37018798bc4aeed. No successful GC03 kernel pass or transitive audit. Twelve candidate Lean roots and focused workflow unchanged; new analytic estimates unformalized. No new unconditional parameter region, accepted registry promotion or issue closure.
+
+
+## 54. Weighted double-Duhamel mass recovery: slow and logarithmic cascade exclusion
+
+The following analytical reduction requires independent review, including the inherited annular dispersion, compactness and local-theory arguments. It improves §51's sufficient growth conditions and is not an unrestricted critical scattering theorem. Let p>=2, 2p<d<=4p, a_*=d/2-p, h=(d-2p)/(2p) in (0,1], and F(u)=gamma |u|^(s-1)u with s=1+4p/(d-2p). Suppose u is a global strong homogeneous pure trajectory as in §§30,36,51, with compact normalized orbit and inf lambda>0. Denote B_F=sup_t||F(u(t))||_1<infinity, which follows from §51.1 and the positive global lower scale bound. We use both no-waste Duhamel representations of §30.1; no finite mass is assumed.
+
+### 54.1 Exact dyadic time kernel
+
+For any smooth annular dyadic projection P_N the proof of §34.1, retaining the time-dependent forcing sizes rather than their suprema, yields
+||P_Nu(t)||_2² <= C N^d integral_(a>=0) integral_(b>=0)
+ min(1,(N^(2p)(a+b))^(-d/2)) ||F(u(t+a))||_1 ||F(u(t-b))||_1 da db.      (54.1)
+
+Here a,b are elapsed future and past times, not spatial exponents. For finite rectangles the identity follows by pairing the forward/backward Duhamel terms in L², applying the smooth annular stationary-phase bound to U(a+b)P_N^*P_N, and using L¹-L∞ duality. For fixed N the right side is finite even with both forcing sizes replaced by B_F, since d/2>2. Thus the absolute bound justifies successive weak limits as in §30.2. The constants are uniform in t,N.
+
+Integrate in b using ||F(u(t-b))||_1<=B_F. The elementary integral of min(1,z^(-d/2)) from N^(2p)a to infinity is bounded by C(1+N^(2p)a)^(-(d/2-1)), because d/2>1. Consequently
+||P_Nu(t)||_2² <= C B_F integral_0^infinity W_N(a) ||F(u(t+a))||_1 da,    (54.2)
+W_N(a)=N^(d-2p)(1+N^(2p)a)^(-(d/2-1)).
+
+For the low dyadic frequencies N<=1, these kernels satisfy
+sum_(N<=1) W_N(a) <= C (1+a)^(-h).                                     (54.3)
+For a<=1 this is a geometric series because d>2p. For a>1 split at N≈a^(-1/(2p)). Below this value the sum is bounded by C a^(-h). Above it use W_N(a)<=a^(-(d/2-1)) N^(d-2p-2p(d/2-1)). The N exponent is -d(p-1)<0, so the geometric sum is bounded by its lowest frequency term times a constant, again C a^(-h). This is where p>1 matters for this summation. For every fixed a, the sum restricted to N<=delta tends to zero as delta↓0 and is dominated by (54.3).
+
+### 54.2 One-sided weighted cascade theorem
+
+**Theorem 54.1 (conditional).** Let m_+(t)=inf_(tau>=t) lambda(tau). If
+integral_0^infinity (1+t)^(-h) m_+(t)^(-a_*) dt < infinity,                (54.4)
+then u is zero.
+
+Proof. Lemma 51.1 gives ||F(u(t+a))||_1<=C m_+(t+a)^(-a_*). For t>=0, monotonicity of m_+ gives the upper bound C m_+(a)^(-a_*). By (54.2), (54.3), Tonelli, and dominated convergence,
+sup_(t>=0) sum_(N<=1)||P_Nu(t)||_2² < infinity,
+lim_(delta↓0) sup_(t>=0) sum_(N<=delta)||P_Nu(t)||_2² = 0.
+High frequencies are controlled by the uniform homogeneous energy bound. The smooth dyadic partition has bounded overlap and its square sum is bounded above and below by positive constants away from xi=0, so the dyadic L² bounds reconstruct the canonical homogeneous representative as an L² function. They also imply uniform low-frequency Fourier mass tightness (use a fixed cutoff enlargement to cover every xi with |xi|<=delta by bands with N<=C delta).
+
+These estimates show u belongs to C_t H^p on the future half-line: for a time difference first restrict to |xi|>delta, where its L² norm is bounded by delta^-p times the homogeneous difference norm, then use the uniform low-tail bound on both fields and let delta decrease. The pure inhomogeneous local theory agrees with the homogeneous flow by §36 uniqueness and conserves mass. Thus mass is constant.
+
+Because h<=1, (54.4) implies m_+(t)→infinity: a bounded nondecreasing m_+ would give a divergent weighted integral. Hence for each fixed N the right side of (54.2) tends to zero as t→infinity, by dominated convergence using m_+(t+a)^(-a_*)→0 and the same summable dominating expression. Equivalently use the uniform low tail, the shrinking fixed physical annular kinetic norm from compactness and lambda(t)→infinity, and the high-frequency mass bound. With the low tail already uniformly tight and the high tail uniformly bounded by C L^(-2p) for |xi|>L, send t→infinity on the finitely many intermediate bands and then let delta↓0 and L→infinity. This makes the conserved mass zero. By homogeneous uniqueness u is identically zero.
+
+At d=4p this criterion is integral_1^infinity m_+(t)^(-p)dt/t<infinity. Thus lambda(t)>=c (log(2+t))^rho eventually with rho>1/p suffices. Any positive power lower growth also suffices there, however small its exponent. For 2p<d<4p the polynomial sufficient condition obtained from (54.4) is lambda(t)>=c(1+t)^sigma with
+sigma > (1-h)/a_* = (4p-d)/(p(d-2p)).
+Combine this with the independent one-sided endpoint criterion of §51, which required sigma>1/(d-2p). The new polynomial threshold is smaller for d>3p, equal at d=3p, and larger for d<3p; the earlier criterion remains available in the latter range. No threshold is asserted necessary or sharp. The analogous past result uses m_-(t)=inf_(tau<=-t) lambda(tau) for t>=0 and time reversal.
+
+### 54.3 Two-sided weighted cascade theorem
+
+**Theorem 54.2 (conditional).** Under the same global compact/lower-scale assumptions, define the two-sided exterior minimum
+m_both(R)=inf_(|tau|>=R) lambda(tau), R>=0.
+If
+integral_0^infinity (1+R)^(-h) m_both(R)^(-2a_*) dR < infinity,             (54.5)
+then u=0. In particular, at d=4p a two-sided lower bound lambda(t)>=c(log(2+|t|))^rho for rho>1/(2p) suffices.
+
+Proof. The one-sided estimates on future and past half-lines (§51.1 and conjugation/time reversal) give
+||F(u(t))||_1 <= C f(|t|), f(R)=m_both(R)^(-a_*).
+The positive bounded function f is nonincreasing. Write a+b=R in (54.1). By Cauchy-Schwarz and monotonicity, uniformly in t,
+integral_0^R f(|t+a|) f(|t+a-R|) da <= 2 integral_0^R f(r)^2 dr.
+Indeed the integrals of f(|z|)^2 over any intervals of length R are at most 2 integral_0^R f(r)^2 dr: split at zero if the interval crosses zero, or translate the interval toward zero otherwise. Apply this to the two factors separately and take the square root of their product.
+
+Hence (54.1) is bounded, uniformly in t, by
+C N^d integral_0^infinity min(1,(N^(2p)R)^(-d/2)) integral_0^R f(r)^2 dr dR.
+Tonelli followed by the same elementary tail integration used in §54.1 bounds this by C integral_0^infinity W_N(r) f(r)^2 dr. Use (54.3), (54.5) and dominated convergence to obtain global uniform low-frequency mass tightness and finite mass, with no negative Sobolev assumption. Strong L² continuity and conservation follow exactly as in Theorem 54.1. The weighted condition forces m_both(R)→infinity since h<=1, so lambda(t)→infinity in both directions. Normalized compactness then makes the kinetic integral on every fixed bounded frequency ball tend to zero at either infinite endpoint. Split the conserved mass into |xi|<=delta, delta<|xi|<=L, |xi|>L: the first and third are uniformly small by tightness and energy respectively, and the middle tends to zero by that kinetic integral. This contradicts nonzero mass, proving the theorem.
+
+For 2p<d<4p a two-sided eventual lower polynomial growth rate sigma>(1-h)/(2a_*)=(4p-d)/(2p(d-2p)) suffices in (54.5), improving the polynomial criterion of §51 throughout this strip. At d=4p the two-sided logarithmic threshold is half that of Theorem 54.1. The condition can also be formulated with any bounded nonincreasing forcing envelope f controlling both time directions, with integral (1+R)^(-h) f(R)^2 finite; in this more general version mass recovery and tightness still hold, and a separate unbounded frequency sequence suffices for the contradiction. If the envelope is as above, (54.5) itself supplies the diverging frequency scale.
+
+## 55. Limits of the weighted approach and outstanding verification
+
+These estimates use time dependence of the forcing instead of discarding it in the endpoint annular double-Duhamel estimate, which at d=4p yields only an O(1) bound for each low band. The weighted summation recovers finite mass and uniform low-frequency tightness under the stated integral conditions, even if no fixed negative Sobolev exponent is recovered. They do NOT show that a putative minimal critical element obeys either weighted condition. In particular a scale returning infinitely often to a bounded set makes the corresponding future or exterior infimum bounded; no inference from sup lambda=infinity to an eventually increasing lower envelope is valid. At d=4p arbitrarily slow unbounded growth below the sufficient logarithmic rates is also not covered. The logarithmic endpoints themselves require a separate integrability check, not a sharpness claim.
+
+The candidate critical classification is unchanged: arbitrary data for p>=2,d>4p and radial data for p>=2,d>2p require independent review; arbitrary nonradial data in the remaining strip are unresolved (with the previously established fourth-order d=8 exception). The new conditions rule out larger subclasses of cascades but not recurrent excursions, nor the remaining bounded-scale obstructions deeper in the strip. A general dynamical estimate controlling the weighted forcing integral or a different rigidity mechanism is still needed. Existing double-Duhamel and fourth-order mass-recovery techniques are prior art (Miao–Xu–Zhao arXiv:0807.0692; Pausader arXiv:0807.4916). No novelty or priority claim is made for this weighted refinement.
+
+Verification: direct GitHub Actions query for preceding head a4a57521e27874e8b201d7cf43fe0ad3984ed99d returned only queued catalogue-integrity run 45368106588. No successful focused Lean build or transitive audit has been obtained. Twelve existing candidate Lean roots are unchanged; the dynamical inequalities and new weighted theorems are unformalized. No unconditional parameter extension, accepted registry status promotion, or issue closure.
