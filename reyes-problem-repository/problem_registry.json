@@ -525,7 +525,7 @@
       "flagship": false,
       "dossier": null,
       "claimed_kernel_verified_resolution": false,
-      "note": "Awaiting scope freeze, prior-art audit, and counterexample screening.",
+      "note": "Candidate analytical global alias and fiber results recorded in docs/GC26_GLOBAL_IDENTIFIABILITY_LEDGER_2026-11-24.md; candidate GC26GlobalIdentifiability Lean module pending exact-head CI and correspondence audit. Arbitrary constrained domains and N-observation extensions unresolved.",
       "file_path": "problems/06-inverse-observation-control/GC26.md",
       "research_area": "Inverse problems, observability and control",
       "source_class": "original_formal_statement",
