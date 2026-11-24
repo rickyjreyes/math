@@ -1194,3 +1194,108 @@ This does not exclude centers with linear drift, faster-than-dispersive excursio
 The direct frequency-localized interaction attempt is incomplete. The exact forced action and error budget, and the counterexample in §45.3, prevent claiming that qualitative cutoff convergence and homogeneous compactness suffice. A successful extension must prove the coupled long-time error condition in §45.1 (or a different positive interaction inequality), including the mass tail created by the projection, or show that a minimal element has sufficiently slow center excursions as in §46.1. The bounded-scale case alone does not supply this. Frequency-localized interaction Morawetz estimates for second-order critical NLS, e.g. Colliander–Keel–Staffilani–Takaoka–Tao arXiv:math/0402129 and Visan's thesis (Appendix C), require additional dynamical control and cannot be imported unchanged for higher-order symbols. Fourth-order interaction estimates in Miao–Xu–Zhao arXiv:0807.0692 are used after recovering mass in the high-dimensional regime. Pausader–Xia, Nonlinearity 26 (2013), DOI 10.1088/0951-7715/26/8/2175, concerns dimensions 1–4 and subcritical scattering, not the missing fourth-order energy-critical dimensions 5–7. No matching unrestricted lower-strip result was identified in this focused search; this is not proof of an open-problem status.
 
 No new unconditional nonradial parameter region or accepted theorem is claimed. The high-dimensional and radial candidate proof chains remain subject to independent review; individual-data supercritical strong dynamics remain unresolved. At inspection of head 5abef4a8424ad9fb0491259d7618c509b8d02a15 GitHub returned no workflow runs. Existing twelve candidate Lean roots and focused workflow unchanged; the forced interaction calculation, functional counterexample and center-excursion theorem are analytical and unformalized. Keep issue #100 and PR #101 open/draft; no accepted registry promotion.
+
+
+## 48. Positive lower regularity at and below the dimensional boundary
+
+The following is an analytical continuation of the candidate proof chain, not an independently reviewed or Lean-certified result. Let p>=2, 2p<d<=4p, b=s+1=2d/(d-2p), s=1+4p/(d-2p), and use the global homogeneous pure strong class of §36. Suppose u is a nonzero global solution with compact normalized orbit in dot H^p and inf_t lambda(t)>0, as in the candidate minimal-element construction of §§38–39. No finite mass is assumed.
+
+**Lemma 48.1.** Under these assumptions,
+sup_t ||D^j u(t)||₂ < infinity for every 2p-d/2 < j <= p.
+In particular at d=4p one obtains every strictly positive order up to p, including orders strictly below 1/2.
+
+Proof. The additional decay theorem of §33 first supplies uniform L^ell for some s<ell<b. Put a=d(s/ell-1/2). Then a>p>=2 and a<d/2<=2p. The annular double-Duhamel bound of §34.1 gives a uniform dot H^j bound for 2p-a<j<p. Choose such a j strictly less than p and strictly positive.
+
+Set j_s=d/2-d/s; this lies strictly below p since s<b and strictly above zero because s>=3 throughout this strip. If j<=j_s, homogeneous Sobolev gives uniform L^(2d/(d-2j)), whose exponent is <=s. Interpolate with L^b if necessary to obtain uniform L^s, so F(u) lies uniformly in L¹. In this case apply §34.1 at a=d/2>2, and sum the low dyadic bands: this gives every order j'>2p-d/2 up to p.
+
+Otherwise j>j_s, the Sobolev exponent ell_j=2d/(d-2j) is greater than s and less than b, and the nonlinear exponent q=ell_j/s is in (1,2). The annular exponent is a_j=p+s(p-j)>p>=2. Since ell_j>s, also a_j<d/2<=2p. Define
+j_new=p-((1+s)/2)(p-j).
+Then 2p-a_j<j_new<j and j_new>0: indeed s(p-j)<p and (1+s)/2<s. The annular estimate yields this improved order. The improvement p-j grows by the fixed factor (1+s)/2>1 until j<=j_s, so only finitely many steps are needed. Then the preceding L¹-forcing argument finishes. All norms are in the canonical homogeneous representative, with no polynomial part, and homogeneous embeddings are used only for 0<j<d/2. QED.
+
+At d=4p the lemma yields a finite dot H^(1/2) norm but does not establish finite mass: the low-band L² estimate at the final q=1 is only O(1), not dyadically summable without a positive derivative weight. For d=4p-1 it yields only j>1/2; at this endpoint it does not establish even a finite momentum. This is an exact limitation of the estimate, not a conclusion about the actual solutions.
+
+## 49. Momentum-transverse localized virial in the homogeneous energy space
+
+The important change from §45 is to use a conserved quantity requiring only a half derivative rather than global mass. The transverse direction idea has a direct methodological precedent in T. Inui, K. Komada and K. Nishimura, "Scattering of non-radial solutions for the fourth-order Schrödinger equation with dot H^(1/2)-critical and supercritical nonlinearity", arXiv:2610.05802 (5 October 2026), which treats a focusing energy-subcritical H² problem below a ground-state threshold. Their theorem does not prove the present defocusing homogeneous energy-critical result. We give the general-order commutator and the required homogeneous multiplier argument explicitly. No novelty claim is made.
+
+**Theorem 49.1 (candidate conditional rigidity).** For any integer p>=2 and d>2p, let u be a nonzero global pure strong critical solution, with a compact normalized orbit in dot H^p, and assume
+0<lambda0<=lambda(t)<=lambda1<infinity,
+sup_t ||D^j u(t)||₂<infinity for some 0<j<1/2.
+Then such a solution does not exist. There is no radiality, finite-mass, zero-momentum, bounded-center, or sublinear-center hypothesis. This applies at d=4p with the lower Sobolev assumption supplied by Lemma 48.1, if the frequency scale is also bounded above.
+
+### 49.1 Momentum definition and conservation without mass
+
+By interpolation between dot H^j and dot H^p, the solution is uniformly bounded in dot H^(1/2) and dot H^1 and strongly continuous into both spaces. For continuity apply the interpolation inequality to the time difference and use strong continuity in dot H^p. Define the vector
+P_mom(u)=integral xi |uhat(xi)|² dxi
+in angular-frequency Fourier convention. The integral is absolutely convergent by the half-derivative norm. Equivalently its l-th component is the imaginary part of the pairing of u with ∂_l u, interpreted by duality dot H^(1/2) with dot H^(-1/2); it agrees with the classical momentum for smooth finite-mass data. Continuity of this quadratic form follows from the same norm.
+
+To prove conservation take real smooth annular cutoffs Q_n as in §42.4, and u_n=Q_nu. They converge on compact time intervals in C_t dot H^(1/2), C_t dot H^1, C_t dot H^p and Z. Uniform time convergence follows from compactness of each continuous path and the multiplier bounds. The forced equation has residual e_n=Q_nF(u)-F(u_n) with ∇e_n→0 in L²_t L^k, k=2d/(d+2), by the first-derivative difference bound used in §42.4. The annular fields have finite L² and arbitrary Sobolev regularity, and the forced momentum derivative is
+d/dt P_mom,l(u_n)=2 Re integral conj(e_n) ∂_l u_n
+(up to Fourier convention, here D=-i∇). The kinetic contribution vanishes by Fourier unitarity, and the pure power contribution is the integral of a spatial derivative of gamma |u_n|^b/b and vanishes by integrability. These calculations may be justified with outer spatial cutoffs, then passed to the full space; the bandlimited fields and their first derivatives have finite L² and L∞, and the power density has integrable derivative. Integration by parts puts the derivative in the remaining error onto e_n, and on a compact interval I the integrated absolute error is bounded by
+2 ||∇e_n||_(L²(I;L^k)) ||u_n||_(L²(I;L^(k'))),
+k'=2d/(d-2).
+The second norm is bounded by the uniform dot H^1 norm and Sobolev embedding. The first tends to zero. Convergence of the momentum values then proves P_mom(u(t))=P_mom(u(0)) for every t. No Galilean symmetry of (-Delta)^p has been invoked.
+
+Let Π be the orthogonal projection onto the perpendicular complement of this fixed momentum vector when it is nonzero, and take Π=Id when the vector is zero. Then Π is a constant symmetric positive semidefinite matrix, Π P_mom=0, and tr Π>=d-1>0.
+
+### 49.2 A Lipschitz center selection in the bounded-scale class
+
+The bounded scale interval and normalized compactness imply compactness of the family u(t,·+x(t)) in dot H^p after translations, as in §27.4. The uniform dot H^j bound, preserved by translation, upgrades this translated compactness to dot H^(1/2): for a sequence convergent in dot H^p use interpolation on pairwise differences with the uniform lower norm. Its Cauchy limit in the half-derivative norm represents the same distribution (via the homogeneous Sobolev representatives); equivalently work in the intersection of the two homogeneous spaces. The translated family thus has compact closure in both norms.
+
+The same compact homogeneous family has a positive minimum b-norm by conservation of positive energy and nonzero profiles. The compact family also has uniformly small spatial b-tails. There exist a common h>0 and C0<infinity such that
+|x(t')-x(t)|<=C0 whenever |t'-t|<=h.
+In detail, the homogeneous local theory of §36 and a finite net of the compact translated initial profiles give a common two-sided interval [-h,h] and uniform convergence of the translated solution at nearby times to its initial value in dot H^p as h decreases. This follows from continuous dependence on that compact set, joint continuity of the local flow there, and compactness; translations commute with the equation. Hence the L^b difference in the frame of x(t) is uniformly small. Choose a common radius R0 so that each profile has at most a sufficiently small fraction of its uniformly positive b-moment outside B(0,R0), and choose h small enough that the nearby solution in the same frame still has more than half its b-moment inside B(0,R0). For example choose both errors in L^b smaller than one eighth the uniform lower b-norm and use the reverse triangle inequality on the ball and the tail. The nearby solution also has most of its b-moment inside B(x(t'),R0) by the defining compact family. The two balls cannot be disjoint, giving C0=2R0. No regularity of the originally chosen center function is required.
+
+Interpolate the centers x(nh), n∈Z, piecewise linearly to form y(t). It is globally Lipschitz, with |y'|<=C0/h almost everywhere and |y(t)-x(t)|<=2C0. The family u(t,·+y(t)) is still precompact in both dot H^p and dot H^(1/2), by continuity of translation on the product of the compact profiles and bounded displacement closure. This gives a center with bounded velocity, not a center assumed bounded in position or asymptotically stationary.
+
+### 49.3 Exact anisotropic action and removal of the leading center term
+
+Fix a smooth radial cutoff chi equal to one on |z|<=1 and zero outside |z|>=2, and set a_R(z)=chi(z/R) Π z. Use
+J_R(t)=Im integral conj(u(t,x)) a_R(x-y(t))·∇u(t,x) dx.
+As in §42.2, |J_R(t)|<=C R^(2p) sup_t||D^p u(t)||₂², independently of y(t), by local Holder and homogeneous Sobolev. The action is finite without mass.
+
+For a fixed center, the commutator formula of §42 holds unchanged for this smooth vector field. For the full linear anisotropic field a_infty(z)=Πz, the kinetic form is
+K_infty=2p integral |xi|^(2p-2) (xi·Πxi) |uhat(xi)|² dxi >=0.
+For Schwartz functions this is differentiation of the dispersion symbol |xi|^(2p) along the linear dual vector field Πxi, equivalently the commutator with a·∇+tr(Π)/2. The form is bounded by 2p||D^p u||₂² and extends by density. The nonlinear term is
+N_infty=gamma (s-1)/b tr(Π) ||u||_b^b,
+uniformly bounded below by a positive constant, because the b-norm has a positive minimum and tr(Π)>0. Comparing the differentiated coefficients of the cutoff vector field to the full linear field gives the same homogeneous derivative-tail estimates as §42.3. The physical orbit recentered at y(t) is compact in dot H^p, so
+sup_t (|K_R-K_infty|+|N_R-N_infty|) -> 0 as R→infinity.
+This is a compactness-based tail comparison, not a universal sign claim for a truncated high-order commutator.
+
+The moving-center derivative supplies precisely
+C_R(t)=-sum_l y'_l(t) Im integral conj(u(t,x)) (∂_l a_R)(x-y(t))·∇u(t,x) dx.
+The constant full-field portion of the pairing is the l-th component of Π P_mom(u), hence zero. It remains to justify that the difference tends uniformly to zero at half-derivative regularity, without estimating an infinite L² norm or an absolutely integrable u∇u density.
+
+For each component write B_R(z)=∂_l a_R(z)-Π e_l. It is a bounded smooth vector multiplier, vanishes on |z|<=R, and equals a constant outside |z|>=2R. Multiplication by any component of B_R is bounded on dot H^(1/2), uniformly in R. To see this, subtract its constant outside the ball; the remaining function is a fixed compactly supported smooth function rescaled by R, with amplitude independent of R. Its D^(1/2) norm in L^(2d) is invariant under this rescaling. The fractional product estimate and homogeneous Sobolev give, componentwise,
+||D^(1/2)(B_R f)||₂
+ <= C (||B_R||∞ ||D^(1/2)f||₂ + ||D^(1/2) B_R||_(2d) ||f||_(2d/(d-1)))
+ <= C' ||D^(1/2)f||₂.
+The fractional derivative of the constant part is zero. This uses the ordinary fractional Leibniz estimate at order 1/2 (also used in §19) and exponents strictly between one and infinity. The same assertion follows for the homogeneous canonical representatives by smooth approximation. On smooth compactly supported f, B_R f is identically zero for large enough R. Density and the uniform multiplier bound therefore give strong convergence to zero on dot H^(1/2), uniformly on any compact subset by finite nets.
+
+For the compact recentered half-derivative family established in §49.2, this shows that
+sup_t |Im <B_R u(t,·+y(t)), ∇u(t,·+y(t))>| -> 0.
+Here the pairing is dot H^(1/2) against dot H^(-1/2), bounded by the corresponding norms; the spatial derivative is bounded between those spaces. For the compactly supported coefficient ∂_l a_R the pairing agrees with the local integral by local H^p regularity and density, so decomposing it into Πe_l and B_R is legitimate even when u is not in L². Since y' is uniformly bounded, sup_ess |C_R| tends to zero. This is the mechanism that avoids the low-frequency projected-mass obstruction of §45. It is not a Galilean transformation or an assumption of zero momentum.
+
+The integrated identity
+J_R(t2)-J_R(t1)=integral_(t1)^t2 (K_R+N_R+C_R)dt
+holds at homogeneous energy regularity. For justification repeat the annular approximation of §42.4; the center is Lipschitz, so the coefficient is absolutely continuous in time, and the chain rule yields the displayed additional term almost everywhere for the approximants. On compact time intervals the forcing errors tend to zero by the same L²L^k and C_t L^(b') estimates, with constants depending on fixed R and uniform bounds of the translated cutoffs; translation does not change their norms. For the center term use convergence in C_t dot H^(1/2), the uniform multiplier bound (also for the full ∂a_R), and bounded y'. Thus its time integrals converge as well. The original kinetic and nonlinear terms converge by §42.4, with y(t) in a compact position range on each compact time interval. This proves the integrated identity without any differentiability of the original center function.
+
+Choose sufficiently large fixed R so that the uniform kinetic/nonlinear tail errors and the moving-center error sum to less than half the positive minimum of N_infty. Then J_R' >= c>0 almost everywhere. Integrating over arbitrary long intervals contradicts the bound on J_R. This proves Theorem 49.1.
+
+### 49.4 Nonzero momentum excludes the unbounded-scale alternative
+
+Retain the hypotheses of compact normalized orbit with inf lambda>0 and the uniform lower homogeneous norm j<1/2, but do not assume an upper frequency-scale bound. Conservation of momentum, proved in §49.1, does not require bounded scale; the earlier proof uses only local Z regularity and the uniform lower norm. If there is a sequence lambda(t_n)→infinity, then ||D^(1/2)u(t_n)||₂→0. Indeed for fixed 0<delta<L, split the weighted Fourier integral:
+- on |xi|<=delta it is bounded by delta^(1-2j) sup ||D^j u||₂²;
+- on delta<|xi|<=L it is bounded by delta^(1-2p) times the kinetic Fourier integral over |xi|<=L; the latter tends to zero along the sequence, by normalized compactness and the scaled low-frequency tail cutoff L/lambda(t_n);
+- on |xi|>L it is bounded by L^(1-2p) sup ||D^p u||₂².
+Send n→infinity, then delta→0 and L→infinity. Since |P_mom(u)|<=||D^(1/2)u||₂², conserved momentum must be zero.
+
+Consequently nonzero conserved momentum implies sup lambda<infinity. Apply Theorem 49.1 to exclude that case. Combining the two statements, every hypothetical nonzero global compact strong pure trajectory satisfying the lower-scale and lower-regularity hypotheses must have identically zero momentum and unbounded frequency-scale excursions. The theorem does not exclude that remaining class. In particular the vanishing of the half-derivative norm on a high-frequency sequence does not imply vanishing of the conserved positive energy, and the half-derivative norm is not itself a conserved quantity.
+
+## 50. Consequences and remaining gaps
+
+At the boundary d=4p, Lemma 48.1 supplies the lower Sobolev order j<1/2 automatically for a global normalized-compact minimal element with inf lambda>0. Thus the new result eliminates the entire bounded-scale class there and eliminates all nonzero-momentum cases. If the candidate minimal-element and normalization arguments in §§36–39 are correct, failure of the pure uniform critical bound at d=4p requires a global homogeneous compact strong element with zero momentum, inf lambda>0, and sup lambda=infinity. This is a narrower obstruction for higher p>=3 at the boundary, not an unconditional global existence theorem. For d<4p the same rigidity applies conditionally if the lower norm j<1/2 is supplied by an independent argument, but Lemma 48.1 does not supply it. A new estimate is required there.
+
+The bounded-velocity construction cannot be applied to the unbounded-frequency-scale class by simply using the same fixed time step: the local existence times obtained by scaling may shrink like lambda^(-2p). Nor can one claim that the multiplier error in §49.3 is small after multiplication by an unbounded center velocity. The exact remaining boundary task is therefore to exclude the zero-momentum frequency cascade (or obtain a moving-center bound that permits the error estimate). For the deeper strip 2p<d<4p the missing half-derivative regularity or an alternative interaction weight remains an additional obstacle. No new unconditional nonradial parameter region is asserted. The prior high-dimensional and radial theorem statements remain candidates requiring independent review.
+
+Verification: the connector's pull-request workflow-run query returned no runs for head b822c88392e293d23674d1ee8df6dab9511bfc8f; a direct GitHub actions/runs query for that same head showed one queued catalogue-integrity run (ID 45366570947), not a successful GC03 Lean check. Twelve candidate Lean roots and their focused audit workflow are unchanged. The new momentum identity, homogeneous regularity and transverse commutator are analytical; no kernel pass, independent review, accepted registry promotion, or issue closure is asserted.
