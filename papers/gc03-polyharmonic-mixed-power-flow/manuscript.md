@@ -784,3 +784,120 @@ The present revision closes the full compact-orbit rigidity step for finite-mass
 The double-Duhamel approach is established prior art: see Killip–Visan, arXiv:0804.1018 and Clay lecture notes on NLS at critical regularity (https://www.math.ucla.edu/~visan/ClayLectureNotes.pdf), Miao–Xu–Zhao arXiv:0807.0692 for d>=9 fourth-order energy-critical scattering, and Miao–Zheng arXiv:1211.4668 for fourth-order scattering theory. Those works use negative regularity and cascade exclusion. The present section adapts that estimate to general integer p with explicit finite-mass and integrability hypotheses; it makes no novelty claim and does not import their fourth-order minimal-element result as a general-order theorem. The dimensional restriction in the double-Duhamel estimate is a proof-method restriction.
 
 No new unconditional parameter region of the original mixed equation is claimed. Individual-data supercritical strong classification remains open. The twelve candidate Lean roots and focused audit workflow from the preceding revision are unchanged: at inspection of head b9d09142cf8e7240d0e783b3c8fee324a22d0638 the workflow API returned no runs. This is not a pass, failure, or proof that the workflow executed. The no-waste Duhamel, negative regularity and compact-rigidity arguments above are not Lean-formalized. No issue closure, registry promotion or kernel certification.
+
+
+## 33. Homogeneous integrability improvement via an annular nonlinear recurrence
+
+All assertions in §§33–35 are analytical, pending independent review and Lean formalization. This section adapts the additional-decay recurrence of Miao–Xu–Zhao (arXiv:0807.0692v2, §5, particularly Lemma 5.1 and Proposition 5.1), with a different telescoping estimate using only one spatial derivative and small adjustable exponents. No novelty claim for the method or priority claim is made.
+
+Let p>=1, d>2p, b=2d/(d-2p), a_*=d/2-p=d/b, s=1+alpha, alpha=4p/(d-2p)>0. Suppose u is a global strong homogeneous pure critical trajectory with the Duhamel and compact normalized orbit hypotheses of §30.1. Assume in addition inf_t lambda(t)>0. Thus B=sup_t||D^p u(t)||_2 is finite and for every eta>0 one can choose a small dyadic N0 so that
+sup_t ||D^p P_(<=C N0)u(t)||_2 <= eta
+for any fixed finite cutoff factor C. This follows from the uniform low-frequency homogeneous tail of the normalized compact set, since the normalized cutoff is at most C N0/inf lambda. This is the only use of the positive lower scale in the recurrence. The hypothesis has not been derived for arbitrary homogeneous minimal elements.
+
+**Theorem 33.1.** Under these assumptions there is ell strictly between max(2,s) and b (in particular ell>2) with sup_t||u(t)||_ell<infinity.
+
+### 33.1 Annular single-Duhamel estimate
+
+Choose a number delta>0 sufficiently small that s delta<min(p,1) and, defining
+1/R=1/b-delta/d, 1/K=1/b+s delta/d,
+theta=(p-s delta)/(p+delta),
+we have finite R>b, 2<K<b, 0<theta<1, and theta+alpha>1. Such a choice is possible as delta→0, since theta→1, and we also take delta<a_*. The identities
+1/K+alpha/R=1/R', 1/K=(1-theta)/2+theta/R
+are exact, where R' is the dual exponent. In particular the nonlinear spatial Hölder estimates below use only exponents in (1,infinity), with the factor |v|^alpha interpreted in L^(R/alpha); R/alpha>1 because alpha/b=2p/d<1/2.
+
+Use a standard smooth low-frequency multiplier S_M=chi(D/M) and annular increments u_M=(S_M-S_(M/2))u; chi is radial, equal to one on the unit ball, and zero outside the radius-two ball. Let
+A(M)=M^(-delta) sup_t||u_M(t)||_R.
+By Bernstein and the homogeneous bound, A(M)<=C B for all dyadic M, and A(M)<=C eta for M<=N0 after the choice of cutoff above. The same statements hold for the band kinetic norms e(M)=sup_t||D^p u_M||_2. For any fixed time,
+||u_M||_K <= C e(M)^(1-theta) A(M)^theta M^(-s delta),
+||∇u_M||_K <= C e(M)^(1-theta) A(M)^theta M^(1-s delta),
+by interpolation of L² (bounded by M^-p e(M)) and L^R, followed by Bernstein for the derivative. Also
+||S_M u||_R <= sum_(L<=M) L^delta A(L)=M^delta B_M,
+B_M=sum_(L<=M)(L/M)^delta A(L).
+The dyadic reconstruction is valid in L^R for S_M u by absolute convergence of this sum and distributional identification.
+
+For an annular multiplier Q_N supported in a fixed multiple of the unit annulus scaled to N, the kernel of U(t)Q_N obeys
+||U(t)Q_N||_(L^1→L∞) <= C N^d min(1,(N^(2p)|t|)^(-d/2)).
+At unit scale this is the ordinary stationary-phase estimate for the smooth compact annular Fourier amplitude: the Hessian of |xi|^(2p) is positive definite with eigenvalues bounded below on the support. The gradient map of the radial strictly convex phase is injective, so at most one stationary point occurs for a fixed scaled x/t; uniform stationary phase near the possible stationary point and integration by parts away from it give the uniform t^-d/2 bound. Small t is bounded by the Fourier L¹ norm. Scaling gives the displayed estimate. Interpolation with the L² multiplier bound gives
+||U(t)Q_N||_(L^(R')→L^R) <= C N^(2(p+delta)) min(1,(N^(2p)|t|)^(-(p+delta))).
+Since p+delta>1, its time integral is C N^(2delta). Applying the one-sided no-waste Duhamel identity of §30.1 with the annular increment multiplier P_N=S_N-S_(N/2), and inserting a wider annular Q_N identically one on its support, yields
+A(N)<=C N^delta sup_t||P_N F(u(t))||_(R').
+Indeed the retarded integral of the localized forcing is absolutely convergent in L^R under the bound proved below, and agrees with the weak homogeneous limit after testing against Schwartz functions. This uses annular dispersive decay, not an unjustified stronger decay for the unrestricted polyharmonic propagator.
+
+### 33.2 Nonlinear telescoping estimate
+
+Fix N<=N0 dyadic. Set F(z)=gamma |z|^alpha z. Use the exact telescoping identity
+F(u)=F(S_N u)+sum_(M>N)[F(S_M u)-F(S_(M/2)u)].
+It holds in L^(b/s) by critical Sobolev, convergence S_Mu→u in L^b for each t, and the power difference inequality. The series after P_N is also absolutely convergent in L^(R') by the following estimates, so both representations agree as distributions. No Fourier support assertion is made about F(S_Mu) for noninteger powers.
+
+For the high terms the mean-value estimate gives
+||F(S_Mu)-F(S_(M/2)u)||_(R')
+ <= C ||u_M||_K (||S_Mu||_R+||S_(M/2)u||_R)^alpha
+ <= C e(M)^(1-theta) M^(-delta) A(M)^theta B_M^alpha.
+Consequently the part M>N0 contributes at most C_B (N/N0)^delta to N^delta||P_N F(u)||_(R'), using global boundedness of A,e,B_M and the summable geometric weights. For N<M<=N0, use A(M),B_M,e(M)<=C eta and theta+alpha>1 to obtain
+e(M)^(1-theta) A(M)^theta B_M^alpha
+ <= C eta^alpha (A(M)+B_M).
+Here A^theta B^alpha <= (A+B)^(theta+alpha), and the surplus power is bounded by (C eta)^(theta+alpha-1). This inequality is valid both for alpha<1 and for alpha>=1.
+
+For the low term, use the annular cancellation estimate
+||P_N F(S_Nu)||_(R') <= C N^-1 ||∇F(S_Nu)||_(R').
+It follows by writing the annular symbol as N^-1 times a sum of smooth rescaled multipliers applied to spatial derivatives. The real first derivative chain rule and the exact Hölder exponents give
+||∇F(S_Nu)||_(R') <= C ||S_Nu||_R^alpha ||∇S_Nu||_K.
+The sum of low derivative bands in L^K converges absolutely because c1=1-s delta>0. For L<=N we have e(L)<=C eta. Multiplying by N^(delta-1), the resulting low term is bounded by
+C eta^(1-theta) B_N^alpha sum_(L<=N)(L/N)^c1 A(L)^theta.
+Since 0<theta<1, the weighted Jensen inequality bounds the last sum by C (sum_(L<=N)(L/N)^c1 A(L))^theta; the sum of the weights is a finite constant. Combine with the same surplus-power argument and the bound on both geometric averages by C eta. The low term is at most
+C eta^alpha sum_(L<=N)[(L/N)^delta+(L/N)^c1] A(L).
+This estimates the noninteger-power low-frequency contribution without assuming a derivative of order p of the coefficient DF. All displayed estimates are uniform in time; taking suprema is legitimate.
+
+Combining the high, middle and low terms and expanding B_M gives
+A(N) <= C_B (N/N0)^delta
+ + C eta^alpha sum_(L<=N0) 2^(-c |log2(N/L)|) A(L)
+for some fixed c>0, for example any c<min(delta,c1)/2. For the double sum from the middle terms, use the elementary convolution of two exponential sequences: sum over M>N with M>=L of (N/M)^delta (L/M)^delta is bounded by C 2^(-delta |log2(N/L)|). If L<=N, factor out (L/N)^delta and sum (N/M)^(2delta); if L>N, factor out (N/L)^delta and sum (L/M)^(2delta). All other sums already have the indicated exponential weights. Constants depend on d,p,s and cutoffs but not on N0 or eta (apart from the fixed uniform B in C_B).
+
+### 33.3 Solving the recurrence and obtaining the integrability improvement
+
+Write N=2^-j N0, j>=0. The recurrence has the form A<=f+T A on bounded nonnegative sequences, with f_j=C_B 2^-delta j and T a positive kernel bounded by C eta^alpha 2^-c|j-k|. Choose any 0<rho<min(delta,c), and then choose eta sufficiently small that T has norm <1/2 both on ordinary ell∞ and on weighted ell∞ with norm sup_j 2^(rho j)|v_j|. This is possible by geometric summation; the choice of eta determines N0 using the scale bound. Iterate on the ordinary bounded sequence:
+A<=sum_(m=0)^(n-1) T^m f + T^n A.
+The last term tends uniformly to zero, since A is already bounded in ordinary ell∞. The infinite series belongs to the weighted space by contraction there. Therefore
+sup_t||u_N(t)||_R <= C_(u,N0) N^(delta+rho), N<=N0.
+This argument does not assume a priori that A belongs to the weighted space.
+
+Interpolate with ||u_N||_2<=C B N^-p. If 2<ell<R and 1/ell=(1-lambda_ell)/2+lambda_ell/R, the low-band exponent is
+-p(1-lambda_ell)+(delta+rho)lambda_ell
+ = a_*-d/ell+rho lambda_ell.
+At ell=b the first two terms cancel, and lambda_b=p/(p+delta)>0; thus the exponent remains positive for ell<b sufficiently close to b. Choose such an ell also with ell>max(2,s), possible because b=s+1>max(2,s). Low dyadic L^ell norms are summable. For N>N0 Bernstein from L² gives ||u_N||_ell<=C B N^(a_*-d/ell), summable at high frequencies since ell<b. Sum the band series in L^ell; distributional reconstruction in the canonical homogeneous L^b representative identifies it with u. This proves Theorem 33.1.
+
+## 34. Annular double-Duhamel bootstrap reaches finite mass for p>=2, d>4p
+
+**Lemma 34.1.** Under the global no-waste hypotheses of §30.1, if sup_t||F(u)||_q<=B_F with 1<=q<2, and a=d(1/q-1/2)>2, then
+sup_t||P_N u||_2 <= C B_F N^(a-2p).
+In particular for any 2p-a<k<=p the trajectory is uniformly in dot H^k (when the interval of k is nonempty), by summing low bands and using the original uniform dot H^p bound at high frequencies. For negative k the conclusion implies finite mass and strong H^p continuity as in §30.2.
+
+Proof. Repeat the two successive weak-limit pairings in §30.2, but use the annular dispersive estimate of §33.1 for U(t-t')P_N^2. It gives the absolute pairing bound
+C B_F² N^(2a) min(1,(N^(2p)|t-t'|)^(-a)).
+Integrating over the forward/backward quadrant yields
+C B_F² N^(2a-4p) integral_0^∞ R min(1,R^-a)dR.
+The last integral is finite exactly for a>2. Take square roots and sum as stated. This is a genuine improvement of the time-integrability condition compared with §30.2; the dyadic power a-2p is unchanged. The cutoff is essential. No derivative of the nonlinearity is invoked.
+
+**Theorem 34.2.** Let p>=2 and d>4p. A global homogeneous pure critical trajectory satisfying the strong Duhamel and normalized compactness hypotheses of §30.1 and inf_t lambda(t)>0 has uniform negative Sobolev regularity of some order epsilon>0, without assuming finite mass or any initial extra integrability.
+
+By Theorem 33.1, u is uniformly L^ell for ell<b sufficiently close to b and ell>s. Put q=ell/s; then 1<q<2 and a=d(s/ell-1/2)>p, since d(s/b-1/2)=p. In particular a>2 because p>=2. Lemma 34.1 gives a uniform dot H^k bound at some k strictly between max(0,2p-a) and p. If a>2p we instead immediately choose negative k with 2p-a<k<0 and finish.
+
+For a positive k<p with uniform dot H^k bound, Sobolev gives L^ell_k with ell_k=2d/(d-2k), in (2,b). If ell_k>=s, set q_k=ell_k/s (possibly 1); it is <2 and
+a_k=d(s/ell_k-1/2)=p+s(p-k)>p>=2.
+If ell_k<s, interpolate L^ell_k with L^b to get L^s and use q_k=1; then a_k=d/2>2p by d>4p. Thus if ell_k<s or a_k>2p we finish immediately by taking a negative k' above 2p-a_k. In the remaining case a_k<=2p, we have s(p-k)<=p and can choose
+k'=p-((1+s)/2)(p-k),
+which is strictly positive, strictly smaller than k, and strictly larger than 2p-a_k=p-s(p-k). Lemma 34.1 gives uniform dot H^k'. The improvement p-k therefore multiplies at every such step by (1+s)/2>1. Only finitely many such steps are possible while s(p-k)<=p, so the negative regularity case is reached. The choice at the borderline a_k=2p is legitimate and still gives k'>0. This proof uses only ordinary Sobolev embedding and the undifferentiated power nonlinearity in the bootstrap; it does not rely on fractional composition of order p.
+
+As a result the global homogeneous solution has uniform negative regularity, hence finite mass and strong H^p continuity. Its homogeneous strong distributional equation then coincides with the inhomogeneous local solution of §12 by endpoint uniqueness; conservation follows. Theorem 31.1 applies and yields a contradiction for any nonzero such normalized-compact trajectory.
+
+This excludes the homogeneous global compact pure class with frequency scales bounded away from zero for every integer p>=2 and d>4p. It removes the extra finite-mass assumption of §31 in that class. No unrestricted pure or mixed global theorem follows without the compactness/minimal-element and normalization reduction. In particular, a global compact element whose scale has infimum zero has not been excluded here, and the inhomogeneous mass argument cannot be used on it before mass is established.
+
+## 35. Consequences, dimensional limitations, and remaining verification
+
+The proof isolates the following exact conditional implication for the missing higher-order critical cases: if a valid critical concentration-compactness theorem constructs a nonzero global strong homogeneous compact pure element with inf lambda>0 whenever the uniform pure critical spacetime estimate fails (or supplies the usual finite-endpoint/soliton/cascade alternatives with the required hypotheses), then §§21, 27, 30–34 supply the relevant rigidity in d>4p. That construction and reduction are not proved in this revision. In particular the weak profile of §24 cannot be used in place of a strong compact element. The homogeneous pure local theory with strong energy traces and full perturbation/profile decomposition still needs to be set up explicitly; the earlier inhomogeneous critical local and conditional stability theorems do not substitute for that step.
+
+For 2p<d<=4p, Theorem 33.1 still gives some improved integrability under the stated global compactness and lower-scale hypotheses. But a<=d/2<=2p for every q>=1, so the undifferentiated double-Duhamel estimate cannot yield a negative dyadic exponent of regularity (a positive power of N for the L² norm). This is a method obstruction, not a counterexample to negative regularity or global existence. The low-dimensional nonradial p=2,d=5..7 cases in particular are not solved.
+
+Prior art: Miao–Xu–Zhao, arXiv:0807.0692v2, pp. 11–18, establishes the fourth-order high-dimensional recurrence, additional decay and iterative negative regularity for its actual critical elements. Their theorem already handles p=2,d>=9. This revision generalizes the conditional analytic estimates to arbitrary integer p>=2 in d>4p using a one-derivative telescoping recurrence and annular stationary phase. Novelty for higher p has not been independently assessed. No new unconditional parameter slice of the original mixed equation is asserted. Individual supercritical strong classification remains open.
+
+The twelve existing candidate Lean roots and focused workflow are unchanged. At inspection of head 3e7f0daacfd8535ea4ff83ca2349a62e9e5bb7ce, GitHub reported no workflow runs, which is not a kernel pass. The nonlinear recurrence, annular stationary phase, no-waste bootstrap and all general PDE claims above remain unformalized. Original GC03 status and issue remain open.
