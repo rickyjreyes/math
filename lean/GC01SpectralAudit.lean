@@ -1,0 +1,9 @@
+import MathProofs.GC01SpectralReduction
+
+#print axioms ReyesMath.GC01SpectralReduction.central_difference
+#print axioms ReyesMath.GC01SpectralReduction.shifted_hessian_identity
+#print axioms ReyesMath.GC01SpectralReduction.hessian_lower
+#print axioms ReyesMath.GC01SpectralReduction.high_mode_coercivity
+#print axioms ReyesMath.GC01SpectralReduction.angular_coefficients
+#print axioms ReyesMath.GC01SpectralReduction.negative_energy_rotation
+#print axioms ReyesMath.GC01SpectralReduction.rotation_no_real_eigenvector
