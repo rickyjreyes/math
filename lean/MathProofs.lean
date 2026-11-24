@@ -184,3 +184,6 @@ import MathProofs.GC08PlaneLocus
 import MathProofs.GC08ClosedPlane
 import MathProofs.GC08Spatial
 import MathProofs.GC08Hadamard
+import MathProofs.GC16BulkBinding
+import MathProofs.GC01ExpandedOrbits
+import MathProofs.GC16InterfaceBinding
