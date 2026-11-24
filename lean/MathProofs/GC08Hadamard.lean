@@ -72,6 +72,8 @@ theorem hasFDerivAt_parameter_integral [ProperSpace E]
   · exact (hF.continuous.comp (continuous_const.prodMk continuous_id)).intervalIntegrable _ _
   · have hDc : Continuous (fun t : ℝ => parameterDerivative F (x,t)) :=
       hD.comp (continuous_const.prodMk continuous_id)
+    letI : SecondCountableTopologyEither ℝ (E →L[ℝ] G) :=
+      ⟨Or.inl (inferInstance : SecondCountableTopology ℝ)⟩
     exact hDc.stronglyMeasurable.aestronglyMeasurable
   · filter_upwards [ae_restrict_mem measurableSet_uIoc] with t ht
     intro y hy
