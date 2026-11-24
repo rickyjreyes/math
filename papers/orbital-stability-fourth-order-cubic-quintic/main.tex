@@ -452,6 +452,79 @@ This contradicts~\eqref{eq:counter}. Therefore orbital stability holds
 for every \(\varepsilon>0\), including mass-changing perturbations.
 \end{proof}
 
+\section{GC01: Individual orbits and static stability barriers}
+\label{sec:gc01-orbits}
+The following analytical extensions distinguish individual-orbit
+stability from the full minimizing-set conclusion. The associated
+Lean candidates and axiom audit are pending kernel verification.
+
+Let \(\mathcal O_\phi=\{e^{i\theta}\phi(\cdot-y):
+\theta\in\mathbb R,\ y\in\mathbb R^2\}\).
+Suppose \(\phi\in\GG_m\) in the range of the full-set stability theorem
+and there exists \(r>0\) such that \(g\in\GG_m\) and
+\(\dist_X(g,\mathcal O_\phi)<r\) imply \(g\in\mathcal O_\phi\).
+Then \(\mathcal O_\phi\) is orbitally stable, even for perturbations
+of different mass. Indeed, for any \(\varepsilon>0\) choose
+\(\eta=\min(r,\varepsilon)/8\). Set stability keeps sufficiently close
+initial data within distance \(\eta\) of \(\GG_m\) at all times.
+The orbit distance is continuous along the global flow. If it
+reaches \(2\eta\), a minimizing profile at distance less than
+\(\eta\) from the trajectory must be less than \(3\eta<r\) from
+\(\mathcal O_\phi\), hence belongs to that orbit. This contradicts
+the distance \(2\eta\). This argument needs isolation, not uniqueness
+of the entire minimizing set.
+
+More generally, for any profile \(\phi\), define the conserved defect
+\[
+ F_\phi(v)=|M(v)-M(\phi)|+|H(v)-H(\phi)|.
+\]
+Bounded-set continuity of the invariants and uniform boundedness of
+the orbit give \(F_\phi(v)\to0\) uniformly as
+\(\dist_X(v,\mathcal O_\phi)\to0\).
+If for each \(\varepsilon>0\) there exist \(0<r<\varepsilon\) and \(a>0\)
+such that \(F_\phi(v)\ge a\) whenever
+\(\dist_X(v,\mathcal O_\phi)=r\), then \(\mathcal O_\phi\) is stable.
+A trajectory starting inside the radius with \(F_\phi(u_0)<a\)
+cannot cross that radius, by continuity and conservation.
+This sufficient criterion does not require global minimization.
+No particular excited profile is shown here to satisfy its hypothesis.
+
+For mass-preserving dilations \(\phi_\lambda(x)=\lambda\phi(\lambda x)\),
+write \(P=\|\Delta\phi\|_2^2+(\gamma/3)\|\phi\|_6^6\) and
+\(B=2k^2\|\nabla\phi\|_2^2+(\beta/2)\|\phi\|_4^4\).
+Then \(H(\phi_\lambda)=\lambda^4P-\lambda^2B+k^4M(\phi)\).
+If the dilation-stationarity identity holds, \(B=2P\), and
+\[
+ H(\phi_\lambda)-H(\phi)=P(\lambda^2-1)^2 .
+\]
+For positive mass and \(\gamma>0\) this is strictly positive for
+positive \(\lambda\ne1\). In particular, the second derivative at
+one is \(8P>0\). This excludes the isotropic dilation as a negative
+constrained direction, but does not establish positivity of the entire
+constrained Hessian. Justifying the virial identity for arbitrary weak
+stationary profiles is separate from this exact identity.
+
+For a stationary profile at frequency \(\omega\), the real Hessian of
+\((H+\omega M)/2\) acts by
+\[
+ Lh=((\Delta+k^2)^2+\omega)h
+ +(-\beta|\phi|^2+\gamma|\phi|^4)h
+ +(-2\beta+4\gamma|\phi|^2)\operatorname{Re}(\overline\phi h)\phi .
+\]
+Its bounded matrix potentials vanish at infinity by the \(H^2\)
+embedding in two dimensions. They are relatively compact on the
+free operator's \(H^4\) domain by local Rellich compactness and a
+small tail estimate. The essential spectrum of this self-adjoint
+real two-component operator is \([\omega,\infty)\), from the free
+Fourier symbol \((|\xi|^2-k^2)^2+\omega\). Thus the negative Morse
+index is finite for \(\omega>0\), infinite for \(\omega<0\),
+and zero is an essential threshold for \(\omega=0\).
+Positive normal coercivity after finitely many constraints is
+impossible for \(\omega\le0\); this is not a nonlinear instability theorem.
+The full spectral and nonlinear classification, especially for
+excited states and degenerate profiles, remains unresolved.
+\par
+
 \section{Interpretation and antecedents}
 The conclusion is \emph{Lyapunov stability of a set}. It does not imply
 convergence as \(|t|\to\infty\), uniqueness of the minimizing profile,
