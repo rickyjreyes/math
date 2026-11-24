@@ -3,6 +3,7 @@ import MathProofs.GC11TorusEnergy
 import MathProofs.GC11TorusOrbit
 import MathProofs.GC11TorusInitial
 import MathProofs.GC11TorusConservation
+import MathProofs.GC11TorusCarrier
 import MathProofs.GC11SidebandClassification
 
 #print axioms ReyesMath.GC11Coercivity.excess_eq
@@ -46,3 +47,11 @@ import MathProofs.GC11SidebandClassification
 #print axioms ReyesMath.GC11TorusConservation.hasDerivAt_potential
 #print axioms ReyesMath.GC11TorusConservation.energy_conserved_strong
 #print axioms ReyesMath.GC11TorusConservation.orbital_stability_strong
+
+#print axioms ReyesMath.GC11TorusCarrier.carrier_symbol_eq
+#print axioms ReyesMath.GC11TorusCarrier.originalOp_coef
+#print axioms ReyesMath.GC11TorusCarrier.stationary_plane
+#print axioms ReyesMath.GC11TorusCarrier.strong_constant
+#print axioms ReyesMath.GC11TorusCarrier.common_torus_stationary
+#print axioms ReyesMath.GC11TorusCarrier.coefficient_laboratory_deriv
+#print axioms ReyesMath.GC11TorusCarrier.common_torus_carrier_stability
