@@ -135,5 +135,105 @@ theorem original_nonlinear_coef (beta gamma rho : ℝ) (m n : Fin 2 → ℤ)
     fieldL2_add, fieldL2_smul, coef_add, coef_smul]
   simp only [fieldL2, nonlinear, toLp_Phi]
 
+
+/-- The group velocity in the original laboratory coordinates. -/
+def groupVelocity (k : ℝ) (m : Fin 2 → ℤ) (j : Fin 2) : ℝ :=
+  4 * (xi2 L m - k ^ 2) * xi L m j
+
+def movingShift (k : ℝ) (m : Fin 2 → ℤ) (t : ℝ) : Tor L 2 :=
+  fun j => ((groupVelocity L k m j * t : ℝ) : AddCircle L)
+
+def labPhase (k beta gamma rho : ℝ) (m : Fin 2 → ℤ) (t : ℝ) : ℂ :=
+  mode (-(frequency k beta gamma rho (xi2 L m))) t
+
+theorem labPhase_norm (k beta gamma rho : ℝ) (m : Fin 2 → ℤ) (t : ℝ) :
+    ‖labPhase L k beta gamma rho m t‖ = 1 :=
+  norm_mode _ _
+
+/-- The exact translation character, expressed using the same dot
+product as the carrier symbol. -/
+theorem emode_movingShift (k : ℝ) (m n : Fin 2 → ℤ) (t : ℝ) :
+    emode (L := L) n (movingShift L k m t) =
+      mode (4 * (xi2 L m - k ^ 2) * carrierDot L (latticeCarrier L m) n) t := by
+  unfold movingShift
+  rw [emode_coe]
+  unfold mode groupVelocity carrierDot latticeCarrier
+  congr 1
+  simp only [Fin.sum_univ_two, xi]
+  push_cast
+  have hL : (L : ℂ) ≠ 0 := by exact_mod_cast (Fact.out : 0 < L).ne'
+  field_simp [hL]
+  <;> ring
+
+theorem labPhase_character (k beta gamma rho : ℝ) (m n : Fin 2 → ℤ) (t : ℝ) :
+    labPhase L k beta gamma rho m t * conj (emode n (movingShift L k m t)) =
+      mode (-(carrierTheta L k beta gamma rho m n)) t := by
+  rw [emode_movingShift]
+  unfold labPhase carrierTheta mode
+  rw [← Complex.exp_conj, ← Complex.exp_add]
+  congr 1
+  simp only [map_mul, Complex.conj_I, Complex.conj_ofReal]
+  push_cast
+  ring
+
+def labTrajectory (k beta gamma rho : ℝ) (m : Fin 2 → ℤ)
+    (u : ℝ → ell2 2) (t : ℝ) : C(Tor L 2, ℂ) :=
+  labField L m (movingShift L k m t) (labPhase L k beta gamma rho m t)
+    (BandPass.Phi L (by decide : 2 ≤ 3) (u t))
+
+theorem labTrajectory_coef (k beta gamma rho : ℝ) (m n : Fin 2 → ℤ)
+    (u : ℝ → ell2 2) (t : ℝ) :
+    coef (fieldL2 L (labTrajectory L k beta gamma rho m u t)) (m+n) =
+      mode (-(carrierTheta L k beta gamma rho m n)) t *
+        coef (iota L 1 (u t)) n := by
+  unfold labTrajectory
+  rw [coef_labField, labPhase_character]
+  simp only [fieldL2, toLp_Phi]
+
+/-- A laboratory solution in Fourier weak form: every lattice
+coefficient satisfies the original Hamiltonian equation, with its
+nonlinear coefficient taken from the actual laboratory field. -/
+def LaboratoryFourierSolution (k beta gamma : ℝ)
+    (U : ℝ → C(Tor L 2, ℂ)) : Prop :=
+  ∀ (t : ℝ) (j : Fin 2 → ℤ), ∃ d : ℂ,
+    HasDerivAt (fun s => coef (fieldL2 L (U s)) j) d t ∧
+      Complex.I * d = (RemainingCores.shellSymbol k (xi2 L j) : ℂ) *
+        coef (fieldL2 L (U t)) j +
+        coef (fieldL2 L (originalNonlinearMap L beta gamma (U t))) j
+
+/-- Strong carrier-frame solutions give actual original-equation
+solutions in the complete lattice Fourier weak formulation. -/
+theorem strong_to_laboratory_fourier {k beta gamma rho : ℝ}
+    {m : Fin 2 → ℤ} (hq : k ^ 2 ≤ xi2 L m) {u : ℝ → ell2 2}
+    (hu : StrongSolution L k beta gamma rho (latticeCarrier L m) u) :
+    LaboratoryFourierSolution L k beta gamma (labTrajectory L k beta gamma rho m u) := by
+  intro t j
+  let n := j - m
+  have hj : m + n = j := by dsimp [n]; abel
+  rw [← hj]
+  obtain ⟨h4, du, hd, he⟩ := hu t
+  have hq' : k ^ 2 ≤ carrierSq (latticeCarrier L m) := by
+    rwa [latticeCarrier_sq]
+  have hA := (((iota L 1).hasFDerivAt (x := u t)).restrictScalars ℝ).comp_hasDerivAt t hd
+  have hz : HasDerivAt (fun s => coef (iota L 1 (u s)) n) (coef (iota L 1 du) n) t :=
+    (hasDerivWithinAt_coef (L := L) hA.hasDerivWithinAt (s := Set.univ) n).hasDerivAt
+  have hcoef : Complex.I * coef (iota L 1 du) n =
+      (g L k (latticeCarrier L m) n : ℂ) * coef (iota L 1 (u t)) n +
+        coef (nonlinear L beta gamma rho (u t)) n := by
+    rw [he, coef_smul, gradient, coef_add, coef_carrierOp L hq' h4]
+    calc
+      _ = -(Complex.I * Complex.I) *
+        ((g L k (latticeCarrier L m) n : ℂ) * coef (iota L 1 (u t)) n +
+        coef (nonlinear L beta gamma rho (u t)) n) := by ring
+      _ = _ := by rw [Complex.I_mul_I]; ring
+  obtain ⟨d, hD, hEq⟩ := coefficient_laboratory_deriv L k beta gamma rho m n hz hcoef
+  refine ⟨d, ?_, ?_⟩
+  · simpa only [labTrajectory_coef] using hD
+  · rw [labTrajectory_coef]
+    unfold labTrajectory
+    rw [original_nonlinear_coef L beta gamma rho m n (movingShift L k m t)
+      (labPhase_norm L k beta gamma rho m t), labPhase_character]
+    exact hEq
+
 end GC11TorusEquivariance
 end ReyesMath
