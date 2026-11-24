@@ -231,5 +231,105 @@ theorem mass_conserved_lab {k beta gamma : ℝ} {v : ℝ → PVNP.Torus.ℓ2}
     ‖iota L 1 (toMath L (v t))‖ ^ 2 = ‖iota L 1 (toMath L (v 0))‖ ^ 2 := by
   simp only [mass_match, (PVNP.Torus.conservation (Fact.out : 0 < L) hv t).1]
 
+
+theorem norm_toPVNP (c : BandPass.ell2 2) : ‖toPVNP L c‖ = L * ‖c‖ := by
+  have h := norm_toMath L (toPVNP L c)
+  rw [toMath_toPVNP] at h
+  have hL : L ≠ 0 := (Fact.out : 0 < L).ne'
+  calc
+    ‖toPVNP L c‖ = L * (L⁻¹ * ‖toPVNP L c‖) := by
+      rw [← mul_assoc, mul_inv_cancel₀ hL, one_mul]
+    _ = L * ‖c‖ := by rw [← h]
+
+def toPVNPCLM : BandPass.ell2 2 →L[ℂ] PVNP.Torus.ℓ2 :=
+  LinearMap.mkContinuous
+    { toFun := toPVNP L
+      map_add' := by intro a b; ext p; simp [lp.coeFn_add, Pi.add_apply, mul_add]
+      map_smul' := by intro a b; ext p; simp [lp.coeFn_smul, Pi.smul_apply,
+        smul_eq_mul, mul_left_comm] }
+    L (fun c => (norm_toPVNP L c).le)
+
+theorem continuous_toPVNP : Continuous (toPVNP L) := (toPVNPCLM L).continuous
+
+theorem co_toPVNP (c : BandPass.ell2 2) (n : Fin 2 → ℤ) :
+    PVNP.Torus.co L (toPVNP L c) (pairIndex n) =
+      (L : ℂ) * coef (iota L 1 c) n := by
+  have h := coef_toMath L (toPVNP L c) n
+  rw [toMath_toPVNP] at h
+  rw [h, ← mul_assoc, mul_inv_cancel₀ (L_ne L), one_mul]
+
+theorem fc_toPVNP (beta gamma : ℝ) (c : BandPass.ell2 2) (n : Fin 2 → ℤ) :
+    PVNP.Torus.fc L (fun x => PVNP.Torus.fnl beta gamma
+      (PVNP.Torus.field L (PVNP.Torus.co L (toPVNP L c)) x)) (pairIndex n) =
+      (L : ℂ) * coef (physicalNonlinL2 L beta gamma c) n := by
+  have h := physicalNonlin_coef L beta gamma (toPVNP L c) n
+  rw [toMath_toPVNP] at h
+  rw [h, ← mul_assoc, mul_inv_cancel₀ (L_ne L), one_mul]
+
+/-- Inverse correspondence: every laboratory Fourier solution in the
+normalized H² representation satisfies the already verified PVNP
+solution predicate after scaling and relabeling. -/
+theorem lab_to_pvnp {k beta gamma : ℝ} {u : ℝ → BandPass.ell2 2}
+    (hu : IsLabSolution L k beta gamma u) :
+    PVNP.Torus.IsSolution L (k ^ 2) beta gamma (fun t => toPVNP L (u t)) := by
+  refine ⟨(continuous_toPVNP L).comp hu.1, ?_⟩
+  intro t p
+  let n := pairIndex.symm p
+  have hp : pairIndex n = p := pairIndex.apply_symm_apply p
+  rw [← hp]
+  simp only [co_toPVNP, fc_toPVNP, omega_match]
+  have h := (hu.2 t n).const_mul (L : ℂ)
+  convert h using 1 <;> ring
+
+theorem global_lab_wellposed {k beta gamma : ℝ} (hg : 0 < gamma)
+    (c : BandPass.ell2 2) :
+    ∃! u : ℝ → BandPass.ell2 2, u 0 = c ∧ IsLabSolution L k beta gamma u := by
+  obtain ⟨v, hv, huniq⟩ := PVNP.Torus.global_wellposed (κ := k^2) (β := beta)
+    (Fact.out : 0 < L) hg (toPVNP L c)
+  refine ⟨fun t => toMath L (v t), ⟨by rw [hv.1, toMath_toPVNP], pvnp_to_lab L hv.2⟩, ?_⟩
+  intro u hu
+  have he := huniq (fun t => toPVNP L (u t))
+    ⟨by rw [hu.1], lab_to_pvnp L hu.2⟩
+  funext t
+  have ht := congrFun he t
+  rw [← ht, toMath_toPVNP]
+
+/-- Normalized laboratory Hamiltonian. The potential is evaluated on the
+physical pullback to the fundamental box, with the explicit L⁻² factor;
+the kinetic term uses the normalized Haar Fourier coefficients. -/
+def labHam (k beta gamma : ℝ) (c : BandPass.ell2 2) : ℝ :=
+  (∑' n, (BandPass.xi2 L n - k ^ 2) ^ 2 * ‖coef (iota L 1 c) n‖ ^ 2) +
+    L⁻¹ ^ 2 * ∫ x, PVNP.Torus.nfun beta gamma
+      (BandPass.Phi L (by decide : 2 ≤ 3) c (quotientPoint L x)) ∂PVNP.Torus.box L
+
+theorem ham_match (k beta gamma : ℝ) (v : PVNP.Torus.ℓ2) :
+    labHam L k beta gamma (toMath L v) =
+      L⁻¹ ^ 2 * PVNP.Torus.ham L (k ^ 2) beta gamma v := by
+  unfold labHam PVNP.Torus.ham PVNP.Torus.pot
+  simp only [field_match, mul_add]
+  congr 1
+  rw [PVNP.Torus.norm_sq_eq, ← tsum_mul_left]
+  rw [← pairIndex.tsum_eq (fun p => L⁻¹ ^ 2 * ‖PVNP.Torus.Ac L (k ^ 2) v p‖ ^ 2)]
+  apply tsum_congr
+  intro n
+  rw [coef_toMath, PVNP.Torus.Ac_apply, qf_match, norm_mul, norm_mul,
+    norm_inv, Complex.norm_real, Complex.norm_real, Real.norm_eq_abs,
+    Real.norm_eq_abs, abs_of_pos (Fact.out : 0 < L), mul_pow, mul_pow, sq_abs]
+  ring
+
+theorem lab_conservation {k beta gamma : ℝ} {u : ℝ → BandPass.ell2 2}
+    (hu : IsLabSolution L k beta gamma u) (t : ℝ) :
+    ‖iota L 1 (u t)‖ ^ 2 = ‖iota L 1 (u 0)‖ ^ 2 ∧
+      labHam L k beta gamma (u t) = labHam L k beta gamma (u 0) := by
+  have hv := lab_to_pvnp L hu
+  have hm := mass_conserved_lab L hv t
+  have hh := (PVNP.Torus.conservation (Fact.out : 0 < L) hv t).2
+  constructor
+  · simpa only [toMath_toPVNP] using hm
+  · have h1 := ham_match L k beta gamma (toPVNP L (u t))
+    have h0 := ham_match L k beta gamma (toPVNP L (u 0))
+    rw [toMath_toPVNP] at h1 h0
+    rw [h1, h0, hh]
+
 end GC11PVNPBridge
 end ReyesMath
