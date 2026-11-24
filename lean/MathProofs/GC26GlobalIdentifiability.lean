@@ -399,7 +399,7 @@ private theorem upd_16_heavy (p : Params) (t : ℝ) (n : ℕ) (hn : 91 ≤ n)
     (hu : n ≤ 123) :
     heavy (Function.update p (16 : Fin 31) t) n = heavy p n := by
   have hnot : ¬ (19 ≤ n ∧ n ≤ 73) := by omega
-  simp only [heavy, upd_16_light, heavyCorrection, if_neg hnot, if_pos ⟨hn, hu⟩,
+  simp only [heavy, upd_16_light, heavyCorrection, if_neg hnot, if_pos (And.intro hn hu),
     upd_16_17, upd_16_19, upd_16_20, upd_16_21, upd_16_22, upd_16_23, upd_16_24, upd_16_25, upd_16_26, upd_16_27, upd_16_28]
 theorem observed_update_quarkAmp (p : Params) (t : ℝ) :
     observed (Function.update p (16 : Fin 31) t) = observed p := by
@@ -438,7 +438,7 @@ private theorem upd_18_heavy (p : Params) (t : ℝ) (n : ℕ) (hn : 91 ≤ n)
     (hu : n ≤ 123) :
     heavy (Function.update p (18 : Fin 31) t) n = heavy p n := by
   have hnot : ¬ (19 ≤ n ∧ n ≤ 73) := by omega
-  simp only [heavy, upd_18_light, heavyCorrection, if_neg hnot, if_pos ⟨hn, hu⟩,
+  simp only [heavy, upd_18_light, heavyCorrection, if_neg hnot, if_pos (And.intro hn hu),
     upd_18_17, upd_18_19, upd_18_20, upd_18_21, upd_18_22, upd_18_23, upd_18_24, upd_18_25, upd_18_26, upd_18_27, upd_18_28]
 theorem observed_update_quarkPower (p : Params) (t : ℝ) :
     observed (Function.update p (18 : Fin 31) t) = observed p := by
@@ -801,103 +801,40 @@ theorem historical_exceptional_endpoint (t h1 h2 : ℝ)
 
 /-! A source-model plateau, not an assumed constant map. -/
 
-def plateauCenter : Params := fun i =>
-  if i = 7 ∨ i = 14 ∨ i = 17 ∨ i = 28 then -1
-  else if i = 8 then 1 else 0
+def plateauCenter : Params :=
+  ![0, 0, 0, 0, 0, 0, 0, -1, 1, 0, 0, 0, 0, 0, -1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0]
 
-@[local simp] private theorem plateau_at_0 : plateauCenter 0 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((0 : Fin 31) = 7 ∨ 0 = 14 ∨ 0 = 17 ∨ 0 = 28)), if_neg (by decide : ¬ ((0 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_1 : plateauCenter 1 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((1 : Fin 31) = 7 ∨ 1 = 14 ∨ 1 = 17 ∨ 1 = 28)), if_neg (by decide : ¬ ((1 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_2 : plateauCenter 2 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((2 : Fin 31) = 7 ∨ 2 = 14 ∨ 2 = 17 ∨ 2 = 28)), if_neg (by decide : ¬ ((2 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_3 : plateauCenter 3 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((3 : Fin 31) = 7 ∨ 3 = 14 ∨ 3 = 17 ∨ 3 = 28)), if_neg (by decide : ¬ ((3 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_4 : plateauCenter 4 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((4 : Fin 31) = 7 ∨ 4 = 14 ∨ 4 = 17 ∨ 4 = 28)), if_neg (by decide : ¬ ((4 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_5 : plateauCenter 5 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((5 : Fin 31) = 7 ∨ 5 = 14 ∨ 5 = 17 ∨ 5 = 28)), if_neg (by decide : ¬ ((5 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_6 : plateauCenter 6 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((6 : Fin 31) = 7 ∨ 6 = 14 ∨ 6 = 17 ∨ 6 = 28)), if_neg (by decide : ¬ ((6 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_7 : plateauCenter 7 = -1 := by
-  unfold plateauCenter
-  rw [if_pos (by decide : (7 : Fin 31) = 7 ∨ 7 = 14 ∨ 7 = 17 ∨ 7 = 28)]
-@[local simp] private theorem plateau_at_8 : plateauCenter 8 = 1 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((8 : Fin 31) = 7 ∨ 8 = 14 ∨ 8 = 17 ∨ 8 = 28)), if_pos (by decide : ((8 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_9 : plateauCenter 9 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((9 : Fin 31) = 7 ∨ 9 = 14 ∨ 9 = 17 ∨ 9 = 28)), if_neg (by decide : ¬ ((9 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_10 : plateauCenter 10 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((10 : Fin 31) = 7 ∨ 10 = 14 ∨ 10 = 17 ∨ 10 = 28)), if_neg (by decide : ¬ ((10 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_11 : plateauCenter 11 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((11 : Fin 31) = 7 ∨ 11 = 14 ∨ 11 = 17 ∨ 11 = 28)), if_neg (by decide : ¬ ((11 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_12 : plateauCenter 12 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((12 : Fin 31) = 7 ∨ 12 = 14 ∨ 12 = 17 ∨ 12 = 28)), if_neg (by decide : ¬ ((12 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_13 : plateauCenter 13 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((13 : Fin 31) = 7 ∨ 13 = 14 ∨ 13 = 17 ∨ 13 = 28)), if_neg (by decide : ¬ ((13 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_14 : plateauCenter 14 = -1 := by
-  unfold plateauCenter
-  rw [if_pos (by decide : (14 : Fin 31) = 7 ∨ 14 = 14 ∨ 14 = 17 ∨ 14 = 28)]
-@[local simp] private theorem plateau_at_15 : plateauCenter 15 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((15 : Fin 31) = 7 ∨ 15 = 14 ∨ 15 = 17 ∨ 15 = 28)), if_neg (by decide : ¬ ((15 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_16 : plateauCenter 16 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((16 : Fin 31) = 7 ∨ 16 = 14 ∨ 16 = 17 ∨ 16 = 28)), if_neg (by decide : ¬ ((16 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_17 : plateauCenter 17 = -1 := by
-  unfold plateauCenter
-  rw [if_pos (by decide : (17 : Fin 31) = 7 ∨ 17 = 14 ∨ 17 = 17 ∨ 17 = 28)]
-@[local simp] private theorem plateau_at_18 : plateauCenter 18 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((18 : Fin 31) = 7 ∨ 18 = 14 ∨ 18 = 17 ∨ 18 = 28)), if_neg (by decide : ¬ ((18 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_19 : plateauCenter 19 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((19 : Fin 31) = 7 ∨ 19 = 14 ∨ 19 = 17 ∨ 19 = 28)), if_neg (by decide : ¬ ((19 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_20 : plateauCenter 20 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((20 : Fin 31) = 7 ∨ 20 = 14 ∨ 20 = 17 ∨ 20 = 28)), if_neg (by decide : ¬ ((20 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_21 : plateauCenter 21 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((21 : Fin 31) = 7 ∨ 21 = 14 ∨ 21 = 17 ∨ 21 = 28)), if_neg (by decide : ¬ ((21 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_22 : plateauCenter 22 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((22 : Fin 31) = 7 ∨ 22 = 14 ∨ 22 = 17 ∨ 22 = 28)), if_neg (by decide : ¬ ((22 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_23 : plateauCenter 23 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((23 : Fin 31) = 7 ∨ 23 = 14 ∨ 23 = 17 ∨ 23 = 28)), if_neg (by decide : ¬ ((23 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_24 : plateauCenter 24 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((24 : Fin 31) = 7 ∨ 24 = 14 ∨ 24 = 17 ∨ 24 = 28)), if_neg (by decide : ¬ ((24 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_25 : plateauCenter 25 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((25 : Fin 31) = 7 ∨ 25 = 14 ∨ 25 = 17 ∨ 25 = 28)), if_neg (by decide : ¬ ((25 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_26 : plateauCenter 26 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((26 : Fin 31) = 7 ∨ 26 = 14 ∨ 26 = 17 ∨ 26 = 28)), if_neg (by decide : ¬ ((26 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_27 : plateauCenter 27 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((27 : Fin 31) = 7 ∨ 27 = 14 ∨ 27 = 17 ∨ 27 = 28)), if_neg (by decide : ¬ ((27 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_28 : plateauCenter 28 = -1 := by
-  unfold plateauCenter
-  rw [if_pos (by decide : (28 : Fin 31) = 7 ∨ 28 = 14 ∨ 28 = 17 ∨ 28 = 28)]
-@[local simp] private theorem plateau_at_29 : plateauCenter 29 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((29 : Fin 31) = 7 ∨ 29 = 14 ∨ 29 = 17 ∨ 29 = 28)), if_neg (by decide : ¬ ((29 : Fin 31) = 8))]
-@[local simp] private theorem plateau_at_30 : plateauCenter 30 = 0 := by
-  unfold plateauCenter
-  rw [if_neg (by decide : ¬ ((30 : Fin 31) = 7 ∨ 30 = 14 ∨ 30 = 17 ∨ 30 = 28)), if_neg (by decide : ¬ ((30 : Fin 31) = 8))]
+@[local simp] private theorem plateau_at_0 : plateauCenter 0 = 0 := rfl
+@[local simp] private theorem plateau_at_1 : plateauCenter 1 = 0 := rfl
+@[local simp] private theorem plateau_at_2 : plateauCenter 2 = 0 := rfl
+@[local simp] private theorem plateau_at_3 : plateauCenter 3 = 0 := rfl
+@[local simp] private theorem plateau_at_4 : plateauCenter 4 = 0 := rfl
+@[local simp] private theorem plateau_at_5 : plateauCenter 5 = 0 := rfl
+@[local simp] private theorem plateau_at_6 : plateauCenter 6 = 0 := rfl
+@[local simp] private theorem plateau_at_7 : plateauCenter 7 = -1 := rfl
+@[local simp] private theorem plateau_at_8 : plateauCenter 8 = 1 := rfl
+@[local simp] private theorem plateau_at_9 : plateauCenter 9 = 0 := rfl
+@[local simp] private theorem plateau_at_10 : plateauCenter 10 = 0 := rfl
+@[local simp] private theorem plateau_at_11 : plateauCenter 11 = 0 := rfl
+@[local simp] private theorem plateau_at_12 : plateauCenter 12 = 0 := rfl
+@[local simp] private theorem plateau_at_13 : plateauCenter 13 = 0 := rfl
+@[local simp] private theorem plateau_at_14 : plateauCenter 14 = -1 := rfl
+@[local simp] private theorem plateau_at_15 : plateauCenter 15 = 0 := rfl
+@[local simp] private theorem plateau_at_16 : plateauCenter 16 = 0 := rfl
+@[local simp] private theorem plateau_at_17 : plateauCenter 17 = -1 := rfl
+@[local simp] private theorem plateau_at_18 : plateauCenter 18 = 0 := rfl
+@[local simp] private theorem plateau_at_19 : plateauCenter 19 = 0 := rfl
+@[local simp] private theorem plateau_at_20 : plateauCenter 20 = 0 := rfl
+@[local simp] private theorem plateau_at_21 : plateauCenter 21 = 0 := rfl
+@[local simp] private theorem plateau_at_22 : plateauCenter 22 = 0 := rfl
+@[local simp] private theorem plateau_at_23 : plateauCenter 23 = 0 := rfl
+@[local simp] private theorem plateau_at_24 : plateauCenter 24 = 0 := rfl
+@[local simp] private theorem plateau_at_25 : plateauCenter 25 = 0 := rfl
+@[local simp] private theorem plateau_at_26 : plateauCenter 26 = 0 := rfl
+@[local simp] private theorem plateau_at_27 : plateauCenter 27 = 0 := rfl
+@[local simp] private theorem plateau_at_28 : plateauCenter 28 = -1 := rfl
+@[local simp] private theorem plateau_at_29 : plateauCenter 29 = 0 := rfl
+@[local simp] private theorem plateau_at_30 : plateauCenter 30 = 0 := rfl
 
 /-- Every observed coordinate is exactly at the floor on an ambient
 neighborhood of an explicit 31-vector. This supports the stronger
@@ -1124,7 +1061,7 @@ theorem historical_heavy_light_floor (a e : ℝ) (i : Fin 3) :
 theorem historical_heavy_constant (a e b f : ℝ) (i : Fin 3) :
     heavy (frozen a e) (heavyN i) = heavy (frozen b f) (heavyN i) := by
   simp only [heavy, historical_heavy_light_floor]
-  fin_cases i <;> norm_num [heavyN, heavyCorrection, frozen, Matrix.cons_val]
+  fin_cases i <;> norm_num [heavyN, heavyCorrection, Matrix.cons_val]
 
 /-- On the historical slice the complete eleven-output fiber is exactly
 the fiber of the three light rows. -/
@@ -1268,6 +1205,71 @@ private theorem range_lightRaw (l : Fin 3 → ℝ) (m : Fin 5 → ℝ)
     norm_num [lightRaw, topo, clip, V18LightJacobian.base,
       Matrix.mulVec, dotProduct, Fin.sum_univ_succ, Matrix.cons_val] <;> ring
 
+private theorem middle_row_0 (m : Fin 5 → ℝ) :
+    (V18MiddleJacobian.middle.mulVec m) 0 =
+      1 * m 0 + (144 : ℝ) * m 1 +
+      Real.sin ((5.0632 : ℝ) * 12 + 1.6469) * m 2 +
+      (2241.1 * Real.cos ((5.0632 : ℝ) * 12 + 1.6469)) * m 3 +
+      Real.sin ((9.4062 : ℝ) * 12) * m 4 := by
+  simp only [Matrix.mulVec, dotProduct, Fin.sum_univ_succ, Fin.sum_univ_zero]
+  change (1 : ℝ) * m 0 + (144 * m 1 +
+    (Real.sin ((5.0632 : ℝ) * 12 + 1.6469) * m 2 +
+    ((2241.1 * Real.cos ((5.0632 : ℝ) * 12 + 1.6469)) * m 3 +
+    (Real.sin ((9.4062 : ℝ) * 12) * m 4 + 0)))) = _
+  ring
+
+private theorem middle_row_1 (m : Fin 5 → ℝ) :
+    (V18MiddleJacobian.middle.mulVec m) 1 =
+      1 * m 0 + (361 : ℝ) * m 1 +
+      Real.sin ((5.0632 : ℝ) * 19 + 1.6469) * m 2 +
+      (2241.1 * Real.cos ((5.0632 : ℝ) * 19 + 1.6469)) * m 3 +
+      Real.sin ((9.4062 : ℝ) * 19) * m 4 := by
+  simp only [Matrix.mulVec, dotProduct, Fin.sum_univ_succ, Fin.sum_univ_zero]
+  change (1 : ℝ) * m 0 + (361 * m 1 +
+    (Real.sin ((5.0632 : ℝ) * 19 + 1.6469) * m 2 +
+    ((2241.1 * Real.cos ((5.0632 : ℝ) * 19 + 1.6469)) * m 3 +
+    (Real.sin ((9.4062 : ℝ) * 19) * m 4 + 0)))) = _
+  ring
+
+private theorem middle_row_2 (m : Fin 5 → ℝ) :
+    (V18MiddleJacobian.middle.mulVec m) 2 =
+      1 * m 0 + (2809 : ℝ) * m 1 +
+      Real.sin ((5.0632 : ℝ) * 53 + 1.6469) * m 2 +
+      (2241.1 * Real.cos ((5.0632 : ℝ) * 53 + 1.6469)) * m 3 +
+      Real.sin ((9.4062 : ℝ) * 53) * m 4 := by
+  simp only [Matrix.mulVec, dotProduct, Fin.sum_univ_succ, Fin.sum_univ_zero]
+  change (1 : ℝ) * m 0 + (2809 * m 1 +
+    (Real.sin ((5.0632 : ℝ) * 53 + 1.6469) * m 2 +
+    ((2241.1 * Real.cos ((5.0632 : ℝ) * 53 + 1.6469)) * m 3 +
+    (Real.sin ((9.4062 : ℝ) * 53) * m 4 + 0)))) = _
+  ring
+
+private theorem middle_row_3 (m : Fin 5 → ℝ) :
+    (V18MiddleJacobian.middle.mulVec m) 3 =
+      1 * m 0 + (5329 : ℝ) * m 1 +
+      Real.sin ((5.0632 : ℝ) * 73 + 1.6469) * m 2 +
+      (2241.1 * Real.cos ((5.0632 : ℝ) * 73 + 1.6469)) * m 3 +
+      Real.sin ((9.4062 : ℝ) * 73) * m 4 := by
+  simp only [Matrix.mulVec, dotProduct, Fin.sum_univ_succ, Fin.sum_univ_zero]
+  change (1 : ℝ) * m 0 + (5329 * m 1 +
+    (Real.sin ((5.0632 : ℝ) * 73 + 1.6469) * m 2 +
+    ((2241.1 * Real.cos ((5.0632 : ℝ) * 73 + 1.6469)) * m 3 +
+    (Real.sin ((9.4062 : ℝ) * 73) * m 4 + 0)))) = _
+  ring
+
+private theorem middle_row_4 (m : Fin 5 → ℝ) :
+    (V18MiddleJacobian.middle.mulVec m) 4 =
+      1 * m 0 + (8281 : ℝ) * m 1 +
+      Real.sin ((5.0632 : ℝ) * 91 + 1.6469) * m 2 +
+      (2241.1 * Real.cos ((5.0632 : ℝ) * 91 + 1.6469)) * m 3 +
+      Real.sin ((9.4062 : ℝ) * 91) * m 4 := by
+  simp only [Matrix.mulVec, dotProduct, Fin.sum_univ_succ, Fin.sum_univ_zero]
+  change (1 : ℝ) * m 0 + (8281 * m 1 +
+    (Real.sin ((5.0632 : ℝ) * 91 + 1.6469) * m 2 +
+    ((2241.1 * Real.cos ((5.0632 : ℝ) * 91 + 1.6469)) * m 3 +
+    (Real.sin ((9.4062 : ℝ) * 91) * m 4 + 0)))) = _
+  ring
+
 private theorem range_middleRaw (l : Fin 3 → ℝ) (m : Fin 5 → ℝ)
     (h : Fin 3 → ℝ) (i : Fin 5) :
     middleRaw (rangeParams l m h) (middleN i) =
@@ -1276,33 +1278,28 @@ private theorem range_middleRaw (l : Fin 3 → ℝ) (m : Fin 5 → ℝ)
   · change middleRaw (rangeParams l m h) 12 = (V18MiddleJacobian.middle.mulVec m) 0
     simp only [middleRaw, range_at_14, range_at_15, range_at_13, range_at_11,
       range_at_9, range_at_10, range_at_12, ← add_assoc]
-    rw [middle_polar_linear]
-    norm_num [V18MiddleJacobian.middle, Matrix.mulVec, dotProduct,
-      Fin.sum_univ_succ, Matrix.cons_val] <;> ring
+    rw [middle_polar_linear, middle_row_0]
+    norm_num <;> ring
   · change middleRaw (rangeParams l m h) 19 = (V18MiddleJacobian.middle.mulVec m) 1
     simp only [middleRaw, range_at_14, range_at_15, range_at_13, range_at_11,
       range_at_9, range_at_10, range_at_12, ← add_assoc]
-    rw [middle_polar_linear]
-    norm_num [V18MiddleJacobian.middle, Matrix.mulVec, dotProduct,
-      Fin.sum_univ_succ, Matrix.cons_val] <;> ring
+    rw [middle_polar_linear, middle_row_1]
+    norm_num <;> ring
   · change middleRaw (rangeParams l m h) 53 = (V18MiddleJacobian.middle.mulVec m) 2
     simp only [middleRaw, range_at_14, range_at_15, range_at_13, range_at_11,
       range_at_9, range_at_10, range_at_12, ← add_assoc]
-    rw [middle_polar_linear]
-    norm_num [V18MiddleJacobian.middle, Matrix.mulVec, dotProduct,
-      Fin.sum_univ_succ, Matrix.cons_val] <;> ring
+    rw [middle_polar_linear, middle_row_2]
+    norm_num <;> ring
   · change middleRaw (rangeParams l m h) 73 = (V18MiddleJacobian.middle.mulVec m) 3
     simp only [middleRaw, range_at_14, range_at_15, range_at_13, range_at_11,
       range_at_9, range_at_10, range_at_12, ← add_assoc]
-    rw [middle_polar_linear]
-    norm_num [V18MiddleJacobian.middle, Matrix.mulVec, dotProduct,
-      Fin.sum_univ_succ, Matrix.cons_val] <;> ring
+    rw [middle_polar_linear, middle_row_3]
+    norm_num <;> ring
   · change middleRaw (rangeParams l m h) 91 = (V18MiddleJacobian.middle.mulVec m) 4
     simp only [middleRaw, range_at_14, range_at_15, range_at_13, range_at_11,
       range_at_9, range_at_10, range_at_12, ← add_assoc]
-    rw [middle_polar_linear]
-    norm_num [V18MiddleJacobian.middle, Matrix.mulVec, dotProduct,
-      Fin.sum_univ_succ, Matrix.cons_val] <;> ring
+    rw [middle_polar_linear, middle_row_4]
+    norm_num <;> ring
 
 private theorem range_heavyCorrection (l : Fin 3 → ℝ) (m : Fin 5 → ℝ)
     (h : Fin 3 → ℝ) (i : Fin 3) :
@@ -1348,9 +1345,9 @@ theorem observed_range_exact :
       change light (rangeParams l m h) (i.val + 1) = _
       rw [light, range_lightRaw, hl]
       fin_cases i
-      · norm_num [Matrix.cons_val]; exact (hy 0)
-      · norm_num [Matrix.cons_val]; exact (hy 1)
-      · norm_num [Matrix.cons_val]; exact (hy 2)
+      · norm_num [Matrix.cons_val]; norm_num at hy; exact hy 0
+      · norm_num [Matrix.cons_val]; norm_num at hy; exact hy 1
+      · norm_num [Matrix.cons_val]; norm_num at hy; exact hy 2
     have hmiddle (i : Fin 5) :
         middle p (middleN i) = (![y 3, y 4, y 5, y 6, y 7] : Fin 5 → ℝ) i := by
       change middle (rangeParams l m h) (middleN i) = _
