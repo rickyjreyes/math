@@ -37,3 +37,18 @@ The square x↦x² has derivative 2x nonzero on an open dense subset, but x and 
 ## Remaining verification and scope
 
 Candidate Lean module: GC26GlobalIdentifiability.lean; run lake build and the F09Audit.lean dependency checks. Candidate roots cover exact aliases, independent family, ambient non-isolation, conditional relative non-isolation, nested floor membership, generic-rank counterexample, augmented derivative rank obstruction and strict-separation criterion. Topological dimension, historical rectangle, full stratification geometry, global recovery bounds and global inverse theorem remain analytical; no full kernel certification claimed. No claim to new general topology or novelty. The arbitrary N sensor family and arbitrary admissible priors in the original question are not fully specified. No GC closure.
+
+## Exact classification on the historical rectangle (second pass)
+
+Write t=a-z, so the three logits are t, a+t, 2a+t. Let h_i=log(A_i/c-1). Exact coarse bounds suffice: 0<h3<h1<h2<40 and h1>20. Indeed the existing frozen numerator estimates give A1>0.4, A2>2 and A3>0.005*0.0048; direct upper estimates using log 2>0.69, nonnegative logs and positive exponentials give A1<1, A2<12 and A3<0.1. Thus c<A3<A1<A2. From e<3 and e>5/2, exp(20)<3^20<0.4/c-1 and exp(40)>(5/2)^40>12/c-1. In particular 2h1>h2. Decimal thresholds are approximately 26.960811, 28.419268, 18.397748; they are illustrative only.
+
+If row 1 is floored, t≥h1 and a≥t, so a+t≥2h1>h2, and row 2 is floored. If row 2 is floored, 2a+t≥a+t≥h2>h3, so row 3 is floored. Hence active sets are prefixes. The exact classification on the original rectangle is:
+
+* If a>0 and a+t<h2, the first two rows are strictly unfloored. Their logits determine a and t uniquely, hence epsilon=(a-t)/a; the entire fiber is a singleton, and continuity gives relative neighborhood injectivity, even on the rectangle boundary.
+* If a=0, all epsilon values are observationally equivalent. No positive-a competitor exists because the first two unfloored rows determine a=0.
+* If t<h1 and a+t≥h2, only row 1 is strictly unfloored. The entire transformed fiber is a segment with t fixed and max(t,−t/4,h2−t)≤a≤50. Indeed t≥h2−50, and h2-t>0. Including the triangular lower bounds a≥t and a≥−t/4, the exact lower endpoint is max(t,−t/4,h2−t). The row-3 saturation is automatic. Lift to epsilon=1−t/a. The lower endpoint equals 50 precisely when t=h2−50, since t<h1<40 and t≥h2−50>−50. The unique exceptional isolated singleton is (a,epsilon)=(50,2−h2/50). It is not relatively locally injective.
+* If t≥h1 all three rows are floored. The fiber is the entire clipped region 0≤a≤50, 0≤z≤5a, a−z≥h1, lifted back to the rectangle. It has no isolated point.
+
+Relative neighborhood injectivity holds exactly when a>0 and a+t<h2. For necessity in the one-active closed region, interpolate in the triangle with (a,z)=(49,49), which lies strictly inside that region and the triangle (t=0, a+t=49>h2). Every point in that region is approached by interior one-active points having nontrivial local equal-output segments, even at the exceptional singleton. For the all-floored region, interpolate with (49,1), which strictly satisfies its inequalities. At a=0 the entire epsilon segment has identical outputs. This proves the distinction between isolated fiber and neighborhood injectivity at an actual optimizer boundary.
+
+Candidate Lean roots historical_lightRaw, logistic_floor_logit_eq, historical_two_active_unique, historical_zero_alpha establish the exact positive two-row inversion and alpha-zero degeneracy; threshold ordering, remaining segment geometry, and relative local classification are analytical pending formalization. 
