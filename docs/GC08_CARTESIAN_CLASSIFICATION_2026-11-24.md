@@ -65,3 +65,17 @@ The pair is independent (irredundant, not a claim of absolute minimality among a
 - Global invariant classification, nodal closure, extension theorem and field-level uniqueness: analytical arguments above; depend on classical Schwarz theorem and elementary calculus. No claim of new general invariant theory or physics validation.
 - Candidate Lean module GC08Cartesian: real-coordinate rational formula, denominator positivity, zero-field evaluation, plane-wave algebra, density-Laplacian witness and scalar phase-response uniqueness core. It uses a coordinate jet container allowing arbitrary matrices (the identities restrict to symmetric Hessians). The formal derivative correspondence, full SO(d)/U(1) action and invariance, exact field realization, Schwarz theorem, Hadamard integral factorization, smooth extension proof and full field gauge theorem remain unformalized.
 - Local Lean/lake unavailable and network clone failed. Run pinned lake build and lake env lean scripts_audit/DependencyAudit.lean in CI; inspect transitive axioms for new roots. Do not mark verified or close GC08 until independent correspondence and required kernel checks.
+
+## 6. Continuation: exact phase action and continuum derivative correspondence
+
+Candidate modules GC08Gauge and GC08Field supplement the initial algebraic core. All claims below remain pending a pinned kernel check.
+
+For a real phase with value zero at the base point, gradient v and Hessian W, the complex jet transforms as
+z'=z, g'=g+i z v, H'_{ij}=H_{ij}+i(g_i v_j+g_j v_i+z W_{ij})-z v_i v_j.
+The derivative response is
+R(J,v,W)=sum_i [rho W_ii/(epsilon+rho)+2epsilon Re(conj(z)g_i)v_i/(epsilon+rho)^2].
+GC08Gauge states and supplies candidate proofs of curvature_rotate, curvature_gauge, exists_real_gauge, unique_nonzero and unique_all_jets. The local phase law uses the actual rational response, not a stipulated equality to the operator difference. The uniqueness argument chooses c=a/r, s=-b/r, r=sqrt(a²+b²), rotates to value r, takes v=-q/r and W_ij=-(B_ij+p_i v_j+p_j v_i)/r. These choices annihilate all imaginary slots. At a nodal jet a=0, the proof uses only continuity of t↦C(J[a:=t])-K(J[a:=t]) at t=0. This is weaker than global smoothness, and is not a circular premise. The jet transformation is presently algebraic; the full symmetric-field/jet realization and smooth phase multiplication correspondence for arbitrary mixed derivatives still need formalization.
+
+GC08Field defines the continuum normalized current along each coordinate line with actual deriv, its coordinate divergence, and the diagonal derivative slots. Candidate theorem lineCurrent_deriv proves the product/quotient rule from ordinary HasDerivAt hypotheses. fieldCurvature_eq_cartesian sums these identities; fieldCurvature_at_zero applies them at any actual field node. The diagonal representation suffices for K but does not formalize the full mixed Hessian of arbitrary closures. The candidate theorem field_closure_family_distinct computes the actual density Laplacian of the smooth complex field u(x)=1+x_1 on R² and proves pairwise distinct continuum closure evaluations.
+
+Full global invariant factorization via Schwarz, the general smooth-extension classification, complete symmetry and actual mixed-jet realization remain unformalized. Build/audit claims must be based on observed CI logs. Status remains partial.
