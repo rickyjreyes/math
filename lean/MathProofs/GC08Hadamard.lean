@@ -90,7 +90,7 @@ theorem parameter_integral_contDiff [ProperSpace E] (n : ℕ) :
     exact contDiff_zero.mpr (continuous_parameter_integral F hF.continuous)
   | succ n ih =>
     intro G _ _ _ F hF
-    have h1 : ContDiff ℝ 1 F := hF.of_le (by exact_mod_cast Nat.succ_pos n)
+    have h1 : ContDiff ℝ 1 F := hF.of_le (by exact_mod_cast (Nat.succ_le_succ (Nat.zero_le n)))
     have hD : ContDiff ℝ n (parameterDerivative F) := by
       unfold parameterDerivative
       exact (hF.fderiv_right (m := n) (by simp [Nat.cast_succ])).clm_comp contDiff_const
@@ -184,7 +184,7 @@ theorem segmentCoefficient_equivariant (f : E → ℝ) (hf : ContDiff ℝ 1 f)
   apply intervalIntegral.integral_congr
   intro t _
   rw [show T x+t • (T y-T x)=T (x+t • (y-x)) by
-    simp only [map_add,map_smul,map_sub]]
+    simp]
   exact fderiv_linear_symmetry f hf T hT _ v
 
 /-- Full equivariant graph factorization: the same canonical smooth
