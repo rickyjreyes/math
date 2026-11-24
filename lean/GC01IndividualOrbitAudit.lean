@@ -1,0 +1,8 @@
+import MathProofs.GC01IndividualOrbit
+
+#print axioms ReyesMath.GC01IndividualOrbit.orbit_subset_Gset
+#print axioms ReyesMath.GC01IndividualOrbit.continuous_distX_solution
+#print axioms ReyesMath.GC01IndividualOrbit.isolated_orbit_stability
+#print axioms ReyesMath.GC01IndividualOrbit.stationary_dilation_gap
+#print axioms ReyesMath.GC01IndividualOrbit.stationary_dilation_strict
+#print axioms ReyesMath.Sobolev.global_wellposed
