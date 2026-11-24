@@ -63,7 +63,7 @@
       "flagship": false,
       "dossier": null,
       "claimed_kernel_verified_resolution": false,
-      "note": "2026-11-24: analytical all-real-power subcritical global strong flow, exact p=1 critical prior art, all-regime global weak finite-energy existence, and all-real-power supercritical norm inflation in the energy-admissible class. Higher-order critical strong global theory and individual-data supercritical dynamics unresolved. Issue #100/PR #101; manuscript and ledger; candidate Lean coercivity/scalar boundary/kinetic bound pending verification. No status promotion.",
+      "note": "2026-11-24: analytical all-real-power subcritical global strong flow, all-regime global weak finite-energy existence and supercritical energy-class norm inflation; critical local strong flow, positive endpoint energy defect, small-data global existence, and restricted fourth-order critical large-data transfer (p=2,d=8..12, r>=1+2/d; radial d=5..12). General critical large-data and individual supercritical strong classification unresolved. Issue #100/PR #101; candidate Lean supporting lemmas pending CI. No status promotion.",
       "file_path": "problems/01-wave-dynamics/GC03.md",
       "research_area": "Nonlinear wave dynamics",
       "source_class": "original_formal_statement",

@@ -194,6 +194,49 @@ theorem trajectory_kinetic_bound {d : ℕ} (p : ℕ) {β γ r s : ℝ}
   have hterm := mul_nonneg hcoef hpos
   linarith only [hc, hmass, he t, hterm]
 
+
+/-- A uniform positive energy loss at every hypothetical restart bounds their
+number. This is the discrete counting step only, not the PDE defect theorem. -/
+theorem energy_drop_count (e : ℕ → ℝ) (δ : ℝ) (N : ℕ)
+    (h : ∀ i < N, e (i + 1) + δ ≤ e i) :
+    e N + (N : ℝ) * δ ≤ e 0 := by
+  induction N with
+  | zero => simp
+  | succ n ih =>
+    have hn := ih (fun i hi => h i (Nat.lt_succ_of_lt hi))
+    have hs := h n (Nat.lt_succ_self n)
+    push_cast
+    linarith only [hn, hs]
+
+/-- Conditional restart count for actual Fourier Hamiltonian values. The
+positive loss at each restart must be established by the separate PDE proof. -/
+theorem finite_energy_drop_count {d : ℕ} (p : ℕ) {β γ r s : ℝ}
+    (hβ : 0 < β) (hγ : 0 < γ) (hr : 1 < r) (hrs : r < s) :
+    ∃ C : ℝ, 0 ≤ C ∧ ∀ (u : ℕ → L2 d) (N : ℕ) (M δ : ℝ),
+      FiniteEnergy p r s (u N) →
+      (∫ x, ‖u N x‖ ^ (2 : ℕ)) ≤ M →
+      (∀ i < N, energy p β γ r s (u (i + 1)) + δ ≤
+        energy p β γ r s (u i)) →
+      (N : ℝ) * δ ≤ energy p β γ r s (u 0) + C * M := by
+  obtain ⟨C, hC, h⟩ := energy_coercivity (d := d) p hβ hγ hr hrs
+  refine ⟨C, hC, ?_⟩
+  intro u N M δ hf hm hd
+  have hk : 0 ≤ kinetic p (u N) := by
+    unfold kinetic kineticDensity
+    exact integral_nonneg (fun ξ => mul_nonneg
+      (pow_nonneg (qS_nonneg ξ) p) (sq_nonneg _))
+  have hp : 0 ≤ moment (s + 1) (u N) := by
+    unfold moment
+    exact integral_nonneg (fun x => Real.rpow_nonneg (norm_nonneg (u N x)) _)
+  have hcoef : 0 ≤ γ / (2 * (s + 1)) := by
+    have : 0 < s + 1 := by linarith
+    positivity
+  have hpos := mul_nonneg hcoef hp
+  have hlow := h (u N) hf
+  have hmass := mul_le_mul_of_nonneg_left hm hC
+  have hcount := energy_drop_count (fun i => energy p β γ r s (u i)) δ N hd
+  linarith only [hk, hpos, hlow, hmass, hcount]
+
 end ReyesMath.GC03Energy
 
 #print axioms ReyesMath.GC03Energy.power_absorption
@@ -203,3 +246,5 @@ end ReyesMath.GC03Energy
 #print axioms ReyesMath.GC03Energy.supercritical_scaling_iff
 #print axioms ReyesMath.GC03Energy.singular_exponent_window_iff
 #print axioms ReyesMath.GC03Energy.trajectory_kinetic_bound
+#print axioms ReyesMath.GC03Energy.energy_drop_count
+#print axioms ReyesMath.GC03Energy.finite_energy_drop_count

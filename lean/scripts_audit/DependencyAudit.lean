@@ -68,3 +68,5 @@ elab "#audit_deps " root:ident : command => do
 #audit_deps ReyesMath.GC03Energy.supercritical_scaling_iff
 #audit_deps ReyesMath.GC03Energy.singular_exponent_window_iff
 #audit_deps ReyesMath.GC03Energy.trajectory_kinetic_bound
+#audit_deps ReyesMath.GC03Energy.energy_drop_count
+#audit_deps ReyesMath.GC03Energy.finite_energy_drop_count
