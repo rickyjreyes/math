@@ -1,5 +1,6 @@
 import MathProofs.GC16BulkBinding
 import MathProofs.GC01ExpandedOrbits
+import MathProofs.GC16InterfaceBinding
 
 #print axioms ReyesMath.GC16BulkBinding.field_bulk_gap
 #print axioms ReyesMath.GC16BulkBinding.inf_bulk_gap
@@ -14,3 +15,8 @@ import MathProofs.GC01ExpandedOrbits
 #print axioms ReyesMath.GC01ExpandedOrbits.exists_minimizer_expanded
 #print axioms ReyesMath.GC01ExpandedOrbits.orbital_stability_expanded
 #print axioms ReyesMath.GC01ExpandedOrbits.isolated_orbit_stability_expanded
+#print axioms ReyesMath.GC16InterfaceBinding.bulkDensity_pos
+#print axioms ReyesMath.GC16InterfaceBinding.optimized_increment
+#print axioms ReyesMath.GC16InterfaceBinding.strict_split_of_optimized_margin
+#print axioms ReyesMath.GC16InterfaceBinding.mass_bound_to_surface_gap
+#print axioms ReyesMath.GC16InterfaceBinding.inf_surface_gap_of_cell_bound
