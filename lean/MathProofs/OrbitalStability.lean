@@ -95,8 +95,8 @@ theorem norm_toSp_le_of_mem (hγ : 0 < γ) {m : ℝ} {U : H2 2} (hU : U ∈ Gset
 
 /-- **Cazenave–Lions step:** data close to `𝒢_m` stay close, for every pair of states with equal
 mass and energy (mass changes are allowed). -/
-theorem stable_core (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ} (hm : 0 < m)
-    (hmB : m ≤ StrictBinding.mB β γ k) {ε : ℝ} (hε : 0 < ε) :
+theorem stable_core_of_binding (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ} (hm : 0 < m)
+    (hbind : ∀ a : ℝ, 0 < a → a < m → Imin β γ k m < Imin β γ k a + Imin β γ k (m - a)) {ε : ℝ} (hε : 0 < ε) :
     ∃ δ > 0, ∀ v₀ v : H2 2, M v = M v₀ → energy β γ k v = energy β γ k v₀ →
       distX v₀ (Gset β γ k m) < δ → distX v (Gset β γ k m) < ε := by
   by_contra hcon
@@ -105,7 +105,7 @@ theorem stable_core (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ} (hm : 0 < m)
       distX v₀ (Gset β γ k m) < 1 / ((n : ℝ) + 1) ∧ ε ≤ distX v (Gset β γ k m) :=
     fun n => hcon _ (by positivity)
   choose v₀ v hMv hEv hd₀ hdv using hseq
-  obtain ⟨G₀, hG₀m, hG₀E⟩ := WholeSpace.exists_minimizer (k := k) hβ hγ hm hmB
+  obtain ⟨G₀, hG₀m, hG₀E⟩ := WholeSpace.exists_minimizer_of_binding (k := k) hβ hγ hm hbind
   have hGne : (Gset β γ k m).Nonempty := ⟨G₀, hG₀m, hG₀E⟩
   have hgex : ∀ n, ∃ g ∈ Gset β γ k m, distH2 (v₀ n) g < 1 / ((n : ℝ) + 1) :=
     fun n => exists_of_distX_lt hGne (hd₀ n)
@@ -229,7 +229,7 @@ theorem stable_core (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ} (hm : 0 < m)
     simp only [Function.comp_apply, sub_add_cancel]
   -- compactness of minimizing sequences
   obtain ⟨φ, hφ, y, U, hUm, hUE, hconv⟩ :=
-    WholeSpace.compactness (k := k) hβ hγ hm hmB hMw hEw
+    WholeSpace.compactness_of_binding (k := k) hβ hγ hm hbind hMw hEw
   have hUG : U ∈ Gset β γ k m := ⟨hUm, hUE⟩
   have hφt : Tendsto φ atTop atTop := hφ.tendsto_atTop
   have hdvw : Tendsto (fun n => distH2 (v (φ n + N)) (w (φ n))) atTop (𝓝 0) := by
@@ -251,14 +251,21 @@ theorem stable_core (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ} (hm : 0 < m)
   obtain ⟨n, hn⟩ := (hlim.eventually (gt_mem_nhds hε)).exists
   exact absurd (hdv (φ n + N)) (not_le.2 hn)
 
+/-- Original sufficient-mass corollary, preserving the existing API. -/
+theorem stable_core (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ} (hm : 0 < m)
+    (hmB : m ≤ StrictBinding.mB β γ k) {ε : ℝ} (hε : 0 < ε) :
+    ∃ δ > 0, ∀ v₀ v : H2 2, M v = M v₀ → energy β γ k v = energy β γ k v₀ →
+      distX v₀ (Gset β γ k m) < δ → distX v (Gset β γ k m) < ε :=
+  stable_core_of_binding hβ hγ hm (fun a ha ham => StrictBinding.strict_binding (k := k) hβ hγ hm hmB ha ham) hε
+
 /-- **Theorem (iv): orbital stability of the full minimizing set** `𝒢_m`, for perturbations of
 arbitrary mass. -/
-theorem orbital_stability (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ} (hm : 0 < m)
-    (hmB : m ≤ StrictBinding.mB β γ k) {ε : ℝ} (hε : 0 < ε) :
+theorem orbital_stability_of_binding (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ} (hm : 0 < m)
+    (hbind : ∀ a : ℝ, 0 < a → a < m → Imin β γ k m < Imin β γ k a + Imin β γ k (m - a)) {ε : ℝ} (hε : 0 < ε) :
     ∃ δ > 0, ∀ u : ℝ → H2 2, IsSolution β γ k u → distX (u 0) (Gset β γ k m) < δ →
       BddAbove (Set.range fun t => distX (u t) (Gset β γ k m)) ∧
       ⨆ t, distX (u t) (Gset β γ k m) < ε := by
-  obtain ⟨δ, hδ, hcore⟩ := stable_core hβ hγ hm hmB (half_pos hε)
+  obtain ⟨δ, hδ, hcore⟩ := stable_core_of_binding hβ hγ hm hbind (half_pos hε)
   refine ⟨δ, hδ, fun u hu h0 => ?_⟩
   have hall : ∀ t, distX (u t) (Gset β γ k m) < ε / 2 := fun t =>
     hcore (u 0) (u t) (conservation hu t).1 (conservation hu t).2 h0
@@ -267,6 +274,14 @@ theorem orbital_stability (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ} (hm : 0 < m)
     exact (hall t).le
   · calc ⨆ t, distX (u t) (Gset β γ k m) ≤ ε / 2 := ciSup_le fun t => (hall t).le
       _ < ε := half_lt_self hε
+
+/-- Original sufficient-mass corollary, preserving the existing API. -/
+theorem orbital_stability (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ} (hm : 0 < m)
+    (hmB : m ≤ StrictBinding.mB β γ k) {ε : ℝ} (hε : 0 < ε) :
+    ∃ δ > 0, ∀ u : ℝ → H2 2, IsSolution β γ k u → distX (u 0) (Gset β γ k m) < δ →
+      BddAbove (Set.range fun t => distX (u t) (Gset β γ k m)) ∧
+      ⨆ t, distX (u t) (Gset β γ k m) < ε :=
+  orbital_stability_of_binding hβ hγ hm (fun a ha ham => StrictBinding.strict_binding (k := k) hβ hγ hm hmB ha ham) hε
 
 /-- **Theorem (existence, compactness, and full-set orbital stability).**  For `β, γ > 0`, every
 `k` and every `0 < m ≤ m_B = 3β/(γ√(k⁴ + 3β²/(32γ)))`:
