@@ -1,3 +1,4 @@
+import MathProofs.GC11PVNPIntegration
 import MathProofs.GC11StaticWave
 import MathProofs.GC11TorusEnergy
 import MathProofs.GC11TorusOrbit
@@ -62,3 +63,7 @@ import MathProofs.GC11SidebandClassification
 #print axioms ReyesMath.GC11TorusEquivariance.original_nonlinear_coef
 #print axioms ReyesMath.GC11TorusEquivariance.labPhase_character
 #print axioms ReyesMath.GC11TorusEquivariance.strong_to_laboratory_fourier
+
+#print axioms ReyesMath.GC11PVNPIntegration.global_original_fourier_exists
+#print axioms ReyesMath.GC11PVNPBridge.global_lab_wellposed
+#print axioms ReyesMath.GC11PVNPBridge.lab_conservation
