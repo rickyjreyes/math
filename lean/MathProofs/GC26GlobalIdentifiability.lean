@@ -256,4 +256,55 @@ theorem historical_zero_alpha (e f : ℝ) :
     norm_num [observed, light, lightRaw, middle, middleRaw, heavy,
       heavyCorrection, frozen, Matrix.cons_val]
 
+/-! The exact geometry of the transformed rectangle, separated from
+the source-specific transcendental threshold enclosures. -/
+
+theorem historical_active_prefix (a t h1 h2 h3 : ℝ)
+    (ha : 0 ≤ a) (ht : t ≤ a) (h12 : h2 < 2 * h1)
+    (h32 : h3 < h2) :
+    (h1 ≤ t → h2 ≤ a + t) ∧
+    (h2 ≤ a + t → h3 ≤ 2 * a + t) := by
+  constructor <;> intro h <;> linarith
+
+/-- The first-row-only fiber, after the logit fixes t, is an exact interval.
+This includes the triangle constraints and all remaining floor inequalities. -/
+theorem historical_one_active_interval (a t h2 h3 : ℝ)
+    (h32 : h3 ≤ h2) :
+    (0 ≤ a ∧ a ≤ 50 ∧ 0 ≤ a - t ∧ a - t ≤ 5 * a ∧
+      h2 ≤ a + t ∧ h3 ≤ 2 * a + t) ↔
+    max 0 (max t (max (-t / 4) (h2 - t))) ≤ a ∧ a ≤ 50 := by
+  simp only [max_le_iff]
+  constructor
+  · rintro ⟨ha, hu, hz, hza, h2a, _⟩
+    exact ⟨⟨ha, by linarith, by linarith, by linarith⟩, hu⟩
+  · rintro ⟨⟨ha, ht, hneg, hh⟩, hu⟩
+    exact ⟨ha, hu, by linarith, by linarith, by linarith, by linarith⟩
+
+/-- In the one-active region the lower endpoint reaches the upper bound
+exactly at the exceptional clipping-edge point. -/
+theorem historical_exceptional_endpoint (t h1 h2 : ℝ)
+    (ht : t < h1) (h12 : h1 < h2) (h2 : h2 < 40)
+    (hp : 0 < h2) (hfeas : h2 - 50 ≤ t) :
+    max 0 (max t (max (-t / 4) (h2 - t))) = 50 ↔ t = h2 - 50 := by
+  have ht50 : t < 50 := by linarith
+  have hneg50 : -t / 4 < 50 := by linarith
+  constructor
+  · intro h
+    have hmax := (floor_eq_iff (0 : ℝ) (max t (max (-t / 4) (h2 - t))) 50).mp h
+    have hh : max t (max (-t / 4) (h2 - t)) = 50 := by
+      rcases hmax.2.2 with h0 | h0
+      · norm_num at h0
+      · exact h0
+    have hmax2 := (floor_eq_iff t (max (-t / 4) (h2 - t)) 50).mp hh
+    have hh2 : max (-t / 4) (h2 - t) = 50 := by
+      rcases hmax2.2.2 with h0 | h0
+      · linarith
+      · exact h0
+    have hmax3 := (floor_eq_iff (-t / 4) (h2 - t) 50).mp hh2
+    rcases hmax3.2.2 with h0 | h0 <;> linarith
+  · intro he
+    have hh : h2 - t = 50 := by linarith
+    rw [hh, max_eq_right hneg50.le, max_eq_right ht50.le]
+    norm_num
+
 end ReyesMath.V18Forward
