@@ -189,3 +189,7 @@ Candidate `GC06VirialBinding.lean` proves all-split binding, compactness and att
 ## Local kernel verification record
 
 Local verification on 2026-11-24: Lean 4.23.0, commit c3d58d59aa85c9e04c83a25f2a728eeb6b6583e5. Focused build completed successfully (7225 jobs); all 25 exact GC06 audit roots passed, using only propext, Classical.choice and Quot.sound. This verifies the three GC06 modules, including k²m ≤ 3β/γ, not the unrestricted classification or analytical-only results.
+
+## GC06 / GC16 / GC01 continuation after the verified merges
+
+See [GC06 / GC16 / GC01 bulk continuation](GC06_GC16_GC01_BULK_CONTINUATION_2026-11-24.md). New analytical results: explicit finite-mass bulk gap, exclusion of every bounded fragment (and fragments of mass at most m^theta for theta<1/8) at sufficiently large total mass, and strict extension past the current explicit shell/virial mass ceilings at each fixed nonzero k. Candidate Lean modules GC16BulkBinding and GC01ExpandedOrbits encode finite mass-increment and strict-split certificates, and extend isolated individual minimizing-orbit stability to every mass with all-split binding, including the union of the merged sufficient regions. Thirteen exact audit roots; pinned build pending. No full GC classification or status promotion. The unresolved obstruction is unrestricted nonzero-k splitting, and classification of individual excited and degenerate standing waves.
