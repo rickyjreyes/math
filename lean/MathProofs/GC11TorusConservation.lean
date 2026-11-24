@@ -30,10 +30,12 @@ def conjCLM : CField L →L[ℝ] CField L :=
       map_add' := by
         intro F G
         ext x
-        simp
+        change conj (F x + G x) = conj (F x) + conj (G x)
+        exact map_add _ _ _
       map_smul' := by
         intro a F
         ext x
+        change conj (a • F x) = a • conj (F x)
         simp [Complex.real_smul, map_mul] }
     1 (fun F => by
       rw [one_mul]
@@ -84,8 +86,8 @@ theorem dMapDeriv_apply (F G : CField L) (x : Tor L 2) :
     dMapDeriv L F G x = ((2 * (conj (F x) * G x).re : ℝ) : ℂ) := by
   change conj (G x) * F x + conj (F x) * G x = _
   apply Complex.ext
-  · simp [Complex.mul_re]; ring
-  · simp [Complex.mul_im]; ring
+  · simp [Complex.mul_re] <;> ring
+  · simp [Complex.mul_im] <;> ring
 
 theorem hasDerivAt_dMap {u : ℝ → CField L} {du : CField L} {t : ℝ}
     (h : HasDerivAt u du t) :
@@ -154,13 +156,7 @@ theorem intRe_pMapDeriv (beta gamma rho : ℝ) (c b : ell2 2) :
     iota_ae_eq_Phi (L := L) (by decide : 2 ≤ 3) b] with x hx hy
   rw [pMapDeriv_apply, Complex.ofReal_re, RCLike.inner_apply, hx, hy, RCLike.re_to_complex]
   simp only [map_mul, Complex.conj_ofReal]
-  rw [mul_comm (conj (((densitySlope beta gamma
-    (‖Phi L (by decide : 2 ≤ 3) c x‖ ^ 2) - densitySlope beta gamma rho : ℝ) : ℂ)))]
-  simp only [Complex.conj_ofReal]
-  rw [mul_assoc, mul_comm (conj (Phi L (by decide : 2 ≤ 3) c x)), ← mul_assoc]
-  -- The remaining equality is multiplication by a real scalar.
-  simp [Complex.mul_re]
-  <;> ring
+  simp [Complex.mul_re, Complex.mul_im] <;> ring
 
 theorem hasDerivAt_potential {beta gamma rho : ℝ} {u : ℝ → ell2 2}
     {du : ell2 2} {t : ℝ} (h : HasDerivAt u du t) :
