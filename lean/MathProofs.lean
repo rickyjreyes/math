@@ -178,6 +178,10 @@ import MathProofs.GC01VortexEstimates
 import MathProofs.GC06ShellBinding
 import MathProofs.GC06NearZeroShell
 import MathProofs.GC06VirialBinding
+import MathProofs.GC16BulkBinding
+import MathProofs.GC01ExpandedOrbits
+import MathProofs.GC16InterfaceBinding
+import MathProofs.GC06SpectralMerging
 import MathProofs.GC08Cartesian
 import MathProofs.GC08Gauge
 import MathProofs.GC08Field
