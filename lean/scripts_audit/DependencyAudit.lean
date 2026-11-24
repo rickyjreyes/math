@@ -3,6 +3,9 @@ import MathProofs.GC08Cartesian
 import MathProofs.GC08Gauge
 import MathProofs.GC08Field
 import MathProofs.GC08PlaneLocus
+import MathProofs.GC08ClosedPlane
+import MathProofs.GC08Spatial
+import MathProofs.GC08Hadamard
 
 /-!
 Dependency audit for the whole-space confinement chain (Task 2).
@@ -78,3 +81,12 @@ elab "#audit_deps " root:ident : command => do
 #audit_deps ReyesMath.GC08.field_closure_family_distinct
 #audit_deps ReyesMath.GC08.unique_symmetric_jets
 #audit_deps ReyesMath.GC08.plane_iff_equations
+#audit_deps ReyesMath.GC08.nodal_factorization
+#audit_deps ReyesMath.GC08.closed_plane_iff_equations
+#audit_deps ReyesMath.GC08.vanishes_on_closed_plane
+#audit_deps ReyesMath.GC08.curvature_spatial
+#audit_deps ReyesMath.GC08.closure_spatial
+#audit_deps ReyesMath.GC08.closure_rotate
+#audit_deps ReyesMath.GC08.parameter_integral_smooth
+#audit_deps ReyesMath.GC08.smooth_graph_factorization
+#audit_deps ReyesMath.GC08.equivariant_graph_factorization
