@@ -187,3 +187,4 @@ import MathProofs.GC08Hadamard
 import MathProofs.GC16BulkBinding
 import MathProofs.GC01ExpandedOrbits
 import MathProofs.GC16InterfaceBinding
+import MathProofs.GC06SpectralMerging
