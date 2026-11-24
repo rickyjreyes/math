@@ -16,7 +16,12 @@ expected = [
     "ReyesMath.GC01ExpandedOrbits.binding_of_either",
     "ReyesMath.GC01ExpandedOrbits.exists_minimizer_expanded",
     "ReyesMath.GC01ExpandedOrbits.orbital_stability_expanded",
-    "ReyesMath.GC01ExpandedOrbits.isolated_orbit_stability_expanded"
+    "ReyesMath.GC01ExpandedOrbits.isolated_orbit_stability_expanded",
+    "ReyesMath.GC16InterfaceBinding.bulkDensity_pos",
+    "ReyesMath.GC16InterfaceBinding.optimized_increment",
+    "ReyesMath.GC16InterfaceBinding.strict_split_of_optimized_margin",
+    "ReyesMath.GC16InterfaceBinding.mass_bound_to_surface_gap",
+    "ReyesMath.GC16InterfaceBinding.inf_surface_gap_of_cell_bound"
 ]
 allowed = {"propext", "Classical.choice", "Quot.sound"}
 data = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
