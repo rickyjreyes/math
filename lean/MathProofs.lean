@@ -190,3 +190,7 @@ import MathProofs.GC08ClosedPlane
 import MathProofs.GC08Spatial
 import MathProofs.GC08Hadamard
 import MathProofs.GC01SpectralReduction
+import MathProofs.GC11PlaneWaveDegeneracy
+import MathProofs.GC21AffineMomentumObstruction
+import MathProofs.GC25HealthyParentMode
+import MathProofs.GC53DimensionlessBinding
