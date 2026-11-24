@@ -181,3 +181,7 @@ critical/supercritical regimes remain open in this ledger.
 ## GC06 follow-up: nonzero-selector binding and exact compactness obstruction
 
 [Detailed analytical proof and theorem correspondence](GC06_SHELL_BINDING_2026-11-24.md). Two candidate Lean modules extend the explicit interval and establish a growing near-zero-selector mass region; analytical shell bounds yield arbitrarily large binding masses at every fixed k, and concentration-compactness yields a finite attained-profile decomposition and necessary/sufficient strict binding for compactness. Both elementary scaling comparisons fail on explicit negative stationary trial fields. Remaining: exact fixed-k attainment classification and strict cluster merging or a genuine equality counterexample. New Lean roots pending CI; structural results are analytical only. No issue closure or accepted registry promotion.
+
+## GC06 follow-up: closed virial-ratio mass interval
+
+Candidate `GC06VirialBinding.lean` proves all-split binding, compactness and attainment for k²m≤3β/γ, by a uniform virial ratio, finite mass-increment chaining and mass correction at the endpoint. This supersedes the earlier explicit sufficient ceiling, but not the unrestricted fixed-k classification. The user's local build verified both earlier GC06 modules; the new module and 25-root gate remain pending. See section 10 of the detailed note. No completion status promoted.
