@@ -307,4 +307,54 @@ theorem historical_exceptional_endpoint (t h1 h2 : ℝ)
     rw [hh, max_eq_right hneg50.le, max_eq_right ht50.le]
     norm_num
 
+/-! A source-model plateau, not an assumed constant map. -/
+
+def plateauCenter : Params := fun i =>
+  if i = 7 ∨ i = 14 ∨ i = 17 ∨ i = 28 then -1
+  else if i = 8 then 1 else 0
+
+/-- Every observed coordinate is exactly at the floor on an ambient
+neighborhood of an explicit 31-vector. This supports the stronger
+topological lower bound on global observation augmentation. -/
+theorem observed_constant_near_plateau :
+    ∀ᶠ q in 𝓝 plateauCenter, observed q = fun _ => (1e-12 : ℝ) := by
+  have hl (i : Fin 3) :
+      (fun q => light q (i.val + 1)) =ᶠ[𝓝 plateauCenter]
+        (fun _ => (1e-12 : ℝ)) := by
+    apply eventually_max_right (continuous_lightRaw (i.val + 1)).continuousAt
+    fin_cases i <;> norm_num [plateauCenter, lightRaw, clip, topo]
+  have hm (i : Fin 5) :
+      (fun q => middle q (middleN i)) =ᶠ[𝓝 plateauCenter]
+        (fun _ => (1e-12 : ℝ)) := by
+    apply eventually_max_right (contDiff_middleRaw (middleN i)).continuous.continuousAt
+    fin_cases i <;> norm_num [plateauCenter, middleN, middleRaw, Matrix.cons_val]
+  have hh (i : Fin 3) :
+      (fun q => heavy q (heavyN i)) =ᶠ[𝓝 plateauCenter]
+        (fun _ => (1e-12 : ℝ)) := by
+    apply eventually_max_right
+      ((continuous_light (heavyN i)).add (continuous_heavyCorrection (heavyN i))).continuousAt
+    fin_cases i <;>
+      norm_num [plateauCenter, heavyN, light, lightRaw, heavyCorrection,
+        clip, topo, Matrix.cons_val, Real.rpow_zero]
+  filter_upwards [hl 0, hl 1, hl 2, hm 0, hm 1, hm 2, hm 3, hm 4,
+    hh 0, hh 1, hh 2] with q l0 l1 l2 m0 m1 m2 m3 m4 h0 h1 h2
+  funext i
+  fin_cases i <;> first | exact l0 | exact l1 | exact l2 |
+    exact m0 | exact m1 | exact m2 | exact m3 | exact m4 |
+    exact h0 | exact h1 | exact h2
+
+/-- A canonical representative for the three affine invisible directions.
+This does not quotient the other, nonlinear observation aliases. -/
+def canonicalInvisible (p : Params) : Params :=
+  invisibleFamily p 0 0 (-(p 27))
+
+theorem observed_canonicalInvisible (p : Params) :
+    observed (canonicalInvisible p) = observed p :=
+  observed_invisibleFamily p 0 0 (-(p 27))
+
+theorem canonicalInvisible_zero_coords (p : Params) :
+    canonicalInvisible p 16 = 0 ∧ canonicalInvisible p 18 = 0 ∧
+      canonicalInvisible p 27 = 0 := by
+  norm_num [canonicalInvisible, invisibleFamily, shiftHiggs, Function.update]
+
 end ReyesMath.V18Forward
