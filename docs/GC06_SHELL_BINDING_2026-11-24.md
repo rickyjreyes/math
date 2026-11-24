@@ -177,3 +177,59 @@ The exact parameter normalization u(x)=sqrt(beta/gamma) v(x/L), L=(gamma/beta²)
 Prior-work leads: P.-L. Lions, concentration compactness (1984), and Brézis–Lieb (1983) underlie Section 6. Fernández, Jeanjean, Mandel, Mariş (JDE 330, 2022, DOI 10.1016/j.jde.2022.04.037) study a mixed-dispersion single-power variational problem and nonhomogeneous GN estimates. Ma, Chang, Feng (EJDE 2024 no. 29, DOI 10.58997/ejde.2024.29) study combined-power mixed-dispersion normalized ground states, including local minima and Nehari–Pohozaev arguments. These are relevant comparisons, not a claim that their exact hypotheses coincide with this global cubic–quintic minimization. The cited abstracts and the repository's earlier references are not a complete novelty audit.
 
 The two new candidate Lean modules encode Theorems A and B on the existing Sobolev.H2.energy and Imin. They import the generic compactness machinery of PR #99. Theorems C–E, the scaling counterexample, the explicit Gaussian seed specialization, dimensionless normalization and all-k defocusing extension remain analytical; they are not encoded by those Lean declarations. Full lake build and exact transitive axiom audits are required, and no green build is asserted until observed. No custom axiom, unfinished proof command or circular attainment assumption is intentionally introduced. The scope of the original problem and its registry status remain unchanged; no issue closure or accepted completion record is warranted.
+
+## 10. Virial-ratio extension (new candidate Lean proof)
+
+**Theorem F.** For beta,gamma>0, m>0 and every real k satisfying
+\[
+k^2m\leq 3\beta/\gamma,
+\]
+strict binding holds for every interior split; every minimizing sequence is
+subsequentially compact modulo translations and the infimum is attained.
+In particular k=0 has no mass ceiling. For k≠0 this is the closed interval
+0<m≤3 beta/(gamma k²), strictly larger than the explicit interval m≤m_R.
+This is sufficient, not a necessary confinement bound.
+
+Proof. Let r*=3 beta/(4 gamma). First assume k²m<3 beta/gamma. Set
+d=(r*−k²m/4)/(2+gamma m²/48), c=r*−d and B=beta/4−gamma c/3=gamma d/3.
+Then 0<c<r*, B>0, and k²m/4+B m²/16<c.
+For any dilation-stationary W of mass a≤m, let x=sqrt(aD).
+The exact Sobolev estimates give Q≤ax/4, S≤xQ/4 and K≤x.
+If S>cQ, then x>4c>0 (since Q>0).
+The virial identity yields D≤k²x+BQ, hence
+x²≤(k²a+B a²/4)x and therefore x/4≤k²m/4+B m²/16<c,
+a contradiction. Thus S≤cQ uniformly on all these fields.
+
+For mass ratio t>1 with gamma(t+1)c/3<beta/2, set
+h=1−2 gamma(t+1)c/(3 beta)>0. Amplitude scaling gives
+E(sqrt(t)W)/t≤[1+(t−1)h]E(W), using E(W)≥−beta Q/2.
+Adjust near-minimizers to dilation stationarity and take the infimum;
+I(ta)/(ta)≤[1+(t−1)h] I(a)/a < I(a)/a because I(a)<0.
+For a<b≤m choose l=r*/c>1 and d0=(l−1)a>0.
+Any increment y−x≤d0 within [a,b] satisfies y/x≤l and
+(y/x+1)c≤r*+c<2r*, so finitely many local increments give
+I(b)/b<I(a)/a. This is the real-interval chaining lemma, not a
+differentiability assumption on I.
+
+For the equality endpoint b, take q_n=b−(b−a)/(2(n+1)) and
+near-minimizers of masses q_n with energy errors 1/(n+1).
+They have energies ≤1, and the established coercivity bound yields
+a uniform H² bound because q_n≤b. The existing exact mass correction
+lemma implies I(b)≤liminf of their energies ≤b I(a)/a. To obtain
+strictness, apply this nonstrict comparison starting at (a+b)/2,
+and then the strict interior comparison between a and that midpoint.
+This proves strict decrease also at the endpoint. Multiplication by
+both split masses and addition yield strict binding. Apply the generic
+whole-space compactness and attainment results.
+
+Formal correspondence: MathProofs.GC06VirialBinding, with exact roots
+stationary_ratio, exists_ratio, local_comparison, chain_strict,
+energy_per_mass_strict, strict_binding_virial, compactness_virial,
+exists_minimizer_virial, exists_minimizer_zero_all_mass,
+energy_per_mass_le_endpoint, energy_per_mass_strict_closed,
+strict_binding_closed, compactness_closed, exists_minimizer_closed.
+The focused build and strict 25-root axiom gate now include this module.
+The earlier two GC06 modules were reported successfully built by the
+user with standard axioms only; this new module still requires compilation.
+No GC-level status promotion. The counterexample in section 7 still
+prevents inferring arbitrary-mass binding from stationarity alone.
