@@ -1,4 +1,4 @@
-import MathProofs.WholeSpaceMinimizers
+import MathProofs.OrbitalStability
 
 /-!
 # GC16: all positive masses when k = 0
@@ -13,7 +13,10 @@ No attainment, new axiom, or mass ceiling is assumed.
 namespace ReyesMath
 namespace GC16ZeroShell
 
+open Filter Topology
 open Sobolev Sobolev.H2 StrictBinding
+open OrbitalStability
+open scoped Topology
 
 /-- Stretch a field at fixed amplitude by a factor √t in two dimensions. -/
 theorem exists_stretch (β γ : ℝ) (U : H2 2) {t : ℝ} (ht : 0 < t) :
@@ -67,7 +70,7 @@ theorem energy_per_mass_strict {β γ a b : ℝ} (hβ : 0 < β) (hγ : 0 < γ)
   have hb : 0 < b := ha.trans hab
   have hta : t * a = b := by
     dsimp [t]
-    field_simp
+    field_simp [ha.ne']
   have hti : 1 / t < 1 := (div_lt_one ht0).2 ht
   have hd : 0 < t - 1 / t := by linarith
   let J := Imin β γ 0 a
@@ -101,7 +104,7 @@ theorem energy_per_mass_strict {β γ a b : ℝ} (hβ : 0 < β) (hγ : 0 < γ)
     _ = Imin β γ 0 a / a := by
       change t * J / b = J / a
       rw [← hta]
-      field_simp
+      field_simp [ht0.ne', ha.ne']
 
 /-- GC16 is resolved in the k=0 subfamily, for all positive masses and splits. -/
 theorem strict_binding_all_mass {β γ m a : ℝ} (hβ : 0 < β) (hγ : 0 < γ)
@@ -122,7 +125,39 @@ theorem strict_binding_all_mass {β γ m a : ℝ} (hβ : 0 < β) (hγ : 0 < γ)
     <;> ring
   linarith
 
+/-- Every minimizing sequence at positive mass has a strongly convergent
+subsequence modulo translations, without a mass ceiling when k=0. -/
+theorem compactness_all_mass {β γ m : ℝ} (hβ : 0 < β) (hγ : 0 < γ)
+    (hm : 0 < m) {u : ℕ → H2 2} (hM : ∀ n, M (u n) = m)
+    (hE : Tendsto (fun n => energy β γ 0 (u n)) atTop (𝓝 (Imin β γ 0 m))) :
+    ∃ φ : ℕ → ℕ, StrictMono φ ∧ ∃ y : ℕ → EuclideanSpace ℝ (Fin 2),
+      ∃ U : H2 2, M U = m ∧ energy β γ 0 U = Imin β γ 0 m ∧
+      Tendsto (fun n => distH2 (translate (y n) (u (φ n))) U) atTop (𝓝 0) :=
+  WholeSpace.compactness_of_binding hβ hγ hm
+    (fun a ha ham => strict_binding_all_mass hβ hγ hm ha ham) hM hE
+
+/-- GC06: attainment at every positive mass in the exact k=0 subfamily. -/
+theorem exists_minimizer_all_mass {β γ m : ℝ} (hβ : 0 < β) (hγ : 0 < γ)
+    (hm : 0 < m) :
+    ∃ U : H2 2, M U = m ∧ energy β γ 0 U = Imin β γ 0 m :=
+  WholeSpace.exists_minimizer_of_binding hβ hγ hm
+    (fun a ha ham => strict_binding_all_mass hβ hγ hm ha ham)
+
+/-- GC01 milestone: stability of the entire constrained minimizing set,
+not of every individual standing-wave orbit. -/
+theorem orbital_stability_all_mass {β γ m ε : ℝ} (hβ : 0 < β) (hγ : 0 < γ)
+    (hm : 0 < m) (hε : 0 < ε) :
+    ∃ δ > 0, ∀ u : ℝ → H2 2, IsSolution β γ 0 u →
+      distX (u 0) (Gset β γ 0 m) < δ →
+      BddAbove (Set.range fun t => distX (u t) (Gset β γ 0 m)) ∧
+      ⨆ t, distX (u t) (Gset β γ 0 m) < ε :=
+  OrbitalStability.orbital_stability_of_binding hβ hγ hm
+    (fun a ha ham => strict_binding_all_mass hβ hγ hm ha ham) hε
+
 end GC16ZeroShell
 end ReyesMath
 
 #print axioms ReyesMath.GC16ZeroShell.strict_binding_all_mass
+#print axioms ReyesMath.GC16ZeroShell.compactness_all_mass
+#print axioms ReyesMath.GC16ZeroShell.exists_minimizer_all_mass
+#print axioms ReyesMath.GC16ZeroShell.orbital_stability_all_mass
