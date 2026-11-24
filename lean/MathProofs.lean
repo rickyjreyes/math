@@ -200,3 +200,5 @@ import MathProofs.GC11TorusHamiltonian
 import MathProofs.GC11TorusConservation
 import MathProofs.GC11TorusCarrier
 import MathProofs.GC11TorusEquivariance
+import MathProofs.GC11PVNPBridge
+import MathProofs.GC11PVNPIntegration
