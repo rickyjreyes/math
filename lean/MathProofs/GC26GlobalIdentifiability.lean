@@ -504,4 +504,130 @@ theorem square_system_solvable {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
     simpa [Matrix.rank] using hr
   exact hs y
 
+/-! Global attainable-output range, using actual parameters rather than
+extrapolating the local derivative theorem. -/
+
+def middlePolar (m : Fin 5 → ℝ) : ℂ :=
+  ⟨m 2, 2241.1 * m 3⟩
+
+theorem middle_polar_linear (m : Fin 5 → ℝ) (x : ℝ) :
+    ‖middlePolar m‖ * Real.sin (x + (middlePolar m).arg) =
+      m 2 * Real.sin x + (2241.1 * m 3) * Real.cos x := by
+  rw [Real.sin_add]
+  calc
+    _ = (‖middlePolar m‖ * Real.cos (middlePolar m).arg) * Real.sin x +
+      (‖middlePolar m‖ * Real.sin (middlePolar m).arg) * Real.cos x := by ring
+    _ = _ := by rw [Complex.norm_mul_cos_arg, Complex.norm_mul_sin_arg]; rfl
+
+/-- The constructive 31-vector, with three linear light controls, five
+linearized middle controls and three linear heavy controls. -/
+def rangeParams (l : Fin 3 → ℝ) (m : Fin 5 → ℝ) (h : Fin 3 → ℝ) : Params :=
+  ![l 0, 0, 0, l 1, l 2, 0, 0, 0, 1,
+    ‖middlePolar m‖, 5.0632, 9.4062, 1.6469 + (middlePolar m).arg,
+    m 4, m 0, m 1,
+    0, 0, 0, 0, h 0, -1.189, 0, 0, h 1, -1.264, 4.685, 0, h 2, 0, 0]
+
+private theorem range_lightRaw (l : Fin 3 → ℝ) (m : Fin 5 → ℝ)
+    (h : Fin 3 → ℝ) (i : Fin 3) :
+    lightRaw (rangeParams l m h) (i.val + 1) =
+      (V18LightJacobian.base.mulVec l) i / 2 := by
+  fin_cases i <;>
+    norm_num [rangeParams, lightRaw, topo, clip, V18LightJacobian.base,
+      Matrix.mulVec, dotProduct, Fin.sum_univ_succ, Matrix.cons_val] <;> ring
+
+private theorem range_middleRaw (l : Fin 3 → ℝ) (m : Fin 5 → ℝ)
+    (h : Fin 3 → ℝ) (i : Fin 5) :
+    middleRaw (rangeParams l m h) (middleN i) =
+      (V18MiddleJacobian.middle.mulVec m) i := by
+  fin_cases i <;>
+    norm_num [rangeParams, middleRaw, middleN, V18MiddleJacobian.middle,
+      Matrix.mulVec, dotProduct, Fin.sum_univ_succ, Matrix.cons_val, ← add_assoc] <;>
+    rw [middle_polar_linear] <;> ring
+
+private theorem range_heavyCorrection (l : Fin 3 → ℝ) (m : Fin 5 → ℝ)
+    (h : Fin 3 → ℝ) (i : Fin 3) :
+    heavyCorrection (rangeParams l m h) (heavyN i) =
+      (V18HeavyJacobian.heavy.mulVec h) i := by
+  have hm : V18HeavyJacobian.heavy =
+      !![(0.95 : ℝ)^(-1.189 : ℝ), Real.sin (-115.395), 0;
+         (0.96 : ℝ)^(-1.189 : ℝ), Real.sin (-116.659), 0;
+         (1.23 : ℝ)^(-1.189 : ℝ), 0, 1] := rfl
+  rw [hm]
+  fin_cases i <;>
+    norm_num [rangeParams, heavyCorrection, heavyN, clip,
+      Matrix.mulVec, dotProduct, Fin.sum_univ_succ, Matrix.cons_val] <;> ring
+
+private theorem range_light_independent (l : Fin 3 → ℝ) (m : Fin 5 → ℝ)
+    (h : Fin 3 → ℝ) (n : ℕ) :
+    light (rangeParams l m h) n = light (rangeParams l m 0) n := by
+  norm_num [light, lightRaw, rangeParams, Matrix.cons_val]
+
+/-- Exact image of the full clipped map: every eleven-vector at or above
+the source floor is attained. The proof is constructive block solving;
+it does not infer global surjectivity from a full-rank derivative. -/
+theorem observed_range_exact :
+    Set.range observed = {y | ∀ i : Fin 11, (1e-12 : ℝ) ≤ y i} := by
+  ext y
+  constructor
+  · rintro ⟨p, rfl⟩
+    exact observed_floor_le p
+  · intro hy
+    change ∀ i : Fin 11, (1e-12 : ℝ) ≤ y i at hy
+    obtain ⟨l, hl⟩ := square_system_solvable V18LightJacobian.base
+      (by rw [V18LightJacobian.base_det]; norm_num)
+      (![2 * y 0, 2 * y 1, 2 * y 2])
+    obtain ⟨m, hm⟩ := square_system_solvable V18MiddleJacobian.middle
+      V18MiddleJacobian.middle_det_ne_zero (![y 3, y 4, y 5, y 6, y 7])
+    let q := rangeParams l m 0
+    obtain ⟨h, hh⟩ := square_system_solvable V18HeavyJacobian.heavy
+      V18HeavyJacobian.heavy_det_ne_zero
+      (![y 8 - light q 95, y 9 - light q 96, y 10 - light q 123])
+    let p := rangeParams l m h
+    have hlight (i : Fin 3) :
+        light p (i.val + 1) = (![y 0, y 1, y 2] : Fin 3 → ℝ) i := by
+      change light (rangeParams l m h) (i.val + 1) = _
+      rw [light, range_lightRaw, hl]
+      fin_cases i
+      · norm_num [Matrix.cons_val]; exact max_eq_left (hy 0)
+      · norm_num [Matrix.cons_val]; exact max_eq_left (hy 1)
+      · norm_num [Matrix.cons_val]; exact max_eq_left (hy 2)
+    have hmiddle (i : Fin 5) :
+        middle p (middleN i) = (![y 3, y 4, y 5, y 6, y 7] : Fin 5 → ℝ) i := by
+      change middle (rangeParams l m h) (middleN i) = _
+      rw [middle, range_middleRaw, hm]
+      fin_cases i
+      · exact max_eq_left (hy 3)
+      · exact max_eq_left (hy 4)
+      · exact max_eq_left (hy 5)
+      · exact max_eq_left (hy 6)
+      · exact max_eq_left (hy 7)
+    have hheavy (i : Fin 3) :
+        heavy p (heavyN i) = (![y 8, y 9, y 10] : Fin 3 → ℝ) i := by
+      change heavy (rangeParams l m h) (heavyN i) = _
+      rw [heavy, range_light_independent, range_heavyCorrection, hh]
+      fin_cases i
+      · change max (light q 95 + (y 8 - light q 95)) 1e-12 = y 8
+        rw [show light q 95 + (y 8 - light q 95) = y 8 by ring,
+          max_eq_left (hy 8)]
+      · change max (light q 96 + (y 9 - light q 96)) 1e-12 = y 9
+        rw [show light q 96 + (y 9 - light q 96) = y 9 by ring,
+          max_eq_left (hy 9)]
+      · change max (light q 123 + (y 10 - light q 123)) 1e-12 = y 10
+        rw [show light q 123 + (y 10 - light q 123) = y 10 by ring,
+          max_eq_left (hy 10)]
+    refine ⟨p, ?_⟩
+    funext i
+    fin_cases i
+    · exact hlight 0
+    · exact hlight 1
+    · exact hlight 2
+    · exact hmiddle 0
+    · exact hmiddle 1
+    · exact hmiddle 2
+    · exact hmiddle 3
+    · exact hmiddle 4
+    · exact hheavy 0
+    · exact hheavy 1
+    · exact hheavy 2
+
 end ReyesMath.V18Forward
