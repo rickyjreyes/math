@@ -17,6 +17,120 @@ def SubadditiveEnergy (β γ k : ℝ) : Prop :=
   ∀ a b : ℝ, 0 < a → 0 < b →
     Imin β γ k (a + b) ≤ Imin β γ k a + Imin β γ k b
 
+/-! Weak translation limit in the exact L² space, using compact-support
+approximation, not an assumed Fourier asymptotic. -/
+
+private theorem approximate_L2 (f : L2 2) {ε : ℝ} (hε : 0 < ε) :
+    ∃ g : R2 → ℂ, ∃ hg : MemLp g 2 volume, HasCompactSupport g ∧
+      ‖f - hg.toLp g‖ ≤ ε := by
+  obtain ⟨g, hgc, herr, _, hg⟩ :=
+    (Lp.memLp f).exists_hasCompactSupport_eLpNorm_sub_le
+      (by norm_num : (2 : ENNReal) ≠ ⊤)
+      (ENNReal.ofReal_ne_zero_iff.mpr hε)
+  refine ⟨g, hg, hgc, ?_⟩
+  rw [Lp.norm_def]
+  have hae : (⇑(f - hg.toLp g) : R2 → ℂ) =ᵐ[volume] (fun x => f x - g x) := by
+    filter_upwards [Lp.coeFn_sub f (hg.toLp g), hg.coeFn_toLp] with x hx hy
+    rw [hx, Pi.sub_apply, hy]
+  rw [eLpNorm_congr_ae hae]
+  simpa [ENNReal.toReal_ofReal hε.le] using
+    ENNReal.toReal_mono (ENNReal.ofReal_ne_top : ENNReal.ofReal ε ≠ ⊤) herr
+
+private theorem compact_inner_translate_zero
+    (f g : R2 → ℂ) (hf : MemLp f 2 volume) (hg : MemLp g 2 volume)
+    (hfc : HasCompactSupport f) (hgc : HasCompactSupport g) :
+    ∃ R : ℝ, ∀ y : R2, R < ‖y‖ →
+      inner ℂ (hf.toLp f) (transL2 y (hg.toLp g)) = 0 := by
+  obtain ⟨A, hA⟩ := hfc.isBounded.subset_closedBall (0 : R2)
+  obtain ⟨B, hB⟩ := hgc.isBounded.subset_closedBall (0 : R2)
+  refine ⟨A+B, fun y hy => ?_⟩
+  have hpoint (x : R2) : f x = 0 ∨ g (x+y) = 0 := by
+    by_contra! h
+    have hx : ‖x‖ ≤ A := by
+      have hm := hA (subset_closure (show x ∈ Function.support f from h.1))
+      simpa [Metric.mem_closedBall, dist_zero_right] using hm
+    have hxy : ‖x+y‖ ≤ B := by
+      have hm := hB (subset_closure (show x+y ∈ Function.support g from h.2))
+      simpa [Metric.mem_closedBall, dist_zero_right] using hm
+    have ht := norm_sub_le (x+y) x
+    rw [add_sub_cancel_left] at ht
+    linarith
+  have hshift : (transL2 y (hg.toLp g) : R2 → ℂ) =ᵐ[volume] fun x => g (x+y) := by
+    have hm := (mp_add_right y).quasiMeasurePreserving
+    exact (coeFn_transL2 y (hg.toLp g)).trans (hm.ae_eq_comp hg.coeFn_toLp)
+  rw [L2.inner_def]
+  calc
+    _ = ∫ _x : R2, (0 : ℂ) := by
+      apply integral_congr_ae
+      filter_upwards [hf.coeFn_toLp, hshift] with x hx hy'
+      rw [hx, hy']
+      rcases hpoint x with h | h
+      · simp [h]
+      · simp [h]
+    _ = 0 := integral_zero _ _
+
+/-- Translation to infinity is weakly zero for arbitrary L² fields. -/
+theorem weak_translate_zero (f z : L2 2) (y : ℕ → R2)
+    (hy : Tendsto (fun n => ‖y n‖) atTop atTop) :
+    Tendsto (fun n => inner ℂ z (transL2 (y n) f)) atTop (𝓝 0) := by
+  rw [Metric.tendsto_atTop]
+  intro ε hε
+  let d := min 1 (ε / (3 * (‖f‖ + ‖z‖ + 1)))
+  have hd : 0 < d := lt_min one_pos (by positivity)
+  have hd1 : d ≤ 1 := min_le_left _ _
+  have hdε : d * (‖f‖ + ‖z‖ + 1) ≤ ε / 3 := by
+    have hh := mul_le_mul_of_nonneg_right
+      (min_le_right (1 : ℝ) (ε / (3 * (‖f‖ + ‖z‖ + 1))))
+      (show 0 ≤ ‖f‖ + ‖z‖ + 1 by positivity)
+    change d * (‖f‖ + ‖z‖ + 1) ≤ _ at hh
+    have he : ε / (3 * (‖f‖ + ‖z‖ + 1)) * (‖f‖ + ‖z‖ + 1) = ε / 3 := by
+      field_simp
+    linarith only [hh, he]
+  obtain ⟨f', hf', hfc, hferr⟩ := approximate_L2 f hd
+  obtain ⟨z', hz', hzc, hzerr⟩ := approximate_L2 z hd
+  let F := hf'.toLp f'
+  let Z := hz'.toLp z'
+  have hF : ‖F‖ ≤ ‖f‖ + 1 := by
+    have h := norm_sub_norm_le F f
+    rw [norm_sub_rev] at h
+    linarith only [h, hferr, hd1]
+  obtain ⟨R, hR⟩ := compact_inner_translate_zero z' f' hz' hf' hzc hfc
+  obtain ⟨N, hN⟩ := eventually_atTop.1 (hy.eventually (eventually_gt_atTop R))
+  refine ⟨N, fun n hn => ?_⟩
+  rw [dist_zero_right]
+  have hzero : inner ℂ Z (transL2 (y n) F) = 0 := hR _ (hN n hn)
+  have he : inner ℂ z (transL2 (y n) f) =
+      inner ℂ (z-Z) (transL2 (y n) F) +
+      inner ℂ z (transL2 (y n) (f-F)) := by
+    simp only [map_sub, inner_sub_left, inner_sub_right]
+    rw [hzero]
+    abel
+  rw [he]
+  calc
+    _ ≤ ‖inner ℂ (z-Z) (transL2 (y n) F)‖ +
+        ‖inner ℂ z (transL2 (y n) (f-F))‖ := norm_add_le _ _
+    _ ≤ d * (‖f‖+1) + ‖z‖ * d := by
+      have h1 := norm_inner_le_norm (z-Z) (transL2 (y n) F)
+      have h2 := norm_inner_le_norm z (transL2 (y n) (f-F))
+      simp only [LinearIsometry.norm_map] at h1 h2
+      have h3 := mul_le_mul hzerr hF (norm_nonneg _) (by positivity : 0 ≤ d)
+      have h4 := mul_le_mul_of_nonneg_left hferr (norm_nonneg z)
+      linarith only [h1, h2, h3, h4]
+    _ = d * (‖f‖ + ‖z‖ + 1) := by ring
+    _ < ε := hdε.trans_lt (by linarith)
+
+/-- A fixed sequence of translates works for every val and lap component. -/
+theorem exists_weak_translates (V : H2 2) :
+    ∃ y : ℕ → R2,
+      (∀ z, Tendsto (fun n => inner ℂ z (translate (y n) V).val) atTop (𝓝 0)) ∧
+      (∀ z, Tendsto (fun n => inner ℂ z (translate (y n) V).lap) atTop (𝓝 0)) := by
+  let y : ℕ → R2 := fun n => EuclideanSpace.single (0 : Fin 2) (n : ℝ)
+  have hy : Tendsto (fun n => ‖y n‖) atTop atTop := by
+    simpa [y, EuclideanSpace.norm_single, Real.norm_eq_abs] using
+      (tendsto_natCast_atTop_atTop (R := ℝ))
+  exact ⟨y, fun z => weak_translate_zero V.val z y hy,
+    fun z => weak_translate_zero V.lap z y hy⟩
+
 /-- Approximate splitting of a fixed pair into spatially separated trials.
 The weak-translation limit, rather than a fictitious exact disjointness of
 arbitrary H² fields, is the precise remaining input to this lemma. -/
@@ -88,6 +202,11 @@ theorem subadditive_of_weak_translates (hβ : 0 < β) (hγ : 0 < γ)
     (by rw [hU]; exact ha) (by rw [hV]; exact hb) y h0 h2
   rw [hU, hV] at hi
   linarith only [hi, hUE, hVE, hε]
+
+/-- Ordinary subadditivity of the original continuum constrained infimum. -/
+theorem ordinary_subadditive (hβ : 0 < β) (hγ : 0 < γ) :
+    SubadditiveEnergy β γ k :=
+  subadditive_of_weak_translates hβ hγ exists_weak_translates
 
 /-- Every nonzero weak profile of a minimizing sequence is itself an attained
 minimizer at its own mass. If its mass is smaller, the complementary infima
