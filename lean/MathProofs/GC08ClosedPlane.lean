@@ -190,8 +190,8 @@ theorem nodalPath_mem_plane {d : ℕ} (c : ℂ) (hc : c ≠ 0)
       simp only [nodalPath,complexPlane,Complex.ofReal_div]
       field_simp [htC] <;> ring
 
-/-- Every polynomial-test nodal jet lies in the actual topological closure. -/
 set_option maxHeartbeats 2000000 in
+/-- Every polynomial-test nodal jet lies in the actual topological closure. -/
 theorem nodal_mem_closure {d : ℕ} (J : ComplexJet d)
     (hz : J.1=0) (h : closedEquations J) :
     J ∈ closure (planeSet d) := by
