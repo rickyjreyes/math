@@ -102,11 +102,12 @@ theorem sqrt_MD_refined (hβ : 0 < β) (hγ : 0 < γ) {W : H2 2}
 theorem S_le_of_stationary_refined (hβ : 0 < β) (hγ : 0 < γ) {W : H2 2}
     (hW : IsStationary β γ k W) :
     S W ≤ sigmaR β γ k / 4 * M W * Q W := by
+  have hQ := Q_nonneg W
+  have h3 := sqrt_MD_refined hβ hγ hW
   calc
     S W ≤ Real.sqrt (M W * D W) / 4 * Q W := S_le W
     _ ≤ sigmaR β γ k * M W / 4 * Q W := by
       gcongr
-      exact sqrt_MD_refined hβ hγ hW
     _ = sigmaR β γ k / 4 * M W * Q W := by ring
 
 theorem gap_refined (hβ : 0 < β) (hγ : 0 < γ) {a b : ℝ} (ha : 0 < a) (hab : a < b)
@@ -181,7 +182,7 @@ theorem gap_refined (hβ : 0 < β) (hγ : 0 < γ) {a b : ℝ} (ha : 0 < a) (hab 
   nlinarith [heb]
 
 /-- **Theorem (explicit strict-binding range).**  For `β, γ > 0`, every `k`, every
-`0 < m ≤ m_B` and every `0 < μ < m`: `I(m) < I(μ) + I(m − μ)`. -/
+`0 < m ≤ mR` and every `0 < μ < m`: `I(m) < I(μ) + I(m − μ)`. -/
 theorem strict_binding_refined (hβ : 0 < β) (hγ : 0 < γ) {m μ : ℝ} (hm : 0 < m) (hmB : m ≤ mR β γ k)
     (hμ : 0 < μ) (hμm : μ < m) :
     Imin β γ k m < Imin β γ k μ + Imin β γ k (m - μ) := by
@@ -203,7 +204,7 @@ theorem strict_binding_refined (hβ : 0 < β) (hγ : 0 < γ) {m μ : ℝ} (hm : 
   linarith
 
 
-/-- Full-sequence compactness in the strictly enlarged explicit interval. -/
+/-- Subsequential compactness modulo translations in the strictly enlarged interval. -/
 theorem compactness_refined (hβ : 0 < β) (hγ : 0 < γ) {m : ℝ}
     (hm : 0 < m) (hmR : m ≤ mR β γ k) {u : ℕ → H2 2}
     (hM : ∀ n, M (u n) = m)
