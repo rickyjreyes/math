@@ -4,6 +4,7 @@ on:
     paths:
       - 'lean/MathProofs/GC16BulkBinding.lean'
       - 'lean/MathProofs/GC16InterfaceBinding.lean'
+      - 'lean/MathProofs/GC06SpectralMerging.lean'
       - 'lean/MathProofs/GC01ExpandedOrbits.lean'
       - 'lean/GC06GC16GC01ContinuationAudit.lean'
       - 'lean/scripts_audit/check_gc_continuation_axioms.py'
@@ -27,9 +28,9 @@ jobs:
         run: lake exe cache get
       - name: Reject placeholders
         run: |
-          if grep -nE '(^|[[:space:]])(sorry|admit|axiom)([[:space:]]|$)' MathProofs/GC16BulkBinding.lean MathProofs/GC01ExpandedOrbits.lean MathProofs/GC16InterfaceBinding.lean; then exit 1; fi
+          if grep -nE '(^|[[:space:]])(sorry|admit|axiom)([[:space:]]|$)' MathProofs/GC16BulkBinding.lean MathProofs/GC01ExpandedOrbits.lean MathProofs/GC16InterfaceBinding.lean MathProofs/GC06SpectralMerging.lean; then exit 1; fi
       - name: Build exact modules
-        run: lake build MathProofs.GC16BulkBinding MathProofs.GC01ExpandedOrbits MathProofs.GC16InterfaceBinding
+        run: lake build MathProofs.GC16BulkBinding MathProofs.GC01ExpandedOrbits MathProofs.GC16InterfaceBinding MathProofs.GC06SpectralMerging
       - name: Audit exact roots
         run: |
           set -o pipefail
