@@ -113,7 +113,8 @@
         "lean/MathProofs/StrictBinding.lean",
         "lean/MathProofs/NegativeEnergy.lean",
         "lean/MathProofs/GC06ShellBinding.lean",
-        "lean/MathProofs/GC06NearZeroShell.lean"
+        "lean/MathProofs/GC06NearZeroShell.lean",
+        "lean/MathProofs/GC06VirialBinding.lean"
       ],
       "related_papers": [
         "papers/whole-space-fourth-order-cubic-quintic-minimizers/main.tex",
@@ -132,9 +133,12 @@
         "ReyesMath.GC06ShellBinding.exists_minimizer_refined",
         "ReyesMath.GC06NearZeroShell.strict_binding_near_zero",
         "ReyesMath.GC06NearZeroShell.compactness_near_zero",
-        "ReyesMath.GC06NearZeroShell.exists_minimizer_near_zero"
+        "ReyesMath.GC06NearZeroShell.exists_minimizer_near_zero",
+        "ReyesMath.GC06VirialBinding.strict_binding_closed",
+        "ReyesMath.GC06VirialBinding.compactness_closed",
+        "ReyesMath.GC06VirialBinding.exists_minimizer_closed"
       ],
-      "scope_gap": "New candidate results enlarge the sufficient region and give analytical unbounded attained masses and finite-cluster compactness classification. New declarations await CI and exact correspondence review. Full fixed-k attainment classification and strict energetic merging remain unresolved.",
+      "scope_gap": "New candidate results enlarge the sufficient region and give analytical unbounded attained masses and finite-cluster compactness classification. The new closed virial region k²m ≤ 3β/γ awaits CI and exact correspondence review. Full fixed-k attainment classification and strict energetic merging remain unresolved.",
       "correspondence": "not_audited"
     },
     {
