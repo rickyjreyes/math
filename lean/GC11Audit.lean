@@ -2,6 +2,7 @@ import MathProofs.GC11StaticWave
 import MathProofs.GC11TorusEnergy
 import MathProofs.GC11TorusOrbit
 import MathProofs.GC11TorusInitial
+import MathProofs.GC11TorusConservation
 import MathProofs.GC11SidebandClassification
 
 #print axioms ReyesMath.GC11Coercivity.excess_eq
@@ -38,3 +39,10 @@ import MathProofs.GC11SidebandClassification
 #print axioms ReyesMath.GC11TorusInitial.mass_defect_near
 #print axioms ReyesMath.GC11TorusInitial.energy_near
 #print axioms ReyesMath.GC11TorusInitial.orbital_stability_conserving
+
+#print axioms ReyesMath.GC11TorusHamiltonian.kinetic_eq_norm
+#print axioms ReyesMath.GC11TorusHamiltonian.sqrtOp_inner
+#print axioms ReyesMath.GC11TorusHamiltonian.mass_conserved_strong
+#print axioms ReyesMath.GC11TorusConservation.hasDerivAt_potential
+#print axioms ReyesMath.GC11TorusConservation.energy_conserved_strong
+#print axioms ReyesMath.GC11TorusConservation.orbital_stability_strong
