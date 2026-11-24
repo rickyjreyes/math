@@ -139,6 +139,90 @@ theorem strict_split_of_certificate (hβ : 0 < β) (hγ : 0 < γ)
   have hgap := inf_bulk_gap (β := β) (γ := γ) (k := k) hβ hγ ha hs hsmall
   linarith only [hI, hgap, hcert]
 
+/-- Quantitative increment bound in the near-bulk regime, obtained without
+differentiating the value function or assuming that an infimum is attained. -/
+theorem inf_increment_bound (hβ : 0 < β) (hγ : 0 < γ)
+    {b δ t : ℝ} (hb : 0 < b) (hδ : 0 < δ) (ht : 1 ≤ t) (ht2 : t ≤ 2) :
+    Imin β γ k (t * b) - Imin β γ k b ≤ (t - 1) * b *
+      (-bulk β γ + 2 * bulk β γ * (t - 1) +
+        (7 + 4 * (β / δ)) * (Imin β γ k b / b + bulk β γ) +
+        4 * bulk β γ * (δ / β)) := by
+  let C := bulk β γ
+  let J := Imin β γ k b
+  let f := J / b + C
+  have hC : 0 < C := bulk_pos hβ hγ
+  have hJlo := (NegativeEnergy.negative_constrained_energy (k := k) hβ hγ hb).1
+  change -C * b ≤ J at hJlo
+  have hf : 0 ≤ f := by
+    dsimp only [f]
+    have h := (le_div_iff₀ hb).2 (show -C * b ≤ J from hJlo)
+    linarith only [h]
+  have hJ : J = b * (f - C) := by
+    dsimp only [f]
+    field_simp [hb.ne']
+    <;> ring
+  have hshift : (β / δ) * (bulk (β + δ) γ - C) = 2 * C + C * (δ / β) := by
+    dsimp only [C, bulk]
+    field_simp [hβ.ne', hγ.ne', hδ.ne']
+    <;> ring
+  let L := (t - 1) * t ^ 2 * (β / δ)
+  have hI := inf_scaled_upper (β := β) (γ := γ) (k := k) hβ hγ hb hδ ht
+  change Imin β γ k (t * b) ≤ (t ^ 3 + L) * J + L * bulk (β + δ) γ * b at hI
+  have hid : (t ^ 3 + L) * J + L * bulk (β + δ) γ * b - J =
+      (t - 1) * b * (-C + C * (t ^ 2 - t) +
+        (t ^ 2 + t + 1 + t ^ 2 * (β / δ)) * f + t ^ 2 * C * (δ / β)) := by
+    calc
+      _ = (t - 1) * ((t ^ 2 + t + 1) * J +
+          t ^ 2 * (β / δ) * (J + bulk (β + δ) γ * b)) := by
+        dsimp only [L]
+        ring
+      _ = (t - 1) * b * ((t ^ 2 + t + 1) * (f - C) +
+          t ^ 2 * ((β / δ) * f + (β / δ) * (bulk (β + δ) γ - C))) := by
+        rw [hJ]
+        ring
+      _ = _ := by rw [hshift]; ring
+  have ht0 : 0 ≤ t := by linarith
+  have hsq : t ^ 2 ≤ 4 := by
+    have h := pow_le_pow_left₀ ht0 ht2 2
+    norm_num at h
+    exact h
+  have hsqsub : t ^ 2 - t ≤ 2 * (t - 1) := by
+    have h := mul_nonneg (sub_nonneg.mpr ht2) (sub_nonneg.mpr ht)
+    nlinarith only [h]
+  have hcoef : t ^ 2 + t + 1 + t ^ 2 * (β / δ) ≤ 7 + 4 * (β / δ) := by
+    have h := mul_le_mul_of_nonneg_right hsq (div_nonneg hβ.le hδ.le)
+    linarith only [hsq, ht2, h]
+  have h1 := mul_le_mul_of_nonneg_left hsqsub hC.le
+  have h2 := mul_le_mul_of_nonneg_right hcoef hf
+  have h3 := mul_le_mul_of_nonneg_right hsq
+    (mul_nonneg hC.le (div_nonneg hδ.le hβ.le))
+  have hsum : -C + C * (t ^ 2 - t) +
+        (t ^ 2 + t + 1 + t ^ 2 * (β / δ)) * f + t ^ 2 * C * (δ / β) ≤
+      -C + 2 * C * (t - 1) + (7 + 4 * (β / δ)) * f + 4 * C * (δ / β) := by
+    nlinarith only [h1, h2, h3]
+  have hmul := mul_le_mul_of_nonneg_left hsum
+    (mul_nonneg (sub_nonneg.mpr ht) hb.le)
+  change Imin β γ k (t * b) - J ≤ (t - 1) * b *
+      (-C + 2 * C * (t - 1) + (7 + 4 * (β / δ)) * f + 4 * C * (δ / β))
+  linarith only [hI, hid, hmul]
+
+/-- A positive bounded-fragment bulk gap and sufficiently small large-fragment
+bulk defect force strict binding. No differentiability of Imin is used. -/
+theorem strict_split_of_small_bulk_defect (hβ : 0 < β) (hγ : 0 < γ)
+    {a b s δ t : ℝ} (ha : 0 < a) (hb : 0 < b) (hs : 0 < s) (hδ : 0 < δ)
+    (ht : 1 ≤ t) (ht2 : t ≤ 2) (hmass : (t - 1) * b = a)
+    (hsmall : β * s * a ≤ 2 * bulk β γ)
+    (hdef : 2 * bulk β γ * (t - 1) +
+      (7 + 4 * (β / δ)) * (Imin β γ k b / b + bulk β γ) +
+      4 * bulk β γ * (δ / β) < min (s ^ 2) (bulk β γ / 2)) :
+    Imin β γ k (a + b) < Imin β γ k a + Imin β γ k b := by
+  have hI := inf_increment_bound (β := β) (γ := γ) (k := k) hβ hγ hb hδ ht ht2
+  have htb : t * b = a + b := by nlinarith only [hmass]
+  rw [htb, hmass] at hI
+  have hgap := inf_bulk_gap (β := β) (γ := γ) (k := k) hβ hγ ha hs hsmall
+  have hd := mul_lt_mul_of_pos_left hdef ha
+  nlinarith only [hI, hgap, hd]
+
 end ReyesMath.GC16BulkBinding
 
 #print axioms ReyesMath.GC16BulkBinding.field_bulk_gap
@@ -147,3 +231,6 @@ end ReyesMath.GC16BulkBinding
 #print axioms ReyesMath.GC16BulkBinding.scaled_field_upper
 #print axioms ReyesMath.GC16BulkBinding.inf_scaled_upper
 #print axioms ReyesMath.GC16BulkBinding.strict_split_of_certificate
+
+#print axioms ReyesMath.GC16BulkBinding.inf_increment_bound
+#print axioms ReyesMath.GC16BulkBinding.strict_split_of_small_bulk_defect
