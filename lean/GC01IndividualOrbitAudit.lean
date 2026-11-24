@@ -6,3 +6,7 @@ import MathProofs.GC01IndividualOrbit
 #print axioms ReyesMath.GC01IndividualOrbit.stationary_dilation_gap
 #print axioms ReyesMath.GC01IndividualOrbit.stationary_dilation_strict
 #print axioms ReyesMath.Sobolev.global_wellposed
+
+#print axioms ReyesMath.GC01IndividualOrbit.orbit_invariants
+#print axioms ReyesMath.GC01IndividualOrbit.defect_small_near_orbit
+#print axioms ReyesMath.GC01IndividualOrbit.orbit_stability_of_barriers
