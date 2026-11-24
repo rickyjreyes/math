@@ -123,7 +123,7 @@
       "flagship": true,
       "dossier": "flagship/GC06.md",
       "claimed_kernel_verified_resolution": false,
-      "note": "Initial references and mathematical objections recorded in dossier; still requires full audit.",
+      "note": "2026-11-24 candidate analytical evidence: refined explicit interval, growing near-zero-selector region, unbounded attained masses and exact compactness/finite-cluster criterion; see docs/GC06_SHELL_BINDING_2026-11-24.md and dossier. New Lean candidates await CI and correspondence review; unrestricted attainment classification unresolved.",
       "discussion_issue": "https://github.com/rickyjreyes/math/issues/55",
       "file_path": "problems/02-confinement-curvature/GC06.md",
       "research_area": "Confinement and curvature geometry",

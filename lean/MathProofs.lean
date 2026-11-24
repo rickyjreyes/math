@@ -171,3 +171,5 @@ import MathProofs.E18Lyapunov
 import MathProofs.E18Certification
 import MathProofs.D4FrozenWholeSpace
 import MathProofs.GC16ZeroShell
+import MathProofs.GC06ShellBinding
+import MathProofs.GC06NearZeroShell

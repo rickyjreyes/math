@@ -177,3 +177,7 @@ critical/supercritical regimes remain open in this ledger.
 - No issue or GC-level status is closed or promoted. Review exact scope,
   run CI, independently check prior art, and then update accepted registry
   evidence through the repository workflow.
+
+## GC06 follow-up: nonzero-selector binding and exact compactness obstruction
+
+[Detailed analytical proof and theorem correspondence](GC06_SHELL_BINDING_2026-11-24.md). Two candidate Lean modules extend the explicit interval and establish a growing near-zero-selector mass region; analytical shell bounds yield arbitrarily large binding masses at every fixed k, and concentration-compactness yields a finite attained-profile decomposition and necessary/sufficient strict binding for compactness. Both elementary scaling comparisons fail on explicit negative stationary trial fields. Remaining: exact fixed-k attainment classification and strict cluster merging or a genuine equality counterexample. New Lean roots pending CI; structural results are analytical only. No issue closure or accepted registry promotion.
