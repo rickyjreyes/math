@@ -79,7 +79,7 @@ theorem integrated_absorption {X : Type*} [MeasurableSpace X] (μ : Measure X)
   have hle := integral_mono (hrl.const_mul a)
     ((hsl.const_mul b).add (h2.const_mul C))
     (fun x => h (‖f x‖) (norm_nonneg _))
-  simpa only [integral_add (hsl.const_mul b) (h2.const_mul C),
+  simpa only [Pi.add_apply, integral_add (hsl.const_mul b) (h2.const_mul C),
     integral_const_mul] using hle
 
 open ReyesMath.Sobolev
