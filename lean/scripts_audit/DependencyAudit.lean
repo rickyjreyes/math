@@ -8,6 +8,7 @@ import MathProofs.GC08PlaneLocus
 import MathProofs.GC08ClosedPlane
 import MathProofs.GC08Spatial
 import MathProofs.GC08Hadamard
+import MathProofs.GC03Energy
 
 /-!
 Dependency audit for the whole-space confinement chain (Task 2).
@@ -108,3 +109,16 @@ elab "#audit_deps " root:ident : command => do
 #audit_deps ReyesMath.GC08.smooth_graph_factorization
 #audit_deps ReyesMath.GC08.equivariant_graph_factorization
 #audit_deps ReyesMath.GC08.segment_difference
+
+#audit_deps ReyesMath.GC03Energy.power_absorption
+#audit_deps ReyesMath.GC03Energy.integrated_absorption
+#audit_deps ReyesMath.GC03Energy.energy_coercivity
+#audit_deps ReyesMath.GC03Energy.cubic_quintic_d2_p2
+#audit_deps ReyesMath.GC03Energy.supercritical_scaling_iff
+#audit_deps ReyesMath.GC03Energy.singular_exponent_window_iff
+#audit_deps ReyesMath.GC03Energy.trajectory_kinetic_bound
+#audit_deps ReyesMath.GC03Energy.energy_drop_count
+#audit_deps ReyesMath.GC03Energy.finite_energy_drop_count
+#audit_deps ReyesMath.GC03Energy.gradient_forcing_threshold
+#audit_deps ReyesMath.GC03Energy.lower_cutoff_exponent_lt_critical
+#audit_deps ReyesMath.GC03Energy.relative_mass_cancellation
