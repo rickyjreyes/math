@@ -1,0 +1,31 @@
+import MathProofs.GC16BulkBinding
+import MathProofs.GC01ExpandedOrbits
+import MathProofs.GC16InterfaceBinding
+import MathProofs.GC06SpectralMerging
+
+#print axioms ReyesMath.GC16BulkBinding.field_bulk_gap
+#print axioms ReyesMath.GC16BulkBinding.inf_bulk_gap
+#print axioms ReyesMath.GC16BulkBinding.quartic_shift_bound
+#print axioms ReyesMath.GC16BulkBinding.scaled_field_upper
+#print axioms ReyesMath.GC16BulkBinding.inf_scaled_upper
+#print axioms ReyesMath.GC16BulkBinding.strict_split_of_certificate
+#print axioms ReyesMath.GC16BulkBinding.inf_increment_bound
+#print axioms ReyesMath.GC16BulkBinding.strict_split_of_small_bulk_defect
+#print axioms ReyesMath.GC01ExpandedOrbits.isolated_orbit_stability_of_binding
+#print axioms ReyesMath.GC01ExpandedOrbits.binding_of_either
+#print axioms ReyesMath.GC01ExpandedOrbits.exists_minimizer_expanded
+#print axioms ReyesMath.GC01ExpandedOrbits.orbital_stability_expanded
+#print axioms ReyesMath.GC01ExpandedOrbits.isolated_orbit_stability_expanded
+#print axioms ReyesMath.GC16InterfaceBinding.bulkDensity_pos
+#print axioms ReyesMath.GC16InterfaceBinding.optimized_increment
+#print axioms ReyesMath.GC16InterfaceBinding.strict_split_of_optimized_margin
+#print axioms ReyesMath.GC16InterfaceBinding.mass_bound_to_surface_gap
+#print axioms ReyesMath.GC16InterfaceBinding.inf_surface_gap_of_cell_bound
+#print axioms ReyesMath.GC06SpectralMerging.amp_one
+#print axioms ReyesMath.GC06SpectralMerging.mass_deletion_comparison
+#print axioms ReyesMath.GC06SpectralMerging.mass_exchange_comparison
+#print axioms ReyesMath.GC06SpectralMerging.cubic_linear_nonneg
+#print axioms ReyesMath.GC06SpectralMerging.multiplier_nonpos
+#print axioms ReyesMath.GC06SpectralMerging.common_multiplier_of_equality
+#print axioms ReyesMath.GC06SpectralMerging.low_density_hessian
+#print axioms ReyesMath.GC06SpectralMerging.all_binding_of_pair_exclusion

@@ -1,0 +1,44 @@
+name: GC01 spectral reduction audit
+on:
+  pull_request:
+    paths:
+      - 'lean/MathProofs/GC01SpectralReduction.lean'
+      - 'lean/GC01SpectralAudit.lean'
+      - '.github/workflows/lean-gc01-spectral.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  kernel:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: lean
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Lean
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch mathlib cache
+        run: lake exe cache get
+      - name: Build and verify closures
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -nE '(^|[[:space:]])(sorry|admit|axiom)([[:space:]]|$)' MathProofs/GC01SpectralReduction.lean; then exit 1; fi
+          lake build MathProofs.GC01SpectralReduction
+          lake env lean GC01SpectralAudit.lean 2>&1 | tee gc01-spectral-audit.log
+          python - <<'PY'
+          import re
+          from pathlib import Path
+          data = Path("gc01-spectral-audit.log").read_text()
+          names = ["central_difference","shifted_hessian_identity","hessian_lower","high_mode_coercivity","angular_coefficients","negative_energy_rotation","rotation_no_real_eigenvector"]
+          for name in names:
+              root = "ReyesMath.GC01SpectralReduction." + name
+              rows = [line for line in data.splitlines() if ("'" + root + "'") in line and ("depends on axioms" in line or "does not depend on any axioms" in line)]
+              assert len(rows) == 1, (root, rows)
+          for group in re.findall(r"depends on axioms: \[([^\]]*)\]", data, flags=re.S):
+              assert set(x.strip() for x in group.split(",") if x.strip()) <= {"propext", "Classical.choice", "Quot.sound"}, group
+          assert "sorryAx" not in data
+          PY
